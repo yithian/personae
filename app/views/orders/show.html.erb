@@ -1,0 +1,20 @@
+<% if known_order?(@order) %>
+<p>
+  <b>Name:</b>
+  <%=h @order.name %>
+</p>
+
+<table>
+	<tr>
+		<th>Member:</th>
+		<th>Cabal:</th>
+	</tr>
+
+	<%= render(:partial => "member", :collection => @order.characters) %>
+</table>
+
+	<%= link_to 'New member', { :controller => 'characters', :action => 'new', :order_id => @order } %><br />
+	<%= link_to 'Back', orders_path %>
+<% else %>
+	<% flash[:notice] = "This is a secret order!" %>
+<% end %>

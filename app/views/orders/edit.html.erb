@@ -1,0 +1,7 @@
+<% if edit_order?(@order) %>
+	<%= render :partial => 'form' %>
+
+	<%= link_to 'Cancel', @order %>
+<% else %>
+	<% flash[:notice] = "Only the ST can edit an Order!" %>
+<% end %>

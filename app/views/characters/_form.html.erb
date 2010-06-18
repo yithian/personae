@@ -1,0 +1,282 @@
+<% form_for(@character) do |f| %>
+  <%= f.error_messages %>
+
+<% cabal_list = Cabal.all.collect do |c|
+	next unless known_cabal?(c)
+	[c.name, c.id]
+end
+
+cabal_list.delete_if do |c|
+	c == nil
+end %>
+
+<% if controller.action_name == 'new' %>
+	<% @character.user_id = session[:user_id] %>
+	<input name="character[user_id]" type="hidden" value=<%= session[:user_id] %> >
+<% end %>
+
+<fieldset>
+  <table>
+	<tr>
+		<td><b><%= f.label :name %></b></td>
+		<td><%= f.text_field :name %></td>
+		<td><b><%= f.label :path %></b></td>
+		<td><%= f.select :path, Character::PATHS %></td>
+	</tr>
+	<tr>
+		<td><b><%= f.label :virtue %></b></td>
+		<td><%= f.select :virtue, Character::VIRTUES %></td>
+		<td><b><%= f.label :vice %></b></td>
+		<td><%= f.select :vice, Character::VICES %></td>
+	</tr>
+	<tr>
+		<td><b><%= f.label :cabal %></b></td>
+		<td><%= f.select :cabal_id, cabal_list %></td>
+		<td><b><%= f.label :order %></b></td>
+		<td><%=	f.select :order_id, Order.all.collect {|o| [o.name, o.id]} %></td>
+	</tr>
+	</table>
+	<%= f.check_box :read_name %> <%= f.label :read_name %>
+	<%= f.check_box :read_path %> <%= f.label :read_path %>
+	<%= f.check_box :read_cabal %> <%= f.label :read_cabal %>
+	<%= f.check_box :read_order %> <%= f.label :read_order %>
+</fieldset><br />
+
+<fieldset>
+	<legend>Description</legend>
+	<%= f.text_area :description, :rows => 7 %><br />
+	<%= f.check_box :read_description %> <%= f.label :read_description %>
+</fieldset><br />
+
+<fieldset>
+	<legend>Background</legend>
+	<%= f.text_area :background, :rows => 7 %><br />
+	<%= f.check_box :read_background %> <%= f.label :read_background %>
+</fieldset><br />
+
+<fieldset>
+	<legend>Attributes</legend>
+	<table>
+		<tr>
+			<td><%= f.label :intelligence %></td>
+			<td><%= f.text_field :intelligence, :size => 5 %>
+			<td><%= f.label :strength %></td>
+			<td><%= f.text_field :strength, :size => 5 %></td>
+			<td><%= f.label :presence %></td>
+			<td><%= f.text_field :presence, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :wits %></td>
+			<td><%= f.text_field :wits, :size => 5 %>
+			<td><%= f.label :dexterity %></td>
+			<td><%= f.text_field :dexterity, :size => 5 %></td>
+			<td><%= f.label :manipulation %></td>
+			<td><%= f.text_field :manipulation, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :resolve %></td>
+			<td><%= f.text_field :resolve, :size => 5 %>
+			<td><%= f.label :stamina %></td>
+			<td><%= f.text_field :stamina, :size => 5 %></td>
+			<td><%= f.label :composure %></td>
+			<td><%= f.text_field :composure, :size => 5 %></td>
+		</tr>
+	</table>
+	<%= f.check_box :read_attributes %> <%= f.label :read_attributes %>
+</fieldset><br />
+
+<fieldset>
+	<legend>Skills</legend>
+	<table>
+		<tr>
+			<td><%= f.label :academics %></td>
+			<td><%= f.text_field :academics, :size => 5 %></td>
+			<td><%= f.label :athletics %></td>
+			<td><%= f.text_field :athletics, :size => 5 %></td>
+			<td><%= f.label :animal_ken %></td>
+			<td><%= f.text_field :animal_ken, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :computer %></td>
+			<td><%= f.text_field :computer, :size => 5 %></td>
+			<td><%= f.label :brawl %></td>
+			<td><%= f.text_field :brawl, :size => 5 %></td>
+			<td><%= f.label :empathy %></td>
+			<td><%= f.text_field :empathy, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :crafts %></td>
+			<td><%= f.text_field :crafts, :size => 5 %></td>
+			<td><%= f.label :drive %></td>
+			<td><%= f.text_field :drive, :size => 5 %></td>
+			<td><%= f.label :expression %></td>
+			<td><%= f.text_field :expression, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :investigation %></td>
+			<td><%= f.text_field :investigation, :size => 5 %></td>
+			<td><%= f.label :firearms %></td>
+			<td><%= f.text_field :firearms, :size => 5 %></td>
+			<td><%= f.label :intimidation %></td>
+			<td><%= f.text_field :intimidation, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :medicine %></td>
+			<td><%= f.text_field :medicine, :size => 5 %></td>
+			<td><%= f.label :larceny %></td>
+			<td><%= f.text_field :larceny, :size => 5 %></td>
+			<td><%= f.label :persuasion %></td>
+			<td><%= f.text_field :persuasion, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :occult %></td>
+			<td><%= f.text_field :occult, :size => 5 %></td>
+			<td><%= f.label :stealth %></td>
+			<td><%= f.text_field :stealth, :size => 5 %></td>
+			<td><%= f.label :socialize %></td>
+			<td><%= f.text_field :socialize, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :politics %></td>
+			<td><%= f.text_field :politics, :size => 5 %></td>
+			<td><%= f.label :survival %></td>
+			<td><%= f.text_field :survival, :size => 5 %></td>
+			<td><%= f.label :streetwise %></td>
+			<td><%= f.text_field :streetwise, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :science %></td>
+			<td><%= f.text_field :science, :size => 5 %></td>
+			<td><%= f.label :weaponry %></td>
+			<td><%= f.text_field :weaponry, :size => 5 %></td>
+			<td><%= f.label :subterfuge %></td>
+			<td><%= f.text_field :subterfuge, :size => 5 %></td>
+		</tr>
+		<tr>
+    		<td><%= f.label :skill_specialties %></td>
+		    <td colspan=5><%= f.text_area :skill_specialties, :rows => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :speed %></td>
+		    <td><%= f.text_field :speed, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :initiative %></td>
+			<td><%= f.text_field :initiative, :size => 5 %></td>
+		</td>
+		<tr>
+			<td><%= f.label :defense %></td>
+			<td><%= f.text_field :defense, :size => 5 %></td>
+		</td>
+	</table>
+	<%= f.check_box :read_skills %> <%= f.label :read_skills %>
+</fieldset><br />
+
+<fieldset>
+	<legend>Advantages</legend>
+	<table>
+		<tr>
+			<td><%= f.label :health %></td>
+		    <td><%= f.text_field :health, :size => 10 %></td>
+			<td><%= f.label :derangements %></td>
+			<td rowspan=5><%= f.text_area :derangements, :rows => 10 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :willpower %></td>
+		    <td><%= f.text_field :willpower, :size => 10 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :armor %></td>
+			<td><%= f.text_field :armor, :size => 5 %></td>
+		</td>
+		<tr>
+			<td><%= f.label :wisdom %></td>
+			<td><%= f.text_field :wisdom, :size => 5 %></td>
+		</td>
+		<tr>
+			<td><%= f.label :gnosis %></td>
+			<td><%= f.text_field :gnosis, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :mana %></td>
+			<td><%= f.text_field :mana, :size => 5 %></td>
+		</tr>
+	</table>
+	<%= f.check_box :read_advantages %> <%= f.label :read_advantages %>
+</fieldset><br />
+
+<fieldset>
+	<legend><%= f.label :merits %></legend>
+    <%= f.text_area :merits %><br />
+	<%= f.check_box :read_merits %> <%= f.label :read_merits %>
+</fieldset><br />
+
+<fieldset>
+	<legend>Arcana</legend>
+	<table>
+		<tr>
+			<td><%= f.label :death %></td>
+		    <td><%= f.text_field :death, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :fate %></td>
+		    <td><%= f.text_field :fate, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :forces %></td>
+		    <td><%= f.text_field :forces, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :life %></td>
+		    <td><%= f.text_field :life, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :matter %></td>
+		    <td><%= f.text_field :matter, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :mind %></td>
+		    <td><%= f.text_field :mind, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :prime %></td>
+		    <td><%= f.text_field :prime, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :space %></td>
+		    <td><%= f.text_field :space, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :spirit %></td>
+		    <td><%= f.text_field :spirit, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :time %></td>
+		    <td><%= f.text_field :time, :size => 5 %></td>
+		</tr>
+	</table>
+	<%= f.check_box :read_arcana %> <%= f.label :read_arcana %>
+</fieldset><br />
+
+<fieldset>
+	<legend><%= f.label :equipment %></legend>
+    <%= f.text_area :equipment %><br />
+	<%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
+</fieldset><br />
+
+<fieldset>
+    <legend><%= f.label :common_spells %></legend>
+    <%= f.text_area :common_spells %><br />
+	<%= f.check_box :read_spells %> <%= f.label :read_spells %>
+</fieldset><br />
+
+<fieldset>
+	<legend><%= f.label :experience %></legend>
+	<%= f.text_area :experience %><br />
+	<%= f.check_box :read_experience %> <%= f.label :read_experience %>
+</fieldset>
+
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
+<% end %>

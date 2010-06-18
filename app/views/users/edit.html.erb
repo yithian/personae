@@ -1,0 +1,8 @@
+<% if edit_user?(@user) %>
+	<%= render :partial => 'form' %>
+
+	<%= link_to 'Show', @user %>
+	<%= link_to 'Back', users_path %>
+<% else %>
+	<% flash[:notice] = "You can't edit this user" %>
+<% end %>

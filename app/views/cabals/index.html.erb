@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Name</th>
+	<th>Territory</th>
+  </tr>
+
+<% @cabals.each do |cabal| %>
+	<% if known_cabal?(cabal) %>
+		<tr>
+			<td><%= link_to (h cabal.name), cabal %></td>
+			<td><%=h cabal.territory %></td>
+		</tr>
+	<% end %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New cabal', new_cabal_path %>

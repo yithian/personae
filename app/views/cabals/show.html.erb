@@ -1,0 +1,33 @@
+<% if known_cabal?(@cabal) %>
+	<p>
+	  <b>Name:</b>
+	  <%=h @cabal.name %>
+	</p>
+
+	<p>
+		<b>Territory:</b>
+		<%=h @cabal.territory %>
+	</p>
+
+	<p>
+	  <b>Description:</b>
+	  <%=h @cabal.description %>
+	</p>
+
+	<table>
+		<tr>
+			<th>Member:</th>
+			<th>Order:</th>
+		</tr>
+
+		<%= render(:partial => "member", :collection => @cabal.characters) %>
+	</table>
+
+
+	<%= link_to 'New member', { :controller => 'characters', :action => 'new', :cabal_id => @cabal.id } %><br />
+	<%= link_to 'Back', cabals_path %>
+	<%= link_to 'Edit', edit_cabal_path(@cabal) if edit_cabal?(@cabal) %>
+	<%= link_to 'Destroy', @cabal, :confirm => 'Are you sure you want to delete this cabal?', :method => :delete if edit_cabal?(@cabal) %>
+<% else %>
+	<% flash[:notice] = "You can't see this cabal" %>
+<% end %>

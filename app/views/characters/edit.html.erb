@@ -1,0 +1,7 @@
+<% if edit_character?(@character) %>
+	<%= render :partial => 'form' %>
+
+	<%= link_to 'Cancel', @character %>
+<% else %>
+	<% flash[:notice] = "You can't edit this character" %>
+<% end %>

@@ -1,0 +1,107 @@
+body {
+	background-color: gray;
+	color: navy; 
+}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+a {	color: navy; }
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: lightblue;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid lightblue;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  color: navy;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: lightblue;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+#header {
+	color: navy;
+	background: gray;
+	width: 100%;
+	padding: 0.5em 0 0.5em;
+	float: left;
+	text-align: center;
+}
+
+#sidebar {
+	width: 15;
+	float: left;
+	background: gray;
+}
+
+.charsheet {
+	width: 84%;
+	float: right;
+	padding: 0.2em;
+	background: navy;
+	color: gold;
+}
+
+.charsheet #notice {
+	text-align: center;
+	color: green;
+}
+
+.charsheet a { color: aqua; }
+.charsheet a:visited { color: mediumaquamarine; }
+.charsheet a:hover { background-color:#000; }
+
+.charsheet table {
+	padding: 0.5em 0em;
+}
+
+.charsheet td {
+	padding: 0em 1em 0em 0em;
+}
+
+.charsheet fieldset {
+	background: white;
+	color: #333;
+}
+
+.charsheet legend {
+	color: gold;
+	background: teal;
+	font-family: sans-serif;
+	padding: 0.2em 1em;
+}

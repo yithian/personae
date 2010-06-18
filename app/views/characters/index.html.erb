@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Cabal</th>
+    <th>Order</th>
+  </tr>
+
+<% @characters.each do |character| %>
+  <% if show_character?(character) %>
+	  <tr>
+	    <td><%= link_to character.name, character %></td>
+	    <td><%= link_to character.cabal.name, character.cabal if show_cabal?(character) %></td>
+	    <td><%= link_to character.order.name, character.order if show_order?(character) %></td>
+	  </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New character', new_character_path %><br />

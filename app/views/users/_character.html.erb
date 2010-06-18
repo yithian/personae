@@ -1,0 +1,5 @@
+<% if show_character?(character) %>
+<tr>
+	<td><%= link_to (h character.name), Character.find(character) %></td>
+</tr>
+<% end %>

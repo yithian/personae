@@ -1,0 +1,13 @@
+<table>
+	<tr>
+		<th>Name</th>
+	</tr>
+
+	<% @orders.each do |order| %>
+		<% if known_order?(order) %>
+			<tr>
+				<td><%= link_to (h order.name), order %></td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>

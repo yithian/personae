@@ -1,0 +1,22 @@
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+	<div>
+		<%= f.label :name, 'Name' %>
+		<%= f.text_field :name %>
+	</div>
+	
+	<div>
+		<%= f.label :password, 'Password' %>
+		<%= f.password_field :password, :size => 40 %>
+	</div>
+	
+	<div>
+		<%= f.label :password_confirmation, 'Confirm' %>
+		<%= f.password_field :password_confirmation, :size => 40 %>
+	</div>
+	
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
+<% end %>

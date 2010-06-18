@@ -1,0 +1,25 @@
+<% form_for(@cabal) do |f| %>
+  <%= f.error_messages %>
+  
+  <% if controller.action_name == 'new' %>
+	<% @cabal.user_id = session[:user_id] %>
+	<input name="cabal[user_id]" type="hidden" value=<%= session[:user_id] %> >
+  <% end %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+	<%= f.label :territory %><br />
+  	<%= f.text_field :territory %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <%= f.check_box :write %> <%= f.label :write %>
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
+<% end %>

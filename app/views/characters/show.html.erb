@@ -1,0 +1,276 @@
+<% if show_character?(@character) %>
+	<fieldset>
+		<table>
+			<tr>
+				<td><b>Name:</b></td>
+				<td><%=h @character.name %></td>
+				<td><b>Path:</b></td>
+				<td><%=h @character.path if show_path?(@character) %>
+			</tr>
+			<% if own_character?(@character) %>
+			<tr>
+				<td><b>Virtue:</b></td>
+				<td><%=h @character.virtue %></td>
+				<td><b>Vice:</b></td>
+				<td><%=h @character.vice %></td>
+			</tr>
+			<% end %>
+			<tr>
+				<td><b>Cabal:</b></td>
+				<td><%= link_to (h @character.cabal.name), @character.cabal if show_cabal?(@character) %></td>
+				<td><b>Order:</b></td>
+				<td><%= link_to (h @character.order.name), @character.order if show_order?(@character) %></td>
+			</tr>
+		</table>
+	</fieldset><br />
+
+	<% if show_description?(@character) %>
+		<fieldset>
+		  <legend>Description</legend>
+		  <%= simple_format(@character.description) %>
+		</fieldset><br />
+	<% end %>
+
+	<% if show_background?(@character) %>
+		<fieldset>
+		  <legend>Background</legend>
+		  <%= simple_format(@character.background) %>
+		</fieldset><br />
+	<% end %>
+
+	<% if show_attributes?(@character) %>
+		<fieldset>
+			<legend>Attributes</legend>
+			<table>
+				<tr>
+					<td>Intelligence:</td>
+					<td><%=h @character.intelligence %></td>
+					<td>Strength:</td>
+					<td><%=h @character.strength %></td>
+					<td>Presence:</td>
+					<td><%=h @character.presence %></td>
+				</tr>
+				<tr>
+					<td>Wits:</td>
+					<td><%=h @character.wits %></td>
+					<td>Dexterity:</td>
+					<td><%=h @character.dexterity %></td>
+					<td>Manipulation:</td>
+					<td><%=h @character.manipulation %></td>
+				</tr>
+				<tr>
+					<td>Resolve:</td>
+					<td><%=h @character.resolve %></td>
+					<td>Stamina:</td>
+					<td><%=h @character.stamina %></td>
+					<td>Composure:</td>
+					<td><%=h @character.composure %></td>
+				</tr>
+			</table>
+		</fieldset><br />
+	<% end %>
+
+	<% if show_skills?(@character) %>
+		<fieldset>
+			<legend>Skills</legend>
+			<table>
+				<tr>
+					<td>Academics:</td>
+					<td><%=h @character.academics %></td>
+					<td>Athletics:</td>
+					<td><%=h @character.athletics %></td>
+					<td>Animal Ken:</td>
+					<td><%=h @character.animal_ken %></td>
+				</tr>
+				<tr>
+					<td>Computer:</td>
+					<td><%=h @character.computer %></td>
+					<td>Brawl:</td>
+					<td><%=h @character.brawl %></td>
+					<td>Empathy:</td>
+					<td><%=h @character.empathy %></td>
+				</tr>
+				<tr>
+					<td>Crafts:</td>
+					<td><%=h @character.crafts %></td>
+					<td>Drive:</td>
+					<td><%=h @character.drive %></td>
+					<td>Expression:</td>
+					<td><%=h @character.expression %></td>
+				</tr>
+				<tr>
+					<td>Investigation:</td>
+					<td><%=h @character.investigation %></td>
+					<td>Firearms:</td>
+					<td><%=h @character.firearms %></td>
+					<td>Intimidation:</td>
+					<td><%=h @character.intimidation %></td>
+				</tr>
+					<td>Medicine:</td>
+					<td><%=h @character.medicine %></td>
+					<td>Larceny:</td>
+					<td><%=h @character.larceny %></td>
+					<td>Persuasion:</td>
+					<td><%=h @character.persuasion %></td>
+				</tr>
+					<td>Occult:</td>
+					<td><%=h @character.occult %></td>
+					<td>Stealth:</td>
+					<td><%=h @character.stealth %></td>
+					<td>Socialize:</td>
+					<td><%=h @character.socialize %></td>
+				</tr>
+					<td>Politics:</td>
+					<td><%=h @character.politics %></td>
+					<td>Survival:</td>
+					<td><%=h @character.survival %></td>
+					<td>Streetwise:</td>
+					<td><%=h @character.streetwise %></td>
+				</tr>
+					<td>Science:</td>
+					<td><%=h @character.science %></td>
+					<td>Weaponry:</td>
+					<td><%=h @character.weaponry %></td>
+					<td>Subterfuge:</td>
+					<td><%=h @character.subterfuge %></td>
+				</tr>
+				<tr>
+					<td>Skill Specialties:</td>
+					<td colspan=5><%= simple_format(@character.skill_specialties) %></td>
+				</tr>
+				<tr>
+					<td>Speed:</td>
+					<td><%=h @character.speed %></td>
+				</tr>
+				<tr>
+					<td>Initiative:</td>
+					<td><%=h @character.initiative %></td>
+				</tr>
+				<tr>
+					<td>Defense:</td>
+					<td><%=h @character.defense %></td>
+				</tr>
+			</table>
+		</fieldset><br />
+	<% end %>
+
+	<% if show_advantages?(@character) %>
+		<fieldset>
+			<legend>Advantages</legend>
+			<table>
+				<tr>
+					<td>Health:</td>
+					<td><%=h @character.health %></td>
+					<td>Derangements:</td>
+					<td rowspan=5><%= simple_format(@character.derangements) %></td>
+				</tr>
+				<tr>
+					<td>Willpower:</td>
+					<td><%=h @character.willpower %></td>
+				</tr>
+				<tr>
+					<td>Armor:</td>
+					<td><%=h @character.armor %></td>
+				</tr>
+				<tr>
+					<td>Wisdom:</td>
+					<td><%=h @character.wisdom %></td>
+				</tr>
+				<tr>
+					<td>Gnosis:</td>
+					<td><%=h @character.gnosis %></td>
+				</tr>
+				<tr>
+					<td>Mana:</td>
+					<td><%=h @character.mana %></td>
+				</tr>
+			</table>
+		</fieldset><br />
+	<% end %>
+
+	<% if show_merits?(@character) %>
+		<fieldset>
+		  <legend>Merits</legend>
+		  <%= simple_format(@character.merits) %>
+		</fieldset><br />
+	<% end %>
+
+	<% if show_arcana?(@character) %>
+		<fieldset>
+			<legend>Arcana</legend>
+			<table>
+				<tr>
+					<td>Death:</td>
+					<td><%=h @character.death %></td>
+				</tr>
+				<tr>
+					<td>Fate:</td>
+					<td><%=h @character.fate %></td>
+				</tr>
+				<tr>
+					<td>Forces:</td>
+					<td><%=h @character.forces %></td>
+				</tr>
+				<tr>
+					<td>Life:</td>
+					<td><%=h @character.life %></td>
+				</tr>
+				<tr>
+					<td>Matter:</td>
+					<td><%=h @character.matter %></td>
+				</tr>
+				<tr>
+					<td>Mind:</td>
+					<td><%=h @character.mind %></td>
+				</tr>
+				<tr>
+					<td>Prime:</td>
+					<td><%=h @character.prime %></td>
+				</tr>
+				<tr>
+					<td>Space:</td>
+					<td><%=h @character.space %></td>
+				</tr>
+				<tr>
+					<td>Spirit:</td>
+					<td><%=h @character.spirit %></td>
+				</tr>
+				<tr>
+					<td>Time:</td>
+					<td><%=h @character.time %></td>
+				</tr>
+			</table>
+		</fieldset><br />
+	<% end %>
+
+	<% if show_equipment?(@character) %>
+		<fieldset>
+		  <legend>Equipment</legend>
+		  <%= simple_format(@character.equipment) %>
+		</fieldset><br />
+	<% end %>
+
+	<% if show_spells?(@character) %>
+		<fieldset>
+		  <legend>Common spells</legend>
+		  <%= simple_format(@character.common_spells) %>
+		</fieldset><br />
+	<% end %>
+	
+	<% if show_experience?(@character) %>
+		<fieldset>
+			<legend>Experience</legend>
+			<%= simple_format(@character.experience) %>
+		</fieldset>
+	<% end %><br />
+	
+	<%= render :partial => 'comments' %>
+
+	<%= link_to 'Show as other user', :action => 'show_as_other', :id => @character if edit_character?(@character) %><br />
+	
+	<%= link_to 'Back', character_path(@character) %>
+	<%= link_to 'Edit', edit_character_path(@character) if edit_character?(@character)%>
+	<%= link_to 'Destroy', @character, :confirm => 'Are you sure you want to delete this character?', :method => :delete if edit_character?(@character) %>
+<% else %>
+	<% flash[:notice] = "You can't see this character" %>
+<% end %>
