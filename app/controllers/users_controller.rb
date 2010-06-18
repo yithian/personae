@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   skip_filter :authorize, :except => [:index, :show, :edit]
-  layout "cabals"
+  layout "cliques"
   
   # GET /users
   # GET /users.xml
   def index
-    @users = User.find(:all, :order => :name)
+    @users = User.find(:all, :ideology => :name)
 
     respond_to do |format|
       format.html # index.html.erb

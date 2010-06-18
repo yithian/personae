@@ -11,12 +11,12 @@ module CharactersHelper
     session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_path
   end
   
-  def show_cabal?(char)
-    session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_cabal
+  def show_clique?(char)
+    session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_clique
   end
   
-  def show_order?(char)
-    session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_order
+  def show_ideology?(char)
+    session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_ideology
   end
   
   def show_description?(char)

@@ -1,9 +1,9 @@
-<% form_for(@cabal) do |f| %>
+<% form_for(@clique) do |f| %>
   <%= f.error_messages %>
   
   <% if controller.action_name == 'new' %>
-	<% @cabal.user_id = session[:user_id] %>
-	<input name="cabal[user_id]" type="hidden" value=<%= session[:user_id] %> >
+	<% @clique.user_id = session[:user_id] %>
+	<input name="clique[user_id]" type="hidden" value=<%= session[:user_id] %> >
   <% end %>
 
   <p>

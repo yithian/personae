@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  layout "cabals"
+  layout "cliques"
   
   def login
     if request.post?
@@ -8,7 +8,7 @@ class AdminController < ApplicationController
         session[:user_id] = user.id
         uri = session[:original_uri]
         session[:original_uri] = nil
-        redirect_to(uri || { :controller => 'cabals', :action => 'index' })
+        redirect_to(uri || { :controller => 'cliques', :action => 'index' })
       else
         flash.now[:notice] = "Invalid user/password combination"
       end
@@ -18,6 +18,6 @@ class AdminController < ApplicationController
   def logout
     session[:user_id] = :logged_out
     flash[:notice] = "Logged out"
-    redirect_to :controller => "cabals"
+    redirect_to :controller => "cliques"
   end
 end

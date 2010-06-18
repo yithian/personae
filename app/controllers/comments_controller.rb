@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  layout 'cabals'
+  layout 'cliques'
   
   def new
     @character = Character.find(params[:character_id])

@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  cabal: MyString
-  order: MyString
+  clique: MyString
+  ideology: MyString
   description: MyText
   background: MyText
   intelligence: 1
@@ -65,8 +65,8 @@ one:
 
 two:
   name: MyString
-  cabal: MyString
-  order: MyString
+  clique: MyString
+  ideology: MyString
   description: MyText
   background: MyText
   intelligence: 1

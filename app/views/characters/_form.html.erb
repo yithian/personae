@@ -1,12 +1,12 @@
 <% form_for(@character) do |f| %>
   <%= f.error_messages %>
 
-<% cabal_list = Cabal.all.collect do |c|
-	next unless known_cabal?(c)
+<% clique_list = Clique.all.collect do |c|
+	next unless known_clique?(c)
 	[c.name, c.id]
 end
 
-cabal_list.delete_if do |c|
+clique_list.delete_if do |c|
 	c == nil
 end %>
 
@@ -30,16 +30,16 @@ end %>
 		<td><%= f.select :vice, Character::VICES %></td>
 	</tr>
 	<tr>
-		<td><b><%= f.label :cabal %></b></td>
-		<td><%= f.select :cabal_id, cabal_list %></td>
-		<td><b><%= f.label :order %></b></td>
-		<td><%=	f.select :order_id, Order.all.collect {|o| [o.name, o.id]} %></td>
+		<td><b><%= f.label :clique %></b></td>
+		<td><%= f.select :clique_id, clique_list %></td>
+		<td><b><%= f.label :ideology %></b></td>
+		<td><%=	f.select :ideology_id, Ideology.all.collect {|o| [o.name, o.id]} %></td>
 	</tr>
 	</table>
 	<%= f.check_box :read_name %> <%= f.label :read_name %>
 	<%= f.check_box :read_path %> <%= f.label :read_path %>
-	<%= f.check_box :read_cabal %> <%= f.label :read_cabal %>
-	<%= f.check_box :read_order %> <%= f.label :read_order %>
+	<%= f.check_box :read_clique %> <%= f.label :read_clique %>
+	<%= f.check_box :read_ideology %> <%= f.label :read_ideology %>
 </fieldset><br />
 
 <fieldset>

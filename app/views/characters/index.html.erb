@@ -1,16 +1,16 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Cabal</th>
-    <th>Order</th>
+    <th>Clique</th>
+    <th>Ideology</th>
   </tr>
 
 <% @characters.each do |character| %>
   <% if show_character?(character) %>
 	  <tr>
 	    <td><%= link_to character.name, character %></td>
-	    <td><%= link_to character.cabal.name, character.cabal if show_cabal?(character) %></td>
-	    <td><%= link_to character.order.name, character.order if show_order?(character) %></td>
+	    <td><%= link_to character.clique.name, character.clique if show_clique?(character) %></td>
+	    <td><%= link_to character.ideology.name, character.ideology if show_ideology?(character) %></td>
 	  </tr>
   <% end %>
 <% end %>

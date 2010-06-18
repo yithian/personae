@@ -1,0 +1,7 @@
+<% if edit_ideology?(@ideology) %>
+	<%= render :partial => 'form' %>
+
+	<%= link_to 'Cancel', @ideology %>
+<% else %>
+	<% flash[:notice] = "Only the ST can edit an Ideology!" %>
+<% end %>

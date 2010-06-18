@@ -1,6 +1,0 @@
-<% if show_character?(member) and show_order?(member) %>
-	<tr>
-		<td><%= link_to (h member.name), member %></td>
-		<td><%= link_to (h member.cabal.name), member.cabal if show_cabal?(member) %></td>
-	</tr>
-<% end %>

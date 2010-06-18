@@ -8,11 +8,11 @@
 				<td><%=h @character.path if @character.read_path %></td>
 			</tr>
 			<tr>
-				<td><b>Cabal:</b></td>
-				<td><%= link_to (h @character.cabal.name), @character.cabal if @character.read_cabal%></td>
-				<td><b>Order:</b></td>
-				<% puts @character.read_cabal.inspect %>
-				<td><%= link_to (h @character.order.name), @character.order if @character.read_order %></td>
+				<td><b>Clique:</b></td>
+				<td><%= link_to (h @character.clique.name), @character.clique if @character.read_clique%></td>
+				<td><b>Ideology:</b></td>
+				<% puts @character.read_clique.inspect %>
+				<td><%= link_to (h @character.ideology.name), @character.ideology if @character.read_ideology %></td>
 			</tr>
 		</table>
 	</fieldset><br />

@@ -1,0 +1,13 @@
+<table>
+	<tr>
+		<th>Name</th>
+	</tr>
+
+	<% @ideologies.each do |ideology| %>
+		<% if known_ideology?(ideology) %>
+			<tr>
+				<td><%= link_to (h ideology.name), ideology %></td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>

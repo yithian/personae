@@ -1,6 +1,6 @@
 class Character < ActiveRecord::Base
-  belongs_to :cabal
-  belongs_to :order
+  belongs_to :clique
+  belongs_to :ideology
   belongs_to :user
   has_many :comments, :dependent => :destroy
   

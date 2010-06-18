@@ -1,11 +1,11 @@
 class CharactersController < ApplicationController
   before_filter :find_character, :only => [:show, :show_as_other, :edit, :update, :destroy]
-  layout "cabals"
+  layout "cliques"
   
   # GET /characters
   # GET /characters.xml
   def index
-    @characters = Character.find(:all, :order => "cabal_id ASC")
+    @characters = Character.find(:all, :ideology => "clique_id ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,8 +35,8 @@ class CharactersController < ApplicationController
   # GET /characters/new.xml
   def new
     @character = Character.new
-    @character.cabal_id = params['cabal_id'] if params['cabal_id']
-    @character.order_id = params['order_id'] if params['order_id']
+    @character.clique_id = params['clique_id'] if params['clique_id']
+    @character.ideology_id = params['ideology_id'] if params['ideology_id']
 
     respond_to do |format|
       format.html # new.html.erb

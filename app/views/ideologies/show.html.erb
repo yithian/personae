@@ -1,0 +1,20 @@
+<% if known_ideology?(@ideology) %>
+<p>
+  <b>Name:</b>
+  <%=h @ideology.name %>
+</p>
+
+<table>
+	<tr>
+		<th>Member:</th>
+		<th>Clique:</th>
+	</tr>
+
+	<%= render(:partial => "member", :collection => @ideology.characters) %>
+</table>
+
+	<%= link_to 'New member', { :controller => 'characters', :action => 'new', :ideology_id => @ideology } %><br />
+	<%= link_to 'Back', ideologies_path %>
+<% else %>
+	<% flash[:notice] = "This is a secret ideology!" %>
+<% end %>

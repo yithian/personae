@@ -3,7 +3,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   has_many :characters, :dependent => :destroy
   has_many :comments
-  has_many :cabals
+  has_many :cliques
   
   validates_presence_of :name
   validates_uniqueness_of :name

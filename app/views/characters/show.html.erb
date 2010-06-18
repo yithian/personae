@@ -16,10 +16,10 @@
 			</tr>
 			<% end %>
 			<tr>
-				<td><b>Cabal:</b></td>
-				<td><%= link_to (h @character.cabal.name), @character.cabal if show_cabal?(@character) %></td>
-				<td><b>Order:</b></td>
-				<td><%= link_to (h @character.order.name), @character.order if show_order?(@character) %></td>
+				<td><b>Clique:</b></td>
+				<td><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></td>
+				<td><b>Ideology:</b></td>
+				<td><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></td>
 			</tr>
 		</table>
 	</fieldset><br />

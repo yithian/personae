@@ -1,7 +1,0 @@
-<% if edit_cabal?(@cabal) %>
-	<%= render :partial => 'form' %>
-
-	<%= link_to 'Cancel', @cabal %>
-<% else %>
-	<% flash[:notice] = "You can't edit this cabal" %>
-<% end %>

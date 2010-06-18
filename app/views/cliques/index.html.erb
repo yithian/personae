@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Name</th>
+	<th>Territory</th>
+  </tr>
+
+<% @cliques.each do |clique| %>
+	<% if known_clique?(clique) %>
+		<tr>
+			<td><%= link_to (h clique.name), clique %></td>
+			<td><%=h clique.territory %></td>
+		</tr>
+	<% end %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New clique', new_clique_path %>

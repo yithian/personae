@@ -1,4 +1,4 @@
-class Cabal < ActiveRecord::Base
+class Clique < ActiveRecord::Base
   has_many :characters
   belongs_to :user
   
