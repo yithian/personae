@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20090818204502) do
     t.integer  "wisdom",            :default => 7
     t.text     "derangements"
     t.text     "merits"
-    t.integer  "gnosis",            :default => 1
+    t.integer  "gnosis",            :default => 0
     t.integer  "death"
     t.integer  "fate"
     t.integer  "forces"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(:version => 20090818204502) do
     t.boolean  "read_arcana",       :default => false
     t.boolean  "read_equipment",    :default => false
     t.boolean  "read_spells",       :default => false
-    t.integer  "mana",              :default => 10
+    t.integer  "mana",              :default => 7
     t.text     "experience"
     t.boolean  "read_experience",   :default => false
     t.boolean  "read_cabal",        :default => false

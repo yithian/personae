@@ -19,6 +19,7 @@ class AddWerewolfStats < ActiveRecord::Migration
     Ideology.create(:name => "Hunters in Darkness")
     Ideology.create(:name => "Iron Masters")
     Ideology.create(:name => "Storm Lords")
+    Splat.create(:type => "Werewolf")
   end
 
   def self.down
