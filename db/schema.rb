@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(:version => 20100620193727) do
     t.boolean  "read_clique",       :default => false
     t.boolean  "read_ideology",     :default => false
     t.boolean  "read_nature",       :default => false
-    t.integer  "splat_id",          :default => 2,     :null => false
+    t.integer  "splat_id",          :default => 1,     :null => false
     t.integer  "purity",            :default => 0
     t.integer  "glory",             :default => 0
     t.integer  "honor",             :default => 0
