@@ -4,8 +4,8 @@
 			<tr>
 				<td><b>Name:</b></td>
 				<td><%=h @character.name %></td>
-				<td><b>Path:</b></td>
-				<td><%=h @character.path if show_path?(@character) %>
+				<td><b><%=h @character.splat.nature_name %>:</b></td>
+				<td><%=h @character.nature.name if show_nature?(@character) %>
 			</tr>
 			<% if own_character?(@character) %>
 			<tr>
@@ -16,9 +16,9 @@
 			</tr>
 			<% end %>
 			<tr>
-				<td><b>Clique:</b></td>
+				<td><b><%=h @character.splat.clique_name %>:</b></td>
 				<td><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></td>
-				<td><b>Ideology:</b></td>
+				<td><b><%=h @character.splat.ideology_name %>:</b></td>
 				<td><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></td>
 			</tr>
 		</table>
@@ -173,17 +173,19 @@
 					<td><%=h @character.armor %></td>
 				</tr>
 				<tr>
-					<td>Wisdom:</td>
-					<td><%=h @character.wisdom %></td>
+					<td><%=h @character.splat.morality_name %>:</td>
+					<td><%=h @character.morality %></td>
+				</tr>
+			<% unless is_mortal?(@character) %>
+				<tr>
+					<td><%=h @character.splat.power_stat_name %>:</td>
+					<td><%=h @character.power_stat %></td>
 				</tr>
 				<tr>
-					<td>Gnosis:</td>
-					<td><%=h @character.gnosis %></td>
+					<td><%=h @character.splat.fuel_name %>:</td>
+					<td><%=h @character.fuel %></td>
 				</tr>
-				<tr>
-					<td>Mana:</td>
-					<td><%=h @character.mana %></td>
-				</tr>
+			<% end %>
 			</table>
 		</fieldset><br />
 	<% end %>
@@ -195,54 +197,6 @@
 		</fieldset><br />
 	<% end %>
 
-	<% if show_arcana?(@character) %>
-		<fieldset>
-			<legend>Arcana</legend>
-			<table>
-				<tr>
-					<td>Death:</td>
-					<td><%=h @character.death %></td>
-				</tr>
-				<tr>
-					<td>Fate:</td>
-					<td><%=h @character.fate %></td>
-				</tr>
-				<tr>
-					<td>Forces:</td>
-					<td><%=h @character.forces %></td>
-				</tr>
-				<tr>
-					<td>Life:</td>
-					<td><%=h @character.life %></td>
-				</tr>
-				<tr>
-					<td>Matter:</td>
-					<td><%=h @character.matter %></td>
-				</tr>
-				<tr>
-					<td>Mind:</td>
-					<td><%=h @character.mind %></td>
-				</tr>
-				<tr>
-					<td>Prime:</td>
-					<td><%=h @character.prime %></td>
-				</tr>
-				<tr>
-					<td>Space:</td>
-					<td><%=h @character.space %></td>
-				</tr>
-				<tr>
-					<td>Spirit:</td>
-					<td><%=h @character.spirit %></td>
-				</tr>
-				<tr>
-					<td>Time:</td>
-					<td><%=h @character.time %></td>
-				</tr>
-			</table>
-		</fieldset><br />
-	<% end %>
-
 	<% if show_equipment?(@character) %>
 		<fieldset>
 		  <legend>Equipment</legend>
@@ -250,11 +204,94 @@
 		</fieldset><br />
 	<% end %>
 
-	<% if show_spells?(@character) %>
-		<fieldset>
-		  <legend>Common spells</legend>
-		  <%= simple_format(@character.common_spells) %>
-		</fieldset><br />
+	<% if show_powers?(@character) %>
+		<% if @character.nature.name == "Mage" %>
+			<fieldset>
+				<legend>Arcana</legend>
+				<table>
+					<tr>
+						<td>Death:</td>
+						<td><%=h @character.death %></td>
+					</tr>
+					<tr>
+						<td>Fate:</td>
+						<td><%=h @character.fate %></td>
+					</tr>
+					<tr>
+						<td>Forces:</td>
+						<td><%=h @character.forces %></td>
+					</tr>
+					<tr>
+						<td>Life:</td>
+						<td><%=h @character.life %></td>
+					</tr>
+					<tr>
+						<td>Matter:</td>
+						<td><%=h @character.matter %></td>
+					</tr>
+					<tr>
+						<td>Mind:</td>
+						<td><%=h @character.mind %></td>
+					</tr>
+					<tr>
+						<td>Prime:</td>
+						<td><%=h @character.prime %></td>
+					</tr>
+					<tr>
+						<td>Space:</td>
+						<td><%=h @character.space %></td>
+					</tr>
+					<tr>
+						<td>Spirit:</td>
+						<td><%=h @character.spirit %></td>
+					</tr>
+					<tr>
+						<td>Time:</td>
+						<td><%=h @character.time %></td>
+					</tr>
+				</table>
+			</fieldset><br />
+			<fieldset>
+			  <legend>Common spells</legend>
+			  <%= simple_format(@character.common_spells) %>
+			</fieldset><br />
+		<% end %>
+		
+		<% if @character.nature.name == "Werewolf" %>
+			<fieldset>
+				<legend>Renown</legend>
+				<table>
+					<tr>
+						<td>Purity:</td>
+						<td><%=h @character.purity %></td>
+					</tr>
+					<tr>
+						<td>Glory:</td>
+						<td><%=h @character.glory %></td>
+					</tr>
+					<tr>
+						<td>Honor:</td>
+						<td><%=h @character.honor %></td>
+					</tr>
+					<tr>
+						<td>Wisdom:</td>
+						<td><%=h @character.wisdom %></td>
+					</tr>
+					<tr>
+						<td>Cunning:</td>
+						<td><%=h @character.cunning %></td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset>
+				<legend>Gifts</legend>
+				<%= simple_format(@character.gifts) %>
+			</fieldset>
+			<fieldset>
+				<legend>Totem</legend>
+				<%= simple_format(@character.totem)%>
+			</fieldset>
+		<% end %>
 	<% end %>
 	
 	<% if show_experience?(@character) %>

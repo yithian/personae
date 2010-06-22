@@ -2,8 +2,10 @@ class CreateNatures < ActiveRecord::Migration
   def self.up
     create_table "natures" do |t|
       t.string "name"
-      t.integer "splat_id", :null => false, :options => "CONSTRAINT fk_nature_splats REFERENCES splat(id)"
+      t.integer "splat_id", :null => false, :default => Splat.find_by_name("Mage"), :options => "CONSTRAINT fk_nature_splats REFERENCES splat(id)"
     end
+    
+    Nature.create(:name => "Mortal", :splat_id => Splat.find_by_name("Mortal").id)
     Nature.create(:name => "Acanthus", :splat_id => Splat.find_by_name("Mage").id)
     Nature.create(:name => "Mastigos", :splat_id => Splat.find_by_name("Mage").id)
     Nature.create(:name => "Moros", :splat_id => Splat.find_by_name("Mage").id)
@@ -15,7 +17,7 @@ class CreateNatures < ActiveRecord::Migration
     Nature.create(:name => "Ithaeur", :splat_id => Splat.find_by_name("Werewolf").id)
     Nature.create(:name => "Irraka", :splat_id => Splat.find_by_name("Werewolf").id)
     
-    add_column :characters, "nature_id", :integer, :null => false, :options => "CONSTRAINT fk_character_natures REFERENCES nature(id)"
+    add_column :characters, "nature_id", :integer, :null => false, :default => Nature.find_by_name("Mortal").id, :options => "CONSTRAINT fk_character_natures REFERENCES nature(id)"
     
     Character.find(:all) do |c|
       c.nature_id = Nature.find_by_name("Mortal").id if c.path == "Sleepwalker"
