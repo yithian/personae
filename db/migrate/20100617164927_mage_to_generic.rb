@@ -8,6 +8,8 @@ class MageToGeneric < ActiveRecord::Migration
     rename_column :characters, "order_id", "ideology_id"
     rename_column :characters, "read_order", "read_ideology"
     rename_column :characters, "wisdom", "morality"
+    rename_column :characters, "read_arcana", "read_powers"
+    remove_column :characters, "read_spells"
     change_column_default :characters, :gnosis, 0
     change_column_default :characters, :mana, 7
     add_column :characters, "splat_id", :integer, :null => false, :default => Splat.find_by_name('Mage').id, :options => "CONSTRAINT fk_characters_splats REFERENCES splat(id)"
@@ -15,6 +17,8 @@ class MageToGeneric < ActiveRecord::Migration
 
   def self.down
     remove_column :characters, "splat_id"
+    add_column :characters, "read_spells", :boolean
+    rename_column :characters, "read_powers", "read_arcana"
     rename_column :characters, "morality", "wisdom"
     rename_column :characters, "read_ideology", "read_order"
     rename_column :characters, "ideology_id", "order_id"
