@@ -17,6 +17,7 @@ class CreateNatures < ActiveRecord::Migration
     Nature.create(:name => "Ithaeur", :splat_id => Splat.find_by_name("Werewolf").id)
     Nature.create(:name => "Irraka", :splat_id => Splat.find_by_name("Werewolf").id)
     
+    rename_column :characters, "read_path", "read_nature"
     add_column :characters, "nature_id", :integer, :null => false, :default => Nature.find_by_name("Mortal").id, :options => "CONSTRAINT fk_character_natures REFERENCES nature(id)"
     
     Character.find(:all).each do |c|
@@ -33,9 +34,9 @@ class CreateNatures < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :characters, "path"
+    add_column :characters, "path", :string
 
-    Characters.find(:all) do |c|
+    Character.find(:all) do |c|
       c.path = "Sleepwalker" if c.nature.name == "Mortal"
       c.path = "Acanthus" if c.nature.name == "Acanthus"
       c.path = "Mastigos" if c.nature.name == "Mastigos"
@@ -46,6 +47,7 @@ class CreateNatures < ActiveRecord::Migration
     end
 
     remove_column :characters, :nature_id
+    rename_column :characters, "read_nature", "read_path"
     drop_table :natures
   end
 end
