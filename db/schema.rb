@@ -9,25 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090818204502) do
-
-  create_table "cabals", :force => true do |t|
-    t.string   "name"
-    t.string   "territory"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "write",       :default => false
-    t.integer  "user_id",     :default => 1,     :null => false
-  end
+ActiveRecord::Schema.define(:version => 20100620193727) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
-    t.string   "path"
     t.string   "virtue"
     t.string   "vice"
-    t.integer  "cabal_id",                             :null => false
-    t.integer  "order_id",                             :null => false
+    t.integer  "clique_id",                            :null => false
+    t.integer  "ideology_id",                          :null => false
     t.text     "description"
     t.text     "background"
     t.integer  "intelligence",      :default => 1
@@ -70,10 +59,10 @@ ActiveRecord::Schema.define(:version => 20090818204502) do
     t.integer  "initiative"
     t.integer  "defense"
     t.integer  "armor"
-    t.integer  "wisdom",            :default => 7
+    t.integer  "morality",          :default => 7
     t.text     "derangements"
     t.text     "merits"
-    t.integer  "gnosis",            :default => 0
+    t.integer  "power_stat",        :default => 1
     t.integer  "death"
     t.integer  "fate"
     t.integer  "forces"
@@ -96,15 +85,33 @@ ActiveRecord::Schema.define(:version => 20090818204502) do
     t.boolean  "read_skills",       :default => false
     t.boolean  "read_advantages",   :default => false
     t.boolean  "read_merits",       :default => false
-    t.boolean  "read_arcana",       :default => false
+    t.boolean  "read_powers",       :default => false
     t.boolean  "read_equipment",    :default => false
-    t.boolean  "read_spells",       :default => false
-    t.integer  "mana",              :default => 7
+    t.integer  "fuel",              :default => 7
     t.text     "experience"
     t.boolean  "read_experience",   :default => false
-    t.boolean  "read_cabal",        :default => false
-    t.boolean  "read_order",        :default => false
+    t.boolean  "read_clique",       :default => false
+    t.boolean  "read_ideology",     :default => false
     t.boolean  "read_path",         :default => false
+    t.integer  "splat_id",          :default => 2,     :null => false
+    t.integer  "purity",            :default => 0
+    t.integer  "glory",             :default => 0
+    t.integer  "honor",             :default => 0
+    t.integer  "wisdom",            :default => 0
+    t.integer  "cunning",           :default => 0
+    t.text     "gifts"
+    t.text     "totem"
+    t.integer  "nature_id",         :default => 1,     :null => false
+  end
+
+  create_table "cliques", :force => true do |t|
+    t.string   "name"
+    t.string   "territory"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "write",       :default => false
+    t.integer  "user_id",     :default => 1,     :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -116,10 +123,16 @@ ActiveRecord::Schema.define(:version => 20090818204502) do
     t.string   "speaker"
   end
 
-  create_table "orders", :force => true do |t|
+  create_table "ideologies", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "splat_id",   :default => 2, :null => false
+  end
+
+  create_table "natures", :force => true do |t|
+    t.string  "name"
+    t.integer "splat_id", :default => 2, :null => false
   end
 
   create_table "sessions", :force => true do |t|
@@ -131,6 +144,18 @@ ActiveRecord::Schema.define(:version => 20090818204502) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "splats", :force => true do |t|
+    t.string   "name"
+    t.string   "nature_name"
+    t.string   "clique_name"
+    t.string   "ideology_name"
+    t.string   "morality_name"
+    t.string   "power_stat_name"
+    t.string   "fuel_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
