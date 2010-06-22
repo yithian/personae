@@ -8,7 +8,7 @@ module CharactersHelper
   end
   
   def show_nature?(char)
-    session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_path
+    session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_nature
   end
   
   def show_clique?(char)
