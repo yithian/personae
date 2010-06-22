@@ -4,8 +4,10 @@
 			<tr>
 				<td><b>Name:</b></td>
 				<td><%=h @character.name %></td>
+			    <% unless is_mortal?(@character) %>
 				<td><b><%=h @character.splat.nature_name %>:</b></td>
 				<td><%=h @character.nature.name if show_nature?(@character) %>
+			    <% end %>
 			</tr>
 			<% if own_character?(@character) %>
 			<tr>
@@ -18,8 +20,10 @@
 			<tr>
 				<td><b><%=h @character.splat.clique_name %>:</b></td>
 				<td><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></td>
+			    <% unless is_mortal?(@character) %>
 				<td><b><%=h @character.splat.ideology_name %>:</b></td>
 				<td><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></td>
+			    <% end %>
 			</tr>
 		</table>
 	</fieldset><br />
@@ -176,7 +180,7 @@
 					<td><%=h @character.splat.morality_name %>:</td>
 					<td><%=h @character.morality %></td>
 				</tr>
-			<% unless is_mortal?(@character) %>
+			    <% unless is_mortal?(@character) %>
 				<tr>
 					<td><%=h @character.splat.power_stat_name %>:</td>
 					<td><%=h @character.power_stat %></td>
@@ -185,7 +189,7 @@
 					<td><%=h @character.splat.fuel_name %>:</td>
 					<td><%=h @character.fuel %></td>
 				</tr>
-			<% end %>
+			    <% end %>
 			</table>
 		</fieldset><br />
 	<% end %>
@@ -205,7 +209,7 @@
 	<% end %>
 
 	<% if show_powers?(@character) %>
-		<% if @character.nature.name == "Mage" %>
+		<% if @character.splat.name == "Mage" %>
 			<fieldset>
 				<legend>Arcana</legend>
 				<table>
@@ -257,7 +261,7 @@
 			</fieldset><br />
 		<% end %>
 		
-		<% if @character.nature.name == "Werewolf" %>
+		<% if @character.splat.name == "Werewolf" %>
 			<fieldset>
 				<legend>Renown</legend>
 				<table>
