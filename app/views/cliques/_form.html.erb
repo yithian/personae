@@ -7,18 +7,24 @@
   <% end %>
 
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <fieldset>
+    <legend><%= f.label :name %></legend>
+    <p><%= f.text_field :name %></p>
+    </fieldset>
   </p>
   <p>
-	<%= f.label :territory %><br />
-  	<%= f.text_field :territory %>
+    <fieldset>
+    <legend><%= f.label :territory %></legend>
+    <p><%= f.text_field :territory %></p>
+    </fieldset>
   </p>
   <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <fieldset>
+    <legend><%= f.label :description %></legend>
+    <p><%= f.text_area :description %></p>
+    <%= f.check_box :write %> <%= f.label :write %>
+    </fieldset>
   </p>
-  <%= f.check_box :write %> <%= f.label :write %>
   <p>
     <%= f.submit 'Save' %>
   </p>

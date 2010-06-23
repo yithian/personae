@@ -15,45 +15,52 @@ end %>
 	<input name="character[user_id]" type="hidden" value=<%= session[:user_id] %> >
 <% end %>
 
+<p>
 <fieldset>
-  <table>
-	<tr>
-		<td><b><%= f.label :name %></b></td>
-		<td><%= f.text_field :name %></td>
-		<td><b><%= f.label :path %></b></td>
-		<td><%= f.select :path, Character::PATHS %></td>
-	</tr>
-	<tr>
-		<td><b><%= f.label :virtue %></b></td>
-		<td><%= f.select :virtue, Character::VIRTUES %></td>
-		<td><b><%= f.label :vice %></b></td>
-		<td><%= f.select :vice, Character::VICES %></td>
-	</tr>
-	<tr>
-		<td><b><%= f.label :clique %></b></td>
-		<td><%= f.select :clique_id, clique_list %></td>
-		<td><b><%= f.label :ideology %></b></td>
-		<td><%=	f.select :ideology_id, Ideology.all.collect {|o| [o.name, o.id]} %></td>
-	</tr>
+	<table>
+		<tr>
+			<td><b><%= f.label :name %></b></td>
+			<td><%= f.text_field :name %></td>
+			<td><b><%= f.label :nature %></b></td>
+		<td><%= f.select :nature_id, Nature.all.collect {|n| [n.name, n.id]} %></td>
+		</tr>
+		<tr>
+			<td><b><%= f.label :virtue %></b></td>
+			<td><%= f.select :virtue, Character::VIRTUES %></td>
+			<td><b><%= f.label :vice %></b></td>
+			<td><%= f.select :vice, Character::VICES %></td>
+		</tr>
+		<tr>
+			<td><b><%= f.label :clique %></b></td>
+			<td><%= f.select :clique_id, clique_list %></td>
+			<td><b><%= f.label :ideology %></b></td>
+			<td><%=	f.select :ideology_id, Ideology.all.collect {|i| [i.name, i.id]} %></td>
+		</tr>
 	</table>
 	<%= f.check_box :read_name %> <%= f.label :read_name %>
-	<%= f.check_box :read_path %> <%= f.label :read_path %>
+	<%= f.check_box :read_nature %> <%= f.label :read_nature %>
 	<%= f.check_box :read_clique %> <%= f.label :read_clique %>
 	<%= f.check_box :read_ideology %> <%= f.label :read_ideology %>
-</fieldset><br />
+</fieldset>
+</p>
 
+<p>
 <fieldset>
 	<legend>Description</legend>
-	<%= f.text_area :description, :rows => 7 %><br />
+	<p><%= f.text_area :description, :rows => 7 %></p>
 	<%= f.check_box :read_description %> <%= f.label :read_description %>
-</fieldset><br />
+</fieldset>
+</p>
 
+<p>
 <fieldset>
 	<legend>Background</legend>
-	<%= f.text_area :background, :rows => 7 %><br />
+	<p><%= f.text_area :background, :rows => 7 %></p>
 	<%= f.check_box :read_background %> <%= f.label :read_background %>
-</fieldset><br />
+</fieldset>
+</p>
 
+<p>
 <fieldset>
 	<legend>Attributes</legend>
 	<table>
@@ -83,8 +90,10 @@ end %>
 		</tr>
 	</table>
 	<%= f.check_box :read_attributes %> <%= f.label :read_attributes %>
-</fieldset><br />
+</fieldset>
+</p>
 
+<p>
 <fieldset>
 	<legend>Skills</legend>
 	<table>
@@ -154,11 +163,11 @@ end %>
 		</tr>
 		<tr>
     		<td><%= f.label :skill_specialties %></td>
-		    <td colspan=5><%= f.text_area :skill_specialties, :rows => 5 %></td>
+			<td colspan=5><%= f.text_area :skill_specialties, :rows => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :speed %></td>
-		    <td><%= f.text_field :speed, :size => 5 %></td>
+			<td><%= f.text_field :speed, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :initiative %></td>
@@ -170,20 +179,22 @@ end %>
 		</td>
 	</table>
 	<%= f.check_box :read_skills %> <%= f.label :read_skills %>
-</fieldset><br />
+</fieldset>
+</p>
 
+<p>
 <fieldset>
 	<legend>Advantages</legend>
 	<table>
 		<tr>
 			<td><%= f.label :health %></td>
-		    <td><%= f.text_field :health, :size => 10 %></td>
+			<td><%= f.text_field :health, :size => 10 %></td>
 			<td><%= f.label :derangements %></td>
 			<td rowspan=5><%= f.text_area :derangements, :rows => 10 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :willpower %></td>
-		    <td><%= f.text_field :willpower, :size => 10 %></td>
+			<td><%= f.text_field :willpower, :size => 10 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :armor %></td>
@@ -194,89 +205,139 @@ end %>
 			<td><%= f.text_field :wisdom, :size => 5 %></td>
 		</td>
 		<tr>
-			<td><%= f.label :gnosis %></td>
-			<td><%= f.text_field :gnosis, :size => 5 %></td>
+			<td><%= f.label :power_stat %></td>
+			<td><%= f.text_field :power_stat, :size => 5 %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :mana %></td>
-			<td><%= f.text_field :mana, :size => 5 %></td>
+			<td><%= f.label :fuel %></td>
+			<td><%= f.text_field :fuel, :size => 5 %></td>
 		</tr>
 	</table>
 	<%= f.check_box :read_advantages %> <%= f.label :read_advantages %>
-</fieldset><br />
+</fieldset>
+</p>
 
+<p>
 <fieldset>
 	<legend><%= f.label :merits %></legend>
-    <%= f.text_area :merits %><br />
+	<p><%= f.text_area :merits %></p>
 	<%= f.check_box :read_merits %> <%= f.label :read_merits %>
-</fieldset><br />
+</fieldset>
+</p>
 
+<p>
+<fieldset>
+	<legend><%= f.label :equipment %></legend>
+	<p><%= f.text_area :equipment %></p>
+	<%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
+</fieldset>
+</p>
+
+<p>
 <fieldset>
 	<legend>Arcana</legend>
 	<table>
 		<tr>
 			<td><%= f.label :death %></td>
-		    <td><%= f.text_field :death, :size => 5 %></td>
+			<td><%= f.text_field :death, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :fate %></td>
-		    <td><%= f.text_field :fate, :size => 5 %></td>
+			<td><%= f.text_field :fate, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :forces %></td>
-		    <td><%= f.text_field :forces, :size => 5 %></td>
+			<td><%= f.text_field :forces, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :life %></td>
-		    <td><%= f.text_field :life, :size => 5 %></td>
+			<td><%= f.text_field :life, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :matter %></td>
-		    <td><%= f.text_field :matter, :size => 5 %></td>
+			<td><%= f.text_field :matter, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :mind %></td>
-		    <td><%= f.text_field :mind, :size => 5 %></td>
+			<td><%= f.text_field :mind, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :prime %></td>
-		    <td><%= f.text_field :prime, :size => 5 %></td>
+			<td><%= f.text_field :prime, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :space %></td>
-		    <td><%= f.text_field :space, :size => 5 %></td>
+			<td><%= f.text_field :space, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :spirit %></td>
-		    <td><%= f.text_field :spirit, :size => 5 %></td>
+			<td><%= f.text_field :spirit, :size => 5 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :time %></td>
-		    <td><%= f.text_field :time, :size => 5 %></td>
+			<td><%= f.text_field :time, :size => 5 %></td>
 		</tr>
 	</table>
-	<%= f.check_box :read_arcana %> <%= f.label :read_arcana %>
-</fieldset><br />
-
+</fieldset>
+</p>
+<p>
 <fieldset>
-	<legend><%= f.label :equipment %></legend>
-    <%= f.text_area :equipment %><br />
-	<%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
-</fieldset><br />
+	<legend><%= f.label :common_spells %></legend>
+	<p><%= f.text_area :common_spells %></p>
+	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
+</fieldset>
+</p>
 
+<p>
 <fieldset>
-    <legend><%= f.label :common_spells %></legend>
-    <%= f.text_area :common_spells %><br />
-	<%= f.check_box :read_spells %> <%= f.label :read_spells %>
-</fieldset><br />
+	<legend>Renown</legend>
+	<table>
+		<tr>
+			<td><%= f.label :purity %></td>
+			<td><%= f.text_field :purity, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :glory %></td>
+			<td><%= f.text_field :glory, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :honor %></td>
+			<td><%= f.text_field :honor, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :wisdom %></td>
+			<td><%= f.text_field :wisdom, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :cunning %></td>
+			<td><%= f.text_field :cunning, :size => 5 %></td>
+		</tr>
+	</table>
+</fieldset>
+</p>
+<p>
+<fieldset>
+	<legend><%= f.label :gifts %></legend>
+	<%= f.text_area :gifts %>
+</fieldset>
+</p>
+<p>
+<fieldset>
+	<legend><%= f.label :totem %></legend>
+	<p><%= f.text_area :totem %></p>
+	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
+</fieldset>
+</p>
 
+<p>
 <fieldset>
 	<legend><%= f.label :experience %></legend>
-	<%= f.text_area :experience %><br />
+	<p><%= f.text_area :experience %></p>
 	<%= f.check_box :read_experience %> <%= f.label :read_experience %>
 </fieldset>
+</p>
 
-  <p>
-    <%= f.submit 'Save' %>
-  </p>
+<p>
+	<%= f.submit 'Save' %>
+</p>
 <% end %>

@@ -1,19 +1,27 @@
 <% if known_clique?(@clique) %>
 	<p>
-	  <b>Name:</b>
-	  <%=h @clique.name %>
+	  <fieldset>
+	  <legend><b>Name:</b></legend>
+	  <p><%=h @clique.name %></p>
+	  </fieldset>
 	</p>
 
 	<p>
-		<b>Territory:</b>
-		<%=h @clique.territory %>
+		<fieldset>
+		<legend><b>Territory:</b></legend>
+		<p><%=h @clique.territory %></p>
+		</fieldset>
 	</p>
 
 	<p>
-	  <b>Description:</b>
+	  <fieldset>
+	  <legend><b>Description:</b></legend>
 	  <%=h @clique.description %>
+	  </fieldset>
 	</p>
 
+	<p>
+	<fieldset>
 	<table>
 		<tr>
 			<th>Member:</th>
@@ -22,6 +30,8 @@
 
 		<%= render(:partial => "member", :collection => @clique.characters) %>
 	</table>
+	</fieldset>
+	</p>
 
 
 	<%= link_to 'New member', { :controller => 'characters', :action => 'new', :clique_id => @clique.id } %><br />

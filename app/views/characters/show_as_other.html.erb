@@ -1,4 +1,5 @@
 <% if @character.read_name %>
+	<p>
 	<fieldset>
 		<table>
 			<tr>
@@ -18,23 +19,29 @@
 				<% end %>
 			</tr>
 		</table>
-	</fieldset><br />
+	</fieldset>
+	</p>
 
 	<% if @character.read_description %>
+		<p>
 		<fieldset>
 		  <legend>Description</legend>
 		  <%= simple_format(@character.description) %>
-		</fieldset><br />
+		</fieldset>
+		</p>
 	<% end %>
 
 	<% if @character.read_background %>
+		<p>
 		<fieldset>
 		  <legend>Background</legend>
 		  <%= simple_format(@character.background) %>
-		</fieldset><br />
+		</fieldset>
+		</p>
 	<% end %>
 
 	<% if @character.read_attributes %>
+		<p>
 		<fieldset>
 			<legend>Attributes</legend>
 			<table>
@@ -63,10 +70,12 @@
 					<td><%=h @character.composure %></td>
 				</tr>
 			</table>
-		</fieldset><br />
+		</fieldset>
+		</p>
 	<% end %>
 
 	<% if @character.read_skills %>
+		<p>
 		<fieldset>
 			<legend>Skills</legend>
 			<table>
@@ -147,10 +156,12 @@
 					<td><%=h @character.defense %></td>
 				</tr>
 			</table>
-		</fieldset><br />
+		</fieldset>
+		</p>
 	<% end %>
 
 	<% if @character.read_advantages %>
+		<p>
 		<fieldset>
 			<legend>Advantages</legend>
 			<table>
@@ -181,26 +192,32 @@
 					<td><%=h @character.mana %></td>
 				</tr>
 			</table>
-		</fieldset><br />
+		</fieldset>
+		</p>
 	<% end %>
 
 	<% if @character.read_merits %>
+		<p>
 		<fieldset>
 		  <legend>Merits</legend>
 		  <%= simple_format(@character.merits) %>
-		</fieldset><br />
+		</fieldset>
+		</p>
 	<% end %>
 
 	<% if @character.read_equipment %>
+		<p>
 		<fieldset>
 		  <legend>Equipment</legend>
 		  <%= simple_format(@character.equipment) %>
-		</fieldset><br />
+		</fieldset>
+		</p>
 	<% end %>
 
 	<% if @character.read_powers %>
 		<% if @character.splat.name == "Mage" %>
 			<fieldset>
+				<p>
 				<legend>Arcana</legend>
 				<table>
 					<tr>
@@ -244,13 +261,17 @@
 						<td><%=h @character.time %></td>
 					</tr>
 				</table>
-			</fieldset><br />
+			</fieldset>
+			</p>
+			<p>
 			<fieldset>
 				<legend>Common spells</legend>
 				<%= simple_format(@character.common_spells) %>
-			</fieldset><br />
+			</fieldset>
+			</p>
 		<% end %>
 		<% if @character.splat.name == "Werewolf" %>
+			<p>
 			<fieldset>
 				<legend>Renown</legend>
 				<table>
@@ -276,22 +297,29 @@
 					</tr>
 				</table>
 			</fieldset>
+			</p>
+			<p>
 			<fieldset>
 				<legend>Gifts</legend>
 				<%= simple_format(@character.gifts) %>
 			</fieldset>
+			</p>
+			<p>
 			<fieldset>
 				<legend>Totem</legend>
 				<%= simple_format(@character.totem)%>
 			</fieldset>
+			</p>
 		<% end %>
 	<% end %>
 	
 	<% if @character.read_experience %>
+		<p>
 		<fieldset>
 			<legend>Experience</legend>
 			<%= simple_format(@character.experience) %>
 		</fieldset>
+		</p>
 	<% end %>
 	
 	<%= render :partial => 'comments' %>

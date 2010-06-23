@@ -1,17 +1,23 @@
 <% if known_ideology?(@ideology) %>
 <p>
-  <b>Name:</b>
+  <fieldset>
+  <legend><b>Name:</b></legend>
   <%=h @ideology.name %>
+  </fieldset>
 </p>
 
-<table>
-	<tr>
-		<th>Member:</th>
-		<th><%=h @ideology.splat.clique_name %>:</th>
-	</tr>
+<p>
+<fieldset>
+	<table>
+		<tr>
+			<th>Member:</th>
+			<th><%=h @ideology.splat.clique_name %>:</th>
+		</tr>
 
-	<%= render(:partial => "member", :collection => @ideology.characters) %>
-</table>
+		<%= render(:partial => "member", :collection => @ideology.characters) %>
+	</table>
+</fieldset>
+</p>
 
 	<%= link_to 'New member', { :controller => 'characters', :action => 'new', :ideology_id => @ideology } %><br />
 	<%= link_to 'Back', ideologies_path %>

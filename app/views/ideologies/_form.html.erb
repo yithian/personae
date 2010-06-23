@@ -2,8 +2,10 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <fieldset>
+    <legend><%= f.label :name %></legend>
+    <p><%= f.text_field :name %></p>
+    </fieldset>
   </p>
 
   <p>

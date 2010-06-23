@@ -1,20 +1,19 @@
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%=h user.name %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-	<% if edit_user?(user) %>
-	    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure you want to delete this user?', :method => :delete %></td>
+<p>
+<fieldset>
+<legend>Users</legend>
+	<table>
+	<% @users.each do |user| %>
+	  <tr>
+	    <td><%=h user.name %></td>
+	    <td><%= link_to 'Show', user %></td>
+	    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+		<% if edit_user?(user) %>
+		    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure you want to delete this user?', :method => :delete %></td>
+		<% end %>
+	  </tr>
 	<% end %>
-  </tr>
-<% end %>
-</table>
-
-<br />
+	</table>
+</fieldset>
+</p>
 
 <%= link_to 'New user', new_user_path %>

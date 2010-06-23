@@ -1,11 +1,13 @@
+<p>
 <fieldset>
 	<legend>Comments</legend>
 	<% @character.comments.each do |c| %>
-	    <b><%=h c.speaker %></b><br />
-			<%=h c.body %><br />
+	    <p><b><%=h c.speaker %></b></p>
+			<p><%=h c.body %></p>
 			<%= link_to 'Edit Comment', edit_character_comment_path(@character, c) if edit_comment?(c) %>
 			<%= link_to 'Delete Comment', character_comment_path(@character, c), :confirm => 'Are you sure?', :method => :delete if edit_comment?(c) %>
 			<hr />
 	<% end %>
 	<%= link_to 'Add Comment', new_character_comment_path(@character) %>
-</fieldset><br />
+</fieldset>
+</p>
