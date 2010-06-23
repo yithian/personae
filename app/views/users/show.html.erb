@@ -1,11 +1,11 @@
 <p>
-  <b>Player:</b>
-  <%=h @user.name %>
-</p>
-
-<table>
+  <fieldset>
+  <legend><b><%=h @user.name %>:</b></legend>
+  <table>
 	<%= render(:partial => "character", :collection => @user.characters) %>
-</table>
+  </table>
+  </fieldset>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user) if edit_user?(@user) %>
 <%= link_to 'Back', users_path %>
