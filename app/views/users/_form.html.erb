@@ -1,12 +1,10 @@
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
 
-	<p>
-	<fieldset>
-		<legend><%= f.label :name %></legend>
-		<p><%= f.text_field :name %></p>
-	</fieldset>
-	</p>
+	<div>
+		<%= f.label :name, 'Name' %>
+		<%= f.text_field :name %>
+	</div>
 	
 	<div>
 		<%= f.label :password, 'Password' %>
