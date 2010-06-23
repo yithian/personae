@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.find(:all, :ideology => :name)
+    @users = User.find(:all, :order => :name)
 
     respond_to do |format|
       format.html # index.html.erb
