@@ -21,19 +21,22 @@ end %>
 		<tr>
 			<td><b><%= f.label :name %></b></td>
 			<td><%= f.text_field :name %></td>
-			<td><b><%= f.label :nature %></b></td>
-		<td><%= f.select :nature_id, Nature.all.collect {|n| [n.name, n.id]} %></td>
 		</tr>
-		<tr>
 			<td><b><%= f.label :virtue %></b></td>
 			<td><%= f.select :virtue, Character::VIRTUES %></td>
-			<td><b><%= f.label :vice %></b></td>
-			<td><%= f.select :vice, Character::VICES %></td>
+			<td><b><%= f.label :template %></b></td>
+			<td><%= f.select :splat_id, Splat.all.collect {|s| [s.name, s.id]} %></td>
 		</tr>
 		<tr>
-			<td><b><%= f.label :clique %></b></td>
+			<td><b><%= f.label :vice %></b></td>
+			<td><%= f.select :vice, Character::VICES %></td>
+			<td><b><%= f.label :nature, @character.splat.nature_name %></b></td>
+			<td><%= f.select :nature_id, Nature.all.collect {|n| [n.name, n.id]} %></td>
+		</tr>
+		<tr>
+			<td><b><%= f.label :clique, @character.splat.clique_name %></b></td>
 			<td><%= f.select :clique_id, clique_list %></td>
-			<td><b><%= f.label :ideology %></b></td>
+			<td><b><%= f.label :ideology, @character.splat.ideology_name %></b></td>
 			<td><%=	f.select :ideology_id, Ideology.all.collect {|i| [i.name, i.id]} %></td>
 		</tr>
 	</table>
@@ -47,7 +50,7 @@ end %>
 <p>
 <fieldset>
 	<legend>Description</legend>
-	<p><%= f.text_area :description, :rows => 7 %></p>
+	<p><%= f.text_area :description, :size => "70x10" %></p>
 	<%= f.check_box :read_description %> <%= f.label :read_description %>
 </fieldset>
 </p>
@@ -55,7 +58,7 @@ end %>
 <p>
 <fieldset>
 	<legend>Background</legend>
-	<p><%= f.text_area :background, :rows => 7 %></p>
+	<p><%= f.text_area :background, :size => "70x25" %></p>
 	<%= f.check_box :read_background %> <%= f.label :read_background %>
 </fieldset>
 </p>
@@ -190,26 +193,26 @@ end %>
 			<td><%= f.label :health %></td>
 			<td><%= f.text_field :health, :size => 10 %></td>
 			<td><%= f.label :derangements %></td>
-			<td rowspan=5><%= f.text_area :derangements, :rows => 10 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :willpower %></td>
 			<td><%= f.text_field :willpower, :size => 10 %></td>
+			<td rowspan=5><%= f.text_area :derangements, :rows => 8 %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :armor %></td>
 			<td><%= f.text_field :armor, :size => 5 %></td>
 		</td>
 		<tr>
-			<td><%= f.label :wisdom %></td>
-			<td><%= f.text_field :wisdom, :size => 5 %></td>
+			<td><%= f.label :morality, @character.splat.morality_name %></td>
+			<td><%= f.text_field :morality, :size => 5 %></td>
 		</td>
 		<tr>
-			<td><%= f.label :power_stat %></td>
+			<td><%= f.label :power_stat, @character.splat.power_stat_name %></td>
 			<td><%= f.text_field :power_stat, :size => 5 %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :fuel %></td>
+			<td><%= f.label :fuel, @character.splat.fuel_name %></td>
 			<td><%= f.text_field :fuel, :size => 5 %></td>
 		</tr>
 	</table>
@@ -240,10 +243,12 @@ end %>
 		<tr>
 			<td><%= f.label :death %></td>
 			<td><%= f.text_field :death, :size => 5 %></td>
+			<td><%= f.label :common_spells %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :fate %></td>
 			<td><%= f.text_field :fate, :size => 5 %></td>
+			<td rowspan=9><%= f.text_area :common_spells, :size => "40x15" %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :forces %></td>
@@ -278,12 +283,6 @@ end %>
 			<td><%= f.text_field :time, :size => 5 %></td>
 		</tr>
 	</table>
-</fieldset>
-</p>
-<p>
-<fieldset>
-	<legend><%= f.label :common_spells %></legend>
-	<p><%= f.text_area :common_spells %></p>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </fieldset>
 </p>
@@ -295,10 +294,12 @@ end %>
 		<tr>
 			<td><%= f.label :purity %></td>
 			<td><%= f.text_field :purity, :size => 5 %></td>
+			<td><%= f.label :gifts %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :glory %></td>
 			<td><%= f.text_field :glory, :size => 5 %></td>
+			<td rowspan=4><%= f.text_area :gifts, :size => "40x6" %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :honor %></td>
@@ -313,12 +314,6 @@ end %>
 			<td><%= f.text_field :cunning, :size => 5 %></td>
 		</tr>
 	</table>
-</fieldset>
-</p>
-<p>
-<fieldset>
-	<legend><%= f.label :gifts %></legend>
-	<%= f.text_area :gifts %>
 </fieldset>
 </p>
 <p>

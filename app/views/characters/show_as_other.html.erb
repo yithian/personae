@@ -5,18 +5,24 @@
 			<tr>
 				<td><b>Name:</b></td>
 				<td><%=h @character.name %></td>
-				<% unless is_mortal?(@character) %>
+			</tr>
+			<tr>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+			    <% unless is_mortal?(@character) %>
 				<td><b><%=h @character.splat.nature_name %>:</b></td>
 				<td><%=h @character.nature.name if @character.read_nature %></td>
-				<% end %>
+			    <% end %>
 			</tr>
 			<tr>
 				<td><b><%=h @character.splat.clique_name %>:</b></td>
 				<td><%= link_to (h @character.clique.name), @character.clique if @character.read_clique%></td>
-				<% unless is_mortal?(@character) %>
+			    <% unless is_mortal?(@character) %>
 				<td><b><%=h @character.splat.ideology_name %>:</b></td>
 				<td><%= link_to (h @character.ideology.name), @character.ideology if @character.read_ideology %></td>
-				<% end %>
+			    <% end %>
 			</tr>
 		</table>
 	</fieldset>
@@ -169,11 +175,11 @@
 					<td>Health:</td>
 					<td><%=h @character.health %></td>
 					<td>Derangements:</td>
-					<td rowspan=5><%= simple_format(@character.derangements) %></td>
 				</tr>
 				<tr>
 					<td>Willpower:</td>
 					<td><%=h @character.willpower %></td>
+					<td rowspan=5><%= simple_format(@character.derangements) %></td>
 				</tr>
 				<tr>
 					<td>Armor:</td>
@@ -223,10 +229,12 @@
 					<tr>
 						<td>Death:</td>
 						<td><%=h @character.death %></td>
+						<td>Common Spells</td>
 					</tr>
 					<tr>
 						<td>Fate:</td>
 						<td><%=h @character.fate %></td>
+						<td rowspan=9><%= simple_format(@character.common_spells) %></td>
 					</tr>
 					<tr>
 						<td>Forces:</td>
@@ -263,12 +271,6 @@
 				</table>
 			</fieldset>
 			</p>
-			<p>
-			<fieldset>
-				<legend>Common spells</legend>
-				<%= simple_format(@character.common_spells) %>
-			</fieldset>
-			</p>
 		<% end %>
 		<% if @character.splat.name == "Werewolf" %>
 			<p>
@@ -278,10 +280,12 @@
 					<tr>
 						<td>Purity:</td>
 						<td><%=h @character.purity %></td>
+						<td>Gifts</td>
 					</tr>
 					<tr>
 						<td>Glory:</td>
 						<td><%=h @character.glory %></td>
+						<td rowspan=4><%= simple_format(@character.gifts) %></td>
 					</tr>
 					<tr>
 						<td>Honor:</td>
@@ -296,12 +300,6 @@
 						<td><%=h @character.cunning %></td>
 					</tr>
 				</table>
-			</fieldset>
-			</p>
-			<p>
-			<fieldset>
-				<legend>Gifts</legend>
-				<%= simple_format(@character.gifts) %>
 			</fieldset>
 			</p>
 			<p>
