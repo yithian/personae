@@ -20,15 +20,11 @@ class CreateNatures < ActiveRecord::Migration
     rename_column :characters, "read_path", "read_nature"
     add_column :characters, "nature_id", :integer, :null => false, :default => Nature.find_by_name("Mortal").id, :options => "CONSTRAINT fk_character_natures REFERENCES nature(id)"
     
-    Character.find(:all).each do |c|
-      c.nature_id = Nature.find_by_name("Mortal").id if c.path == "Sleepwalker"
-      c.nature_id = Nature.find_by_name("Acanthus").id if c.path == "Acanthus"
-      c.nature_id = Nature.find_by_name("Mastigos").id if c.path == "Mastigos"
-      c.nature_id = Nature.find_by_name("Moros").id if c.path == "Moros"
-      c.nature_id = Nature.find_by_name("Obrimos").id if c.path == "Obrimos"
-      c.nature_id = Nature.find_by_name("Thyrsus").id if c.path == "Thyrsus"
-      c.save
-    end
+    Character.update_all("nature_id = 2", "path = 'Acanthus'")
+    Character.update_all("nature_id = 3", "path = 'Mastigos'")
+    Character.update_all("nature_id = 4", "path = 'Moros'")
+    Character.update_all("nature_id = 5", "path = 'Obrimos'")
+    Character.update_all("nature_id = 6", "path = 'Thyrsus'")
     
     remove_column :characters, "path"
   end
@@ -36,15 +32,12 @@ class CreateNatures < ActiveRecord::Migration
   def self.down
     add_column :characters, "path", :string
 
-    Character.find(:all) do |c|
-      c.path = "Sleepwalker" if c.nature.name == "Mortal"
-      c.path = "Acanthus" if c.nature.name == "Acanthus"
-      c.path = "Mastigos" if c.nature.name == "Mastigos"
-      c.path = "Moros" if c.nature.name == "Moros"
-      c.path = "Obrimos" if c.nature.name == "Acanthus"
-      c.path = "Thyrsus" if c.nature.name == "Thyrsus"
-      c.save
-    end
+    Character.update_all("path = 'Sleeper'", "nature_id = 1")
+    Character.update_all("path = 'Acanthus'", "nature_id = 2")
+    Character.update_all("path = 'Mastigos'", "nature_id = 3")
+    Character.update_all("path = 'Moros'", "nature_id = 4")
+    Character.update_all("path = 'Obrimos'", "nature_id = 5")
+    Character.update_all("path = 'Thyrsus'", "nature_id = 6")
 
     remove_column :characters, :nature_id
     rename_column :characters, "read_nature", "read_path"
