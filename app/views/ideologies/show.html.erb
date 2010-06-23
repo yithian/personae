@@ -7,7 +7,7 @@
 <table>
 	<tr>
 		<th>Member:</th>
-		<th>Clique:</th>
+		<th><%=h @ideology.splat.clique_name %>:</th>
 	</tr>
 
 	<%= render(:partial => "member", :collection => @ideology.characters) %>
