@@ -1,2 +1,2 @@
-page.replace_html("sidebar", '<b>text goes here</b>')
-page.replace_html("nature_id", "hello")
+page.replace_html(page, "<body><b>hello</b></body>")
+Effect.BlindUp(page.werewolf_powers)

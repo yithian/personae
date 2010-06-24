@@ -50,7 +50,7 @@ end %>
 			<td><b><%= f.label :template %></b></td>
 			<td>
 				<% form_remote_tag :url => { :action => "update_splat", :id => f } do %>
-					<%= select_tag :splat_id, splat_list %>
+					<%= select_tag :splat_id, splat_list, :options => { :onchange => "update_splat"} %>
 				<% end %>
 			</td>
 		</tr>
