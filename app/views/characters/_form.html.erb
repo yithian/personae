@@ -68,9 +68,9 @@ end %>
 		</tr>
 	</table>
 	<%= f.check_box :read_name %> <%= f.label :read_name %>
-	<%= f.check_box :read_nature %> <%= f.label :read_nature %>
-	<%= f.check_box :read_clique %> <%= f.label :read_clique %>
-	<%= f.check_box :read_ideology %> <%= f.label :read_ideology %>
+	<%= f.check_box :read_nature %> <%= f.label :read_nature, "Read " + @character.splat.nature_name %>
+	<%= f.check_box :read_clique %> <%= f.label :read_clique, "Read " + @character.splat.clique_name %>
+	<%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Read " + @character.splat.ideology_name %>
 </fieldset>
 </p>
 
