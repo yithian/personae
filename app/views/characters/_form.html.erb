@@ -9,21 +9,14 @@ clique_list.delete_if do |c|
 	c == nil
 end
 
-ideology_list = Ideology.all.collect do |i| 
-	next unless i.splat == @character.splat
-	[i.name, i.id]
-end
-ideology_list.delete_if do |i|
-	i == nil
+nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect do |n|
+        [n.name, n.id]
 end
 
-nature_list = Nature.all.collect do |n|
-	next unless n.splat == @character.splat
-	[n.name, n.id]
+ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect do |i| 
+	[i.name, i.id]
 end
-nature_list.delete_if do |n|
-	n == nil
-end 
+
 
 splat_list = Splat.all.collect do |s|
 	if s == @character.splat
@@ -45,20 +38,21 @@ end %>
 			<td><b><%= f.label :name %></b></td>
 			<td><%= f.text_field :name %></td>
 		</tr>
+		<tr>
 			<td><b><%= f.label :virtue %></b></td>
 			<td><%= f.select :virtue, Character::VIRTUES %></td>
 			<td><b><%= f.label :template %></b></td>
 			<td>
-				<% form_remote_tag :url => { :action => "update_splat", :id => f } do %>
-					<%= select_tag :splat_id, splat_list, :options => { :onchange => "update_splat"} %>
+				<% form_remote_tag :url => { :action => "update_splat" } do %>
+					<%= select_tag :splat_id, splat_list.join.html_safe, { :onchange => remote_function(:url => {:action => "update_splat"})} %>
 				<% end %>
 			</td>
 		</tr>
 		<tr>
 			<td><b><%= f.label :vice %></b></td>
 			<td><%= f.select :vice, Character::VICES %></td>
-			<td><b><%= f.label :nature, @character.splat.nature_name %></b></td>
-			<td><%= f.select :nature_id, nature_list %></td>
+			<td><b><%= f.label :nature, @character.splat.nature_name, :id => "nature" %></b></td>
+			<td><%= f.select :nature_id, nature_list, :id => "nature_id" %></td>
 		</tr>
 		<tr>
 			<td><b><%= f.label :clique, @character.splat.clique_name %></b></td>
@@ -263,7 +257,7 @@ end %>
 </fieldset>
 </p>
 
-<p id="mage_powers">
+<span id="mage_powers"><p>
 <fieldset>
 	<legend>Arcana</legend>
 	<table>
@@ -312,9 +306,9 @@ end %>
 	</table>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </fieldset>
-</p>
+</p></span>
 
-<p id="woof_powers">
+<span id="woof_powers"><p>
 <fieldset>
 	<legend>Renown</legend>
 	<table>
@@ -349,7 +343,7 @@ end %>
 	<p><%= f.text_area :totem %></p>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </fieldset>
-</p>
+</p></span>
 
 <p>
 <fieldset>

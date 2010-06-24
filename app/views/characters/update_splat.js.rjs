@@ -1,2 +1,6 @@
-page.replace_html(page, "<body><b>hello</b></body>")
-Effect.BlindUp(page.werewolf_powers)
+form_for(@character) do |f|
+  page.alert "update_splat.js.rjs"
+end
+#page.replace("nature", :partial => "nature", :locals => { :f => f, :character => @character })
+#page.replace("nature_id", :partial => "nature_id", :locals => { :splat_id => page["character_splat_id"] })
+#page.call("Effect.BlindUp", "woof_powers")
