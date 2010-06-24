@@ -1,0 +1,2 @@
+page.replace_html("sidebar", '<b>text goes here</b>')
+page.replace_html("nature_id", "hello")

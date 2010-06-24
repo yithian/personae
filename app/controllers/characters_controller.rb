@@ -22,8 +22,7 @@ class CharactersController < ApplicationController
     end
   end
   
-  # GET /characters/1
-  # GET /characters/1.xml
+  # GET /characters/1/show_as_other
   def show_as_other
     respond_to do |format|
       format.html # show.html.erb
@@ -46,6 +45,12 @@ class CharactersController < ApplicationController
 
   # GET /characters/1/edit
   def edit
+  end
+  
+  def update_splat
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /characters

@@ -5,9 +5,32 @@
 	next unless known_clique?(c)
 	[c.name, c.id]
 end
-
 clique_list.delete_if do |c|
 	c == nil
+end
+
+ideology_list = Ideology.all.collect do |i| 
+	next unless i.splat == @character.splat
+	[i.name, i.id]
+end
+ideology_list.delete_if do |i|
+	i == nil
+end
+
+nature_list = Nature.all.collect do |n|
+	next unless n.splat == @character.splat
+	[n.name, n.id]
+end
+nature_list.delete_if do |n|
+	n == nil
+end 
+
+splat_list = Splat.all.collect do |s|
+	if s == @character.splat
+		"<option value='" + s.id.to_s + "' selected='selected'>" + s.name + "</option>"
+	else
+		"<option value='" + s.id.to_s + "'>" + s.name + "</option>"
+	end
 end %>
 
 <% if controller.action_name == 'new' %>
@@ -25,19 +48,23 @@ end %>
 			<td><b><%= f.label :virtue %></b></td>
 			<td><%= f.select :virtue, Character::VIRTUES %></td>
 			<td><b><%= f.label :template %></b></td>
-			<td><%= f.select :splat_id, Splat.all.collect {|s| [s.name, s.id]} %></td>
+			<td>
+				<% form_remote_tag :url => { :action => "update_splat", :id => f } do %>
+					<%= select_tag :splat_id, splat_list %>
+				<% end %>
+			</td>
 		</tr>
 		<tr>
 			<td><b><%= f.label :vice %></b></td>
 			<td><%= f.select :vice, Character::VICES %></td>
 			<td><b><%= f.label :nature, @character.splat.nature_name %></b></td>
-			<td><%= f.select :nature_id, Nature.all.collect {|n| [n.name, n.id]} %></td>
+			<td><%= f.select :nature_id, nature_list %></td>
 		</tr>
 		<tr>
 			<td><b><%= f.label :clique, @character.splat.clique_name %></b></td>
 			<td><%= f.select :clique_id, clique_list %></td>
 			<td><b><%= f.label :ideology, @character.splat.ideology_name %></b></td>
-			<td><%=	f.select :ideology_id, Ideology.all.collect {|i| [i.name, i.id]} %></td>
+			<td><%=	f.select :ideology_id, ideology_list %></td>
 		</tr>
 	</table>
 	<%= f.check_box :read_name %> <%= f.label :read_name %>
@@ -236,7 +263,7 @@ end %>
 </fieldset>
 </p>
 
-<p>
+<p id="mage_powers">
 <fieldset>
 	<legend>Arcana</legend>
 	<table>
@@ -287,7 +314,7 @@ end %>
 </fieldset>
 </p>
 
-<p>
+<p id="woof_powers">
 <fieldset>
 	<legend>Renown</legend>
 	<table>
