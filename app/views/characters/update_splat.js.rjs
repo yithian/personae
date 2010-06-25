@@ -2,18 +2,18 @@ page << "splat_id = parseInt($('splat_id').options[$('splat_id').selectedIndex].
 
 s = Splat.find_by_name("Mortal")
 page.assign "mortal_splat_id", s.id
-page.assign "mortal_clique_name", s.clique_name
+page.assign "mortal_clique_label", s.clique_name
 page.assign "mortal_read_clique_label", "Read " + s.clique_name
-page.assign "mortal_morality_name", s.morality_name
+page.assign "mortal_morality_label", s.morality_name
 
 s = Splat.find_by_name("Mage")
 page.assign "mage_splat_id", s.id
-page.assign "mage_clique_name", s.clique_name
+page.assign "mage_clique_label", s.clique_name
 page.assign "mage_read_clique_label", "Read " + s.clique_name
-page.assign "mage_nature_name", s.nature_name
+page.assign "mage_nature_label", s.nature_name
 page.assign "mage_nature_list", Nature.find_all_by_splat_id(s.id).collect { |n| "<option value='" + n.id.to_s + "'>" + n.name + "</option>" }
 page.assign "mage_read_nature_label", "Read " + s.nature_name
-page.assign "mage_ideology_name", s.ideology_name
+page.assign "mage_ideology_label", s.ideology_name
 page.assign "mage_ideology_list", Ideology.find_all_by_splat_id(s.id).collect { |i| "<option value='" + i.id.to_s + "'>" + i.name + "</option>" }
 page.assign "mage_read_ideology_label", "Read " + s.ideology_name
 page.assign "mage_morality_label", s.morality_name
@@ -22,12 +22,12 @@ page.assign "mage_fuel_label", s.fuel_name
 
 s = Splat.find_by_name("Werewolf")
 page.assign "woof_splat_id", s.id
-page.assign "woof_clique_name", s.clique_name
+page.assign "woof_clique_label", s.clique_name
 page.assign "woof_read_clique_label", "Read " + s.clique_name
-page.assign "woof_nature_name", s.nature_name
+page.assign "woof_nature_label", s.nature_name
 page.assign "woof_nature_list", Nature.find_all_by_splat_id(s.id).collect { |n| "<option value='" + n.id.to_s + "'>" + n.name + "</option>" }
 page.assign "woof_read_nature_label", "Read " + s.nature_name
-page.assign "woof_ideology_name", s.ideology_name
+page.assign "woof_ideology_label", s.ideology_name
 page.assign "woof_ideology_list", Ideology.find_all_by_splat_id(s.id).collect { |i| "<option value='" + i.id.to_s + "'>" + i.name + "</option>" }
 page.assign "woof_read_ideology_label", "Read " + s.ideology_name
 page.assign "woof_morality_label", s.morality_name
@@ -37,12 +37,17 @@ page.assign "woof_fuel_label", s.fuel_name
 
 page << "switch(splat_id) {
 	case mortal_splat_id:
-	Element.update('clique_label', mortal_clique_name)
-	Element.update('morality_label', mortal_morality_name)"
+	Element.update('clique_label', mortal_clique_label)
+	Element.update('read_clique_label', mortal_read_clique_label)
+	Element.update('morality_label', mortal_morality_label)"
 	page.hide "nature_label"
 	page.hide "character_nature_id"
 	page.hide "ideology_label"
 	page.hide "character_ideology_id"
+	page.hide "read_nature_label"
+	page.hide "character_read_nature"
+	page.hide "read_ideology_label"
+	page.hide "character_read_ideology"
 	page.hide "power_stat_label"
 	page.hide "character_power_stat"
 	page.hide "fuel_label"
@@ -51,12 +56,12 @@ page << "switch(splat_id) {
 	page.visual_effect :blind_up, "woof_powers"
 page << "break;
 	case mage_splat_id:
-	Element.update('clique_label', mage_clique_name)
+	Element.update('clique_label', mage_clique_label)
 	Element.update('read_clique_label', mage_read_clique_label)
-	Element.update('nature_label', mage_nature_name)
+	Element.update('nature_label', mage_nature_label)
 	Element.update('character_nature_id', mage_nature_list)
 	Element.update('read_nature_label', mage_read_nature_label)
-	Element.update('ideology_label', mage_ideology_name)
+	Element.update('ideology_label', mage_ideology_label)
 	Element.update('character_ideology_id', mage_ideology_list)
 	Element.update('read_ideology_label', mage_read_ideology_label)
 	Element.update('morality_label', mage_morality_label)
@@ -66,6 +71,10 @@ page << "break;
 	page.show "character_nature_id"
 	page.show "ideology_label"
 	page.show "character_ideology_id"
+	page.show "read_nature_label"
+	page.show "character_read_nature"
+	page.show "read_ideology_label"
+	page.show "character_read_ideology"
 	page.show "power_stat_label"
 	page.show "character_power_stat"
 	page.show "fuel_label"
@@ -74,11 +83,14 @@ page << "break;
 	page.visual_effect :blind_down, "mage_powers"
 page << "break;
 	case woof_splat_id:
-	Element.update('clique_label', woof_clique_name)
-	Element.update('nature_label', woof_nature_name)
+	Element.update('clique_label', woof_clique_label)
+	Element.update('read_clique_label', woof_read_clique_label)
+	Element.update('nature_label', woof_nature_label)
 	Element.update('character_nature_id', woof_nature_list)
-	Element.update('ideology_label', woof_ideology_name)
+	Element.update('read_nature_label', woof_read_nature_label)
+	Element.update('ideology_label', woof_ideology_label)
 	Element.update('character_ideology_id', woof_ideology_list)
+	Element.update('read_ideology_label', woof_read_ideology_label)
 	Element.update('morality_label', woof_morality_label)
 	Element.update('power_stat_label', woof_power_stat_label)
 	Element.update('fuel_label', woof_fuel_label)"
@@ -86,6 +98,10 @@ page << "break;
 	page.show "character_nature_id"
 	page.show "ideology_label"
 	page.show "character_ideology_id"
+	page.show "read_nature_label"
+	page.show "character_read_nature"
+	page.show "read_ideology_label"
+	page.show "character_read_ideology"
 	page.show "power_stat_label"
 	page.show "character_power_stat"
 	page.show "fuel_label"
