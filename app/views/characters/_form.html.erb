@@ -10,7 +10,7 @@ clique_list.delete_if do |c|
 end
 
 nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect do |n|
-        [n.name, n.id]
+	[n.name, n.id]
 end
 
 ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect do |i| 
@@ -43,8 +43,8 @@ end %>
 			<td><%= f.select :virtue, Character::VIRTUES %></td>
 			<td><b><%= f.label :template %></b></td>
 			<td>
-				<% form_remote_tag :url => { :action => "update_splat" } do %>
-					<%= select_tag :splat_id, splat_list.join.html_safe, { :onchange => remote_function(:url => {:action => "update_splat"})} %>
+				<% form_remote_tag do %>
+					<%= select_tag :splat_id, splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat", :id => @character.id})} %>
 				<% end %>
 			</td>
 		</tr>

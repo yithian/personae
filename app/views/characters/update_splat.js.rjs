@@ -1,6 +1,4 @@
-form_for(@character) do |f|
-  page.alert "update_splat.js.rjs"
-end
-#page.replace("nature", :partial => "nature", :locals => { :f => f, :character => @character })
-#page.replace("nature_id", :partial => "nature_id", :locals => { :splat_id => page["character_splat_id"] })
-#page.call("Effect.BlindUp", "woof_powers")
+# update hidden field to assign @character.splat_id
+# update nature select
+# update ideology select
+# show/hide powers blocks
