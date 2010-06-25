@@ -44,7 +44,7 @@ if controller.action_name == 'new' %>
 			<td><b><%= f.label :template %></b></td>
 			<td>
 				<% form_remote_tag do %>
-					<%= select_tag :splat_id, splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat"}) } %>
+					<%= select_tag :splat_id, splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat", :char_id => @character.id}) } %>
 				<% end %>
 			</td>
 		</tr>
@@ -62,8 +62,8 @@ if controller.action_name == 'new' %>
 		</tr>
 	</table>
 	<%= f.check_box :read_name %> <%= f.label :read_name %>
-	<%= f.check_box :read_nature %> <%= f.label :read_nature, "Read " + @character.splat.nature_name, :id => "read_nature_label" %>
 	<%= f.check_box :read_clique %> <%= f.label :read_clique, "Read " + @character.splat.clique_name, :id => "read_clique_label" %>
+	<%= f.check_box :read_nature %> <%= f.label :read_nature, "Read " + @character.splat.nature_name, :id => "read_nature_label" %>
 	<%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Read " + @character.splat.ideology_name, :id => "read_ideology_label" %>
 </fieldset>
 </p>
