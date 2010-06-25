@@ -24,9 +24,9 @@ splat_list = Splat.all.collect do |s|
 	else
 		"<option value='" + s.id.to_s + "'>" + s.name + "</option>"
 	end
-end %>
+end
 
-<% if controller.action_name == 'new' %>
+if controller.action_name == 'new' %>
 	<% @character.user_id = session[:user_id] %>
 	<input name="character[user_id]" type="hidden" value=<%= session[:user_id] %> >
 <% end %>
@@ -44,27 +44,27 @@ end %>
 			<td><b><%= f.label :template %></b></td>
 			<td>
 				<% form_remote_tag do %>
-					<%= select_tag :splat_id, splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat", :id => @character.id})} %>
+					<%= select_tag :splat_id, splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat"}) } %>
 				<% end %>
 			</td>
 		</tr>
 		<tr>
 			<td><b><%= f.label :vice %></b></td>
 			<td><%= f.select :vice, Character::VICES %></td>
-			<td><b><%= f.label :nature, @character.splat.nature_name, :id => "nature" %></b></td>
-			<td><%= f.select :nature_id, nature_list, :id => "nature_id" %></td>
+			<td><b><%= f.label :nature, @character.splat.nature_name, :id => "nature_label" %></b></td>
+			<td><%= f.select :nature_id, nature_list %></td>
 		</tr>
 		<tr>
-			<td><b><%= f.label :clique, @character.splat.clique_name %></b></td>
+			<td><b><%= f.label :clique, @character.splat.clique_name, :id => "clique_label" %></b></td>
 			<td><%= f.select :clique_id, clique_list %></td>
-			<td><b><%= f.label :ideology, @character.splat.ideology_name %></b></td>
+			<td><b><%= f.label :ideology, @character.splat.ideology_name, :id => "ideology_label" %></b></td>
 			<td><%=	f.select :ideology_id, ideology_list %></td>
 		</tr>
 	</table>
 	<%= f.check_box :read_name %> <%= f.label :read_name %>
-	<%= f.check_box :read_nature %> <%= f.label :read_nature, "Read " + @character.splat.nature_name %>
-	<%= f.check_box :read_clique %> <%= f.label :read_clique, "Read " + @character.splat.clique_name %>
-	<%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Read " + @character.splat.ideology_name %>
+	<%= f.check_box :read_nature %> <%= f.label :read_nature, "Read " + @character.splat.nature_name, :id => "read_nature_label" %>
+	<%= f.check_box :read_clique %> <%= f.label :read_clique, "Read " + @character.splat.clique_name, :id => "read_clique_label" %>
+	<%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Read " + @character.splat.ideology_name, :id => "read_ideology_label" %>
 </fieldset>
 </p>
 
@@ -225,15 +225,15 @@ end %>
 			<td><%= f.text_field :armor, :size => 5 %></td>
 		</td>
 		<tr>
-			<td><%= f.label :morality, @character.splat.morality_name %></td>
+			<td><%= f.label :morality, @character.splat.morality_name, :id => "morality_name" %></td>
 			<td><%= f.text_field :morality, :size => 5 %></td>
 		</td>
 		<tr>
-			<td><%= f.label :power_stat, @character.splat.power_stat_name %></td>
+			<td><%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_name" %></td>
 			<td><%= f.text_field :power_stat, :size => 5 %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :fuel, @character.splat.fuel_name %></td>
+			<td><%= f.label :fuel, @character.splat.fuel_name, :id => "fuel_name" %></td>
 			<td><%= f.text_field :fuel, :size => 5 %></td>
 		</tr>
 	</table>
