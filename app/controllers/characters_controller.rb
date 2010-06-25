@@ -48,6 +48,8 @@ class CharactersController < ApplicationController
   end
   
   def update_splat
+    @character = Character.find(params[:char_id])
+
     respond_to do |format|
       format.js
     end
