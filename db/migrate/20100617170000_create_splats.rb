@@ -16,10 +16,11 @@ class CreateSplats < ActiveRecord::Migration
     Splat.create(:name => "Mage", :nature_name => "Path", :clique_name => "Cabal", :ideology_name => "Order", :morality_name => "Wisdom", :power_stat_name => "Gnosis", :fuel_name => "Mana")
     
     add_column :characters, "splat_id", :integer, :null => false, :default => Splat.find_by_name("Mortal").id, :options => "CONSTRAINT fk_character_splats      REFERENCES splat(id)"
-    
     Character.update_all("splat_id = 2", "path != 'Sleeper'")
     
-    add_column :ideologies, "splat_id", :integer, :null => false, :default => Splat.find_by_name("Mage").id, :options => "CONSTRAINT fk_ideologies_splats      REFERENCES splat(id)"
+    add_column :ideologies, "splat_id", :integer, :null => false, :default => Splat.find_by_name("Mortal").id, :options => "CONSTRAINT fk_ideologies_splats      REFERENCES splat(id)"
+    Ideology.create(:name => "Mortal", :splat_id => Splat.find_by_name("Mortal").id)
+    Ideology.update_all("splat_id = 2", "name != 'Mortal'")
   end
 
   def self.down

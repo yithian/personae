@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20100620193727) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "splat_id",   :default => 2, :null => false
+    t.integer  "splat_id",   :default => 1, :null => false
   end
 
   create_table "natures", :force => true do |t|
