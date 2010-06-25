@@ -225,15 +225,15 @@ if controller.action_name == 'new' %>
 			<td><%= f.text_field :armor, :size => 5 %></td>
 		</td>
 		<tr>
-			<td><%= f.label :morality, @character.splat.morality_name, :id => "morality_name" %></td>
+			<td><%= f.label :morality, @character.splat.morality_name, :id => "morality_label" %></td>
 			<td><%= f.text_field :morality, :size => 5 %></td>
 		</td>
 		<tr>
-			<td><%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_name" %></td>
+			<td><%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %></td>
 			<td><%= f.text_field :power_stat, :size => 5 %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :fuel, @character.splat.fuel_name, :id => "fuel_name" %></td>
+			<td><%= f.label :fuel, @character.splat.fuel_name, :id => "fuel_label" %></td>
 			<td><%= f.text_field :fuel, :size => 5 %></td>
 		</tr>
 	</table>
