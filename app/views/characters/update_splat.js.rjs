@@ -1,11 +1,14 @@
-page << "splat_id = parseInt($('splat_id').options[$('splat_id').selectedIndex].value)"
+# get the currently select splat_id from the form
+page << "splat_id = parseInt( $('splat_id').options[$('splat_id').selectedIndex].value )"
 
+# set mortal variables
 s = Splat.find_by_name("Mortal")
 page.assign "mortal_splat_id", s.id
 page.assign "mortal_clique_label", s.clique_name
 page.assign "mortal_read_clique_label", "Read " + s.clique_name
 page.assign "mortal_morality_label", s.morality_name
 
+# set mage variables
 s = Splat.find_by_name("Mage")
 page.assign "mage_splat_id", s.id
 page.assign "mage_clique_label", s.clique_name
@@ -20,6 +23,7 @@ page.assign "mage_morality_label", s.morality_name
 page.assign "mage_power_stat_label", s.power_stat_name
 page.assign "mage_fuel_label", s.fuel_name
 
+# set woof variables
 s = Splat.find_by_name("Werewolf")
 page.assign "woof_splat_id", s.id
 page.assign "woof_clique_label", s.clique_name
@@ -34,7 +38,10 @@ page.assign "woof_morality_label", s.morality_name
 page.assign "woof_power_stat_label", s.power_stat_name
 page.assign "woof_fuel_label", s.fuel_name
 
+# update the hidden field in the form to save the splat_id
+page << "$('character_splat_id').value = splat_id"
 
+# update the labels and only show splat-appropriate fields
 page << "switch(splat_id) {
 	case mortal_splat_id:
 	Element.update('clique_label', mortal_clique_label)
@@ -113,7 +120,4 @@ page << "break;
 	alert('Invalid template')
 }"
 
-
-# update hidden field to assign @character.splat_id
 # in _form... default the splat stuff to hidden if @character.splat = mortal
-# pass in @character.id so we can revert to the character's defaults if the user accidentally switches away from their splat
