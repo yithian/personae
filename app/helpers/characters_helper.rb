@@ -60,6 +60,6 @@ module CharactersHelper
   end
   
   def is_mortal?(char)
-    char.nature.name == "Mortal"
+    char.splat.name == "Mortal"
   end
 end
