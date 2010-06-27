@@ -41,7 +41,7 @@ if controller.action_name == 'new' %>
 		<tr>
 			<td><b><%= f.label :virtue %></b></td>
 			<td><%= f.select :virtue, Character::VIRTUES %></td>
-			<td><b><%= f.label :template %></b></td>
+			<td><b><%= f.label :splat_id, "Template" %></b></td>
 			<td>
 				<% form_remote_tag do %>
 					<%= select_tag :splat_id, splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat"}) } %>
@@ -52,20 +52,42 @@ if controller.action_name == 'new' %>
 		<tr>
 			<td><b><%= f.label :vice %></b></td>
 			<td><%= f.select :vice, Character::VICES %></td>
-			<td><b><%= f.label :nature, @character.splat.nature_name, :id => "nature_label" %></b></td>
-			<td><%= f.select :nature_id, nature_list %></td>
+			
+			<td id="nature_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
+				<b><%= f.label :nature_id, @character.splat.nature_name, :id => "nature_label" %></b>
+			</td>
+			
+			<td id="nature_id_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
+				<%= f.select :nature_id, nature_list %>
+			</td>
 		</tr>
 		<tr>
-			<td><b><%= f.label :clique, @character.splat.clique_name, :id => "clique_label" %></b></td>
+			<td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
 			<td><%= f.select :clique_id, clique_list %></td>
-			<td><b><%= f.label :ideology, @character.splat.ideology_name, :id => "ideology_label" %></b></td>
-			<td><%=	f.select :ideology_id, ideology_list %></td>
+
+			
+			<td id="ideology_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %>>
+				<b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
+			</td>
+			<td id="ideology_id_cell" <%=h "style='display: none'" if is_mortal?(@character) %>>
+				<%= f.select :ideology_id, ideology_list %>
+			</td>
+
+			
 		</tr>
 	</table>
+	
 	<%= f.check_box :read_name %> <%= f.label :read_name %>
 	<%= f.check_box :read_clique %> <%= f.label :read_clique, "Read " + @character.splat.clique_name, :id => "read_clique_label" %>
-	<%= f.check_box :read_nature %> <%= f.label :read_nature, "Read " + @character.splat.nature_name, :id => "read_nature_label" %>
-	<%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Read " + @character.splat.ideology_name, :id => "read_ideology_label" %>
+	
+	<span id="read_nature_span" <%=h "style='display: none'" if is_mortal?(@character) %> >
+		<%= f.check_box :read_nature %> <%= f.label :read_nature, "Read " + @character.splat.nature_name, :id => "read_nature_label" %>
+	</span>
+	
+	<span id="read_ideology_span" <%=h "style='display: none'" if is_mortal?(@character) %> >
+		<%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Read " + @character.splat.ideology_name, :id => "read_ideology_label" %>
+	</span>
+	
 </fieldset>
 </p>
 
@@ -188,7 +210,7 @@ if controller.action_name == 'new' %>
 		</tr>
 		<tr>
     		<td><%= f.label :skill_specialties %></td>
-			<td colspan=5><%= f.text_area :skill_specialties, :rows => 5 %></td>
+			<td colspan=5><%= f.text_area :skill_specialties, :size => "50x5" %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :speed %></td>
@@ -230,12 +252,20 @@ if controller.action_name == 'new' %>
 			<td><%= f.text_field :morality, :size => 5 %></td>
 		</td>
 		<tr>
-			<td><%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %></td>
-			<td><%= f.text_field :power_stat, :size => 5 %></td>
+			<td id="power_stat_label_cell" <%=h "style='display: none' if is_mortal?(@character)" %> >
+				<%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %>
+			</td>
+			<td id="power_stat_cell" <%=h "style='display: none' if is_mortal?(@character)" %> >
+				<%= f.text_field :power_stat, :size => 5 %>
+			</td>
 		</tr>
 		<tr>
-			<td><%= f.label :fuel, @character.splat.fuel_name, :id => "fuel_label" %></td>
-			<td><%= f.text_field :fuel, :size => 5 %></td>
+			<td id="fuel_label_cell" <%=h "style='display: none' if is_mortal?(@character)" %> >
+				<%= f.label :fuel, @character.splat.fuel_name, :id => "fuel_label" %>
+			</td>
+			<td id="fuel_cell" <%=h "style='display: none' if is_mortal?(@character)" %> >
+				<%= f.text_field :fuel, :size => 5 %>
+			</td>
 		</tr>
 	</table>
 	<%= f.check_box :read_advantages %> <%= f.label :read_advantages %>
@@ -245,7 +275,7 @@ if controller.action_name == 'new' %>
 <p>
 <fieldset>
 	<legend><%= f.label :merits %></legend>
-	<p><%= f.text_area :merits %></p>
+	<p><%= f.text_area :merits, :size => "70x20" %></p>
 	<%= f.check_box :read_merits %> <%= f.label :read_merits %>
 </fieldset>
 </p>
@@ -253,12 +283,12 @@ if controller.action_name == 'new' %>
 <p>
 <fieldset>
 	<legend><%= f.label :equipment %></legend>
-	<p><%= f.text_area :equipment %></p>
+	<p><%= f.text_area :equipment, :size => "70x10" %></p>
 	<%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
 </fieldset>
 </p>
 
-<span id="mage_powers"><p>
+<span id="mage_powers" <%=h "style='display: none' if is_mortal?(@character)" %> ><p>
 <fieldset>
 	<legend>Arcana</legend>
 	<table>
@@ -309,7 +339,7 @@ if controller.action_name == 'new' %>
 </fieldset>
 </p></span>
 
-<span id="woof_powers"><p>
+<span id="woof_powers" <%=h "style='display: none' if is_mortal?(@character)" %> ><p>
 <fieldset>
 	<legend>Renown</legend>
 	<table>
@@ -341,7 +371,7 @@ if controller.action_name == 'new' %>
 <p>
 <fieldset>
 	<legend><%= f.label :totem %></legend>
-	<p><%= f.text_area :totem %></p>
+	<p><%= f.text_area :totem, :size => "70x25" %></p>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </fieldset>
 </p></span>
@@ -349,7 +379,7 @@ if controller.action_name == 'new' %>
 <p>
 <fieldset>
 	<legend><%= f.label :experience %></legend>
-	<p><%= f.text_area :experience %></p>
+	<p><%= f.text_area :experience, :size => "70x20" %></p>
 	<%= f.check_box :read_experience %> <%= f.label :read_experience %>
 </fieldset>
 </p>
