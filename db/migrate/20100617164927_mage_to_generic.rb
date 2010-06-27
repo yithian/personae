@@ -13,6 +13,8 @@ class MageToGeneric < ActiveRecord::Migration
     remove_column :characters, "read_spells"
     change_column_default :characters, :power_stat, 1
     change_column_default :characters, :fuel, 7
+    change_column_default :characters, :initiative, 2
+    change_column_default :characters, :defense, 1
   end
 
   def self.down
