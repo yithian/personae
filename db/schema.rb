@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20100620193727) do
     t.string   "health",            :default => "6"
     t.string   "willpower",         :default => "2"
     t.integer  "speed",             :default => 5
-    t.integer  "initiative"
-    t.integer  "defense"
+    t.integer  "initiative",        :default => 2
+    t.integer  "defense",           :default => 1
     t.integer  "armor"
     t.integer  "morality",          :default => 7
     t.text     "derangements"

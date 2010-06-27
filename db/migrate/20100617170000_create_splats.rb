@@ -12,7 +12,7 @@ class CreateSplats < ActiveRecord::Migration
 
       t.timestamps
     end
-    Splat.create(:name => "Mortal", :nature_name => "Nature", :clique_name => "Clique", :ideology_name => "Ideology", :morality_name => "Morality", :fuel_name => "Fuel")
+    Splat.create(:name => "Mortal", :nature_name => "Nature", :clique_name => "Clique", :ideology_name => "Ideology", :morality_name => "Morality", :power_stat_name => "Power Stat", :fuel_name => "Fuel")
     Splat.create(:name => "Mage", :nature_name => "Path", :clique_name => "Cabal", :ideology_name => "Order", :morality_name => "Wisdom", :power_stat_name => "Gnosis", :fuel_name => "Mana")
     
     add_column :characters, "splat_id", :integer, :null => false, :default => Splat.find_by_name("Mortal").id, :options => "CONSTRAINT fk_character_splats      REFERENCES splat(id)"
