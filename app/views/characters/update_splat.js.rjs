@@ -17,7 +17,7 @@ page.assign "mage_nature_label", s.nature_name
 page.assign "mage_nature_list", Nature.find_all_by_splat_id(s.id).collect { |n| "<option value='#{n.id.to_s}'>" + n.name + "</option>" }
 page.assign "mage_read_nature_label", "Read " + s.nature_name
 page.assign "mage_ideology_label", s.ideology_name
-page.assign "mage_ideology_list", Ideology.find_all_by_splat_id(s.id).collect { |i| "<option value='#{n.id.to_s}'>" + i.name + "</option>" }
+page.assign "mage_ideology_list", Ideology.find_all_by_splat_id(s.id).collect { |i| "<option value='#{i.id.to_s}'>" + i.name + "</option>" }
 page.assign "mage_read_ideology_label", "Read " + s.ideology_name
 page.assign "mage_morality_label", s.morality_name
 page.assign "mage_power_stat_label", s.power_stat_name
@@ -32,7 +32,7 @@ page.assign "woof_nature_label", s.nature_name
 page.assign "woof_nature_list", Nature.find_all_by_splat_id(s.id).collect { |n| "<option value='#{n.id.to_s}'>" + n.name + "</option>" }
 page.assign "woof_read_nature_label", "Read " + s.nature_name
 page.assign "woof_ideology_label", s.ideology_name
-page.assign "woof_ideology_list", Ideology.find_all_by_splat_id(s.id).collect { |i| "<option value='#{n.id.to_s}'>" + i.name + "</option>" }
+page.assign "woof_ideology_list", Ideology.find_all_by_splat_id(s.id).collect { |i| "<option value='#{i.id.to_s}'>" + i.name + "</option>" }
 page.assign "woof_read_ideology_label", "Read " + s.ideology_name
 page.assign "woof_morality_label", s.morality_name
 page.assign "woof_power_stat_label", s.power_stat_name
