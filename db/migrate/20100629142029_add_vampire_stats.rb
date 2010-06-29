@@ -20,27 +20,23 @@ class AddVampireStats < ActiveRecord::Migration
     add_column :characters, "animalism", :integer, :default => 0
     add_column :characters, "auspex", :integer, :default => 0
     add_column :characters, "celerity", :integer, :default => 0
-    add_column :characters, "coils of the dragon", :integer, :default => 0
-    add_column :characters, "cruac", :integer, :default => 0
     add_column :characters, "dominate", :integer, :default => 0
     add_column :characters, "majesty", :integer, :default => 0
     add_column :characters, "nightmare", :integer, :default => 0
     add_column :characters, "protean", :integer, :default => 0
     add_column :characters, "obfuscate", :integer, :default => 0
-    add_column :characters, "theban sorcery", :integer, :default => 0
     add_column :characters, "vigor", :integer, :default => 0
+    add_column :characters, "covenant_disciplines", :text
   end
 
   def self.down
+    remove_column :characters, "covenant_disciplines"
     remove_column :characters, "vigor"
-    remove_column :characters, "theban sorcery"
     remove_column :characters, "obfuscate"
     remove_column :characters, "protean"
     remove_column :characters, "nightmare"
     remove_column :characters, "majesty"
     remove_column :characters, "dominate"
-    remove_column :characters, "cruac"
-    remove_column :characters, "coils of the dragon"
     remove_column :characters, "celerity"
     remove_column :characters, "auspex"
     remove_column :characters, "animalism"
