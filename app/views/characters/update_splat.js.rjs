@@ -98,7 +98,7 @@ page << "break;
 	page.show "power_stat_cell"
 	page.show "fuel_label_cell"
 	page.show "fuel_cell"
-	page.visual_effect :blind_up, "mage_powers"
+	page.visual_effect :blind_down, "mage_powers"
 	page.visual_effect :blind_up, "woof_powers"
 	page.visual_effect :blind_up, "vampire_powers"
 page << "break;
@@ -125,8 +125,8 @@ page << "break;
 	page.show "fuel_label_cell"
 	page.show "fuel_cell"
 	page.visual_effect :blind_up, "mage_powers"
-	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_down, "woof_powers"
+	page.visual_effect :blind_up, "vampire_powers"
 page << "break;
 	case vampire_splat_id:
 	Element.update('clique_label', vampire_clique_label)
