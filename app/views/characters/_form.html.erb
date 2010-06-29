@@ -31,7 +31,6 @@ if controller.action_name == 'new' %>
 	<input name="character[user_id]" type="hidden" value=<%= session[:user_id] %> >
 <% end %>
 
-<p>
 <fieldset>
 	<table>
 		<tr>
@@ -89,31 +88,25 @@ if controller.action_name == 'new' %>
 	</span>
 	
 </fieldset>
-</p>
 
-<p>
 <fieldset>
 	<legend>Description</legend>
-	<p><%= f.text_area :description, :size => "70x10" %></p>
+	<p><%= f.text_area :description %></p>
 	<%= f.check_box :read_description %> <%= f.label :read_description %>
 </fieldset>
-</p>
 
-<p>
 <fieldset>
 	<legend>Background</legend>
 	<p><%= f.text_area :background, :size => "70x25" %></p>
 	<%= f.check_box :read_background %> <%= f.label :read_background %>
 </fieldset>
-</p>
 
-<p>
 <fieldset>
 	<legend>Attributes</legend>
 	<table>
 		<tr>
 			<td><%= f.label :intelligence %></td>
-			<td><%= f.text_field :intelligence, :size => 5 %>
+			<td><%= f.text_field :intelligence, :size => 5 %></td>
 			<td><%= f.label :strength %></td>
 			<td><%= f.text_field :strength, :size => 5 %></td>
 			<td><%= f.label :presence %></td>
@@ -121,7 +114,7 @@ if controller.action_name == 'new' %>
 		</tr>
 		<tr>
 			<td><%= f.label :wits %></td>
-			<td><%= f.text_field :wits, :size => 5 %>
+			<td><%= f.text_field :wits, :size => 5 %></td>
 			<td><%= f.label :dexterity %></td>
 			<td><%= f.text_field :dexterity, :size => 5 %></td>
 			<td><%= f.label :manipulation %></td>
@@ -129,7 +122,7 @@ if controller.action_name == 'new' %>
 		</tr>
 		<tr>
 			<td><%= f.label :resolve %></td>
-			<td><%= f.text_field :resolve, :size => 5 %>
+			<td><%= f.text_field :resolve, :size => 5 %></td>
 			<td><%= f.label :stamina %></td>
 			<td><%= f.text_field :stamina, :size => 5 %></td>
 			<td><%= f.label :composure %></td>
@@ -138,9 +131,7 @@ if controller.action_name == 'new' %>
 	</table>
 	<%= f.check_box :read_attributes %> <%= f.label :read_attributes %>
 </fieldset>
-</p>
 
-<p>
 <fieldset>
 	<legend>Skills</legend>
 	<table>
@@ -209,8 +200,8 @@ if controller.action_name == 'new' %>
 			<td><%= f.text_field :subterfuge, :size => 5 %></td>
 		</tr>
 		<tr>
-    		<td><%= f.label :skill_specialties %></td>
-			<td colspan=5><%= f.text_area :skill_specialties, :size => "50x5" %></td>
+    			<td><%= f.label :skill_specialties %></td>
+			<td colspan=5><%= f.text_area :skill_specialties %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :speed %></td>
@@ -227,9 +218,7 @@ if controller.action_name == 'new' %>
 	</table>
 	<%= f.check_box :read_skills %> <%= f.label :read_skills %>
 </fieldset>
-</p>
 
-<p>
 <fieldset>
 	<legend>Advantages</legend>
 	<table>
@@ -270,25 +259,20 @@ if controller.action_name == 'new' %>
 	</table>
 	<%= f.check_box :read_advantages %> <%= f.label :read_advantages %>
 </fieldset>
-</p>
 
-<p>
 <fieldset>
 	<legend><%= f.label :merits %></legend>
 	<p><%= f.text_area :merits, :size => "70x20" %></p>
 	<%= f.check_box :read_merits %> <%= f.label :read_merits %>
 </fieldset>
-</p>
 
-<p>
 <fieldset>
 	<legend><%= f.label :equipment %></legend>
 	<p><%= f.text_area :equipment, :size => "70x10" %></p>
 	<%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
 </fieldset>
-</p>
 
-<span id="mage_powers" <%=h "style='display: none'" unless is_mage?(@character) %> ><p>
+<span id="mage_powers" <%=h "style='display: none'" unless is_mage?(@character) %> >
 <fieldset>
 	<legend>Arcana</legend>
 	<table>
@@ -337,9 +321,9 @@ if controller.action_name == 'new' %>
 	</table>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </fieldset>
-</p></span>
+</span>
 
-<span id="woof_powers" <%=h "style='display: none'" unless is_werewolf?(@character) %> ><p>
+<span id="woof_powers" <%=h "style='display: none'" unless is_werewolf?(@character) %> >
 <fieldset>
 	<legend>Renown</legend>
 	<table>
@@ -367,17 +351,15 @@ if controller.action_name == 'new' %>
 		</tr>
 	</table>
 </fieldset>
-</p>
-<p>
 <fieldset>
 	<legend><%= f.label :totem %></legend>
 	<p><%= f.text_area :totem, :size => "70x25" %></p>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </fieldset>
-</p></span>
+</span>
 
 
-<span id="vampire_powers" <%=h "style='display: none'" unless is_vampire?(@character) %> ><p>
+<span id="vampire_powers" <%=h "style='display: none'" unless is_vampire?(@character) %> >
 <fieldset>
 	<legend>Disciplines</legend>
 	<table>
@@ -422,15 +404,13 @@ if controller.action_name == 'new' %>
 	</table>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </fieldset>
-</p></span>
+</span>
 
-<p>
 <fieldset>
 	<legend><%= f.label :experience %></legend>
 	<p><%= f.text_area :experience, :size => "70x20" %></p>
 	<%= f.check_box :read_experience %> <%= f.label :read_experience %>
 </fieldset>
-</p>
 
 <p>
 	<%= f.submit 'Save' %>

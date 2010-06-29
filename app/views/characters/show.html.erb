@@ -1,5 +1,4 @@
 <% if show_character?(@character) %>
-	<p>
 	<fieldset>
 		<table>
 			<tr>
@@ -27,28 +26,22 @@
 			</tr>
 		</table>
 	</fieldset>
-	</p>
 
 	<% if show_description?(@character) %>
-		<p>
 		<fieldset>
 		  <legend>Description</legend>
 		  <%= simple_format(@character.description) %>
 		</fieldset>
-		</p>
 	<% end %>
 
 	<% if show_background?(@character) %>
-		<p>
 		<fieldset>
 		  <legend>Background</legend>
 		  <%= simple_format(@character.background) %>
 		</fieldset>
-		</p>
 	<% end %>
 
 	<% if show_attributes?(@character) %>
-		<p>
 		<fieldset>
 			<legend>Attributes</legend>
 			<table>
@@ -78,11 +71,9 @@
 				</tr>
 			</table>
 		</fieldset>
-		</p>
 	<% end %>
 
 	<% if show_skills?(@character) %>
-		<p>
 		<fieldset>
 			<legend>Skills</legend>
 			<table>
@@ -164,11 +155,9 @@
 				</tr>
 			</table>
 		</fieldset>
-		</p>
 	<% end %>
 
 	<% if show_advantages?(@character) %>
-		<p>
 		<fieldset>
 			<legend>Advantages</legend>
 			<table>
@@ -202,30 +191,24 @@
 			    <% end %>
 			</table>
 		</fieldset>
-		</p>
 	<% end %>
 
 	<% if show_merits?(@character) %>
-		<p>
 		<fieldset>
 		  <legend>Merits</legend>
 		  <%= simple_format(@character.merits) %>
 		</fieldset>
-		</p>
 	<% end %>
 
 	<% if show_equipment?(@character) %>
-		<p>
 		<fieldset>
 		  <legend>Equipment</legend>
 		  <%= simple_format(@character.equipment) %>
 		</fieldset>
-		</p>
 	<% end %>
 
 	<% if show_powers?(@character) %>
 		<% if is_mage?(@character) %>
-			<p>
 			<fieldset>
 				<legend>Arcana</legend>
 				<table>
@@ -273,11 +256,9 @@
 					</tr>
 				</table>
 			</fieldset>
-			</p>
 		<% end %>
 		
 		<% if is_werewolf?(@character) %>
-			<p>
 			<fieldset>
 				<legend>Renown</legend>
 				<table>
@@ -305,17 +286,13 @@
 					</tr>
 				</table>
 			</fieldset>
-			</p>
-			<p>
 			<fieldset>
 				<legend>Totem</legend>
 				<%= simple_format(@character.totem)%>
 			</fieldset>
-			</p>
 		<% end %>
 
 		<% if is_vampire?(@character) %>
-			<p>
 			<fieldset>
 				<legend>Disciplines</legend>
 				<table>
@@ -355,17 +332,14 @@
 					</tr>
 				</table>
 			</fieldset>
-			</p>
 		<% end %>
 	<% end %>
 	
 	<% if show_experience?(@character) %>
-		<p>
 		<fieldset>
 			<legend>Experience</legend>
 			<%= simple_format(@character.experience) %>
 		</fieldset>
-		</p>
 	<% end %>
 	
 	<%= render :partial => 'comments' %>

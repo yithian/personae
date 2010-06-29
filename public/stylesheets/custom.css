@@ -72,7 +72,8 @@ pre {
 .charsheet {
 	width: 84%;
 	float: right;
-	padding: 0.2em;
+	padding: 0.5em;
+	margin-right: 1em;
 	background: navy;
 	color: gold;
 }
@@ -88,13 +89,20 @@ pre {
 
 .charsheet table {
 	padding: 0.5em 0em;
+	width: 100%;
 }
 
 .charsheet td {
 	padding: 0em 1em 0em 0em;
 }
 
+.charsheet textarea {
+	width: 100%;
+	height: 10em;
+}
+
 .charsheet fieldset {
+	margin-top: 1em;
 	background: white;
 	color: #333;
 }
