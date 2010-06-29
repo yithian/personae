@@ -62,4 +62,16 @@ module CharactersHelper
   def is_mortal?(char)
     char.splat.name == "Mortal"
   end
+
+  def is_mage?(char)
+    char.splat.name == "Mage"
+  end
+
+  def is_werewolf?(char)
+    char.splat.name == "Werewolf"
+  end
+
+  def is_vampire?(char)
+    char.splat.name == "Vampire"
+  end
 end
