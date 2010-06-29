@@ -74,6 +74,7 @@ page << "switch(splat_id) {
 	page.hide "fuel_cell"
 	page.visual_effect :blind_up, "mage_powers"
 	page.visual_effect :blind_up, "woof_powers"
+	page.visual_effect :blind_up, "vampire_powers"
 page << "break;
 	case mage_splat_id:
 	Element.update('clique_label', mage_clique_label)
