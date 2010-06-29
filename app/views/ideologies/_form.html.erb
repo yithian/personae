@@ -1,12 +1,10 @@
 <% form_for(@ideology) do |f| %>
   <%= f.error_messages %>
 
-  <p>
     <fieldset>
     <legend><%= f.label :name %></legend>
     <p><%= f.text_field :name %></p>
     </fieldset>
-  </p>
 
   <p>
     <%= f.submit 'Save' %>

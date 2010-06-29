@@ -6,25 +6,22 @@
 	<input name="clique[user_id]" type="hidden" value=<%= session[:user_id] %> >
   <% end %>
 
-  <p>
     <fieldset>
     <legend><%= f.label :name %></legend>
     <p><%= f.text_field :name %></p>
     </fieldset>
-  </p>
-  <p>
+
     <fieldset>
     <legend><%= f.label :territory %></legend>
     <p><%= f.text_field :territory %></p>
     </fieldset>
-  </p>
-  <p>
+
     <fieldset>
     <legend><%= f.label :description %></legend>
     <p><%= f.text_area :description %></p>
     <%= f.check_box :write %> <%= f.label :write %>
     </fieldset>
-  </p>
+
   <p>
     <%= f.submit 'Save' %>
   </p>

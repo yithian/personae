@@ -97,7 +97,7 @@ if controller.action_name == 'new' %>
 
 <fieldset>
 	<legend>Background</legend>
-	<p><%= f.text_area :background, :size => "70x25" %></p>
+	<p><%= f.text_area :background %></p>
 	<%= f.check_box :read_background %> <%= f.label :read_background %>
 </fieldset>
 
@@ -262,13 +262,13 @@ if controller.action_name == 'new' %>
 
 <fieldset>
 	<legend><%= f.label :merits %></legend>
-	<p><%= f.text_area :merits, :size => "70x20" %></p>
+	<p><%= f.text_area :merits %></p>
 	<%= f.check_box :read_merits %> <%= f.label :read_merits %>
 </fieldset>
 
 <fieldset>
 	<legend><%= f.label :equipment %></legend>
-	<p><%= f.text_area :equipment, :size => "70x10" %></p>
+	<p><%= f.text_area :equipment %></p>
 	<%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
 </fieldset>
 
@@ -284,7 +284,7 @@ if controller.action_name == 'new' %>
 		<tr>
 			<td><%= f.label :fate %></td>
 			<td><%= f.text_field :fate, :size => 5 %></td>
-			<td rowspan=9><%= f.text_area :common_spells, :size => "40x15" %></td>
+			<td rowspan=9><%= f.text_area :common_spells %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :forces %></td>
@@ -335,7 +335,7 @@ if controller.action_name == 'new' %>
 		<tr>
 			<td><%= f.label :glory %></td>
 			<td><%= f.text_field :glory, :size => 5 %></td>
-			<td rowspan=4><%= f.text_area :gifts, :size => "40x6" %></td>
+			<td rowspan=4><%= f.text_area :gifts %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :honor %></td>
@@ -353,7 +353,7 @@ if controller.action_name == 'new' %>
 </fieldset>
 <fieldset>
 	<legend><%= f.label :totem %></legend>
-	<p><%= f.text_area :totem, :size => "70x25" %></p>
+	<p><%= f.text_area :totem %></p>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </fieldset>
 </span>
@@ -371,7 +371,7 @@ if controller.action_name == 'new' %>
 		<tr>
 			<td><%= f.label :auspex %></td>
 			<td><%= f.text_field :auspex, :size => 5 %></td>
-			<td rowspan=8><%= f.text_area :covenant_disciplines, :size => "40x13" %>
+			<td rowspan=8><%= f.text_area :covenant_disciplines %>
 		</tr>
 		<tr>
 			<td><%= f.label :celerity %></td>
@@ -408,7 +408,7 @@ if controller.action_name == 'new' %>
 
 <fieldset>
 	<legend><%= f.label :experience %></legend>
-	<p><%= f.text_area :experience, :size => "70x20" %></p>
+	<p><%= f.text_area :experience %></p>
 	<%= f.check_box :read_experience %> <%= f.label :read_experience %>
 </fieldset>
 
