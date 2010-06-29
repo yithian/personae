@@ -12,15 +12,15 @@
 				<td></td>
 				<td></td>
 			    <% unless is_mortal?(@character) %>
-				<td><b><%=h @character.splat.nature_name %>:</b></td>
+				<td><b><%=h @character.splat.nature_name if @character.read_nature %>:</b></td>
 				<td><%=h @character.nature.name if @character.read_nature %></td>
 			    <% end %>
 			</tr>
 			<tr>
-				<td><b><%=h @character.splat.clique_name %>:</b></td>
-				<td><%= link_to (h @character.clique.name), @character.clique if @character.read_clique%></td>
+				<td><b><%=h @character.splat.clique_name if @character.read_clique %>:</b></td>
+				<td><%= link_to (h @character.clique.name), @character.clique if @character.read_clique %></td>
 			    <% unless is_mortal?(@character) %>
-				<td><b><%=h @character.splat.ideology_name %>:</b></td>
+				<td><b><%=h @character.splat.ideology_name if @character.read_ideology %>:</b></td>
 				<td><%= link_to (h @character.ideology.name), @character.ideology if @character.read_ideology %></td>
 			    <% end %>
 			</tr>
@@ -221,7 +221,7 @@
 	<% end %>
 
 	<% if @character.read_powers %>
-		<% if @character.splat.name == "Mage" %>
+		<% if is_mage?(@character) %>
 			<fieldset>
 				<p>
 				<legend>Arcana</legend>
@@ -272,7 +272,8 @@
 			</fieldset>
 			</p>
 		<% end %>
-		<% if @character.splat.name == "Werewolf" %>
+
+		<% if is_werewolf?(@character) %>
 			<p>
 			<fieldset>
 				<legend>Renown</legend>
@@ -309,6 +310,50 @@
 			</fieldset>
 			</p>
 		<% end %>
+
+		<% if is_vampire?(@character) %>
+                        <p>
+                        <fieldset>
+                                <legend>Disciplines</legend>
+                                <table>
+                                        <tr>
+                                                <td>Animalism</td>
+                                                <td><%=h @character.animalism %></td>
+                                                <td>Covenant Disciplines</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Auspex</td>
+                                                <td><%=h @character.auspex %></td>
+                                                <td rowspan=8><%= simple_format(@character.covenant_disciplines) %></td>
+                                        </tr>
+                                        <tr>
+                                                <td>Dominate</td>
+                                                <td><%=h @character.dominate %></td>
+                                        </tr>
+                                        <tr>
+                                                <td>Majesty</td>
+                                                <td><%=h @character.majesty %></td>
+                                        </tr>
+                                        <tr>
+                                                <td>Nightmare</td>
+                                                <td><%=h @character.nightmare %></td>
+                                        </tr>
+                                        <tr>
+                                                <td>Protean</td>
+                                                <td><%=h @character.protean %></td>
+                                        </tr>
+                                        <tr>
+                                                <td>Obfuscate</td>
+                                                <td><%=h @character.Obfuscate %></td>
+                                        </tr>
+                                        <tr>
+                                                <td>Vigor</td>
+                                                <td><%=h @character.vigor %></td>
+                                        </tr>
+                                </table>
+                        </fieldset>
+                        </p>
+                <% end %>
 	<% end %>
 	
 	<% if @character.read_experience %>

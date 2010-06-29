@@ -13,15 +13,15 @@
 				<td><b>Vice:</b></td>
 				<td><%=h @character.vice if own_character?(@character) %></td>
 			    <% unless is_mortal?(@character) %>
-				<td><b><%=h @character.splat.nature_name %>:</b></td>
+				<td><b><%=h @character.splat.nature_name if show_nature?(@character) %>:</b></td>
 				<td><%=h @character.nature.name if show_nature?(@character) %>
 			    <% end %>
 			</tr>
 			<tr>
-				<td><b><%=h @character.splat.clique_name %>:</b></td>
+				<td><b><%=h @character.splat.clique_name if show_clique?(@character) %>:</b></td>
 				<td><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></td>
 			    <% unless is_mortal?(@character) %>
-				<td><b><%=h @character.splat.ideology_name %>:</b></td>
+				<td><b><%=h @character.splat.ideology_name if show_ideology?(@character) %>:</b></td>
 				<td><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></td>
 			    <% end %>
 			</tr>
@@ -224,7 +224,7 @@
 	<% end %>
 
 	<% if show_powers?(@character) %>
-		<% if @character.splat.name == "Mage" %>
+		<% if is_mage?(@character) %>
 			<p>
 			<fieldset>
 				<legend>Arcana</legend>
@@ -276,7 +276,7 @@
 			</p>
 		<% end %>
 		
-		<% if @character.splat.name == "Werewolf" %>
+		<% if is_werewolf?(@character) %>
 			<p>
 			<fieldset>
 				<legend>Renown</legend>
@@ -310,6 +310,50 @@
 			<fieldset>
 				<legend>Totem</legend>
 				<%= simple_format(@character.totem)%>
+			</fieldset>
+			</p>
+		<% end %>
+
+		<% if is_vampire?(@character) %>
+			<p>
+			<fieldset>
+				<legend>Disciplines</legend>
+				<table>
+					<tr>
+						<td>Animalism</td>
+						<td><%=h @character.animalism %></td>
+						<td>Covenant Disciplines</td>
+					</tr>
+					<tr>
+						<td>Auspex</td>
+						<td><%=h @character.auspex %></td>
+						<td rowspan=8><%= simple_format(@character.covenant_disciplines) %></td>
+					</tr>
+					<tr>
+						<td>Dominate</td>
+						<td><%=h @character.dominate %></td>
+					</tr>
+					<tr>
+						<td>Majesty</td>
+						<td><%=h @character.majesty %></td>
+					</tr>
+					<tr>
+						<td>Nightmare</td>
+						<td><%=h @character.nightmare %></td>
+					</tr>
+					<tr>
+						<td>Protean</td>
+						<td><%=h @character.protean %></td>
+					</tr>
+					<tr>
+						<td>Obfuscate</td>
+						<td><%=h @character.Obfuscate %></td>
+					</tr>
+					<tr>
+						<td>Vigor</td>
+						<td><%=h @character.vigor %></td>
+					</tr>
+				</table>
 			</fieldset>
 			</p>
 		<% end %>

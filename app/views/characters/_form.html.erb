@@ -288,7 +288,7 @@ if controller.action_name == 'new' %>
 </fieldset>
 </p>
 
-<span id="mage_powers" <%=h "style='display: none' if is_mortal?(@character)" %> ><p>
+<span id="mage_powers" <%=h "style='display: none'" unless is_mage?(@character) %> ><p>
 <fieldset>
 	<legend>Arcana</legend>
 	<table>
@@ -339,7 +339,7 @@ if controller.action_name == 'new' %>
 </fieldset>
 </p></span>
 
-<span id="woof_powers" <%=h "style='display: none' if is_mortal?(@character)" %> ><p>
+<span id="woof_powers" <%=h "style='display: none'" unless is_werewolf?(@character) %> ><p>
 <fieldset>
 	<legend>Renown</legend>
 	<table>
@@ -372,6 +372,54 @@ if controller.action_name == 'new' %>
 <fieldset>
 	<legend><%= f.label :totem %></legend>
 	<p><%= f.text_area :totem, :size => "70x25" %></p>
+	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
+</fieldset>
+</p></span>
+
+
+<span id="vampire_powers" <%=h "style='display: none'" unless is_vampire?(@character) %> ><p>
+<fieldset>
+	<legend>Disciplines</legend>
+	<table>
+		<tr>
+			<td><%= f.label :animalism %></td>
+			<td><%= f.text_field :animalism, :size => 5 %></td>
+			<td><%= f.label :covenant_disciplines %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :auspex %></td>
+			<td><%= f.text_field :auspex, :size => 5 %></td>
+			<td rowspan=8><%= f.text_area :covenant_disciplines, :size => "40x13" %>
+		</tr>
+		<tr>
+			<td><%= f.label :celerity %></td>
+			<td><%= f.text_field :celerity, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :dominate %></td>
+			<td><%= f.text_field :dominate, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :majesty %></td>
+			<td><%= f.text_field :majesty, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :nightmare %></td>
+			<td><%= f.text_field :nightmare, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :protean %></td>
+			<td><%= f.text_field :protean, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :obfuscate %></td>
+			<td><%= f.text_field :obfuscate, :size => 5 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :vigor %></td>
+			<td><%= f.text_field :vigor, :size => 5 %></td>
+		</tr>
+	</table>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </fieldset>
 </p></span>
