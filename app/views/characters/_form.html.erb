@@ -241,10 +241,10 @@ if controller.action_name == 'new' %>
 			<td><%= f.text_field :morality, :size => 5 %></td>
 		</td>
 		<tr>
-			<td id="power_stat_label_cell" <%=h "style='display: none' if is_mortal?(@character)" %> >
+			<td id="power_stat_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
 				<%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %>
 			</td>
-			<td id="power_stat_cell" <%=h "style='display: none' if is_mortal?(@character)" %> >
+			<td id="power_stat_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
 				<%= f.text_field :power_stat, :size => 5 %>
 			</td>
 		</tr>
