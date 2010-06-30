@@ -249,10 +249,10 @@ if controller.action_name == 'new' %>
 			</td>
 		</tr>
 		<tr>
-			<td id="fuel_label_cell" <%=h "style='display: none' if is_mortal?(@character)" %> >
+			<td id="fuel_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
 				<%= f.label :fuel, @character.splat.fuel_name, :id => "fuel_label" %>
 			</td>
-			<td id="fuel_cell" <%=h "style='display: none' if is_mortal?(@character)" %> >
+			<td id="fuel_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
 				<%= f.text_field :fuel, :size => 5 %>
 			</td>
 		</tr>
