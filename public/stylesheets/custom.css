@@ -9,7 +9,7 @@ body, p, ol, ul, td {
   line-height: 18px;
 }
 
-a {	color: navy; }
+a { color: navy; }
 
 pre {
   background-color: #eee;
@@ -104,17 +104,53 @@ pre {
 	width: 9em;
 }
 
+.charsheet td.label {
+	text-align: right;
+}
+
+.charsheet td.data {
+	width: 2em;
+	text-align: left;
+}
+
 .charsheet textarea {
-	width: 50em;
+	width: 35em;
 	height: 9em;
+}
+
+.charsheet #specialties {
+	width: 25em;
+}
+
+.charsheet #derangements {
+	width: 20em;
+}
+
+.charsheet #common_spells {
+	width: 23em;
+	height: 19em;
+}
+
+.charsheet #covenant_disciplines {
+	width: 23em;
+	height: 17em;
+}
+
+.charsheet #gifts {
+	width: 23em;
+	height: 8em;
 }
 
 .charsheet input {
 	width: 2em;
 }
 
-.charsheet #name {
-	width: 10em;
+.charsheet input.name {
+	width: 9em;
+}
+
+.charsheet input.button {
+	width: 5em;
 }
 
 .charsheet #health {
@@ -123,12 +159,4 @@ pre {
 
 .charsheet #willpower {
 	width: 5em;
-}
-
-.charsheet #specialties {
-	width: 41em;
-}
-
-.charsheet #derangements {
-	width: 32em;
 }
