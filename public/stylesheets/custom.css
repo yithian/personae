@@ -87,6 +87,13 @@ pre {
 .charsheet a:visited { color: mediumaquamarine; }
 .charsheet a:hover { background-color:#000; }
 
+.login label {
+	text-align: right;
+	float: left;
+	width: 5em;
+	margin-right: .5em;
+}
+
 .charsheet fieldset {
 	margin-top: 1em;
 	background: white;
@@ -101,10 +108,10 @@ pre {
 }
 
 .charsheet td {
-	width: 9em;
 }
 
 .charsheet td.label {
+	width: 9em;
 	text-align: right;
 }
 
@@ -153,10 +160,10 @@ pre {
 	width: 5em;
 }
 
-.charsheet #health {
+.charsheet#health {
 	width: 5em;
 }
 
-.charsheet #willpower {
+.charsheet#willpower {
 	width: 5em;
 }
