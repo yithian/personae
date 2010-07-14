@@ -34,14 +34,14 @@ if controller.action_name == 'new' %>
 <fieldset>
 	<table>
 		<tr>
-			<td><b><%= f.label :name %></b></td>
-			<td><%= f.text_field :name %></td>
+			<td class="label"><b><%= f.label :name %></b></td>
+			<td class="data"><%= f.text_field :name, :class => "name" %></td>
 		</tr>
 		<tr>
-			<td><b><%= f.label :virtue %></b></td>
-			<td><%= f.select :virtue, Character::VIRTUES %></td>
-			<td><b><%= f.label :splat_id, "Template" %></b></td>
-			<td>
+			<td class="label"><b><%= f.label :virtue %></b></td>
+			<td class="data"><%= f.select :virtue, Character::VIRTUES %></td>
+			<td class="label"><b><%= f.label :splat_id, "Template" %></b></td>
+			<td class="data">
 				<% form_remote_tag do %>
 					<%= select_tag :splat_id, splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat"}) } %>
 				<% end %>
@@ -49,26 +49,26 @@ if controller.action_name == 'new' %>
 			</td>
 		</tr>
 		<tr>
-			<td><b><%= f.label :vice %></b></td>
-			<td><%= f.select :vice, Character::VICES %></td>
+			<td class="label"><b><%= f.label :vice %></b></td>
+			<td class="data"><%= f.select :vice, Character::VICES %></td>
 			
-			<td id="nature_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
+			<td class="label" id="nature_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
 				<b><%= f.label :nature_id, @character.splat.nature_name, :id => "nature_label" %></b>
 			</td>
 			
-			<td id="nature_id_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
+			<td class="data" id="nature_id_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
 				<%= f.select :nature_id, nature_list %>
 			</td>
 		</tr>
 		<tr>
-			<td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
-			<td><%= f.select :clique_id, clique_list %></td>
+			<td class="label"><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
+			<td class="label"><%= f.select :clique_id, clique_list %></td>
 
 			
-			<td id="ideology_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %>>
+			<td class="label" id="ideology_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %>>
 				<b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
 			</td>
-			<td id="ideology_id_cell" <%=h "style='display: none'" if is_mortal?(@character) %>>
+			<td class="data" id="ideology_id_cell" <%=h "style='display: none'" if is_mortal?(@character) %>>
 				<%= f.select :ideology_id, ideology_list %>
 			</td>
 
@@ -105,28 +105,28 @@ if controller.action_name == 'new' %>
 	<legend>Attributes</legend>
 	<table>
 		<tr>
-			<td><%= f.label :intelligence %></td>
-			<td><%= f.text_field :intelligence, :size => 5 %></td>
-			<td><%= f.label :strength %></td>
-			<td><%= f.text_field :strength, :size => 5 %></td>
-			<td><%= f.label :presence %></td>
-			<td><%= f.text_field :presence, :size => 5 %></td>
+			<td class="label"><%= f.label :intelligence %></td>
+			<td class="data"><%= f.text_field :intelligence %></td>
+			<td class="label"><%= f.label :strength %></td>
+			<td class="data"><%= f.text_field :strength %></td>
+			<td class="label"><%= f.label :presence %></td>
+			<td class="data"><%= f.text_field :presence %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :wits %></td>
-			<td><%= f.text_field :wits, :size => 5 %></td>
-			<td><%= f.label :dexterity %></td>
-			<td><%= f.text_field :dexterity, :size => 5 %></td>
-			<td><%= f.label :manipulation %></td>
-			<td><%= f.text_field :manipulation, :size => 5 %></td>
+			<td class="label"><%= f.label :wits %></td>
+			<td class="data"><%= f.text_field :wits %></td>
+			<td class="label"><%= f.label :dexterity %></td>
+			<td class="data"><%= f.text_field :dexterity %></td>
+			<td class="label"><%= f.label :manipulation %></td>
+			<td class="data"><%= f.text_field :manipulation %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :resolve %></td>
-			<td><%= f.text_field :resolve, :size => 5 %></td>
-			<td><%= f.label :stamina %></td>
-			<td><%= f.text_field :stamina, :size => 5 %></td>
-			<td><%= f.label :composure %></td>
-			<td><%= f.text_field :composure, :size => 5 %></td>
+			<td class="label"><%= f.label :resolve %></td>
+			<td class="data"><%= f.text_field :resolve %></td>
+			<td class="label"><%= f.label :stamina %></td>
+			<td class="data"><%= f.text_field :stamina %></td>
+			<td class="label"><%= f.label :composure %></td>
+			<td class="data"><%= f.text_field :composure %></td>
 		</tr>
 	</table>
 	<%= f.check_box :read_attributes %> <%= f.label :read_attributes %>
@@ -136,85 +136,85 @@ if controller.action_name == 'new' %>
 	<legend>Skills</legend>
 	<table>
 		<tr>
-			<td><%= f.label :academics %></td>
-			<td><%= f.text_field :academics, :size => 5 %></td>
-			<td><%= f.label :athletics %></td>
-			<td><%= f.text_field :athletics, :size => 5 %></td>
-			<td><%= f.label :animal_ken %></td>
-			<td><%= f.text_field :animal_ken, :size => 5 %></td>
+			<td class="label"><%= f.label :academics %></td>
+			<td class="data"><%= f.text_field :academics %></td>
+			<td class="label"><%= f.label :athletics %></td>
+			<td class="data"><%= f.text_field :athletics %></td>
+			<td class="label"><%= f.label :animal_ken %></td>
+			<td class="data"><%= f.text_field :animal_ken %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :computer %></td>
-			<td><%= f.text_field :computer, :size => 5 %></td>
-			<td><%= f.label :brawl %></td>
-			<td><%= f.text_field :brawl, :size => 5 %></td>
-			<td><%= f.label :empathy %></td>
-			<td><%= f.text_field :empathy, :size => 5 %></td>
+			<td class="label"><%= f.label :computer %></td>
+			<td class="data"><%= f.text_field :computer %></td>
+			<td class="label"><%= f.label :brawl %></td>
+			<td class="data"><%= f.text_field :brawl %></td>
+			<td class="label"><%= f.label :empathy %></td>
+			<td class="data"><%= f.text_field :empathy %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :crafts %></td>
-			<td><%= f.text_field :crafts, :size => 5 %></td>
-			<td><%= f.label :drive %></td>
-			<td><%= f.text_field :drive, :size => 5 %></td>
-			<td><%= f.label :expression %></td>
-			<td><%= f.text_field :expression, :size => 5 %></td>
+			<td class="label"><%= f.label :crafts %></td>
+			<td class="data"><%= f.text_field :crafts %></td>
+			<td class="label"><%= f.label :drive %></td>
+			<td class="data"><%= f.text_field :drive %></td>
+			<td class="label"><%= f.label :expression %></td>
+			<td class="data"><%= f.text_field :expression %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :investigation %></td>
-			<td><%= f.text_field :investigation, :size => 5 %></td>
-			<td><%= f.label :firearms %></td>
-			<td><%= f.text_field :firearms, :size => 5 %></td>
-			<td><%= f.label :intimidation %></td>
-			<td><%= f.text_field :intimidation, :size => 5 %></td>
+			<td class="label"><%= f.label :investigation %></td>
+			<td class="data"><%= f.text_field :investigation %></td>
+			<td class="label"><%= f.label :firearms %></td>
+			<td class="data"><%= f.text_field :firearms %></td>
+			<td class="label"><%= f.label :intimidation %></td>
+			<td class="data"><%= f.text_field :intimidation %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :medicine %></td>
-			<td><%= f.text_field :medicine, :size => 5 %></td>
-			<td><%= f.label :larceny %></td>
-			<td><%= f.text_field :larceny, :size => 5 %></td>
-			<td><%= f.label :persuasion %></td>
-			<td><%= f.text_field :persuasion, :size => 5 %></td>
+			<td class="label"><%= f.label :medicine %></td>
+			<td class="data"><%= f.text_field :medicine %></td>
+			<td class="label"><%= f.label :larceny %></td>
+			<td class="data"><%= f.text_field :larceny %></td>
+			<td class="label"><%= f.label :persuasion %></td>
+			<td class="data"><%= f.text_field :persuasion %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :occult %></td>
-			<td><%= f.text_field :occult, :size => 5 %></td>
-			<td><%= f.label :stealth %></td>
-			<td><%= f.text_field :stealth, :size => 5 %></td>
-			<td><%= f.label :socialize %></td>
-			<td><%= f.text_field :socialize, :size => 5 %></td>
+			<td class="label"><%= f.label :occult %></td>
+			<td class="data"><%= f.text_field :occult %></td>
+			<td class="label"><%= f.label :stealth %></td>
+			<td class="data"><%= f.text_field :stealth %></td>
+			<td class="label"><%= f.label :socialize %></td>
+			<td class="data"><%= f.text_field :socialize %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :politics %></td>
-			<td><%= f.text_field :politics, :size => 5 %></td>
-			<td><%= f.label :survival %></td>
-			<td><%= f.text_field :survival, :size => 5 %></td>
-			<td><%= f.label :streetwise %></td>
-			<td><%= f.text_field :streetwise, :size => 5 %></td>
+			<td class="label"><%= f.label :politics %></td>
+			<td class="data"><%= f.text_field :politics %></td>
+			<td class="label"><%= f.label :survival %></td>
+			<td class="data"><%= f.text_field :survival %></td>
+			<td class="label"><%= f.label :streetwise %></td>
+			<td class="data"><%= f.text_field :streetwise %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :science %></td>
-			<td><%= f.text_field :science, :size => 5 %></td>
-			<td><%= f.label :weaponry %></td>
-			<td><%= f.text_field :weaponry, :size => 5 %></td>
-			<td><%= f.label :subterfuge %></td>
-			<td><%= f.text_field :subterfuge, :size => 5 %></td>
+			<td class="label"><%= f.label :science %></td>
+			<td class="data"><%= f.text_field :science %></td>
+			<td class="label"><%= f.label :weaponry %></td>
+			<td class="data"><%= f.text_field :weaponry %></td>
+			<td class="label"><%= f.label :subterfuge %></td>
+			<td class="data"><%= f.text_field :subterfuge %></td>
 		</tr>
 		<tr>
-    			<td><%= f.label :skill_specialties %></td>
-			<td colspan=5><%= f.text_area :skill_specialties %></td>
+    			<td class="label"><%= f.label :skill_specialties %></td>
+			<td colspan=5><%= f.text_area :skill_specialties, :id => "specialties" %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :speed %></td>
-			<td><%= f.text_field :speed, :size => 5 %></td>
+			<td class="label"><%= f.label :speed %></td>
+			<td class="data"><%= f.text_field :speed %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :initiative %></td>
-			<td><%= f.text_field :initiative, :size => 5 %></td>
-		</td>
+			<td class="label"><%= f.label :initiative %></td>
+			<td class="data"><%= f.text_field :initiative %></td>
+		</tr>
 		<tr>
-			<td><%= f.label :defense %></td>
-			<td><%= f.text_field :defense, :size => 5 %></td>
-		</td>
+			<td class="label"><%= f.label :defense %></td>
+			<td class="data"><%= f.text_field :defense %></td>
+		</tr>
 	</table>
 	<%= f.check_box :read_skills %> <%= f.label :read_skills %>
 </fieldset>
@@ -223,37 +223,37 @@ if controller.action_name == 'new' %>
 	<legend>Advantages</legend>
 	<table>
 		<tr>
-			<td><%= f.label :health %></td>
-			<td><%= f.text_field :health, :size => 10 %></td>
-			<td><%= f.label :derangements %></td>
+			<td class="label"><%= f.label :health %></td>
+			<td class="data"><%= f.text_field :health, :id => "health" %></td>
+			<td class="label"><%= f.label :derangements %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :willpower %></td>
-			<td><%= f.text_field :willpower, :size => 10 %></td>
-			<td rowspan=5><%= f.text_area :derangements, :rows => 8 %></td>
+			<td class="label"><%= f.label :willpower %></td>
+			<td class="data"><%= f.text_field :willpower, :id => "willpower" %></td>
+			<td rowspan=5><%= f.text_area :derangements, :id => "derangements" %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :armor %></td>
-			<td><%= f.text_field :armor, :size => 5 %></td>
-		</td>
+			<td class="label"><%= f.label :armor %></td>
+			<td class="data"><%= f.text_field :armor %></td>
+		</tr>
 		<tr>
-			<td><%= f.label :morality, @character.splat.morality_name, :id => "morality_label" %></td>
-			<td><%= f.text_field :morality, :size => 5 %></td>
-		</td>
+			<td class="label"><%= f.label :morality, @character.splat.morality_name, :id => "morality_label" %></td>
+			<td class="data"><%= f.text_field :morality %></td>
+		</tr>
 		<tr>
-			<td id="power_stat_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
+			<td class="label" id="power_stat_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
 				<%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %>
 			</td>
-			<td id="power_stat_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
-				<%= f.text_field :power_stat, :size => 5 %>
+			<td class="data" id="power_stat_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
+				<%= f.text_field :power_stat %>
 			</td>
 		</tr>
 		<tr>
-			<td id="fuel_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
+			<td class="label" id="fuel_label_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
 				<%= f.label :fuel, @character.splat.fuel_name, :id => "fuel_label" %>
 			</td>
-			<td id="fuel_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
-				<%= f.text_field :fuel, :size => 5 %>
+			<td class="data" id="fuel_cell" <%=h "style='display: none'" if is_mortal?(@character) %> >
+				<%= f.text_field :fuel %>
 			</td>
 		</tr>
 	</table>
@@ -277,46 +277,46 @@ if controller.action_name == 'new' %>
 	<legend>Arcana</legend>
 	<table>
 		<tr>
-			<td><%= f.label :death %></td>
-			<td><%= f.text_field :death, :size => 5 %></td>
-			<td><%= f.label :common_spells %></td>
+			<td class="label"><%= f.label :death %></td>
+			<td class="data"><%= f.text_field :death %></td>
+			<td class="label"><%= f.label :common_spells %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :fate %></td>
-			<td><%= f.text_field :fate, :size => 5 %></td>
-			<td rowspan=9><%= f.text_area :common_spells %></td>
+			<td class="label"><%= f.label :fate %></td>
+			<td class="data"><%= f.text_field :fate %></td>
+			<td rowspan=9><%= f.text_area :common_spells, :id => "common_spells" %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :forces %></td>
-			<td><%= f.text_field :forces, :size => 5 %></td>
+			<td class="label"><%= f.label :forces %></td>
+			<td class="data"><%= f.text_field :forces %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :life %></td>
-			<td><%= f.text_field :life, :size => 5 %></td>
+			<td class="label"><%= f.label :life %></td>
+			<td class="data"><%= f.text_field :life %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :matter %></td>
-			<td><%= f.text_field :matter, :size => 5 %></td>
+			<td class="label"><%= f.label :matter %></td>
+			<td class="data"><%= f.text_field :matter %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :mind %></td>
-			<td><%= f.text_field :mind, :size => 5 %></td>
+			<td class="label"><%= f.label :mind %></td>
+			<td class="data"><%= f.text_field :mind %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :prime %></td>
-			<td><%= f.text_field :prime, :size => 5 %></td>
+			<td class="label"><%= f.label :prime %></td>
+			<td class="data"><%= f.text_field :prime %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :space %></td>
-			<td><%= f.text_field :space, :size => 5 %></td>
+			<td class="label"><%= f.label :space %></td>
+			<td class="data"><%= f.text_field :space %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :spirit %></td>
-			<td><%= f.text_field :spirit, :size => 5 %></td>
+			<td class="label"><%= f.label :spirit %></td>
+			<td class="data"><%= f.text_field :spirit %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :time %></td>
-			<td><%= f.text_field :time, :size => 5 %></td>
+			<td class="label"><%= f.label :time %></td>
+			<td class="data"><%= f.text_field :time %></td>
 		</tr>
 	</table>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
@@ -328,26 +328,26 @@ if controller.action_name == 'new' %>
 	<legend>Renown</legend>
 	<table>
 		<tr>
-			<td><%= f.label :purity %></td>
-			<td><%= f.text_field :purity, :size => 5 %></td>
-			<td><%= f.label :gifts %></td>
+			<td class="label"><%= f.label :purity %></td>
+			<td class="data"><%= f.text_field :purity %></td>
+			<td class="label"><%= f.label :gifts %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :glory %></td>
-			<td><%= f.text_field :glory, :size => 5 %></td>
-			<td rowspan=4><%= f.text_area :gifts %></td>
+			<td class="label"><%= f.label :glory %></td>
+			<td class="data"><%= f.text_field :glory %></td>
+			<td rowspan=4><%= f.text_area :gifts, :id => "gifts" %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :honor %></td>
-			<td><%= f.text_field :honor, :size => 5 %></td>
+			<td class="label"><%= f.label :honor %></td>
+			<td class="data"><%= f.text_field :honor %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :wisdom %></td>
-			<td><%= f.text_field :wisdom, :size => 5 %></td>
+			<td class="label"><%= f.label :wisdom %></td>
+			<td class="data"><%= f.text_field :wisdom %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :cunning %></td>
-			<td><%= f.text_field :cunning, :size => 5 %></td>
+			<td class="label"><%= f.label :cunning %></td>
+			<td class="data"><%= f.text_field :cunning %></td>
 		</tr>
 	</table>
 </fieldset>
@@ -364,42 +364,42 @@ if controller.action_name == 'new' %>
 	<legend>Disciplines</legend>
 	<table>
 		<tr>
-			<td><%= f.label :animalism %></td>
-			<td><%= f.text_field :animalism, :size => 5 %></td>
-			<td><%= f.label :covenant_disciplines %></td>
+			<td class="label"><%= f.label :animalism %></td>
+			<td class="data"><%= f.text_field :animalism %></td>
+			<td class="label"><%= f.label :covenant_disciplines %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :auspex %></td>
-			<td><%= f.text_field :auspex, :size => 5 %></td>
-			<td rowspan=8><%= f.text_area :covenant_disciplines %>
+			<td class="label"><%= f.label :auspex %></td>
+			<td class="data"><%= f.text_field :auspex %></td>
+			<td rowspan=8><%= f.text_area :covenant_disciplines, :id => "covenant_disciplines" %>
 		</tr>
 		<tr>
-			<td><%= f.label :celerity %></td>
-			<td><%= f.text_field :celerity, :size => 5 %></td>
+			<td class="label"><%= f.label :celerity %></td>
+			<td class="data"><%= f.text_field :celerity %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :dominate %></td>
-			<td><%= f.text_field :dominate, :size => 5 %></td>
+			<td class="label"><%= f.label :dominate %></td>
+			<td class="data"><%= f.text_field :dominate %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :majesty %></td>
-			<td><%= f.text_field :majesty, :size => 5 %></td>
+			<td class="label"><%= f.label :majesty %></td>
+			<td class="data"><%= f.text_field :majesty %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :nightmare %></td>
-			<td><%= f.text_field :nightmare, :size => 5 %></td>
+			<td class="label"><%= f.label :nightmare %></td>
+			<td class="data"><%= f.text_field :nightmare %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :protean %></td>
-			<td><%= f.text_field :protean, :size => 5 %></td>
+			<td class="label"><%= f.label :protean %></td>
+			<td class="data"><%= f.text_field :protean %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :obfuscate %></td>
-			<td><%= f.text_field :obfuscate, :size => 5 %></td>
+			<td class="label"><%= f.label :obfuscate %></td>
+			<td class="data"><%= f.text_field :obfuscate %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :vigor %></td>
-			<td><%= f.text_field :vigor, :size => 5 %></td>
+			<td class="label"><%= f.label :vigor %></td>
+			<td class="data"><%= f.text_field :vigor %></td>
 		</tr>
 	</table>
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
@@ -413,6 +413,6 @@ if controller.action_name == 'new' %>
 </fieldset>
 
 <p>
-	<%= f.submit 'Save' %>
+	<%= f.submit 'Save', :class => "button" %>
 </p>
 <% end %>

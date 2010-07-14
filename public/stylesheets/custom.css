@@ -9,7 +9,7 @@ body, p, ol, ul, td {
   line-height: 18px;
 }
 
-a {	color: navy; }
+a { color: navy; }
 
 pre {
   background-color: #eee;
@@ -87,18 +87,11 @@ pre {
 .charsheet a:visited { color: mediumaquamarine; }
 .charsheet a:hover { background-color:#000; }
 
-.charsheet table {
-	padding: 0.5em 0em;
-	width: 100%;
-}
-
-.charsheet td {
-	padding: 0em 1em 0em 0em;
-}
-
-.charsheet textarea {
-	width: 100%;
-	height: 9em;
+.login label {
+	text-align: right;
+	float: left;
+	width: 5em;
+	margin-right: .5em;
 }
 
 .charsheet fieldset {
@@ -112,4 +105,65 @@ pre {
 	background: teal;
 	font-family: sans-serif;
 	padding: 0.2em 1em;
+}
+
+.charsheet td {
+}
+
+.charsheet td.label {
+	width: 9em;
+	text-align: right;
+}
+
+.charsheet td.data {
+	width: 2em;
+	text-align: left;
+}
+
+.charsheet textarea {
+	width: 35em;
+	height: 9em;
+}
+
+.charsheet #specialties {
+	width: 25em;
+}
+
+.charsheet #derangements {
+	width: 20em;
+}
+
+.charsheet #common_spells {
+	width: 23em;
+	height: 19em;
+}
+
+.charsheet #covenant_disciplines {
+	width: 23em;
+	height: 17em;
+}
+
+.charsheet #gifts {
+	width: 23em;
+	height: 8em;
+}
+
+.charsheet input {
+	width: 2em;
+}
+
+.charsheet input.name {
+	width: 9em;
+}
+
+.charsheet input.button {
+	width: 5em;
+}
+
+.charsheet#health {
+	width: 5em;
+}
+
+.charsheet#willpower {
+	width: 5em;
 }

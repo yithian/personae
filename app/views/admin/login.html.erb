@@ -1,21 +1,23 @@
 <% form_tag do %>
-	<fieldset>
-		<legend>Please Log In</legend>
-		
-		<div>
-			<label for="name">Name:</label>
-			<%= text_field_tag :name, params[:name] %>
-		</div>
-		
-		<div>
-			<label for="password">Password:</label>
-			<%= password_field_tag :password, params[:password] %>
-		</div>
-		
-		<div>
-			<%= submit_tag "Login" %>
-		</div>
-		
-		<%= link_to "New User", :controller => 'users', :action => 'new' %>
-	</fieldset>
+	<div class="login">
+		<fieldset>
+			<legend>Please Log In</legend>
+			
+			<div>
+				<label for="name">Name:</label>
+				<%= text_field_tag :name, params[:name], :class => "name" %>
+			</div>
+			
+			<div>
+				<label for="password">Password:</label>
+				<%= password_field_tag :password, params[:password], :class => "name" %>
+			</div>
+			
+			<div>
+				<%= submit_tag "Login", :class => "button" %>
+			</div>
+			
+			<%= link_to "New User", :controller => 'users', :action => 'new' %>
+		</fieldset>
+	</div>
 <% end %>
