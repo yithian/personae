@@ -167,12 +167,12 @@
 			<table>
 				<tr>
 					<td class="label">Health:</td>
-					<td class="data"><%=h @character.health %></td>
+					<td id="health"><%=h @character.health %></td>
 					<td class="label">Derangements:</td>
 				</tr>
 				<tr>
 					<td class="label">Willpower:</td>
-					<td class="data"><%=h @character.willpower %></td>
+					<td id="willpower"><%=h @character.willpower %></td>
 					<td rowspan=4><%= simple_format(@character.derangements) %></td>
 				</tr>
 				<tr>
