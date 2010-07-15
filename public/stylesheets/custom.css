@@ -1,6 +1,7 @@
 body {
 	background-color: gray;
-	color: navy; 
+	color: navy;
+	text-align: center;
 }
 
 body, p, ol, ul, td {
@@ -59,21 +60,14 @@ pre {
 	background: gray;
 	width: 100%;
 	padding: 0.5em 0 0.5em;
-	float: left;
 	text-align: center;
 }
 
-#sidebar {
-	width: 15;
-	float: left;
-	background: gray;
-}
-
 .charsheet {
-	width: 84%;
-	float: right;
-	padding: 0.5em;
-	margin-right: 1em;
+	margin: 0 auto;
+	width: 60em;
+	text-align: left;
+	padding: .5em 2em;
 	background: navy;
 	color: gold;
 }
@@ -107,9 +101,6 @@ pre {
 	padding: 0.2em 1em;
 }
 
-.charsheet td {
-}
-
 .charsheet td.label {
 	width: 9em;
 	text-align: right;
@@ -121,29 +112,30 @@ pre {
 }
 
 .charsheet textarea {
-	width: 35em;
+	margin-left: 3em;
+	width: 50em;
 	height: 9em;
 }
 
-.charsheet #specialties {
-	width: 25em;
+.charsheet #character_skill_specialties {
+	width: 27em;
 }
 
-.charsheet #derangements {
+.charsheet #character_derangements {
 	width: 20em;
 }
 
-.charsheet #common_spells {
+.charsheet #character_common_spells {
 	width: 23em;
 	height: 19em;
 }
 
-.charsheet #covenant_disciplines {
+.charsheet #character_covenant_disciplines {
 	width: 23em;
 	height: 17em;
 }
 
-.charsheet #gifts {
+.charsheet #character_gifts {
 	width: 23em;
 	height: 8em;
 }
