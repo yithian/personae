@@ -19,21 +19,23 @@
 </head>
 <body>
 
-<div id="header">
-	<h1>City of Darkness</h1>
-	<b><%= link_to "Characters", :controller => :characters %></b>
-	<b><%= link_to "Cliques", :controller => :cliques %></b>
-	<b><%= link_to "Ideologies", :controller => :ideologies %></b>
-	<% if session[:user_id] == :logged_out %>
-		<b><%= link_to "Log in", :controller =>  :admin, :action => :login %></b>
-	<% else %>
-		<b><%= link_to "Log out", :controller => :admin, :action => :logout %></b>
-	<% end %>
-</div>
-
-<div class="charsheet">
-	<div id="notice"><%= flash[:notice] %></div>
-	<%= yield %>
+<div id="column">
+	<div id="header">
+		<h1>City of Darkness</h1>
+		<b><%= link_to "Characters", :controller => :characters %></b>
+		<b><%= link_to "Cliques", :controller => :cliques %></b>
+		<b><%= link_to "Ideologies", :controller => :ideologies %></b>
+		<% if session[:user_id] == :logged_out %>
+			<b><%= link_to "Log in", :controller =>  :admin, :action => :login %></b>
+		<% else %>
+			<b><%= link_to "Log out", :controller => :admin, :action => :logout %></b>
+		<% end %>
+	</div>
+	
+	<div class="content">
+		<div id="notice"><%= flash[:notice] %></div>
+		<%= yield %>
+	</div>
 </div>
 
 </body>

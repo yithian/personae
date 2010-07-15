@@ -1,21 +1,114 @@
 body {
-	background-color: gray;
-	color: navy;
+	background-color: #021246;
 	text-align: center;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size:   13px;
+	line-height: 18px;
 }
 
-body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
+a { color: #061B61; }
+
+#column {
+	width: 70%;
+	max-width: 60em;
+	margin: 0 auto;
+	padding: 0em 1em;
 }
 
-a { color: navy; }
+#header {
+	background: #006C18;
+	color: #eeeeec;
+	text-align: center;
+	border: 1px solid black;
+}
 
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+#header a { color: #eeeeec; }
+#header a:visited { color: #babdd6 }
+
+#notice {
+	text-align: center;
+	color: green;
+}
+
+.content {
+	color: #333;
+	background: #eeeeec;
+	text-align: left;
+	border: 1px solid black;
+}
+
+.content a:visited { color: #2743A0; }
+.content a:hover { background: #CC0000; }
+
+.content fieldset {
+	margin-top: 1em;
+	color: #333;
+}
+
+.content legend {
+	color: black;
+	background: #CC0000;
+	font-family: serif;
+	padding: 0.2em 1em;
+}
+
+.content td.label {
+	width: 9em;
+	text-align: right;
+}
+
+.content td.data {
+	width: 2em;
+	text-align: left;
+}
+
+.content textarea {
+	margin-left: 3em;
+	width: 50em;
+	height: 9em;
+}
+
+.content #character_skill_specialties {
+	width: 27em;
+}
+
+.content #character_derangements {
+	width: 20em;
+}
+
+.content #character_common_spells {
+	width: 23em;
+	height: 19em;
+}
+
+.content #character_covenant_disciplines {
+	width: 23em;
+	height: 17em;
+}
+
+.content #character_gifts {
+	width: 23em;
+	height: 8em;
+}
+
+.content input {
+	width: 2em;
+}
+
+.content input.name {
+	width: 9em;
+}
+
+.content input.button {
+	width: 5em;
+}
+
+.content #health {
+	width: 5em;
+}
+
+.content #willpower {
+	width: 5em;
 }
 
 .fieldWithErrors {
@@ -55,107 +148,9 @@ pre {
   list-style: square;
 }
 
-#header {
-	color: navy;
-	background: gray;
-	width: 100%;
-	padding: 0.5em 0 0.5em;
-	text-align: center;
-}
-
-.charsheet {
-	margin: 0 auto;
-	width: 60em;
-	text-align: left;
-	padding: .5em 2em;
-	background: navy;
-	color: gold;
-}
-
-.charsheet #notice {
-	text-align: center;
-	color: green;
-}
-
-.charsheet a { color: aqua; }
-.charsheet a:visited { color: mediumaquamarine; }
-.charsheet a:hover { background-color:#000; }
-
 .login label {
 	text-align: right;
 	float: left;
 	width: 5em;
 	margin-right: .5em;
-}
-
-.charsheet fieldset {
-	margin-top: 1em;
-	background: white;
-	color: #333;
-}
-
-.charsheet legend {
-	color: gold;
-	background: teal;
-	font-family: sans-serif;
-	padding: 0.2em 1em;
-}
-
-.charsheet td.label {
-	width: 9em;
-	text-align: right;
-}
-
-.charsheet td.data {
-	width: 2em;
-	text-align: left;
-}
-
-.charsheet textarea {
-	margin-left: 3em;
-	width: 50em;
-	height: 9em;
-}
-
-.charsheet #character_skill_specialties {
-	width: 27em;
-}
-
-.charsheet #character_derangements {
-	width: 20em;
-}
-
-.charsheet #character_common_spells {
-	width: 23em;
-	height: 19em;
-}
-
-.charsheet #character_covenant_disciplines {
-	width: 23em;
-	height: 17em;
-}
-
-.charsheet #character_gifts {
-	width: 23em;
-	height: 8em;
-}
-
-.charsheet input {
-	width: 2em;
-}
-
-.charsheet input.name {
-	width: 9em;
-}
-
-.charsheet input.button {
-	width: 5em;
-}
-
-.charsheet #health {
-	width: 5em;
-}
-
-.charsheet #willpower {
-	width: 5em;
 }
