@@ -31,7 +31,7 @@ if controller.action_name == 'new' %>
 	<input name="character[user_id]" type="hidden" value=<%= session[:user_id] %> >
 <% end %>
 
-<fieldset>
+
 	<table>
 		<tr>
 			<td class="label"><b><%= f.label :name %></b></td>
@@ -73,7 +73,7 @@ if controller.action_name == 'new' %>
 			</td>
 		</tr>
 	</table>
-</fieldset>
+
 
 <%= f.check_box :read_name %> <%= f.label :read_name %>
 <%= f.check_box :read_clique %> <%= f.label :read_clique, "Read " + @character.splat.clique_name, :id => "read_clique_label" %>
@@ -86,20 +86,20 @@ if controller.action_name == 'new' %>
 	<%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Read " + @character.splat.ideology_name, :id => "read_ideology_label" %>
 </span>
 
-<fieldset>
-	<legend>Description</legend>
+
+	<h3>Description</h3>
 	<p><%= f.text_area :description %></p>
-</fieldset>	
+
 <%= f.check_box :read_description %> <%= f.label :read_description %>
 
-<fieldset>
-	<legend>Background</legend>
+
+	<h3>Background</h3>
 	<p><%= f.text_area :background %></p>
-</fieldset>	
+
 <%= f.check_box :read_background %> <%= f.label :read_background %>
 
-<fieldset>
-	<legend>Attributes</legend>
+
+	<h3>Attributes</h3>
 	<table>
 		<tr>
 			<td class="label"><%= f.label :intelligence %></td>
@@ -126,11 +126,11 @@ if controller.action_name == 'new' %>
 			<td class="data"><%= f.text_field :composure %></td>
 		</tr>
 	</table>
-</fieldset>	
+
 <%= f.check_box :read_attributes %> <%= f.label :read_attributes %>
 
-<fieldset>
-	<legend>Skills</legend>
+
+	<h3>Skills</h3>
 	<table>
 		<tr>
 			<td class="label"><%= f.label :academics %></td>
@@ -213,11 +213,11 @@ if controller.action_name == 'new' %>
 			<td class="data"><%= f.text_field :defense %></td>
 		</tr>
 	</table>
-</fieldset>	
+
 <%= f.check_box :read_skills %> <%= f.label :read_skills %>
 
-<fieldset>
-	<legend>Advantages</legend>
+
+	<h3>Advantages</h3>
 	<table>
 		<tr>
 			<td class="label"><%= f.label :health %></td>
@@ -254,24 +254,24 @@ if controller.action_name == 'new' %>
 			</td>
 		</tr>
 	</table>
-</fieldset>	
+
 <%= f.check_box :read_advantages %> <%= f.label :read_advantages %>
 
-<fieldset>
-	<legend><%= f.label :merits %></legend>
+
+	<h3><%= f.label :merits %></h3>
 	<p><%= f.text_area :merits %></p>
-</fieldset>	
+
 <%= f.check_box :read_merits %> <%= f.label :read_merits %>
 
-<fieldset>
-	<legend><%= f.label :equipment %></legend>
+
+	<h3><%= f.label :equipment %></h3>
 	<p><%= f.text_area :equipment %></p>
-</fieldset>	
+
 <%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
 
 <span id="mage_powers" <%=h "style='display: none'" unless is_mage?(@character) %> >
-<fieldset>
-	<legend>Arcana</legend>
+
+	<h3>Arcana</h3>
 	<table>
 		<tr>
 			<td class="label"><%= f.label :death %></td>
@@ -316,12 +316,12 @@ if controller.action_name == 'new' %>
 			<td class="data"><%= f.text_field :time %></td>
 		</tr>
 	</table>
-</fieldset>
+
 </span>
 
 <span id="woof_powers" <%=h "style='display: none'" unless is_werewolf?(@character) %> >
-<fieldset>
-	<legend>Renown</legend>
+
+	<h3>Renown</h3>
 	<table>
 		<tr>
 			<td class="label"><%= f.label :purity %></td>
@@ -346,17 +346,17 @@ if controller.action_name == 'new' %>
 			<td class="data"><%= f.text_field :cunning %></td>
 		</tr>
 	</table>
-</fieldset>
-<fieldset>
-	<legend><%= f.label :totem %></legend>
+
+
+	<h3><%= f.label :totem %></h3>
 	<p><%= f.text_area :totem %></p>
-</fieldset>
+
 </span>
 
 
 <span id="vampire_powers" <%=h "style='display: none'" unless is_vampire?(@character) %> >
-<fieldset>
-	<legend>Disciplines</legend>
+
+	<h3>Disciplines</h3>
 	<table>
 		<tr>
 			<td class="label"><%= f.label :animalism %></td>
@@ -397,16 +397,16 @@ if controller.action_name == 'new' %>
 			<td class="data"><%= f.text_field :vigor %></td>
 		</tr>
 	</table>
-</fieldset>
+
 </span>
 <span id="read_powers_span" <%=h "style='display: none'" if is_mortal?(@character) %> >
 	<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 </span>
 
-<fieldset>
-	<legend><%= f.label :experience %></legend>
+
+	<h3><%= f.label :experience %></h3>
 	<p><%= f.text_area :experience %></p>
-</fieldset>	
+
 <%= f.check_box :read_experience %> <%= f.label :read_experience %>
 
 <p>

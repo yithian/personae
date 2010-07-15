@@ -1,349 +1,323 @@
 <% if show_character?(@character) %>
-	<fieldset>
-		<table>
-			<tr>
-				<td class="label"><b>Name:</b></td>
-				<td colspan=3><%=h @character.name %></td>
-			<tr>
-				<td class="label"><b>Virtue:</b></td>
-				<td><%=h @character.virtue if own_character?(@character) %></td>
-			</tr>
-			<tr>
-				<td class="label"><b>Vice:</b></td>
-				<td><%=h @character.vice if own_character?(@character) %></td>
-			    <% unless is_mortal?(@character) %>
-				<td class="label"><b><%=h @character.splat.nature_name if show_nature?(@character) %>:</b></td>
-				<td><%=h @character.nature.name if show_nature?(@character) %>
-			    <% end %>
-			</tr>
-			<tr>
-				<td class="label"><b><%=h @character.splat.clique_name if show_clique?(@character) %>:</b></td>
-				<td><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></td>
-			    <% unless is_mortal?(@character) %>
-				<td class="label"><b><%=h @character.splat.ideology_name if show_ideology?(@character) %>:</b></td>
-				<td><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></td>
-			    <% end %>
-			</tr>
-		</table>
-	</fieldset>
+	<table>
+		<tr>
+			<td class="label"><b>Name:</b></td>
+			<td colspan=3><%=h @character.name %></td>
+		<tr>
+			<td class="label"><b>Virtue:</b></td>
+			<td><%=h @character.virtue if own_character?(@character) %></td>
+		</tr>
+		<tr>
+			<td class="label"><b>Vice:</b></td>
+			<td><%=h @character.vice if own_character?(@character) %></td>
+		    <% unless is_mortal?(@character) %>
+			<td class="label"><b><%=h @character.splat.nature_name if show_nature?(@character) %>:</b></td>
+			<td><%=h @character.nature.name if show_nature?(@character) %>
+		    <% end %>
+		</tr>
+		<tr>
+			<td class="label"><b><%=h @character.splat.clique_name if show_clique?(@character) %>:</b></td>
+			<td><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></td>
+		    <% unless is_mortal?(@character) %>
+			<td class="label"><b><%=h @character.splat.ideology_name if show_ideology?(@character) %>:</b></td>
+			<td><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></td>
+		    <% end %>
+		</tr>
+	</table>
 
 	<% if show_description?(@character) %>
-		<fieldset>
-		  <legend>Description</legend>
+		  <h3>Description</h3>
 		  <%= simple_format(@character.description) %>
-		</fieldset>
 	<% end %>
 
 	<% if show_background?(@character) %>
-		<fieldset>
-		  <legend>Background</legend>
-		  <%= simple_format(@character.background) %>
-		</fieldset>
+		<h3>Background</h3>
+		<%= simple_format(@character.background) %>
 	<% end %>
 
 	<% if show_attributes?(@character) %>
-		<fieldset>
-			<legend>Attributes</legend>
-			<table>
-				<tr>
-					<td class="label">Intelligence:</td>
-					<td class="data"><%=h @character.intelligence %></td>
-					<td class="label">Strength:</td>
-					<td class="data"><%=h @character.strength %></td>
-					<td class="label">Presence:</td>
-					<td class="data"><%=h @character.presence %></td>
-				</tr>
-				<tr>
-					<td class="label">Wits:</td>
-					<td class="data"><%=h @character.wits %></td>
-					<td class="label">Dexterity:</td>
-					<td class="data"><%=h @character.dexterity %></td>
-					<td class="label">Manipulation:</td>
-					<td class="data"><%=h @character.manipulation %></td>
-				</tr>
-				<tr>
-					<td class="label">Resolve:</td>
-					<td class="data"><%=h @character.resolve %></td>
-					<td class="label">Stamina:</td>
-					<td class="data"><%=h @character.stamina %></td>
-					<td class="label">Composure:</td>
-					<td class="data"><%=h @character.composure %></td>
-				</tr>
-			</table>
-		</fieldset>
+		<h3>Attributes</h3>
+		<table>
+			<tr>
+				<td class="label">Intelligence:</td>
+				<td class="data"><%=h @character.intelligence %></td>
+				<td class="label">Strength:</td>
+				<td class="data"><%=h @character.strength %></td>
+				<td class="label">Presence:</td>
+				<td class="data"><%=h @character.presence %></td>
+			</tr>
+			<tr>
+				<td class="label">Wits:</td>
+				<td class="data"><%=h @character.wits %></td>
+				<td class="label">Dexterity:</td>
+				<td class="data"><%=h @character.dexterity %></td>
+				<td class="label">Manipulation:</td>
+				<td class="data"><%=h @character.manipulation %></td>
+			</tr>
+			<tr>
+				<td class="label">Resolve:</td>
+				<td class="data"><%=h @character.resolve %></td>
+				<td class="label">Stamina:</td>
+				<td class="data"><%=h @character.stamina %></td>
+				<td class="label">Composure:</td>
+				<td class="data"><%=h @character.composure %></td>
+			</tr>
+		</table>
 	<% end %>
 
 	<% if show_skills?(@character) %>
-		<fieldset>
-			<legend>Skills</legend>
-			<table>
-				<tr>
-					<td class="label">Academics:</td>
-					<td class="data"><%=h @character.academics %></td>
-					<td class="label">Athletics:</td>
-					<td class="data"><%=h @character.athletics %></td>
-					<td class="label">Animal Ken:</td>
-					<td class="data"><%=h @character.animal_ken %></td>
-				</tr>
-				<tr>
-					<td class="label">Computer:</td>
-					<td class="data"><%=h @character.computer %></td>
-					<td class="label">Brawl:</td>
-					<td class="data"><%=h @character.brawl %></td>
-					<td class="label">Empathy:</td>
-					<td class="data"><%=h @character.empathy %></td>
-				</tr>
-				<tr>
-					<td class="label">Crafts:</td>
-					<td class="data"><%=h @character.crafts %></td>
-					<td class="label">Drive:</td>
-					<td class="data"><%=h @character.drive %></td>
-					<td class="label">Expression:</td>
-					<td class="data"><%=h @character.expression %></td>
-				</tr>
-				<tr>
-					<td class="label">Investigation:</td>
-					<td class="data"><%=h @character.investigation %></td>
-					<td class="label">Firearms:</td>
-					<td class="data"><%=h @character.firearms %></td>
-					<td class="label">Intimidation:</td>
-					<td class="data"><%=h @character.intimidation %></td>
-				</tr>
-				<tr>
-					<td class="label">Medicine:</td>
-					<td class="data"><%=h @character.medicine %></td>
-					<td class="label">Larceny:</td>
-					<td class="data"><%=h @character.larceny %></td>
-					<td class="label">Persuasion:</td>
-					<td class="data"><%=h @character.persuasion %></td>
-				</tr>
-				<tr>
-					<td class="label">Occult:</td>
-					<td class="data"><%=h @character.occult %></td>
-					<td class="label">Stealth:</td>
-					<td class="data"><%=h @character.stealth %></td>
-					<td class="label">Socialize:</td>
-					<td class="data"><%=h @character.socialize %></td>
-				</tr>
-				<tr>
-					<td class="label">Politics:</td>
-					<td class="data"><%=h @character.politics %></td>
-					<td class="label">Survival:</td>
-					<td class="data"><%=h @character.survival %></td>
-					<td class="label">Streetwise:</td>
-					<td class="data"><%=h @character.streetwise %></td>
-				</tr>
-				<tr>
-					<td class="label">Science:</td>
-					<td class="data"><%=h @character.science %></td>
-					<td class="label">Weaponry:</td>
-					<td class="data"><%=h @character.weaponry %></td>
-					<td class="label">Subterfuge:</td>
-					<td class="data"><%=h @character.subterfuge %></td>
-				</tr>
-				<tr>
-					<td class="label">Skill Specialties:</td>
-					<td colspan=5><%= simple_format(@character.skill_specialties) %></td>
-				</tr>
-				<tr>
-					<td class="label">Speed:</td>
-					<td class="data"><%=h @character.speed %></td>
-				</tr>
-				<tr>
-					<td class="label">Initiative:</td>
-					<td class="data"><%=h @character.initiative %></td>
-				</tr>
-				<tr>
-					<td class="label">Defense:</td>
-					<td class="data"><%=h @character.defense %></td>
-				</tr>
-			</table>
-		</fieldset>
+		<h3>Skills</h3>
+		<table>
+			<tr>
+				<td class="label">Academics:</td>
+				<td class="data"><%=h @character.academics %></td>
+				<td class="label">Athletics:</td>
+				<td class="data"><%=h @character.athletics %></td>
+				<td class="label">Animal Ken:</td>
+				<td class="data"><%=h @character.animal_ken %></td>
+			</tr>
+			<tr>
+				<td class="label">Computer:</td>
+				<td class="data"><%=h @character.computer %></td>
+				<td class="label">Brawl:</td>
+				<td class="data"><%=h @character.brawl %></td>
+				<td class="label">Empathy:</td>
+				<td class="data"><%=h @character.empathy %></td>
+			</tr>
+			<tr>
+				<td class="label">Crafts:</td>
+				<td class="data"><%=h @character.crafts %></td>
+				<td class="label">Drive:</td>
+				<td class="data"><%=h @character.drive %></td>
+				<td class="label">Expression:</td>
+				<td class="data"><%=h @character.expression %></td>
+			</tr>
+			<tr>
+				<td class="label">Investigation:</td>
+				<td class="data"><%=h @character.investigation %></td>
+				<td class="label">Firearms:</td>
+				<td class="data"><%=h @character.firearms %></td>
+				<td class="label">Intimidation:</td>
+				<td class="data"><%=h @character.intimidation %></td>
+			</tr>
+			<tr>
+				<td class="label">Medicine:</td>
+				<td class="data"><%=h @character.medicine %></td>
+				<td class="label">Larceny:</td>
+				<td class="data"><%=h @character.larceny %></td>
+				<td class="label">Persuasion:</td>
+				<td class="data"><%=h @character.persuasion %></td>
+			</tr>
+			<tr>
+				<td class="label">Occult:</td>
+				<td class="data"><%=h @character.occult %></td>
+				<td class="label">Stealth:</td>
+				<td class="data"><%=h @character.stealth %></td>
+				<td class="label">Socialize:</td>
+				<td class="data"><%=h @character.socialize %></td>
+			</tr>
+			<tr>
+				<td class="label">Politics:</td>
+				<td class="data"><%=h @character.politics %></td>
+				<td class="label">Survival:</td>
+				<td class="data"><%=h @character.survival %></td>
+				<td class="label">Streetwise:</td>
+				<td class="data"><%=h @character.streetwise %></td>
+			</tr>
+			<tr>
+				<td class="label">Science:</td>
+				<td class="data"><%=h @character.science %></td>
+				<td class="label">Weaponry:</td>
+				<td class="data"><%=h @character.weaponry %></td>
+				<td class="label">Subterfuge:</td>
+				<td class="data"><%=h @character.subterfuge %></td>
+			</tr>
+			<tr>
+				<td class="label">Skill Specialties:</td>
+				<td colspan=5><%= simple_format(@character.skill_specialties) %></td>
+			</tr>
+			<tr>
+				<td class="label">Speed:</td>
+				<td class="data"><%=h @character.speed %></td>
+			</tr>
+			<tr>
+				<td class="label">Initiative:</td>
+				<td class="data"><%=h @character.initiative %></td>
+			</tr>
+			<tr>
+				<td class="label">Defense:</td>
+				<td class="data"><%=h @character.defense %></td>
+			</tr>
+		</table>
 	<% end %>
 
 	<% if show_advantages?(@character) %>
-		<fieldset>
-			<legend>Advantages</legend>
-			<table>
-				<tr>
-					<td class="label">Health:</td>
-					<td id="health"><%=h @character.health %></td>
-					<td class="label">Derangements:</td>
-				</tr>
-				<tr>
-					<td class="label">Willpower:</td>
-					<td id="willpower"><%=h @character.willpower %></td>
-					<td rowspan=4><%= simple_format(@character.derangements) %></td>
-				</tr>
-				<tr>
-					<td class="label">Armor:</td>
-					<td class="data"><%=h @character.armor %></td>
-				</tr>
-				<tr>
-					<td class="label"><%=h @character.splat.morality_name %>:</td>
-					<td class="data"><%=h @character.morality %></td>
-				</tr>
-			    <% unless is_mortal?(@character) %>
-				<tr>
-					<td class="label"><%=h @character.splat.power_stat_name %>:</td>
-					<td class="data"><%=h @character.power_stat %></td>
-				</tr>
-				<tr>
-					<td class="label"><%=h @character.splat.fuel_name %>:</td>
-					<td class="data"><%=h @character.fuel %></td>
-				</tr>
-			    <% end %>
-			</table>
-		</fieldset>
+		<h3>Advantages</h3>
+		<table>
+			<tr>
+				<td class="label">Health:</td>
+				<td id="health"><%=h @character.health %></td>
+				<td class="label">Derangements:</td>
+			</tr>
+			<tr>
+				<td class="label">Willpower:</td>
+				<td id="willpower"><%=h @character.willpower %></td>
+				<td rowspan=4><%= simple_format(@character.derangements) %></td>
+			</tr>
+			<tr>
+				<td class="label">Armor:</td>
+				<td class="data"><%=h @character.armor %></td>
+			</tr>
+			<tr>
+				<td class="label"><%=h @character.splat.morality_name %>:</td>
+				<td class="data"><%=h @character.morality %></td>
+			</tr>
+		    <% unless is_mortal?(@character) %>
+			<tr>
+				<td class="label"><%=h @character.splat.power_stat_name %>:</td>
+				<td class="data"><%=h @character.power_stat %></td>
+			</tr>
+			<tr>
+				<td class="label"><%=h @character.splat.fuel_name %>:</td>
+				<td class="data"><%=h @character.fuel %></td>
+			</tr>
+		    <% end %>
+		</table>
 	<% end %>
 
 	<% if show_merits?(@character) %>
-		<fieldset>
-		  <legend>Merits</legend>
+		  <h3>Merits</h3>
 		  <%= simple_format(@character.merits) %>
-		</fieldset>
 	<% end %>
 
 	<% if show_equipment?(@character) %>
-		<fieldset>
-		  <legend>Equipment</legend>
+		  <h3>Equipment</h3>
 		  <%= simple_format(@character.equipment) %>
-		</fieldset>
 	<% end %>
 
 	<% if show_powers?(@character) %>
 		<% if is_mage?(@character) %>
-			<fieldset>
-				<legend>Arcana</legend>
-				<table>
-					<tr>
-						<td class="label">Death:</td>
-						<td class="data"><%=h @character.death %></td>
-						<td class="label">Common Spells</td>
-					</tr>
-					<tr>
-						<td class="label">Fate:</td>
-						<td class="data"><%=h @character.fate %></td>
-						<td rowspan=9><%= simple_format(@character.common_spells) %></td>
-					</tr>
-					<tr>
-						<td class="label">Forces:</td>
-						<td class="data"><%=h @character.forces %></td>
-					</tr>
-					<tr>
-						<td class="label">Life:</td>
-						<td class="data"><%=h @character.life %></td>
-					</tr>
-					<tr>
-						<td class="label">Matter:</td>
-						<td class="data"><%=h @character.matter %></td>
-					</tr>
-					<tr>
-						<td class="label">Mind:</td>
-						<td class="data"><%=h @character.mind %></td>
-					</tr>
-					<tr>
-						<td class="label">Prime:</td>
-						<td class="data"><%=h @character.prime %></td>
-					</tr>
-					<tr>
-						<td class="label">Space:</td>
-						<td class="data"><%=h @character.space %></td>
-					</tr>
-					<tr>
-						<td class="label">Spirit:</td>
-						<td class="data"><%=h @character.spirit %></td>
-					</tr>
-					<tr>
-						<td class="label">Time:</td>
-						<td class="data"><%=h @character.time %></td>
-					</tr>
-				</table>
-			</fieldset>
+			<h3>Arcana</h3>
+			<table>
+				<tr>
+					<td class="label">Death:</td>
+					<td class="data"><%=h @character.death %></td>
+					<td class="label">Common Spells</td>
+				</tr>
+				<tr>
+					<td class="label">Fate:</td>
+					<td class="data"><%=h @character.fate %></td>
+					<td rowspan=9><%= simple_format(@character.common_spells) %></td>
+				</tr>
+				<tr>
+					<td class="label">Forces:</td>
+					<td class="data"><%=h @character.forces %></td>
+				</tr>
+				<tr>
+					<td class="label">Life:</td>
+					<td class="data"><%=h @character.life %></td>
+				</tr>
+				<tr>
+					<td class="label">Matter:</td>
+					<td class="data"><%=h @character.matter %></td>
+				</tr>
+				<tr>
+					<td class="label">Mind:</td>
+					<td class="data"><%=h @character.mind %></td>
+				</tr>
+				<tr>
+					<td class="label">Prime:</td>
+					<td class="data"><%=h @character.prime %></td>
+				</tr>
+				<tr>
+					<td class="label">Space:</td>
+					<td class="data"><%=h @character.space %></td>
+				</tr>
+				<tr>
+					<td class="label">Spirit:</td>
+					<td class="data"><%=h @character.spirit %></td>
+				</tr>
+				<tr>
+					<td class="label">Time:</td>
+					<td class="data"><%=h @character.time %></td>
+				</tr>
+			</table>
 		<% end %>
 		
 		<% if is_werewolf?(@character) %>
-			<fieldset>
-				<legend>Renown</legend>
-				<table>
-					<tr>
-						<td class="label">Purity:</td>
-						<td class="data"><%=h @character.purity %></td>
-						<td class="label">Gifts</td>
-					</tr>
-					<tr>
-						<td class="label">Glory:</td>
-						<td class="data"><%=h @character.glory %></td>
-						<td id="gifts" rowspan=4><%= simple_format(@character.gifts) %></td>
-					</tr>
-					<tr>
-						<td class="label">Honor:</td>
-						<td class="data"><%=h @character.honor %></td>
-					</tr>
-					<tr>
-						<td class="label">Wisdom:</td>
-						<td class="data"><%=h @character.wisdom %></td>
-					</tr>
-					<tr>
-						<td class="label">Cunning:</td>
-						<td class="data"><%=h @character.cunning %></td>
-					</tr>
-				</table>
-			</fieldset>
-			<fieldset>
-				<legend>Totem</legend>
-				<%= simple_format(@character.totem)%>
-			</fieldset>
+			<h3>Renown</h3>
+			<table>
+				<tr>
+					<td class="label">Purity:</td>
+					<td class="data"><%=h @character.purity %></td>
+					<td class="label">Gifts</td>
+				</tr>
+				<tr>
+					<td class="label">Glory:</td>
+					<td class="data"><%=h @character.glory %></td>
+					<td id="gifts" rowspan=4><%= simple_format(@character.gifts) %></td>
+				</tr>
+				<tr>
+					<td class="label">Honor:</td>
+					<td class="data"><%=h @character.honor %></td>
+				</tr>
+				<tr>
+					<td class="label">Wisdom:</td>
+					<td class="data"><%=h @character.wisdom %></td>
+				</tr>
+				<tr>
+					<td class="label">Cunning:</td>
+					<td class="data"><%=h @character.cunning %></td>
+				</tr>
+			</table>
+			<h3>Totem</h3>
+			<%= simple_format(@character.totem)%>
 		<% end %>
 
 		<% if is_vampire?(@character) %>
-			<fieldset>
-				<legend>Disciplines</legend>
-				<table>
-					<tr>
-						<td class="label">Animalism</td>
-						<td class="data"><%=h @character.animalism %></td>
-						<td class="label">Covenant Disciplines</td>
-					</tr>
-					<tr>
-						<td class="label">Auspex</td>
-						<td class="data"><%=h @character.auspex %></td>
-						<td rowspan=8><%= simple_format(@character.covenant_disciplines) %></td>
-					</tr>
-					<tr>
-						<td class="label">Dominate</td>
-						<td class="data"><%=h @character.dominate %></td>
-					</tr>
-					<tr>
-						<td class="label">Majesty</td>
-						<td class="data"><%=h @character.majesty %></td>
-					</tr>
-					<tr>
-						<td class="label">Nightmare</td>
-						<td class="data"><%=h @character.nightmare %></td>
-					</tr>
-					<tr>
-						<td class="label">Protean</td>
-						<td class="data"><%=h @character.protean %></td>
-					</tr>
-					<tr>
-						<td class="label">Obfuscate</td>
-						<td class="data"><%=h @character.obfuscate %></td>
-					</tr>
-					<tr>
-						<td class="label">Vigor</td>
-						<td class="data"><%=h @character.vigor %></td>
-					</tr>
-				</table>
-			</fieldset>
+			<h3>Disciplines</h3>
+			<table>
+				<tr>
+					<td class="label">Animalism</td>
+					<td class="data"><%=h @character.animalism %></td>
+					<td class="label">Covenant Disciplines</td>
+				</tr>
+				<tr>
+					<td class="label">Auspex</td>
+					<td class="data"><%=h @character.auspex %></td>
+					<td rowspan=8><%= simple_format(@character.covenant_disciplines) %></td>
+				</tr>
+				<tr>
+					<td class="label">Dominate</td>
+					<td class="data"><%=h @character.dominate %></td>
+				</tr>
+				<tr>
+					<td class="label">Majesty</td>
+					<td class="data"><%=h @character.majesty %></td>
+				</tr>
+				<tr>
+					<td class="label">Nightmare</td>
+					<td class="data"><%=h @character.nightmare %></td>
+				</tr>
+				<tr>
+					<td class="label">Protean</td>
+					<td class="data"><%=h @character.protean %></td>
+				</tr>
+				<tr>
+					<td class="label">Obfuscate</td>
+					<td class="data"><%=h @character.obfuscate %></td>
+				</tr>
+				<tr>
+					<td class="label">Vigor</td>
+					<td class="data"><%=h @character.vigor %></td>
+				</tr>
+			</table>
 		<% end %>
 	<% end %>
 	
 	<% if show_experience?(@character) %>
-		<fieldset>
-			<legend>Experience</legend>
-			<%= simple_format(@character.experience) %>
-		</fieldset>
+		<h3>Experience</h3>
+		<%= simple_format(@character.experience) %>
 	<% end %>
 	
 	<%= render :partial => 'comments' %>

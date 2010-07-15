@@ -9,7 +9,7 @@ body {
 a { color: #061B61; }
 
 #column {
-	width: 70%;
+	width: 80%;
 	max-width: 60em;
 	margin: 0 auto;
 	padding: 0em 1em;
@@ -40,16 +40,23 @@ a { color: #061B61; }
 .content a:visited { color: #2743A0; }
 .content a:hover { background: #CC0000; }
 
+.content p {
+	margin: 0em 5em;
+	text-align: justify;
+}
+
 .content fieldset {
 	margin-top: 1em;
 	color: #333;
 }
 
-.content legend {
+.content h3 {
 	color: black;
 	background: #CC0000;
-	font-family: serif;
 	padding: 0.2em 1em;
+	border: 1px solid black;
+	font-family: serif;
+	width: 10em;
 }
 
 .content td.label {
@@ -64,7 +71,8 @@ a { color: #061B61; }
 
 .content textarea {
 	margin-left: 3em;
-	width: 50em;
+	width: 75%;
+	max-width: 57em;
 	height: 9em;
 }
 
