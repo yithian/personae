@@ -1,28 +1,6 @@
 class UsersController < ApplicationController
   skip_filter :authorize, :except => [:index, :show, :edit]
   layout "cliques"
-  
-  # GET /users
-  # GET /users.xml
-  def index
-    @users = User.find(:all, :order => :name)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
-    end
-  end
-
-  # GET /users/1
-  # GET /users/1.xml
-  def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
-    end
-  end
 
   # GET /users/new
   # GET /users/new.xml
@@ -78,7 +56,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    @user.destroy if @user.id == session[:user_id] or session[:user_id] == User.find_by_name('Storyteller').id
 
     respond_to do |format|
       format.html { redirect_to(users_url) }
