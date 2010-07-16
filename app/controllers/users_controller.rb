@@ -1,6 +1,17 @@
 class UsersController < ApplicationController
-  skip_filter :authorize, :except => [:index, :show, :edit]
+  skip_filter :authorize, :except => [:show, :edit]
+  before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :permission, :only => [:show, :edit, :update, :destroy]
   layout "cliques"
+
+  # GET /users/1
+  # GET /users/1.xml
+  def show
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @user }
+    end
+  end
 
   # GET /users/new
   # GET /users/new.xml
@@ -15,7 +26,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -38,8 +48,6 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id]) if session[:user_id] == User.find_by_name('Storyteller').id or session[:user_id] == @user.id
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = "User #{@user.name} was successfully updated."
@@ -55,12 +63,23 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy if @user.id == session[:user_id] or session[:user_id] == User.find_by_name('Storyteller').id
+    @user.destroy
 
     respond_to do |format|
       format.html { redirect_to(:controller => "characters") }
       format.xml  { head :ok }
+    end
+  end
+  
+  private
+  def find_user
+    @user = User.find(params[:id])
+  end
+  
+  def permission
+    unless @user.id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
+      flash[:notice] = "You don't have permission to do that"
+      redirect_to :action => :show, :id => session[:user_id]
     end
   end
 end

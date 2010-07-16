@@ -84,4 +84,11 @@ class IdeologiesController < ApplicationController
   def find_ideology
     @ideology = Ideology.find(params[:id])
   end
+  
+  def permission
+    unless session[:user_id] == User.find_by_name("Storyteller").id
+      flash[:notice] = "You don't have permission to do that"
+      redirect_to :action => :index
+    end
+  end
 end

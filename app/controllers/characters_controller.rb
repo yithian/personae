@@ -1,5 +1,6 @@
 class CharactersController < ApplicationController
   before_filter :find_character, :only => [:show, :show_as_other, :edit, :update, :destroy]
+  before_filter :permission, :only => [:edit, :update, :delete]
   layout "cliques"
   
   # GET /characters
@@ -99,5 +100,12 @@ class CharactersController < ApplicationController
   private
   def find_character
     @character = Character.find(params[:id])
+  end
+  
+  def permission
+    unless @character.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
+      flash[:notice] = "You don't have permission to do that"
+      redirect_to :action => :index
+    end
   end
 end
