@@ -6,13 +6,13 @@
 	<input name="clique[user_id]" type="hidden" value=<%= session[:user_id] %> >
   <% end %>
 
-    <h3><%= f.label :name %></h3>
+    <h3>Name</h3>
     <p><%= f.text_field :name %></p>
 
-    <h3><%= f.label :territory %></h3>
+    <h3>Territory</h3>
     <p><%= f.text_field :territory %></p>
 
-    <h3><%= f.label :description %></h3>
+    <h3>Description</h3>
     <p><%= f.text_area :description %></p>
     <%= f.check_box :write %> <%= f.label :write %>
 
