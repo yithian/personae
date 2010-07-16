@@ -1,36 +1,27 @@
 <% if known_clique?(@clique) %>
 	<p>
-	  <fieldset>
-	  <legend>Name:</legend>
+	  <h3>Name:</h3>
 	  <p><%=h @clique.name %></p>
-	  </fieldset>
 	</p>
 
 	<p>
-		<fieldset>
-		<legend>Territory:</legend>
+		<h3>Territory:</h3>
 		<p><%=h @clique.territory %></p>
-		</fieldset>
 	</p>
 
 	<p>
-	  <fieldset>
-	  <legend>Description:</legend>
+	  <h3>Description:</h3>
 	  <p><%=h @clique.description %></p>
-	  </fieldset>
 	</p>
 
 	<p>
-	<fieldset>
 	<table>
 		<tr>
 			<th>Member:</th>
 			<th>Ideology:</th>
 		</tr>
-
 		<%= render(:partial => "member", :collection => @clique.characters) %>
 	</table>
-	</fieldset>
 	</p>
 
 
