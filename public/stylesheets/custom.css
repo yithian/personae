@@ -49,8 +49,10 @@ a { color: #97A2DE; }
 	left: -3.5em;
 }
 
-#content label {
+#content label.sized {
 	width: 7em;
+	text-align: right;
+	margin-right: .5em;
 	float: left;
 }
 
@@ -68,6 +70,18 @@ a { color: #97A2DE; }
 	text-align: left;
 }
 
+#content input[type="text"], input[type="password"] {
+	width: 9em;
+}
+
+#content input[type="button"] {
+	width: 5em;
+}
+
+#content input.number {
+	width: 2em;
+}
+
 #content textarea {
 	width: 100%;
 	height: 9em;
@@ -83,18 +97,6 @@ a { color: #97A2DE; }
 
 #content #character_gifts {
 	height: 8em;
-}
-
-#content input[type="text"], input[type="password"] {
-	width: 9em;
-}
-
-#content input[type="button"] {
-	width: 5em;
-}
-
-#content input.number {
-	width: 2em;
 }
 
 .fieldWithErrors {

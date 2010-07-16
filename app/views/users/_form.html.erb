@@ -1,18 +1,17 @@
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
-
 	<div>
-		<%= f.label :name, 'Name' %>
+		<%= f.label :name, 'Name', :class => "sized" %>
 		<%= f.text_field :name %>
 	</div>
 	
 	<div>
-		<%= f.label :password, 'Password' %>
+		<%= f.label :password, 'Password', :class => "sized" %>
 		<%= f.password_field :password %>
 	</div>
 	
 	<div>
-		<%= f.label :password_confirmation, 'Confirm' %>
+		<%= f.label :password_confirmation, 'Confirm', :class => "sized" %>
 		<%= f.password_field :password_confirmation %>
 	</div>
 	
