@@ -1,12 +1,12 @@
 body {
-	background-color: #021246;
+	background: #050B39;
 	text-align: center;
 	font-family: verdana, arial, helvetica, sans-serif;
 	font-size:   13px;
 	line-height: 18px;
 }
 
-a { color: #061B61; }
+a { color: #97A2DE; }
 
 #column {
 	width: 80%;
@@ -16,14 +16,11 @@ a { color: #061B61; }
 }
 
 #header {
-	background: #006C18;
+	background: #414CA1;
 	color: #eeeeec;
 	text-align: center;
 	border: 1px solid black;
 }
-
-#header a { color: #eeeeec; }
-#header a:visited { color: #babdd6 }
 
 #notice {
 	text-align: center;
@@ -45,7 +42,7 @@ a { color: #061B61; }
 	color: black;
 	background: #CC0000;
 	padding: 0.2em 1em;
-	border: 1px solid black;
+	border-left: 1px solid black;
 	font-family: serif;
 	width: 10em;
 	position: relative;
@@ -57,7 +54,7 @@ a { color: #061B61; }
 }
 
 #content td.label {
-	width: 9em;
+	width: 7em;
 	text-align: right;
 }
 

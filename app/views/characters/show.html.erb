@@ -162,7 +162,7 @@
 			<tr>
 				<td class="label">Willpower:</td>
 				<td id="willpower"><%=h @character.willpower %></td>
-				<td rowspan="5"><%= simple_format(@character.derangements) %></td>
+				<td rowspan="6"><%= simple_format(@character.derangements) %></td>
 			</tr>
 			<tr>
 				<td class="label">Armor:</td>
@@ -291,7 +291,7 @@
 				<tr>
 					<td class="label">Auspex</td>
 					<td class="data"><%=h @character.auspex %></td>
-					<td rowspan="9"><%= simple_format(@character.covenant_disciplines) %></td>
+					<td rowspan="8"><%= simple_format(@character.covenant_disciplines) %></td>
 				</tr>
 				<tr>
 					<td class="label">Dominate</td>
@@ -331,7 +331,6 @@
 	<%= render :partial => 'comments' %><br />
 
 	<%= link_to 'Show as other user', :action => 'show_as_other', :id => @character if edit_character?(@character) %><br />
-	
 	<%= link_to 'Back', character_path(@character) %>
 	<%= link_to 'Edit', edit_character_path(@character) if edit_character?(@character)%>
 	<%= link_to 'Destroy', @character, :confirm => 'Are you sure you want to delete this character?', :method => :delete if edit_character?(@character) %>
