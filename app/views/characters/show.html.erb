@@ -162,7 +162,7 @@
 			<tr>
 				<td class="label">Willpower:</td>
 				<td id="willpower"><%=h @character.willpower %></td>
-				<td rowspan=4><%= simple_format(@character.derangements) %></td>
+				<td rowspan="5"><%= simple_format(@character.derangements) %></td>
 			</tr>
 			<tr>
 				<td class="label">Armor:</td>
@@ -180,6 +180,8 @@
 			<tr>
 				<td class="label"><%=h @character.splat.fuel_name %>:</td>
 				<td class="data"><%=h @character.fuel %></td>
+			</tr>
+			<tr>
 			</tr>
 		    <% end %>
 		</table>
@@ -207,7 +209,7 @@
 				<tr>
 					<td class="label">Fate:</td>
 					<td class="data"><%=h @character.fate %></td>
-					<td rowspan=9><%= simple_format(@character.common_spells) %></td>
+					<td rowspan="10"><%= simple_format(@character.common_spells) %></td>
 				</tr>
 				<tr>
 					<td class="label">Forces:</td>
@@ -241,6 +243,8 @@
 					<td class="label">Time:</td>
 					<td class="data"><%=h @character.time %></td>
 				</tr>
+				<tr>
+				</tr>
 			</table>
 		<% end %>
 		
@@ -255,7 +259,7 @@
 				<tr>
 					<td class="label">Glory:</td>
 					<td class="data"><%=h @character.glory %></td>
-					<td id="gifts" rowspan=4><%= simple_format(@character.gifts) %></td>
+					<td id="gifts" rowspan="5"><%= simple_format(@character.gifts) %></td>
 				</tr>
 				<tr>
 					<td class="label">Honor:</td>
@@ -268,6 +272,8 @@
 				<tr>
 					<td class="label">Cunning:</td>
 					<td class="data"><%=h @character.cunning %></td>
+				</tr>
+				<tr>
 				</tr>
 			</table>
 			<h3>Totem</h3>
@@ -285,7 +291,7 @@
 				<tr>
 					<td class="label">Auspex</td>
 					<td class="data"><%=h @character.auspex %></td>
-					<td rowspan=8><%= simple_format(@character.covenant_disciplines) %></td>
+					<td rowspan="9"><%= simple_format(@character.covenant_disciplines) %></td>
 				</tr>
 				<tr>
 					<td class="label">Dominate</td>
@@ -311,6 +317,8 @@
 					<td class="label">Vigor</td>
 					<td class="data"><%=h @character.vigor %></td>
 				</tr>
+				<tr>
+				</tr>
 			</table>
 		<% end %>
 	<% end %>
@@ -320,7 +328,7 @@
 		<%= simple_format(@character.experience) %>
 	<% end %>
 	
-	<%= render :partial => 'comments' %>
+	<%= render :partial => 'comments' %><br />
 
 	<%= link_to 'Show as other user', :action => 'show_as_other', :id => @character if edit_character?(@character) %><br />
 	
