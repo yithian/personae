@@ -16,7 +16,7 @@ a { color: #97A2DE; }
 }
 
 #header {
-	background: #414CA1;
+	background: #2937A1;
 	color: #eeeeec;
 	text-align: center;
 	border: 1px solid black;
@@ -47,6 +47,11 @@ a { color: #97A2DE; }
 	width: 10em;
 	position: relative;
 	left: -3.5em;
+}
+
+#content label {
+	width: 7em;
+	float: left;
 }
 
 #content table {
@@ -80,7 +85,7 @@ a { color: #97A2DE; }
 	height: 8em;
 }
 
-#content input[type="text"] {
+#content input[type="text"], input[type="password"] {
 	width: 9em;
 }
 
@@ -127,11 +132,4 @@ a { color: #97A2DE; }
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square;
-}
-
-.login label {
-	text-align: right;
-	float: left;
-	width: 5em;
-	margin-right: .5em;
 }
