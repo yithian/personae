@@ -42,9 +42,7 @@ if controller.action_name == 'new' %>
 			<td class="data"><%= f.select :virtue, Character::VIRTUES %></td>
 			<td class="label"><b><%= f.label :splat_id, "Template" %></b></td>
 			<td class="data">
-				<% form_remote_tag do %>
-					<%= select_tag :splat_id, splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat"}) } %>
-				<% end %>
+				<%= select_tag :splat_id, splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat"}) } %>
 				<input name="character[splat_id]" type="hidden" value="<%= @character.splat_id %>" id="character_splat_id" />
 			</td>
 		</tr>
