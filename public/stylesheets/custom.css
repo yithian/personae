@@ -33,22 +33,13 @@ a { color: #061B61; }
 #content {
 	color: #333;
 	background: #eeeeec;
-	text-align: left;
+	text-align: justify;
 	border: 1px solid black;
+	padding: 0em 4em;
 }
 
 #content a:visited { color: #2743A0; }
 #content a:hover { background: #CC0000; }
-
-#content p {
-	margin: 0em 5em;
-	text-align: justify;
-}
-
-#content fieldset {
-	margin-top: 1em;
-	color: #333;
-}
 
 #content h3 {
 	color: black;
@@ -57,6 +48,12 @@ a { color: #061B61; }
 	border: 1px solid black;
 	font-family: serif;
 	width: 10em;
+	position: relative;
+	left: -3.5em;
+}
+
+#content table {
+	width: 100%;
 }
 
 #content td.label {
@@ -70,53 +67,32 @@ a { color: #061B61; }
 }
 
 #content textarea {
-	margin-left: 3em;
-	width: 75%;
-	max-width: 57em;
+	width: 100%;
 	height: 9em;
 }
 
-#content #character_skill_specialties {
-	width: 27em;
-}
-
-#content #character_derangements {
-	width: 20em;
-}
-
 #content #character_common_spells {
-	width: 23em;
 	height: 19em;
 }
 
 #content #character_covenant_disciplines {
-	width: 23em;
 	height: 17em;
 }
 
 #content #character_gifts {
-	width: 23em;
 	height: 8em;
+}
+
+#content input[type="text"] {
+	width: 9em;
+}
+
+#content input[type="button"] {
+	width: 5em;
 }
 
 #content input.number {
 	width: 2em;
-}
-
-#content input {
-	width: 9em;
-}
-
-#content input.button {
-	width: 5em;
-}
-
-#content #health {
-	width: 5em;
-}
-
-#content #willpower {
-	width: 5em;
 }
 
 .fieldWithErrors {
