@@ -30,27 +30,27 @@ a { color: #061B61; }
 	color: green;
 }
 
-.content {
+#content {
 	color: #333;
 	background: #eeeeec;
 	text-align: left;
 	border: 1px solid black;
 }
 
-.content a:visited { color: #2743A0; }
-.content a:hover { background: #CC0000; }
+#content a:visited { color: #2743A0; }
+#content a:hover { background: #CC0000; }
 
-.content p {
+#content p {
 	margin: 0em 5em;
 	text-align: justify;
 }
 
-.content fieldset {
+#content fieldset {
 	margin-top: 1em;
 	color: #333;
 }
 
-.content h3 {
+#content h3 {
 	color: black;
 	background: #CC0000;
 	padding: 0.2em 1em;
@@ -59,63 +59,63 @@ a { color: #061B61; }
 	width: 10em;
 }
 
-.content td.label {
+#content td.label {
 	width: 9em;
 	text-align: right;
 }
 
-.content td.data {
+#content td.data {
 	width: 2em;
 	text-align: left;
 }
 
-.content textarea {
+#content textarea {
 	margin-left: 3em;
 	width: 75%;
 	max-width: 57em;
 	height: 9em;
 }
 
-.content #character_skill_specialties {
+#content #character_skill_specialties {
 	width: 27em;
 }
 
-.content #character_derangements {
+#content #character_derangements {
 	width: 20em;
 }
 
-.content #character_common_spells {
+#content #character_common_spells {
 	width: 23em;
 	height: 19em;
 }
 
-.content #character_covenant_disciplines {
+#content #character_covenant_disciplines {
 	width: 23em;
 	height: 17em;
 }
 
-.content #character_gifts {
+#content #character_gifts {
 	width: 23em;
 	height: 8em;
 }
 
-.content input {
+#content input.number {
 	width: 2em;
 }
 
-.content input.name {
+#content input {
 	width: 9em;
 }
 
-.content input.button {
+#content input.button {
 	width: 5em;
 }
 
-.content #health {
+#content #health {
 	width: 5em;
 }
 
-.content #willpower {
+#content #willpower {
 	width: 5em;
 }
 
