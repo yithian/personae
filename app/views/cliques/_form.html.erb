@@ -1,25 +1,28 @@
 <% form_for(@clique) do |f| %>
   <%= f.error_messages %>
   
-	<% if controller.action_name == 'new' %>
-		<% @clique.user_id = session[:user_id] %>
-		<input name="clique[user_id]" type="hidden" value=<%= session[:user_id] %> >
-	<% end %>
+  <% if controller.action_name == 'new' %>
+	<% @clique.user_id = session[:user_id] %>
+	<input name="clique[user_id]" type="hidden" value=<%= session[:user_id] %> >
+  <% end %>
 
+    <fieldset>
+    <legend><%= f.label :name %></legend>
+    <p><%= f.text_field :name %></p>
+    </fieldset>
 
-	<h3><%= f.label :name %></h3>
-	<p><%= f.text_field :name %></p>
+    <fieldset>
+    <legend><%= f.label :territory %></legend>
+    <p><%= f.text_field :territory %></p>
+    </fieldset>
 
-	<h3><%= f.label :territory %></h3>
-	<p><%= f.text_field :territory %></p>
-
-
-
-    <h3><%= f.label :description %></h3>
+    <fieldset>
+    <legend><%= f.label :description %></legend>
     <p><%= f.text_area :description %></p>
     <%= f.check_box :write %> <%= f.label :write %>
+    </fieldset>
 
-	<p>
-		<%= f.submit 'Save' %>
-	</p>
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
 <% end %>

@@ -56,7 +56,7 @@ class CliquesController < ApplicationController
   # PUT /cliques/1.xml
   def update
     respond_to do |format|
-      if @clique.update_attributes(params[:clique])
+      if @clique.update_attributes(params[:clique]) and (@clique.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id)
         flash[:notice] = 'Clique was successfully updated.'
         format.html { redirect_to(@clique) }
         format.xml  { head :ok }
@@ -70,7 +70,7 @@ class CliquesController < ApplicationController
   # DELETE /cliques/1
   # DELETE /cliques/1.xml
   def destroy
-    if @clique != Clique.find_by_name('Solitary')
+    if @clique != Clique.find_by_name('Solitary') and (@clique.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id)
       @clique.characters.each do |m|
         m.clique_id = Clique.find_by_name('Solitary').id
         m.save
@@ -78,7 +78,7 @@ class CliquesController < ApplicationController
       
       @clique.destroy
     else
-      flash[:notice] = 'Solitaries are not a clique, dummy.'
+      flash[:notice] = 'You cannot destroy this clique.'
     end
 
     respond_to do |format|

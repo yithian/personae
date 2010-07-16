@@ -1,10 +1,12 @@
 <% form_for(@ideology) do |f| %>
   <%= f.error_messages %>
 
-	<h3><%= f.label :name %></h3>
-	<p><%= f.text_field :name %></p>
+    <fieldset>
+    <legend><%= f.label :name %></legend>
+    <p><%= f.text_field :name %></p>
+    </fieldset>
 
-	<p>
-		<%= f.submit 'Save' %>
-	</p>
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
 <% end %>

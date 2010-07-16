@@ -58,7 +58,7 @@ class IdeologiesController < ApplicationController
   # PUT /ideologies/1.xml
   def update
     respond_to do |format|
-      if @ideology.update_attributes(params[:ideology])
+      if @ideology.update_attributes(params[:ideology]) and session[:user_id] == User.find_by_name('Storyteller').id
         flash[:notice] = 'Ideology was successfully updated.'
         format.html { redirect_to(@ideology) }
         format.xml  { head :ok }
@@ -72,7 +72,7 @@ class IdeologiesController < ApplicationController
   # DELETE /ideologies/1
   # DELETE /ideologies/1.xml
   def destroy
-    @ideology.destroy
+    @ideology.destroy if session[:user_id] == User.find_by_name('Storyteller').id
 
     respond_to do |format|
       format.html { redirect_to(ideologies_url) }

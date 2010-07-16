@@ -74,7 +74,7 @@ class CharactersController < ApplicationController
   # PUT /characters/1.xml
   def update
     respond_to do |format|
-      if @character.update_attributes(params[:character])
+      if @character.update_attributes(params[:character]) and (session[:user_id] == User.find_by_name('Storyteller').id or @character.user_id == session[:user_id])
         flash[:notice] = 'Character was successfully updated.'
         format.html { redirect_to(@character) }
         format.xml  { head :ok }
