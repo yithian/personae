@@ -25,6 +25,7 @@
 		<b><%= link_to "Characters", :controller => :characters %></b>
 		<b><%= link_to "Cliques", :controller => :cliques %></b>
 		<b><%= link_to "Ideologies", :controller => :ideologies %></b>
+		<b><%= link_to "Account", :controller => :users, :action => :show, :id => session[:user_id] %></b>
 		<% if session[:user_id] == :logged_out %>
 			<b><%= link_to "Log in", :controller =>  :admin, :action => :login %></b>
 		<% else %>
