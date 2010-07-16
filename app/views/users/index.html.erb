@@ -1,6 +1,5 @@
 <p>
-<fieldset>
-<legend>Users</legend>
+<h3>Users</h3>
 	<table>
 	<% @users.each do |user| %>
 	  <tr>
@@ -13,7 +12,6 @@
 	  </tr>
 	<% end %>
 	</table>
-</fieldset>
 </p>
 
 <%= link_to 'New user', new_user_path %>

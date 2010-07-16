@@ -1,6 +1,5 @@
 <p>
-  <fieldset>
-  <legend><%=h @user.name %></legend>
+  <h3><%=h @user.name %></h3>
 
 <table>
 	<%= render(:partial => "character", :collection => @user.characters) %>

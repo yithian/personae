@@ -1,13 +1,6 @@
 <% if known_ideology?(@ideology) %>
-<p>
-  <fieldset>
-  <legend>Name:</legend>
-  <%=h @ideology.name %>
-  </fieldset>
-</p>
+	<h3><%=h @ideology.name %></h3>
 
-<p>
-<fieldset>
 	<table>
 		<tr>
 			<th>Member:</th>
@@ -15,9 +8,7 @@
 		</tr>
 
 		<%= render(:partial => "member", :collection => @ideology.characters) %>
-	</table>
-</fieldset>
-</p>
+	</table><br />
 
 	<%= link_to 'New member', { :controller => 'characters', :action => 'new', :ideology_id => @ideology } %><br />
 	<%= link_to 'Back', ideologies_path %>
