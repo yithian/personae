@@ -22,13 +22,16 @@ a { color: #97A2DE; }
 	border: 1px solid black;
 }
 
+#header a { text-decoration: none; }
+#header a:hover { border-bottom: 2px solid #97A2DE; }
+
 #notice {
 	text-align: center;
 	color: green;
 }
 
 #content {
-	color: #333;
+	color: #333333;
 	background: #eeeeec;
 	text-align: justify;
 	border: 1px solid black;
@@ -41,6 +44,7 @@ a { color: #97A2DE; }
 #content h3 {
 	color: black;
 	background: #CC0000;
+	background: -webkit-gradient(linear, left top, right top, from(#CC0000), to(#eeeeec)); background: -moz-linear-gradient(left, #CC0000, #eeeeec);
 	padding: 0.2em 1em;
 	font-family: serif;
 	width: 10em;
