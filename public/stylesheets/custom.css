@@ -42,7 +42,6 @@ a { color: #97A2DE; }
 	color: black;
 	background: #CC0000;
 	padding: 0.2em 1em;
-	border-left: 1px solid black;
 	font-family: serif;
 	width: 10em;
 	position: relative;
@@ -60,12 +59,12 @@ a { color: #97A2DE; }
 	width: 100%;
 }
 
-#content td.label {
+#content table.scaled td:nth-child(odd) {
 	width: 7em;
 	text-align: right;
 }
 
-#content td.data {
+#content table.scaled td:nth-child(even) {
 	width: 2em;
 	text-align: left;
 }
