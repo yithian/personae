@@ -39,13 +39,15 @@ a { color: #97A2DE; }
 }
 
 #content a:visited { color: #2743A0; }
-#content a:hover { background: #CC0000; }
+#content a:hover { background: #990033; }
 
 #content h3 {
 	color: black;
-	background: #CC0000;
-	background: -webkit-gradient(linear, left top, right top, from(#CC0000), to(#eeeeec)); background: -moz-linear-gradient(left, #CC0000, #eeeeec);
-	padding: 0.2em 1em;
+	background: #990033;
+	background: -webkit-gradient(linear, left top, right top, from(#990033), to(#eeeecc)); background: -moz-linear-gradient(left, #990033, #eeeeec);
+	-webkit-border-top-right-radius: 15px; -moz-border-radius-topright: 15px;
+	-webkit-border-bottom-right-radius:15px; -moz-border-radius-bottomright: 15px;
+	padding: 0.2em 1.5em;
 	font-family: serif;
 	width: 10em;
 	position: relative;
