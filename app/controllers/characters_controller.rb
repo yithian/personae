@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
   before_filter :find_character, :only => [:show, :show_as_other, :edit, :update, :destroy]
-  before_filter :permission, :only => [:edit, :update, :delete]
+  before_filter :permission, :only => [:edit, :update, :destroy]
   layout "cliques"
   
   # GET /characters
@@ -75,7 +75,7 @@ class CharactersController < ApplicationController
   # PUT /characters/1.xml
   def update
     respond_to do |format|
-      if @character.update_attributes(params[:character]) and (session[:user_id] == User.find_by_name('Storyteller').id or @character.user_id == session[:user_id])
+      if @character.update_attributes(params[:character])
         flash[:notice] = 'Character was successfully updated.'
         format.html { redirect_to(@character) }
         format.xml  { head :ok }
@@ -89,7 +89,7 @@ class CharactersController < ApplicationController
   # DELETE /characters/1
   # DELETE /characters/1.xml
   def destroy
-    @character.destroy if @character.user_id == session[:user_id] or session[:user_id] == User.find_by_name('Storyteller').id
+    @character.destroy
 
     respond_to do |format|
       format.html { redirect_to(characters_url) }
@@ -105,7 +105,7 @@ class CharactersController < ApplicationController
   def permission
     unless @character.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => :index
+      redirect_to :back
     end
   end
 end

@@ -1,5 +1,6 @@
 class IdeologiesController < ApplicationController
   before_filter :find_ideology, :only => [:show, :edit, :update, :destroy]
+  before_filter :permission, :only => [:create, :edit, :update, :destroy]
   layout "cliques"
   
   # GET /ideologies
@@ -58,7 +59,7 @@ class IdeologiesController < ApplicationController
   # PUT /ideologies/1.xml
   def update
     respond_to do |format|
-      if @ideology.update_attributes(params[:ideology]) and session[:user_id] == User.find_by_name('Storyteller').id
+      if @ideology.update_attributes(params[:ideology])
         flash[:notice] = 'Ideology was successfully updated.'
         format.html { redirect_to(@ideology) }
         format.xml  { head :ok }
@@ -72,7 +73,12 @@ class IdeologiesController < ApplicationController
   # DELETE /ideologies/1
   # DELETE /ideologies/1.xml
   def destroy
-    @ideology.destroy if session[:user_id] == User.find_by_name('Storyteller').id
+    @ideology.characters.each do |m|                                                                                                                           
+        m.ideology_id = Ideology.find_by_name('Mortal').id
+        m.save
+    end
+
+    @ideology.destroy
 
     respond_to do |format|
       format.html { redirect_to(ideologies_url) }
@@ -88,7 +94,7 @@ class IdeologiesController < ApplicationController
   def permission
     unless session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => :index
+      redirect_to :back
     end
   end
 end
