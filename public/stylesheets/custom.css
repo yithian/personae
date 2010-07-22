@@ -44,7 +44,7 @@ a { color: #97A2DE; }
 #content h3 {
 	color: black;
 	background: #990033;
-	background: -webkit-gradient(linear, left top, right top, from(#990033), to(#eeeecc)); background: -moz-linear-gradient(left, #990033, #eeeeec);
+	background: url(../images/h3_gradient.svg); background: -webkit-gradient(linear, left top, right top, from(#990033), to(#eeeecc)); background: -moz-linear-gradient(left, #990033, #eeeeec);
 	-webkit-border-top-right-radius: 15px; -moz-border-radius-topright: 15px;
 	-webkit-border-bottom-right-radius:15px; -moz-border-radius-bottomright: 15px;
 	padding: 0.2em 1.5em;
