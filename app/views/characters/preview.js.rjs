@@ -1,21 +1,41 @@
-page << "if ( $('read_description').innerHTML=='true' ) {"
-  page.hide "description"
+page.toggle "virtue"
+page.toggle "vice"
+page << "if ( $('read_nature').innterHTML=='false' ) {"
+	page.toggle "nature_label"
+	page.toggle "nature_name"
+page << "}
+if ( $('read_clique').innerHTML=='false' ) {"
+	page.toggle "clique_label"
+	page.toggle "clique_name"
+page << "}
+if ( $('read_ideology').innerHTML=='false' ) {"
+	page.toggle "ideology_label"
+	page.toggle "ideology_name"
+page << "}
+if ( $('read_description').innerHTML=='false' ) {"
+	page.toggle "description"
+page << "}
+if ( $('read_background').innerHTML=='false' ) {"
+	page.toggle "background"
+page << "}
+if ( $('read_attributes').innerHTML=='false' ) {"
+	page.toggle "attributes"
+page << "}
+if ( $('read_skills').innerHTML=='false' ) {"
+	page.toggle "skills"
+page << "}
+if ( $('read_advantages').innerHTML=='false' ) {"
+	page.toggle "advantages"
+page << "}
+if ( $('read_merits').innerHTML=='false' ) {"
+	page.toggle "merits"
+page << "}
+if ( $('read_equipment').innerHTML=='false' ) {"
+	page.toggle "equipment"
+page << "}
+if ( $('read_powers').innerHTML=='false' ) {"
+	page.toggle "powers"
+page << "}
+if ( $('read_experience').innerHTML=='false' ) {"
+	page.toggle "experience"
 page << "}"
-
-#page.hide "virtue"
-#page.hide "vice"
-#page.hide "nature_label"
-#page.hide "nature_name"
-#page.hide "clique_label"
-#page.hide "clique_name"
-#page.hide "ideology_label"
-#page.hide "ideology_name"
-#page.hide "description"
-#page.hide "background"
-#page.hide "attributes"
-#page.hide "skills"
-#page.hide "advantages"
-#page.hide "merits"
-#page.hide "equipment"
-#page.hide "powers"
-#page.hide "experience"

@@ -35,11 +35,19 @@ a { color: #97A2DE; }
 	background: #eeeeec;
 	text-align: justify;
 	border: 1px solid black;
-	padding: 0em 4em;
+	padding: 0.5em 4em;
 }
 
 #content a:visited { color: #2743A0; }
 #content a:hover { background: #990033; }
+
+#content a.control {
+	border: 1px solid #050B39;
+	background: #97A2DE;
+	color: #333333;
+	text-decoration: none;
+}
+#content a.control:hover { background: #97A2DE; }
 
 #content h3 {
 	color: black;
@@ -79,8 +87,11 @@ a { color: #97A2DE; }
 	width: 9em;
 }
 
-#content input[type="button"] {
-	width: 5em;
+#content input[type="submit"] {
+	border: 1px solid #050B39;
+	background: #97A2DE;
+	color: #333333;
+	padding: 0em .5em;
 }
 
 #content input.number {
