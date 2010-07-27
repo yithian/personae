@@ -5,332 +5,354 @@
 			<td colspan=3><%=h @character.name %></td>
 		<tr>
 			<td><b>Virtue:</b></td>
-			<td><%=h @character.virtue if own_character?(@character) %></td>
+			<td ><span id="virtue"><%=h @character.virtue if own_character?(@character) %></span></td>
 		</tr>
 		<tr>
 			<td><b>Vice:</b></td>
-			<td><%=h @character.vice if own_character?(@character) %></td>
-		    <% unless is_mortal?(@character) %>
-			<td><b><%=h @character.splat.nature_name if show_nature?(@character) %>:</b></td>
-			<td><%=h @character.nature.name if show_nature?(@character) %>
-		    <% end %>
+			<td><span id="vice"><%=h @character.vice if own_character?(@character) %></span></td>
+			<% unless is_mortal?(@character) %>
+				<td><span id="nature_label"><b><%=h @character.splat.nature_name if show_nature?(@character) %>:</b></span></td>
+				<td><span id="nature_name"><%=h @character.nature.name if show_nature?(@character) %></span></td>
+			<% end %>
 		</tr>
 		<tr>
-			<td><b><%=h @character.splat.clique_name if show_clique?(@character) %>:</b></td>
-			<td><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></td>
-		    <% unless is_mortal?(@character) %>
-			<td><b><%=h @character.splat.ideology_name if show_ideology?(@character) %>:</b></td>
-			<td><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></td>
-		    <% end %>
+			<td><span id="clique_label"><b><%=h @character.splat.clique_name if show_clique?(@character) %>:</b></span></td>
+			<td><span id="clique_name"><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></span></td>
+			<% unless is_mortal?(@character) %>
+				<td><span id="ideology_label"><b><%=h @character.splat.ideology_name if show_ideology?(@character) %>:</b></span></td>
+				<td><span id="ideology_name"><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></span></td>
+			<% end %>
 		</tr>
 	</table>
 
 	<% if show_description?(@character) %>
-		  <h3>Description</h3>
-		  <%= simple_format(@character.description) %>
+		<div id="description">
+			<h3>Description</h3>
+			<%= simple_format(@character.description) %>
+			<span style="display:none" id="read_description"><%=h @character.read_description %></span>
+		</div>
 	<% end %>
 
 	<% if show_background?(@character) %>
-		<h3>Background</h3>
-		<%= simple_format(@character.background) %>
+		<div id="background">
+			<h3>Background</h3>
+			<%= simple_format(@character.background) %>
+		</div>
 	<% end %>
 
 	<% if show_attributes?(@character) %>
-		<h3>Attributes</h3>
-		<table class="scaled">
-			<tr>
-				<td>Intelligence:</td>
-				<td><%=h @character.intelligence %></td>
-				<td>Strength:</td>
-				<td><%=h @character.strength %></td>
-				<td>Presence:</td>
-				<td><%=h @character.presence %></td>
-			</tr>
-			<tr>
-				<td>Wits:</td>
-				<td><%=h @character.wits %></td>
-				<td>Dexterity:</td>
-				<td><%=h @character.dexterity %></td>
-				<td>Manipulation:</td>
-				<td><%=h @character.manipulation %></td>
-			</tr>
-			<tr>
-				<td>Resolve:</td>
-				<td><%=h @character.resolve %></td>
-				<td>Stamina:</td>
-				<td><%=h @character.stamina %></td>
-				<td>Composure:</td>
-				<td><%=h @character.composure %></td>
-			</tr>
-		</table>
+		<div id="attributes">
+			<h3>Attributes</h3>
+			<table class="scaled">
+				<tr>
+					<td>Intelligence:</td>
+					<td><%=h @character.intelligence %></td>
+					<td>Strength:</td>
+					<td><%=h @character.strength %></td>
+					<td>Presence:</td>
+					<td><%=h @character.presence %></td>
+				</tr>
+				<tr>
+					<td>Wits:</td>
+					<td><%=h @character.wits %></td>
+					<td>Dexterity:</td>
+					<td><%=h @character.dexterity %></td>
+					<td>Manipulation:</td>
+					<td><%=h @character.manipulation %></td>
+				</tr>
+				<tr>
+					<td>Resolve:</td>
+					<td><%=h @character.resolve %></td>
+					<td>Stamina:</td>
+					<td><%=h @character.stamina %></td>
+					<td>Composure:</td>
+					<td><%=h @character.composure %></td>
+				</tr>
+			</table>
+		</div>
 	<% end %>
 
 	<% if show_skills?(@character) %>
-		<h3>Skills</h3>
-		<table class="scaled">
-			<tr>
-				<td>Academics:</td>
-				<td><%=h @character.academics %></td>
-				<td>Athletics:</td>
-				<td><%=h @character.athletics %></td>
-				<td>Animal Ken:</td>
-				<td><%=h @character.animal_ken %></td>
-			</tr>
-			<tr>
-				<td>Computer:</td>
-				<td><%=h @character.computer %></td>
-				<td>Brawl:</td>
-				<td><%=h @character.brawl %></td>
-				<td>Empathy:</td>
-				<td><%=h @character.empathy %></td>
-			</tr>
-			<tr>
-				<td>Crafts:</td>
-				<td><%=h @character.crafts %></td>
-				<td>Drive:</td>
-				<td><%=h @character.drive %></td>
-				<td>Expression:</td>
-				<td><%=h @character.expression %></td>
-			</tr>
-			<tr>
-				<td>Investigation:</td>
-				<td><%=h @character.investigation %></td>
-				<td>Firearms:</td>
-				<td><%=h @character.firearms %></td>
-				<td>Intimidation:</td>
-				<td><%=h @character.intimidation %></td>
-			</tr>
-			<tr>
-				<td>Medicine:</td>
-				<td><%=h @character.medicine %></td>
-				<td>Larceny:</td>
-				<td><%=h @character.larceny %></td>
-				<td>Persuasion:</td>
-				<td><%=h @character.persuasion %></td>
-			</tr>
-			<tr>
-				<td>Occult:</td>
-				<td><%=h @character.occult %></td>
-				<td>Stealth:</td>
-				<td><%=h @character.stealth %></td>
-				<td>Socialize:</td>
-				<td><%=h @character.socialize %></td>
-			</tr>
-			<tr>
-				<td>Politics:</td>
-				<td><%=h @character.politics %></td>
-				<td>Survival:</td>
-				<td><%=h @character.survival %></td>
-				<td>Streetwise:</td>
-				<td><%=h @character.streetwise %></td>
-			</tr>
-			<tr>
-				<td>Science:</td>
-				<td><%=h @character.science %></td>
-				<td>Weaponry:</td>
-				<td><%=h @character.weaponry %></td>
-				<td>Subterfuge:</td>
-				<td><%=h @character.subterfuge %></td>
-			</tr>
-			<tr>
-				<td>Skill Specialties:</td>
-				<td colspan=5><%= simple_format(@character.skill_specialties) %></td>
-			</tr>
-			<tr>
-				<td>Speed:</td>
-				<td><%=h @character.speed %></td>
-			</tr>
-			<tr>
-				<td>Initiative:</td>
-				<td><%=h @character.initiative %></td>
-			</tr>
-			<tr>
-				<td>Defense:</td>
-				<td><%=h @character.defense %></td>
-			</tr>
-		</table>
+		<div id="skills">
+			<h3>Skills</h3>
+			<table class="scaled">
+				<tr>
+					<td>Academics:</td>
+					<td><%=h @character.academics %></td>
+					<td>Athletics:</td>
+					<td><%=h @character.athletics %></td>
+					<td>Animal Ken:</td>
+					<td><%=h @character.animal_ken %></td>
+				</tr>
+				<tr>
+					<td>Computer:</td>
+					<td><%=h @character.computer %></td>
+					<td>Brawl:</td>
+					<td><%=h @character.brawl %></td>
+					<td>Empathy:</td>
+					<td><%=h @character.empathy %></td>
+				</tr>
+				<tr>
+					<td>Crafts:</td>
+					<td><%=h @character.crafts %></td>
+					<td>Drive:</td>
+					<td><%=h @character.drive %></td>
+					<td>Expression:</td>
+					<td><%=h @character.expression %></td>
+				</tr>
+				<tr>
+					<td>Investigation:</td>
+					<td><%=h @character.investigation %></td>
+					<td>Firearms:</td>
+					<td><%=h @character.firearms %></td>
+					<td>Intimidation:</td>
+					<td><%=h @character.intimidation %></td>
+				</tr>
+				<tr>
+					<td>Medicine:</td>
+					<td><%=h @character.medicine %></td>
+					<td>Larceny:</td>
+					<td><%=h @character.larceny %></td>
+					<td>Persuasion:</td>
+					<td><%=h @character.persuasion %></td>
+				</tr>
+				<tr>
+					<td>Occult:</td>
+					<td><%=h @character.occult %></td>
+					<td>Stealth:</td>
+					<td><%=h @character.stealth %></td>
+					<td>Socialize:</td>
+					<td><%=h @character.socialize %></td>
+				</tr>
+				<tr>
+					<td>Politics:</td>
+					<td><%=h @character.politics %></td>
+					<td>Survival:</td>
+					<td><%=h @character.survival %></td>
+					<td>Streetwise:</td>
+					<td><%=h @character.streetwise %></td>
+				</tr>
+				<tr>
+					<td>Science:</td>
+					<td><%=h @character.science %></td>
+					<td>Weaponry:</td>
+					<td><%=h @character.weaponry %></td>
+					<td>Subterfuge:</td>
+					<td><%=h @character.subterfuge %></td>
+				</tr>
+				<tr>
+					<td>Skill Specialties:</td>
+					<td colspan=5><%= simple_format(@character.skill_specialties) %></td>
+				</tr>
+				<tr>
+					<td>Speed:</td>
+					<td><%=h @character.speed %></td>
+				</tr>
+				<tr>
+					<td>Initiative:</td>
+					<td><%=h @character.initiative %></td>
+				</tr>
+				<tr>
+					<td>Defense:</td>
+					<td><%=h @character.defense %></td>
+				</tr>
+			</table>
+		</div>
 	<% end %>
 
 	<% if show_advantages?(@character) %>
-		<h3>Advantages</h3>
-		<table class="scaled">
-			<tr>
-				<td>Health:</td>
-				<td id="health"><%=h @character.health %></td>
-				<td>Derangements:</td>
-			</tr>
-			<tr>
-				<td>Willpower:</td>
-				<td id="willpower"><%=h @character.willpower %></td>
-				<td rowspan="6"><%= simple_format(@character.derangements) %></td>
-			</tr>
-			<tr>
-				<td>Armor:</td>
-				<td><%=h @character.armor %></td>
-			</tr>
-			<tr>
-				<td><%=h @character.splat.morality_name %>:</td>
-				<td><%=h @character.morality %></td>
-			</tr>
-		    <% unless is_mortal?(@character) %>
-			<tr>
-				<td><%=h @character.splat.power_stat_name %>:</td>
-				<td><%=h @character.power_stat %></td>
-			</tr>
-			<tr>
-				<td><%=h @character.splat.fuel_name %>:</td>
-				<td><%=h @character.fuel %></td>
-			</tr>
-			<tr>
-			</tr>
-		    <% end %>
-		</table>
+		<div id="advantages">		
+			<h3>Advantages</h3>
+			<table class="scaled">
+				<tr>
+					<td>Health:</td>
+					<td id="health"><%=h @character.health %></td>
+					<td>Derangements:</td>
+				</tr>
+				<tr>
+					<td>Willpower:</td>
+					<td id="willpower"><%=h @character.willpower %></td>
+					<td rowspan="6"><%= simple_format(@character.derangements) %></td>
+				</tr>
+				<tr>
+					<td>Armor:</td>
+					<td><%=h @character.armor %></td>
+				</tr>
+				<tr>
+					<td><%=h @character.splat.morality_name %>:</td>
+					<td><%=h @character.morality %></td>
+				</tr>
+				<% unless is_mortal?(@character) %>
+				<tr>
+					<td><%=h @character.splat.power_stat_name %>:</td>
+					<td><%=h @character.power_stat %></td>
+				</tr>
+				<tr>
+					<td><%=h @character.splat.fuel_name %>:</td>
+					<td><%=h @character.fuel %></td>
+				</tr>
+				<tr>
+				</tr>
+				<% end %>
+			</table>
+		</div>
 	<% end %>
 
 	<% if show_merits?(@character) %>
-		  <h3>Merits</h3>
-		  <%= simple_format(@character.merits) %>
+		<div id="merits">		
+			<h3>Merits</h3>
+			<%= simple_format(@character.merits) %>
+		</div>
 	<% end %>
 
 	<% if show_equipment?(@character) %>
-		  <h3>Equipment</h3>
-		  <%= simple_format(@character.equipment) %>
+		<div id="equipment">
+			<h3>Equipment</h3>
+			<%= simple_format(@character.equipment) %>
+		</div>
 	<% end %>
 
 	<% if show_powers?(@character) %>
-		<% if is_mage?(@character) %>
-			<h3>Arcana</h3>
-			<table class="scaled">
-				<tr>
-					<td>Death:</td>
-					<td><%=h @character.death %></td>
-					<td>Common Spells</td>
-				</tr>
-				<tr>
-					<td>Fate:</td>
-					<td><%=h @character.fate %></td>
-					<td rowspan="10"><%= simple_format(@character.common_spells) %></td>
-				</tr>
-				<tr>
-					<td>Forces:</td>
-					<td><%=h @character.forces %></td>
-				</tr>
-				<tr>
-					<td>Life:</td>
-					<td><%=h @character.life %></td>
-				</tr>
-				<tr>
-					<td>Matter:</td>
-					<td><%=h @character.matter %></td>
-				</tr>
-				<tr>
-					<td>Mind:</td>
-					<td><%=h @character.mind %></td>
-				</tr>
-				<tr>
-					<td>Prime:</td>
-					<td><%=h @character.prime %></td>
-				</tr>
-				<tr>
-					<td>Space:</td>
-					<td><%=h @character.space %></td>
-				</tr>
-				<tr>
-					<td>Spirit:</td>
-					<td><%=h @character.spirit %></td>
-				</tr>
-				<tr>
-					<td>Time:</td>
-					<td><%=h @character.time %></td>
-				</tr>
-				<tr>
-				</tr>
-			</table>
-		<% end %>
+		<div id="powers">
+			<% if is_mage?(@character) %>
+				<h3>Arcana</h3>
+				<table class="scaled">
+					<tr>
+						<td>Death:</td>
+						<td><%=h @character.death %></td>
+						<td>Common Spells</td>
+					</tr>
+					<tr>
+						<td>Fate:</td>
+						<td><%=h @character.fate %></td>
+						<td rowspan="10"><%= simple_format(@character.common_spells) %></td>
+					</tr>
+					<tr>
+						<td>Forces:</td>
+						<td><%=h @character.forces %></td>
+					</tr>
+					<tr>
+						<td>Life:</td>
+						<td><%=h @character.life %></td>
+					</tr>
+					<tr>
+						<td>Matter:</td>
+						<td><%=h @character.matter %></td>
+					</tr>
+					<tr>
+						<td>Mind:</td>
+						<td><%=h @character.mind %></td>
+					</tr>
+					<tr>
+						<td>Prime:</td>
+						<td><%=h @character.prime %></td>
+					</tr>
+					<tr>
+						<td>Space:</td>
+						<td><%=h @character.space %></td>
+					</tr>
+					<tr>
+						<td>Spirit:</td>
+						<td><%=h @character.spirit %></td>
+					</tr>
+					<tr>
+						<td>Time:</td>
+						<td><%=h @character.time %></td>
+					</tr>
+					<tr>
+					</tr>
+				</table>
+			<% end %>
 		
-		<% if is_werewolf?(@character) %>
-			<h3>Renown</h3>
-			<table class="scaled">
-				<tr>
-					<td>Purity:</td>
-					<td><%=h @character.purity %></td>
-					<td>Gifts</td>
-				</tr>
-				<tr>
-					<td>Glory:</td>
-					<td><%=h @character.glory %></td>
-					<td id="gifts" rowspan="5"><%= simple_format(@character.gifts) %></td>
-				</tr>
-				<tr>
-					<td>Honor:</td>
-					<td><%=h @character.honor %></td>
-				</tr>
-				<tr>
-					<td>Wisdom:</td>
-					<td><%=h @character.wisdom %></td>
-				</tr>
-				<tr>
-					<td>Cunning:</td>
-					<td><%=h @character.cunning %></td>
-				</tr>
-				<tr>
-				</tr>
-			</table>
-			<h3>Totem</h3>
-			<%= simple_format(@character.totem)%>
-		<% end %>
+			<% if is_werewolf?(@character) %>
+				<h3>Renown</h3>
+				<table class="scaled">
+					<tr>
+						<td>Purity:</td>
+						<td><%=h @character.purity %></td>
+						<td>Gifts</td>
+					</tr>
+					<tr>
+						<td>Glory:</td>
+						<td><%=h @character.glory %></td>
+						<td id="gifts" rowspan="5"><%= simple_format(@character.gifts) %></td>
+					</tr>
+					<tr>
+						<td>Honor:</td>
+						<td><%=h @character.honor %></td>
+					</tr>
+					<tr>
+						<td>Wisdom:</td>
+						<td><%=h @character.wisdom %></td>
+					</tr>
+					<tr>
+						<td>Cunning:</td>
+						<td><%=h @character.cunning %></td>
+					</tr>
+					<tr>
+					</tr>
+				</table>
+				<h3>Totem</h3>
+				<%= simple_format(@character.totem)%>
+			<% end %>
 
-		<% if is_vampire?(@character) %>
-			<h3>Disciplines</h3>
-			<table class="scaled">
-				<tr>
-					<td>Animalism</td>
-					<td><%=h @character.animalism %></td>
-					<td>Covenant Disciplines</td>
-				</tr>
-				<tr>
-					<td>Auspex</td>
-					<td><%=h @character.auspex %></td>
-					<td rowspan="8"><%= simple_format(@character.covenant_disciplines) %></td>
-				</tr>
-				<tr>
-					<td>Dominate</td>
-					<td><%=h @character.dominate %></td>
-				</tr>
-				<tr>
-					<td>Majesty</td>
-					<td><%=h @character.majesty %></td>
-				</tr>
-				<tr>
-					<td>Nightmare</td>
-					<td><%=h @character.nightmare %></td>
-				</tr>
-				<tr>
-					<td>Protean</td>
-					<td><%=h @character.protean %></td>
-				</tr>
-				<tr>
-					<td>Obfuscate</td>
-					<td><%=h @character.obfuscate %></td>
-				</tr>
-				<tr>
-					<td>Vigor</td>
-					<td><%=h @character.vigor %></td>
-				</tr>
-				<tr>
-				</tr>
-			</table>
-		<% end %>
+			<% if is_vampire?(@character) %>
+				<h3>Disciplines</h3>
+				<table class="scaled">
+					<tr>
+						<td>Animalism</td>
+						<td><%=h @character.animalism %></td>
+						<td>Covenant Disciplines</td>
+					</tr>
+					<tr>
+						<td>Auspex</td>
+						<td><%=h @character.auspex %></td>
+						<td rowspan="8"><%= simple_format(@character.covenant_disciplines) %></td>
+					</tr>
+					<tr>
+						<td>Dominate</td>
+						<td><%=h @character.dominate %></td>
+					</tr>
+					<tr>
+						<td>Majesty</td>
+						<td><%=h @character.majesty %></td>
+					</tr>
+					<tr>
+						<td>Nightmare</td>
+						<td><%=h @character.nightmare %></td>
+					</tr>
+					<tr>
+						<td>Protean</td>
+						<td><%=h @character.protean %></td>
+					</tr>
+					<tr>
+						<td>Obfuscate</td>
+						<td><%=h @character.obfuscate %></td>
+					</tr>
+					<tr>
+						<td>Vigor</td>
+						<td><%=h @character.vigor %></td>
+					</tr>
+					<tr>
+					</tr>
+				</table>
+			<% end %>
+		</div>
 	<% end %>
 	
 	<% if show_experience?(@character) %>
-		<h3>Experience</h3>
-		<%= simple_format(@character.experience) %>
+		<div id="experience">
+			<h3>Experience</h3>
+			<%= simple_format(@character.experience) %>
+		</div>
 	<% end %>
 	
 	<%= render :partial => 'comments' %><br />
 
-	<%= link_to 'Show as other user', :action => 'show_as_other', :id => @character if edit_character?(@character) %><br />
+	<% form_remote_tag :url => { :action => 'preview' } do %>
+		<%= submit_tag 'Toggle preview' %>
+	<% end %>
+
 	<%= link_to 'Back', character_path(@character) %>
 	<%= link_to 'Edit', edit_character_path(@character) if edit_character?(@character)%>
 	<%= link_to 'Destroy', @character, :confirm => 'Are you sure you want to delete this character?', :method => :delete if edit_character?(@character) %>
