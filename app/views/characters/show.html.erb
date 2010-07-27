@@ -12,15 +12,15 @@
 			<td><span id="vice"><%=h @character.vice if own_character?(@character) %></span></td>
 			<% unless is_mortal?(@character) %>
 				<td><span id="nature_label"><b><%=h @character.splat.nature_name if show_nature?(@character) %>:</b></span></td>
-				<td><span id="nature_name"><%=h @character.nature.name if show_nature?(@character) %></span></td>
+				<td><span id="nature_name"><%=h @character.nature.name if show_nature?(@character) %></span><span style="display:none" id="read_nature"><%=h @character.read_nature %></span></td>
 			<% end %>
 		</tr>
 		<tr>
 			<td><span id="clique_label"><b><%=h @character.splat.clique_name if show_clique?(@character) %>:</b></span></td>
-			<td><span id="clique_name"><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></span></td>
+			<td><span id="clique_name"><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></span><span style="display:none" id="read_clique"><%=h @character.read_clique %></span></td>
 			<% unless is_mortal?(@character) %>
 				<td><span id="ideology_label"><b><%=h @character.splat.ideology_name if show_ideology?(@character) %>:</b></span></td>
-				<td><span id="ideology_name"><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></span></td>
+				<td><span id="ideology_name"><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></span><span style="display:none" id="read_ideology"><%=h @character.read_ideology %></span></td>
 			<% end %>
 		</tr>
 	</table>
@@ -37,6 +37,7 @@
 		<div id="background">
 			<h3>Background</h3>
 			<%= simple_format(@character.background) %>
+			<span style="display:none" id="read_background"><%=h @character.read_background %></span>
 		</div>
 	<% end %>
 
@@ -69,6 +70,7 @@
 					<td><%=h @character.composure %></td>
 				</tr>
 			</table>
+			<span style="display:none" id="read_attributes"><%=h @character.read_attributes %></span>
 		</div>
 	<% end %>
 
@@ -157,6 +159,7 @@
 					<td><%=h @character.defense %></td>
 				</tr>
 			</table>
+			<span style="display:none" id="read_skills"><%=h @character.read_skills %></span>
 		</div>
 	<% end %>
 
@@ -195,6 +198,7 @@
 				</tr>
 				<% end %>
 			</table>
+			<span style="display:none" id="read_advantages"><%=h @character.read_advantages %></span>
 		</div>
 	<% end %>
 
@@ -202,6 +206,7 @@
 		<div id="merits">		
 			<h3>Merits</h3>
 			<%= simple_format(@character.merits) %>
+			<span style="display:none" id="read_merits"><%=h @character.read_merits %></span>
 		</div>
 	<% end %>
 
@@ -209,6 +214,7 @@
 		<div id="equipment">
 			<h3>Equipment</h3>
 			<%= simple_format(@character.equipment) %>
+			<span style="display:none" id="read_equipment"><%=h @character.read_equipment %></span>
 		</div>
 	<% end %>
 
@@ -337,6 +343,7 @@
 					</tr>
 				</table>
 			<% end %>
+			<span style="display:none" id="read_powers"><%=h @character.read_powers %></span>
 		</div>
 	<% end %>
 	
@@ -344,6 +351,7 @@
 		<div id="experience">
 			<h3>Experience</h3>
 			<%= simple_format(@character.experience) %>
+			<span style="display:none" id="read_experience"><%=h @character.read_experience %></span>
 		</div>
 	<% end %>
 	
