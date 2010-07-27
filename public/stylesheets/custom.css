@@ -69,23 +69,15 @@ a { color: #97A2DE; }
 	float: left;
 }
 
-#content table {
-	width: 100%;
-}
+#content table.four_cells td { width: 14em; }
+#content table.four_cells td:nth-child(odd) { text-align: right; }
+#content table.four_cells td:nth-child(even) { text-align: left; }
 
-#content table.scaled td:nth-child(odd) {
-	width: 7em;
-	text-align: right;
-}
+#content table.six_cells td { width: 9em; }
+#content table.six_cells td:nth-child(odd) { text-align: right; }
+#content table.six_cells td:nth-child(even) { text-align: left; }
 
-#content table.scaled td:nth-child(even) {
-	width: 2em;
-	text-align: left;
-}
-
-#content input[type="text"], input[type="password"] {
-	width: 9em;
-}
+#content input[type="text"], input[type="password"] { width: 9em; }
 
 #content input[type="submit"] {
 	border: 1px solid #050B39;
@@ -94,26 +86,18 @@ a { color: #97A2DE; }
 	padding: 0em .5em;
 }
 
-#content input.number {
-	width: 2em;
-}
+#content input.number { width: 2em; }
 
 #content textarea {
 	width: 100%;
 	height: 9em;
 }
 
-#content #character_common_spells {
-	height: 19em;
-}
+#content #character_common_spells { height: 19em; }
 
-#content #character_covenant_disciplines {
-	height: 17em;
-}
+#content #character_covenant_disciplines { height: 17em; }
 
-#content #character_gifts {
-	height: 8em;
-}
+#content #character_gifts { height: 8em; }
 
 .fieldWithErrors {
   padding: 2px;

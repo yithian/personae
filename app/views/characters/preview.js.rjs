@@ -1,6 +1,6 @@
 page.toggle "virtue"
 page.toggle "vice"
-page << "if ( $('read_nature').innterHTML=='false' ) {"
+page << "if ( $('read_nature').innerHTML=='false' ) {"
 	page.toggle "nature_label"
 	page.toggle "nature_name"
 page << "}

@@ -1,5 +1,5 @@
 <% if show_character?(@character) %>
-	<table>
+	<table class="four_cells">
 		<tr>
 			<td><b>Name:</b></td>
 			<td colspan=3><%=h @character.name %></td>
@@ -10,20 +10,19 @@
 		<tr>
 			<td><b>Vice:</b></td>
 			<td><span id="vice"><%=h @character.vice if own_character?(@character) %></span></td>
-			<% unless is_mortal?(@character) %>
-				<td><span id="nature_label"><b><%=h @character.splat.nature_name if show_nature?(@character) %>:</b></span></td>
-				<td><span id="nature_name"><%=h @character.nature.name if show_nature?(@character) %></span><span style="display:none" id="read_nature"><%=h @character.read_nature %></span></td>
-			<% end %>
+			<td><span id="nature_label"><b><%=h @character.splat.nature_name if show_nature?(@character) %>:</b></span></td>
+			<td><span id="nature_name"><%=h @character.nature.name if show_nature?(@character) unless is_mortal?(@character) %></span></td>
 		</tr>
 		<tr>
 			<td><span id="clique_label"><b><%=h @character.splat.clique_name if show_clique?(@character) %>:</b></span></td>
-			<td><span id="clique_name"><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></span><span style="display:none" id="read_clique"><%=h @character.read_clique %></span></td>
-			<% unless is_mortal?(@character) %>
-				<td><span id="ideology_label"><b><%=h @character.splat.ideology_name if show_ideology?(@character) %>:</b></span></td>
-				<td><span id="ideology_name"><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) %></span><span style="display:none" id="read_ideology"><%=h @character.read_ideology %></span></td>
-			<% end %>
+			<td><span id="clique_name"><%= link_to (h @character.clique.name), @character.clique if show_clique?(@character) %></span></td>
+			<td><span id="ideology_label"><b><%=h @character.splat.ideology_name if show_ideology?(@character) %>:</b></span></td>
+			<td><span id="ideology_name"><%= link_to (h @character.ideology.name), @character.ideology if show_ideology?(@character) unless is_mortal?(@character) %></span></td>
 		</tr>
 	</table>
+	<span style="display:none" id="read_nature"><%=h @character.read_nature %></span>
+	<span style="display:none" id="read_clique"><%=h @character.read_clique %></span>
+	<span style="display:none" id="read_ideology"><%=h @character.read_ideology %></span>
 
 	<% if show_description?(@character) %>
 		<div id="description">
@@ -44,7 +43,7 @@
 	<% if show_attributes?(@character) %>
 		<div id="attributes">
 			<h3>Attributes</h3>
-			<table class="scaled">
+			<table class="six_cells">
 				<tr>
 					<td>Intelligence:</td>
 					<td><%=h @character.intelligence %></td>
@@ -77,7 +76,7 @@
 	<% if show_skills?(@character) %>
 		<div id="skills">
 			<h3>Skills</h3>
-			<table class="scaled">
+			<table class="six_cells">
 				<tr>
 					<td>Academics:</td>
 					<td><%=h @character.academics %></td>
@@ -166,7 +165,7 @@
 	<% if show_advantages?(@character) %>
 		<div id="advantages">		
 			<h3>Advantages</h3>
-			<table class="scaled">
+			<table class="six_cells">
 				<tr>
 					<td>Health:</td>
 					<td id="health"><%=h @character.health %></td>
@@ -222,7 +221,7 @@
 		<div id="powers">
 			<% if is_mage?(@character) %>
 				<h3>Arcana</h3>
-				<table class="scaled">
+				<table class="six_cells">
 					<tr>
 						<td>Death:</td>
 						<td><%=h @character.death %></td>
@@ -272,7 +271,7 @@
 		
 			<% if is_werewolf?(@character) %>
 				<h3>Renown</h3>
-				<table class="scaled">
+				<table class="six_cells">
 					<tr>
 						<td>Purity:</td>
 						<td><%=h @character.purity %></td>
@@ -304,7 +303,7 @@
 
 			<% if is_vampire?(@character) %>
 				<h3>Disciplines</h3>
-				<table class="scaled">
+				<table class="six_cells">
 					<tr>
 						<td>Animalism</td>
 						<td><%=h @character.animalism %></td>

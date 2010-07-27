@@ -32,7 +32,7 @@ if controller.action_name == 'new' %>
 <% end %>
 
 
-	<table>
+	<table class="four_cells">
 		<tr>
 			<td><b><%= f.label :name %></b></td>
 			<td><%= f.text_field :name %></td>
@@ -93,7 +93,7 @@ if controller.action_name == 'new' %>
 
 
 	<h3>Attributes</h3>
-	<table class="scaled">
+	<table class="six_cells">
 		<tr>
 			<td><%= f.label :intelligence %></td>
 			<td><%= f.text_field :intelligence, :class => "number" %></td>
@@ -123,7 +123,7 @@ if controller.action_name == 'new' %>
 
 
 	<h3>Skills</h3>
-	<table class="scaled">
+	<table class="six_cells">
 		<tr>
 			<td><%= f.label :academics %></td>
 			<td><%= f.text_field :academics, :class => "number" %></td>
@@ -210,7 +210,7 @@ if controller.action_name == 'new' %>
 
 
 	<h3>Advantages</h3>
-	<table class="scaled">
+	<table class="six_cells">
 		<tr>
 			<td><%= f.label :health %></td>
 			<td><%= f.text_field :health, :id => "health" %></td>
@@ -262,7 +262,7 @@ if controller.action_name == 'new' %>
 
 	<span id="mage_powers" <%=h "style='display: none'" unless is_mage?(@character) %> >
 		<h3>Arcana</h3>
-		<table class="scaled">
+		<table class="six_cells">
 			<tr>
 				<td><%= f.label :death %></td>
 				<td><%= f.text_field :death, :class => "number" %></td>
@@ -313,7 +313,7 @@ if controller.action_name == 'new' %>
 
 	<span id="woof_powers" <%=h "style='display: none'" unless is_werewolf?(@character) %> >
 		<h3>Renown</h3>
-		<table class="scaled">
+		<table class="six_cells">
 			<tr>
 				<td><%= f.label :purity %></td>
 				<td><%= f.text_field :purity, :class => "number" %></td>
@@ -346,7 +346,7 @@ if controller.action_name == 'new' %>
 
 	<span id="vampire_powers" <%=h "style='display: none'" unless is_vampire?(@character) %> >
 		<h3>Disciplines</h3>
-		<table class="scaled">
+		<table class="six_cells">
 			<tr>
 				<td><%= f.label :animalism %></td>
 				<td><%= f.text_field :animalism, :class => "number" %></td>
