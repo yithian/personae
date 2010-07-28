@@ -6,5 +6,7 @@
 </table>
 </p><br />
 
-<%= link_to 'Edit', edit_user_path(@user) if edit_user?(@user) %>
-<%= link_to 'Back', users_path %>
+<div id="navbar">
+	<%= link_to 'Back', :back, :class => "button" %>
+	<%= link_to 'Edit', edit_user_path(@user), :class => "button" if edit_user?(@user) %>
+</div>

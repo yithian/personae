@@ -1,19 +1,21 @@
 <p>
 <table>
-  <tr>
-    <th>Name</th>
-	<th>Territory</th>
-  </tr>
+	<tr>
+		<th>Name</th>
+		<th>Territory</th>
+	</tr>
 
-<% @cliques.each do |clique| %>
-	<% if known_clique?(clique) %>
-		<tr>
-			<td><%= link_to (h clique.name), clique %></td>
-			<td><%=h clique.territory %></td>
-		</tr>
+	<% @cliques.each do |clique| %>
+		<% if known_clique?(clique) %>
+			<tr>
+				<td><%= link_to (h clique.name), clique %></td>
+				<td><%=h clique.territory %></td>
+			</tr>
+		<% end %>
 	<% end %>
-<% end %>
 </table>
 </p>
 
-<%= link_to 'New clique', new_clique_path %>
+<div id="navbar">
+	<%= link_to 'New clique', new_clique_path, :class => "button" %>
+</div>

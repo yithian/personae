@@ -15,8 +15,12 @@
 	</table>
 </p>
 
-	<%= link_to 'New member', { :controller => 'characters', :action => 'new', :ideology_id => @ideology } %><br />
-	<%= link_to 'Back', ideologies_path %>
+        <div id="navbar">
+                <%= link_to 'Back', :back, :class => "button" %>
+		<%= link_to 'New member', { :controller => 'characters', :action => 'new', :ideology_id => @ideology }, :class => "button" %>
+                <%= link_to 'Edit', edit_ideology_path(@ideology), :class => "button" if edit_ideology?(@ideology) %>
+                <%= link_to 'Destroy', @ideology, :confirm => 'Are you sure you want to delete this ideology?', :method => :delete, :class => "button" if edit_ideology?(@ideology) %>
+        </div>
 <% else %>
 	<% flash[:notice] = "This is a secret ideology!" %>
 <% end %>

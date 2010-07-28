@@ -1,7 +1,5 @@
 <% if edit_clique?(@clique) %>
 	<%= render :partial => 'form' %>
-
-	<%= link_to 'Cancel', @clique %>
 <% else %>
 	<% flash[:notice] = "You can't edit this clique" %>
 <% end %>

@@ -398,7 +398,8 @@ if controller.action_name == 'new' %>
 		<p><%= f.text_area :experience %></p>
 		<%= f.check_box :read_experience %> <%= f.label :read_experience %>
 
-	<p>
+	<div id="navbar">
 		<%= f.submit 'Save', :class => "button" %>
-	</p>
+		<%= link_to "Cancel", :back, :class => "button" %>
+	</div>
 <% end %>

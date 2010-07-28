@@ -15,7 +15,8 @@
 		<%= f.password_field :password_confirmation %>
 	</div>
 	
-  <p>
+  <div id="navbar">
+    <%= link_to "Cancel", :back, :class => "button" %>
     <%= f.submit 'Save' %>
-  </p>
+  </div>
 <% end %>

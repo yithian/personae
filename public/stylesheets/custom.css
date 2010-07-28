@@ -16,9 +16,9 @@ a { color: #97A2DE; }
 }
 
 #header {
+	text-align: center;
 	background: #2937A1;
 	color: #eeeeec;
-	text-align: center;
 	border: 1px solid black;
 }
 
@@ -33,21 +33,28 @@ a { color: #97A2DE; }
 #content {
 	color: #333333;
 	background: #eeeeec;
-	text-align: justify;
 	border: 1px solid black;
 	padding: 0.5em 4em;
+	text-align: justify;
 }
 
 #content a:visited { color: #2743A0; }
 #content a:hover { background: #990033; }
 
-#content a.control {
-	border: 1px solid #050B39;
-	background: #97A2DE;
-	color: #333333;
+#content a.button, input[type="submit"] {
+	border: 2px outset #97A2DE;
+	color: #2937A1;
+	font-size: 84%;
 	text-decoration: none;
+	text-align: center;
+	width: 8em;
+	padding: 0em .25em;
 }
-#content a.control:hover { background: #97A2DE; }
+#content a.button:hover, input[type="submit"]:hover {
+	background: none;
+	border-color: #990033;
+}
+#content a.button:active, input[type="submit"]:active { border-style: inset; }
 
 #content h3 {
 	color: black;
@@ -69,6 +76,9 @@ a { color: #97A2DE; }
 	float: left;
 }
 
+#content #navbar { text-align: center; }
+#content #navbar form { display: inline; }
+
 #content table.four_cells td { width: 14em; }
 #content table.four_cells td:nth-child(odd) { text-align: right; }
 #content table.four_cells td:nth-child(even) { text-align: left; }
@@ -79,12 +89,6 @@ a { color: #97A2DE; }
 
 #content input[type="text"], input[type="password"] { width: 9em; }
 
-#content input[type="submit"] {
-	border: 1px solid #050B39;
-	background: #97A2DE;
-	color: #333333;
-	padding: 0em .5em;
-}
 
 #content input.number { width: 2em; }
 

@@ -16,7 +16,8 @@
     <p><%= f.text_area :description %></p>
     <%= f.check_box :write %> <%= f.label :write %>
 
-  <p>
-    <%= f.submit 'Save' %>
-  </p>
+	<div id="navbar">
+		<%= link_to "Cancel", :back, :class => "button" %>
+		<%= f.submit 'Save' %>
+	</div>
 <% end %>
