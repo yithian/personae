@@ -96,7 +96,7 @@ class CliquesController < ApplicationController
   def permission
     unless @clique.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :back
+      redirect_to :action => "index"
     end
   end
 end
