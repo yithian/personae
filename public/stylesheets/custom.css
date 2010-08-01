@@ -6,8 +6,6 @@ body {
 	line-height: 18px;
 }
 
-a { color: #97A2DE; }
-
 #column {
 	width: 80%;
 	max-width: 60em;
@@ -20,10 +18,28 @@ a { color: #97A2DE; }
 	background: #2937A1;
 	color: #eeeeec;
 	border: 1px solid black;
+	border-bottom: 2px solid #97A2DE;
 }
 
-#header a { text-decoration: none; }
-#header a:hover { border-bottom: 2px solid #97A2DE; }
+#header ul.menu {
+	list-style: none;
+	margin: 0px;
+}
+#header ul.menu li {
+	display: inline;
+	font-weight: bold;
+}
+
+#header a {
+	color: #97A2DE;
+	padding: 0em 1em;
+	text-decoration: none;
+}
+#header a:hover {
+	background: #97A2DE;
+	color: #990033;
+	border-bottom: 1px solid #97A2DE;
+}
 
 #notice {
 	text-align: center;
