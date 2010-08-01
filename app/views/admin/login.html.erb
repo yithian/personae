@@ -11,9 +11,8 @@
 		<%= password_field_tag :password, params[:password] %>
 	</div>
 	
-	<div>
+	<div id="navbar">
 		<%= submit_tag "Login" %>
+		<span><%= link_to "New User", new_user_path, :class => "button" %></span>
 	</div>
-	
-	<%= link_to "New User", :controller => 'users', :action => 'new' %>
 <% end %>
