@@ -54,11 +54,13 @@ body {
 	text-align: justify;
 }
 
-#content a:visited { color: #2743A0; }
+#content a:link { color: #2937A1; }
+#content a:visited { color: #97A2DE; }
 #content a:hover { background: #990033; }
 
 #content a.button, input[type="submit"] {
 	border: 2px outset #97A2DE;
+	background: none;
 	color: #2937A1;
 	font-size: 84%;
 	text-decoration: none;
