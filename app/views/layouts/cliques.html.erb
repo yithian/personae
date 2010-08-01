@@ -3,19 +3,20 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>
-	City of Darkness
-	<% if @character %>
-		: <%= @character.name %>
-	<% elsif @clique %>
-		: <%= @clique.name %>
-	<% elsif @ideology %>
-		: <%= @ideology.name %>
-	<% end %>
-  </title>
-  <%= javascript_include_tag :defaults %>
-  <%= stylesheet_link_tag 'custom' %>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<title>
+		City of Darkness
+		<% if @character %>
+			: <%= @character.name %>
+		<% elsif @clique %>
+			: <%= @clique.name %>
+		<% elsif @ideology %>
+			: <%= @ideology.name %>
+		<% end %>
+	</title>
+
+	<%= javascript_include_tag :defaults %>
+	<%= stylesheet_link_tag 'custom' %>
 </head>
 <body>
 
