@@ -57,6 +57,7 @@ class CharactersController < ApplicationController
   # POST /characters.xml
   def create
     @character = Character.new(params[:character])
+    find_lists
 
     respond_to do |format|
       if @character.save
@@ -106,6 +107,7 @@ class CharactersController < ApplicationController
   end
   
   def find_lists
+    logger.debug "running find_lists"
     @clique_list = Clique.all.collect do |c|
     	next unless @template.known_clique?(c)
     	[c.name, c.id]
