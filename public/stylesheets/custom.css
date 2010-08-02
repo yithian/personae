@@ -18,7 +18,7 @@ body {
 	background: #2937A1;
 	color: #eeeeec;
 	border: 1px solid black;
-	border-bottom: 2px solid #97A2DE;
+	border-bottom: 3px solid #97A2DE;
 }
 
 #header ul.menu {
@@ -50,6 +50,7 @@ body {
 	color: #333333;
 	background: #eeeeec;
 	border: 1px solid black;
+	border-top: none;
 	padding: 0.5em 4em;
 	text-align: justify;
 }
