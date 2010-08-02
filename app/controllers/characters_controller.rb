@@ -1,6 +1,7 @@
 class CharactersController < ApplicationController
-  before_filter :find_character, :only => [:show, :show_as_other, :edit, :update, :destroy]
+  before_filter :find_character, :only => [:new, :show, :show_as_other, :edit, :update, :destroy]
   before_filter :permission, :only => [:edit, :update, :destroy]
+  before_filter :find_lists, :only => [:new, :edit]
   layout "cliques"
   
   # GET /characters
@@ -35,7 +36,6 @@ class CharactersController < ApplicationController
   # GET /characters/new
   # GET /characters/new.xml
   def new
-    @character = Character.new
     @character.clique_id = params['clique_id'] if params['clique_id']
     @character.ideology_id = params['ideology_id'] if params['ideology_id']
 
@@ -100,7 +100,37 @@ class CharactersController < ApplicationController
   
   private
   def find_character
-    @character = Character.find(params[:id])
+    if params[:action] == "new"
+      @character = Character.new
+    else
+      @character = Character.find(params[:id])
+    end
+  end
+  
+  def find_lists
+    @clique_list = Clique.all.collect do |c|
+    	next unless @template.known_clique?(c)
+    	[c.name, c.id]
+    end
+    @clique_list.delete_if do |c|
+    	c == nil
+    end
+
+    @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect do |n|
+    	[n.name, n.id]
+    end
+
+    @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect do |i|
+    	[i.name, i.id]
+    end
+
+    @splat_list = Splat.all.collect do |s|
+    	if s == @character.splat
+    		"<option value='" + s.id.to_s + "' selected='selected'>" + s.name + "</option>"
+    	else
+    		"<option value='" + s.id.to_s + "'>" + s.name + "</option>"
+    	end
+    end
   end
   
   def permission
