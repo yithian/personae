@@ -24,12 +24,10 @@ class CharactersController < ApplicationController
     end
   end
   
-  # GET /characters/1/show_as_other
+  # GET /characters/preview
   def preview
     respond_to do |format|
       format.js
-      format.html # show.html.erb
-      format.xml  { render :xml => @character }
     end
   end
 
