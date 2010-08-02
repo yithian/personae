@@ -1,7 +1,7 @@
 class CharactersController < ApplicationController
   before_filter :find_character, :only => [:new, :show, :show_as_other, :edit, :update, :destroy]
   before_filter :permission, :only => [:edit, :update, :destroy]
-  before_filter :find_lists, :only => [:new, :edit]
+  before_filter :find_lists, :only => [:new, :edit, :update]
   layout "cliques"
   
   # GET /characters
