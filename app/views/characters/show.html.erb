@@ -165,7 +165,7 @@
 	<% if show_advantages?(@character) %>
 		<div id="advantages">		
 			<h3>Advantages</h3>
-			<table class="six_cells">
+			<table class="three_cells">
 				<tr>
 					<td>Health:</td>
 					<td id="health"><%=h @character.health %></td>
@@ -221,7 +221,7 @@
 		<div id="powers">
 			<% if is_mage?(@character) %>
 				<h3>Arcana</h3>
-				<table class="six_cells">
+				<table class="three_cells">
 					<tr>
 						<td>Death:</td>
 						<td><%=h @character.death %></td>
@@ -271,7 +271,7 @@
 		
 			<% if is_werewolf?(@character) %>
 				<h3>Renown</h3>
-				<table class="six_cells">
+				<table class="three_cells">
 					<tr>
 						<td>Purity:</td>
 						<td><%=h @character.purity %></td>
@@ -303,7 +303,7 @@
 
 			<% if is_vampire?(@character) %>
 				<h3>Disciplines</h3>
-				<table class="six_cells">
+				<table class="three_cells">
 					<tr>
 						<td>Animalism</td>
 						<td><%=h @character.animalism %></td>

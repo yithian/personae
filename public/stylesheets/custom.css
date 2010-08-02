@@ -98,13 +98,12 @@ body {
 #content #navbar { text-align: center; }
 #content #navbar form { display: inline; }
 
+#content table.three_cells td { width: 9em; }
+#content table.three_cells td:nth-child(3) { width: 36em;}
+
 #content table.four_cells td { width: 14em; }
-#content table.four_cells td:nth-child(odd) { text-align: right; }
-#content table.four_cells td:nth-child(even) { text-align: left; }
 
 #content table.six_cells td { width: 9em; }
-#content table.six_cells td:nth-child(odd) { text-align: right; }
-#content table.six_cells td:nth-child(even) { text-align: left; }
 
 #content input[type="text"], input[type="password"] { width: 9em; }
 
