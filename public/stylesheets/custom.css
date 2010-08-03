@@ -109,6 +109,8 @@ body {
 
 #content table.four_cells th, td { width: 14em; }
 
+#content table.five_cells th, td { width: 12em; }
+
 #content table.six_cells td { width: 9em; }
 
 #content input[type="text"], input[type="password"] { width: 9em; }

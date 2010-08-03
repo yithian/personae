@@ -48,7 +48,7 @@
 					<td>Intelligence:</td>
 					<td><%=h @character.intelligence %></td>
 					<td>Strength:</td>
-					<td><%=h @character.strength %></td>
+					<td id="strength"><%=h @character.strength %></td>
 					<td>Presence:</td>
 					<td><%=h @character.presence %></td>
 				</tr>
@@ -56,15 +56,15 @@
 					<td>Wits:</td>
 					<td><%=h @character.wits %></td>
 					<td>Dexterity:</td>
-					<td><%=h @character.dexterity %></td>
+					<td id="dexterity"><%=h @character.dexterity %></td>
 					<td>Manipulation:</td>
-					<td><%=h @character.manipulation %></td>
+					<td id="manipulation"><%=h @character.manipulation %></td>
 				</tr>
 				<tr>
 					<td>Resolve:</td>
 					<td><%=h @character.resolve %></td>
 					<td>Stamina:</td>
-					<td><%=h @character.stamina %></td>
+					<td id="stamina"><%=h @character.stamina %></td>
 					<td>Composure:</td>
 					<td><%=h @character.composure %></td>
 				</tr>
@@ -166,11 +166,11 @@
 				</tr>
 				<tr>
 					<td>Initiative:</td>
-					<td><%=h @character.initiative %></td>
+					<td id="initiative"><%=h @character.initiative %></td>
 				</tr>
 				<tr>
 					<td>Speed:</td>
-					<td><%=h @character.speed %></td>
+					<td id="speed"><%=h @character.speed %></td>
 				</tr>
 				<tr>
 					<td>Defense:</td>
@@ -178,7 +178,7 @@
 				</tr>
 				<tr>
 					<td>Armor:</td>
-					<td><%=h @character.armor %></td>
+					<td id="armor"><%=h @character.armor %></td>
 				</tr>
 				<tr>
 					<td><%=h @character.splat.morality_name %>:</td>
@@ -271,74 +271,38 @@
 		
 			<% if is_werewolf?(@character) %>
 				<h3>Forms</h3>
-				<table class="four_cells">
-					<tr>
-						<th>Dalu</th>
-						<th>Gauru</th>
-						<th>Urshul</th>
-						<th>Urshan</th>
-					</tr>
-					<tr>
-						<td>Strength: +1</td>
-						<td>Strength: +3</td>
-						<td>Strength: +2</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>Dexterity: +1</td>
-						<td>Dexterity: +2</td>
-						<td>Dexterity: +2</td>
-					</tr>
-					<tr>
-						<td>Stamina: +1</td>
-						<td>Stamina: +2</td>
-						<td>Stamina: +2</td>
-						<td>Stamina: +1</td>
-					</tr>
-					<tr>
-						<td>Manipulation: -1</td>
-						<td>Fail mental/social</td>
-						<td>Manipulation: -3</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>Size: +1</td>
-						<td>Size: +2</td>
-						<td>Size: +2</td>
-						<td>Size: -1</td>
-					</tr>
-					<tr>
-						<td>Health: +2</td>
-						<td>Health: +4</td>
-						<td>Health: +3</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>Speed: +1</td>
-						<td>Speed: +4</td>
-						<td>Speed: +7</td>
-						<td>Speed: +5</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>Initiative: +1</td>
-						<td>Initiative: +2</td>
-						<td>Initiative: +2</td>
-					</tr>
-					<tr>
-						<td>Perception: +2</td>
-						<td>Perception: +3</td>
-						<td>Perception: +3</td>
-						<td>Perception: +4</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>Armor: 1/1</td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
+				<% form_tag do %>
+					<table class="five_cells">
+						<tr>
+							<th><%= label_tag "woof_form_hishu", "Hishu" %> <%= radio_button_tag "woof_form", "Hishu", true, {:onclick => remote_function(:url => {:action => "change_form", :id => @character.id})} %></th>
+							<th><%= label_tag "woof_form_dalu", "Dalu" %> <%= radio_button_tag "woof_form", "Dalu", false, {:onclick => remote_function(:url => {:action => "change_form", :id => @character.id})} %></th>
+							<th><%= label_tag  "woof_form_gauru","Gauru" %> <%= radio_button_tag "woof_form", "Gauru", false, {:onclick => remote_function(:url => {:action => "change_form", :id => @character.id})} %></th>
+							<th><%= label_tag  "woof_form_urshul","Urshul" %> <%= radio_button_tag "woof_form", "Urshul", false, {:onclick => remote_function(:url => {:action => "change_form", :id => @character.id})} %></th>
+							<th><%= label_tag  "woof_form_urhan","Urhan" %> <%= radio_button_tag "woof_form", "Urhan", false, {:onclick => remote_function(:url => {:action => "change_form", :id => @character.id})} %></th>
+						</tr>
+						<tr>
+							<td></td>
+							<td>Size: +1</td>
+							<td>Size: +2</td>
+							<td>Size: +1</td>
+							<td>Size: -1</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>Perception: +2</td>
+							<td>Perception: +3</td>
+							<td>Perception: +3</td>
+							<td>Perception: +4</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td>+2L bite, +1L claws</td>
+							<td>+2L bite</td>
+							<td>+2L bite</td>
+						</tr>
+					</table>
+				<% end %>
 				<h3>Renown</h3>
 				<table class="three_cells">
 					<tr>
