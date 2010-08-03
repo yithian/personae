@@ -107,7 +107,7 @@ body {
 #content table.three_cells td { width: 9em; }
 #content table.three_cells td:nth-child(3) { width: 36em;}
 
-#content table.four_cells td { width: 14em; }
+#content table.four_cells th, td { width: 14em; }
 
 #content table.six_cells td { width: 9em; }
 
