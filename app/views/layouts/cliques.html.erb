@@ -6,13 +6,11 @@
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<title>
 		City of Darkness
-		<% if @character %>
-			: <%= @character.name %>
-		<% elsif @clique %>
-			: <%= @clique.name %>
-		<% elsif @ideology %>
-			: <%= @ideology.name %>
-		<% end %>
+		<%= case params[:controller]
+			when "characters" then " : " + @character.name if @character
+			when "cliques" then " : " + @clique.name if @clique
+			when "ideologies" then " : " + @ideology.name if @ideology
+		end %>
 	</title>
 
 	<%= javascript_include_tag :defaults %>
