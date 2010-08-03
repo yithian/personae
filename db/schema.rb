@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100629142029) do
+ActiveRecord::Schema.define(:version => 20100803012923) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -58,21 +58,21 @@ ActiveRecord::Schema.define(:version => 20100629142029) do
     t.integer  "speed",                :default => 5
     t.integer  "initiative",           :default => 2
     t.integer  "defense",              :default => 1
-    t.integer  "armor"
+    t.integer  "armor",                :default => 0
     t.integer  "morality",             :default => 7
     t.text     "derangements"
     t.text     "merits"
     t.integer  "power_stat",           :default => 1
-    t.integer  "death"
-    t.integer  "fate"
-    t.integer  "forces"
-    t.integer  "life"
-    t.integer  "matter"
-    t.integer  "mind"
-    t.integer  "prime"
-    t.integer  "space"
-    t.integer  "spirit"
-    t.integer  "time"
+    t.integer  "death",                :default => 0
+    t.integer  "fate",                 :default => 0
+    t.integer  "forces",               :default => 0
+    t.integer  "life",                 :default => 0
+    t.integer  "matter",               :default => 0
+    t.integer  "mind",                 :default => 0
+    t.integer  "prime",                :default => 0
+    t.integer  "space",                :default => 0
+    t.integer  "spirit",               :default => 0
+    t.integer  "time",                 :default => 0
     t.text     "equipment"
     t.text     "common_spells"
     t.datetime "created_at"
