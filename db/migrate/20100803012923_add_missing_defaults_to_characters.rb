@@ -12,60 +12,17 @@ class AddMissingDefaultsToCharacters < ActiveRecord::Migration
     change_column_default :characters, "spirit", 0
     change_column_default :characters, "time", 0
     
-    Character.find_by_armor(nil) do |c|
-      c.armor = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_death(nil) do |c|
-      c.death = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_fate(nil) do |c|
-      c.fate = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_forces(nil) do |c|
-      c.forces = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_life(nil) do |c|
-      c.life = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_matter(nil) do |c|
-      c.matter = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_mind(nil) do |c|
-      c.mind = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_prime(nil) do |c|
-      c.prime = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_space(nil) do |c|
-      c.space = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_spirit(nil) do |c|
-      c.spirit = 0
-      c.save_with_validation(perform_validation = false)
-    end
-    
-    Character.find_by_time(nil) do |c|
-      c.time = 0
-      c.save_with_validation(perform_validation = false)
-    end
+    Character.update_all("armor = 0", "armor IS NULL")
+    Character.update_all("death = 0", "death IS NULL")
+    Character.update_all("fate = 0", "fate IS NULL")
+    Character.update_all("forces = 0", "forces IS NULL")
+    Character.update_all("life = 0", "life IS NULL")
+    Character.update_all("matter = 0", "matter IS NULL")
+    Character.update_all("mind = 0", "mind IS NULL")
+    Character.update_all("prime = 0", "prime IS NULL")
+    Character.update_all("space = 0", "space IS NULL")
+    Character.update_all("spirit = 0", "spirit IS NULL")
+    Character.update_all("time = 0", "time IS NULL")
   end
 
   def self.down
