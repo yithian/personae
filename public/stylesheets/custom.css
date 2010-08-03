@@ -16,7 +16,7 @@ body {
 #header {
 	text-align: center;
 	background: #2937A1;
-	color: #eeeeec;
+	color: #EEEEEC;
 	border: 1px solid black;
 	border-bottom: 3px solid #97A2DE;
 }
@@ -37,9 +37,15 @@ body {
 }
 #header a:hover {
 	background: #97A2DE;
+	color: #EEEEEC;
+	border-bottom: 1px solid #97A2DE;
+}
+#header ul.menu li.selected a {
+	background: #97A2DE;
 	color: #990033;
 	border-bottom: 1px solid #97A2DE;
 }
+#header ul.menu li.selected a:hover { color: #EEEEEC; }
 
 #notice {
 	text-align: center;
@@ -48,7 +54,7 @@ body {
 
 #content {
 	color: #333333;
-	background: #eeeeec;
+	background: #EEEEEC;
 	border: 1px solid black;
 	border-top: none;
 	padding: 0.5em 4em;
@@ -124,7 +130,7 @@ body {
 .fieldWithErrors {
   padding: 2px;
   background-color: #990033;
-  color: #eeeeec;
+  color: #EEEEEC;
 }
 
 #errorExplanation {
@@ -143,7 +149,7 @@ body {
   font-size: 12px;
   margin: -7px;
   background-color: #990033;
-  color: #eeeeec;
+  color: #EEEEEC;
 }
 
 #errorExplanation p {
