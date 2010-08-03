@@ -145,18 +145,6 @@
 					<td>Skill Specialties:</td>
 					<td colspan=5><%= simple_format(@character.skill_specialties) %></td>
 				</tr>
-				<tr>
-					<td>Speed:</td>
-					<td><%=h @character.speed %></td>
-				</tr>
-				<tr>
-					<td>Initiative:</td>
-					<td><%=h @character.initiative %></td>
-				</tr>
-				<tr>
-					<td>Defense:</td>
-					<td><%=h @character.defense %></td>
-				</tr>
 			</table>
 			<span style="display:none" id="read_skills"><%=h @character.read_skills %></span>
 		</div>
@@ -174,7 +162,19 @@
 				<tr>
 					<td>Willpower:</td>
 					<td id="willpower"><%=h @character.willpower %></td>
-					<td rowspan="6"><%= simple_format(@character.derangements) %></td>
+					<td rowspan="9"><%= simple_format(@character.derangements) %></td>
+				</tr>
+				<tr>
+					<td>Initiative:</td>
+					<td><%=h @character.initiative %></td>
+				</tr>
+				<tr>
+					<td>Speed:</td>
+					<td><%=h @character.speed %></td>
+				</tr>
+				<tr>
+					<td>Defense:</td>
+					<td><%=h @character.defense %></td>
 				</tr>
 				<tr>
 					<td>Armor:</td>

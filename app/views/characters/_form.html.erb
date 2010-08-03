@@ -167,18 +167,6 @@
    			<td><%= f.label :skill_specialties %></td>
 			<td colspan="5"><%= f.text_area :skill_specialties %></td>
 		</tr>
-		<tr>
-			<td><%= f.label :speed %></td>
-			<td><%= f.text_field :speed, :class => "number" %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :initiative %></td>
-			<td><%= f.text_field :initiative, :class => "number" %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :defense %></td>
-			<td><%= f.text_field :defense, :class => "number" %></td>
-		</tr>
 	</table>
 
 <%= f.check_box :read_skills %> <%= f.label :read_skills %>
@@ -194,7 +182,19 @@
 		<tr>
 			<td><%= f.label :willpower %></td>
 			<td><%= f.text_field :willpower %></td>
-			<td rowspan="6"><%= f.text_area :derangements %></td>
+			<td rowspan="9"><%= f.text_area :derangements %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :initiative %></td>
+			<td><%= f.text_field :initiative, :class => "number" %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :speed %></td>
+			<td><%= f.text_field :speed, :class => "number" %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :defense %></td>
+			<td><%= f.text_field :defense, :class => "number" %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :armor %></td>

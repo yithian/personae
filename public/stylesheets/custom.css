@@ -121,6 +121,8 @@ body {
 	height: 9em;
 }
 
+#content #character_derangements { height: 15em; }
+
 #content #character_common_spells { height: 19em; }
 
 #content #character_covenant_disciplines { height: 17em; }
