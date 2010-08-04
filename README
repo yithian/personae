@@ -1,184 +1,128 @@
-== Welcome to Rails
+== License
+Personae is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-Rails is a web-application framework that includes everything needed to create 
-database-backed web applications according to the Model-View-Control pattern. 
+Personae is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-This pattern splits the view (also called the presentation) into "dumb" templates
-that are primarily responsible for inserting pre-built data in between HTML tags.
-The model contains the "smart" domain objects (such as Account, Product, Person,
-Post) that holds all the business logic and knows how to persist themselves to
-a database. The controller handles the incoming requests (such as Save New Account,
-Update Product, Show Post) by manipulating the model and directing data to the view.
-
-In Rails, the model is handled by what's called an object-relational mapping
-layer entitled Active Record. This layer allows you to present the data from
-database rows as objects and embellish these data objects with business logic
-methods. You can read more about Active Record in
-link:files/vendor/rails/activerecord/README.html.
-
-The controller and view are handled by the Action Pack, which handles both
-layers by its two parts: Action View and Action Controller. These two layers
-are bundled in a single package due to their heavy interdependence. This is
-unlike the relationship between the Active Record and Action Pack that is much
-more separate. Each of these packages can be used independently outside of
-Rails.  You can read more about Action Pack in
-link:files/vendor/rails/actionpack/README.html.
+You should have received a copy of the GNU General Public License
+along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
 
-== Getting Started
+== Welcome
 
-1. At the command prompt, start a new Rails application using the <tt>rails</tt> command
-   and your application name. Ex: rails myapp
-2. Change directory into myapp and start the web server: <tt>script/server</tt> (run with --help for options)
-3. Go to http://localhost:3000/ and get "Welcome aboard: You're riding the Rails!"
-4. Follow the guidelines to start developing your application
-
-
-== Web Servers
-
-By default, Rails will try to use Mongrel if it's are installed when started with script/server, otherwise Rails will use WEBrick, the webserver that ships with Ruby. But you can also use Rails
-with a variety of other web servers.
-
-Mongrel is a Ruby-based webserver with a C component (which requires compilation) that is
-suitable for development and deployment of Rails applications. If you have Ruby Gems installed,
-getting up and running with mongrel is as easy as: <tt>gem install mongrel</tt>.
-More info at: http://mongrel.rubyforge.org
-
-Say other Ruby web servers like Thin and Ebb or regular web servers like Apache or LiteSpeed or
-Lighttpd or IIS. The Ruby web servers are run through Rack and the latter can either be setup to use
-FCGI or proxy to a pack of Mongrels/Thin/Ebb servers.
-
-== Apache .htaccess example for FCGI/CGI
-
-# General Apache options
-AddHandler fastcgi-script .fcgi
-AddHandler cgi-script .cgi
-Options +FollowSymLinks +ExecCGI
-
-# If you don't want Rails to look in certain directories,
-# use the following rewrite rules so that Apache won't rewrite certain requests
-# 
-# Example:
-#   RewriteCond %{REQUEST_URI} ^/notrails.*
-#   RewriteRule .* - [L]
-
-# Redirect all requests not available on the filesystem to Rails
-# By default the cgi dispatcher is used which is very slow
-# 
-# For better performance replace the dispatcher with the fastcgi one
-#
-# Example:
-#   RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
-RewriteEngine On
-
-# If your Rails application is accessed via an Alias directive,
-# then you MUST also set the RewriteBase in this htaccess file.
-#
-# Example:
-#   Alias /myrailsapp /path/to/myrailsapp/public
-#   RewriteBase /myrailsapp
-
-RewriteRule ^$ index.html [QSA]
-RewriteRule ^([^.]+)$ $1.html [QSA]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ dispatch.cgi [QSA,L]
-
-# In case Rails experiences terminal errors
-# Instead of displaying this message you can supply a file here which will be rendered instead
-# 
-# Example:
-#   ErrorDocument 500 /500.html
-
-ErrorDocument 500 "<h2>Application error</h2>Rails application failed to start properly"
+Persona is a Ruby on Rails web application designed to hold character sheets
+for the New World of Darkness role playing games by White Wolf.  This program is
+designed to contain an entire chronicle's worth of characters and really shines when
+used for non-player-character sheets as well as the players' characters.
 
 
-== Debugging Rails
+== Terms
 
-Sometimes your application goes wrong.  Fortunately there are a lot of tools that
-will help you debug it and get it back on the rails.
+Since this software has been designed to work with all the game lines in the New
+World of Darkness, some generic terminology has been used to describe similar elements
+across game lines.
 
-First area to check is the application log files.  Have "tail -f" commands running
-on the server.log and development.log. Rails will automatically display debugging
-and runtime information to these files. Debugging info will also be shown in the
-browser on requests from 127.0.0.1.
-
-You can also log your own messages directly into the log file from your code using
-the Ruby logger class from inside your controllers. Example:
-
-  class WeblogController < ActionController::Base
-    def destroy
-      @weblog = Weblog.find(params[:id])
-      @weblog.destroy
-      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
-    end
-  end
-
-The result will be a message in your log file along the lines of:
-
-  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1
-
-More information on how to use the logger is at http://www.ruby-doc.org/core/
-
-Also, Ruby documentation can be found at http://www.ruby-lang.org/ including:
-
-* The Learning Ruby (Pickaxe) Book: http://www.ruby-doc.org/docs/ProgrammingRuby/
-* Learn to Program: http://pine.fm/LearnToProgram/  (a beginners guide)
-
-These two online (and free) books will bring you up to speed on the Ruby language
-and also on programming in general.
+Splat => Mage, Vampire, Werewolf, etc
+Nature => Moros (Mage), Gangrel (Vampire), Cahalith (Werewolf), etc
+Clique => Cabal (Mage), Cotorie (Vampire), Pack (Werewolf), etc
+Ideology => Silver Ladder (Mage), Lancae Sanctum (Vampire), Storm Lords (Werewolf), etc
 
 
-== Debugger
+== Setup
 
-Debugger support is available through the debugger command when you start your Mongrel or
-Webrick server with --debugger. This means that you can break out of execution at any point
-in the code, investigate and change the model, AND then resume execution! 
-You need to install ruby-debug to run the server in debugging mode. With gems, use 'gem install ruby-debug'
-Example:
+Personae uses a single administrator-style account name Storyteller.  This account can
+see all the Characters, Cliques and Ideologies in your game, regardless of their display
+settings.  Be careful!  The default password for this account is worldofdarkness -- please
+change this once your database is set up!
 
-  class WeblogController < ActionController::Base
-    def index
-      @posts = Post.find(:all)
-      debugger
-    end
-  end
+To run Personae, you must have the following software installed: Ruby, Ruby Gems,
+Ruby on Rails, sqlite3 and ruby-sqlite3.  It is highly suggested to use Apache httpd and
+mod_rails as well.
 
-So the controller will accept the action, run the first line, then present you
-with a IRB prompt in the server window. Here you can do things like:
+If you don't have this software installed, you can download it from http://ruby-lang.org
+http://rubygems.org and http://sqlite.org .  Once you have Ruby, Ruby Gems and Sqlite3
+installed, use Ruby Gems to install Ruby on Rails:
+*nix:  `gem install rails`
+Windows:  Start -> Programs -> Ruby -> Ruby Gems -> RubyGems Package Manager.
+          `gem install rails`
 
-  >> @posts.inspect
-  => "[#<Post:0x14a6be8 @attributes={\"title\"=>nil, \"body\"=>nil, \"id\"=>\"1\"}>,
-       #<Post:0x14a6620 @attributes={\"title\"=>\"Rails you know!\", \"body\"=>\"Only ten..\", \"id\"=>\"2\"}>]"
-  >> @posts.first.title = "hello from a debugger"
-  => "hello from a debugger"
+Once you have Personae downloaded and placed where you want it, open a command prompt
+(Terminal on Mac, xterm on Linux, cmd on Windows).  Run the following to configure
+your database:
+`cd <personae location>; RAILS_ENV=production rake db:setup`
 
-...and even better is that you can examine how your runtime objects actually work:
-
-  >> f = @posts.first
-  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
-  >> f.
-  Display all 152 possibilities? (y or n)
-
-Finally, when you're ready to resume execution, you enter "cont"
+If you prefer, you can use the built-in web server with Ruby on Rails.  This is not
+recommended, though.  A better solution is to download Apache httpd and mod_rails
+from http://httpd.apache.org and http://mod_rails.com on a POSIX-compliant operating
+system (that is, just about anything but Windows).  On a Windows environment, Apache
+httpd and mongrel is your best bet.
+Windows:  Start -> Programs -> Ruby -> Ruby Gems -> RubyGems Package Manager.
+          `gem install mongrel`
 
 
-== Console
+== POSIX (Linux, Mac, Solaris, etc) Apache setup
 
-You can interact with the domain model by starting the console through <tt>script/console</tt>.
-Here you'll have all parts of the application configured, just like it is when the
-application is running. You can inspect domain models, change values, and save to the
-database. Starting the script without arguments will launch it in the development environment.
-Passing an argument will specify a different environment, like <tt>script/console production</tt>.
+If you're using Mac, httpd is already installed for you.  Otherwise, use your
+distribution's package manager to install httpd.
 
-To reload your controllers and models after launching the console run <tt>reload!</tt>
+Open a terminal and install mod_rails:
+`gem install passenger`
 
-== dbconsole
+Run the mod_rails installer:
+`passenger-install-apache2-module`
 
-You can go to the command line of your database directly through <tt>script/dbconsole</tt>.
-You would be connected to the database with the credentials defined in database.yml.
-Starting the script without arguments will connect you to the development database. Passing an
-argument will connect you to a different database, like <tt>script/dbconsole production</tt>.
-Currently works for mysql, postgresql and sqlite.
+The mod_rails installer should provide you with several lines to copy/paste into your
+Apache httpd.conf file.  Do so.
+
+Now, when you start Apache httpd, it will automatically begin serving up Personae.
+
+
+== Windows Apache setup
+
+As above, download Apache httpd from http://httpd.apache.org and run the installer.
+Use the RubyGem package manager to install mongrel:
+`gem install mongrel`
+
+With mongrel installed, add the following lines to Apache's httpd.conf file:
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+<VirtualHost localhost:80>
+    ServerName www.myapp.comm
+    DocumentRoot "C:/web/myapp/public"
+    ProxyPass / http://www.myapp.com:3000/
+    ProxyPassReverse / http://www.myapp.com:3000/
+    ProxyPreserveHost On
+</VirtualHost>
+
+Use the Apache tools to start httpd.
+
+Open a command prompt (Start -> Run -> cmd) and type:
+`cd <personae install path>; mongrel_rails start -d`
+
+
+== Accessing your site
+
+Without further modification to httpd.conf, Personae will be running on port 80 of
+the computer it is installed on.  You will need to allow access through whatever
+firewall you might be running to this port and will likely need to enable port
+forwarding on your router.  http://portforward.com can help you with this.
+
+It is unlikely that your computer will have a fully-qualified domain name
+(eg. google.com, white-wolf.com, etc).  You can either register a domain name or
+use a service such as no-ip (http://no-ip.org) to give you one.
+
+
+== A word of caution
+
+Runnig a web server presents a potential security vulnerability, which can be
+mitigated by frequently updating Apache and Ruby on Rails.  If you're not OK with
+that, then your best bet is to not use Personae.
+
 
 == Description of Contents
 
