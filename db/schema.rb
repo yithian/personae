@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100803012923) do
+ActiveRecord::Schema.define(:version => 20100805142629) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20100803012923) do
     t.integer  "obfuscate",            :default => 0
     t.integer  "vigor",                :default => 0
     t.text     "covenant_disciplines"
+    t.integer  "size",                 :default => 5,     :null => false
   end
 
   create_table "cliques", :force => true do |t|

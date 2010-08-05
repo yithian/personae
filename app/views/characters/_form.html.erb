@@ -1,11 +1,10 @@
 <% form_for(@character) do |f| %>
   <%= f.error_messages %>
 
-<% if params[:action] == 'new' %>
-	<% @character.user_id = session[:user_id] %>
-	<input name="character[user_id]" type="hidden" value=<%= session[:user_id] %> >
-<% end %>
-
+	<% if params[:action] == 'new' %>
+		<% @character.user_id = session[:user_id] %>
+		<input name="character[user_id]" type="hidden" value=<%= session[:user_id] %> >
+	<% end %>
 
 	<table class="four_cells">
 		<tr>
@@ -182,7 +181,11 @@
 		<tr>
 			<td><%= f.label :willpower %></td>
 			<td><%= f.text_field :willpower %></td>
-			<td rowspan="9"><%= f.text_area :derangements %></td>
+			<td rowspan="10"><%= f.text_area :derangements %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :size %></td>
+			<td><%= f.text_field :size, :class => "number" %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :initiative %></td>

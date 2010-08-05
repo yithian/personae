@@ -5,8 +5,9 @@ page << "if ($('woof_form_hishu').checked) {"
 	page.replace_html "stamina", @character.stamina
 	page.replace_html "manipulation", @character.manipulation
 	page.replace_html "health", @character.health
-	page.replace_html "speed", @character.speed
+	page.replace_html "size", @character.size
 	page.replace_html "initiative", @character.initiative
+	page.replace_html "speed", @character.speed
 	page.replace_html "armor", @character.armor
 page << "} else if ($('woof_form_dalu').checked) {"
 	page.replace_html "strength", "#{@character.strength + 1} (#{@character.strength})"
@@ -14,8 +15,9 @@ page << "} else if ($('woof_form_dalu').checked) {"
 	page.replace_html "stamina", "#{@character.stamina + 1} (#{@character.stamina})"
 	page.replace_html "manipulation", "#{@character.manipulation - 1} (#{@character.manipulation})"
 	page.replace_html "health", "#{@character.health} (+2)"
-	page.replace_html "speed", "#{@character.speed + 1} (#{@character.speed})"
+	page.replace_html "size", "#{@character.size + 1} (#{@character.size})"
 	page.replace_html "initiative", @character.initiative
+	page.replace_html "speed", "#{@character.speed + 1} (#{@character.speed})"
 	page.replace_html "armor", @character.armor
 page << "} else if ($('woof_form_gauru').checked) {"
 	page.replace_html "strength", "#{@character.strength + 3} (#{@character.strength})"
@@ -23,8 +25,9 @@ page << "} else if ($('woof_form_gauru').checked) {"
 	page.replace_html "stamina", "#{@character.stamina + 2} (#{@character.stamina})"
 	page.replace_html "manipulation", @character.manipulation
 	page.replace_html "health", "#{@character.health} (+4)"
-	page.replace_html "speed", "#{@character.speed + 4} (#{@character.speed})"
+	page.replace_html "size", "#{@character.size + 2} (#{@character.size})"
 	page.replace_html "initiative", "#{@character.initiative + 1} (#{@character.initiative})"
+	page.replace_html "speed", "#{@character.speed + 4} (#{@character.speed})"
 	page.replace_html "armor", "1/1 (#{@character.armor})"
 page << "} else if ($('woof_form_urshul').checked) {"
 	page.replace_html "strength", "#{@character.strength + 2} (#{@character.strength})"
@@ -32,8 +35,9 @@ page << "} else if ($('woof_form_urshul').checked) {"
 	page.replace_html "stamina", "#{@character.stamina + 2} (#{@character.stamina})"
 	page.replace_html "manipulation", "#{@character.manipulation - 3} (#{@character.manipulation})"
 	page.replace_html "health", "#{@character.health} (+3)"
-	page.replace_html "speed", "#{@character.speed + 7} (#{@character.speed})"
+	page.replace_html "size", "#{@character.size + 1} (#{@character.size})"
 	page.replace_html "initiative", "#{@character.initiative + 2} (#{@character.initiative})"
+	page.replace_html "speed", "#{@character.speed + 7} (#{@character.speed})"
 	page.replace_html "armor", @character.armor
 page << "} else if ($('woof_form_urhan').checked) {"
 	page.replace_html "strength", @character.strength
@@ -41,7 +45,8 @@ page << "} else if ($('woof_form_urhan').checked) {"
 	page.replace_html "stamina", "#{@character.stamina + 1} (#{@character.stamina})"
 	page.replace_html "manipulation", "#{@character.manipulation - 1} (#{@character.manipulation})"
 	page.replace_html "health", @character.health
-	page.replace_html "speed", "#{@character.speed + 5} (#{@character.speed})"
+	page.replace_html "size", "#{[@character.size - 1, 1].max} (#{@character.size})"
 	page.replace_html "initiative", "#{@character.initiative + 2} (#{@character.initiative})"
+	page.replace_html "speed", "#{@character.speed + 5} (#{@character.speed})"
 	page.replace_html "armor", @character.armor
 page << "}"

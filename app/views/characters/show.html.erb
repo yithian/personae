@@ -162,7 +162,11 @@
 				<tr>
 					<td>Willpower:</td>
 					<td id="willpower"><%=h @character.willpower %></td>
-					<td rowspan="9"><%= simple_format(@character.derangements) %></td>
+					<td rowspan="10"><%= simple_format(@character.derangements) %></td>
+				</tr>
+				<tr>
+					<td>Size:</td>
+					<td id="size"><%=h @character.size %></td>
 				</tr>
 				<tr>
 					<td>Initiative:</td>
@@ -282,13 +286,6 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td>Size: +1</td>
-							<td>Size: +2</td>
-							<td>Size: +1</td>
-							<td>Size: -1</td>
-						</tr>
-						<tr>
-							<td></td>
 							<td>Perception: +2</td>
 							<td>Perception: +3</td>
 							<td>Perception: +3</td>
@@ -297,9 +294,16 @@
 						<tr>
 							<td></td>
 							<td></td>
-							<td>+2L bite, +1L claws</td>
 							<td>+2L bite</td>
 							<td>+2L bite</td>
+							<td>+2L bite</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td>+1L claws</td>
+							<td></td>
+							<td></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -307,6 +311,7 @@
 							<td>Rage invoked</td>
 							<td></td>
 							<td></td>
+						</tr>
 					</table>
 				<% end %>
 				<h3>Renown</h3>

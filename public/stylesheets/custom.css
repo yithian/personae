@@ -115,7 +115,6 @@ body {
 
 #content input[type="text"], input[type="password"] { width: 9em; }
 
-
 #content input.number { width: 2em; }
 
 #content textarea {
@@ -123,7 +122,7 @@ body {
 	height: 9em;
 }
 
-#content #character_derangements { height: 15em; }
+#content #character_derangements { height: 20em; }
 
 #content #character_common_spells { height: 19em; }
 
