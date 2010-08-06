@@ -1,6 +1,7 @@
 class CharactersController < ApplicationController
   before_filter :find_character, :only => [:new, :show, :change_form, :edit, :update, :destroy]
   before_filter :permission, :only => [:edit, :update, :destroy]
+  before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
   layout "cliques"
   
@@ -34,8 +35,7 @@ class CharactersController < ApplicationController
   # GET /characters/new
   # GET /characters/new.xml
   def new
-    @character.clique_id = params['clique_id'] if params['clique_id']
-    @character.ideology_id = params['ideology_id'] if params['ideology_id']
+   
 
     respond_to do |format|
       format.html # new.html.erb
@@ -112,8 +112,16 @@ class CharactersController < ApplicationController
     end
   end
   
+  def set_params
+    @character.clique_id = params['clique_id'] if params['clique_id']
+
+    if params['ideology_id']
+      @character.splat_id = Ideology.find(params['ideology_id']).splat_id
+      @character.ideology_id = params['ideology_id']
+    end
+  end
+  
   def find_lists
-    logger.debug "running find_lists"
     @clique_list = Clique.all.collect do |c|
     	next unless @template.known_clique?(c)
     	[c.name, c.id]
