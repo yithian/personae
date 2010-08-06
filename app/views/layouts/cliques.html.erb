@@ -7,9 +7,9 @@
 	<title>
 		City of Darkness
 		<%= case params[:controller]
-			when "characters" then " : " + @character.name if @character.name
-			when "cliques" then " : " + @clique.name if @clique.name
-			when "ideologies" then " : " + @ideology.name if @ideology.name
+			when "characters" then " : " + @character.name if @character and @character.name
+			when "cliques" then " : " + @clique.name if @clique and @clique.name
+			when "ideologies" then " : " + @ideology.name if @clique and @ideology.name
 		end %>
 	</title>
 
