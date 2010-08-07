@@ -1,6 +1,7 @@
 class IdeologiesController < ApplicationController
   before_filter :find_ideology, :only => [:show, :edit, :update, :destroy]
   before_filter :permission, :only => [:create, :edit, :update, :destroy]
+  before_filter :show_permission, :only => [:show]
   layout "cliques"
   
   # GET /ideologies
@@ -95,6 +96,18 @@ class IdeologiesController < ApplicationController
     unless session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => "index"
+    end
+  end
+  
+  def show_permission
+    known_ideology = false
+    @ideology.characters.each do |member|
+      known_ideology = true if member.read_ideology or session[:user_id] == User.find_by_name('Storyteller').id
+    end
+    
+    unless known_ideology
+      flash[:notice] = "You don't have permission to do that"
+      redirect_to :action => :index
     end
   end
 end
