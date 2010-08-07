@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to character_path(@character)
     else
-      render :action => "new"
+      render :action => :new
     end
   end
 
@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     if @comment.update_attributes(params[:comment])
       redirect_to character_path(@character)
     else
-      render :action => "edit"
+      render :action => :edit
     end
   end
 

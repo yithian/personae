@@ -70,7 +70,7 @@ class CharactersController < ApplicationController
         format.html { redirect_to(@character) }
         format.xml  { render :xml => @character, :status => :created, :location => @character }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => :new }
         format.xml  { render :xml => @character.errors, :status => :unprocessable_entity }
       end
     end
@@ -85,7 +85,7 @@ class CharactersController < ApplicationController
         format.html { redirect_to(@character) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => :edit }
         format.xml  { render :xml => @character.errors, :status => :unprocessable_entity }
       end
     end
@@ -149,14 +149,14 @@ class CharactersController < ApplicationController
   def edit_permission
     unless @character.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => "index"
+      redirect_to :action => :index
     end
   end
   
   def show_permission
     unless session[:user_id] == User.find_by_name('Storyteller').id or @character.user_id == session[:user_id] or @character.read_name
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => "index"
+      redirect_to :action => :index
     end
   end
 end

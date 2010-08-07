@@ -1,7 +1,7 @@
 <% form_for(@character) do |f| %>
   <%= f.error_messages %>
 
-	<% if params[:action] == 'new' %>
+	<% if params[:action] == :new %>
 		<% @character.user_id = session[:user_id] %>
 		<input name="character[user_id]" type="hidden" value=<%= session[:user_id] %> >
 	<% end %>
@@ -16,7 +16,7 @@
 			<td><%= f.select :virtue, Character::VIRTUES %></td>
 			<td><b><%= f.label :splat_id, "Template" %></b></td>
 			<td>
-				<%= select_tag :splat_id, @splat_list.join, { :onchange => remote_function(:url => {:action => "update_splat"}) } %>
+				<%= select_tag :splat_id, @splat_list.join, { :onchange => remote_function(:url => {:action => :update_splat}) } %>
 				<input name="character[splat_id]" type="hidden" value="<%= @character.splat_id %>" id="character_splat_id" />
 			</td>
 		</tr>

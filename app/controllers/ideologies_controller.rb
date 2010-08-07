@@ -50,7 +50,7 @@ class IdeologiesController < ApplicationController
         format.html { redirect_to(@ideology) }
         format.xml  { render :xml => @ideology, :status => :created, :location => @ideology }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => :new }
         format.xml  { render :xml => @ideology.errors, :status => :unprocessable_entity }
       end
     end
@@ -65,7 +65,7 @@ class IdeologiesController < ApplicationController
         format.html { redirect_to(@ideology) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => :edit }
         format.xml  { render :xml => @ideology.errors, :status => :unprocessable_entity }
       end
     end
@@ -95,7 +95,7 @@ class IdeologiesController < ApplicationController
   def permission
     unless session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => "index"
+      redirect_to :action => :index
     end
   end
   
