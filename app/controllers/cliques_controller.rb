@@ -1,6 +1,7 @@
 class CliquesController < ApplicationController
   before_filter :find_clique, :only => [:show, :edit, :update, :destroy]
-  before_filter :permission, :only => [:destroy]
+  before_filter :show_permission, :only => [:show]
+  before_filter :destroy_permission, :only => [:destroy]
   # GET /cliques
   # GET /cliques.xml
   def index
@@ -93,7 +94,19 @@ class CliquesController < ApplicationController
     @clique = Clique.find(params[:id])
   end
   
-  def permission
+  def show_permission
+    known_clique = false
+    @clique.characters.each do |member|
+      known_clique = true if member.read_clique or session[:user_id] == User.find_by_name('Storyteller').id or @clique.user_id == session[:user_id] or @clique.write
+    end
+    
+    unless known_clique
+      flash[:notice] = "You don't have permission to do that"
+      redirect_to :action => "index"
+    end
+  end
+  
+  def destroy_permission
     unless @clique.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => "index"

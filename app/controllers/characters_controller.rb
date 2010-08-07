@@ -1,6 +1,7 @@
 class CharactersController < ApplicationController
   before_filter :find_character, :only => [:new, :show, :change_form, :edit, :update, :destroy]
-  before_filter :permission, :only => [:edit, :update, :destroy]
+  before_filter :show_permission, :only => [:show]
+  before_filter :edit_permission, :only => [:edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
   layout "cliques"
@@ -35,8 +36,6 @@ class CharactersController < ApplicationController
   # GET /characters/new
   # GET /characters/new.xml
   def new
-   
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @character }
@@ -147,8 +146,15 @@ class CharactersController < ApplicationController
     end
   end
   
-  def permission
+  def edit_permission
     unless @character.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
+      flash[:notice] = "You don't have permission to do that"
+      redirect_to :action => "index"
+    end
+  end
+  
+  def show_permission
+    unless session[:user_id] == User.find_by_name('Storyteller').id or @character.user_id == session[:user_id] or @character.read_name
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => "index"
     end
