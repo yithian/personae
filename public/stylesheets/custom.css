@@ -130,6 +130,8 @@ body {
 
 #content #character_gifts { height: 8em; }
 
+#content #character_goblin_contracts { height: 37em; }
+
 .fieldWithErrors {
   padding: 2px;
   background-color: #990033;

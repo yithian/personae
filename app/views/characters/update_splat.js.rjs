@@ -68,6 +68,21 @@ page.assign "promethean_morality_label", s.morality_name
 page.assign "promethean_power_stat_label", s.power_stat_name
 page.assign "promethean_fuel_label", s.fuel_name
 
+# set changeling variables
+s = Splat.find_by_name("Changeling")
+page.assign "changeling_splat_id", s.id
+page.assign "changeling_clique_label", s.clique_name
+page.assign "changeling_read_clique_label", "Read " + s.clique_name
+page.assign "changeling_nature_label", s.nature_name
+page.assign "changeling_nature_list", Nature.find_all_by_splat_id(s.id).collect { |n| "<option value='#{n.id.to_s}'>" + n.name + "</option>" }
+page.assign "changeling_read_nature_label", "Read " + s.nature_name
+page.assign "changeling_ideology_label", s.ideology_name
+page.assign "changeling_ideology_list", Ideology.find_all_by_splat_id(s.id).collect { |i| "<option value='#{i.id.to_s}'>" + i.name + "</option>" }
+page.assign "changeling_read_ideology_label", "Read " + s.ideology_name
+page.assign "changeling_morality_label", s.morality_name
+page.assign "changeling_power_stat_label", s.power_stat_name
+page.assign "changeling_fuel_label", s.fuel_name
+
 # update the hidden field in the form to save the splat_id
 page << "$('character_splat_id').value = splat_id"
 
@@ -92,6 +107,7 @@ page << "switch(splat_id) {
 	page.visual_effect :blind_up, "woof_powers"
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
+	page.visual_effect :blind_up, "changeling_powers"
 page << "break;
 	case mage_splat_id:
 	Element.update('clique_label', mage_clique_label)
@@ -120,6 +136,7 @@ page << "break;
 	page.visual_effect :blind_up, "woof_powers"
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
+	page.visual_effect :blind_up, "changeling_powers"
 page << "break;
 	case woof_splat_id:
 	Element.update('clique_label', woof_clique_label)
@@ -148,6 +165,7 @@ page << "break;
 	page.visual_effect :blind_down, "woof_powers"
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
+	page.visual_effect :blind_up, "changeling_powers"
 page << "break;
 	case vampire_splat_id:
 	Element.update('clique_label', vampire_clique_label)
@@ -176,6 +194,7 @@ page << "break;
 	page.visual_effect :blind_up, "woof_powers"
 	page.visual_effect :blind_down, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
+	page.visual_effect :blind_up, "changeling_powers"
 page << "break;
 	case promethean_splat_id:
 	Element.update('clique_label', promethean_clique_label)
@@ -204,6 +223,36 @@ page << "break;
 	page.visual_effect :blind_up, "woof_powers"
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_down, "promethean_powers"
+	page.visual_effect :blind_up, "changeling_powers"
+page << "break;
+	case changeling_splat_id:
+	Element.update('clique_label', changeling_clique_label)
+	Element.update('read_clique_label', changeling_read_clique_label)
+	Element.update('nature_label', changeling_nature_label)
+	Element.update('character_nature_id', changeling_nature_list)
+	Element.update('read_nature_label', changeling_read_nature_label)
+	Element.update('ideology_label', changeling_ideology_label)
+	Element.update('character_ideology_id', changeling_ideology_list)
+	Element.update('read_ideology_label', changeling_read_ideology_label)
+	Element.update('morality_label', changeling_morality_label)
+	Element.update('power_stat_label', changeling_power_stat_label)
+	Element.update('fuel_label', changeling_fuel_label)"
+	page.show "nature_label_cell"
+	page.show "nature_id_cell"
+	page.show "ideology_label_cell"
+	page.show "ideology_id_cell"
+	page.show "read_nature_span"
+	page.show "read_ideology_span"
+	page.show "power_stat_label_cell"
+	page.show "power_stat_cell"
+	page.show "fuel_label_cell"
+	page.show "fuel_cell"
+	page.show "read_powers_span"
+	page.visual_effect :blind_up, "mage_powers"
+	page.visual_effect :blind_up, "woof_powers"
+	page.visual_effect :blind_up, "vampire_powers"
+	page.visual_effect :blind_up, "promethean_powers"
+	page.visual_effect :blind_down, "changeling_powers"
 page << "break;
 	default:
 	alert('Invalid template')

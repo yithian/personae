@@ -367,10 +367,92 @@
 			</tr>
 		</table>
 	</span>
-	<span id="promethean_powers" <%h "style='display: none'" unless is_promethean?(@character) %> >
+
+	<span id="promethean_powers" <%=h "style='display: none'" unless is_promethean?(@character) %> >
 		<h3>Transmutations</h3>
 		<p><%= f.text_area :transmutations %></p>
 	</span>
+
+	<span id="changeling_powers" <%=h "style='display: none'" unless is_changeling?(@character) %> >
+		<h3>Contracts</h3>
+		<table class="three_cells">
+			<tr>
+				<td><%= f.label :dream %></td>
+				<td><%= f.text_field :dream, :class => "number" %></td>
+				<td><%= f.label :goblin_contracts %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :hearth %></td>
+				<td><%= f.text_field :hearth, :class => "number" %></td>
+				<td rowspan="18"><%= f.text_area :goblin_contracts %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :mirror %></td>
+				<td><%= f.text_field :mirror, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :smoke %></td>
+				<td><%= f.text_field :smoke, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :artifice %></td>
+				<td><%= f.text_field :artifice, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :darkness %></td>
+				<td><%= f.text_field :darkness, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :elements %></td>
+				<td><%= f.text_field :elements, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :fang_and_tooth %></td>
+				<td><%= f.text_field :fang_and_tooth, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :stone %></td>
+				<td><%= f.text_field :stone, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :vainglory %></td>
+				<td><%= f.text_field :vainglory, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :fleeting_spring %></td>
+				<td><%= f.text_field :fleeting_spring, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :eternal_spring %></td>
+				<td><%= f.text_field :eternal_spring, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :fleeting_summer %></td>
+				<td><%= f.text_field :fleeting_summer, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :eternal_summer %></td>
+				<td><%= f.text_field :eternal_summer, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :fleeting_autumn %></td>
+				<td><%= f.text_field :fleeting_autumn, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :eternal_autumn %></td>
+				<td><%= f.text_field :eternal_autumn, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :fleeting_winter %></td>
+				<td><%= f.text_field :fleeting_winter, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :eternal_winter %></td>
+				<td><%= f.text_field :eternal_winter, :class => "number" %></td>
+			</tr>
+		</table>
+	</span>
+
 	<span id="read_powers_span" <%=h "style='display: none'" if is_mortal?(@character) %> >
 		<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 	</span>

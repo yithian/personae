@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100813174326) do
+ActiveRecord::Schema.define(:version => 20100813184134) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -114,6 +114,26 @@ ActiveRecord::Schema.define(:version => 20100813174326) do
     t.text     "covenant_disciplines"
     t.integer  "size",                 :default => 5,     :null => false
     t.text     "transmutations"
+    t.integer  "dream",                :default => 0,     :null => false
+    t.integer  "hearth",               :default => 0,     :null => false
+    t.integer  "mirror",               :default => 0,     :null => false
+    t.integer  "smoke",                :default => 0,     :null => false
+    t.integer  "artifice",             :default => 0,     :null => false
+    t.integer  "darkness",             :default => 0,     :null => false
+    t.integer  "elements",             :default => 0,     :null => false
+    t.integer  "fang_and_tooth",       :default => 0,     :null => false
+    t.integer  "stone",                :default => 0,     :null => false
+    t.integer  "vainglory",            :default => 0,     :null => false
+    t.integer  "fleeting_spring",      :default => 0,     :null => false
+    t.integer  "eternal_spring",       :default => 0,     :null => false
+    t.integer  "fleeting_summer",      :default => 0,     :null => false
+    t.integer  "eternal_summer",       :default => 0,     :null => false
+    t.integer  "fleeting_autumn",      :default => 0,     :null => false
+    t.integer  "eternal_autumn",       :default => 0,     :null => false
+    t.integer  "fleeting_winter",      :default => 0,     :null => false
+    t.integer  "eternal_winter",       :default => 0,     :null => false
+    t.text     "goblin_contracts"
+    t.text     "pledges"
   end
 
   create_table "cliques", :force => true do |t|

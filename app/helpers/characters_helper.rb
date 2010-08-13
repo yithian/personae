@@ -78,4 +78,8 @@ module CharactersHelper
   def is_promethean?(char)
     char.splat.name == "Promethean"
   end
+
+  def is_changeling?(char)
+    char.splat.name == "Changeling"
+  end
 end
