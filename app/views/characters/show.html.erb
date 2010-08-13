@@ -385,6 +385,11 @@
 				</tr>
 			</table>
 		<% end %>
+
+		<% if is_promethean?(@character) %>
+			<h3>Transmutations</h3>
+			<%= simple_format(@character.transmutations) %>
+		<% end %>
 		<span style="display:none" id="read_powers"><%=h @character.read_powers %></span>
 	</div>
 <% end %>
