@@ -74,4 +74,8 @@ module CharactersHelper
   def is_vampire?(char)
     char.splat.name == "Vampire"
   end
+
+  def is_promethean?(char)
+    char.splat.name == "Promethean"
+  end
 end
