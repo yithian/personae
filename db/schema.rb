@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100813214434) do
+ActiveRecord::Schema.define(:version => 20100814035419) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -134,6 +134,15 @@ ActiveRecord::Schema.define(:version => 20100813214434) do
     t.integer  "eternal_winter",       :default => 0,     :null => false
     t.text     "goblin_contracts"
     t.text     "pledges"
+    t.integer  "boneyard",             :default => 0,     :null => false
+    t.integer  "caul",                 :default => 0,     :null => false
+    t.integer  "curse",                :default => 0,     :null => false
+    t.integer  "marionette",           :default => 0,     :null => false
+    t.integer  "oracle",               :default => 0,     :null => false
+    t.integer  "rage",                 :default => 0,     :null => false
+    t.integer  "shroud",               :default => 0,     :null => false
+    t.text     "keys"
+    t.text     "ceremonies"
   end
 
   create_table "cliques", :force => true do |t|

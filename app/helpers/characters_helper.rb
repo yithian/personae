@@ -82,4 +82,8 @@ module CharactersHelper
   def is_changeling?(char)
     char.splat.name == "Changeling"
   end
+  
+  def is_geist?(char)
+    char.splat.name == "Geist"
+  end
 end

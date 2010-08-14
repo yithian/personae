@@ -396,86 +396,125 @@
 			<table class="three_cells">
                         	<tr>
 					<td>Dream</td>
-					<td><%= @character.dream %></td>
+					<td><%=h @character.dream %></td>
 					<td>Goblin Contracts</td>
 				</tr>
 				<tr>
 					<td>Hearth</td>
-					<td><%= @character.hearth %></td>
+					<td><%=h @character.hearth %></td>
 					<td rowspan="19"><%=h simple_format(@character.goblin_contracts) %></td>
 				</tr>
 				<tr>
 					<td>Mirror</td>
-					<td><%= @character.mirror %></td>
+					<td><%=h @character.mirror %></td>
 				</tr>
 				<tr>
 					<td>Smoke</td>
-					<td><%= @character.smoke %></td>
+					<td><%=h @character.smoke %></td>
 				</tr>
 				<tr>
 					<td>Artifice</td>
-					<td><%= @character.artifice %></td>
+					<td><%=h @character.artifice %></td>
 				</tr>
 				<tr>
 					<td>Darkness</td>
-					<td><%= @character.darkness %></td>
+					<td><%=h @character.darkness %></td>
 				</tr>
 				<tr>
 					<td>Elements</td>
-					<td><%= @character.elements %></td>
+					<td><%=h @character.elements %></td>
 				</tr>
 				<tr>
 					<td>Fang and Tooth</td>
-					<td><%= @character.fang_and_tooth %></td>
+					<td><%=h @character.fang_and_tooth %></td>
 				</tr>
 				<tr>
 					<td>Stone</td>
-					<td><%= @character.stone %></td>
+					<td><%=h @character.stone %></td>
 				</tr>
 				<tr>
 					<td>Vainglory</td>
-					<td><%= @character.vainglory %></td>
+					<td><%=h @character.vainglory %></td>
 				</tr>
 				<tr>
 					<td>Fleeting Spring</td>
-					<td><%= @character.fleeting_spring %></td>
+					<td><%=h @character.fleeting_spring %></td>
 				</tr>
 				<tr>
 					<td>Eternal Spring</td>
-					<td><%= @character.eternal_spring %></td>
+					<td><%=h @character.eternal_spring %></td>
 				</tr>
 				<tr>
 					<td>Fleeting Summer</td>
-					<td><%= @character.fleeting_summer %></td>
+					<td><%=h @character.fleeting_summer %></td>
 				</tr>
 				<tr>
 					<td>Eternal Summer</td>
-					<td><%= @character.eternal_summer %></td>
+					<td><%=h @character.eternal_summer %></td>
 				</tr>
 				<tr>
 					<td>Eternal Summer</td>
-					<td><%= @character.eternal_summer %></td>
+					<td><%=h @character.eternal_summer %></td>
 				</tr>
 				<tr>
 					<td>Fleeting Autumn</td>
-					<td><%= @character.fleeting_autumn %></td>
+					<td><%=h @character.fleeting_autumn %></td>
 				</tr>
 				<tr>
 					<td>Eternal Autumn</td>
-					<td><%= @character.eternal_autumn %></td>
+					<td><%=h @character.eternal_autumn %></td>
 				</tr>
 				<tr>
 					<td>Fleeting Winter</td>
-					<td><%= @character.fleeting_winter %></td>
+					<td><%=h @character.fleeting_winter %></td>
 				</tr>
 				<tr>
 					<td>Eternal Winter</td>
-					<td><%= @character.eternal_winter %></td>
+					<td><%=h @character.eternal_winter %></td>
 				</tr>
 				<tr>
 				</tr>
 			</table>
 		<% end %>
+		
+		<% if is_geist?(@character) %>
+			<h3>Manifestations</h3>
+			<table class="three_cells">
+				<tr>
+					<td>Boneyard</td>
+					<td><%=h @character.boneyard %></td>
+					<td>Keys</td>
+				</tr>
+				<tr>
+					<td>Caul</td>
+					<td><%=h @character.caul %></td>
+					<td rowspan="7"><%= simple_format(@character.keys) %></td>
+				</tr>
+				<tr>
+					<td>Curse</td>
+					<td><%=h @character.curse %></td>
+				</tr>
+				<tr>
+					<td>Marionette</td>
+					<td><%=h @character.marionette %></td>
+				</tr>
+				<tr>
+					<td>Oracle</td>
+					<td><%=h @character.oracle %></td>
+				</tr>
+				<tr>
+					<td>Rage</td>
+					<td><%=h @character.rage %></td>
+				</tr>
+				<tr>
+					<td>Shroud</td>
+					<td><%=h @character.shroud %></td>
+				</tr>
+				<tr>
+				</tr>
+			</table>
+		<% end %>
+				
 		<span style="display:none" id="read_powers"><%=h @character.read_powers %></span>
 	</div>
 <% end %>

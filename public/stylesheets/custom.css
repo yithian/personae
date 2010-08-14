@@ -132,6 +132,8 @@ body {
 
 #content #character_goblin_contracts { height: 37em; }
 
+#content #character_keys { height: 13em; }
+
 .fieldWithErrors {
   padding: 2px;
   background-color: #990033;

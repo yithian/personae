@@ -453,6 +453,45 @@
 		</table>
 	</span>
 
+	<span id="geist_powers">
+		<h3>Manifestations</h3>
+		<table class="three_cells">
+			<tr>
+				<td><%= f.label :boneyard %></td>
+				<td><%= f.text_field :boneyard, :class => "number" %></td>
+				<td><%= f.label :keys %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :caul %></td>
+				<td><%= f.text_field :caul, :class => "number" %></td>
+				<td rowspan="6"><%= f.text_area :keys %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :curse %></td>
+				<td><%= f.text_field :curse, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :oracle %></td>
+				<td><%= f.text_field :oracle, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :marionette %></td>
+				<td><%= f.text_field :marionette, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :rage %></td>
+				<td><%= f.text_field :rage, :class => "number" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :shroud %></td>
+				<td><%= f.text_field :shroud, :class => "number" %></td>
+			</tr>
+		</table>
+		
+		<h3>Ceremonies</h3>
+		<p><%= f.text_area :ceremonies %></p>
+	</span>
+	
 	<span id="read_powers_span" <%=h "style='display: none'" if is_mortal?(@character) %> >
 		<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 	</span>
