@@ -138,6 +138,7 @@ page << "switch(splat_id) {
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
 	page.visual_effect :blind_up, "changeling_powers"
+	page.visual_effect :blind_up, "geist_powers"
 page << "break;
 	case mage_splat_id:
 	Element.update('clique_label', mage_clique_label)
@@ -167,6 +168,7 @@ page << "break;
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
 	page.visual_effect :blind_up, "changeling_powers"
+	page.visual_effect :blind_up, "geist_powers"
 page << "break;
 	case woof_splat_id:
 	Element.update('clique_label', woof_clique_label)
@@ -196,6 +198,7 @@ page << "break;
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
 	page.visual_effect :blind_up, "changeling_powers"
+	page.visual_effect :blind_up, "geist_powers"
 page << "break;
 	case vampire_splat_id:
 	Element.update('clique_label', vampire_clique_label)
@@ -225,6 +228,7 @@ page << "break;
 	page.visual_effect :blind_down, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
 	page.visual_effect :blind_up, "changeling_powers"
+	page.visual_effect :blind_up, "geist_powers"
 page << "break;
 	case promethean_splat_id:
 	Element.update('clique_label', promethean_clique_label)
@@ -254,6 +258,7 @@ page << "break;
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_down, "promethean_powers"
 	page.visual_effect :blind_up, "changeling_powers"
+	page.visual_effect :blind_up, "geist_powers"
 page << "break;
 	case changeling_splat_id:
 	Element.update('clique_label', changeling_clique_label)
@@ -283,6 +288,7 @@ page << "break;
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
 	page.visual_effect :blind_down, "changeling_powers"
+	page.visual_effect :blind_up, "geist_powers"
 page << "break;
   case hunter_splat_id:
 	Element.update('clique_label', hunter_clique_label)
@@ -312,6 +318,7 @@ page << "break;
 	page.visual_effect :blind_up, "vampire_powers"
 	page.visual_effect :blind_up, "promethean_powers"
 	page.visual_effect :blind_up, "changeling_powers"
+	page.visual_effect :blind_up, "geist_powers"
 page << "break;
     case geist_splat_id:
   	Element.update('clique_label', geist_clique_label)
@@ -341,6 +348,7 @@ page << "break;
   	page.visual_effect :blind_up, "vampire_powers"
   	page.visual_effect :blind_up, "promethean_powers"
   	page.visual_effect :blind_up, "changeling_powers"
+  	page.visual_effect :blind_down, "geist_powers"
   page << "break;
 	default:
 	alert('Invalid template')
