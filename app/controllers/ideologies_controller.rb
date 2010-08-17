@@ -101,8 +101,9 @@ class IdeologiesController < ApplicationController
   
   def show_permission
     known_ideology = false
+    known_ideology = true if session[:user_id] == User.find_by_name('Storyteller').id
     @ideology.characters.each do |member|
-      known_ideology = true if member.read_ideology or session[:user_id] == User.find_by_name('Storyteller').id
+      known_ideology = true if member.read_ideology
     end
     
     unless known_ideology
