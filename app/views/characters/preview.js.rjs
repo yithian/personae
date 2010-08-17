@@ -18,6 +18,9 @@ page << "}
 if ( $('read_background').innerHTML=='false' ) {"
 	page.toggle "background"
 page << "}
+if ( $('read_deeds').innerHTML=='false' ) {"
+	page.toggle "deeds"
+page << "}
 if ( $('read_attributes').innerHTML=='false' ) {"
 	page.toggle "attributes"
 page << "}
