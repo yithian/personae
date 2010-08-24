@@ -495,7 +495,7 @@
 		<p><%= f.text_area :ceremonies %></p>
 	</span>
 	
-	<span id="read_powers_span" <%=h "style='display: none'" if is_mortal?(@character) or is_hunter?(@character) %> >
+	<span id="read_powers_span" <%=h "style='display: none'" if is_mortal?(@character) %> >
 		<%= f.check_box :read_powers %> <%= f.label :read_powers %>
 	</span>
 
