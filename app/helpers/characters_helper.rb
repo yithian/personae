@@ -27,6 +27,10 @@ module CharactersHelper
     session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_background
   end
   
+  def show_deeds?(char)
+    session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_deeds
+  end
+  
   def show_attributes?(char)
     session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id] or char.read_attributes
   end

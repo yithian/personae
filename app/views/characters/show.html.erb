@@ -39,6 +39,14 @@
 	</div>
 <% end %>
 
+<% if show_deeds?(@character) %>
+	<div id="deeds">
+		<h3>Deeds</h3>
+		<%= simple_format(@character.deeds) %>
+		<span style="display:none" id="read_deeds"><%=h @character.read_deeds %></span>
+	</div>
+<% end %>
+
 <% if show_attributes?(@character) %>
 	<div id="attributes">
 		<h3>Attributes</h3>

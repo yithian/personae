@@ -96,8 +96,9 @@ class CliquesController < ApplicationController
   
   def show_permission
     known_clique = false
+    known_clique = true if session[:user_id] == User.find_by_name('Storyteller').id or @clique.user_id == session[:user_id] or @clique.write
     @clique.characters.each do |member|
-      known_clique = true if member.read_clique or session[:user_id] == User.find_by_name('Storyteller').id or @clique.user_id == session[:user_id] or @clique.write
+      known_clique = true if member.read_clique
     end
     
     unless known_clique

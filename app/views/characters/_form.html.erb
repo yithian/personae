@@ -66,6 +66,10 @@
 	<%= f.check_box :read_background %> <%= f.label :read_background %>
 
 
+	<h3>Deeds</h3>
+	<p><%= f.text_area :deeds %></p>
+	<%= f.check_box :read_deeds %> <%= f.label :read_deeds %>
+
 	<h3>Attributes</h3>
 	<table class="six_cells">
 		<tr>
@@ -167,8 +171,7 @@
 			<td colspan="5"><%= f.text_area :skill_specialties %></td>
 		</tr>
 	</table>
-
-<%= f.check_box :read_skills %> <%= f.label :read_skills %>
+	<%= f.check_box :read_skills %> <%= f.label :read_skills %>
 
 
 	<h3>Advantages</h3>
@@ -497,9 +500,9 @@
 	</span>
 
 
-		<h3>Experience</h3>
-		<p><%= f.text_area :experience %></p>
-		<%= f.check_box :read_experience %> <%= f.label :read_experience %>
+	<h3>Experience</h3>
+	<p><%= f.text_area :experience %></p>
+	<%= f.check_box :read_experience %> <%= f.label :read_experience %>
 
 	<div id="navbar">
 		<%= link_to "Cancel", :back, :class => "button" %>
