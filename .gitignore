@@ -1,5 +1,6 @@
 log/*.log
+db/*.sqlite3
 tmp/cache/*
 tmp/pids/*
-tmp/sessions/
-tmp/sockets/
+tmp/sessions/*
+tmp/sockets/*
