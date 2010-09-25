@@ -1,0 +1,53 @@
+// update the hidden field in the form to save the splat_id
+$('character_splat_id').value = '<%= @splat.id.to_s %>';
+
+// update the splat-specific terms
+$('clique_label').update('<%= @splat.clique_name %>');
+$('read_clique_label').update('Read <%= @splat.clique_name %>');
+$('nature_label').update('<%= @splat.nature_name %>');
+$('character_nature_id').update('<%= options_from_collection_for_select(@nature_list, 'id', 'name').gsub(/[\n]/, '').gsub(/[']/, '&#39') %>');
+$('read_nature_label').update('Read <%= @splat.nature_name %>');
+$('ideology_label').update('<%= @splat.ideology_name %>');
+$('character_ideology_id').update('<%= options_from_collection_for_select(@ideology_list, 'id', 'name').gsub(/[\n]/, '').gsub(/[']/, '&#39') %>');
+$('read_ideology_label').update('Read <%= @splat.ideology_name %>');
+$('morality_label').update('<%= @splat.morality_name %>');
+$('power_stat_label').update('<%= @splat.power_stat_name %>');
+$('fuel_label').update('<%= @splat.fuel_name %>');
+
+// show or hide only the appropriate fields
+<% if @splat.name == "Mortal" %>
+  $('nature_label_cell').hide();
+  $('nature_id_cell').hide();
+  $('ideology_label_cell').hide();
+  $('ideology_id_cell').hide();
+  $('read_nature_span').hide();
+  $('read_ideology_span').hide();
+  $('power_stat_label_cell').hide();
+  $('power_stat_cell').hide();
+  $('fuel_label_cell').hide();
+  $('fuel_cell').hide();
+  $('read_powers_span').hide();
+<% else %>
+  $('nature_label_cell').show();
+  $('nature_id_cell').show();
+  $('ideology_label_cell').show();
+  $('ideology_id_cell').show();
+  $('read_nature_span').show();
+  $('read_ideology_span').show();
+  $('power_stat_label_cell').show();
+  $('power_stat_cell').show();
+  $('fuel_label_cell').show();
+  $('fuel_cell').show();
+  $('read_powers_span').show();
+<% end %>
+
+$('mage_powers', 'woof_powers', 'vampire_powers', 'promethean_powers', 'changeling_powers', 'geist_powers').invoke('hide');
+
+<% case @splat.name
+  when "Mage" then %> Effect.BlindDown($('mage_powers'));
+  <% when "Werewolf" then %> Effect.BlindDown($('woof_powers'));
+  <% when "Vampire" then %> Effect.BlindDown($('vampire_powers'));
+  <% when "Promethean" then %> Effect.BlindDown($('promethean_powers'));
+  <% when "Changeling" then %> Effect.BlindDown($('changeling_powers'));
+  <% when "Geist" then %> Effect.BlindDown($('geist_powers'));
+<% end %>

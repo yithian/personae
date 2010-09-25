@@ -1,5 +1,5 @@
 <% if edit_clique?(@clique) %>
-	<%= render :partial => 'form' %>
+  <%= render :partial => 'form' %>
 <% else %>
-	<% flash[:notice] = "You can't edit this clique" %>
+  <% flash[:notice] = "You can't edit this clique" %>
 <% end %>

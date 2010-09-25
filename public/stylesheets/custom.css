@@ -65,6 +65,12 @@ body {
 #content a:visited { color: #97A2DE; }
 #content a:hover { background: #990033; }
 
+#content a.selected {
+	color: #990033;
+	text-decoration: none;
+}
+#content a.selected:hover { background: #EEEEEC; }
+
 #content a.button, input[type="submit"] {
 	border: 2px outset #97A2DE;
 	background: none;
@@ -82,7 +88,7 @@ body {
 #content a.button:active, input[type="submit"]:active { border-style: inset; }
 
 #content h3 {
-	color: black;
+	color: #EEEEEC;
 	background: #990033;
 	background: url(../images/h3_gradient.svg); background: -webkit-gradient(linear, left top, right top, from(#990033), to(#eeeecc)); background: -moz-linear-gradient(left, #990033, #eeeeec);
 	-webkit-border-top-right-radius: 15px; -moz-border-radius-topright: 15px;

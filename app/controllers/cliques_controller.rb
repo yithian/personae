@@ -1,25 +1,22 @@
 class CliquesController < ApplicationController
+  respond_to :html, :xml
   before_filter :find_clique, :only => [:show, :edit, :update, :destroy]
   before_filter :show_permission, :only => [:show]
   before_filter :destroy_permission, :only => [:destroy]
   # GET /cliques
   # GET /cliques.xml
   def index
-    @cliques = Clique.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @cliques }
+    @cliques = Clique.all.collect do |c|
+      c if known_clique?(c)
     end
+
+    respond_with @cliques
   end
 
   # GET /cliques/1
   # GET /cliques/1.xml
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @clique }
-    end
+    respond_with @clique
   end
 
   # GET /cliques/new
@@ -27,10 +24,7 @@ class CliquesController < ApplicationController
   def new
     @clique = Clique.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @clique }
-    end
+    respond_with @clique
   end
 
   # GET /cliques/1/edit
@@ -42,31 +36,17 @@ class CliquesController < ApplicationController
   def create
     @clique = Clique.new(params[:clique])
 
-    respond_to do |format|
-      if @clique.save
-        flash[:notice] = 'Clique was successfully created.'
-        format.html { redirect_to(@clique) }
-        format.xml  { render :xml => @clique, :status => :created, :location => @clique }
-      else
-        format.html { render :action => :new }
-        format.xml  { render :xml => @clique.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Clique was successfully created.' if @clique.save
+
+    respond_with @clique
   end
 
   # PUT /cliques/1
   # PUT /cliques/1.xml
   def update
-    respond_to do |format|
-      if @clique.update_attributes(params[:clique])
-        flash[:notice] = 'Clique was successfully updated.'
-        format.html { redirect_to(@clique) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => :edit }
-        format.xml  { render :xml => @clique.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Clique was successfully updated.' if @clique.update_attributes(params[:clique])
+
+    respond_with @clique
   end
 
   # DELETE /cliques/1
@@ -84,7 +64,7 @@ class CliquesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to(cliques_url) }
+      format.html { redirect_to(cliques_url, :notice => 'Clique was successfully deleted') }
       format.xml  { head :ok }
     end
   end

@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to character_path(@character) }
+      format.html { redirect_to character_path(@character, :notice => 'Comment successfully deleted.') }
       format.xml  { head :ok }
     end
   end

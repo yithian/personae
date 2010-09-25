@@ -1,10 +1,10 @@
 <% if edit_comment?(@comment) %>
-	<h1>Editing comment for <%=h @character.name %></h1>
+  <h1>Editing comment for <%= @character.name %></h1>
 
-	<%= render :partial => 'form' %>
+  <%= render :partial => 'form' %>
 
-	<%= link_to 'Show', character_comment_path(@character, @comment) %>
-	<%= link_to 'Back', character_comments_path(@character) %>
+  <%= link_to 'Show', character_comment_path(@character, @comment) %>
+  <%= link_to 'Back', character_comments_path(@character) %>
 <% else %>
-	<% flash[:notice] = "You can't edit this comment" %>
+  <% flash[:notice] = "You can't edit this comment" %>
 <% end %>

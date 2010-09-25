@@ -1,6 +1,4 @@
-log/*.log
+.bundle
 db/*.sqlite3
-tmp/cache/*
-tmp/pids/*
-tmp/sessions/*
-tmp/sockets/*
+log/*.log
+tmp/**/*

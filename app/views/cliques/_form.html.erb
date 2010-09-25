@@ -1,23 +1,23 @@
-<% form_for(@clique) do |f| %>
+<%= form_for(@clique) do |f| %>
   <%= f.error_messages %>
   
   <% if controller.action_name == 'new' %>
-	<% @clique.user_id = session[:user_id] %>
-	<input name="clique[user_id]" type="hidden" value=<%= session[:user_id] %> >
+    <% @clique.user_id = session[:user_id] %>
+    <input name="clique[user_id]" type="hidden" value=<%= session[:user_id] %> >
   <% end %>
 
-    <h3>Name</h3>
-    <p><%= f.text_field :name %></p>
+  <h3>Name</h3>
+  <p><%= f.text_field :name %></p>
 
-    <h3>Territory</h3>
-    <p><%= f.text_field :territory %></p>
+  <h3>Territory</h3>
+  <p><%= f.text_field :territory %></p>
 
-    <h3>Description</h3>
-    <p><%= f.text_area :description %></p>
-    <%= f.check_box :write %> <%= f.label :write %>
+  <h3>Description</h3>
+  <p><%= f.text_area :description %></p>
+  <%= f.check_box :write %> <%= f.label :write %>
 
-	<div id="navbar">
-		<%= link_to "Cancel", :back, :class => "button" %>
-		<%= f.submit 'Save' %>
-	</div>
+  <div id="navbar">
+    <%= link_to "Cancel", :back, :class => "button" %>
+    <%= f.submit 'Save' %>
+  </div>
 <% end %>

@@ -1,15 +1,15 @@
 <table>
-	<tr>
-		<th>Name</th>
-	</tr>
+  <tr>
+    <th>Name</th>
+  </tr>
 
-	<% @ideologies.each do |ideology| %>
-		<% if known_ideology?(ideology) %>
-			<tr>
-				<td><%= link_to (h ideology.name), ideology %></td>
-			</tr>
-		<% end %>
-	<% end %>
+  <% cache do %>
+    <% @ideologies.each do |ideology| %>
+      <tr>
+        <td><%= link_to ideology.name, ideology %></td>
+      </tr>
+    <% end %>
+  <% end %>
 </table>
 
 <div id="navbar">

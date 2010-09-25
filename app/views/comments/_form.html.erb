@@ -1,10 +1,11 @@
-<% form_for([@character, @comment]) do |f| %>
+<%= form_for([@character, @comment]) do |f| %>
   <%= f.error_messages %>
 
   <% @comment.user_id = session[:user_id] %>
   <input name="comment[user_id]" type="hidden" value=<%= session[:user_id] %> >
   <% @comment.character_id = @character.id %>
   <input name="comment[character_id]" type="hidden" value=<%= @character.id %> >
+
   <%= f.label :speaker, 'Comment as' %>
   <%= f.select :speaker, User.find(session[:user_id]).characters.collect {|c| c.name} %>
   <p>

@@ -5,17 +5,19 @@
     <th>Ideology</th>
   </tr>
 
-<% @characters.each do |character| %>
-  <% if show_character?(character) %>
-	  <tr>
-	    <td><%= link_to character.name, character %></td>
-	    <td><%= link_to character.clique.name, character.clique if show_clique?(character) %></td>
-	    <td><%= link_to character.ideology.name, character.ideology if show_ideology?(character) %></td>
-	  </tr>
+  <% cache do %>
+    <% @characters.each do |character| %>
+      <% if show_character?(character) %>
+        <tr>
+          <td><%= link_to character.name, character %></td>
+          <td><%= link_to character.clique.name, character.clique if show_clique?(character) %></td>
+          <td><%= link_to character.ideology.name, character.ideology if show_ideology?(character) %></td>
+        </tr>
+      <% end %>
+    <% end %>
   <% end %>
-<% end %>
 </table>
 
 <div id="navbar">
-	<%= link_to 'New character', new_character_path, :class => "button" %><br />
+  <%= link_to 'New character', new_character_path, :class => "button" %><br />
 </div>

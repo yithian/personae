@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   
   validate :password_non_blank
   
-  def after_destroy
-    if User.count.zero?
+  before_destroy do
+    if User.count. == 1
       raise "Can't delete last user"
     end
   end

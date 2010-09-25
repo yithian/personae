@@ -1,6 +1,6 @@
 <% if show_character?(member) and show_clique?(member) %>
-	<tr>
-		<td><%= link_to (h member.name), member %></td>
-		<td><%= link_to (h member.ideology.name), member.ideology if show_ideology?(member) %></td>
-	</tr>
+  <tr>
+    <td><%= link_to member.name, member %></td>
+    <td><%= link_to member.ideology.name, member.ideology if show_ideology?(member) %></td>
+  </tr>
 <% end %>

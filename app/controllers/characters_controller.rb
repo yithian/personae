@@ -1,5 +1,6 @@
 class CharactersController < ApplicationController
-  before_filter :find_character, :only => [:new, :show, :change_form, :edit, :update, :destroy]
+  respond_to :html, :xml
+  before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :destroy]
   before_filter :show_permission, :only => [:show]
   before_filter :edit_permission, :only => [:edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
@@ -9,21 +10,15 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.xml
   def index
-    @characters = Character.find(:all, :order => "clique_id ASC")
+    @characters = Character.all(:order => "clique_id ASC")
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @characters }
-    end
+    respond_with @characters
   end
 
   # GET /characters/1
   # GET /characters/1.xml
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @character }
-    end
+    respond_with @character
   end
   
   # GET /characters/preview
@@ -36,10 +31,7 @@ class CharactersController < ApplicationController
   # GET /characters/new
   # GET /characters/new.xml
   def new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @character }
-    end
+    respond_with @character
   end
 
   # GET /characters/1/edit
@@ -47,12 +39,18 @@ class CharactersController < ApplicationController
   end
   
   def update_splat
+    @splat = Splat.find_by_id(params[:splat_id])
+    @nature_list = Nature.find_all_by_splat_id(params[:splat_id])
+    @ideology_list = Ideology.find_all_by_splat_id(params[:splat_id])
+
     respond_to do |format|
       format.js
     end
   end
 
-  def change_form
+  def shapeshift
+    @form = params[:form]
+
     respond_to do |format|
       format.js
     end
@@ -64,31 +62,17 @@ class CharactersController < ApplicationController
     @character = Character.new(params[:character])
     find_lists
 
-    respond_to do |format|
-      if @character.save
-        flash[:notice] = 'Character was successfully created.'
-        format.html { redirect_to(@character) }
-        format.xml  { render :xml => @character, :status => :created, :location => @character }
-      else
-        format.html { render :action => :new }
-        format.xml  { render :xml => @character.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Character was successfully created.' if @character.save
+
+    respond_with @character
   end
 
   # PUT /characters/1
   # PUT /characters/1.xml
   def update
-    respond_to do |format|
-      if @character.update_attributes(params[:character])
-        flash[:notice] = 'Character was successfully updated.'
-        format.html { redirect_to(@character) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => :edit }
-        format.xml  { render :xml => @character.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Character was successfully updated.' if @character.update_attributes(params[:character])
+
+    respond_with @character
   end
 
   # DELETE /characters/1
@@ -97,7 +81,7 @@ class CharactersController < ApplicationController
     @character.destroy
 
     respond_to do |format|
-      format.html { redirect_to(characters_url) }
+      format.html { redirect_to(characters_url, :notice => 'Character was successfully deleted.') }
       format.xml  { head :ok }
     end
   end
@@ -122,28 +106,22 @@ class CharactersController < ApplicationController
   
   def find_lists
     @clique_list = Clique.all.collect do |c|
-    	next unless @template.known_clique?(c)
-    	[c.name, c.id]
+      next unless known_clique?(c)
+      [c.name, c.id]
     end
     @clique_list.delete_if do |c|
-    	c == nil
+      c == nil
     end
 
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect do |n|
-    	[n.name, n.id]
+      [n.name, n.id]
     end
 
     @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect do |i|
-    	[i.name, i.id]
+      [i.name, i.id]
     end
 
-    @splat_list = Splat.all.collect do |s|
-    	if s == @character.splat
-    		"<option value='" + s.id.to_s + "' selected='selected'>" + s.name + "</option>"
-    	else
-    		"<option value='" + s.id.to_s + "'>" + s.name + "</option>"
-    	end
-    end
+    @splat_list = Splat.all.collect
   end
   
   def edit_permission

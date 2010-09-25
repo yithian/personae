@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  respond_to :html, :xml
   skip_filter :authorize, :except => [:show, :edit]
   before_filter :find_user, :only => [:show, :edit, :update, :destroy]
   before_filter :permission, :only => [:show, :edit, :update, :destroy]
@@ -7,10 +8,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
-    end
+    respond_with @user
   end
 
   # GET /users/new
@@ -18,10 +16,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
+    respond_with @user
   end
 
   # GET /users/1/edit
@@ -33,31 +28,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    respond_to do |format|
-      if @user.save
-        flash[:notice] = "User #{@user.name} was successfully created."
-        format.html { redirect_to(:controller => :characters) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => :new }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = "User #{@user.name} was successfully created." if @user.save
+
+    respond_with @user
   end
 
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        flash[:notice] = "User #{@user.name} was successfully updated."
-        format.html { redirect_to(:action => :characters) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => :edit }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = "User #{@user.name} was successfully updated." if @user.update_attributes(params[:user])
+    
+    respond_with @user
   end
 
   # DELETE /users/1

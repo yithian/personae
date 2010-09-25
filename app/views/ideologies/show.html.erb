@@ -1,22 +1,22 @@
 <p>
-	  <h3>Name:</h3>
-	  <%=h @ideology.name %>
+    <h3>Name:</h3>
+    <%= @ideology.name %>
 </p>
 
 <p>
-	<table>
-		<tr>
-			<th>Member:</th>
-			<th><%=h @ideology.splat.clique_name %>:</th>
-		</tr>
+  <table>
+    <tr>
+      <th>Member:</th>
+      <th><%= @ideology.splat.clique_name %>:</th>
+    </tr>
 
-		<%= render(:partial => "member", :collection => @ideology.characters) %>
-	</table>
+    <%= render(:partial => "member", :collection => @ideology.characters) %>
+  </table>
 </p>
 
 <div id="navbar">
-	<%= link_to 'Back', :back, :class => "button" %>
-	<%= link_to 'New member', { :controller => :characters, :action => 'new', :ideology_id => @ideology }, :class => "button" %>
-	<%= link_to 'Edit', edit_ideology_path(@ideology), :class => "button" if edit_ideology?(@ideology) %>
-	<%= link_to 'Destroy', @ideology, :confirm => 'Are you sure you want to delete this ideology?', :method => :delete, :class => "button" if edit_ideology?(@ideology) %>
+  <%= link_to 'Back', :back, :class => "button" %>
+  <%= link_to 'New member', { :controller => :characters, :action => 'new', :ideology_id => @ideology }, :class => "button" %>
+  <%= link_to 'Edit', edit_ideology_path(@ideology), :class => "button" if edit_ideology?(@ideology) %>
+  <%= link_to 'Destroy', @ideology, :confirm => 'Are you sure you want to delete this ideology?', :method => :delete, :class => "button" if edit_ideology?(@ideology) %>
 </div>
