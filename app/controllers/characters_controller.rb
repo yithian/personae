@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
   respond_to :html, :xml
-  before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :destroy]
+  before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :destroy, :preview]
   before_filter :show_permission, :only => [:show]
   before_filter :edit_permission, :only => [:edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
@@ -91,7 +91,7 @@ class CharactersController < ApplicationController
     if params[:action] == "new"
       @character = Character.new
     else
-      @character = Character.find(params[:id])
+      @character = Character.find_by_id(params[:id])
     end
   end
   

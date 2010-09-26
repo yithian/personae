@@ -19,15 +19,11 @@
     <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if show_ideology?(@character) unless is_mortal?(@character) %></span></td>
   </tr>
 </table>
-<span style="display:none" id="read_nature"><%= @character.read_nature %></span>
-<span style="display:none" id="read_clique"><%= @character.read_clique %></span>
-<span style="display:none" id="read_ideology"><%= @character.read_ideology %></span>
 
 <% if show_description?(@character) %>
   <div id="description">
     <h3>Description</h3>
     <%= simple_format(@character.description) %>
-    <span style="display:none" id="read_description"><%= @character.read_description %></span>
   </div>
 <% end %>
 
@@ -35,7 +31,6 @@
   <div id="background">
     <h3>Background</h3>
     <%= simple_format(@character.background) %>
-    <span style="display:none" id="read_background"><%= @character.read_background %></span>
   </div>
 <% end %>
 
@@ -43,7 +38,6 @@
   <div id="deeds">
     <h3>Deeds</h3>
     <%= simple_format(@character.deeds) %>
-    <span style="display:none" id="read_deeds"><%= @character.read_deeds %></span>
   </div>
 <% end %>
 
@@ -76,7 +70,6 @@
         <td><%= @character.composure %></td>
       </tr>
     </table>
-    <span style="display:none" id="read_attributes"><%= @character.read_attributes %></span>
   </div>
 <% end %>
 
@@ -153,7 +146,6 @@
         <td colspan=5><%= simple_format(@character.skill_specialties) %></td>
       </tr>
     </table>
-    <span style="display:none" id="read_skills"><%= @character.read_skills %></span>
   </div>
 <% end %>
 
@@ -208,7 +200,6 @@
       </tr>
       <% end %>
     </table>
-    <span style="display:none" id="read_advantages"><%= @character.read_advantages %></span>
   </div>
 <% end %>
 
@@ -216,7 +207,6 @@
   <div id="merits">    
     <h3>Merits</h3>
     <%= simple_format(@character.merits) %>
-    <span style="display:none" id="read_merits"><%= @character.read_merits %></span>
   </div>
 <% end %>
 
@@ -224,7 +214,6 @@
   <div id="equipment">
     <h3>Equipment</h3>
     <%= simple_format(@character.equipment) %>
-    <span style="display:none" id="read_equipment"><%= @character.read_equipment %></span>
   </div>
 <% end %>
 
@@ -520,8 +509,6 @@
         </tr>
       </table>
     <% end %>
-        
-    <span style="display:none" id="read_powers"><%= @character.read_powers %></span>
   </div>
 <% end %>
 
@@ -529,7 +516,6 @@
   <div id="experience">
     <h3>Experience</h3>
     <%= simple_format(@character.experience) %>
-    <span style="display:none" id="read_experience"><%= @character.read_experience %></span>
   </div>
 <% end %>
 
@@ -537,9 +523,7 @@
 
 <div id="navbar">
   <%= link_to 'Back', :back, :class => "button" %>
-  <%= form_tag :url => { :action => :preview }, :remote => true do %>
-    <%= submit_tag 'Toggle preview' %>
-  <% end if own_character?(@character) %>
+  <%= link_to "Toggle preview", {:action => :preview, :id => @character.id}, :remote => true, :class => "button" if own_character?(@character) %>
   <%= link_to 'Edit', edit_character_path(@character), :class => "button" if edit_character?(@character)%>
   <%= link_to 'Destroy', @character, :confirm => 'Are you sure you want to delete this character?', :method => :delete, :class => "button" if edit_character?(@character) %>
 </div>

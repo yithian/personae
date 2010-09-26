@@ -1,0 +1,44 @@
+$('virtue').toggle();
+$('vice').toggle();
+<% unless @character.read_nature %>
+  $('nature_label').toggle();
+  $('nature_name').toggle();
+<% end
+unless @character.read_clique %>
+  $('clique_label').toggle();
+  $('clique_name').toggle();
+<% end
+unless @character.read_ideology %>
+  $('ideology_label').toggle();
+  $('ideology_name').toggle();
+<% end
+unless @character.read_description %>
+  $('description').toggle();
+<% end
+unless @character.read_background %>
+  $('background').toggle();
+<% end
+unless @character.read_deeds %>
+  $('deeds').toggle();
+<% end
+unless @character.read_attributes %>
+  $('attributes').toggle();
+<% end
+unless @character.read_skills %>
+  $('skills').toggle();
+<% end
+unless @character.read_advantages %>
+  $('advantages').toggle();
+<% end
+unless @character.read_merits %>
+  $('merits').toggle();
+<% end
+unless @character.read_equipment %>
+  $('equipment').toggle();
+<% end
+unless @character.read_powers %>
+  $('powers').toggle();
+<% end
+unless @character.read_experience %>
+  $('experience').toggle();
+<% end %>
