@@ -3,12 +3,10 @@
     <th>Name</th>
   </tr>
 
-  <% cache do %>
-    <% @ideologies.each do |ideology| %>
-      <tr>
-        <td><%= link_to ideology.name, ideology %></td>
-      </tr>
-    <% end %>
+  <% @ideologies.each do |ideology| %>
+    <tr>
+      <td><%= link_to ideology.name, ideology %></td>
+    </tr>
   <% end %>
 </table>
 

@@ -4,13 +4,11 @@
     <th>Territory</th>
   </tr>
 
-  <% cache do %>
-    <% @cliques.each do |clique| %>
-      <tr>
-        <td><%= link_to clique.name, clique %></td>
-        <td><%= clique.territory %></td>
-      </tr>
-    <% end %>
+  <% @cliques.each do |clique| %>
+    <tr>
+      <td><%= link_to clique.name, clique %></td>
+      <td><%= clique.territory %></td>
+    </tr>
   <% end %>
 </table>
 
