@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <% if params[:action] == :new %>
+  <% if params[:action] == "new" %>
     <% @character.user_id = session[:user_id] %>
     <input name="character[user_id]" type="hidden" value=<%= session[:user_id] %> >
   <% end %>
