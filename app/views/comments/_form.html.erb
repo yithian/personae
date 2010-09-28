@@ -1,5 +1,15 @@
 <%= form_for([@character, @comment]) do |f| %>
-  <%= f.error_messages %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <% @comment.user_id = session[:user_id] %>
   <input name="comment[user_id]" type="hidden" value=<%= session[:user_id] %> >
