@@ -63,7 +63,7 @@ body {
 
 #content a:link { color: #2937A1; }
 #content a:visited { color: #97A2DE; }
-#content a:hover { background: #990033; }
+#content a:hover { color: #990033; }
 
 #content a.selected {
 	color: #990033;
