@@ -4,9 +4,9 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>
     <%= case params[:controller]
-      when "characters" then @character.name if @character and @character.name + " : "
-      when "cliques" then @clique.name if @clique and @clique.name + " : "
-      when "ideologies" then @ideology.name if @clique and @ideology.name + " : "
+      when "characters" then @character.name + " : " if @character and @character.name
+      when "cliques" then @clique.name + " : " if @clique and @clique.name
+      when "ideologies" then @ideology.name + " : " if @clique and @ideology.name
     end %>
     City of Darkness
   </title>
