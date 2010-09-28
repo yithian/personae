@@ -34,21 +34,21 @@
       <td><b><%= f.label :vice %></b></td>
       <td><%= f.select :vice, Character::VICES %></td>
       
-      <td class="label" id="nature_label_cell" <%= "style='display: none'" if is_mortal?(@character) %> >
+      <td class="label" id="nature_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
         <b><%= f.label :nature_id, @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
       
-      <td class="data" id="nature_id_cell" <%= "style='display: none'" if is_mortal?(@character) %> >
+      <td class="data" id="nature_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
         <%= f.select :nature_id, @nature_list %>
       </td>
     </tr>
     <tr>
       <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
       <td><%= f.select :clique_id, @clique_list %></td>
-      <td class="label" id="ideology_label_cell" <%= "style='display: none'" if is_mortal?(@character) %>>
+      <td class="label" id="ideology_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
       </td>
-      <td class="data" id="ideology_id_cell" <%= "style='display: none'" if is_mortal?(@character) %>>
+      <td class="data" id="ideology_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
         <%= f.select :ideology_id, @ideology_list %>
       </td>
     </tr>
@@ -56,12 +56,12 @@
       <td><%= f.check_box :read_name %> <%= f.label :read_name %></td>
       <td><%= f.check_box :read_clique %> <%= f.label :read_clique, "Read " + @character.splat.clique_name, :id => "read_clique_label" %></td>
       <td>
-	<span id="read_nature_span" <%= "style='display: none'" if is_mortal?(@character) %> >
+	<span id="read_nature_span" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
           <%= f.check_box :read_nature %> <%= f.label :read_nature, "Read " + @character.splat.nature_name, :id => "read_nature_label" %>
         </span>
       </td>
       <td>
-        <span id="read_ideology_span" <%= "style='display: none'" if is_mortal?(@character) %> >
+        <span id="read_ideology_span" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
           <%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Read " + @character.splat.ideology_name, :id => "read_ideology_label" %>
         </span>
       </td>
