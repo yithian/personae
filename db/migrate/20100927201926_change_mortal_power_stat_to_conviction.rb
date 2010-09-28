@@ -1,8 +1,6 @@
 class ChangeMortalPowerStatToConviction < ActiveRecord::Migration
   def self.up
-    Splat.find_by_name("Mortal") do |s|
-      s.power_stat_name = "Conviction"
-    end
+    Splat.update_all("power_stat_name = 'Conviction'", "name = 'Mortal'")
   end
 
   def self.down
