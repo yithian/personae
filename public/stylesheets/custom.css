@@ -110,6 +110,8 @@ body {
 #content #navbar { text-align: center; }
 #content #navbar form { display: inline; }
 
+#content table td.growdown { vertical-align: top; }
+
 #content table.three_cells td { width: 9em; }
 #content table.three_cells td:nth-child(3) { width: 36em;}
 
@@ -125,20 +127,8 @@ body {
 
 #content textarea {
 	width: 100%;
-	height: 9em;
+	height: 5em;
 }
-
-#content #character_derangements { height: 20em; }
-
-#content #character_common_spells { height: 19em; }
-
-#content #character_covenant_disciplines { height: 17em; }
-
-#content #character_gifts { height: 8em; }
-
-#content #character_goblin_contracts { height: 37em; }
-
-#content #character_keys { height: 13em; }
 
 .fieldWithErrors {
   padding: 2px;
