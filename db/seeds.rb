@@ -69,7 +69,7 @@ Ideology.create(:name => "Guardians of the Veil", :splat_id => Splat.find_by_nam
 Ideology.create(:name => "Mysterium", :splat_id => Splat.find_by_name("Mage").id)
 Ideology.create(:name => "Silver Ladder", :splat_id => Splat.find_by_name("Mage").id)
 Ideology.create(:name => "Apostate", :splat_id => Splat.find_by_name("Mage").id)
-Ideology.create(:name => "Banisher", :splat_id => Splat.find_by_name("Mage").id)
+Ideology.create(:name => "Banishers", :splat_id => Splat.find_by_name("Mage").id)
 Ideology.create(:name => "Seers of the Throne", :splat_id => Splat.find_by_name("Mage").id)
 Ideology.create(:name => "Blood Talons", :splat_id => Splat.find_by_name("Werewolf").id)
 Ideology.create(:name => "Bone Shadows", :splat_id => Splat.find_by_name("Werewolf").id)
