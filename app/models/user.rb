@@ -5,17 +5,25 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :cliques
   
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  validates :name, :presence => true, :uniqueness => true
   
   attr_accessor :password_confirmation
   validates_confirmation_of :password
   
   validate :password_non_blank
   
-  before_destroy do
-    if User.count. == 1
-      raise "Can't delete last user"
+  before_destroy do |user|
+    if user == User.find_by_name("Storyteller")
+      raise "Can't delete the Storyteller user"
+    end
+
+    if User.count == 1
+      raise "Can't delete the last user"
+    end
+
+    user.cliques.each do |clique|
+      clique.user_id = User.find_by_name("Storyteller").id
+      clique.save
     end
   end
   
@@ -42,8 +50,7 @@ class User < ActiveRecord::Base
     self.hashed_password = User.encrypted_password(self.password, self.salt)
   end
   
-private
-  
+  private
   def password_non_blank
     errors.add(:password, "Missing password") if hashed_password.blank?
   end
@@ -56,6 +63,4 @@ private
     string_to_hash = password + "random" + salt
     Digest::SHA1.hexdigest(string_to_hash)
   end
-  
-  
 end
