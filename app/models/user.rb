@@ -1,5 +1,11 @@
 require 'digest/sha1'
 
+class NotBlankValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    record.errors[attribute] << "must not be blank" if value.blank?
+  end
+end
+
 class User < ActiveRecord::Base
   has_many :characters, :dependent => :destroy
   has_many :comments
@@ -10,7 +16,7 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   validates_confirmation_of :password
   
-  validate :password_non_blank
+  validates :password, :not_blank => true
   
   before_destroy do |user|
     if user == User.find_by_name("Storyteller")
@@ -51,10 +57,6 @@ class User < ActiveRecord::Base
   end
   
   private
-  def password_non_blank
-    errors.add(:password, "Missing password") if hashed_password.blank?
-  end
-  
   def create_new_salt
     self.salt = self.object_id.to_s + rand.to_s
   end
