@@ -1,9 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  description: MyText
+  name: MyCliqueName
+  description: MyDescriptionText
+  territory: MyTerritory
+  write: true
+  user_id: 1
 
 two:
-  name: MyString
-  description: MyText
+  name: MyOtherCliqueName
+  description: MyOtherDescritionText
+  territory: MyOtherTerritory
+  write: false
+  user_id: 2
+

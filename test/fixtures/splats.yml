@@ -1,7 +1,20 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  type: MyString
+  name: MyName
+  nature_name: MyNatureName
+  clique_name: MyCliqueName
+  ideology_name: MyIdeologyName
+  morality_name: MyMoralityName
+  power_stat_name: MyPowerStatName
+  fuel_name: MyFuelName
 
 two:
-  type: MyString
+  name: MyOtherName
+  nature_name: MyOtherNatureName
+  clique_name: MyOtherCliqueName
+  ideology_name: MyOtherIdeologyName
+  morality_name: MyOtherMoralityName
+  power_stat_name: MyOtherPowerStatName
+  fuel_name: MyOtherFuelName
+

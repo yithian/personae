@@ -1,7 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  string: 
+  name: MyName
+  splat_id: 1
 
 two:
-  string: 
+  name: MyOtherName
+  splat_id: 2
