@@ -13,10 +13,9 @@ class User < ActiveRecord::Base
   
   validates :name, :presence => true, :uniqueness => true
   
-  attr_accessor :password_confirmation
-  validates_confirmation_of :password
-  
   validates :password, :not_blank => true
+  validates_confirmation_of :password
+  attr_accessor :password_confirmation
   
   before_destroy do |user|
     if user == User.find_by_name("Storyteller")
