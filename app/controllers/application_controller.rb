@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protected
   def authorize
     unless User.find_by_id(session[:user_id])
-      session[:original_uri] = request.request_uri
+      session[:original_uri] = request.fullpath
       flash[:notice] = "Please log in"
       redirect_to :controller => :admin, :action => :login
     end
