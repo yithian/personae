@@ -47,4 +47,20 @@ class UserTest < ActiveSupport::TestCase
 
     assert_nil u, "user somehow authenticated"
   end
+  
+  test "shouldn't destroy last user" do
+    assert_raise RuntimeError do
+      User.find(:all).each do |user|
+        user.destroy
+      end
+    end
+  end
+  
+  test "shouldn't destroy storyteller user" do
+    User.create(:name => "Storyteller", :password => "pword")
+    
+    assert_raise RuntimeError do
+      User.find_by_name("Storyteller").destroy
+    end
+  end
 end
