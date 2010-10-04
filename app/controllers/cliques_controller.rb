@@ -6,9 +6,8 @@ class CliquesController < ApplicationController
   # GET /cliques
   # GET /cliques.xml
   def index
-    @cliques = Clique.all.collect do |c|
-      c if known_clique?(c)
-    end
+    @cliques = Clique.all.collect { |c| c if known_clique?(c) }
+    @cliques.delete_if { |c| c == nil }
 
     respond_with @cliques
   end
