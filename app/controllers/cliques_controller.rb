@@ -1,6 +1,6 @@
 class CliquesController < ApplicationController
   respond_to :html, :xml
-  before_filter :find_clique, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_clique, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :show_permission, :only => [:show]
   before_filter :destroy_permission, :only => [:destroy]
   # GET /cliques
@@ -21,8 +21,6 @@ class CliquesController < ApplicationController
   # GET /cliques/new
   # GET /cliques/new.xml
   def new
-    @clique = Clique.new
-
     respond_with @clique
   end
 
@@ -70,7 +68,11 @@ class CliquesController < ApplicationController
   
   private
   def find_clique
-    @clique = Clique.find(params[:id])
+    if params[:action] == "new"
+      @clique = Clique.new
+    else
+      @clique = Clique.find_by_id(params[:id])
+    end
   end
   
   def show_permission
