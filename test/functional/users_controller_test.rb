@@ -26,7 +26,15 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should show user" do
+  test "should show user as storyteller" do
+    st_setup
+    login_as(User.find_by_name("Storyteller"))
+    
+    get :show, :id => users(:one).to_param
+    assert_response :success
+  end
+  
+  test "should show user as user" do
     st_setup
     login_as(users(:one))
     
@@ -34,30 +42,61 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  test "shouldn't show user" do
+  test "shouldn't show user as other user" do
+    st_setup
+    login_as(users(:two))
+    
+    get :show, :id => users(:one).to_param
+    assert_response :redirect, @response.body
+  end
+
+  test "shouldn't show user when not logged in" do
     st_setup
     
     get :show, :id => users(:one).to_param
     assert_response :redirect, @response.body
   end
 
-  test "should get edit" do
+  test "should get edit as storyteller" do
     st_setup
+    login_as(User.find_by_name("Storyteller"))
     
+    get :edit, :id => users(:one).to_param
+    assert_response :success
+  end
+  
+  test "should get edit as user" do
+    st_setup
     login_as(users(:one))
     
     get :edit, :id => users(:one).to_param
     assert_response :success
   end
   
-  test "shouldn't get edit" do
+  test "shouldn't get edit as other user" do
+    st_setup
+    login_as(users(:two))
+    
+    get :edit, :id => users(:one).to_param
+    assert_response :redirect
+  end
+
+  test "shouldn't get edit when not logged in" do
     st_setup
     
     get :edit, :id => users(:one).to_param
     assert_response :redirect
   end
 
-  test "should update user" do
+  test "should update user as storyteller" do
+    st_setup
+    login_as(User.find_by_name("Storyteller"))
+    
+    put :update, :id => users(:one).to_param, :user => { }
+    assert_response :success
+  end
+  
+  test "should update user as user" do
     st_setup
     login_as(users(:one))
     
@@ -65,7 +104,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  test "shouldn't update another user" do
+  test "shouldn't update user as other user" do
     st_setup
     login_as(users(:two))
     
@@ -73,7 +112,25 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(users(:two))
   end
 
-  test "should destroy user" do
+  test "shouldn't update user when not logged in" do
+    st_setup
+    
+    put :update, :id => users(:one).to_param, :user => { }
+    assert_response :redirect
+  end
+
+  test "should destroy user as storyteller" do
+    st_setup
+    login_as(User.find_by_name("Storyteller"))
+    
+    assert_difference('User.count', -1) do
+      delete :destroy, :id => users(:one).to_param
+    end
+
+    assert_redirected_to :controller => :characters
+  end
+  
+  test "should destroy user as user" do
     st_setup
     login_as(users(:one))
     
@@ -84,7 +141,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to :controller => :characters
   end
   
-  test "shouldn't destroy another user" do
+  test "shouldn't destroy user as other user" do
     st_setup
     login_as(users(:two))
     
@@ -93,5 +150,16 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to user_path(users(:two))
+  end
+
+  test "shouldn't destroy user when not logged in" do
+    st_setup
+    login_as(users(:two))
+    
+    assert_no_difference('User.count') do
+      delete :destroy, :id => users(:one).to_param
+    end
+
+    assert_response :redirect
   end
 end
