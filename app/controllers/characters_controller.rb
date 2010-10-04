@@ -109,17 +109,11 @@ class CharactersController < ApplicationController
       next unless known_clique?(c)
       [c.name, c.id]
     end
-    @clique_list.delete_if do |c|
-      c == nil
-    end
+    @clique_list.delete_if { |c| c == nil }
 
-    @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect do |n|
-      [n.name, n.id]
-    end
+    @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect { |n| [n.name, n.id] }
 
-    @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect do |i|
-      [i.name, i.id]
-    end
+    @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect { |i| [i.name, i.id] }
 
     @splat_list = Splat.all.collect
   end
