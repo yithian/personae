@@ -1,7 +1,7 @@
 class IdeologiesController < ApplicationController
   respond_to :html, :xml
   before_filter :find_ideology, :only => [:show, :edit, :update, :destroy]
-  before_filter :permission, :only => [:create, :edit, :update, :destroy]
+  before_filter :permission, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :show_permission, :only => [:show]
   
   # GET /ideologies
