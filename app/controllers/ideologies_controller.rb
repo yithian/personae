@@ -7,9 +7,8 @@ class IdeologiesController < ApplicationController
   # GET /ideologies
   # GET /ideologies.xml
   def index
-    @ideologies = Ideology.all.collect do |i|
-      i if known_ideology?(i)
-    end
+    @ideologies = Ideology.all.collect { |i| i if known_ideology?(i) }
+    @ideologies.delete_if { |i| i == nil }
 
     respond_with @ideologies
   end
