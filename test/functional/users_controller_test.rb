@@ -19,21 +19,25 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil(User.find_by_name("unique"))
   end
 
-  test "should show user as storyteller" do
+  test "should show user" do
     login_as(users(:Storyteller))
     
     get :show, :id => users(:one).to_param
-    assert_response :success
-  end
-  
-  test "should show user as user" do
+    assert_response :success, "didn't show user as ST"
+    
     login_as(users(:one))
     
     get :show, :id => users(:one).to_param
-    assert_response :success
+    assert_response :success, "didn't show user as user"
   end
   
-  test "shouldn't show user as other user" do
+  test "shouldn't show user" do
+    # when not logged in
+    get :show, :id => users(:one).to_param
+    assert_response :redirect, @response.body
+    assert_equal("Please log in", flash[:notice], "got past authentication")
+
+    # as other user
     login_as(users(:two))
     
     get :show, :id => users(:one).to_param
@@ -41,55 +45,54 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal("You don't have permission to do that", flash[:notice], "showed user that shouldn't have been shown")
   end
 
-  test "shouldn't show user when not logged in" do
-    get :show, :id => users(:one).to_param
-    assert_response :redirect, @response.body
-    assert_equal("Please log in", flash[:notice], "got past authentication")
-  end
-
-  test "should get edit as storyteller" do
+  test "should get edit" do
+    # as storyteller
     login_as(users(:Storyteller))
     
     get :edit, :id => users(:one).to_param
     assert_response :success
-  end
-  
-  test "should get edit as user" do
+
+    # as user
     login_as(users(:one))
     
     get :edit, :id => users(:one).to_param
     assert_response :success
   end
   
-  test "shouldn't get edit as other user" do
+  test "shouldn't get edit" do
+    # when not logged in
+    get :edit, :id => users(:one).to_param
+    assert_response :redirect, @response.body
+    assert_equal("Please log in", flash[:notice], "got past authentication")
+
+    # as other user
     login_as(users(:two))
     
     get :edit, :id => users(:one).to_param
-    assert_response :redirect
+    assert_response :redirect, @response.body
     assert_equal("You don't have permission to do that", flash[:notice], "edited user that shouldn't have been shown")
   end
 
-  test "shouldn't get edit when not logged in" do
-    get :edit, :id => users(:one).to_param
-    assert_response :redirect
-    assert_equal("Please log in", flash[:notice], "got past authentication")
-  end
-
-  test "should update user as storyteller" do
+  test "should update user" do
+    # as ST
     login_as(users(:Storyteller))
     
     put :update, :id => users(:one).to_param, :user => { }
     assert_response :success
-  end
-  
-  test "should update user as user" do
+
+    # as user
     login_as(users(:one))
     
     put :update, :id => users(:one).to_param, :user => { }
     assert_response :success
   end
   
-  test "shouldn't update user as other user" do
+  test "shouldn't update user" do
+    # when not logged in
+    put :update, :id => users(:one).to_param, :user => { }
+    assert_response :redirect, @response.body
+
+    # as other user
     login_as(users(:two))
     
     put :update, :id => users(:one).to_param, :user => { }
@@ -97,12 +100,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal("You don't have permission to do that", flash[:notice], "updated user that shouldn't have been shown")
   end
 
-  test "shouldn't update user when not logged in" do
-    put :update, :id => users(:one).to_param, :user => { }
-    assert_response :redirect
-  end
-
   test "should destroy user as storyteller" do
+    # as ST
     login_as(users(:Storyteller))
     
     assert_difference('User.count', -1) do
@@ -110,19 +109,26 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to :controller => :characters
-  end
-  
-  test "should destroy user as user" do
-    login_as(users(:one))
+    
+    # as own user
+    login_as(users(:two))
     
     assert_difference('User.count', -1) do
-      delete :destroy, :id => users(:one).to_param
+      delete :destroy, :id => users(:two).to_param
     end
 
     assert_redirected_to :controller => :characters
   end
   
-  test "shouldn't destroy user as other user" do
+  test "shouldn't destroy user" do
+    # when not logged in
+    assert_no_difference('User.count') do
+      delete :destroy, :id => users(:one).to_param
+    end
+
+    assert_response :redirect, @response.body
+
+    # as other user
     login_as(users(:two))
     
     assert_no_difference('User.count') do
@@ -131,15 +137,5 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to user_path(users(:two))
     assert_equal("You don't have permission to do that", flash[:notice], "destroyed other user")
-  end
-
-  test "shouldn't destroy user when not logged in" do
-    login_as(users(:two))
-    
-    assert_no_difference('User.count') do
-      delete :destroy, :id => users(:one).to_param
-    end
-
-    assert_response :redirect
   end
 end
