@@ -24,6 +24,7 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to user_path(assigns(:user))
+    assert_not_nil(User.find_by_name("unique"))
   end
 
   test "should show user as storyteller" do
@@ -48,6 +49,7 @@ class UsersControllerTest < ActionController::TestCase
     
     get :show, :id => users(:one).to_param
     assert_response :redirect, @response.body
+    assert_equal("You don't have permission to do that", flash[:notice], "showed user that shouldn't have been shown")
   end
 
   test "shouldn't show user when not logged in" do
@@ -55,6 +57,7 @@ class UsersControllerTest < ActionController::TestCase
     
     get :show, :id => users(:one).to_param
     assert_response :redirect, @response.body
+    assert_equal("Please log in", flash[:notice], "got past authentication")
   end
 
   test "should get edit as storyteller" do
@@ -79,6 +82,7 @@ class UsersControllerTest < ActionController::TestCase
     
     get :edit, :id => users(:one).to_param
     assert_response :redirect
+    assert_equal("You don't have permission to do that", flash[:notice], "edited user that shouldn't have been shown")
   end
 
   test "shouldn't get edit when not logged in" do
@@ -86,6 +90,7 @@ class UsersControllerTest < ActionController::TestCase
     
     get :edit, :id => users(:one).to_param
     assert_response :redirect
+    assert_equal("Please log in", flash[:notice], "got past authentication")
   end
 
   test "should update user as storyteller" do
@@ -110,6 +115,7 @@ class UsersControllerTest < ActionController::TestCase
     
     put :update, :id => users(:one).to_param, :user => { }
     assert_redirected_to user_path(users(:two))
+    assert_equal("You don't have permission to do that", flash[:notice], "updated user that shouldn't have been shown")
   end
 
   test "shouldn't update user when not logged in" do
@@ -150,6 +156,7 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to user_path(users(:two))
+    assert_equal("You don't have permission to do that", flash[:notice], "destroyed other user")
   end
 
   test "shouldn't destroy user when not logged in" do
