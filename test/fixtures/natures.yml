@@ -2,8 +2,8 @@
 
 one:
   name: MyName
-  splat_id: 1
+  splat: one
 
 two:
   name: MyOtherName
-  splat_id: 2
+  splat: two

@@ -5,12 +5,12 @@ one:
   description: MyDescriptionText
   territory: MyTerritory
   write: true
-  user_id: 1
+  user: one
 
 two:
   name: MyOtherCliqueName
   description: MyOtherDescritionText
   territory: MyOtherTerritory
   write: false
-  user_id: 2
+  user: two
 

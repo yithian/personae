@@ -1,14 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  user_id: 1
-  character_id: 1
+  user: one
+  character: one
   body: MyBodyText
   speaker: MySpeaker
 
 two:
-  user_id: 2
-  character_id: 2
+  user: two
+  character: two
   body: MyOtherBodyText
   speaker: MyOtherSpeaker
 

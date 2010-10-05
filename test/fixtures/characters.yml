@@ -4,8 +4,8 @@ one:
   name: MyName
   virtue: MyVirtue
   vice: MyVice
-  clique_id: 1
-  ideology_id: 1
+  clique: one
+  ideology: one
   description: MyDescriptionText
   background: MyBackgroundText
   intelligence: 1
@@ -64,7 +64,7 @@ one:
   time: 1
   equipment: MyEquipmentText
   common_spells: MyRotesText
-  user_id: 1
+  user: one
   read_name: true
   read_description: true
   read_background: true
@@ -80,7 +80,7 @@ one:
   read_clique: true
   read_ideology: true
   read_nature: true
-  splat_id: 1
+  splat: one
   purity: 1
   glory: 1
   honor: 1
@@ -88,7 +88,7 @@ one:
   cunning: 1
   gifts: MyGiftsText
   totem: MyTotemText
-  nature_id: 1
+  nature: one
   animalism: 1
   auspex: 1
   celerity: 1
@@ -137,8 +137,8 @@ two:
   name: MyOtherName
   virtue: MyOtherVirtue
   vice: MyOtherVice
-  clique_id: 2
-  ideology_id: 2
+  clique: two
+  ideology: two
   description: MyOtherDescriptionText
   background: MyOtherBackgroundText
   intelligence: 2
@@ -197,7 +197,7 @@ two:
   time: 2
   equipment: MyOtherEquipmentText
   common_spells: MyOtherRotesText
-  user_id: 2
+  user: two
   read_name: false
   read_description: false
   read_background: false
@@ -213,7 +213,7 @@ two:
   read_clique: false
   read_ideology: false
   read_nature: false
-  splat_id: 2
+  splat: two
   purity: 2
   glory: 2
   honor: 2
@@ -221,7 +221,7 @@ two:
   cunning: 2
   gifts: MyOtherGiftsText
   totem: MyOtherTotemText
-  nature_id: 2
+  nature: two
   animalism: 2
   auspex: 2
   celerity: 2
