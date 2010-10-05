@@ -1,9 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+Mortal:
+  name: Mortal
+  splat: one
 one:
   name: MyName
-  splat: one
+  splat: two
 
 two:
   name: MyOtherName
-  splat: two
+  splat: three
