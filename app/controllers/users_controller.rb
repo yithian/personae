@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   skip_filter :authorize, :except => [:show, :edit]
   before_filter :find_user, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :permission, :only => [:show, :edit, :update, :destroy]
-  layout "cliques"
 
   # GET /users/1
   # GET /users/1.xml
