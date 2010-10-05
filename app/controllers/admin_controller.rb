@@ -1,5 +1,4 @@
 class AdminController < ApplicationController
-  layout "cliques"
   
   def login
     if request.post?

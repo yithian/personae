@@ -3,7 +3,6 @@ class IdeologiesController < ApplicationController
   before_filter :find_ideology, :only => [:show, :edit, :update, :destroy]
   before_filter :permission, :only => [:create, :edit, :update, :destroy]
   before_filter :show_permission, :only => [:show]
-  layout "cliques"
   
   # GET /ideologies
   # GET /ideologies.xml

@@ -3,6 +3,7 @@ class CliquesController < ApplicationController
   before_filter :find_clique, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :show_permission, :only => [:show]
   before_filter :destroy_permission, :only => [:edit, :update, :destroy]
+  
   # GET /cliques
   # GET /cliques.xml
   def index

@@ -5,7 +5,6 @@ class CharactersController < ApplicationController
   before_filter :edit_permission, :only => [:edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
-  layout "cliques"
   
   # GET /characters
   # GET /characters.xml
