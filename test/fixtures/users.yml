@@ -1,5 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+Storyteller:
+  name: Storyteller
+  hashed_password: STHashedPassword
+  salt: STSalt
+  selected_character: 3
 one:
   name: MyName
   hashed_password: MyHashedPassword

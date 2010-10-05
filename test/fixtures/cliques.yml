@@ -1,5 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+Solitary:
+  name: Solitary
+  description: loners
+  territory: none
+  write: true
+  user: Storyteller
+
 one:
   name: MyCliqueName
   description: MyDescriptionText
