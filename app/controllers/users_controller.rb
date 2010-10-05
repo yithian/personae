@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   respond_to :html, :xml
   skip_filter :authorize, :except => [:show, :edit]
-  before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_user, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :permission, :only => [:show, :edit, :update, :destroy]
   layout "cliques"
 
@@ -14,8 +14,6 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    @user = User.new
-
     respond_with @user
   end
 
@@ -54,7 +52,11 @@ class UsersController < ApplicationController
   
   private
   def find_user
-    @user = User.find(params[:id])
+    if params[:action] == "new"
+      @user = User.new
+    else
+      @user = User.find(params[:id])
+    end
   end
   
   def permission
