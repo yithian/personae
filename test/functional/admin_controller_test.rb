@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AdminControllerTest < ActionController::TestCase
-   def login_as(user)
+  def login_as(user)
     @request.session[:user_id] = user ? user.id : nil
   end
 
