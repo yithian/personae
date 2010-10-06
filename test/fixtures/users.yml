@@ -2,9 +2,10 @@
 
 Storyteller:
   name: Storyteller
-  hashed_password: STHashedPassword
-  salt: STSalt
+  hashed_password: 19470b0a670cb69d32ad192fd01087a5dad3e3e1
+  salt: 21827182600.451664451813932
   selected_character: 3
+
 one:
   name: MyName
   hashed_password: MyHashedPassword
