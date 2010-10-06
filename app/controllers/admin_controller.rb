@@ -17,6 +17,7 @@ class AdminController < ApplicationController
   def logout
     session[:user_id] = :logged_out
     flash[:notice] = "Logged out"
-    redirect_to :controller => :cliques
+    
+    redirect_to :controller => :admin, :action => :login
   end
 end
