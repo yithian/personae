@@ -63,7 +63,7 @@ class IdeologiesControllerTest < ActionController::TestCase
     login_as(users(:one))
 
     assert_no_difference('Ideology.count') do
-      post :create, :ideology => { }
+      post :create, :ideology => { :name => "test" }
     end
     assert_redirected_to :controller => :ideologies, :action => :index
     assert_equal "You don't have permission to do that", flash[:notice], "created ideology as user"
