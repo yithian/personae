@@ -1,13 +1,13 @@
 class CommentsController < ApplicationController
-  
+  before_filter :find_character, :only => [:new, :create, :edit, :update, :destroy]
+
   def new
-    @character = Character.find(params[:character_id])
     @comment = @character.comments.build
   end
 
   def create
-    @character = Character.find(params[:character_id])
     @comment = @character.comments.build(params[:comment])
+
     if @comment.save
       redirect_to character_path(@character)
     else
@@ -16,13 +16,14 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @character = Character.find(params[:character_id])
     @comment = @character.comments.find(params[:id])
+    edit_permission
   end
 
   def update
-    @character = Character.find(params[:character_id])
     @comment = Comment.find(params[:id])
+    edit_permission
+
     if @comment.update_attributes(params[:comment])
       redirect_to character_path(@character)
     else
@@ -31,13 +32,29 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @character = Character.find(params[:character_id])
     @comment = Comment.find(params[:id])
+    edit_permission
     @comment.destroy
 
     respond_to do |format|
       format.html { redirect_to character_path(@character, :notice => 'Comment successfully deleted.') }
       format.xml  { head :ok }
+    end
+  end
+
+  private
+  def find_character
+    @character = Character.find_by_id(params[:character_id])
+    unless show_character?(@character)
+      flash[:notice] = "You don't have permission to do that"
+      redirect_to :controller => "characters", :action => "index" 
+    end
+  end
+
+  def edit_permission
+    unless @comment.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
+      flash[:notice] = "You don't have permission to do that"
+      redirect_to :controller => "characters", :action => "index"
     end
   end
 end
