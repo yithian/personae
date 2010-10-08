@@ -51,38 +51,39 @@ class CommentsControllerTest < ActionController::TestCase
     assert_redirected_to :controller => "characters", :action => "index"
   end
 
-  test "should get edit" do
-    # storyteller can edit all comments
+  test "should destroy comment" do
+    # ST can remove all comments
     login_as(users(:Storyteller))
+    
+    assert_difference('Comment.count', -1, "ST didn't destroy comment") do
+      delete :destroy, :id => comments(:one).id, :character_id => characters(:one).id
+    end
+    assert_redirected_to character_path(characters(:one))
 
-    get :edit, :id => comments(:one).id, :character_id => characters(:one).id
-    assert_response :success, @response.message
-
-    # owner of the comment
-    login_as(users(:one))
-
-    get :edit, :id => comments(:one).id, :character_id => characters(:one).id
-    assert_response :success, @response.message
+    # destroy own comments
+    login_as(users(:two))
+    
+    assert_difference('Comment.count', -1, "user didn't destroy own comment") do
+      delete :destroy, :id => comments(:two).id, :character_id => characters(:two).id
+    end
+    assert_redirected_to character_path(characters(:two))
   end
 
-  test "shouldn't get edit" do
-    # not logged in
-    get :edit, { :id => comments(:one).id, :character_id => characters(:one).id }
+  test "shouldn't destroy comment" do
+    # logged out
+    assert_no_difference('Comment.count', "got past authentication") do
+      delete :destroy, :id => comments(:one).id, :character_id => characters(:one).id
+    end
     assert_redirected_to :controller => "admin", :action => "login"
     assert_equal "Please log in", flash[:notice]
+    
+    # destroy other user's comment
+    login_as(users(:two))
 
-    # character two isn't public
-    login_as(users(:one))
-
-    get :edit, { :id => comments(:two).id, :character_id => characters(:two).id }
-    assert_redirected_to :controller => "characters", :action => "index"
+    assert_no_difference('Comment.count', "deleted other user's comment") do
+      delete :destroy, :id => comments(:one).id, :character_id => characters(:one).id
+    end
+    assert_redirected_to character_path(characters(:one))
     assert_equal "You don't have permission to do that", flash[:notice]
-  end
-
-  test "should update comment" do
-    login_as(users(:one))
-
-    put :update, :id => comments(:one).id, :character_id => characters(:one).id, :comment => { :body => "updated text" }
-    assert_redirected_to :controller => "characters", :action => "show", :id => characters(:one).id
   end
 end
