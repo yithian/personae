@@ -10,14 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100929202439) do
+ActiveRecord::Schema.define(:version => 20101008191352) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
-    t.string   "virtue"
-    t.string   "vice"
-    t.integer  "clique_id",                               :null => false
-    t.integer  "ideology_id",                             :null => false
+    t.string   "virtue",               :default => "Charity"
+    t.string   "vice",                 :default => "Envy"
+    t.integer  "clique_id",            :default => 1,         :null => false
+    t.integer  "ideology_id",          :default => 1,         :null => false
     t.text     "description"
     t.text     "background"
     t.integer  "intelligence",         :default => 1
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20100929202439) do
     t.text     "common_spells"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "user_id",              :default => 1
     t.boolean  "read_name",            :default => false
     t.boolean  "read_description",     :default => false
     t.boolean  "read_background",      :default => false
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(:version => 20100929202439) do
     t.boolean  "read_clique",          :default => false
     t.boolean  "read_ideology",        :default => false
     t.boolean  "read_nature",          :default => false
-    t.integer  "splat_id",             :default => 1,     :null => false
+    t.integer  "splat_id",             :default => 1,         :null => false
     t.integer  "purity",               :default => 0
     t.integer  "glory",                :default => 0
     t.integer  "honor",                :default => 0
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20100929202439) do
     t.integer  "cunning",              :default => 0
     t.text     "gifts"
     t.text     "totem"
-    t.integer  "nature_id",            :default => 1,     :null => false
+    t.integer  "nature_id",            :default => 1,         :null => false
     t.integer  "animalism",            :default => 0
     t.integer  "auspex",               :default => 0
     t.integer  "celerity",             :default => 0
@@ -113,35 +113,35 @@ ActiveRecord::Schema.define(:version => 20100929202439) do
     t.integer  "obfuscate",            :default => 0
     t.integer  "vigor",                :default => 0
     t.text     "covenant_disciplines"
-    t.integer  "size",                 :default => 5,     :null => false
+    t.integer  "size",                 :default => 5,         :null => false
     t.text     "transmutations"
-    t.integer  "dream",                :default => 0,     :null => false
-    t.integer  "hearth",               :default => 0,     :null => false
-    t.integer  "mirror",               :default => 0,     :null => false
-    t.integer  "smoke",                :default => 0,     :null => false
-    t.integer  "artifice",             :default => 0,     :null => false
-    t.integer  "darkness",             :default => 0,     :null => false
-    t.integer  "elements",             :default => 0,     :null => false
-    t.integer  "fang_and_tooth",       :default => 0,     :null => false
-    t.integer  "stone",                :default => 0,     :null => false
-    t.integer  "vainglory",            :default => 0,     :null => false
-    t.integer  "fleeting_spring",      :default => 0,     :null => false
-    t.integer  "eternal_spring",       :default => 0,     :null => false
-    t.integer  "fleeting_summer",      :default => 0,     :null => false
-    t.integer  "eternal_summer",       :default => 0,     :null => false
-    t.integer  "fleeting_autumn",      :default => 0,     :null => false
-    t.integer  "eternal_autumn",       :default => 0,     :null => false
-    t.integer  "fleeting_winter",      :default => 0,     :null => false
-    t.integer  "eternal_winter",       :default => 0,     :null => false
+    t.integer  "dream",                :default => 0,         :null => false
+    t.integer  "hearth",               :default => 0,         :null => false
+    t.integer  "mirror",               :default => 0,         :null => false
+    t.integer  "smoke",                :default => 0,         :null => false
+    t.integer  "artifice",             :default => 0,         :null => false
+    t.integer  "darkness",             :default => 0,         :null => false
+    t.integer  "elements",             :default => 0,         :null => false
+    t.integer  "fang_and_tooth",       :default => 0,         :null => false
+    t.integer  "stone",                :default => 0,         :null => false
+    t.integer  "vainglory",            :default => 0,         :null => false
+    t.integer  "fleeting_spring",      :default => 0,         :null => false
+    t.integer  "eternal_spring",       :default => 0,         :null => false
+    t.integer  "fleeting_summer",      :default => 0,         :null => false
+    t.integer  "eternal_summer",       :default => 0,         :null => false
+    t.integer  "fleeting_autumn",      :default => 0,         :null => false
+    t.integer  "eternal_autumn",       :default => 0,         :null => false
+    t.integer  "fleeting_winter",      :default => 0,         :null => false
+    t.integer  "eternal_winter",       :default => 0,         :null => false
     t.text     "goblin_contracts"
     t.text     "pledges"
-    t.integer  "boneyard",             :default => 0,     :null => false
-    t.integer  "caul",                 :default => 0,     :null => false
-    t.integer  "curse",                :default => 0,     :null => false
-    t.integer  "marionette",           :default => 0,     :null => false
-    t.integer  "oracle",               :default => 0,     :null => false
-    t.integer  "rage",                 :default => 0,     :null => false
-    t.integer  "shroud",               :default => 0,     :null => false
+    t.integer  "boneyard",             :default => 0,         :null => false
+    t.integer  "caul",                 :default => 0,         :null => false
+    t.integer  "curse",                :default => 0,         :null => false
+    t.integer  "marionette",           :default => 0,         :null => false
+    t.integer  "oracle",               :default => 0,         :null => false
+    t.integer  "rage",                 :default => 0,         :null => false
+    t.integer  "shroud",               :default => 0,         :null => false
     t.text     "keys"
     t.text     "ceremonies"
     t.text     "deeds"
