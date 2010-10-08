@@ -1,8 +1,11 @@
 class CommentsController < ApplicationController
-  before_filter :find_character, :only => [:new, :create, :edit, :update, :destroy]
+  respond_to :html, :xml
+  before_filter :find_character, :only => [:new, :create, :destroy]
+  before_filter :find_comment, :only => ["new", "destroy"]
+  before_filter :destroy_permission, :only => ["destroy"]
 
   def new
-    @comment = @character.comments.build
+    respond_with @comment
   end
 
   def create
@@ -32,12 +35,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    edit_permission
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to character_path(@character, :notice => 'Comment successfully deleted.') }
+      format.html { redirect_to character_path(@character), :notice => 'Comment successfully deleted.' }
       format.xml  { head :ok }
     end
   end
@@ -51,10 +52,18 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit_permission
+  def find_comment
+    if params[:action] == "new"
+      @comment = @character.comments.build
+    else
+      @comment = Comment.find(params[:id])
+    end
+  end
+
+  def destroy_permission
     unless @comment.can_edit_as_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :controller => "characters", :action => "index"
+      redirect_to character_path(@character)
     end
   end
 end
