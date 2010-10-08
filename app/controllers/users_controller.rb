@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   end
   
   def permission
-    unless @user.id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
+    unless @user.can_edit_as_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => :show, :id => session[:user_id]
     end
