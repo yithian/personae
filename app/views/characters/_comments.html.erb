@@ -2,7 +2,6 @@
 <% @character.comments.each do |c| %>
     <p><b><%= c.speaker %></b></p>
     <p><%= simple_format(c.body) %></p>
-    <%= link_to 'Edit Comment', edit_character_comment_path(@character, c) if edit_comment?(c) %>
     <%= link_to 'Delete Comment', character_comment_path(@character, c), :confirm => 'Are you sure?', :method => :delete if edit_comment?(c) %>
     <hr />
 <% end %>

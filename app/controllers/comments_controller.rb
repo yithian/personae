@@ -18,22 +18,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-    @comment = @character.comments.find(params[:id])
-    edit_permission
-  end
-
-  def update
-    @comment = Comment.find(params[:id])
-    edit_permission
-
-    if @comment.update_attributes(params[:comment])
-      redirect_to character_path(@character)
-    else
-      render :action => :edit
-    end
-  end
-
   def destroy
     @comment.destroy
 
