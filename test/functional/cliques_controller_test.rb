@@ -137,10 +137,10 @@ class CliquesControllerTest < ActionController::TestCase
     assert_equal "Please log in", flash[:notice], "got past authentication"
     
     # shouldn't update as non-owning user
-    login_as(users(:two))
+    login_as(users(:one))
     
-    put :update, :id => cliques(:one).to_param, :clique => { }
-    assert_redirected_to :controller => :cliques
+    put :update, :id => cliques(:two).to_param, :clique => { }
+    assert_redirected_to clique_path(cliques(:two))
     assert_equal "You don't have permission to do that", flash[:notice], "clique was updated"
   end
 
