@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :xml
-  # FIXME - is the skip_filter really necessary?
-  skip_filter :authorize, :except => [:show, :edit]
+  skip_filter :authorize, :only => [:new, :create]
   before_filter :find_user, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :permission, :only => [:show, :edit, :update, :destroy]
 
