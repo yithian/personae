@@ -109,7 +109,7 @@ class CharactersController < ApplicationController
   
   def find_lists
     @clique_list = Clique.all.collect do |c|
-      next unless known_clique?(c)
+      next unless c.is_known_to_user?(session[:user_id])
       [c.name, c.id]
     end
     @clique_list.delete_if { |c| c == nil }
