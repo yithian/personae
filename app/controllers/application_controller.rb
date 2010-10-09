@@ -15,16 +15,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def known_ideology?(ideology)
-    known_ideology = false
-    ideology.characters.each do |member|
-      known_ideology = true if show_ideology?(member)
-    end
-
-    session[:user_id] == User.find_by_name('Storyteller').id or known_ideology
-  end
-  helper_method :known_ideology?
-
   def own_character?(char)
     session[:user_id] == User.find_by_name('Storyteller').id or char.user_id == session[:user_id]
   end

@@ -7,7 +7,7 @@ class IdeologiesController < ApplicationController
   # GET /ideologies
   # GET /ideologies.xml
   def index
-    @ideologies = Ideology.all.collect { |i| i if known_ideology?(i) }
+    @ideologies = Ideology.all.collect { |i| i if i.is_known_to_user?(session[:user_id]) }
     @ideologies.delete_if { |i| i == nil }
 
     respond_with @ideologies
