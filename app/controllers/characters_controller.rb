@@ -4,7 +4,7 @@ class CharactersController < ApplicationController
   before_filter :show_permission, :only => [:show]
   before_filter :edit_permission, :only => [:edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
-  before_filter :find_lists, :only => [:new, :edit, :update]
+  before_filter :find_lists, :only => [:new, :edit]
   
   # GET /characters
   # GET /characters.xml
@@ -96,6 +96,10 @@ class CharactersController < ApplicationController
   
   def set_params
     @character.clique_id = params['clique_id'] if params['clique_id']
+
+    if params['splat_id']
+      @character.splat_id = params['splat_id']
+    end
 
     if params['ideology_id']
       @character.splat_id = Ideology.find(params['ideology_id']).splat_id
