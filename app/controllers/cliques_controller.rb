@@ -8,7 +8,7 @@ class CliquesController < ApplicationController
   # GET /cliques
   # GET /cliques.xml
   def index
-    @cliques = Clique.all.collect { |c| c if known_clique?(c) }
+    @cliques = Clique.all.collect { |c| c if c.is_known_to_user?(session[:user_id]) }
     @cliques.delete_if { |c| c == nil }
 
     respond_with @cliques
