@@ -4,7 +4,7 @@ class CharactersController < ApplicationController
   before_filter :show_permission, :only => [:show]
   before_filter :edit_permission, :only => [:edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
-  before_filter :find_lists, :only => [:new, :edit]
+  before_filter :find_lists, :only => [:new, :edit, :update]
   
   # GET /characters
   # GET /characters.xml
@@ -124,7 +124,7 @@ class CharactersController < ApplicationController
   def edit_permission
     unless @character.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => :index
+      redirect_to character_path(@character)
     end
   end
   
