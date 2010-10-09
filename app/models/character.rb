@@ -95,4 +95,96 @@ class Character < ActiveRecord::Base
   validates :protean, :numericality => true
   validates :obfuscate, :numericality => true
   validates :vigor, :numericality => true
+  
+  def owned_by?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id
+  end
+  
+  def show_name_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_name
+  end
+  
+  def show_nature_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_nature
+  end
+  
+  def show_clique_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_clique
+  end
+  
+  def show_ideology_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_ideology
+  end
+  
+  def show_description_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_description
+  end
+  
+  def show_background_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_background
+  end
+  
+  def show_deeds_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_deeds
+  end
+  
+  def show_attributes_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_attributes
+  end
+  
+  def show_skills_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_skills
+  end
+  
+  def show_advantages_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_advantages
+  end
+  
+  def show_merits_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_merits
+  end
+  
+  def show_powers_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_powers
+  end
+  
+  def show_equipment_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_equipment
+  end
+  
+  def show_experience_to_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_experience
+  end
+  
+  def edit_character_as_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id
+  end
+  
+  def is_mortal?
+    self.splat.name == "Mortal" or self.splat.name == "Hunter"
+  end
+  
+  def is_mage?
+    self.splat.name == "Mage"
+  end
+  
+  def is_werewolf?
+    self.splat.name == "Werewolf"
+  end
+
+  def is_vampire?
+    self.splat.name == "Vampire"
+  end
+
+  def is_promethean?
+    self.splat.name == "Promethean"
+  end
+
+  def is_changeling?
+    self.splat.name == "Changeling"
+  end
+  
+  def is_geist?
+    self.splat.name == "Geist"
+  end
 end

@@ -122,14 +122,14 @@ class CharactersController < ApplicationController
   end
   
   def edit_permission
-    unless @character.user_id == session[:user_id] or session[:user_id] == User.find_by_name("Storyteller").id
+    unless @character.owned_by?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
       redirect_to character_path(@character)
     end
   end
   
   def show_permission
-    unless session[:user_id] == User.find_by_name('Storyteller').id or @character.user_id == session[:user_id] or @character.read_name
+    unless @character.show_name_to_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => :index
     end

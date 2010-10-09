@@ -11,6 +11,9 @@ class Ideology < ActiveRecord::Base
     self.characters.each do |member|
       known_ideology = true if member.read_ideology
     end
+    User.find_by_id(current_uid).characters.each do |character|
+      known_ideology = true if self.id == character.ideology.id
+    end
 
     known_ideology
   end

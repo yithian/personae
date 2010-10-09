@@ -224,18 +224,18 @@
       <td><%= f.text_field :morality, :class => "number" %></td>
     </tr>
     <tr>
-      <td class="label" id="power_stat_label_cell" <%= "style='display: none'" if is_mortal?(@character) %> >
+      <td class="label" id="power_stat_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
         <%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %>
       </td>
-      <td class="data" id="power_stat_cell" <%= "style='display: none'" if is_mortal?(@character) %> >
+      <td class="data" id="power_stat_cell" <%= "style='display: none'" if @character.is_mortal? %> >
         <%= f.text_field :power_stat, :class => "number" %>
       </td>
     </tr>
     <tr>
-      <td class="label" id="fuel_label_cell" <%= "style='display: none'" if is_mortal?(@character) %> >
+      <td class="label" id="fuel_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
         <%= f.label :fuel, @character.splat.fuel_name, :id => "fuel_label" %>
       </td>
-      <td class="data" id="fuel_cell" <%= "style='display: none'" if is_mortal?(@character) %> >
+      <td class="data" id="fuel_cell" <%= "style='display: none'" if @character.is_mortal? %> >
         <%= f.text_field :fuel, :class => "number" %>
       </td>
     </tr>
@@ -254,7 +254,7 @@
   <p><%= f.text_area :equipment %></p>
   <%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
 
-  <span id="mage_powers" <%= "style='display: none'" unless is_mage?(@character) %> >
+  <span id="mage_powers" <%= "style='display: none'" unless @character.is_mage? %> >
     <h3>Arcana</h3>
     <table class="three_cells">
       <tr>
@@ -305,7 +305,7 @@
 
   </span>
 
-  <span id="woof_powers" <%= "style='display: none'" unless is_werewolf?(@character) %> >
+  <span id="woof_powers" <%= "style='display: none'" unless @character.is_werewolf? %> >
     <h3>Renown</h3>
     <table class="three_cells">
       <tr>
@@ -338,7 +338,7 @@
     <p><%= f.text_area :totem %></p>
   </span>
 
-  <span id="vampire_powers" <%= "style='display: none'" unless is_vampire?(@character) %> >
+  <span id="vampire_powers" <%= "style='display: none'" unless @character.is_vampire? %> >
     <h3>Disciplines</h3>
     <table class="three_cells">
       <tr>
@@ -384,12 +384,12 @@
     </table>
   </span>
 
-  <span id="promethean_powers" <%= "style='display: none'" unless is_promethean?(@character) %> >
+  <span id="promethean_powers" <%= "style='display: none'" unless @character.is_promethean? %> >
     <h3>Transmutations</h3>
     <p><%= f.text_area :transmutations %></p>
   </span>
 
-  <span id="changeling_powers" <%= "style='display: none'" unless is_changeling?(@character) %> >
+  <span id="changeling_powers" <%= "style='display: none'" unless @character.is_changeling? %> >
     <h3>Contracts</h3>
     <table class="three_cells">
       <tr>
@@ -469,7 +469,7 @@
     </table>
   </span>
 
-  <span id="geist_powers" <%= "style='display: none'" unless is_geist?(@character) %> >
+  <span id="geist_powers" <%= "style='display: none'" unless @character.is_geist? %> >
     <h3>Manifestations</h3>
     <table class="three_cells">
       <tr>
@@ -508,7 +508,7 @@
     <p><%= f.text_area :ceremonies %></p>
   </span>
   
-  <span id="read_powers_span" <%= "style='display: none'" if is_mortal?(@character) %> >
+  <span id="read_powers_span" <%= "style='display: none'" if @character.is_mortal? %> >
     <%= f.check_box :read_powers %> <%= f.label :read_powers %>
   </span>
 
