@@ -7,7 +7,7 @@ class Clique < ActiveRecord::Base
 
   def is_known_to_user?(current_uid)
     known_clique = false
-    known_clique = true if current_uid == User.find_by_name("Storyteller").id or self.user_id == current_uid or self.write
+    known_clique = true if current_uid == User.find_by_name("Storyteller").id or self.user_id == current_uid or self.write or self.id == Clique.find_by_name("Solitary").id
     self.characters.each do |member|                                                                                                                        
       known_clique = true if member.read_clique                                                                                                                
     end
