@@ -6,13 +6,11 @@
   </tr>
 
   <% @characters.each do |character| %>
-    <% if character.show_name_to_user?(session[:user_id]) %>
-      <tr>
-        <td><%= link_to character.name, character %></td>
-        <td><%= link_to character.clique.name, character.clique if character.show_clique_to_user?(session[:user_id]) %></td>
-        <td><%= link_to character.ideology.name, character.ideology if character.show_clique_to_user?(session[:user_id]) %></td>
-      </tr>
-    <% end %>
+    <tr>
+      <td><%= link_to character.name, character %></td>
+      <td><%= link_to character.clique.name, character.clique if character.show_clique_to_user?(session[:user_id]) %></td>
+      <td><%= link_to character.ideology.name, character.ideology if character.show_clique_to_user?(session[:user_id]) %></td>
+    </tr>
   <% end %>
 </table>
 

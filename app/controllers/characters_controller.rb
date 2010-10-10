@@ -9,7 +9,8 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.xml
   def index
-    @characters = Character.all(:order => "clique_id ASC")
+    @characters = Character.all(:order => "clique_id ASC").collect { |c| c if c.show_name_to_user?(session[:user_id]) }
+    @characters.delete_if { |c| c == nil }
 
     respond_with @characters
   end
