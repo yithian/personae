@@ -2,8 +2,17 @@ class UsersController < ApplicationController
   respond_to :html, :xml
   skip_filter :authorize, :only => [:new, :create]
   before_filter :find_user, :only => [:new, :show, :edit, :update, :destroy]
+  before_filter :index_permission, :only => [:index]
   before_filter :permission, :only => [:show, :edit, :update, :destroy]
 
+  # GET /users/
+  def index
+    @users = User.all.collect { |u| u if u.can_edit_as_user?(session[:user_id]) }
+    @users.delete_if { |u| u == nil }
+    
+    respond_with @users
+  end
+  
   # GET /users/1
   # GET /users/1.xml
   def show
@@ -55,6 +64,13 @@ class UsersController < ApplicationController
       @user = User.new
     else
       @user = User.find(params[:id])
+    end
+  end
+  
+  def index_permission
+    unless User.find(session[:user_id]).id == User.find_by_name("Storyteller").id
+      flash[:notice] = "You don't have permission to do that"
+      redirect_to :action => "show", :id => session[:user_id]
     end
   end
   

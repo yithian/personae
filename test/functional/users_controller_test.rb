@@ -5,6 +5,27 @@ class UsersControllerTest < ActionController::TestCase
     @request.session[:user_id] = user ? user.id : nil
   end
   
+  test "should get index" do
+    login_as(users(:Storyteller))
+    
+    get :index
+    assert_response :success
+  end
+  
+  test "shouldn't get index" do
+    # not logged in
+    get :index
+    assert_redirected_to :controller => "admin", :action => "login"
+    assert_equal("Please log in", flash[:notice])
+    
+    # as normal user
+    login_as(users(:one))
+    
+    get :index
+    assert_redirected_to user_path(users(:one))
+    assert_equal("You don't have permission to do that", flash[:notice])
+  end
+  
   test "should get new" do
     get :new
     assert_response :success
