@@ -98,14 +98,14 @@ class UsersControllerTest < ActionController::TestCase
     # as ST
     login_as(users(:Storyteller))
     
-    put :update, :id => users(:one).to_param, :user => { }
-    assert_response :success
+    put :update, :id => users(:one).to_param, :user => { :name => "unique" }
+    assert_redirected_to user_path(users(:one))
 
     # as user
     login_as(users(:one))
     
     put :update, :id => users(:one).to_param, :user => { }
-    assert_response :success
+    assert_redirected_to user_path(users(:one))
   end
   
   test "shouldn't update user" do
