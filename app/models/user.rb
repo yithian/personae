@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :cliques
   
-  attr_writer :password_required
-  
   validates :name, :presence => true, :uniqueness => true
   validates :password, :presence => true, :not_blank => true, :on => :create
   validates_confirmation_of :password
@@ -30,10 +28,6 @@ class User < ActiveRecord::Base
       clique.user_id = User.find_by_name("Storyteller").id
       clique.save
     end
-  end
-  
-  def password_required?
-    @password_required
   end
   
   def self.authenticate(name, password)
