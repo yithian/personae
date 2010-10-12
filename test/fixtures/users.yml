@@ -5,15 +5,18 @@ Storyteller:
   hashed_password: 19470b0a670cb69d32ad192fd01087a5dad3e3e1
   salt: 21827182600.451664451813932
   selected_character: 3
+  email_address: fake@email.com
 
 one:
   name: MyName
   hashed_password: MyHashedPassword
   salt: MySalt
   selected_character: 1
+  email_address: asdf@asdf.com
 
 two:
   name: MyOtherName
   hashed_password: MyOtherHashedPassword
   salt: MyOtherSalt
   selected_character: 2
+  email_address: no-reply@asdf.com
