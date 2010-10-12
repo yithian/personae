@@ -1,5 +1,4 @@
-class AdminController < ApplicationController
-  
+class AdminController < ApplicationController  
   def login
     if request.post?
       user = User.authenticate(params[:name], params[:password])
@@ -19,5 +18,15 @@ class AdminController < ApplicationController
     flash[:notice] = "Logged out"
     
     redirect_to :controller => :admin, :action => :login
+  end
+  
+  def forgot_username
+    if request.post?
+      user = User.find_by_email_address(params[:email_address])
+      UserMailer.forgot_username(user).deliver
+      
+      flash[:notice] = "Username has been sent to #{params[:email_address]}"
+      redirect_to :action => "login"
+    end
   end
 end

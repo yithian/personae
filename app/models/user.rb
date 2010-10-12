@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates :password, :presence => true, :not_blank => true, :on => :create
   validates_confirmation_of :password
+  validates :email_address, :presence => true, :uniqueness => true, :format => { :with => /.*\@.*\.*/}
   
   before_destroy do |user|
     if user == User.find_by_name("Storyteller")

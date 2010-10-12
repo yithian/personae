@@ -1,0 +1,11 @@
+<%= form_tag do %>
+  <div>
+    <%= label_tag :email_address, "Email address" %>
+    <%= text_field_tag :email_address, params[:email_address] %>
+  </div>
+  
+  <div id="navbar">
+	  <%= link_to "Cancel", {:action => "login"}, :class => "button" %>
+    <%= submit_tag "Send email" %>
+  </div>
+<% end %>
