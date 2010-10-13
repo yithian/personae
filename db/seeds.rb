@@ -1,4 +1,4 @@
-User.create(:name => "Storyteller", :password => "worldofdarkness")
+User.create(:name => "Storyteller", :password => "worldofdarkness", :email_address => "change@me.com")
 
 Splat.create(:name => "Mortal", :nature_name => "Nature", :clique_name => "Clique", :ideology_name => "Ideology", :morality_name => "Morality", :power_stat_name => "Conviction", :fuel_name => "Fuel")
 Splat.create(:name => "Mage", :nature_name => "Path", :clique_name => "Cabal", :ideology_name => "Order", :morality_name => "Wisdom", :power_stat_name => "Gnosis", :fuel_name => "Mana")
