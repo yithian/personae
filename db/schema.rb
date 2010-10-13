@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101010222656) do
+ActiveRecord::Schema.define(:version => 20101013182834) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(:version => 20101010222656) do
     t.datetime "updated_at"
     t.integer  "selected_character"
     t.string   "email_address"
+    t.string   "reset_code"
   end
 
 end

@@ -1,4 +1,5 @@
 require 'digest/sha1'
+require 'digest/sha2'
 
 class NotBlankValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
@@ -40,6 +41,16 @@ class User < ActiveRecord::Base
       end
     end
     user
+  end
+
+  def generate_reset_code
+    self.attributes = {:reset_code => Digest::SHA2.hexdigest(Time.now.to_s.split(//).sort { rand }.join)}
+    self.save(:validate => false)
+  end
+
+  def clear_reset_code
+    self.attributes = {:reset_code => nil}
+    self.save(:validate => false)
   end
   
   # password is a virtual attribute

@@ -29,4 +29,30 @@ class AdminController < ApplicationController
       redirect_to :action => "login"
     end
   end
+ 
+  def forgot_password
+    if request.post?
+      user = User.find_by_name(params[:username])
+      user.generate_reset_code
+      @url = url_for(:action => "reset_password", :reset_code => user.reset_code)
+      logger.info UserMailer.forgot_password(user).encoded.inspect
+
+      flash[:notice] = "Password reset link sent to your email address"
+      #redirect_to :action => "reset_password"
+    end
+  end
+
+  def reset_password
+    @reset_code = params[:reset_code]
+    @user = User.find_by_reset_code(@reset_code)
+
+      puts "whatup"
+    if request.post?
+      puts "whatup"
+      flash[:notice] = "Successfully changed password" if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
+      @user.clear_reset_code
+
+      redirect_to :action => "login"
+    end
+  end
 end
