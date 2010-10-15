@@ -38,7 +38,6 @@ class AdminController < ApplicationController
       logger.info UserMailer.forgot_password(user).encoded.inspect
 
       flash[:notice] = "Password reset link sent to your email address"
-      #redirect_to :action => "reset_password"
     end
   end
 
@@ -46,9 +45,7 @@ class AdminController < ApplicationController
     @reset_code = params[:reset_code]
     @user = User.find_by_reset_code(@reset_code)
 
-      puts "whatup"
     if request.post?
-      puts "whatup"
       flash[:notice] = "Successfully changed password" if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
       @user.clear_reset_code
 
