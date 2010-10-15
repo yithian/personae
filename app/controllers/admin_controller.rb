@@ -35,7 +35,7 @@ class AdminController < ApplicationController
       user = User.find_by_name(params[:username])
       user.generate_reset_code
       @url = url_for(:action => "reset_password", :reset_code => user.reset_code)
-      logger.info UserMailer.forgot_password(user).encoded.inspect
+      UserMailer.forgot_password(user).deliver
 
       flash[:notice] = "Password reset link sent to your email address"
     end
