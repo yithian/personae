@@ -156,10 +156,6 @@ class Character < ActiveRecord::Base
     user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_experience
   end
   
-  def edit_character_as_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id
-  end
-  
   def is_mortal?
     self.splat.name == "Mortal" or self.splat.name == "Hunter"
   end
