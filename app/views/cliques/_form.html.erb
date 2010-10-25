@@ -25,9 +25,7 @@
   <h3>Description</h3>
   <p><%= f.text_area :description %></p>
   <%= f.check_box :write %> <%= f.label :write %>
-
-  <div id="navbar">
-    <%= link_to "Cancel", :back, :class => "button" %>
-    <%= f.submit 'Save' %>
-  </div>
+  <br />
+  
+  <%= f.submit 'Save' %>
 <% end %>

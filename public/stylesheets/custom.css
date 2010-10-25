@@ -71,21 +71,7 @@ body {
 }
 #content a.selected:hover { background: #EEEEEC; }
 
-#content a.button, input[type="submit"] {
-	border: 2px outset #97A2DE;
-	background: none;
-	color: #2937A1;
-	font-size: 84%;
-	text-decoration: none;
-	text-align: center;
-	width: 8em;
-	padding: 0em .25em;
-}
-#content a.button:hover, input[type="submit"]:hover {
-	background: none;
-	border-color: #990033;
-}
-#content a.button:active, input[type="submit"]:active { border-style: inset; }
+
 
 #content h3 {
 	color: #EEEEEC;
@@ -106,9 +92,6 @@ body {
 	margin-right: .5em;
 	float: left;
 }
-
-#content #navbar { text-align: center; }
-#content #navbar form { display: inline; }
 
 #content table td.growdown { vertical-align: top; }
 

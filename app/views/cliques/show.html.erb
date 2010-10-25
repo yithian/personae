@@ -24,9 +24,7 @@
 </p>
 
 
-<div id="navbar">
-  <%= link_to 'Back', :back, :class => "button" %>
-  <%= link_to 'New member', { :controller => :characters, :action => :new, :clique_id => @clique.id }, :class => "button" %>
-  <%= link_to 'Edit', edit_clique_path(@clique), :class => "button" if edit_clique?(@clique) %>
-  <%= link_to 'Destroy', @clique, :confirm => 'Are you sure you want to delete this clique?', :method => :delete, :class => "button" if edit_clique?(@clique) %>
-</div>
+
+<%= link_to 'New member', { :controller => :characters, :action => :new, :clique_id => @clique.id } %>
+<%= link_to 'Edit', edit_clique_path(@clique) if edit_clique?(@clique) %>
+<%= link_to 'Destroy', @clique, :confirm => 'Are you sure you want to delete this clique?', :method => :delete if edit_clique?(@clique) %>

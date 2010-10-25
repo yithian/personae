@@ -68,7 +68,6 @@
   </table>
 
   
-
   <h3>Description</h3>
   <p><%= f.text_area :description %></p>
   <%= f.check_box :read_description %> <%= f.label :read_description %>
@@ -180,7 +179,7 @@
       <td><%= f.text_field :subterfuge, :class => "number" %></td>
     </tr>
     <tr>
-         <td><%= f.label :skill_specialties %></td>
+      <td><%= f.label :skill_specialties %></td>
       <td colspan="5" class="growdown"><%= f.text_area :skill_specialties %></td>
     </tr>
   </table>
@@ -243,17 +242,18 @@
     </tr>
   </table>
   <%= f.check_box :read_advantages %> <%= f.label :read_advantages %>
-
-
+  
+  
   <h3>Merits</h3>
   <p><%= f.text_area :merits %></p>
   <%= f.check_box :read_merits %> <%= f.label :read_merits %>
-
-
+  
+  
   <h3>Equipment</h3>
   <p><%= f.text_area :equipment %></p>
   <%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
-
+  
+  
   <span id="mage_powers" <%= "style='display: none'" unless @character.is_mage? %> >
     <h3>Arcana</h3>
     <table class="three_cells">
@@ -302,9 +302,9 @@
       <tr>
       </tr>
     </table>
-
   </span>
-
+  
+  
   <span id="woof_powers" <%= "style='display: none'" unless @character.is_werewolf? %> >
     <h3>Renown</h3>
     <table class="three_cells">
@@ -337,7 +337,8 @@
     <h3>Totem</h3>
     <p><%= f.text_area :totem %></p>
   </span>
-
+  
+  
   <span id="vampire_powers" <%= "style='display: none'" unless @character.is_vampire? %> >
     <h3>Disciplines</h3>
     <table class="three_cells">
@@ -383,12 +384,14 @@
       </tr>
     </table>
   </span>
-
+  
+  
   <span id="promethean_powers" <%= "style='display: none'" unless @character.is_promethean? %> >
     <h3>Transmutations</h3>
     <p><%= f.text_area :transmutations %></p>
   </span>
-
+  
+  
   <span id="changeling_powers" <%= "style='display: none'" unless @character.is_changeling? %> >
     <h3>Contracts</h3>
     <table class="three_cells">
@@ -468,7 +471,8 @@
       </tr>
     </table>
   </span>
-
+  
+  
   <span id="geist_powers" <%= "style='display: none'" unless @character.is_geist? %> >
     <h3>Manifestations</h3>
     <table class="three_cells">
@@ -516,9 +520,8 @@
   <h3>Experience</h3>
   <p><%= f.text_area :experience %></p>
   <%= f.check_box :read_experience %> <%= f.label :read_experience %>
-
-  <div id="navbar">
-    <%= link_to "Cancel", :back, :class => "button" %>
-    <%= f.submit 'Save', :class => "button" %>
-  </div>
+  <br />
+  
+  
+  <%= f.submit 'Save' %>
 <% end %>

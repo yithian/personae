@@ -10,6 +10,4 @@
   <% end %>
 </table>
 
-<div id="navbar">
-        <%= link_to 'New ideology', new_ideology_path, :class => "button" if session[:user_id] == User.find_by_name("Storyteller").id %>
-</div>
+<%= link_to 'New ideology', new_ideology_path if session[:user_id] == User.find_by_name("Storyteller").id %>
