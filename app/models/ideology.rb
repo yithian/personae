@@ -18,6 +18,10 @@ class Ideology < ActiveRecord::Base
     known_ideology
   end
 
+  def can_edit_as_user?(current_uid)
+    current_uid == User.find_by_name("Storyteller").id
+  end
+
   def can_destroy_as_user?(current_uid)
     current_uid == User.find_by_name("Storyteller").id
   end

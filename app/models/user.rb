@@ -68,6 +68,10 @@ class User < ActiveRecord::Base
   def can_edit_as_user?(current_uid)
     self.id == current_uid or current_uid == User.find_by_name("Storyteller").id
   end
+  
+  def can_destroy_as_user?(current_uid)
+    self.id == current_uid or current_uid == User.find_by_name("Storyteller").id
+  end
 
   private
   def create_new_salt

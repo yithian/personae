@@ -123,7 +123,7 @@ class CharactersController < ApplicationController
   end
   
   def edit_permission
-    unless @character.owned_by?(session[:user_id])
+    unless @character.can_edit_as_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
       redirect_to character_path(@character)
     end

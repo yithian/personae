@@ -96,7 +96,11 @@ class Character < ActiveRecord::Base
   validates :obfuscate, :numericality => true
   validates :vigor, :numericality => true
   
-  def owned_by?(user_id)
+  def can_edit_as_user?(user_id)
+    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id
+  end
+  
+  def can_destroy_as_user?(user_id)
     user_id == User.find_by_name('Storyteller').id or self.user_id == user_id
   end
   
