@@ -19,10 +19,10 @@ class Ideology < ActiveRecord::Base
   end
 
   def can_edit_as_user?(current_uid)
-    current_uid == User.find_by_name("Storyteller").id
+    current_uid == User.find_by_name("Storyteller").id unless self.id == Ideology.find_by_name("Mortal").id
   end
 
   def can_destroy_as_user?(current_uid)
-    current_uid == User.find_by_name("Storyteller").id
+    current_uid == User.find_by_name("Storyteller").id unless self.id == Ideology.find_by_name("Mortal").id
   end
 end

@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   end
   
   def can_destroy_as_user?(current_uid)
-    self.id == current_uid or current_uid == User.find_by_name("Storyteller").id
+    self.id == current_uid or current_uid == User.find_by_name("Storyteller").id unless self.id == User.find_by_name("Storyteller").id
   end
 
   private

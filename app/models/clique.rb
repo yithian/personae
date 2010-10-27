@@ -16,10 +16,10 @@ class Clique < ActiveRecord::Base
   end
 
   def can_edit_as_user?(current_uid)
-    self.user_id == current_uid or current_uid == User.find_by_name("Storyteller").id or self.write
+    self.user_id == current_uid or current_uid == User.find_by_name("Storyteller").id or self.write unless self.id == Clique.find_by_name("Solitary").id
   end
 
   def can_destroy_as_user?(current_uid)
-    current_uid == User.find_by_name("Storyteller").id or self.user_id == current_uid
+    current_uid == User.find_by_name("Storyteller").id or self.user_id == current_uid unless self.id == Clique.find_by_name("Solitary").id
   end
 end

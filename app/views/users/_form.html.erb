@@ -11,10 +11,12 @@
     </div>
   <% end %>
 
-  <div>
-    <%= f.label :name, 'Name', :class => "sized" %>
-    <%= f.text_field :name %>
-  </div>
+  <% unless @user.id == User.find_by_name("Storyteller").id %>
+    <div>
+      <%= f.label :name, 'Name', :class => "sized" %>
+      <%= f.text_field :name %>
+    </div>
+  <% end %>
 
   <div>
   	<%= f.label :email_address, 'Email', :class => "sized" %>
