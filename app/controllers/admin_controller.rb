@@ -45,11 +45,13 @@ class AdminController < ApplicationController
     @reset_code = params[:reset_code]
     @user = User.find_by_reset_code(@reset_code)
 
-    if request.post?
-      flash[:notice] = "Successfully changed password" if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
-      @user.clear_reset_code
-
-      redirect_to :action => "login"
+    if request.put?
+      if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
+        flash[:notice] = "Successfully changed password"
+        @user.clear_reset_code
+        
+        redirect_to :action => "login"
+      end
     end
   end
 end
