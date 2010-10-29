@@ -40,6 +40,6 @@ module Personae
     config.filter_parameters << :password
 
     # Configure the base url for mail notifications.  Set this to your site's url
-    config.action_mailer.default_url_options = { :host => "cityofdarkness.no-ip.org" }
+    #config.action_mailer.default_url_options = { :host => "cityofdarkness.no-ip.org" }
   end
 end

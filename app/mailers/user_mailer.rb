@@ -6,9 +6,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => @user.email_address, :subject => "Forgotten username")
   end
 
-  def forgot_password(user)
+  def forgot_password(user, url)
     @user = user
-    @url = url_for(:controller => "admin", :action => "reset_password", :reset_code => @user.reset_code, :only_path => false)
+    @url = url
     mail(:to => @user.email_address, :subject => "Reset password")
   end
 end
