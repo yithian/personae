@@ -92,4 +92,30 @@
       va = new Widget.Textarea(textarea);
     });
   });
+
+  function updateStats() {
+	a = isNaN(parseInt($('character_stamina').value)) ? 0 : parseInt($('character_stamina').value);
+	b = isNaN(parseInt($('character_size').value)) ? 0 : parseInt($('character_size').value);
+    $('character_health').value = a + b;
+    
+	a = isNaN(parseInt($('character_resolve').value)) ? 0 : parseInt($('character_resolve').value);
+	b = isNaN(parseInt($('character_composure').value)) ? 0 : parseInt($('character_composure').value);
+    $('character_willpower').value = a + b;
+    
+	a = isNaN(parseInt($('character_wits').value)) ? 0 : parseInt($('character_wits').value);
+	b = isNaN(parseInt($('character_dexterity').value)) ? 0 : parseInt($('character_dexterity').value);
+    $('character_defense').value = Math.min(a, b);
+    
+	a = isNaN(parseInt($('character_dexterity').value)) ? 0 : parseInt($('character_dexterity').value);
+	b = isNaN(parseInt($('character_composure').value)) ? 0 : parseInt($('character_composure').value);
+    $('character_initiative').value = a + b;
+
+    a = isNaN(parseInt($('character_strength').value)) ? 0 : parseInt($('character_strength').value);
+	b = isNaN(parseInt($('character_dexterity').value)) ? 0 : parseInt($('character_dexterity').value);
+    $('character_speed').value = a + b + 5;
+  }
+
+  document.on("keyup", $('input.number'), function(event, element) {
+	updateStats();
+  });
 }) ();
