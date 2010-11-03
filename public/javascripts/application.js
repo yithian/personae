@@ -115,7 +115,7 @@
     $('character_speed').value = a + b + 5;
   }
 
-  document.on("keyup", $('input.number'), function(event, element) {
+  document.on("keydown", $('input.number'), function(event, element) {
 	updateStats();
   });
 }) ();
