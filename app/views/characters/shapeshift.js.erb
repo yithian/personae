@@ -14,7 +14,7 @@
   $('dexterity').update("<%= @character.dexterity %>");
   $('stamina').update("<%= "#{@character.stamina + 1} (#{@character.stamina})" %>");
   $('manipulation').update("<%= "#{[@character.manipulation - 1, 1].max} (#{@character.manipulation})" %>");
-  $('health').update("<%= "#{@character.health} (+2)" %>");
+  $('health').update("<%= "#{@character.health + 2} (#{@character.health})" %>");
   $('size').update("<%= "#{@character.size + 1} (#{@character.size})" %>");
   $('initiative').update("<%= @character.initiative %>");
   $('speed').update("<%= "#{@character.speed + 1} (#{@character.speed})" %>");
@@ -25,7 +25,7 @@
   $('dexterity').update("<%= "#{@character.dexterity + 1} (#{@character.dexterity})" %>");
   $('stamina').update("<%= "#{@character.stamina + 2} (#{@character.stamina})" %>");
   $('manipulation').update("<%= "- (#{@character.manipulation})" %>");
-  $('health').update("<%= "#{@character.health} (+4)" %>");
+  $('health').update("<%= "#{@character.health + 4} (#{@character.health})" %>");
   $('size').update("<%= "#{@character.size + 2} (#{@character.size})" %>");
   $('initiative').update("<%= "#{@character.initiative + 1} (#{@character.initiative})" %>");
   $('speed').update("<%= "#{@character.speed + 4} (#{@character.speed})" %>");
@@ -36,7 +36,7 @@
   $('dexterity').update("<%= "#{@character.dexterity + 2} (#{@character.dexterity})" %>");
   $('stamina').update("<%= "#{@character.stamina + 2} (#{@character.stamina})" %>");
   $('manipulation').update("<%= "#{[@character.manipulation - 3, 1].max} (#{@character.manipulation})" %>");
-  $('health').update("<%= "#{@character.health} (+3)" %>");
+  $('health').update("<%= "#{@character.health + 3} (#{@character.health})" %>");
   $('size').update("<%= "#{@character.size + 1} (#{@character.size})" %>");
   $('initiative').update("<%= "#{@character.initiative + 2} (#{@character.initiative})" %>");
   $('speed').update("<%= "#{@character.speed + 7} (#{@character.speed})" %>");
