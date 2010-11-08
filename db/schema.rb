@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101108022817) do
+ActiveRecord::Schema.define(:version => 20101108174022) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20101108022817) do
     t.text     "skill_specialties"
     t.integer  "health",               :limit => 255, :default => 6
     t.integer  "willpower",            :limit => 255, :default => 2
-    t.integer  "speed",                               :default => 5
+    t.integer  "speed",                               :default => 7
     t.integer  "initiative",                          :default => 2
     t.integer  "defense",                             :default => 1
     t.integer  "armor",                               :default => 0
