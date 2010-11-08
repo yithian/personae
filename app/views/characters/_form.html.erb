@@ -187,24 +187,28 @@
 
 
   <h3>Advantages</h3>
-  <table class="three_cells">
+  <table class="four_cells">
     <tr>
       <td><%= f.label :health %></td>
-      <td><%= f.text_field :health %></td>
-      <td><%= f.label :derangements %></td>
+      <td><%= f.text_field :health, :class => "number" %></td>
+      <td><%= f.label :current_health %></td>
+      <td><%= f.text_field :current_health %></td>
     </tr>
     <tr>
       <td><%= f.label :willpower %></td>
-      <td><%= f.text_field :willpower %></td>
-      <td rowspan="10" class="growdown"><%= f.text_area :derangements %></td>
+      <td><%= f.text_field :willpower, :class => "number" %></td>
+      <td><%= f.label :current_willpower %></td>
+      <td><%= f.text_field :current_willpower %></td>
     </tr>
     <tr>
       <td><%= f.label :size %></td>
       <td><%= f.text_field :size, :class => "number" %></td>
+      <td><%= f.label :derangements %></td>
     </tr>
     <tr>
       <td><%= f.label :initiative %></td>
       <td><%= f.text_field :initiative, :class => "number" %></td>
+      <td rowspan="10" colspan="2" class="growdown"><%= f.text_area :derangements %></td>
     </tr>
     <tr>
       <td><%= f.label :speed %></td>

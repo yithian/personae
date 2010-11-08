@@ -152,24 +152,28 @@
 <% if @character.show_advantages_to_user?(session[:user_id]) %>
   <div id="advantages">    
     <h3>Advantages</h3>
-    <table class="three_cells">
+    <table class="four_cells">
       <tr>
         <td>Health:</td>
         <td id="health"><%= @character.health %></td>
-        <td>Derangements:</td>
+        <td>Current Health:</td>
+        <td><%= @character.current_health %></td>
       </tr>
       <tr>
         <td>Willpower:</td>
         <td id="willpower"><%= @character.willpower %></td>
-        <td rowspan="10"><%= simple_format(@character.derangements) %></td>
+        <td>Current Willpower</td>
+        <td><%= @character.current_willpower %></td>
       </tr>
       <tr>
         <td>Size:</td>
         <td id="size"><%= @character.size %></td>
+        <td>Derangements:</td>
       </tr>
       <tr>
         <td>Initiative:</td>
         <td id="initiative"><%= @character.initiative %></td>
+        <td rowspan="10" colspan="2"><%= simple_format(@character.derangements) %></td>
       </tr>
       <tr>
         <td>Speed:</td>
