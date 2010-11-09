@@ -523,6 +523,13 @@
   </div>
 <% end %>
 
+<% if @character.show_notes_to_user?(session[:user_id]) %>
+  <div id="notes">
+    <h3>Notes</h3>
+    <%= simple_format(@character.notes) %>
+  </div>
+<% end %>
+
 <%= render :partial => 'comments' %><br />
 
 <%= link_to "Toggle preview", {:action => :preview, :id => @character.id}, :remote => true if @character.can_edit_as_user?(session[:user_id]) %> | 

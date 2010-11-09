@@ -41,4 +41,7 @@ unless @character.read_powers %>
 <% end
 unless @character.read_experience %>
   $('experience').toggle();
+<% end
+unless @character.read_notes %>
+  $('notes').toggle();
 <% end %>

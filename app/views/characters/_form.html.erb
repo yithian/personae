@@ -83,10 +83,6 @@
   <%= f.check_box :read_deeds %> <%= f.label :read_deeds %>
 
 
-  <h3>Notes</h3>
-  <p><%= f.text_area :notes %></p>
-
-
   <h3>Attributes</h3>
   <table class="six_cells">
     <tr>
@@ -529,8 +525,13 @@
   <h3>Experience</h3>
   <p><%= f.text_area :experience %></p>
   <%= f.check_box :read_experience %> <%= f.label :read_experience %>
-  <br />
   
+
+  <h3>Notes</h3>
+  <p><%= f.text_area :notes %></p>
+  <%= f.check_box :read_notes %> <%= f.label :read_notes %>
+  <br />
+
   
   <%= f.submit 'Save' %>
 <% end %>
