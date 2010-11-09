@@ -65,12 +65,12 @@ class User < ActiveRecord::Base
     self.hashed_password = User.encrypted_password(self.password, self.salt)
   end
   
-  def can_edit_as_user?(current_uid)
-    self.id == current_uid or current_uid == User.find_by_name("Storyteller").id
+  def can_edit_as_user?(user_id)
+    self.id == user_id or user_id == User.find_by_name("Storyteller").id
   end
   
-  def can_destroy_as_user?(current_uid)
-    self.id == current_uid or current_uid == User.find_by_name("Storyteller").id unless self.id == User.find_by_name("Storyteller").id
+  def can_destroy_as_user?(user_id)
+    self.id == user_id or user_id == User.find_by_name("Storyteller").id unless self.id == User.find_by_name("Storyteller").id
   end
 
   private

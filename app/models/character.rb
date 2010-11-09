@@ -95,69 +95,73 @@ class Character < ActiveRecord::Base
   validates :protean, :numericality => true
   validates :obfuscate, :numericality => true
   validates :vigor, :numericality => true
-  
+
   def can_edit_as_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id
+    owned_by_user?(user_id)
   end
   
   def can_destroy_as_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id
+    owned_by_user?(user_id)
   end
   
   def show_name_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_name
+    owned_by_user?(user_id) or self.read_name
   end
   
   def show_nature_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_nature
+    owned_by_user?(user_id) or self.read_nature
   end
   
   def show_clique_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_clique
+    owned_by_user?(user_id) or self.read_clique
   end
   
   def show_ideology_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_ideology
+    owned_by_user?(user_id) or self.read_ideology
   end
   
   def show_description_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_description
+    owned_by_user?(user_id) or self.read_description
   end
   
   def show_background_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_background
+    owned_by_user?(user_id) or self.read_background
   end
   
   def show_deeds_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_deeds
+    owned_by_user?(user_id) or self.read_deeds
   end
   
   def show_attributes_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_attributes
+    owned_by_user?(user_id) or self.read_attributes
   end
   
   def show_skills_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_skills
+    owned_by_user?(user_id) or self.read_skills
   end
   
   def show_advantages_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_advantages
+    owned_by_user?(user_id) or self.read_advantages
   end
   
   def show_merits_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_merits
+    owned_by_user?(user_id) or self.read_merits
   end
   
   def show_powers_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_powers
+    owned_by_user?(user_id) or self.read_powers
   end
   
   def show_equipment_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_equipment
+    owned_by_user?(user_id) or self.read_equipment
   end
   
   def show_experience_to_user?(user_id)
-    user_id == User.find_by_name('Storyteller').id or self.user_id == user_id or self.read_experience
+    owned_by_user?(user_id) or self.read_experience
+  end
+
+  def show_notes_to_user?(user_id)
+    owned_by_user?(user_id) or self.read_notes
   end
   
   def is_mortal?
@@ -186,5 +190,10 @@ class Character < ActiveRecord::Base
   
   def is_geist?
     self.splat.name == "Geist"
+  end
+
+  private
+  def owned_by_user?(user_id)
+    user_id == User.find_by_name("Storyteller").id or self.user_id == user_id
   end
 end
