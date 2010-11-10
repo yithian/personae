@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(:version => 20101109185336) do
 
-  create_table "cabals", :force => true do |t|
-    t.string   "name"
-    t.string   "territory"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "characters", :force => true do |t|
     t.string   "name"
     t.string   "virtue",                              :default => "Charity"
@@ -189,12 +181,6 @@ ActiveRecord::Schema.define(:version => 20101109185336) do
   create_table "natures", :force => true do |t|
     t.string  "name"
     t.integer "splat_id", :default => 1, :null => false
-  end
-
-  create_table "orders", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "sessions", :force => true do |t|
