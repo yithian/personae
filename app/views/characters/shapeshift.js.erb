@@ -7,6 +7,7 @@
   $('size').update("<%= @character.size %>");
   $('initiative').update("<%= @character.initiative %>");
   $('speed').update("<%= @character.speed %>");
+  $('defense').update("<%= @character.defense %>");
   $('armor').update("<%= @character.armor %>");
   formHeader = 1;
 <% elsif @form == 'dalu' %>
@@ -18,6 +19,7 @@
   $('size').update("<%= "#{@character.size + 1} (#{@character.size})" %>");
   $('initiative').update("<%= @character.initiative %>");
   $('speed').update("<%= "#{@character.speed + 1} (#{@character.speed})" %>");
+  $('defense').update("<%= "#{[@character.wits, @character.dexterity].min}" %>");
   $('armor').update("<%= @character.armor %>");
   formHeader = 2;
 <% elsif @form == 'gauru' %>
@@ -29,6 +31,7 @@
   $('size').update("<%= "#{@character.size + 2} (#{@character.size})" %>");
   $('initiative').update("<%= "#{@character.initiative + 1} (#{@character.initiative})" %>");
   $('speed').update("<%= "#{@character.speed + 4} (#{@character.speed})" %>");
+  $('defense').update("<%= "#{[@character.wits, @character.dexterity + 1].min} (#{@character.defense})" %>");
   $('armor').update("<%= "1/1 (#{@character.armor})" %>");
   formHeader = 3;
 <% elsif @form == 'urshul' %>
@@ -38,6 +41,7 @@
   $('manipulation').update("<%= "#{[@character.manipulation - 3, 1].max} (#{@character.manipulation})" %>");
   $('health').update("<%= "#{@character.health + 3} (#{@character.health})" %>");
   $('size').update("<%= "#{@character.size + 1} (#{@character.size})" %>");
+  $('defense').update("<%= "#{[@character.wits, @character.dexterity + 2].min} (#{@character.defense})" %>");
   $('initiative').update("<%= "#{@character.initiative + 2} (#{@character.initiative})" %>");
   $('speed').update("<%= "#{@character.speed + 7} (#{@character.speed})" %>");
   $('armor').update("<%= @character.armor %>");
@@ -51,6 +55,7 @@
   $('size').update("<%= "#{@character.size + 1} (#{@character.size})" %>");
   $('initiative').update("<%= "#{@character.initiative + 2} (#{@character.initiative})" %>");
   $('speed').update("<%= "#{@character.speed + 5} (#{@character.speed})" %>");
+  $('defense').update("<%= "#{[@character.wits, @character.dexterity + 2].min} (#{@character.defense})" %>");
   $('armor').update("<%= @character.armor %>");
   formHeader = 5;
 <% end %>
