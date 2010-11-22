@@ -97,10 +97,8 @@ class CharactersController < ApplicationController
   
   def set_params
     @character.clique_id = params['clique_id'] if params['clique_id']
-
-    if params['splat_id']
-      @character.splat_id = params['splat_id']
-    end
+    @character.splat_id = params['splat_id'] if params['splat_id']
+    @character.chronicle_id = params['chronicle_id'] if params['chronicle_id']
 
     if params['ideology_id']
       @character.splat_id = Ideology.find(params['ideology_id']).splat_id
