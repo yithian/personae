@@ -4,6 +4,7 @@ class CliquesController < ApplicationController
   before_filter :show_permission, :only => ["show"]
   before_filter :edit_permission, :only => ["edit", "update"]
   before_filter :destroy_permission, :only => ["destroy"]
+  before_filter :find_lists, :only => [:new, :edit, :update]
   
   # GET /cliques
   # GET /cliques.xml
@@ -76,6 +77,10 @@ class CliquesController < ApplicationController
     else
       @clique = Clique.find_by_id(params[:id])
     end
+  end
+
+  def find_lists
+    @chronicle_list = Chronicle.all.collect
   end
   
   def show_permission

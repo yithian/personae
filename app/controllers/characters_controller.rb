@@ -116,10 +116,10 @@ class CharactersController < ApplicationController
     @clique_list.delete_if { |c| c == nil }
 
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect { |n| [n.name, n.id] }
-
     @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect { |i| [i.name, i.id] }
 
     @splat_list = Splat.all.collect
+    @chronicle_list = Chronicle.all.collect
   end
   
   def edit_permission
