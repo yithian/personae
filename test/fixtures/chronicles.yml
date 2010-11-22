@@ -2,6 +2,9 @@
 
 one:
   name: MyName
+  description: MyDescriptionText
 
 two:
   name: MyOtherName
+  description: MyOtherDescriptionText
+

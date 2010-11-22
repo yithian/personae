@@ -22,7 +22,7 @@ class CliquesControllerTest < ActionController::TestCase
   test "should get new" do
     login_as(users(:one))
     
-    get :new
+    get :new, :chronicle_id => chronicles(:one).id
     assert_response :success
   end
 
