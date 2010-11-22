@@ -4,6 +4,7 @@ class CliquesController < ApplicationController
   before_filter :show_permission, :only => ["show"]
   before_filter :edit_permission, :only => ["edit", "update"]
   before_filter :destroy_permission, :only => ["destroy"]
+  before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
   
   # GET /cliques
@@ -77,6 +78,10 @@ class CliquesController < ApplicationController
     else
       @clique = Clique.find_by_id(params[:id])
     end
+  end
+
+  def set_params                                                                                                                                               
+    @clique.chronicle_id = params['chronicle_id'] if params['chronicle_id']
   end
 
   def find_lists
