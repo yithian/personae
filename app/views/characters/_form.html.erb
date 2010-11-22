@@ -53,6 +53,12 @@
       </td>
     </tr>
     <tr>
+      <td><b><%= f.label :chronicle_id, "Chronicle" %></b></td>
+      <td><%= f.select :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id) %></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
       <td><%= f.check_box :read_name %> <%= f.label :read_name %></td>
       <td><%= f.check_box :read_clique %> <%= f.label :read_clique, "Read " + @character.splat.clique_name, :id => "read_clique_label" %></td>
       <td>
