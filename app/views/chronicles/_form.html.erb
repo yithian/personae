@@ -1,0 +1,21 @@
+<%= form_for(@chronicle) do |f| %>
+  <% if @chronicle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chronicle.errors.count, "error") %> prohibited this chronicle from being saved:</h2>
+
+      <ul>
+      <% @chronicle.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3>Name</h3>
+  <%= f.text_field :name %>
+  
+  <h3>Description</h3>
+  <%= f.text_area :description %>
+  
+  <%= f.submit "Save" %>
+<% end %>

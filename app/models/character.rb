@@ -20,6 +20,7 @@ class Character < ActiveRecord::Base
   belongs_to :nature
   belongs_to :splat 
   belongs_to :user
+  belongs_to :chronicle
   has_many :comments, :dependent => :destroy
   
   VIRTUES = [ 'Charity', 'Faith', 'Fortitude', 'Hope', 'Justice', 'Prudence', 'Temperance' ]

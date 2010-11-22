@@ -1,6 +1,7 @@
 class Clique < ActiveRecord::Base
   has_many :characters
   belongs_to :user
+  belongs_to :chronicle
   
   validates :name, :presence => true, :uniqueness => true
   validates :user_id, :presence => true

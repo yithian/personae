@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101109185336) do
+ActiveRecord::Schema.define(:version => 20101121212718) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -150,6 +150,14 @@ ActiveRecord::Schema.define(:version => 20101109185336) do
     t.string   "current_willpower"
     t.text     "notes"
     t.boolean  "read_notes",                          :default => false
+    t.integer  "chronicle_id",                        :default => 1
+  end
+
+  create_table "chronicles", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "cliques", :force => true do |t|
@@ -158,8 +166,9 @@ ActiveRecord::Schema.define(:version => 20101109185336) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "write",       :default => false
-    t.integer  "user_id",     :default => 1,     :null => false
+    t.boolean  "write",        :default => false
+    t.integer  "user_id",      :default => 1,     :null => false
+    t.integer  "chronicle_id", :default => 1
   end
 
   create_table "comments", :force => true do |t|
@@ -214,6 +223,7 @@ ActiveRecord::Schema.define(:version => 20101109185336) do
     t.integer  "selected_character"
     t.string   "email_address"
     t.string   "reset_code"
+    t.integer  "chronicle_id",       :default => 1, :null => false
   end
 
 end

@@ -1,5 +1,7 @@
 User.create(:name => "Storyteller", :password => "worldofdarkness", :email_address => "change@me.com")
 
+Chronicle.create(:name => "Generic", :description => "This should be customized for your chronicle's needs")
+
 Splat.create(:name => "Mortal", :nature_name => "Nature", :clique_name => "Clique", :ideology_name => "Ideology", :morality_name => "Morality", :power_stat_name => "Conviction", :fuel_name => "Fuel")
 Splat.create(:name => "Mage", :nature_name => "Path", :clique_name => "Cabal", :ideology_name => "Order", :morality_name => "Wisdom", :power_stat_name => "Gnosis", :fuel_name => "Mana")
 Splat.create(:name => "Werewolf", :nature_name => "Auspice", :clique_name => "Pack", :ideology_name => "Tribe", :morality_name => "Harmony", :power_stat_name => "Primal Urge", :fuel_name => "Essence")

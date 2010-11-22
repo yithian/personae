@@ -1,6 +1,9 @@
-<p>
-  <h3><%= @user.name %></h3>
+<h3><%= @user.name %></h3>
 
+<h3>Viewing chronicle:</h3>
+<%= link_to @user.chronicle.name, @user.chronicle %>
+
+<h3>Characters:</h3>
 <table>
   <%= render(:partial => "character", :collection => @user.characters) %>
 </table>

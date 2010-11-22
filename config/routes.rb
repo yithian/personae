@@ -1,4 +1,6 @@
 Personae::Application.routes.draw do
+  resources :chronicles
+
   resources :users
   resources :ideologies
   resources :cliques

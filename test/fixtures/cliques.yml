@@ -6,6 +6,7 @@ Solitary:
   territory: none
   write: true
   user: Storyteller
+  chronicle: one
 
 one:
   name: MyCliqueName
@@ -13,6 +14,7 @@ one:
   territory: MyTerritory
   write: true
   user: one
+  chronicle: one
 
 two:
   name: MyOtherCliqueName
@@ -20,4 +22,5 @@ two:
   territory: MyOtherTerritory
   write: false
   user: two
+  chronicle: two
 

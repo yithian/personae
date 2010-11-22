@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :characters, :dependent => :destroy
   has_many :comments
   has_many :cliques
+  belongs_to :chronicle
   
   validates :name, :presence => true, :uniqueness => true
   validates :password, :presence => true, :not_blank => true, :on => :create

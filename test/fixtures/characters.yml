@@ -8,6 +8,7 @@ one:
   ideology: one
   description: MyDescriptionText
   background: MyBackgroundText
+  chronicle: one
   intelligence: 1
   strength: 1
   presence: 1
@@ -141,6 +142,7 @@ two:
   ideology: two
   description: MyOtherDescriptionText
   background: MyOtherBackgroundText
+  chronicle: two
   intelligence: 2
   strength: 2
   presence: 2
