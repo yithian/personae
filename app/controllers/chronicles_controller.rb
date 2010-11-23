@@ -37,7 +37,13 @@ class ChroniclesController < ApplicationController
   def create
     @chronicle = Chronicle.new(params[:chronicle])
 
-    flash[:notice] = "Chronicle successfully created" if @chronicle.save
+    if @chronicle.save
+      flash[:notice] = "Chronicle successfully created"
+      
+      user = User.find_by_id(session[:user_id])
+      user.chronicle_id = @chronicle.id
+      user.save
+    end
 
     respond_with @chronicle
   end
