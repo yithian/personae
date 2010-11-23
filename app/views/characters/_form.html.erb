@@ -26,7 +26,7 @@
       <td><%= f.select :virtue, Character::VIRTUES %></td>
       <td><b><%= f.label :splat_id, "Template" %></b></td>
       <td>
-	<%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :remote => true, :action => url_for(:action => :update_splat) %>
+	      <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :remote => true, :action => url_for(:action => :update_splat) %>
         <input name="character[splat_id]" type="hidden" value="<%= @character.splat_id %>" id="character_splat_id" />
       </td>
     </tr>

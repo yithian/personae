@@ -43,7 +43,7 @@ class ChroniclesController < ApplicationController
   # PUT /chronicles/1
   # PUT /chronicles/1.xml
   def update
-    flash[:notice] = "Chronicle successfully updated" if @chronicle.save
+    flash[:notice] = "Chronicle successfully updated" if @chronicle.update_attributes(params[:chronicle])
 
     respond_with @chronicle
   end
