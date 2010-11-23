@@ -10,18 +10,20 @@ class Chronicle < ActiveRecord::Base
       raise "Can't delete the last chronicle"
     end
     
+    nc = Chronicle.find(:first).id
+    
     c.characters.each do |character|
-      character.chronicle_id = 1
+      character.chronicle_id = nc
       character.save
     end
     
     c.cliques.each do |clique|
-      clique.chronicle_id = 1
+      clique.chronicle_id = nc
       clique.save
     end
     
     c.users.each do |user|
-      user.chronicle_id = 1
+      user.chronicle_id = nc
       user.save
     end
   end
