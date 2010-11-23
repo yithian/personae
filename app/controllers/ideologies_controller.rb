@@ -3,6 +3,7 @@ class IdeologiesController < ApplicationController
   before_filter :find_ideology, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :permission, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :show_permission, :only => [:show]
+  before_filter :find_lists, :only => [:new, :create, :edit, :update]
   
   # GET /ideologies
   # GET /ideologies.xml
@@ -76,6 +77,10 @@ class IdeologiesController < ApplicationController
     end
   end
   
+  def find_lists
+    @splat_list = Splat.all.collect
+  end
+
   def permission
     unless session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"

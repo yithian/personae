@@ -14,5 +14,7 @@
   <h3>Name</h3>
   <p><%= f.text_field :name %></p>
 
+  <h3>Template</h3>
+  <p><%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @ideology.splat.id) %></p>
   <%= f.submit 'Save' %>
 <% end %>
