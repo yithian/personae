@@ -122,4 +122,4 @@ Ideology.create(:name => "Necromancer", :splat_id => Splat.find_by_name("Geist")
 Ideology.create(:name => "Pilgrim", :splat_id => Splat.find_by_name("Geist").id)
 Ideology.create(:name => "Reaper", :splat_id => Splat.find_by_name("Geist").id)
 
-Clique.create(:name => "Solitary", :territory => "N/A", :description => "\"Members\" of this group don't really associate with anyone.")
+Clique.create(:name => "Solitary", :territory => "N/A", :description => "\"Members\" of this group don't really associate with anyone.", :chronicle_id => 0)

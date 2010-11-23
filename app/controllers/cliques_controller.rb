@@ -13,7 +13,8 @@ class CliquesController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     @chronicles = Chronicle.all.collect
     
-    @cliques = Clique.find_all_by_chronicle_id(@user.chronicle.id).collect { |c| c if c.is_known_to_user?(@user.id) }
+    @cliques = Clique.find_all_by_chronicle_id(0)
+    @cliques = @cliques + Clique.find_all_by_chronicle_id(@user.chronicle.id).collect { |c| c if c.is_known_to_user?(@user.id) }
     @cliques.delete_if { |c| c == nil }
 
     respond_with @cliques
@@ -25,7 +26,9 @@ class CliquesController < ApplicationController
     @user.save
 
     @chronicle = Chronicle.find_by_id(@user.chronicle.id)
-    @cliques = Clique.find_all_by_chronicle_id(@user.chronicle.id)
+    @cliques = Clique.find_all_by_chronicle_id(0)
+    @cliques = @cliques + Clique.find_all_by_chronicle_id(@user.chronicle.id).collect { |c| c if c.is_known_to_user?(@user.id) }
+    @cliques.delete_if { |c| c == nil }
   end
 
   # GET /cliques/1
