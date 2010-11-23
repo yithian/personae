@@ -15,7 +15,7 @@ $('power_stat_label').update('<%= @splat.power_stat_name %>');
 $('fuel_label').update('<%= @splat.fuel_name %>');
 
 // show or hide only the appropriate fields
-<% if @splat.name == "Mortal" %>
+<% if @splat.name == "Mortal" or @splat.name == "Hunter" %>
   $('nature_label_cell').hide();
   $('nature_id_cell').hide();
   $('ideology_label_cell').hide();
