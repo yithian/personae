@@ -23,7 +23,8 @@ class CharactersController < ApplicationController
     @user.chronicle_id = params[:chronicle_id]
     @user.save
     
-    @chronicle = Chronicle.find_by_id(@user.chronicle.id)
+    @characters = Character.find_all_by_chronicle_id(@user.chronicle.id, :order => "clique_id ASC").collect { |c| c if c.show_name_to_user?(@user.id) }
+    @characters.delete_if { |c| c == nil }
     @characters = Character.find_all_by_chronicle_id(@user.chronicle.id)
   end
 
