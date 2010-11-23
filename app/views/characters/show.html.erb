@@ -1,13 +1,13 @@
 <table class="four_cells">
   <tr>
-    <td><b>Name:</b></td>
+    <td><b>Name</b></td>
     <td colspan=3><%= @character.name %></td>
   <tr>
-    <td><b>Virtue:</b></td>
+    <td><b>Virtue</b></td>
     <td ><span id="virtue"><%= @character.virtue if @character.can_edit_as_user?(session[:user_id]) %></span></td>
   </tr>
   <tr>
-    <td><b>Vice:</b></td>
+    <td><b>Vice</b></td>
     <td><span id="vice"><%= @character.vice if @character.can_edit_as_user?(session[:user_id]) %></span></td>
     <td><span id="nature_label"><b><%= @character.splat.nature_name if @character.show_nature_to_user?(session[:user_id]) %>:</b></span></td>
     <td><span id="nature_name"><%= @character.nature.name if @character.show_nature_to_user?(session[:user_id]) unless @character.is_mortal? %></span></td>

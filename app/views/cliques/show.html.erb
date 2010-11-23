@@ -1,23 +1,23 @@
 <p>
-  <h3>Name:</h3>
+  <h3>Name</h3>
   <p><%= @clique.name %></p>
 </p>
 
 <p>
-  <h3>Territory:</h3>
+  <h3>Territory</h3>
   <p><%= @clique.territory %></p>
 </p>
 
 <p>
-  <h3>Description:</h3>
+  <h3>Description</h3>
   <p><%= @clique.description %></p>
 </p>
 
 <p>
 <table>
   <tr>
-    <th>Member:</th>
-    <th>Ideology:</th>
+    <th>Member</th>
+    <th>Ideology</th>
   </tr>
   <%= render(:partial => "member", :collection => @clique.characters) %>
 </table>

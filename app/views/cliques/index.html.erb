@@ -1,7 +1,7 @@
-<h3>Chronicle:</h3>
+<h3>Chronicle</h3>
 <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @user.chronicle.id), :remote => true, :action => url_for(:action => 'change_chronicle') %>
 
-<h3>Cliques:</h3>
+<h3>Cliques</h3>
 <div id='list'>
   <%= render :partial => 'list' %>
 </div>
