@@ -12,7 +12,7 @@ class AddChangelingSplat < ActiveRecord::Migration
     Ideology.create(:name => "Spring", :splat_id => Splat.find_by_name("Changeling").id)
     Ideology.create(:name => "Summer", :splat_id => Splat.find_by_name("Changeling").id)
     Ideology.create(:name => "Autumn", :splat_id => Splat.find_by_name("Changeling").id)
-    Ideology.create(:name => "Fall", :splat_id => Splat.find_by_name("Changeling").id)
+    Ideology.create(:name => "Winter", :splat_id => Splat.find_by_name("Changeling").id)
     Ideology.create(:name => "Courtless", :splat_id => Splat.find_by_name("Changeling").id)
 
     add_column :characters, "dream", :integer, :default => 0, :null => false
@@ -60,7 +60,7 @@ class AddChangelingSplat < ActiveRecord::Migration
     remove_column :characters, "dream"
 
     Ideology.find_by_name("Courtless").destroy
-    Ideology.find_by_name("Fall").destroy
+    Ideology.find_by_name("Winter").destroy
     Ideology.find_by_name("Autumn").destroy
     Ideology.find_by_name("Summer").destroy
     Ideology.find_by_name("Spring").destroy

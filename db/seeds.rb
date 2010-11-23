@@ -99,7 +99,7 @@ Ideology.create(:name => "Centimani", :splat_id => Splat.find_by_name("Promethea
 Ideology.create(:name => "Spring", :splat_id => Splat.find_by_name("Changeling").id)
 Ideology.create(:name => "Summer", :splat_id => Splat.find_by_name("Changeling").id)
 Ideology.create(:name => "Autumn", :splat_id => Splat.find_by_name("Changeling").id)
-Ideology.create(:name => "Fall", :splat_id => Splat.find_by_name("Changeling").id)
+Ideology.create(:name => "Winter", :splat_id => Splat.find_by_name("Changeling").id)
 Ideology.create(:name => "Courtless", :splat_id => Splat.find_by_name("Changeling").id)
 Ideology.create(:name => "None", :splat_id => Splat.find_by_name("Hunter").id)
 Ideology.create(:name => "Ashwood Abbey", :splat_id => Splat.find_by_name("Hunter").id)
