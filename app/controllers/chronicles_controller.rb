@@ -16,6 +16,8 @@ class ChroniclesController < ApplicationController
   # GET /chronicles/1
   # GET /chronicles/1.xml
   def show
+    @characters = @chronicle.characters
+    @cliques = @chronicle.cliques
     respond_with @chronicle
   end
 
