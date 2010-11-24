@@ -120,7 +120,8 @@ class CharactersController < ApplicationController
   end
   
   def find_lists
-    @clique_list = Clique.all.collect do |c|
+    @clique_list = Clique.find_all_by_chronicle_id(0).collect { |c| [c.name, c.id] }
+    @clique_list = @clique_list + Clique.find_all_by_chronicle_id(@character.chronicle.id).collect do |c|
       next unless c.is_known_to_user?(session[:user_id])
       [c.name, c.id]
     end
