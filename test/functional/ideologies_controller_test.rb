@@ -23,7 +23,7 @@ class IdeologiesControllerTest < ActionController::TestCase
   test "should get new" do
     login_as(users(:Storyteller))
     
-    get :new
+    get :new, :splat_id => splats(:one).id
     assert_response :success
   end
 
