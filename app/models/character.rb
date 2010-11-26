@@ -111,7 +111,7 @@ class Character < ActiveRecord::Base
   end
   
   def show_nature_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_nature
+    owned_by_user?(user_id) or self.read_nature unless self.splat.name == "Mortal"
   end
   
   def show_clique_to_user?(user_id)
@@ -119,7 +119,7 @@ class Character < ActiveRecord::Base
   end
   
   def show_ideology_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_ideology
+    owned_by_user?(user_id) or self.read_ideology unless self.splat.name == "Mortal"
   end
   
   def show_description_to_user?(user_id)
