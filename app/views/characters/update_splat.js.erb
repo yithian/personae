@@ -5,7 +5,9 @@ $('character_splat_id').value = '<%= @splat.id.to_s %>';
 $('clique_label').update('<%= @splat.clique_name %>');
 $('read_clique_label').update('Read <%= @splat.clique_name %>');
 $('nature_label').update('<%= @splat.nature_name %>');
-$('character_nature_id').update('<%= options_from_collection_for_select(@nature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39") %>');
+$('nature_id').update('<%= options_from_collection_for_select(@nature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39") %>');
+$('subnature_label').update('<%= @splat.subnature_name %>');
+$('character_subnature').update('<%= options_from_collection_for_select(@subnature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39") %>');
 $('read_nature_label').update('Read <%= @splat.nature_name %>');
 $('ideology_label').update('<%= @splat.ideology_name %>');
 $('character_ideology_id').update('<%= options_from_collection_for_select(@ideology_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39") %>');
@@ -39,6 +41,14 @@ $('fuel_label').update('<%= @splat.fuel_name %>');
   $('fuel_label_cell').show();
   $('fuel_cell').show();
   $('read_powers_span').show();
+<% end %>
+
+<% if @splat.name != "Changeling" %>
+  $('subnature_label_cell').hide();
+  $('subnature_id_cell').hide();
+<% else %>
+  $('subnature_label_cell').show();
+  $('subnature_id_cell').show();
 <% end %>
 
 $('mage_powers', 'woof_powers', 'vampire_powers', 'promethean_powers', 'changeling_powers', 'geist_powers').invoke('hide');

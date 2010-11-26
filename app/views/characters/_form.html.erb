@@ -33,30 +33,33 @@
     <tr>
       <td><b><%= f.label :vice %></b></td>
       <td><%= f.select :vice, Character::VICES %></td>
-      
       <td class="label" id="nature_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
         <b><%= f.label :nature_id, @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
-      
       <td class="data" id="nature_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
-        <%= f.select :nature_id, @nature_list %>
+        <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :remote => true, :action => url_for(:action => :update_nature) %>
+        <input name="character[nature_id]" type="hidden" value="<%= @character.nature_id %>" id="character_nature_id" />
       </td>
     </tr>
     <tr>
       <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
       <td><%= f.select :clique_id, @clique_list %></td>
+      <td class="label" id="subnature_label_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
+        <b><%= f.label :subnature_label, @character.splat.subnature_name, :id => "subnature_label" %></b>
+      </td>
+      <td class="data" id="subnature_id_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
+        <%= f.select :subnature, @subnature_list %>
+      </td>
+    </tr>
+    <tr>
+      <td><b><%= f.label :chronicle_id, "Chronicle" %></b></td>
+      <td><%= f.select :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id) %></td>
       <td class="label" id="ideology_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
       </td>
       <td class="data" id="ideology_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
         <%= f.select :ideology_id, @ideology_list %>
       </td>
-    </tr>
-    <tr>
-      <td><b><%= f.label :chronicle_id, "Chronicle" %></b></td>
-      <td><%= f.select :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id) %></td>
-      <td></td>
-      <td></td>
     </tr>
     <tr>
       <td><%= f.check_box :read_name %> <%= f.label :read_name %></td>

@@ -54,7 +54,19 @@ class CharactersController < ApplicationController
   def update_splat
     @splat = Splat.find_by_id(params[:splat_id])
     @nature_list = Nature.find_all_by_splat_id(params[:splat_id])
+    @subnature_list = Subnature.find_all_by_nature_id_and_splat_id(0, @splat.id)
+    @subnature_list = @subnature_list + Subnature.find_all_by_nature_id(@nature_list.first.id)
     @ideology_list = Ideology.find_all_by_splat_id(params[:splat_id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def update_nature
+    @nature = Nature.find_by_id(params[:nature_id])
+    @subnature_list = Subnature.find_all_by_nature_id_and_splat_id(0, @nature.splat.id)
+    @subnature_list = @subnature_list + Subnature.find_all_by_nature_id(@nature.id)
 
     respond_to do |format|
       format.js
@@ -112,6 +124,7 @@ class CharactersController < ApplicationController
     @character.clique_id = params['clique_id'] if params['clique_id']
     @character.splat_id = params['splat_id'] if params['splat_id']
     @character.chronicle_id = params['chronicle_id'] if params['chronicle_id']
+    @character.nature_id = params['nature_id'] if params['nature_id']
 
     if params['ideology_id']
       @character.splat_id = Ideology.find(params['ideology_id']).splat_id
@@ -124,7 +137,8 @@ class CharactersController < ApplicationController
     @clique_list = @clique_list + Clique.find_all_by_chronicle_id(@character.chronicle.id).collect { |c| [c.name, c.id] if c.is_known_to_user?(session[:user_id]) }
     @clique_list.delete_if { |c| c == nil }
 
-    @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect { |n| [n.name, n.id] }
+    @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect
+    @subnature_list = Subnature.find_all_by_nature_id_and_splat_id(0, @character.splat.id).collect { |s| [s.name, s.id] }
     @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect { |i| [i.name, i.id] }
 
     @splat_list = Splat.all.collect
