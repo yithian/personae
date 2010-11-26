@@ -28,6 +28,7 @@ across game lines.
 
 Splat => Mage, Vampire, Werewolf, etc
 Nature => Moros (Mage), Gangrel (Vampire), Cahalith (Werewolf), etc
+Subnature => Changelings' Kith (and nothing else)
 Clique => Cabal (Mage), Cotorie (Vampire), Pack (Werewolf), etc
 Ideology => Silver Ladder (Mage), Lancae Sanctum (Vampire), Storm Lords (Werewolf), etc
 
@@ -49,6 +50,10 @@ installed, use Ruby Gems to install Ruby on Rails:
 *nix:  `gem install rails`
 Windows:  Start -> Programs -> Ruby -> Ruby Gems -> RubyGems Package Manager.
           `gem install rails`
+
+With Ruby on Rails installed, install the rest of the required gems by changing into
+Personae's install directory (from a shell or cmd prompt) and run `bundle install`.
+This should install the proper versions of all the gems you'll need.
 
 Once you have Personae downloaded and placed where you want it, open a command prompt
 (Terminal on Mac, xterm on Linux, cmd on Windows).  Run the following to configure
@@ -118,7 +123,7 @@ use a service such as no-ip (http://no-ip.org) to give you one.
 
 == A word of caution
 
-Runnig a web server presents a potential security vulnerability, which can be
+Running a web server presents a potential security vulnerability, which can be
 mitigated by frequently updating Apache and Ruby on Rails.  If you're not OK with
 that, then your best bet is to not use Personae.
 
