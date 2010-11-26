@@ -138,7 +138,9 @@ class CharactersController < ApplicationController
     @clique_list.delete_if { |c| c == nil }
 
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect
-    @subnature_list = Subnature.find_all_by_nature_id_and_splat_id(0, @character.splat.id).collect { |s| [s.name, s.id] }
+    @subnature_list = Subnature.find_all_by_nature_id_and_splat_id(0, @character.splat.id)
+    @subnature_list = @subnature_list + Subnature.find_all_by_nature_id(@nature_list.first.id)
+    @subnature_list = @subnature_list.collect.each { |s| [s.name, s.id] }
     @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect { |i| [i.name, i.id] }
 
     @splat_list = Splat.all.collect
