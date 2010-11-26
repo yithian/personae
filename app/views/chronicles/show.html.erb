@@ -2,7 +2,7 @@
 <%= @chronicle.name %>
 
 <h3>Description</h3>
-<%= @chronicle.description %>
+<%= simple_format(@chronicle.description) %>
 
 <h3>Characters</h3>
 <%= render :partial => 'characters/list' %>
