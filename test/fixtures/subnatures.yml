@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyName
+  splat: one
+  nature: one
+
+two:
+  name: MyOtherName
+  splat: one
+  nature: one
+
