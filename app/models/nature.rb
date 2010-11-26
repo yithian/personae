@@ -1,5 +1,6 @@
 class Nature < ActiveRecord::Base
   has_many :characters
+  has_many :subnatures
   belongs_to :splat
 
   validates :name, :presence => true, :uniqueness => true

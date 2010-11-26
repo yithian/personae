@@ -41,7 +41,7 @@ class CharactersControllerTest < ActionController::TestCase
     login_as(users(:one))
 
     assert_difference('Character.count') do
-      post :create, :character => { :name => "unique", :splat_id => splats(:one).id }
+      post :create, :character => { :name => "unique", :splat_id => splats(:one).id, :chronicle_id => chronicles(:one).id, :subnature_id => subnatures(:one).id }
     end
 
     assert_redirected_to character_path(assigns(:character))

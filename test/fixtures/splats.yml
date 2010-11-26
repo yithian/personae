@@ -3,6 +3,7 @@
 one:
   name: MyName
   nature_name: MyNatureName
+  subnature_name: MySubnatureName
   clique_name: MyCliqueName
   ideology_name: MyIdeologyName
   morality_name: MyMoralityName
@@ -12,6 +13,7 @@ one:
 two:
   name: MyOtherName
   nature_name: MyOtherNatureName
+  subnature_name: MyOtherSubnatureName
   clique_name: MyOtherCliqueName
   ideology_name: MyOtherIdeologyName
   morality_name: MyOtherMoralityName

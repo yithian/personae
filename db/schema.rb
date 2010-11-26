@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101123224746) do
+ActiveRecord::Schema.define(:version => 20101125135954) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20101123224746) do
     t.text     "notes"
     t.boolean  "read_notes",                          :default => false
     t.integer  "chronicle_id",                        :default => 1
+    t.integer  "subnature_id",                        :default => 1,         :null => false
   end
 
   create_table "chronicles", :force => true do |t|
@@ -210,6 +211,15 @@ ActiveRecord::Schema.define(:version => 20101123224746) do
     t.string   "morality_name"
     t.string   "power_stat_name"
     t.string   "fuel_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "subnature_name"
+  end
+
+  create_table "subnatures", :force => true do |t|
+    t.string   "name"
+    t.integer  "nature_id",  :default => 1, :null => false
+    t.integer  "splat_id",   :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

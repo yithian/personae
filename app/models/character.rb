@@ -18,6 +18,7 @@ class Character < ActiveRecord::Base
   belongs_to :clique
   belongs_to :ideology
   belongs_to :nature
+  belongs_to :subnature
   belongs_to :splat 
   belongs_to :user
   belongs_to :chronicle
