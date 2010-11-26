@@ -1,5 +1,6 @@
-// update the hidden field in the form to save the splat_id
+// update the hidden fields in the form
 $('character_splat_id').value = '<%= @splat.id.to_s %>';
+$('character_nature_id').value = '<%= @nature_list.first.id %>';
 
 // update the splat-specific terms
 $('clique_label').update('<%= @splat.clique_name %>');
