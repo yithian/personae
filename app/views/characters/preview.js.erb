@@ -3,6 +3,8 @@ $('vice').toggle();
 <% unless @character.read_nature %>
   $('nature_label').toggle();
   $('nature_name').toggle();
+  $('subnature_label').toggle();
+  $('subnature_name').toggle();
 <% end
 unless @character.read_clique %>
   $('clique_label').toggle();

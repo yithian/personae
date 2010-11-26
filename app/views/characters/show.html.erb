@@ -9,14 +9,20 @@
   <tr>
     <td><b>Vice</b></td>
     <td><span id="vice"><%= @character.vice if @character.can_edit_as_user?(session[:user_id]) %></span></td>
-    <td><span id="nature_label"><b><%= @character.splat.nature_name if @character.show_nature_to_user?(session[:user_id]) %>:</b></span></td>
+    <td><span id="nature_label"><b><%= @character.splat.nature_name if @character.show_nature_to_user?(session[:user_id]) %></b></span></td>
     <td><span id="nature_name"><%= @character.nature.name if @character.show_nature_to_user?(session[:user_id]) unless @character.is_mortal? %></span></td>
   </tr>
   <tr>
-    <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(session[:user_id]) %>:</b></span></td>
+    <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(session[:user_id]) %></b></span></td>
     <td><span id="clique_name"><%= link_to @character.clique.name, @character.clique if @character.show_clique_to_user?(session[:user_id]) %></span></td>
-    <td><span id="ideology_label"><b><%= @character.splat.ideology_name if @character.show_clique_to_user?(session[:user_id]) %>:</b></span></td>
-    <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_clique_to_user?(session[:user_id]) unless @character.is_mortal? %></span></td>
+    <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(session[:user_id]) %></b></span></td>
+    <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(session[:user_id]) %></span></td>
+  </tr>
+  <tr>
+    <td><b>Chronicle</b></td>
+    <td><%= link_to @character.chronicle.name, @character.chronicle %></td>
+    <td><span id="ideology_label"><b><%= @character.splat.ideology_name if @character.show_ideology_to_user?(session[:user_id]) %></b></span></td>
+    <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_ideology_to_user?(session[:user_id]) unless @character.is_mortal? %></span></td>
   </tr>
 </table>
 
