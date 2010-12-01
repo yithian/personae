@@ -7,7 +7,7 @@
     var event = element.fire("ajax:before");
     if (event.stopped) return false;
 
-    if (element.tagName.toLowerCase() === 'select') {
+    if (element.tagName.toLowerCase() === 'select' || element.tagName.toLowerCase() === 'input') {
       method = element.readAttribute('method') || 'post';
       url    = element.readAttribute('action');
       params = element.serialize();
@@ -28,6 +28,13 @@
 
   // This block fires an ajax action when marked dropdown menus have their value changed
   document.on("change", $('select[remote=true]'), function(event, element) {
+    if (event.stopped) return;
+    handleRemote(element);
+    event.stop();
+  });
+
+  // This block fires an ajax action when marked input fields have their contents updated
+  document.on("keyup", $('input[remote=true]'), function(event, element) {
     if (event.stopped) return;
     handleRemote(element);
     event.stop();
