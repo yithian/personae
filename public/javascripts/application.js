@@ -26,12 +26,14 @@
     element.fire("ajax:after");
   }
 
+  // This block fires an ajax action when marked dropdown menus have their value changed
   document.on("change", $('select[remote=true]'), function(event, element) {
     if (event.stopped) return;
     handleRemote(element);
     event.stop();
   });
 
+  // this segment handles automatic resizing of text areas
   if (window.Widget == undefined) window.Widget = {}; 
   
   Widget.Textarea = Class.create({
@@ -93,6 +95,7 @@
     });
   });
 
+  // this function updates derived character attributes when editing their form
   function updateStats() {
 	a = isNaN(parseInt($('character_stamina').value)) ? 0 : parseInt($('character_stamina').value);
 	b = isNaN(parseInt($('character_size').value)) ? 0 : parseInt($('character_size').value);
@@ -115,6 +118,7 @@
     $('character_speed').value = a + b + 5;
   }
 
+  // fires the javascript to update derived stats on keyup in certain input classes
   document.on("keyup", $('input.number'), function(event, element) {
 	updateStats();
   });
