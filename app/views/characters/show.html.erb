@@ -166,10 +166,12 @@
         <td id="willpower"><%= @character.willpower %></td>
       </tr>
       <tr>
-        <td><%= label_tag :character_current_health, "Current Health:" %></td>
-        <td><%= text_field_tag :character_current_health, @character.current_health, :name => "character[current_health]", :remote => true, :action => url_for(:action => "update", :id => @character.id), :method => "put" %></td>
-        <td><%= label_tag :character_current_willpower, "Current Willpower:" %></td>
-        <td><%= text_field_tag :character_current_willpower, @character.current_willpower, :name => "character[current_willpower]", :remote => true, :action => url_for(:action => "update", :id => @character.id), :method => "put" %></td>
+	<%= form_for(@character) do |f| %>
+          <td><%= f.label :current_health, "Current Health:" %></td>
+          <td><%= f.text_field :current_health, :remote => true, :action => url_for(:action => "update", :id => @character.id), :method => "put" %></td>
+          <td><%= f.label :current_willpower, "Current Willpower:" %></td>
+          <td><%= f.text_field :current_willpower, :remote => true, :action => url_for(:action => "update", :id => @character.id), :method => "put" %></td>
+        <% end %>
       </tr>
       <tr>
         <td>Size:</td>
