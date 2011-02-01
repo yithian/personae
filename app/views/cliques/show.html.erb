@@ -26,7 +26,7 @@
 <% if @clique.has_totem? %>
   <p>
     <h3>Totem</h3>
-    <p><%= @clique.totem %></p>
+    <p><%= simple_format(@clique.totem) %></p>
   </p>
 <% end %>
 
