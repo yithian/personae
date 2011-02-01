@@ -25,6 +25,11 @@
   <h3>Description</h3>
   <p><%= f.text_area :description %></p>
 
+  <% if @clique.has_totem? %>
+    <h3>Totem</h3>
+    <p><%= f.text_area :totem %></p>
+  <% end %>
+
   <h3>Chronicle</h3>
   <p><%= f.select :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @clique.chronicle.id) %></p>
   <%= f.check_box :write %> <%= f.label :write %>

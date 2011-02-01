@@ -88,7 +88,6 @@ one:
   wisdom: 1
   cunning: 1
   gifts: MyGiftsText
-  totem: MyTotemText
   nature: one
   animalism: 1
   auspex: 1
@@ -222,7 +221,6 @@ two:
   wisdom: 2
   cunning: 2
   gifts: MyOtherGiftsText
-  totem: MyOtherTotemText
   nature: two
   animalism: 2
   auspex: 2

@@ -23,6 +23,13 @@
 </table>
 </p>
 
+<% if @clique.has_totem? %>
+  <p>
+    <h3>Totem</h3>
+    <p><%= @clique.totem %></p>
+  </p>
+<% end %>
+
 
 
 <%= link_to('New member', { :controller => :characters, :action => :new, :clique_id => @clique.id }) + " | " %>

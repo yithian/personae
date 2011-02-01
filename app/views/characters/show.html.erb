@@ -348,7 +348,7 @@
         </tr>
       </table>
       <h3>Totem</h3>
-      <%= simple_format(@character.totem)%>
+      <%= simple_format(@character.clique.totem)%>
     <% end %>
 
     <% if @character.is_vampire? %>

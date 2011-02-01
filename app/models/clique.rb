@@ -6,6 +6,15 @@ class Clique < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates :user_id, :presence => true
 
+  def has_totem?
+    has_werewolf = false
+      self.characters.each do |char|
+        has_werewolf = true if char.is_werewolf?
+      end
+
+    has_werewolf
+  end
+
   def is_known_to_user?(user_id)
     known_clique = false
     known_clique = true if user_id == User.find_by_name("Storyteller").id or self.user_id == user_id or self.write or self.id == Clique.find_by_name("Solitary").id

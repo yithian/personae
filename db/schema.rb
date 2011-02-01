@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101126042858) do
+ActiveRecord::Schema.define(:version => 20110201163148) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(:version => 20101126042858) do
     t.integer  "wisdom",                              :default => 0
     t.integer  "cunning",                             :default => 0
     t.text     "gifts"
-    t.text     "totem"
     t.integer  "nature_id",                           :default => 1,         :null => false
     t.integer  "animalism",                           :default => 0
     t.integer  "auspex",                              :default => 0
@@ -170,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20101126042858) do
     t.boolean  "write",        :default => false
     t.integer  "user_id",      :default => 1,     :null => false
     t.integer  "chronicle_id", :default => 1
+    t.text     "totem"
   end
 
   create_table "comments", :force => true do |t|
