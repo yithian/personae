@@ -111,6 +111,7 @@ body {
 #content input[type="text"], input[type="password"] { width: 9em; }
 
 #content input.number { width: 2em; }
+#content input.parent_number { width: 2em; }
 
 #content textarea {
 	width: 100%;
