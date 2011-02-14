@@ -127,8 +127,6 @@
 
   // fires the javascript to update derived stats on keyup in certain input classes
   document.observe("dom:loaded", function() {
-    $$('input.parent_number').each(function(e) {
-      e.observe('keyup', updateStats);
-    });
+    $$('input.parent_number').invoke('observe', 'keyup', updateStats);
   });
 }) ();
