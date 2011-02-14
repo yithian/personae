@@ -26,20 +26,6 @@
     element.fire("ajax:after");
   }
 
-  // This block fires an ajax action when marked dropdown menus have their value changed
-  document.on("change", $('select[remote=true]'), function(event, element) {
-    if (event.stopped) return;
-    handleRemote(element);
-    event.stop();
-  });
-
-  // This block fires an ajax action when marked input fields have their contents updated
-  document.on("keyup", $('input[remote=true]'), function(event, element) {
-    if (event.stopped) return;
-    handleRemote(element);
-    event.stop();
-  });
-
   // this segment handles automatic resizing of text areas
   if (window.Widget == undefined) window.Widget = {}; 
   
@@ -125,8 +111,23 @@
     $('character_speed').value = a + b + 5;
   }
 
-  // fires the javascript to update derived stats on keyup in certain input classes
   document.observe("dom:loaded", function() {
+    // fires the javascript to update derived stats on keyup in certain input classes
     $$('input.parent_number').invoke('observe', 'keyup', updateStats);
+    
+    
+    // fires an ajax action when marked dropdown menus have their value changed
+    $$('select[remote=true]').invoke('observe', 'change', function(event, element) {
+      if (event.stopped) return;
+      handleRemote(this);
+      event.stop();
+    });
+
+    // fires an ajax action when marked input fields have their contents updated
+    $$('input[remote=true]').invoke('observe', 'keyup', function(event, element) {
+      if (event.stopped) return;
+      handleRemote(this);
+      event.stop();
+    });
   });
 }) ();
