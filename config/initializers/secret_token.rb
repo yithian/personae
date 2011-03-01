@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Personae::Application.config.secret_token = '30c6f5eed75909400adabc964db6de3f6ec1a3ddc7fbbc2e3fd0621be43ca5ee1ac5f23e078176927d02464958f583898c81b1da641b7b40071acfeb93471aa2'
+Personae::Application.config.secret_token = '9ad1d26d019f86dc5d2cb0169e2b9cd05245c5af61a95abf58b02653599f7b7c86f422b3eb44672bbad6c4857e55e00e0ec9026076d363687077c7be7a41af5e'
