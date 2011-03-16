@@ -15,7 +15,8 @@ $('character_ideology_id').update('<%= options_from_collection_for_select(@ideol
 $('read_ideology_label').update('Read <%= @splat.ideology_name %>');
 $('morality_label').update('<%= @splat.morality_name %>');
 $('power_stat_label').update('<%= @splat.power_stat_name %>');
-$('fuel_label').update('<%= @splat.fuel_name %>');
+$('max_fuel_label').update('Max <%= @splat.fuel_name %>');
+$('current_fuel_label').update('Current <%= @splat.fuel_name %>');
 
 // show or hide only the appropriate fields
 <% if @splat.name == "Mortal" %>
@@ -27,8 +28,10 @@ $('fuel_label').update('<%= @splat.fuel_name %>');
   $('read_ideology_span').hide();
   $('power_stat_label_cell').hide();
   $('power_stat_cell').hide();
-  $('fuel_label_cell').hide();
-  $('fuel_cell').hide();
+  $('max_fuel_label_cell').hide();
+  $('current_fuel_label_cell').hide();
+  $('max_fuel_cell').hide();
+  $('current_fuel_cell').hide();
   $('read_powers_span').hide();
 <% elsif @splat.name == "Hunter" %>
   $('nature_label_cell').show();
@@ -39,8 +42,10 @@ $('fuel_label').update('<%= @splat.fuel_name %>');
   $('read_ideology_span').show();
   $('power_stat_label_cell').hide();
   $('power_stat_cell').hide();
-  $('fuel_label_cell').hide();
-  $('fuel_cell').hide();
+  $('max_fuel_label_cell').hide();
+  $('current_fuel_label_cell').hide();
+  $('max_fuel_cell').hide();
+  $('current_fuel_cell').hide();
   $('read_powers_span').hide();
 <% else %>
   $('nature_label_cell').show();
@@ -51,8 +56,10 @@ $('fuel_label').update('<%= @splat.fuel_name %>');
   $('read_ideology_span').show();
   $('power_stat_label_cell').show();
   $('power_stat_cell').show();
-  $('fuel_label_cell').show();
-  $('fuel_cell').show();
+  $('max_fuel_label_cell').show();
+  $('current_fuel_label_cell').show();
+  $('max_fuel_cell').show();
+  $('current_fuel_cell').show();
   $('read_powers_span').show();
 <% end %>
 

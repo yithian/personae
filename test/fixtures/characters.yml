@@ -75,7 +75,8 @@ one:
   read_merits: true
   read_powers: true
   read_equipment: true
-  fuel: 1
+  max_fuel: 10
+  current_fuel: 1
   experience: MyExperienceText
   read_experience: true
   read_clique: true
@@ -208,7 +209,8 @@ two:
   read_merits: false
   read_powers: false
   read_equipment: false
-  fuel: 2
+  max_fuel: 20
+  current_fuel: 20
   experience: MyOtherExperienceText
   read_experience: false
   read_clique: false

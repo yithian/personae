@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110201173036) do
+ActiveRecord::Schema.define(:version => 20110316190541) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20110201173036) do
     t.boolean  "read_merits",                         :default => false
     t.boolean  "read_powers",                         :default => false
     t.boolean  "read_equipment",                      :default => false
-    t.integer  "fuel",                                :default => 7
+    t.integer  "max_fuel",                            :default => 7
     t.text     "experience"
     t.boolean  "read_experience",                     :default => false
     t.boolean  "read_clique",                         :default => false
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20110201173036) do
     t.integer  "chronicle_id",                        :default => 1
     t.integer  "subnature_id",                        :default => 1,         :null => false
     t.integer  "resilience",                          :default => 0,         :null => false
+    t.integer  "current_fuel",                        :default => 7
   end
 
   create_table "chronicles", :force => true do |t|

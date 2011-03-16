@@ -72,7 +72,8 @@ class Character < ActiveRecord::Base
   validates :defense, :presence => true, :numericality => true
   validates :morality, :presence => true, :numericality => true
   validates :power_stat, :numericality => true
-  validates :fuel, :numericality => true
+  validates :max_fuel, :numericality => true
+  validates :current_fuel, :numericality => true
   validates :death, :numericality => true
   validates :fate, :numericality => true
   validates :forces, :numericality => true

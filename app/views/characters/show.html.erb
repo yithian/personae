@@ -205,8 +205,14 @@
         <td><%= @character.power_stat %></td>
       </tr>
       <tr>
-        <td><%= @character.splat.fuel_name %>:</td>
-        <td><%= @character.fuel %></td>
+        <td>Max <%= @character.splat.fuel_name %>:</td>
+        <td><%= @character.max_fuel %></td>
+      </tr>
+      <tr>
+        <%= form_for(@character) do |f| %>
+          <td><%= f.label :current_fuel, "Current #{@character.splat.fuel_name}:" %></td>
+          <td><%= f.text_field :current_fuel, :class => "number", :remote => true, :action => url_for(:action => "update", :id => @character.id), :method => "put" %></td>
+        <% end %>
       </tr>
       <tr>
       </tr>

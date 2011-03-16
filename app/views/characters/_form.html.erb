@@ -245,11 +245,19 @@
       </td>
     </tr>
     <tr>
-      <td class="label" id="fuel_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
-        <%= f.label :fuel, @character.splat.fuel_name, :id => "fuel_label" %>
+      <td class="label" id="max_fuel_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+        <%= f.label :max_fuel, @character.splat.fuel_name, :id => "max_fuel_label" %>
       </td>
-      <td class="data" id="fuel_cell" <%= "style='display: none'" if @character.is_mortal? %> >
-        <%= f.text_field :fuel, :class => "number" %>
+      <td class="data" id="max_fuel_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+        <%= f.text_field :max_fuel, :class => "number" %>
+      </td>
+    </tr>
+    <tr>
+      <td class="label" id="current_fuel_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+        <%= f.label :current_fuel, @character.splat.fuel_name, :id => "current_fuel_label" %>
+      </td>
+      <td class="data" id="current_fuel_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+        <%= f.text_field :current_fuel, :class => "number" %>
       </td>
     </tr>
     <tr>
