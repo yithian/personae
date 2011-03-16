@@ -11,6 +11,6 @@
 <%= render :partial => 'cliques/list' %>
 
 <br />
-<%= link_to('New member', { :controller => :characters, :action => :new, :chronicle_id => @chronicle.id }) + " | " %>
+<%= link_to('New character', { :controller => :characters, :action => :new, :chronicle_id => @chronicle.id }) + " | " %>
 <%= link_to('Edit', edit_chronicle_path(@chronicle)) + " | " if @chronicle.can_edit_as_user?(session[:user_id]) %>
 <%= link_to 'Destroy', @chronicle, :confirm => 'Are you sure you want to delete this chronicle?', :method => :delete if @chronicle.can_destroy_as_user?(session[:user_id]) %>
