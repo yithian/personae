@@ -1,4 +1,4 @@
-Thu, 02 Jun 2011 14:14:46 -0400
+Thu, 02 Jun 2011 14:25:28 -0400
 doc/README_FOR_APP	Thu, 02 Jun 2011 11:59:19 -0400
 app/controllers/admin_controller.rb	Thu, 02 Jun 2011 11:59:19 -0400
 app/controllers/application_controller.rb	Thu, 02 Jun 2011 11:59:19 -0400
@@ -20,7 +20,7 @@ app/mailers/user_mailer.rb	Thu, 02 Jun 2011 11:59:19 -0400
 app/models/character.rb	Thu, 02 Jun 2011 13:09:28 -0400
 app/models/chronicle.rb	Thu, 02 Jun 2011 13:59:59 -0400
 app/models/clique.rb	Thu, 02 Jun 2011 14:13:59 -0400
-app/models/comment.rb	Thu, 02 Jun 2011 11:59:19 -0400
+app/models/comment.rb	Thu, 02 Jun 2011 14:20:15 -0400
 app/models/ideology.rb	Thu, 02 Jun 2011 11:59:19 -0400
 app/models/nature.rb	Thu, 02 Jun 2011 11:59:19 -0400
 app/models/splat.rb	Thu, 02 Jun 2011 11:59:19 -0400
