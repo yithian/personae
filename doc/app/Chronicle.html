@@ -183,7 +183,12 @@
 		<h1 class="class">Chronicle</h1>
 
 		<div id="description">
-			
+			<p>
+Chronicles contain characters and cliques &#8212; presumably ideologies and
+natures will be static throughout all games &#8212; as a way to have
+multiple games present in the same database.
+</p>
+
 		</div>
 
 		<!-- Constants -->
@@ -211,17 +216,19 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Returns true if the user has admin permissions.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="can-create-as-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 31</span>
-31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_create_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-32:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
-33:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 36</span>
+36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_create_as_user?</span>(<span class="ruby-identifier">user_id</span>)
+37:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
+38:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -245,17 +252,19 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Returns true if the user has admin permissions.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="can-destroy-as-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 39</span>
-39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-40:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
-41:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 46</span>
+46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user_id</span>)
+47:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
+48:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -279,17 +288,19 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Returns true if the user has admin permissions.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="can-edit-as-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 35</span>
-35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-36:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
-37:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 41</span>
+41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user_id</span>)
+42:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
+43:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -319,17 +330,20 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Returns true if the user_id belongs to Storyteller. This exists to allow a
+future upgrade for multiple administrative accounts.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="super-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 44</span>
-44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
-45:     <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-46:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 53</span>
+53:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
+54:     <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+55:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

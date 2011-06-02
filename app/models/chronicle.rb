@@ -1,3 +1,7 @@
+# Chronicles contain characters and cliques -- presumably
+# ideologies and natures will be static throughout all games
+# -- as a way to have multiple games present in the same
+# database.
 class Chronicle < ActiveRecord::Base
   has_many :characters
   has_many :cliques
@@ -28,19 +32,24 @@ class Chronicle < ActiveRecord::Base
     end
   end
   
+  # Returns true if the user has admin permissions.
   def can_create_as_user?(user_id)
     super_user?(user_id)
   end
   
+  # Returns true if the user has admin permissions.
   def can_edit_as_user?(user_id)
     super_user?(user_id)
   end
 
+  # Returns true if the user has admin permissions.
   def can_destroy_as_user?(user_id)
     super_user?(user_id)
   end
   
   private
+  # Returns true if the user_id belongs to Storyteller. This exists to allow
+  # a future upgrade for multiple administrative accounts.
   def super_user?(user_id)
     user_id == User.find_by_name("Storyteller").id
   end
