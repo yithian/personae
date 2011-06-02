@@ -18,6 +18,7 @@ class CharactersController < ApplicationController
     respond_with @characters
   end
   
+  # POST /characters/change_chronicle
   def change_chronicle
     @user = User.find_by_id(session[:user_id])
     @user.chronicle_id = params[:chronicle_id]
@@ -50,6 +51,7 @@ class CharactersController < ApplicationController
   def edit
   end
   
+  # POST /characters/update_splat
   def update_splat
     @splat = Splat.find_by_id(params[:splat_id])
     @nature_list = Nature.find_all_by_splat_id(params[:splat_id])
@@ -62,6 +64,7 @@ class CharactersController < ApplicationController
     end
   end
   
+  # POST /characters/update_nature
   def update_nature
     @nature = Nature.find_by_id(params[:nature_id])
     @subnature_list = Subnature.find_all_by_nature_id_and_splat_id(0, @nature.splat.id)
@@ -72,6 +75,7 @@ class CharactersController < ApplicationController
     end
   end
 
+  # POST /characters/shapeshift
   def shapeshift
     @form = params[:form]
 
@@ -111,6 +115,8 @@ class CharactersController < ApplicationController
   end
   
   private
+  # Sets up a character object based on the id passed by url. If none is given,
+  # creates a new (empty) object.
   def find_character
     if params[:action] == "new"
       @character = Character.new
@@ -119,6 +125,8 @@ class CharactersController < ApplicationController
     end
   end
   
+  # Sets values to what is passed by url. Used to add a new character
+  # to an existing chronicle, clique, etc.
   def set_params
     @character.clique_id = params['clique_id'] if params['clique_id']
     @character.splat_id = params['splat_id'] if params['splat_id']
@@ -131,6 +139,8 @@ class CharactersController < ApplicationController
     end
   end
   
+  # Restricts dropdowns to only include information appropriate to the character's
+  # chronicle and splat.
   def find_lists
     @clique_list = Clique.find_all_by_chronicle_id(0).collect { |c| [c.name, c.id] }
     @clique_list = @clique_list + Clique.find_all_by_chronicle_id(@character.chronicle.id).collect { |c| [c.name, c.id] if c.is_known_to_user?(session[:user_id]) }
@@ -146,6 +156,7 @@ class CharactersController < ApplicationController
     @chronicle_list = Chronicle.all.collect
   end
   
+  # Allows or denies access to edit a character based on Character#can_edit_as_user?
   def edit_permission
     unless @character.can_edit_as_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
@@ -153,6 +164,7 @@ class CharactersController < ApplicationController
     end
   end
   
+  # Allows or denies access to a character page based on Character#show_name_to_user?
   def show_permission
     unless @character.show_name_to_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
