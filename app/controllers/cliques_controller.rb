@@ -20,6 +20,7 @@ class CliquesController < ApplicationController
     respond_with @cliques
   end
 
+  # POST /cliques/change_chronicle
   def change_chronicle
     @user = User.find_by_id(session[:user_id])
     @user.chronicle_id = params[:chronicle_id]
@@ -87,6 +88,8 @@ class CliquesController < ApplicationController
   end
   
   private
+  # Sets up a clique variable based on an id passed by url, or if none
+  # was passed, creates a new (empty) clique.
   def find_clique
     if params[:action] == "new"
       @clique = Clique.new
@@ -95,14 +98,19 @@ class CliquesController < ApplicationController
     end
   end
 
-  def set_params                                                                                                                                               
+  # Sets values to what is passed by url. Used to add a new character
+  # to an existing chronicle.
+  def set_params
     @clique.chronicle_id = params['chronicle_id'] if params['chronicle_id']
   end
 
+  # Creates a list of all chronicles. Used to populate a dropdown for moving
+  # cliques between chronicles.
   def find_lists
     @chronicle_list = Chronicle.all.collect
   end
   
+  # Allows or denies access to a clique page based on Clique#is_known_to_user?
   def show_permission
     unless @clique.is_known_to_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
@@ -110,6 +118,7 @@ class CliquesController < ApplicationController
     end
   end
   
+  # Allows or denies access to edit a clique based on Clique#can_edit_as_user?
   def edit_permission
     unless @clique.can_edit_as_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
@@ -117,6 +126,7 @@ class CliquesController < ApplicationController
     end
   end
   
+  # Allows or denies access to destroy a clique based on Clique#can_destroy_as_user?
   def destroy_permission
     unless @clique.can_destroy_as_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
