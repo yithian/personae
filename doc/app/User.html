@@ -231,24 +231,28 @@ href="Chronicle.html">Chronicle</a>).
 
 				<div class="method-description">
 					
-					
+					<p>
+Authenticate a user, using their password. <a href="User.html">User</a>
+passwords are stored with a one-way-hash using SHA2 and a salt value.
+Returns the user object for the authenticated user.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="authenticate-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 45</span>
-45:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">password</span>)
-46:     <span class="ruby-identifier">user</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">name</span>)
-47:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>
-48:       <span class="ruby-identifier">expected_password</span> = <span class="ruby-identifier">encrypted_password</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">salt</span>)
-49:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">hashed_password</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">expected_password</span>
-50:         <span class="ruby-identifier">user</span> = <span class="ruby-keyword kw">nil</span>
-51:       <span class="ruby-keyword kw">end</span>
-52:     <span class="ruby-keyword kw">end</span>
-53:     <span class="ruby-identifier">user</span>
-54:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 47</span>
+47:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">password</span>)
+48:     <span class="ruby-identifier">user</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">name</span>)
+49:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>
+50:       <span class="ruby-identifier">expected_password</span> = <span class="ruby-identifier">encrypted_password</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">salt</span>)
+51:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">hashed_password</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">expected_password</span>
+52:         <span class="ruby-identifier">user</span> = <span class="ruby-keyword kw">nil</span>
+53:       <span class="ruby-keyword kw">end</span>
+54:     <span class="ruby-keyword kw">end</span>
+55:     <span class="ruby-identifier">user</span>
+56:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -278,18 +282,20 @@ href="Chronicle.html">Chronicle</a>).
 
 				<div class="method-description">
 					
-					
+					<p>
+Encrypts and returns the password.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="encrypted-password-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 91</span>
-91:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">salt</span>)
-92:     <span class="ruby-identifier">string_to_hash</span> = <span class="ruby-identifier">password</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;random&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">salt</span>
-93:     <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">string_to_hash</span>)
-94:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 103</span>
+103:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">salt</span>)
+104:     <span class="ruby-identifier">string_to_hash</span> = <span class="ruby-identifier">password</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;random&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">salt</span>
+105:     <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">string_to_hash</span>)
+106:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -319,17 +325,19 @@ href="Chronicle.html">Chronicle</a>).
 
 				<div class="method-description">
 					
-					
+					<p>
+Returns true if the logged in user can destroy the user
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="can-destroy-as-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 82</span>
-82:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-83:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-84:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 92</span>
+92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user_id</span>)
+93:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+94:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -353,17 +361,19 @@ href="Chronicle.html">Chronicle</a>).
 
 				<div class="method-description">
 					
-					
+					<p>
+Returns true if the logged in user can edit the user
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="can-edit-as-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 78</span>
-78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-79:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-80:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 87</span>
+87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user_id</span>)
+88:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+89:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -387,18 +397,20 @@ href="Chronicle.html">Chronicle</a>).
 
 				<div class="method-description">
 					
-					
+					<p>
+Clears the reset code after it has been used.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="clear-reset-code-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 61</span>
-61:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear_reset_code</span>
-62:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = {<span class="ruby-value">:reset_code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>}
-63:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">save</span>(<span class="ruby-value">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)
-64:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 66</span>
+66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear_reset_code</span>
+67:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = {<span class="ruby-value">:reset_code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>}
+68:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">save</span>(<span class="ruby-value">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)
+69:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -422,18 +434,21 @@ href="Chronicle.html">Chronicle</a>).
 
 				<div class="method-description">
 					
-					
+					<p>
+Generates a reset code for a user. This is to provide an alternate means of
+authentication for users who have forgotten their password.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="generate-reset-code-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 56</span>
-56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_reset_code</span>
-57:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = {<span class="ruby-value">:reset_code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">//</span>).<span class="ruby-identifier">sort</span> { <span class="ruby-identifier">rand</span> }.<span class="ruby-identifier">join</span>)}
-58:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">save</span>(<span class="ruby-value">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)
-59:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 60</span>
+60:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_reset_code</span>
+61:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = {<span class="ruby-value">:reset_code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">//</span>).<span class="ruby-identifier">sort</span> { <span class="ruby-identifier">rand</span> }.<span class="ruby-identifier">join</span>)}
+62:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">save</span>(<span class="ruby-value">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)
+63:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -458,7 +473,8 @@ href="Chronicle.html">Chronicle</a>).
 				<div class="method-description">
 					
 					<p>
-password is a virtual attribute
+Since password is actually stored as an encrypted value, .password is a
+virtual attribute. This is the read accessor.
 </p>
 					
 
@@ -466,10 +482,10 @@ password is a virtual attribute
 					<div class="method-source-code"
 						id="password-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 67</span>
-67:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">password</span>
-68:     <span class="ruby-ivar">@password</span>
-69:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 73</span>
+73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">password</span>
+74:     <span class="ruby-ivar">@password</span>
+75:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -493,20 +509,24 @@ password is a virtual attribute
 
 				<div class="method-description">
 					
-					
+					<p>
+Since password is actually stored as an encrypted value, .password is a
+virtual attribute. This is the write accessor. It also creates a new salt
+value and stores the new hashed value.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="password--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 71</span>
-71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">password=</span>(<span class="ruby-identifier">pwd</span>)
-72:     <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">pwd</span>
-73:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pwd</span>.<span class="ruby-identifier">blank?</span>
-74:     <span class="ruby-identifier">create_new_salt</span>
-75:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">hashed_password</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">password</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">salt</span>)
-76:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 79</span>
+79:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">password=</span>(<span class="ruby-identifier">pwd</span>)
+80:     <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">pwd</span>
+81:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pwd</span>.<span class="ruby-identifier">blank?</span>
+82:     <span class="ruby-identifier">create_new_salt</span>
+83:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">hashed_password</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">password</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">salt</span>)
+84:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -536,17 +556,19 @@ password is a virtual attribute
 
 				<div class="method-description">
 					
-					
+					<p>
+Creates a new salt value for the password hash.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="create-new-salt-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 87</span>
-87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_new_salt</span>
-88:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">salt</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">object_id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>.<span class="ruby-identifier">to_s</span>
-89:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 98</span>
+ 98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_new_salt</span>
+ 99:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">salt</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">object_id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>.<span class="ruby-identifier">to_s</span>
+100:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
