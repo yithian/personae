@@ -1,3 +1,5 @@
+# Controller for clique actions: show/create/edit/etc
+
 class CliquesController < ApplicationController
   respond_to :html, :xml
   before_filter :find_clique, :only => [:new, :show, :edit, :update, :destroy]

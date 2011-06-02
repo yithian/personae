@@ -197,7 +197,10 @@
 		<h1 class="class">ChroniclesController</h1>
 
 		<div id="description">
-			
+			<p>
+Controller for chronicle actions: show/create/edit/etc
+</p>
+
 		</div>
 
 		<!-- Constants -->
@@ -234,20 +237,20 @@ POST /chronicles POST /chronicles.xml
 					<div class="method-source-code"
 						id="create-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 37</span>
-37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
-38:     <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
-39: 
-40:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">save</span>
-41:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Chronicle successfully created&quot;</span>
-42:       
-43:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-44:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">chronicle_id</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">id</span>
-45:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
-46:     <span class="ruby-keyword kw">end</span>
-47: 
-48:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
-49:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 39</span>
+39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+40:     <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
+41: 
+42:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">save</span>
+43:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Chronicle successfully created&quot;</span>
+44:       
+45:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+46:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">chronicle_id</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">id</span>
+47:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+48:     <span class="ruby-keyword kw">end</span>
+49: 
+50:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
+51:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -280,15 +283,15 @@ DELETE /chronicles/1 DELETE /chronicles/1.xml
 					<div class="method-source-code"
 						id="destroy-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 61</span>
-61:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
-62:     <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">destroy</span>
-63: 
-64:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-65:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">chronicles_url</span>) }
-66:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
-67:     <span class="ruby-keyword kw">end</span>
-68:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 63</span>
+63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+64:     <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">destroy</span>
+65: 
+66:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+67:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">chronicles_url</span>) }
+68:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
+69:     <span class="ruby-keyword kw">end</span>
+70:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -321,10 +324,10 @@ GET /chronicles/1/edit
 					<div class="method-source-code"
 						id="edit-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 31</span>
-31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
-32:     <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-33:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 33</span>
+33:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+34:     <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+35:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -357,12 +360,12 @@ GET /chronicles GET /chronicles.xml
 					<div class="method-source-code"
 						id="index-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 10</span>
-10:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
-11:     <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>
-12: 
-13:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
-14:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 12</span>
+12:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+13:     <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>
+14: 
+15:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
+16:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -395,10 +398,10 @@ GET /chronicles/new GET /chronicles/new.xml
 					<div class="method-source-code"
 						id="new-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 26</span>
-26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
-27:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
-28:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 28</span>
+28:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+29:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
+30:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -431,12 +434,12 @@ GET /chronicles/1 GET /chronicles/1.xml
 					<div class="method-source-code"
 						id="show-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 18</span>
-18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
-19:     <span class="ruby-ivar">@characters</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">characters</span>
-20:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">cliques</span>
-21:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
-22:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 20</span>
+20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
+21:     <span class="ruby-ivar">@characters</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">characters</span>
+22:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">cliques</span>
+23:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
+24:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -469,12 +472,12 @@ PUT /chronicles/1 PUT /chronicles/1.xml
 					<div class="method-source-code"
 						id="update-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 53</span>
-53:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
-54:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Chronicle successfully updated&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
-55: 
-56:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
-57:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 55</span>
+55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+56:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Chronicle successfully updated&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
+57: 
+58:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
+59:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -514,13 +517,13 @@ the user is Storyteller
 					<div class="method-source-code"
 						id="create-permission-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 83</span>
-83:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_permission</span>
-84:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-85:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
-86:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;chronicles&quot;</span>
-87:     <span class="ruby-keyword kw">end</span>
-88:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 85</span>
+85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_permission</span>
+86:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+87:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+88:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;chronicles&quot;</span>
+89:     <span class="ruby-keyword kw">end</span>
+90:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -554,13 +557,13 @@ href="Chronicle.html#method-i-can_destroy_as_user%3F">Chronicle#can_destroy_as_u
 					<div class="method-source-code"
 						id="destroy-permission-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 101</span>
-101:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy_permission</span>
-102:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-103:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
-104:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
-105:     <span class="ruby-keyword kw">end</span>
-106:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 103</span>
+103:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy_permission</span>
+104:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+105:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+106:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
+107:     <span class="ruby-keyword kw">end</span>
+108:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -594,13 +597,13 @@ href="Chronicle.html#method-i-can_edit_as_user%3F">Chronicle#can_edit_as_user?</
 					<div class="method-source-code"
 						id="edit-permission-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 92</span>
-92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_permission</span>
-93:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-94:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
-95:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">chronicle_path</span>(<span class="ruby-ivar">@chronicle</span>)
-96:     <span class="ruby-keyword kw">end</span>
-97:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 94</span>
+94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_permission</span>
+95:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+96:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+97:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">chronicle_path</span>(<span class="ruby-ivar">@chronicle</span>)
+98:     <span class="ruby-keyword kw">end</span>
+99:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -634,14 +637,14 @@ passed, a new (empty) chronicle.
 					<div class="method-source-code"
 						id="find-chronicle-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 73</span>
-73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_chronicle</span>
-74:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;new&quot;</span>
-75:       <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">new</span>
-76:     <span class="ruby-keyword kw">else</span>
-77:       <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-78:     <span class="ruby-keyword kw">end</span>
-79:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 75</span>
+75:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_chronicle</span>
+76:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;new&quot;</span>
+77:       <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">new</span>
+78:     <span class="ruby-keyword kw">else</span>
+79:       <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+80:     <span class="ruby-keyword kw">end</span>
+81:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

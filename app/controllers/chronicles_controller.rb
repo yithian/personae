@@ -1,3 +1,5 @@
+# Controller for chronicle actions: show/create/edit/etc
+
 class ChroniclesController < ApplicationController
   respond_to :html, :xml
   before_filter :find_chronicle, :only => [:new, :show, :edit, :update, :destroy]

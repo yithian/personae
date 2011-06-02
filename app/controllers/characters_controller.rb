@@ -1,3 +1,5 @@
+# Controller for character actions: show/create/edit/etc
+
 class CharactersController < ApplicationController
   respond_to :html, :xml
   before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :destroy, :preview]

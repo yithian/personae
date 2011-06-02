@@ -209,7 +209,10 @@
 		<h1 class="class">CharactersController</h1>
 
 		<div id="description">
-			
+			<p>
+Controller for character actions: show/create/edit/etc
+</p>
+
 		</div>
 
 		<!-- Constants -->
@@ -246,15 +249,15 @@ POST /characters/change_chronicle
 					<div class="method-source-code"
 						id="change-chronicle-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 22</span>
-22:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_chronicle</span>
-23:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-24:     <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">chronicle_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>]
-25:     <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
-26:     
-27:     <span class="ruby-ivar">@characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;clique_id ASC&quot;</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>) }
-28:     <span class="ruby-ivar">@characters</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
-29:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 24</span>
+24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_chronicle</span>
+25:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+26:     <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">chronicle_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>]
+27:     <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+28:     
+29:     <span class="ruby-ivar">@characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;clique_id ASC&quot;</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>) }
+30:     <span class="ruby-ivar">@characters</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
+31:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -287,15 +290,15 @@ POST /characters POST /characters.xml
 					<div class="method-source-code"
 						id="create-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 89</span>
-89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
-90:     <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>])
-91:     <span class="ruby-identifier">find_lists</span>
-92: 
-93:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Character was successfully created.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 91</span>
+91:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+92:     <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>])
+93:     <span class="ruby-identifier">find_lists</span>
 94: 
-95:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
-96:   <span class="ruby-keyword kw">end</span></pre>
+95:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Character was successfully created.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">save</span>
+96: 
+97:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
+98:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -328,15 +331,15 @@ DELETE /characters/1 DELETE /characters/1.xml
 					<div class="method-source-code"
 						id="destroy-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 108</span>
-108:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
-109:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">destroy</span>
-110: 
-111:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-112:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">characters_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Character was successfully deleted.'</span>) }
-113:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
-114:     <span class="ruby-keyword kw">end</span>
-115:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 110</span>
+110:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+111:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">destroy</span>
+112: 
+113:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+114:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">characters_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Character was successfully deleted.'</span>) }
+115:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
+116:     <span class="ruby-keyword kw">end</span>
+117:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -369,9 +372,9 @@ GET /characters/1/edit
 					<div class="method-source-code"
 						id="edit-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 51</span>
-51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
-52:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 53</span>
+53:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+54:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -404,16 +407,16 @@ GET /characters GET /characters.xml
 					<div class="method-source-code"
 						id="index-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 11</span>
-11:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
-12:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-13:     <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
-14:     
-15:     <span class="ruby-ivar">@characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;clique_id ASC&quot;</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>) }
-16:     <span class="ruby-ivar">@characters</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
-17: 
-18:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@characters</span>
-19:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 13</span>
+13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+14:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+15:     <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
+16:     
+17:     <span class="ruby-ivar">@characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;clique_id ASC&quot;</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>) }
+18:     <span class="ruby-ivar">@characters</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
+19: 
+20:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@characters</span>
+21:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -446,10 +449,10 @@ GET /characters/new GET /characters/new.xml
 					<div class="method-source-code"
 						id="new-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 46</span>
-46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
-47:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
-48:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+49:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
+50:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -482,12 +485,12 @@ GET /characters/preview
 					<div class="method-source-code"
 						id="preview-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 38</span>
-38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preview</span>
-39:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-40:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
-41:     <span class="ruby-keyword kw">end</span>
-42:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 40</span>
+40:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preview</span>
+41:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+42:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+43:     <span class="ruby-keyword kw">end</span>
+44:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -520,14 +523,14 @@ POST /characters/shapeshift
 					<div class="method-source-code"
 						id="shapeshift-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 79</span>
-79:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">shapeshift</span>
-80:     <span class="ruby-ivar">@form</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:form</span>]
-81: 
-82:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-83:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
-84:     <span class="ruby-keyword kw">end</span>
-85:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 81</span>
+81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">shapeshift</span>
+82:     <span class="ruby-ivar">@form</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:form</span>]
+83: 
+84:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+85:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+86:     <span class="ruby-keyword kw">end</span>
+87:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -560,10 +563,10 @@ GET /characters/1 GET /characters/1.xml
 					<div class="method-source-code"
 						id="show-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 33</span>
-33:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
-34:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
-35:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 35</span>
+35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
+36:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
+37:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -596,12 +599,12 @@ PUT /characters/1 PUT /characters/1.xml
 					<div class="method-source-code"
 						id="update-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 100</span>
-100:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
-101:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Character was successfully updated.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>])
-102: 
-103:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
-104:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 102</span>
+102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+103:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Character was successfully updated.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>])
+104: 
+105:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
+106:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -634,16 +637,16 @@ POST /characters/update_nature
 					<div class="method-source-code"
 						id="update-nature-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 68</span>
-68:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_nature</span>
-69:     <span class="ruby-ivar">@nature</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:nature_id</span>])
-70:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id_and_splat_id</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@nature</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>)
-71:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-ivar">@subnature_list</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id</span>(<span class="ruby-ivar">@nature</span>.<span class="ruby-identifier">id</span>)
-72: 
-73:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-74:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
-75:     <span class="ruby-keyword kw">end</span>
-76:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 70</span>
+70:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_nature</span>
+71:     <span class="ruby-ivar">@nature</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:nature_id</span>])
+72:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id_and_splat_id</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@nature</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>)
+73:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-ivar">@subnature_list</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id</span>(<span class="ruby-ivar">@nature</span>.<span class="ruby-identifier">id</span>)
+74: 
+75:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+76:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+77:     <span class="ruby-keyword kw">end</span>
+78:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -676,18 +679,18 @@ POST /characters/update_splat
 					<div class="method-source-code"
 						id="update-splat-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 55</span>
-55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_splat</span>
-56:     <span class="ruby-ivar">@splat</span> = <span class="ruby-constant">Splat</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:splat_id</span>])
-57:     <span class="ruby-ivar">@nature_list</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:splat_id</span>])
-58:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id_and_splat_id</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@splat</span>.<span class="ruby-identifier">id</span>)
-59:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-ivar">@subnature_list</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id</span>(<span class="ruby-ivar">@nature_list</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">id</span>)
-60:     <span class="ruby-ivar">@ideology_list</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:splat_id</span>])
-61: 
-62:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-63:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
-64:     <span class="ruby-keyword kw">end</span>
-65:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 57</span>
+57:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_splat</span>
+58:     <span class="ruby-ivar">@splat</span> = <span class="ruby-constant">Splat</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:splat_id</span>])
+59:     <span class="ruby-ivar">@nature_list</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:splat_id</span>])
+60:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id_and_splat_id</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@splat</span>.<span class="ruby-identifier">id</span>)
+61:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-ivar">@subnature_list</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id</span>(<span class="ruby-ivar">@nature_list</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">id</span>)
+62:     <span class="ruby-ivar">@ideology_list</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:splat_id</span>])
+63: 
+64:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+65:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+66:     <span class="ruby-keyword kw">end</span>
+67:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -727,13 +730,13 @@ href="Character.html#method-i-can_edit_as_user%3F">Character#can_edit_as_user?</
 					<div class="method-source-code"
 						id="edit-permission-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 160</span>
-160:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_permission</span>
-161:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-162:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
-163:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">character_path</span>(<span class="ruby-ivar">@character</span>)
-164:     <span class="ruby-keyword kw">end</span>
-165:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 162</span>
+162:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_permission</span>
+163:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+164:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+165:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">character_path</span>(<span class="ruby-ivar">@character</span>)
+166:     <span class="ruby-keyword kw">end</span>
+167:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -767,14 +770,14 @@ creates a new (empty) object.
 					<div class="method-source-code"
 						id="find-character-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 120</span>
-120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_character</span>
-121:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;new&quot;</span>
-122:       <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">new</span>
-123:     <span class="ruby-keyword kw">else</span>
-124:       <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-125:     <span class="ruby-keyword kw">end</span>
-126:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 122</span>
+122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_character</span>
+123:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;new&quot;</span>
+124:       <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">new</span>
+125:     <span class="ruby-keyword kw">else</span>
+126:       <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+127:     <span class="ruby-keyword kw">end</span>
+128:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -808,21 +811,21 @@ character&#8217;s chronicle and splat.
 					<div class="method-source-code"
 						id="find-lists-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 144</span>
-144:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_lists</span>
-145:     <span class="ruby-ivar">@clique_list</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span>] }
-146:     <span class="ruby-ivar">@clique_list</span> = <span class="ruby-ivar">@clique_list</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>]) }
-147:     <span class="ruby-ivar">@clique_list</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
-148: 
-149:     <span class="ruby-ivar">@nature_list</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span>
-150:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id_and_splat_id</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>)
-151:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-ivar">@subnature_list</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id</span>(<span class="ruby-ivar">@nature_list</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">id</span>)
-152:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-ivar">@subnature_list</span>.<span class="ruby-identifier">collect</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">s</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">s</span>.<span class="ruby-identifier">id</span>] }
-153:     <span class="ruby-ivar">@ideology_list</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">i</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">i</span>.<span class="ruby-identifier">id</span>] }
-154: 
-155:     <span class="ruby-ivar">@splat_list</span> = <span class="ruby-constant">Splat</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
-156:     <span class="ruby-ivar">@chronicle_list</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
-157:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 146</span>
+146:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_lists</span>
+147:     <span class="ruby-ivar">@clique_list</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span>] }
+148:     <span class="ruby-ivar">@clique_list</span> = <span class="ruby-ivar">@clique_list</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>]) }
+149:     <span class="ruby-ivar">@clique_list</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
+150: 
+151:     <span class="ruby-ivar">@nature_list</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span>
+152:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id_and_splat_id</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>)
+153:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-ivar">@subnature_list</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id</span>(<span class="ruby-ivar">@nature_list</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">id</span>)
+154:     <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-ivar">@subnature_list</span>.<span class="ruby-identifier">collect</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">s</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">s</span>.<span class="ruby-identifier">id</span>] }
+155:     <span class="ruby-ivar">@ideology_list</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">i</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">i</span>.<span class="ruby-identifier">id</span>] }
+156: 
+157:     <span class="ruby-ivar">@splat_list</span> = <span class="ruby-constant">Splat</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
+158:     <span class="ruby-ivar">@chronicle_list</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
+159:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -856,18 +859,18 @@ existing chronicle, clique, etc.
 					<div class="method-source-code"
 						id="set-params-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 130</span>
-130:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_params</span>
-131:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">clique_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'clique_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'clique_id'</span>]
-132:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'splat_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'splat_id'</span>]
-133:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">chronicle_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'chronicle_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'chronicle_id'</span>]
-134:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">nature_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'nature_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'nature_id'</span>]
-135: 
-136:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'ideology_id'</span>]
-137:       <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat_id</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value str">'ideology_id'</span>]).<span class="ruby-identifier">splat_id</span>
-138:       <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">ideology_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'ideology_id'</span>]
-139:     <span class="ruby-keyword kw">end</span>
-140:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 132</span>
+132:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_params</span>
+133:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">clique_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'clique_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'clique_id'</span>]
+134:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'splat_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'splat_id'</span>]
+135:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">chronicle_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'chronicle_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'chronicle_id'</span>]
+136:     <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">nature_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'nature_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'nature_id'</span>]
+137: 
+138:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'ideology_id'</span>]
+139:       <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">splat_id</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value str">'ideology_id'</span>]).<span class="ruby-identifier">splat_id</span>
+140:       <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">ideology_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'ideology_id'</span>]
+141:     <span class="ruby-keyword kw">end</span>
+142:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -901,13 +904,13 @@ href="Character.html#method-i-show_name_to_user%3F">Character#show_name_to_user?
 					<div class="method-source-code"
 						id="show-permission-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 168</span>
-168:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_permission</span>
-169:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-170:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
-171:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
-172:     <span class="ruby-keyword kw">end</span>
-173:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/characters_controller.rb, line 170</span>
+170:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_permission</span>
+171:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+172:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+173:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
+174:     <span class="ruby-keyword kw">end</span>
+175:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
