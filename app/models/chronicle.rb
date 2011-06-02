@@ -2,6 +2,7 @@
 # ideologies and natures will be static throughout all games
 # -- as a way to have multiple games present in the same
 # database.
+
 class Chronicle < ActiveRecord::Base
   has_many :characters
   has_many :cliques
