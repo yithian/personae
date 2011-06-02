@@ -1,3 +1,5 @@
+# Controller for user actions: create/edit/show/etc
+
 class UsersController < ApplicationController
   respond_to :html, :xml
   skip_filter :authorize, :only => [:new, :create]
@@ -59,6 +61,8 @@ class UsersController < ApplicationController
   end
   
   private
+  # Sets up a user object based on an id passed by url or creates
+  # a new (empty) user.
   def find_user
     if params[:action] == "new"
       @user = User.new
@@ -67,6 +71,8 @@ class UsersController < ApplicationController
     end
   end
   
+  # Allows or denies access to a listing of all users based on
+  # wether or not the user is the Storyteller user.
   def index_permission
     unless User.find(session[:user_id]).id == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
