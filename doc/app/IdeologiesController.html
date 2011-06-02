@@ -199,7 +199,10 @@
 		<h1 class="class">IdeologiesController</h1>
 
 		<div id="description">
-			
+			<p>
+Controller for ideology actions: show/create/edit/etc
+</p>
+
 		</div>
 
 		<!-- Constants -->
@@ -236,14 +239,14 @@ POST /ideologies POST /ideologies.xml
 					<div class="method-source-code"
 						id="create-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 36</span>
-36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
-37:     <span class="ruby-ivar">@ideology</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ideology</span>])
-38: 
-39:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Ideology was successfully created.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 38</span>
+38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+39:     <span class="ruby-ivar">@ideology</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ideology</span>])
 40: 
-41:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
-42:   <span class="ruby-keyword kw">end</span></pre>
+41:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Ideology was successfully created.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">save</span>
+42: 
+43:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
+44:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -276,24 +279,24 @@ DELETE /ideologies/1 DELETE /ideologies/1.xml
 					<div class="method-source-code"
 						id="destroy-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 54</span>
-54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
-55:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">'Mortal'</span>).<span class="ruby-identifier">id</span>
-56:       <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
-57:         <span class="ruby-identifier">m</span>.<span class="ruby-identifier">ideology_id</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">'Mortal'</span>).<span class="ruby-identifier">id</span>
-58:         <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
-59:       <span class="ruby-keyword kw">end</span>
-60: 
-61:       <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">destroy</span>
-62:     <span class="ruby-keyword kw">else</span>
-63:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Cannot delete this Ideology'</span>
-64:     <span class="ruby-keyword kw">end</span>
-65: 
-66:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-67:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">ideologies_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Ideology successfully deleted.'</span>) }
-68:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
-69:     <span class="ruby-keyword kw">end</span>
-70:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 56</span>
+56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+57:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">'Mortal'</span>).<span class="ruby-identifier">id</span>
+58:       <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+59:         <span class="ruby-identifier">m</span>.<span class="ruby-identifier">ideology_id</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">'Mortal'</span>).<span class="ruby-identifier">id</span>
+60:         <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
+61:       <span class="ruby-keyword kw">end</span>
+62: 
+63:       <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">destroy</span>
+64:     <span class="ruby-keyword kw">else</span>
+65:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Cannot delete this Ideology'</span>
+66:     <span class="ruby-keyword kw">end</span>
+67: 
+68:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+69:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">ideologies_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Ideology successfully deleted.'</span>) }
+70:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
+71:     <span class="ruby-keyword kw">end</span>
+72:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -326,9 +329,9 @@ GET /ideologies/1/edit
 					<div class="method-source-code"
 						id="edit-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 31</span>
-31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
-32:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 33</span>
+33:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+34:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -361,13 +364,13 @@ GET /ideologies GET /ideologies.xml
 					<div class="method-source-code"
 						id="index-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 11</span>
-11:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
-12:     <span class="ruby-ivar">@ideologies</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>]) }
-13:     <span class="ruby-ivar">@ideologies</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
-14: 
-15:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideologies</span>
-16:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 13</span>
+13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+14:     <span class="ruby-ivar">@ideologies</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>]) }
+15:     <span class="ruby-ivar">@ideologies</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
+16: 
+17:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideologies</span>
+18:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -400,10 +403,10 @@ GET /ideologies/new GET /ideologies/new.xml
 					<div class="method-source-code"
 						id="new-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 26</span>
-26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
-27:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
-28:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 28</span>
+28:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+29:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
+30:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -436,10 +439,10 @@ GET /ideologies/1 GET /ideologies/1.xml
 					<div class="method-source-code"
 						id="show-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 20</span>
-20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
-21:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
-22:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 22</span>
+22:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
+23:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
+24:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -472,12 +475,12 @@ PUT /ideologies/1 PUT /ideologies/1.xml
 					<div class="method-source-code"
 						id="update-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 46</span>
-46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
-47:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Ideology was successfully updated.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ideology</span>])
-48: 
-49:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
-50:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+49:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Ideology was successfully updated.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ideology</span>])
+50: 
+51:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
+52:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -507,21 +510,24 @@ PUT /ideologies/1 PUT /ideologies/1.xml
 
 				<div class="method-description">
 					
-					
+					<p>
+Sets up an ideology object based on an id passed by url or creates a new
+(empty) object
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="find-ideology-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 73</span>
-73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_ideology</span>
-74:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;new&quot;</span>
-75:       <span class="ruby-ivar">@ideology</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">new</span>
-76:     <span class="ruby-keyword kw">else</span>
-77:       <span class="ruby-ivar">@ideology</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-78:     <span class="ruby-keyword kw">end</span>
-79:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 77</span>
+77:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_ideology</span>
+78:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;new&quot;</span>
+79:       <span class="ruby-ivar">@ideology</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">new</span>
+80:     <span class="ruby-keyword kw">else</span>
+81:       <span class="ruby-ivar">@ideology</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+82:     <span class="ruby-keyword kw">end</span>
+83:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -545,17 +551,19 @@ PUT /ideologies/1 PUT /ideologies/1.xml
 
 				<div class="method-description">
 					
-					
+					<p>
+Creates a list of all splats. Used to create a new ideology.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="find-lists-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 85</span>
-85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_lists</span>
-86:     <span class="ruby-ivar">@splat_list</span> = <span class="ruby-constant">Splat</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
-87:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 92</span>
+92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_lists</span>
+93:     <span class="ruby-ivar">@splat_list</span> = <span class="ruby-constant">Splat</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
+94:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -579,20 +587,23 @@ PUT /ideologies/1 PUT /ideologies/1.xml
 
 				<div class="method-description">
 					
-					
+					<p>
+Allows or denies access to create, edit or destroy an ideology based on
+wether or not the user is the Storyteller user.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="permission-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 89</span>
-89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">permission</span>
-90:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-91:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
-92:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span>
-93:     <span class="ruby-keyword kw">end</span>
-94:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 98</span>
+ 98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">permission</span>
+ 99:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+100:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+101:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span>
+102:     <span class="ruby-keyword kw">end</span>
+103:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -616,17 +627,19 @@ PUT /ideologies/1 PUT /ideologies/1.xml
 
 				<div class="method-description">
 					
-					
+					<p>
+Sets values based on ids passed by url. Used to add an ideology to a splat.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="set-params-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 81</span>
-81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_params</span>                                                                                                                                               
-82:     <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">splat_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'splat_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'splat_id'</span>]
-83:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 87</span>
+87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_params</span>
+88:     <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">splat_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'splat_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'splat_id'</span>]
+89:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -650,20 +663,23 @@ PUT /ideologies/1 PUT /ideologies/1.xml
 
 				<div class="method-description">
 					
-					
+					<p>
+Allows or denies access to an ideology page based on <a
+href="Ideology.html#method-i-is_known_to_user%3F">Ideology.is_known_to_user?</a>
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="show-permission-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 96</span>
- 96:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_permission</span>
- 97:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
- 98:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
- 99:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span>
-100:     <span class="ruby-keyword kw">end</span>
-101:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 107</span>
+107:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_permission</span>
+108:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+109:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+110:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span>
+111:     <span class="ruby-keyword kw">end</span>
+112:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

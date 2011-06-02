@@ -1,3 +1,5 @@
+# Controller for ideology actions: show/create/edit/etc
+
 class IdeologiesController < ApplicationController
   respond_to :html, :xml
   before_filter :find_ideology, :only => [:new, :show, :edit, :update, :destroy]
@@ -70,6 +72,8 @@ class IdeologiesController < ApplicationController
   end
   
   private
+  # Sets up an ideology object based on an id passed by url or
+  # creates a new (empty) object
   def find_ideology
     if params[:action] == "new"
       @ideology = Ideology.new
@@ -78,14 +82,19 @@ class IdeologiesController < ApplicationController
     end
   end
   
-  def set_params                                                                                                                                               
+  # Sets values based on ids passed by url. Used to add an ideology
+  # to a splat.
+  def set_params
     @ideology.splat_id = params['splat_id'] if params['splat_id']
   end
   
+  # Creates a list of all splats. Used to create a new ideology.
   def find_lists
     @splat_list = Splat.all.collect
   end
 
+  # Allows or denies access to create, edit or destroy an ideology
+  # based on wether or not the user is the Storyteller user.
   def permission
     unless session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
@@ -93,6 +102,8 @@ class IdeologiesController < ApplicationController
     end
   end
   
+  # Allows or denies access to an ideology page based on
+  # Ideology.is_known_to_user?
   def show_permission
     unless @ideology.is_known_to_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
