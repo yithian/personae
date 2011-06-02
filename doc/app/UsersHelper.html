@@ -58,15 +58,6 @@
 
 			<!-- Method Quickref -->
 			
-			<div id="method-list-section" class="section">
-				<h3 class="section-header">Methods</h3>
-				<ul class="link-list">
-					
-					<li><a href="#method-i-edit_user%3F">#edit_user?</a></li>
-					
-				</ul>
-			</div>
-			
 
 			<!-- Included Modules -->
 			
@@ -181,46 +172,6 @@
 
 		<!-- Methods -->
 		
-		<div id="public-instance-method-details" class="method-section section">
-			<h3 class="section-header">Public Instance Methods</h3>
-
-		
-			<div id="edit-user--method" class="method-detail ">
-				<a name="method-i-edit_user%3F"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">edit_user?</span><span
-						class="method-args">(user)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="edit-user--source">
-<pre>
-   <span class="ruby-comment cmt"># File app/helpers/users_helper.rb, line 2</span>
-2:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_user?</span>(<span class="ruby-identifier">user</span>)
-3:     <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">'Storyteller'</span>).<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
-4:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
 
 	</div>
 
