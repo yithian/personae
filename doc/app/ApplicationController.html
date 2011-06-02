@@ -210,21 +210,23 @@ controllers.
 
 				<div class="method-description">
 					
-					
+					<p>
+Every url accessed with prompt for authentication.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="authorize-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 10</span>
-10:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authorize</span>
-11:     <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-12:       <span class="ruby-identifier">session</span>[<span class="ruby-value">:original_uri</span>] = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>
-13:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Please log in&quot;</span>
-14:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:admin</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:login</span>
-15:     <span class="ruby-keyword kw">end</span>
-16:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 11</span>
+11:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authorize</span>
+12:     <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+13:       <span class="ruby-identifier">session</span>[<span class="ruby-value">:original_uri</span>] = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>
+14:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Please log in&quot;</span>
+15:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:admin</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:login</span>
+16:     <span class="ruby-keyword kw">end</span>
+17:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
