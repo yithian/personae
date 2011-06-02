@@ -1,4 +1,3 @@
-require 'digest/sha1'
 require 'digest/sha2'
 
 class NotBlankValidator < ActiveModel::EachValidator
@@ -81,6 +80,6 @@ class User < ActiveRecord::Base
   
   def self.encrypted_password(password, salt)
     string_to_hash = password + "random" + salt
-    Digest::SHA1.hexdigest(string_to_hash)
+    Digest::SHA2.hexdigest(string_to_hash)
   end
 end
