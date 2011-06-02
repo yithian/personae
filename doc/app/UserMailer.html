@@ -179,7 +179,11 @@
 		<h1 class="class">UserMailer</h1>
 
 		<div id="description">
-			
+			<p>
+Functions like a controller, but handles sending mail. This
+&#8220;controller&#8221; should be edited with the url of the site.
+</p>
+
 		</div>
 
 		<!-- Constants -->
@@ -207,19 +211,21 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Sends an email to a user&#8217;s email address with a reset code.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="forgot-password-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/mailers/user_mailer.rb, line 9</span>
- 9:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forgot_password</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">url</span>)
-10:     <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
-11:     <span class="ruby-ivar">@url</span> = <span class="ruby-identifier">url</span>
-12:     <span class="ruby-identifier">mail</span>(<span class="ruby-value">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email_address</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Reset password&quot;</span>)
-13:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/mailers/user_mailer.rb, line 14</span>
+14:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forgot_password</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">url</span>)
+15:     <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+16:     <span class="ruby-ivar">@url</span> = <span class="ruby-identifier">url</span>
+17:     <span class="ruby-identifier">mail</span>(<span class="ruby-value">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email_address</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Reset password&quot;</span>)
+18:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -243,18 +249,20 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Sends an email to a user&#8217;s email address with their username.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="forgot-username-source">
 <pre>
-   <span class="ruby-comment cmt"># File app/mailers/user_mailer.rb, line 4</span>
-4:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forgot_username</span>(<span class="ruby-identifier">user</span>)
-5:     <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
-6:     <span class="ruby-identifier">mail</span>(<span class="ruby-value">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email_address</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Forgotten username&quot;</span>)
-7:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/mailers/user_mailer.rb, line 8</span>
+ 8:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forgot_username</span>(<span class="ruby-identifier">user</span>)
+ 9:     <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+10:     <span class="ruby-identifier">mail</span>(<span class="ruby-value">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email_address</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Forgotten username&quot;</span>)
+11:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
