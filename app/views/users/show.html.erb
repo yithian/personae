@@ -10,4 +10,4 @@
 </p><br />
 
 
-<%= link_to 'Edit', edit_user_path(@user) if edit_user?(@user) %>
+<%= link_to 'Edit', edit_user_path(@user) if @user.can_edit_as_user?(session[:user_id]) %>
