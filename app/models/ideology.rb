@@ -1,3 +1,7 @@
+# Ideologies are loose social organizations that are typically world-spanning. Obviously,
+# their members cross cliques and may or may not even know about one another but will
+# typically have similar goals and/or motivations.
+
 class Ideology < ActiveRecord::Base
   has_many :characters
   belongs_to :splat
@@ -19,10 +23,12 @@ class Ideology < ActiveRecord::Base
     known_ideology
   end
 
+  # Returns true if the logged in user can edit this ideology.
   def can_edit_as_user?(user_id)
     user_id == User.find_by_name("Storyteller").id unless self.id == Ideology.find_by_name("Mortal").id
   end
 
+  # Returns true if the logged in user can destroy this ideology.
   def can_destroy_as_user?(user_id)
     user_id == User.find_by_name("Storyteller").id unless self.id == Ideology.find_by_name("Mortal").id
   end
