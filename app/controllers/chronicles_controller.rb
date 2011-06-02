@@ -68,6 +68,8 @@ class ChroniclesController < ApplicationController
   end
   
   private
+  # Sets up a chronicle variable from an id passed by url, or if none is
+  # passed, a new (empty) chronicle.
   def find_chronicle
     if params[:action] == "new"
       @chronicle = Chronicle.new
@@ -76,6 +78,8 @@ class ChroniclesController < ApplicationController
     end
   end
   
+  # Allows or denies access to create a new chronicle based on
+  # wether or not the user is Storyteller
   def create_permission
     unless session[:user_id] == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
@@ -83,6 +87,8 @@ class ChroniclesController < ApplicationController
     end
   end
   
+  # Allows or denies access to create a new chronicle based on
+  # Chronicle#can_edit_as_user?
   def edit_permission
     unless @chronicle.can_edit_as_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
@@ -90,6 +96,8 @@ class ChroniclesController < ApplicationController
     end
   end
   
+  # Allows or denies access to create a new chronicle based on
+  # Chronicle#can_destroy_as_user?
   def destroy_permission
     unless @chronicle.can_destroy_as_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
