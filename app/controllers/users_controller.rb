@@ -80,6 +80,8 @@ class UsersController < ApplicationController
     end
   end
   
+  # Allows or denies access to do anything to a user based on
+  # User.can_edit_as_user?
   def permission
     unless @user.can_edit_as_user?(session[:user_id])
       flash[:notice] = "You don't have permission to do that"
