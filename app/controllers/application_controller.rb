@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   protected
-  # Every url accessed with prompt for authentication.
+  # Prompts for authentication if not logged in and redirects to original destination.
   def authorize
     unless User.find_by_id(session[:user_id])
       session[:original_uri] = request.fullpath
