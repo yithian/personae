@@ -1,4 +1,4 @@
-Thu, 02 Jun 2011 14:44:30 -0400
+Thu, 02 Jun 2011 14:51:37 -0400
 doc/README_FOR_APP	Thu, 02 Jun 2011 11:59:19 -0400
 app/controllers/admin_controller.rb	Thu, 02 Jun 2011 11:59:19 -0400
 app/controllers/application_controller.rb	Thu, 02 Jun 2011 11:59:19 -0400
@@ -24,5 +24,5 @@ app/models/comment.rb	Thu, 02 Jun 2011 14:20:15 -0400
 app/models/ideology.rb	Thu, 02 Jun 2011 14:30:07 -0400
 app/models/nature.rb	Thu, 02 Jun 2011 14:32:52 -0400
 app/models/splat.rb	Thu, 02 Jun 2011 14:42:27 -0400
-app/models/subnature.rb	Thu, 02 Jun 2011 11:59:19 -0400
-app/models/user.rb	Thu, 02 Jun 2011 11:59:19 -0400
+app/models/subnature.rb	Thu, 02 Jun 2011 14:46:23 -0400
+app/models/user.rb	Thu, 02 Jun 2011 14:51:14 -0400
