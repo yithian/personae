@@ -124,7 +124,7 @@ class Character < ActiveRecord::Base
   end
   
   # Returns true if the character can be destroyed by the given user_id. This
-  # currently implemented with the same check as can_edit_as_user? and exists
+  # currently implemented with the same check as Character#can_edit_as_user? and exists
   # mostly in case the logic changes in the future. That way, less code will
   # need to change.
   def can_destroy_as_user?(user_id)
