@@ -1,3 +1,6 @@
+# Creates a validator for Character.virtue . Valid virtues are 'Charity', 'Faith', 'Fortitude'
+# 'Hope', 'Justice', 'Prudence' and 'Temperance'
+
 class VirtueValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     unless [ 'Charity', 'Faith', 'Fortitude', 'Hope', 'Justice', 'Prudence', 'Temperance' ].include?(value)
@@ -6,6 +9,9 @@ class VirtueValidator < ActiveModel::EachValidator
   end
 end
 
+# Creates a validator for Character.vice . Valid vices are 'Envy', 'Gluttony', 'Greed', 'Lust'
+# 'Sloth', 'Pride', 'Wrath'
+
 class ViceValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     unless [ 'Envy', 'Gluttony', 'Greed', 'Lust', 'Sloth', 'Pride', 'Wrath' ].include?(value)
@@ -13,6 +19,14 @@ class ViceValidator < ActiveModel::EachValidator
     end
   end
 end
+
+# The basic building block of personae, the character class represents a
+# World of Darkness character. Specifically, it holds all the information
+# that would be represented on a player's character sheet.
+# 
+# All required attributes have default values.
+# 
+# The Storyteller user is considered to be an owner of every character.
 
 class Character < ActiveRecord::Base
   belongs_to :clique
@@ -24,7 +38,12 @@ class Character < ActiveRecord::Base
   belongs_to :chronicle
   has_many :comments, :dependent => :destroy
   
+  # An Array of Strings of valid virtues in World of Darkness games. Primarily used to
+  # populate dropdown menus.
   VIRTUES = [ 'Charity', 'Faith', 'Fortitude', 'Hope', 'Justice', 'Prudence', 'Temperance' ]
+
+  # An Array of Strings of valid vices in World of Darkness games. Primarily used to
+  # populate dropdown menus.
   VICES = [ 'Envy', 'Gluttony', 'Greed', 'Lust', 'Sloth', 'Pride', 'Wrath' ]
   
   validates :name, :presence => true, :uniqueness => true
@@ -99,103 +118,148 @@ class Character < ActiveRecord::Base
   validates :obfuscate, :numericality => true
   validates :vigor, :numericality => true
 
+  # Returns true if the character can be altered by the given user_id
   def can_edit_as_user?(user_id)
     owned_by_user?(user_id)
   end
   
+  # Returns true if the character can be destroyed by the given user_id. This
+  # currently implemented with the same check as \#can_edit_as_user? and exists
+  # mostly in case the logic changes in the future. That way, less code will
+  # need to change.
   def can_destroy_as_user?(user_id)
     owned_by_user?(user_id)
   end
   
+  # Returns true if the given user_id has permission to read the character's name.
+  # This is also the check used to determine if a character's entry shows up in
+  # index and clique pages, etc. Defaults to false.
   def show_name_to_user?(user_id)
     owned_by_user?(user_id) or self.read_name
   end
   
+  # Returns true if the given user_id has permission to read the character's nature.
+  # Defaults to false.
   def show_nature_to_user?(user_id)
     owned_by_user?(user_id) or self.read_nature unless self.splat.name == "Mortal"
   end
   
+  # Returns true if the given user_id has permission to read the character's clique.
+  # Defaults to false.
   def show_clique_to_user?(user_id)
     owned_by_user?(user_id) or self.read_clique
   end
   
+  # Returns true if the given user_id has permission to read the character's ideology.
+  # Defaults to false.
   def show_ideology_to_user?(user_id)
     owned_by_user?(user_id) or self.read_ideology unless self.splat.name == "Mortal"
   end
   
+  # Returns true if the given user_id has permission to read the character's description.
+  # Defaults to false.
   def show_description_to_user?(user_id)
     owned_by_user?(user_id) or self.read_description
   end
   
+  # Returns true if the given user_id has permission to read the character's background.
+  # Defaults to false.
   def show_background_to_user?(user_id)
     owned_by_user?(user_id) or self.read_background
   end
   
+  # Returns true if the given user_id has permission to read the character's deeds.
+  # Defaults to true.
   def show_deeds_to_user?(user_id)
     owned_by_user?(user_id) or self.read_deeds
   end
   
+  # Returns true if the given user_id has permission to read the character's attributes
+  # (Strength, Wits, etc). Defaults to false.
   def show_attributes_to_user?(user_id)
     owned_by_user?(user_id) or self.read_attributes
   end
   
+  # Returns true if the given user_id has permission to read the character's skills
+  # (Academics, Firearms, etc). Defaults to false.
   def show_skills_to_user?(user_id)
     owned_by_user?(user_id) or self.read_skills
   end
   
+  # Returns true if the given user_id has permission to read the character's advantages
+  # (Morality, Health, etc). Defaults to false.
   def show_advantages_to_user?(user_id)
     owned_by_user?(user_id) or self.read_advantages
   end
   
+  # Returns true if the given user_id has permission to read the character's merits
+  # Defaults to false.
   def show_merits_to_user?(user_id)
     owned_by_user?(user_id) or self.read_merits
   end
   
+  # Returns true if the given user_id has permission to read the character's supernatural
+  # powers. These are associated with the character's nature. Defaults to false.
   def show_powers_to_user?(user_id)
     owned_by_user?(user_id) or self.read_powers
   end
   
+  # Returns true if the given user_id has permission to read the character's equipment
+  # Defaults to false.
   def show_equipment_to_user?(user_id)
     owned_by_user?(user_id) or self.read_equipment
   end
   
+  # Returns true if the given user_id has permission to read the character's experience.
+  # Defaults to false.
   def show_experience_to_user?(user_id)
     owned_by_user?(user_id) or self.read_experience
   end
 
+  # Returns true if the given user_id has permission to read the character's notes.
+  # Defaults to false.
   def show_notes_to_user?(user_id)
     owned_by_user?(user_id) or self.read_notes
   end
   
+  # Returns true if the character is a mortal or a hunter (close enough).
   def is_mortal?
     self.splat.name == "Mortal" or self.splat.name == "Hunter"
   end
   
+  # Returns true if the character is a mage.
   def is_mage?
     self.splat.name == "Mage"
   end
   
+  # Returns true if the character is a werewolf.
   def is_werewolf?
     self.splat.name == "Werewolf"
   end
 
+  # Returns true if the character is a vampire.
   def is_vampire?
     self.splat.name == "Vampire"
   end
 
+  # Returns true if the character is a promethean.
   def is_promethean?
     self.splat.name == "Promethean"
   end
 
+  # Returns true if the character is a changeling.
   def is_changeling?
     self.splat.name == "Changeling"
   end
   
+  # Returns true if the character is a geist.
   def is_geist?
     self.splat.name == "Geist"
   end
 
   private
+  # Returns true if the character is owned by the logged in user or if the
+  # logged in user is the Storyteller.
   def owned_by_user?(user_id)
     user_id == User.find_by_name("Storyteller").id or self.user_id == user_id
   end

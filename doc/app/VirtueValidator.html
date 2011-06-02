@@ -177,7 +177,13 @@
 		<h1 class="class">VirtueValidator</h1>
 
 		<div id="description">
-			
+			<p>
+Creates a validator for Character.virtue . Valid virtues are
+&#8216;Charity&#8217;, &#8216;Faith&#8217;, &#8216;Fortitude&#8217;
+&#8216;Hope&#8217;, &#8216;Justice&#8217;, &#8216;Prudence&#8217; and
+&#8216;Temperance&#8217;
+</p>
+
 		</div>
 
 		<!-- Constants -->
@@ -212,12 +218,12 @@
 					<div class="method-source-code"
 						id="validate-each-source">
 <pre>
-   <span class="ruby-comment cmt"># File app/models/character.rb, line 2</span>
-2:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
-3:     <span class="ruby-keyword kw">unless</span> [ <span class="ruby-value str">'Charity'</span>, <span class="ruby-value str">'Faith'</span>, <span class="ruby-value str">'Fortitude'</span>, <span class="ruby-value str">'Hope'</span>, <span class="ruby-value str">'Justice'</span>, <span class="ruby-value str">'Prudence'</span>, <span class="ruby-value str">'Temperance'</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">value</span>)
-4:       <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{value} is an invalid virtue&quot;</span>
-5:     <span class="ruby-keyword kw">end</span>
-6:   <span class="ruby-keyword kw">end</span></pre>
+   <span class="ruby-comment cmt"># File app/models/character.rb, line 5</span>
+5:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
+6:     <span class="ruby-keyword kw">unless</span> [ <span class="ruby-value str">'Charity'</span>, <span class="ruby-value str">'Faith'</span>, <span class="ruby-value str">'Fortitude'</span>, <span class="ruby-value str">'Hope'</span>, <span class="ruby-value str">'Justice'</span>, <span class="ruby-value str">'Prudence'</span>, <span class="ruby-value str">'Temperance'</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">value</span>)
+7:       <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{value} is an invalid virtue&quot;</span>
+8:     <span class="ruby-keyword kw">end</span>
+9:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
