@@ -2,6 +2,7 @@
 # 'Hope', 'Justice', 'Prudence' and 'Temperance'
 
 class VirtueValidator < ActiveModel::EachValidator
+  # Validates all records passed to it
   def validate_each(record, attribute, value)
     unless [ 'Charity', 'Faith', 'Fortitude', 'Hope', 'Justice', 'Prudence', 'Temperance' ].include?(value)
       record.errors[attribute] << "#{value} is an invalid virtue"
@@ -13,6 +14,7 @@ end
 # 'Sloth', 'Pride', 'Wrath'
 
 class ViceValidator < ActiveModel::EachValidator
+  # Validates all records passed to it
   def validate_each(record, attribute, value)
     unless [ 'Envy', 'Gluttony', 'Greed', 'Lust', 'Sloth', 'Pride', 'Wrath' ].include?(value)
       record.errors[attribute] << "#{value} is an invalid vice"

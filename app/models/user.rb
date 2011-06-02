@@ -3,6 +3,7 @@ require 'digest/sha2'
 # Creates a validator for User.name to ensure that it isn't empty
 
 class NotBlankValidator < ActiveModel::EachValidator
+  # Validates all records passed to it
   def validate_each(record, attribute, value)
     record.errors[attribute] << "must not be blank" if value.blank?
   end

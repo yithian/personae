@@ -211,19 +211,21 @@ Creates a validator for Character.vice . Valid vices are
 
 				<div class="method-description">
 					
-					
+					<p>
+Validates all records passed to it
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="validate-each-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/character.rb, line 16</span>
-16:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
-17:     <span class="ruby-keyword kw">unless</span> [ <span class="ruby-value str">'Envy'</span>, <span class="ruby-value str">'Gluttony'</span>, <span class="ruby-value str">'Greed'</span>, <span class="ruby-value str">'Lust'</span>, <span class="ruby-value str">'Sloth'</span>, <span class="ruby-value str">'Pride'</span>, <span class="ruby-value str">'Wrath'</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">value</span>)
-18:       <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{value} is an invalid vice&quot;</span>
-19:     <span class="ruby-keyword kw">end</span>
-20:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/character.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
+19:     <span class="ruby-keyword kw">unless</span> [ <span class="ruby-value str">'Envy'</span>, <span class="ruby-value str">'Gluttony'</span>, <span class="ruby-value str">'Greed'</span>, <span class="ruby-value str">'Lust'</span>, <span class="ruby-value str">'Sloth'</span>, <span class="ruby-value str">'Pride'</span>, <span class="ruby-value str">'Wrath'</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">value</span>)
+20:       <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{value} is an invalid vice&quot;</span>
+21:     <span class="ruby-keyword kw">end</span>
+22:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
