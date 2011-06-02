@@ -1,6 +1,6 @@
-Thu, 02 Jun 2011 15:16:26 -0400
+Thu, 02 Jun 2011 15:24:29 -0400
 doc/README_FOR_APP	Thu, 02 Jun 2011 11:59:19 -0400
-app/controllers/admin_controller.rb	Thu, 02 Jun 2011 11:59:19 -0400
+app/controllers/admin_controller.rb	Thu, 02 Jun 2011 15:24:08 -0400
 app/controllers/application_controller.rb	Thu, 02 Jun 2011 11:59:19 -0400
 app/controllers/characters_controller.rb	Thu, 02 Jun 2011 11:59:19 -0400
 app/controllers/chronicles_controller.rb	Thu, 02 Jun 2011 11:59:19 -0400

@@ -185,7 +185,10 @@
 		<h1 class="class">AdminController</h1>
 
 		<div id="description">
-			
+			<p>
+Controller for administrative tasks: logging in/out, etc
+</p>
+
 		</div>
 
 		<!-- Constants -->
@@ -213,24 +216,28 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Generates a reset code and emails it to the email address associated with
+the user&#8217;s username. This allows them to reset their password on a
+single-use basis.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="forgot-password-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 33</span>
-33:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forgot_password</span>
-34:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
-35:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:username</span>])
-36:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">generate_reset_code</span>
-37:       <span class="ruby-identifier">url</span> = <span class="ruby-identifier">url_for</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;reset_password&quot;</span>, <span class="ruby-value">:reset_code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">reset_code</span>)
-38:       <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">forgot_password</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">url</span>).<span class="ruby-identifier">deliver</span>
-39: 
-40:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Password reset link sent to your email address&quot;</span>
-41:     <span class="ruby-keyword kw">end</span>
-42:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forgot_password</span>
+44:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+45:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:username</span>])
+46:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">generate_reset_code</span>
+47:       <span class="ruby-identifier">url</span> = <span class="ruby-identifier">url_for</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;reset_password&quot;</span>, <span class="ruby-value">:reset_code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">reset_code</span>)
+48:       <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">forgot_password</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">url</span>).<span class="ruby-identifier">deliver</span>
+49: 
+50:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Password reset link sent to your email address&quot;</span>
+51:     <span class="ruby-keyword kw">end</span>
+52:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -254,23 +261,26 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Sends an email to the email address associated with a user containing the
+user&#8217;s username.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="forgot-username-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 23</span>
-23:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forgot_username</span>
-24:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
-25:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email_address</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>])
-26:       <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">forgot_username</span>(<span class="ruby-identifier">user</span>).<span class="ruby-identifier">deliver</span>
-27:       
-28:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-node">&quot;Username has been sent to #{params[:email_address]}&quot;</span>
-29:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;login&quot;</span>
-30:     <span class="ruby-keyword kw">end</span>
-31:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 30</span>
+30:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forgot_username</span>
+31:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+32:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email_address</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email_address</span>])
+33:       <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">forgot_username</span>(<span class="ruby-identifier">user</span>).<span class="ruby-identifier">deliver</span>
+34:       
+35:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-node">&quot;Username has been sent to #{params[:email_address]}&quot;</span>
+36:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;login&quot;</span>
+37:     <span class="ruby-keyword kw">end</span>
+38:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -294,27 +304,30 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Logs a user in with a given username and password, then redirects them to
+their original destination.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="login-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 2</span>
- 2:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">login</span>
- 3:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
- 4:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>])
- 5:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>
- 6:         <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
- 7:         <span class="ruby-identifier">uri</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value">:original_uri</span>]
- 8:         <span class="ruby-identifier">session</span>[<span class="ruby-value">:original_uri</span>] = <span class="ruby-keyword kw">nil</span>
- 9:         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">uri</span> <span class="ruby-operator">||</span> { <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:characters</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span> })
-10:       <span class="ruby-keyword kw">else</span>
-11:         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Invalid user/password combination&quot;</span>
-12:       <span class="ruby-keyword kw">end</span>
-13:     <span class="ruby-keyword kw">end</span>
-14:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 6</span>
+ 6:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">login</span>
+ 7:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+ 8:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>])
+ 9:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>
+10:         <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+11:         <span class="ruby-identifier">uri</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value">:original_uri</span>]
+12:         <span class="ruby-identifier">session</span>[<span class="ruby-value">:original_uri</span>] = <span class="ruby-keyword kw">nil</span>
+13:         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">uri</span> <span class="ruby-operator">||</span> { <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:characters</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span> })
+14:       <span class="ruby-keyword kw">else</span>
+15:         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Invalid user/password combination&quot;</span>
+16:       <span class="ruby-keyword kw">end</span>
+17:     <span class="ruby-keyword kw">end</span>
+18:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -338,20 +351,22 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Logs a user out by removing the user_id from their session.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="logout-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 16</span>
-16:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logout</span>
-17:     <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-value">:logged_out</span>
-18:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Logged out&quot;</span>
-19:     
-20:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:admin</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:login</span>
-21:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 21</span>
+21:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logout</span>
+22:     <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-value">:logged_out</span>
+23:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Logged out&quot;</span>
+24:     
+25:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:admin</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:login</span>
+26:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -375,27 +390,29 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Changes a user&#8217;s password with a given reset code.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="reset-password-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 44</span>
-44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset_password</span>
-45:     <span class="ruby-ivar">@reset_code</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:reset_code</span>]
-46:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_reset_code</span>(<span class="ruby-ivar">@reset_code</span>)
-47: 
-48:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">put?</span>
-49:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>][<span class="ruby-value">:password</span>], <span class="ruby-value">:password_confirmation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>][<span class="ruby-value">:password_confirmation</span>])
-50:         <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Successfully changed password&quot;</span>
-51:         <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">clear_reset_code</span>
-52:         
-53:         <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;login&quot;</span>
-54:       <span class="ruby-keyword kw">end</span>
-55:     <span class="ruby-keyword kw">end</span>
-56:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/admin_controller.rb, line 55</span>
+55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset_password</span>
+56:     <span class="ruby-ivar">@reset_code</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:reset_code</span>]
+57:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_reset_code</span>(<span class="ruby-ivar">@reset_code</span>)
+58: 
+59:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">put?</span>
+60:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>][<span class="ruby-value">:password</span>], <span class="ruby-value">:password_confirmation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>][<span class="ruby-value">:password_confirmation</span>])
+61:         <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Successfully changed password&quot;</span>
+62:         <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">clear_reset_code</span>
+63:         
+64:         <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;login&quot;</span>
+65:       <span class="ruby-keyword kw">end</span>
+66:     <span class="ruby-keyword kw">end</span>
+67:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
