@@ -1,3 +1,7 @@
+# Subnature is only meaningful to the Changeling splat, and is
+# included to represent their kiths. No other splat has an
+# analogous item.
+
 class Subnature < ActiveRecord::Base
   has_many :characters
   belongs_to :splat
