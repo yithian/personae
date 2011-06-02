@@ -1,0 +1,191 @@
+== License
+Personae is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Personae is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Personae.  If not, see <http://www.gnu.org/licenses/>.
+
+
+== Welcome
+
+Persona is a Ruby on Rails web application designed to hold character sheets
+for the New World of Darkness role playing games by White Wolf.  This program is
+designed to contain an entire chronicle's worth of characters and really shines when
+used for non-player-character sheets as well as the players' characters.
+
+== Terms
+
+Since this software has been designed to work with all the game lines in the New
+World of Darkness, some generic terminology has been used to describe similar elements
+across game lines.
+
+Splat => Mage, Vampire, Werewolf, etc
+Nature => Moros (Mage), Gangrel (Vampire), Cahalith (Werewolf), etc
+Subnature => Changelings' Kith (and nothing else)
+Clique => Cabal (Mage), Cotorie (Vampire), Pack (Werewolf), etc
+Ideology => Silver Ladder (Mage), Lancae Sanctum (Vampire), Storm Lords (Werewolf), etc
+
+
+== Setup
+
+Personae uses a single administrator-style account name Storyteller.  This account can
+see all the Characters, Cliques and Ideologies in your game, regardless of their display
+settings.  Be careful!  The default password for this account is worldofdarkness -- please
+change this once your database is set up!
+
+To run Personae, you must have the following software installed: Ruby, Ruby Gems,
+Ruby on Rails, sqlite3 and ruby-sqlite3.  It is highly suggested to use Apache httpd and
+mod_rails as well.
+
+If you don't have this software installed, you can download it from http://ruby-lang.org
+http://rubygems.org and http://sqlite.org .  Once you have Ruby, Ruby Gems and Sqlite3
+installed, use Ruby Gems to install Ruby on Rails:
+*nix:  `gem install rails`
+Windows:  Start -> Programs -> Ruby -> Ruby Gems -> RubyGems Package Manager.
+          `gem install rails`
+
+With Ruby on Rails installed, install the rest of the required gems by changing into
+Personae's install directory (from a shell or cmd prompt) and run `bundle install`.
+This should install the proper versions of all the gems you'll need.
+
+Once you have Personae downloaded and placed where you want it, open a command prompt
+(Terminal on Mac, xterm on Linux, cmd on Windows).  Run the following to configure
+your database:
+`cd <personae location>; RAILS_ENV=production rake db:setup`
+
+If you prefer, you can use the built-in web server with Ruby on Rails.  This is not
+recommended, though.  A better solution is to download Apache httpd and mod_rails
+from http://httpd.apache.org and http://mod_rails.com on a POSIX-compliant operating
+system (that is, just about anything but Windows).  On a Windows environment, Apache
+httpd and mongrel is your best bet.
+Windows:  Start -> Programs -> Ruby -> Ruby Gems -> RubyGems Package Manager.
+          `gem install mongrel`
+
+
+== POSIX (Linux, Mac, Solaris, etc) Apache setup
+
+If you're using Mac, httpd is already installed for you.  Otherwise, use your
+distribution's package manager to install httpd.
+
+Open a terminal and install mod_rails:
+`gem install passenger`
+
+Run the mod_rails installer:
+`passenger-install-apache2-module`
+
+The mod_rails installer should provide you with several lines to copy/paste into your
+Apache httpd.conf file.  Do so.
+
+Now, when you start Apache httpd, it will automatically begin serving up Personae.
+
+
+== Windows Apache setup
+
+As above, download Apache httpd from http://httpd.apache.org and run the installer.
+Use the RubyGem package manager to install mongrel:
+`gem install mongrel`
+
+With mongrel installed, add the following lines to Apache's httpd.conf file:
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+<VirtualHost localhost:80>
+    ServerName www.myapp.comm
+    DocumentRoot "C:/web/myapp/public"
+    ProxyPass / http://www.myapp.com:3000/
+    ProxyPassReverse / http://www.myapp.com:3000/
+    ProxyPreserveHost On
+</VirtualHost>
+
+Use the Apache tools to start httpd.
+
+Open a command prompt (Start -> Run -> cmd) and type:
+`cd <personae install path>; mongrel_rails start -d`
+
+
+== Accessing your site
+
+Without further modification to httpd.conf, Personae will be running on port 80 of
+the computer it is installed on.  You will need to allow access through whatever
+firewall you might be running to this port and will likely need to enable port
+forwarding on your router.  http://portforward.com can help you with this.
+
+It is unlikely that your computer will have a fully-qualified domain name
+(eg. google.com, white-wolf.com, etc).  You can either register a domain name or
+use a service such as no-ip (http://no-ip.org) to give you one.
+
+
+== A word of caution
+
+Running a web server presents a potential security vulnerability, which can be
+mitigated by frequently updating Apache and Ruby on Rails.  If you're not OK with
+that, then your best bet is to not use Personae.
+
+
+== Description of Contents
+
+app
+  Holds all the code that's specific to this particular application.
+
+app/controllers
+  Holds controllers that should be named like weblogs_controller.rb for
+  automated URL mapping. All controllers should descend from ApplicationController
+  which itself descends from ActionController::Base.
+
+app/models
+  Holds models that should be named like post.rb.
+  Most models will descend from ActiveRecord::Base.
+
+app/views
+  Holds the template files for the view that should be named like
+  weblogs/index.html.erb for the WeblogsController#index action. All views use eRuby
+  syntax.
+
+app/views/layouts
+  Holds the template files for layouts to be used with views. This models the common
+  header/footer method of wrapping views. In your views, define a layout using the
+  <tt>layout :default</tt> and create a file named default.html.erb. Inside default.html.erb,
+  call <% yield %> to render the view using this layout.
+
+app/helpers
+  Holds view helpers that should be named like weblogs_helper.rb. These are generated
+  for you automatically when using script/generate for controllers. Helpers can be used to
+  wrap functionality for your views into methods.
+
+config
+  Configuration files for the Rails environment, the routing map, the database, and other dependencies.
+
+db
+  Contains the database schema in schema.rb.  db/migrate contains all
+  the sequence of Migrations for your schema.
+
+doc
+  This directory is where your application documentation will be stored when generated
+  using <tt>rake doc:app</tt>
+
+lib
+  Application specific libraries. Basically, any kind of custom code that doesn't
+  belong under controllers, models, or helpers. This directory is in the load path.
+
+public
+  The directory available for the web server. Contains subdirectories for images, stylesheets,
+  and javascripts. Also contains the dispatchers and the default HTML files. This should be
+  set as the DOCUMENT_ROOT of your web server.
+
+script
+  Helper scripts for automation and generation.
+
+test
+  Unit and functional tests along with fixtures. When using the script/generate scripts, template
+  test files will be generated for you and placed in this directory.
+
+vendor
+  External libraries that the application depends on. Also includes the plugins subdirectory.
+  If the app has frozen rails, those gems also go here, under vendor/rails/.
+  This directory is in the load path.
