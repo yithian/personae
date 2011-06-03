@@ -83,7 +83,7 @@ class ChroniclesController < ApplicationController
   # Allows or denies access to create a new chronicle based on
   # wether or not the user is Storyteller
   def create_permission
-    unless session[:user_id] == User.find_by_name("Storyteller").id
+    unless User.find_by_id(session[:user_id]).super_user?
       flash[:notice] = "You don't have permission to do that"
       redirect_to :controller => "chronicles"
     end
