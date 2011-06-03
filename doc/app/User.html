@@ -87,6 +87,8 @@
 					
 					<li><a href="#method-i-password%3D">#password=</a></li>
 					
+					<li><a href="#method-i-super_user%3F">#super_user?</a></li>
+					
 				</ul>
 			</div>
 			
@@ -291,11 +293,11 @@ Encrypts and returns the password.
 					<div class="method-source-code"
 						id="encrypted-password-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/models/user.rb, line 104</span>
-104:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">salt</span>)
-105:     <span class="ruby-identifier">string_to_hash</span> = <span class="ruby-identifier">password</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;random&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">salt</span>
-106:     <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">string_to_hash</span>)
-107:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 109</span>
+109:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">salt</span>)
+110:     <span class="ruby-identifier">string_to_hash</span> = <span class="ruby-identifier">password</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;random&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">salt</span>
+111:     <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">string_to_hash</span>)
+112:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -537,6 +539,43 @@ value and stores the new hashed value.
 			</div>
 
 		
+			<div id="super-user--method" class="method-detail ">
+				<a name="method-i-super_user%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">super_user?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Initial admin permission framework. Only the Storyteller user is an admin
+at the moment.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="super-user--source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 98</span>
+ 98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">super_user?</span>
+ 99:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+100:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
 		</div>
 	
 		<div id="private-instance-method-details" class="method-section section">
@@ -565,10 +604,10 @@ Creates a new salt value for the password hash.
 					<div class="method-source-code"
 						id="create-new-salt-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/models/user.rb, line 99</span>
- 99:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_new_salt</span>
-100:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">salt</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">object_id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>.<span class="ruby-identifier">to_s</span>
-101:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/models/user.rb, line 104</span>
+104:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_new_salt</span>
+105:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">salt</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">object_id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>.<span class="ruby-identifier">to_s</span>
+106:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

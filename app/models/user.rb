@@ -94,6 +94,11 @@ class User < ActiveRecord::Base
     self.id == user_id or user_id == User.find_by_name("Storyteller").id unless self.id == User.find_by_name("Storyteller").id
   end
 
+  # Initial admin permission framework. Only the Storyteller user is an admin at the moment.
+  def super_user?
+    self.id == User.find_by_name("Storyteller").id
+  end
+
   private
   # Creates a new salt value for the password hash.
   def create_new_salt
