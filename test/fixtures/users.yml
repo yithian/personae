@@ -6,7 +6,7 @@ Storyteller:
   salt: 21827182600.451664451813932
   selected_character: 3
   email_address: fake@email.com
-  chronicle: one
+  selected_chronicle: one
 
 one:
   name: MyName
@@ -14,7 +14,7 @@ one:
   salt: MySalt
   selected_character: 1
   email_address: asdf@asdf.com
-  chronicle: two
+  selected_chronicle: two
 
 two:
   name: MyOtherName
@@ -22,4 +22,4 @@ two:
   salt: MyOtherSalt
   selected_character: 2
   email_address: no-reply@asdf.com
-  chronicle: three
+  selected_chronicle: three

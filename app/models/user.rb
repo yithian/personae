@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   has_many :characters, :dependent => :destroy
   has_many :comments
   has_many :cliques
-  belongs_to :chronicle
+  has_many :chronicles
+  belongs_to :selected_chronicle, :class_name => "Chronicle"
   
   validates :name, :presence => true, :uniqueness => true
   validates :password, :presence => true, :not_blank => true, :on => :create

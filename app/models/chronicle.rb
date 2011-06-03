@@ -6,7 +6,8 @@
 class Chronicle < ActiveRecord::Base
   has_many :characters
   has_many :cliques
-  has_many :users
+  has_many :selected_users, :class_name => "User", :foreign_key => "selected_chronicle_id"
+  has_one :user
   
   validates :name, :presence => true, :uniqueness => true
   
@@ -27,8 +28,8 @@ class Chronicle < ActiveRecord::Base
       clique.save
     end
     
-    c.users.each do |user|
-      user.chronicle_id = nc
+    c.selected_users.each do |user|
+      user.selected_chronicle_id = nc
       user.save
     end
   end

@@ -225,10 +225,10 @@ Returns true if the user has admin permissions.
 					<div class="method-source-code"
 						id="can-create-as-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 37</span>
-37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_create_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-38:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
-39:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 38</span>
+38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_create_as_user?</span>(<span class="ruby-identifier">user_id</span>)
+39:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
+40:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -261,10 +261,10 @@ Returns true if the user has admin permissions.
 					<div class="method-source-code"
 						id="can-destroy-as-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 47</span>
-47:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-48:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
-49:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user_id</span>)
+49:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
+50:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -297,10 +297,10 @@ Returns true if the user has admin permissions.
 					<div class="method-source-code"
 						id="can-edit-as-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 42</span>
-42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-43:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
-44:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user_id</span>)
+44:     <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
+45:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -340,10 +340,10 @@ future upgrade for multiple administrative accounts.
 					<div class="method-source-code"
 						id="super-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 54</span>
-54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
-55:     <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-56:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/chronicle.rb, line 55</span>
+55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">super_user?</span>(<span class="ruby-identifier">user_id</span>)
+56:     <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+57:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

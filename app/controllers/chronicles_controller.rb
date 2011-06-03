@@ -43,7 +43,7 @@ class ChroniclesController < ApplicationController
       flash[:notice] = "Chronicle successfully created"
       
       user = User.find_by_id(session[:user_id])
-      user.chronicle_id = @chronicle.id
+      user.selected_chronicle_id = @chronicle.id
       user.save
     end
 

@@ -245,7 +245,7 @@ POST /chronicles POST /chronicles.xml
 43:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Chronicle successfully created&quot;</span>
 44:       
 45:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-46:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">chronicle_id</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">id</span>
+46:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle_id</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">id</span>
 47:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
 48:     <span class="ruby-keyword kw">end</span>
 49: 
@@ -519,7 +519,7 @@ the user is Storyteller
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 85</span>
 85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_permission</span>
-86:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+86:     <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>]).<span class="ruby-identifier">super_user?</span>
 87:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 88:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;chronicles&quot;</span>
 89:     <span class="ruby-keyword kw">end</span>

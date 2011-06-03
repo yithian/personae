@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110316190541) do
+ActiveRecord::Schema.define(:version => 20110603162205) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20110316190541) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",     :default => 1, :null => false
   end
 
   create_table "cliques", :force => true do |t|
@@ -235,7 +236,7 @@ ActiveRecord::Schema.define(:version => 20110316190541) do
     t.integer  "selected_character"
     t.string   "email_address"
     t.string   "reset_code"
-    t.integer  "chronicle_id",       :default => 1, :null => false
+    t.integer  "selected_chronicle_id", :default => 1, :null => false
   end
 
 end

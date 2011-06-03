@@ -1,4 +1,4 @@
-Fri, 03 Jun 2011 11:53:32 -0400
+Fri, 03 Jun 2011 13:33:48 -0400
 doc/README_FOR_APP	Wed, 01 Jun 2011 21:47:12 -0400
 app/helpers/cliques_helper.rb	Wed, 01 Jun 2011 20:50:31 -0400
 app/helpers/admin_helper.rb	Wed, 01 Jun 2011 20:50:31 -0400
@@ -11,18 +11,18 @@ app/helpers/characters_helper.rb	Wed, 01 Jun 2011 20:50:31 -0400
 app/controllers/admin_controller.rb	Fri, 03 Jun 2011 11:08:12 -0400
 app/controllers/comments_controller.rb	Fri, 03 Jun 2011 11:08:12 -0400
 app/controllers/application_controller.rb	Fri, 03 Jun 2011 11:08:12 -0400
-app/controllers/characters_controller.rb	Fri, 03 Jun 2011 11:08:12 -0400
-app/controllers/chronicles_controller.rb	Fri, 03 Jun 2011 11:43:26 -0400
+app/controllers/characters_controller.rb	Fri, 03 Jun 2011 12:55:49 -0400
+app/controllers/chronicles_controller.rb	Fri, 03 Jun 2011 13:08:21 -0400
 app/controllers/users_controller.rb	Fri, 03 Jun 2011 11:08:12 -0400
 app/controllers/ideologies_controller.rb	Fri, 03 Jun 2011 11:08:12 -0400
-app/controllers/cliques_controller.rb	Fri, 03 Jun 2011 11:08:12 -0400
+app/controllers/cliques_controller.rb	Fri, 03 Jun 2011 12:56:39 -0400
 app/models/comment.rb	Fri, 03 Jun 2011 11:08:12 -0400
 app/models/character.rb	Fri, 03 Jun 2011 11:08:12 -0400
-app/models/chronicle.rb	Fri, 03 Jun 2011 11:43:26 -0400
+app/models/chronicle.rb	Fri, 03 Jun 2011 13:28:20 -0400
 app/models/clique.rb	Fri, 03 Jun 2011 11:08:12 -0400
 app/models/splat.rb	Fri, 03 Jun 2011 11:08:12 -0400
 app/models/subnature.rb	Fri, 03 Jun 2011 11:08:12 -0400
 app/models/ideology.rb	Fri, 03 Jun 2011 11:08:12 -0400
 app/models/nature.rb	Fri, 03 Jun 2011 11:08:12 -0400
-app/models/user.rb	Fri, 03 Jun 2011 11:51:07 -0400
+app/models/user.rb	Fri, 03 Jun 2011 13:27:17 -0400
 app/mailers/user_mailer.rb	Fri, 03 Jun 2011 11:08:12 -0400
