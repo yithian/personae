@@ -2,8 +2,6 @@ Personae::Application.routes.draw do
   devise_for :users
 
   resources :chronicles
-
-  resources :users
   resources :ideologies
   resources :cliques
   resources :characters do
