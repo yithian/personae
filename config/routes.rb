@@ -1,4 +1,6 @@
 Personae::Application.routes.draw do
+  devise_for :users
+
   resources :chronicles
 
   resources :users
@@ -7,8 +9,7 @@ Personae::Application.routes.draw do
   resources :characters do
     resources :comments
   end
-
-  match '/login', :to => 'admin#login', :as => 'login'
+  
   root :to => 'characters#index'
   match '/:controller(/:action(/:id))'
 end

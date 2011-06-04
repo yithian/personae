@@ -36,6 +36,8 @@ Personae::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  # Url for mailer links
+  config.action_mailer.default_url_options = { :host => 'cityofdarkness.no-ip.org' }
 
   # Enable threaded mode
   # config.threadsafe!

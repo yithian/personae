@@ -27,7 +27,7 @@
       <li <%= "class='selected'" if params[:controller] == "cliques" %> ><%= link_to "Cliques", :controller => :cliques %></li>
       <li <%= "class='selected'" if params[:controller] == "ideologies" %> ><%= link_to "Ideologies", :controller => :ideologies %></li>
         <li <%= "class='selected'" if params[:controller] == "chronicles" %> ><%= link_to "Chronicles", :controller => :chronicles %></li>
-      <% if session[:user_id] == User.find_by_name("Storyteller").id %>
+      <% if current_user == User.find_by_name("Storyteller") %>
         <li <%= "class='selected'" if params[:controller] == "users" %> ><%= link_to "Accounts", :controller => :users, :action => :index %></li>
       <% else %>	
         <li <%= "class='selected'" if params[:controller] == "users" %> ><%= link_to "Account", :controller => :users, :action => :show, :id => session[:user_id] %></li>
@@ -42,6 +42,7 @@
   
   <div id="content">
     <div id="notice"><%= flash[:notice] %></div>
+    <div id="alert"><%= alert %></div>
     <%= yield %>
   </div>
 </div>
