@@ -1,9 +1,9 @@
 <h3>Chronicle</h3>
-<%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @user.selected_chronicle.id), :remote => true, :action => url_for(:action => 'change_chronicle') %>
+<%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', current_user.selected_chronicle.id), :remote => true, :action => url_for(:action => 'change_chronicle') %>
 
 <h3>Characters</h3>
 <div id="list">
   <%= render :partial => 'list' %>
 </div>
 
-<%= link_to 'New character', {:controller => "characters", :action => "new", :chronicle_id => @user.selected_chronicle_id}, :id => "new_link" %><br />
+<%= link_to 'New character', {:controller => "characters", :action => "new", :chronicle_id => current_user.selected_chronicle_id}, :id => "new_link" %><br />

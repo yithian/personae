@@ -12,11 +12,10 @@ class CliquesController < ApplicationController
   # GET /cliques
   # GET /cliques.xml
   def index
-    @user = User.find_by_id(session[:user_id])
     @chronicles = Chronicle.all.collect
     
     @cliques = Clique.find_all_by_chronicle_id(0)
-    @cliques = @cliques + Clique.find_all_by_chronicle_id(@user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(@user.id) }
+    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user.id) }
     @cliques.delete_if { |c| c == nil }
 
     respond_with @cliques
@@ -24,20 +23,19 @@ class CliquesController < ApplicationController
 
   # POST /cliques/change_chronicle
   def change_chronicle
-    @user = User.find_by_id(session[:user_id])
-    @user.selected_chronicle_id = params[:chronicle_id]
-    @user.save
+    current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
+    current_user.save
 
-    @chronicle = Chronicle.find_by_id(@user.selected_chronicle.id)
+    @chronicle = Chronicle.find_by_id(current_user.selected_chronicle.id)
     @cliques = Clique.find_all_by_chronicle_id(0)
-    @cliques = @cliques + Clique.find_all_by_chronicle_id(@user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(@user.id) }
+    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user.id) }
     @cliques.delete_if { |c| c == nil }
   end
 
   # GET /cliques/1
   # GET /cliques/1.xml
   def show
-    respond_with @clique if @clique.is_known_to_user?(session[:user_id])
+    respond_with @clique if @clique.is_known_to_user?(current_user.id)
   end
 
   # GET /cliques/new
@@ -48,7 +46,7 @@ class CliquesController < ApplicationController
 
   # GET /cliques/1/edit
   def edit
-    respond_with @clique if @clique.can_edit_as_user?(session[:user_id])
+    respond_with @clique if @clique.can_edit_as_user?(current_user.id)
   end
 
   # POST /cliques
@@ -114,7 +112,7 @@ class CliquesController < ApplicationController
   
   # Allows or denies access to a clique page based on Clique#is_known_to_user?
   def show_permission
-    unless @clique.is_known_to_user?(session[:user_id])
+    unless @clique.is_known_to_user?(current_user.id)
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => "index"
     end
@@ -122,7 +120,7 @@ class CliquesController < ApplicationController
   
   # Allows or denies access to edit a clique based on Clique#can_edit_as_user?
   def edit_permission
-    unless @clique.can_edit_as_user?(session[:user_id])
+    unless @clique.can_edit_as_user?(current_user.id)
       flash[:notice] = "You don't have permission to do that"
       redirect_to clique_path(@clique)
     end
@@ -130,7 +128,7 @@ class CliquesController < ApplicationController
   
   # Allows or denies access to destroy a clique based on Clique#can_destroy_as_user?
   def destroy_permission
-    unless @clique.can_destroy_as_user?(session[:user_id])
+    unless @clique.can_destroy_as_user?(current_user.id)
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => :index
     end

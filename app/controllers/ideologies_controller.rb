@@ -11,7 +11,7 @@ class IdeologiesController < ApplicationController
   # GET /ideologies
   # GET /ideologies.xml
   def index
-    @ideologies = Ideology.all.collect { |i| i if i.is_known_to_user?(session[:user_id]) }
+    @ideologies = Ideology.all.collect { |i| i if i.is_known_to_user?(current_user.id) }
     @ideologies.delete_if { |i| i == nil }
 
     respond_with @ideologies
@@ -96,7 +96,7 @@ class IdeologiesController < ApplicationController
   # Allows or denies access to create, edit or destroy an ideology
   # based on wether or not the user is the Storyteller user.
   def permission
-    unless session[:user_id] == User.find_by_name("Storyteller").id
+    unless current_user.id == User.find_by_name("Storyteller").id
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => "index"
     end
@@ -105,7 +105,7 @@ class IdeologiesController < ApplicationController
   # Allows or denies access to an ideology page based on
   # Ideology.is_known_to_user?
   def show_permission
-    unless @ideology.is_known_to_user?(session[:user_id])
+    unless @ideology.is_known_to_user?(current_user.id)
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => "index"
     end
