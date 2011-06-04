@@ -35,4 +35,11 @@ class User < ActiveRecord::Base
       clique.save
     end
   end
+  
+  # Returns true if the current user is a super user. This will
+  # probably need to change as the permissions model changes.
+  
+  def super_user?
+    self.name == "Storyteller"
+  end
 end
