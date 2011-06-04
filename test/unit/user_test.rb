@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   test "should validate and save" do
-    u = User.new(:name => "unique", :password => "pword", :email_address => "an@email.com")
+    u = User.new(:name => "unique", :password => "some_pword", :email => "an@email.com")
     
     assert u.valid?, "didn't validate user"
   end
@@ -21,7 +21,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "shouldn't save without a password" do
-    u = User.new(:name => "name_test", :email_address => "something@somewhere.com")
+    u = User.new(:name => "name_test", :email => "something@somewhere.com")
 
     assert !u.save, "saved without a password"
   end
@@ -33,15 +33,9 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "shouldn't save with a non-unique emai address" do
-    u = User.new(:name => "first", :password => "pword", :email_address => "asdf@asdf.com")
+    u = User.new(:name => "first", :password => "pword", :email => "asdf@asdf.com")
     
     assert !u.save, "saved with a non-unique email address"
-  end
-
-  test "password read" do
-    u = User.create(:name => "unique", :password => "pword")
-
-    assert_equal "pword", u.password, "password didn't read properly"
   end
 
   test "password set" do
@@ -50,20 +44,6 @@ class UserTest < ActiveSupport::TestCase
     u.save
     
     assert_equal "password", u.password, "password didn't write properly"
-  end
-  
-  test "successfully authenticate user" do
-    User.create(:name => "unique", :password => "pword", :email_address => "asdf1@asdf.com")
-    u = User.authenticate("unique", "pword")
-
-    assert_not_nil u, "user didn't successfully authenticate"
-  end
-  
-  test "unsuccessfully authenticate user" do
-    User.create(:name => "unique", :password => "pword", :email_address => "asdf@asdf.com")
-    u = User.authenticate("unique", "not_pword")
-
-    assert_nil u, "user somehow authenticated"
   end
   
   test "shouldn't destroy last user" do

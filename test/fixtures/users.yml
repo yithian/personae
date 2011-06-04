@@ -2,24 +2,21 @@
 
 Storyteller:
   name: Storyteller
-  hashed_password: 19470b0a670cb69d32ad192fd01087a5dad3e3e1
-  salt: 21827182600.451664451813932
+  encrypted_password: 19470b0a670cb69d32ad192fd01087a5dad3e3e1
   selected_character: 3
-  email_address: fake@email.com
+  email: fake@email.com
   selected_chronicle: one
 
 one:
   name: MyName
-  hashed_password: MyHashedPassword
-  salt: MySalt
+  encrypted_password: MyHashedPassword
   selected_character: 1
-  email_address: asdf@asdf.com
+  email: asdf@asdf.com
   selected_chronicle: two
 
 two:
   name: MyOtherName
-  hashed_password: MyOtherHashedPassword
-  salt: MyOtherSalt
+  encrypted_password: MyOtherHashedPassword
   selected_character: 2
-  email_address: no-reply@asdf.com
+  email: no-reply@asdf.com
   selected_chronicle: three
