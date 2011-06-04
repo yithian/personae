@@ -127,8 +127,6 @@
 
 				<ul class="link-list">
 				
-					<li><a href="./AdminController.html">AdminController</a></li>
-				
 					<li><a href="./AdminHelper.html">AdminHelper</a></li>
 				
 					<li><a href="./ApplicationController.html">ApplicationController</a></li>
@@ -167,19 +165,11 @@
 				
 					<li><a href="./Nature.html">Nature</a></li>
 				
-					<li><a href="./NotBlankValidator.html">NotBlankValidator</a></li>
-				
 					<li><a href="./Splat.html">Splat</a></li>
 				
 					<li><a href="./Subnature.html">Subnature</a></li>
 				
 					<li><a href="./User.html">User</a></li>
-				
-					<li><a href="./UserMailer.html">UserMailer</a></li>
-				
-					<li><a href="./UsersController.html">UsersController</a></li>
-				
-					<li><a href="./UsersHelper.html">UsersHelper</a></li>
 				
 					<li><a href="./ViceValidator.html">ViceValidator</a></li>
 				
@@ -244,7 +234,7 @@ POST /chronicles POST /chronicles.xml
 42:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">save</span>
 43:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;Chronicle successfully created&quot;</span>
 44:       
-45:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+45:       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
 46:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle_id</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">id</span>
 47:       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
 48:     <span class="ruby-keyword kw">end</span>
@@ -519,7 +509,7 @@ the user is Storyteller
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 85</span>
 85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_permission</span>
-86:     <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>]).<span class="ruby-identifier">super_user?</span>
+86:     <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">super_user?</span>
 87:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 88:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;chronicles&quot;</span>
 89:     <span class="ruby-keyword kw">end</span>
@@ -559,7 +549,7 @@ href="Chronicle.html#method-i-can_destroy_as_user%3F">Chronicle#can_destroy_as_u
 <pre>
      <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 103</span>
 103:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy_permission</span>
-104:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+104:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
 105:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 106:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
 107:     <span class="ruby-keyword kw">end</span>
@@ -599,7 +589,7 @@ href="Chronicle.html#method-i-can_edit_as_user%3F">Chronicle#can_edit_as_user?</
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/chronicles_controller.rb, line 94</span>
 94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_permission</span>
-95:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+95:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
 96:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 97:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">chronicle_path</span>(<span class="ruby-ivar">@chronicle</span>)
 98:     <span class="ruby-keyword kw">end</span>

@@ -69,24 +69,6 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#method-c-authenticate">::authenticate</a></li>
-					
-					<li><a href="#method-c-encrypted_password">::encrypted_password</a></li>
-					
-					<li><a href="#method-i-can_destroy_as_user%3F">#can_destroy_as_user?</a></li>
-					
-					<li><a href="#method-i-can_edit_as_user%3F">#can_edit_as_user?</a></li>
-					
-					<li><a href="#method-i-clear_reset_code">#clear_reset_code</a></li>
-					
-					<li><a href="#method-i-create_new_salt">#create_new_salt</a></li>
-					
-					<li><a href="#method-i-generate_reset_code">#generate_reset_code</a></li>
-					
-					<li><a href="#method-i-password">#password</a></li>
-					
-					<li><a href="#method-i-password%3D">#password=</a></li>
-					
 					<li><a href="#method-i-super_user%3F">#super_user?</a></li>
 					
 				</ul>
@@ -124,8 +106,6 @@
 				</form>
 
 				<ul class="link-list">
-				
-					<li><a href="./AdminController.html">AdminController</a></li>
 				
 					<li><a href="./AdminHelper.html">AdminHelper</a></li>
 				
@@ -165,19 +145,11 @@
 				
 					<li><a href="./Nature.html">Nature</a></li>
 				
-					<li><a href="./NotBlankValidator.html">NotBlankValidator</a></li>
-				
 					<li><a href="./Splat.html">Splat</a></li>
 				
 					<li><a href="./Subnature.html">Subnature</a></li>
 				
 					<li><a href="./User.html">User</a></li>
-				
-					<li><a href="./UserMailer.html">UserMailer</a></li>
-				
-					<li><a href="./UsersController.html">UsersController</a></li>
-				
-					<li><a href="./UsersHelper.html">UsersHelper</a></li>
 				
 					<li><a href="./ViceValidator.html">ViceValidator</a></li>
 				
@@ -216,327 +188,8 @@ href="Chronicle.html">Chronicle</a>).
 
 		<!-- Methods -->
 		
-		<div id="public-class-method-details" class="method-section section">
-			<h3 class="section-header">Public Class Methods</h3>
-
-		
-			<div id="authenticate-method" class="method-detail ">
-				<a name="method-c-authenticate"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">authenticate</span><span
-						class="method-args">(name, password)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Authenticate a user, using their password. <a href="User.html">User</a>
-passwords are stored with a one-way-hash using SHA2 and a salt value.
-Returns the user object for the authenticated user.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="authenticate-source">
-<pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 49</span>
-49:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">password</span>)
-50:     <span class="ruby-identifier">user</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">name</span>)
-51:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>
-52:       <span class="ruby-identifier">expected_password</span> = <span class="ruby-identifier">encrypted_password</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">salt</span>)
-53:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">hashed_password</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">expected_password</span>
-54:         <span class="ruby-identifier">user</span> = <span class="ruby-keyword kw">nil</span>
-55:       <span class="ruby-keyword kw">end</span>
-56:     <span class="ruby-keyword kw">end</span>
-57:     <span class="ruby-identifier">user</span>
-58:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
-		<div id="private-class-method-details" class="method-section section">
-			<h3 class="section-header">Private Class Methods</h3>
-
-		
-			<div id="encrypted-password-method" class="method-detail ">
-				<a name="method-c-encrypted_password"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">encrypted_password</span><span
-						class="method-args">(password, salt)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Encrypts and returns the password.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="encrypted-password-source">
-<pre>
-     <span class="ruby-comment cmt"># File app/models/user.rb, line 110</span>
-110:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">salt</span>)
-111:     <span class="ruby-identifier">string_to_hash</span> = <span class="ruby-identifier">password</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;random&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">salt</span>
-112:     <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">string_to_hash</span>)
-113:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
 		<div id="public-instance-method-details" class="method-section section">
 			<h3 class="section-header">Public Instance Methods</h3>
-
-		
-			<div id="can-destroy-as-user--method" class="method-detail ">
-				<a name="method-i-can_destroy_as_user%3F"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">can_destroy_as_user?</span><span
-						class="method-args">(user_id)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Returns true if the logged in user can destroy the user
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="can-destroy-as-user--source">
-<pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 94</span>
-94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-95:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-96:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="can-edit-as-user--method" class="method-detail ">
-				<a name="method-i-can_edit_as_user%3F"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">can_edit_as_user?</span><span
-						class="method-args">(user_id)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Returns true if the logged in user can edit the user
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="can-edit-as-user--source">
-<pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 89</span>
-89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-90:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-91:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="clear-reset-code-method" class="method-detail ">
-				<a name="method-i-clear_reset_code"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">clear_reset_code</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Clears the reset code after it has been used.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="clear-reset-code-source">
-<pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 68</span>
-68:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear_reset_code</span>
-69:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = {<span class="ruby-value">:reset_code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>}
-70:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">save</span>(<span class="ruby-value">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)
-71:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="generate-reset-code-method" class="method-detail ">
-				<a name="method-i-generate_reset_code"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">generate_reset_code</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Generates a reset code for a user. This is to provide an alternate means of
-authentication for users who have forgotten their password.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="generate-reset-code-source">
-<pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 62</span>
-62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_reset_code</span>
-63:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = {<span class="ruby-value">:reset_code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">//</span>).<span class="ruby-identifier">sort</span> { <span class="ruby-identifier">rand</span> }.<span class="ruby-identifier">join</span>)}
-64:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">save</span>(<span class="ruby-value">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)
-65:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="password-method" class="method-detail ">
-				<a name="method-i-password"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">password</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Since password is actually stored as an encrypted value, .password is a
-virtual attribute. This is the read accessor.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="password-source">
-<pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 75</span>
-75:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">password</span>
-76:     <span class="ruby-ivar">@password</span>
-77:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="password--method" class="method-detail ">
-				<a name="method-i-password%3D"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">password=</span><span
-						class="method-args">(pwd)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Since password is actually stored as an encrypted value, .password is a
-virtual attribute. This is the write accessor. It also creates a new salt
-value and stores the new hashed value.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="password--source">
-<pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 81</span>
-81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">password=</span>(<span class="ruby-identifier">pwd</span>)
-82:     <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">pwd</span>
-83:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pwd</span>.<span class="ruby-identifier">blank?</span>
-84:     <span class="ruby-identifier">create_new_salt</span>
-85:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">hashed_password</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">password</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">salt</span>)
-86:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
 
 		
 			<div id="super-user--method" class="method-detail ">
@@ -553,8 +206,8 @@ value and stores the new hashed value.
 				<div class="method-description">
 					
 					<p>
-Initial admin permission framework. Only the Storyteller user is an admin
-at the moment.
+Returns true if the current user is a super user. This will probably need
+to change as the permissions model changes.
 </p>
 					
 
@@ -562,52 +215,10 @@ at the moment.
 					<div class="method-source-code"
 						id="super-user--source">
 <pre>
-     <span class="ruby-comment cmt"># File app/models/user.rb, line 99</span>
- 99:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">super_user?</span>
-100:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-101:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
-		<div id="private-instance-method-details" class="method-section section">
-			<h3 class="section-header">Private Instance Methods</h3>
-
-		
-			<div id="create-new-salt-method" class="method-detail ">
-				<a name="method-i-create_new_salt"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">create_new_salt</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Creates a new salt value for the password hash.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="create-new-salt-source">
-<pre>
-     <span class="ruby-comment cmt"># File app/models/user.rb, line 105</span>
-105:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_new_salt</span>
-106:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">salt</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">object_id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>.<span class="ruby-identifier">to_s</span>
-107:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 42</span>
+42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">super_user?</span>
+43:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Storyteller&quot;</span>
+44:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

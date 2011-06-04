@@ -129,8 +129,6 @@
 
 				<ul class="link-list">
 				
-					<li><a href="./AdminController.html">AdminController</a></li>
-				
 					<li><a href="./AdminHelper.html">AdminHelper</a></li>
 				
 					<li><a href="./ApplicationController.html">ApplicationController</a></li>
@@ -169,19 +167,11 @@
 				
 					<li><a href="./Nature.html">Nature</a></li>
 				
-					<li><a href="./NotBlankValidator.html">NotBlankValidator</a></li>
-				
 					<li><a href="./Splat.html">Splat</a></li>
 				
 					<li><a href="./Subnature.html">Subnature</a></li>
 				
 					<li><a href="./User.html">User</a></li>
-				
-					<li><a href="./UserMailer.html">UserMailer</a></li>
-				
-					<li><a href="./UsersController.html">UsersController</a></li>
-				
-					<li><a href="./UsersHelper.html">UsersHelper</a></li>
 				
 					<li><a href="./ViceValidator.html">ViceValidator</a></li>
 				
@@ -366,7 +356,7 @@ GET /ideologies GET /ideologies.xml
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 13</span>
 13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
-14:     <span class="ruby-ivar">@ideologies</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>]) }
+14:     <span class="ruby-ivar">@ideologies</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>) }
 15:     <span class="ruby-ivar">@ideologies</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
 16: 
 17:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideologies</span>
@@ -599,7 +589,7 @@ wether or not the user is the Storyteller user.
 <pre>
      <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 98</span>
  98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">permission</span>
- 99:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+ 99:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
 100:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 101:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span>
 102:     <span class="ruby-keyword kw">end</span>
@@ -675,7 +665,7 @@ href="Ideology.html#method-i-is_known_to_user%3F">Ideology.is_known_to_user?</a>
 <pre>
      <span class="ruby-comment cmt"># File app/controllers/ideologies_controller.rb, line 107</span>
 107:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_permission</span>
-108:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+108:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
 109:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 110:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span>
 111:     <span class="ruby-keyword kw">end</span>

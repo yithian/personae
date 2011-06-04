@@ -133,8 +133,6 @@
 
 				<ul class="link-list">
 				
-					<li><a href="./AdminController.html">AdminController</a></li>
-				
 					<li><a href="./AdminHelper.html">AdminHelper</a></li>
 				
 					<li><a href="./ApplicationController.html">ApplicationController</a></li>
@@ -173,19 +171,11 @@
 				
 					<li><a href="./Nature.html">Nature</a></li>
 				
-					<li><a href="./NotBlankValidator.html">NotBlankValidator</a></li>
-				
 					<li><a href="./Splat.html">Splat</a></li>
 				
 					<li><a href="./Subnature.html">Subnature</a></li>
 				
 					<li><a href="./User.html">User</a></li>
-				
-					<li><a href="./UserMailer.html">UserMailer</a></li>
-				
-					<li><a href="./UsersController.html">UsersController</a></li>
-				
-					<li><a href="./UsersHelper.html">UsersHelper</a></li>
 				
 					<li><a href="./ViceValidator.html">ViceValidator</a></li>
 				
@@ -243,17 +233,16 @@ POST /cliques/change_chronicle
 					<div class="method-source-code"
 						id="change-chronicle-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 26</span>
-26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_chronicle</span>
-27:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-28:     <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">selected_chronicle_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>]
-29:     <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
-30: 
-31:     <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
-32:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>)
-33:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>) }
-34:     <span class="ruby-ivar">@cliques</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
-35:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 25</span>
+25:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_chronicle</span>
+26:     <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>])
+27:     <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">save</span>
+28: 
+29:     <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
+30:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>)
+31:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>) }
+32:     <span class="ruby-ivar">@cliques</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
+33:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -286,14 +275,14 @@ POST /cliques POST /cliques.xml
 					<div class="method-source-code"
 						id="create-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 56</span>
-56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
-57:     <span class="ruby-ivar">@clique</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:clique</span>])
+    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 54</span>
+54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+55:     <span class="ruby-ivar">@clique</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:clique</span>])
+56: 
+57:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Clique was successfully created.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">save</span>
 58: 
-59:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Clique was successfully created.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">save</span>
-60: 
-61:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
-62:   <span class="ruby-keyword kw">end</span></pre>
+59:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
+60:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -326,24 +315,24 @@ DELETE /cliques/1 DELETE /cliques/1.xml
 					<div class="method-source-code"
 						id="destroy-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 74</span>
-74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
-75:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">'Solitary'</span>)
-76:       <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
-77:         <span class="ruby-identifier">m</span>.<span class="ruby-identifier">clique_id</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">'Solitary'</span>).<span class="ruby-identifier">id</span>
-78:         <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
-79:       <span class="ruby-keyword kw">end</span>
-80:       
-81:       <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">destroy</span>
-82:     <span class="ruby-keyword kw">else</span>
-83:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'You cannot destroy this clique.'</span>
-84:     <span class="ruby-keyword kw">end</span>
-85: 
-86:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-87:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">cliques_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Clique was successfully deleted'</span>) }
-88:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
-89:     <span class="ruby-keyword kw">end</span>
-90:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 72</span>
+72:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+73:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">'Solitary'</span>)
+74:       <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+75:         <span class="ruby-identifier">m</span>.<span class="ruby-identifier">clique_id</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">'Solitary'</span>).<span class="ruby-identifier">id</span>
+76:         <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
+77:       <span class="ruby-keyword kw">end</span>
+78:       
+79:       <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">destroy</span>
+80:     <span class="ruby-keyword kw">else</span>
+81:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'You cannot destroy this clique.'</span>
+82:     <span class="ruby-keyword kw">end</span>
+83: 
+84:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+85:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">cliques_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Clique was successfully deleted'</span>) }
+86:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
+87:     <span class="ruby-keyword kw">end</span>
+88:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -376,10 +365,10 @@ GET /cliques/1/edit
 					<div class="method-source-code"
 						id="edit-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 50</span>
-50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
-51:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-52:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+49:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+50:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -414,15 +403,14 @@ GET /cliques GET /cliques.xml
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 14</span>
 14:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
-15:     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-16:     <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
-17:     
-18:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>)
-19:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>) }
-20:     <span class="ruby-ivar">@cliques</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
-21: 
-22:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@cliques</span>
-23:   <span class="ruby-keyword kw">end</span></pre>
+15:     <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
+16:     
+17:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>)
+18:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>) }
+19:     <span class="ruby-ivar">@cliques</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
+20: 
+21:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@cliques</span>
+22:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -455,10 +443,10 @@ GET /cliques/new GET /cliques/new.xml
 					<div class="method-source-code"
 						id="new-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 45</span>
-45:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
-46:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
-47:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+44:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
+45:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -491,10 +479,10 @@ GET /cliques/1 GET /cliques/1.xml
 					<div class="method-source-code"
 						id="show-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 39</span>
-39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
-40:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-41:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 37</span>
+37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
+38:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+39:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -527,12 +515,12 @@ PUT /cliques/1 PUT /cliques/1.xml
 					<div class="method-source-code"
 						id="update-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 66</span>
-66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
-67:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Clique was successfully updated.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:clique</span>])
-68: 
-69:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
-70:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 64</span>
+64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+65:     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">'Clique was successfully updated.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:clique</span>])
+66: 
+67:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
+68:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -572,13 +560,13 @@ href="Clique.html#method-i-can_destroy_as_user%3F">Clique#can_destroy_as_user?</
 					<div class="method-source-code"
 						id="destroy-permission-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 132</span>
-132:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy_permission</span>
-133:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-134:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
-135:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
-136:     <span class="ruby-keyword kw">end</span>
-137:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 130</span>
+130:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy_permission</span>
+131:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+132:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+133:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
+134:     <span class="ruby-keyword kw">end</span>
+135:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -612,13 +600,13 @@ href="Clique.html#method-i-can_edit_as_user%3F">Clique#can_edit_as_user?</a>
 					<div class="method-source-code"
 						id="edit-permission-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 124</span>
-124:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_permission</span>
-125:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-126:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
-127:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">clique_path</span>(<span class="ruby-ivar">@clique</span>)
-128:     <span class="ruby-keyword kw">end</span>
-129:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 122</span>
+122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_permission</span>
+123:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+124:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+125:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">clique_path</span>(<span class="ruby-ivar">@clique</span>)
+126:     <span class="ruby-keyword kw">end</span>
+127:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -652,14 +640,14 @@ passed, creates a new (empty) clique.
 					<div class="method-source-code"
 						id="find-clique-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 95</span>
- 95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_clique</span>
- 96:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;new&quot;</span>
- 97:       <span class="ruby-ivar">@clique</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">new</span>
- 98:     <span class="ruby-keyword kw">else</span>
- 99:       <span class="ruby-ivar">@clique</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-100:     <span class="ruby-keyword kw">end</span>
-101:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 93</span>
+93:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_clique</span>
+94:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;new&quot;</span>
+95:       <span class="ruby-ivar">@clique</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">new</span>
+96:     <span class="ruby-keyword kw">else</span>
+97:       <span class="ruby-ivar">@clique</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+98:     <span class="ruby-keyword kw">end</span>
+99:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -693,10 +681,10 @@ cliques between chronicles.
 					<div class="method-source-code"
 						id="find-lists-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 111</span>
-111:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_lists</span>
-112:     <span class="ruby-ivar">@chronicle_list</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
-113:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 109</span>
+109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_lists</span>
+110:     <span class="ruby-ivar">@chronicle_list</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
+111:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -730,10 +718,10 @@ existing chronicle.
 					<div class="method-source-code"
 						id="set-params-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 105</span>
-105:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_params</span>
-106:     <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'chronicle_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'chronicle_id'</span>]
-107:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 103</span>
+103:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_params</span>
+104:     <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value str">'chronicle_id'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'chronicle_id'</span>]
+105:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -767,13 +755,13 @@ href="Clique.html#method-i-is_known_to_user%3F">Clique#is_known_to_user?</a>
 					<div class="method-source-code"
 						id="show-permission-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 116</span>
-116:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_permission</span>
-117:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-118:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
-119:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span>
-120:     <span class="ruby-keyword kw">end</span>
-121:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 114</span>
+114:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_permission</span>
+115:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+116:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
+117:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span>
+118:     <span class="ruby-keyword kw">end</span>
+119:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
