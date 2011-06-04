@@ -1,14 +1,3 @@
-require 'digest/sha2'
-
-# Creates a validator for User.name to ensure that it isn't empty
-
-class NotBlankValidator < ActiveModel::EachValidator
-  # Validates all records passed to it
-  def validate_each(record, attribute, value)
-    record.errors[attribute] << "must not be blank" if value.blank?
-  end
-end
-
 # Contains user-specific data. Which characters are theirs, which cliques
 # and chromicles they've created, etc.
 # 
@@ -22,7 +11,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   has_many :characters, :dependent => :destroy
   has_many :comments
   has_many :cliques
