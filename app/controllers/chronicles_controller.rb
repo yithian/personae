@@ -42,7 +42,7 @@ class ChroniclesController < ApplicationController
     if @chronicle.save
       flash[:notice] = "Chronicle successfully created"
       
-      user = User.find_by_id(session[:user_id])
+      user = User.find_by_id(current_user.id)
       user.selected_chronicle_id = @chronicle.id
       user.save
     end
@@ -83,7 +83,7 @@ class ChroniclesController < ApplicationController
   # Allows or denies access to create a new chronicle based on
   # wether or not the user is Storyteller
   def create_permission
-    unless User.find_by_id(session[:user_id]).super_user?
+    unless User.find_by_id(current_user.id).super_user?
       flash[:notice] = "You don't have permission to do that"
       redirect_to :controller => "chronicles"
     end
@@ -92,7 +92,7 @@ class ChroniclesController < ApplicationController
   # Allows or denies access to create a new chronicle based on
   # Chronicle#can_edit_as_user?
   def edit_permission
-    unless @chronicle.can_edit_as_user?(session[:user_id])
+    unless @chronicle.can_edit_as_user?(current_user.id)
       flash[:notice] = "You don't have permission to do that"
       redirect_to chronicle_path(@chronicle)
     end
@@ -101,7 +101,7 @@ class ChroniclesController < ApplicationController
   # Allows or denies access to create a new chronicle based on
   # Chronicle#can_destroy_as_user?
   def destroy_permission
-    unless @chronicle.can_destroy_as_user?(session[:user_id])
+    unless @chronicle.can_destroy_as_user?(current_user.id)
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => :index
     end
