@@ -158,7 +158,7 @@ class CharactersController < ApplicationController
   
   # Allows or denies access to edit a character based on Character#can_edit_as_user?
   def edit_permission
-    unless @character.can_edit_as_user?(session[:user_id])
+    unless @character.can_edit_as_user?(current_user.id)
       flash[:notice] = "You don't have permission to do that"
       redirect_to character_path(@character)
     end
@@ -166,7 +166,7 @@ class CharactersController < ApplicationController
   
   # Allows or denies access to a character page based on Character#show_name_to_user?
   def show_permission
-    unless @character.show_name_to_user?(session[:user_id])
+    unless @character.show_name_to_user?(current_user.id)
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => :index
     end
