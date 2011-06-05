@@ -143,7 +143,7 @@ class CharactersController < ApplicationController
   # chronicle and splat.
   def find_lists
     @clique_list = Clique.find_all_by_chronicle_id(0).collect { |c| [c.name, c.id] }
-    @clique_list = @clique_list + Clique.find_all_by_chronicle_id(@character.chronicle.id).collect { |c| [c.name, c.id] if c.is_known_to_user?(session[:user_id]) }
+    @clique_list = @clique_list + Clique.find_all_by_chronicle_id(@character.chronicle.id).collect { |c| [c.name, c.id] if c.is_known_to_user?(current_user.id) }
     @clique_list.delete_if { |c| c == nil }
 
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect

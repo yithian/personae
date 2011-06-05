@@ -12,8 +12,8 @@
   <% end %>
   
   <% if controller.action_name == 'new' %>
-    <% @clique.user_id = session[:user_id] %>
-    <input name="clique[user_id]" type="hidden" value=<%= session[:user_id] %> >
+    <% @clique.user_id = current_user.id %>
+    <input name="clique[user_id]" type="hidden" value=<%= current_user.id %> >
   <% end %>
 
   <h3>Name</h3>

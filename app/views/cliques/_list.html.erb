@@ -8,10 +8,10 @@
 
   <% @cliques.each do |clique| %>
     <tr>
-      <td><%= link_to image_tag("edit.png"), edit_clique_path(clique) if clique.can_edit_as_user?(session[:user_id]) %></td>
+      <td><%= link_to image_tag("edit.png"), edit_clique_path(clique) if clique.can_edit_as_user?(current_user.id) %></td>
       <td><%= link_to clique.name, clique %></td>
       <td><%= clique.territory %></td>
-      <td><%= link_to image_tag("delete.png"), clique, :confirm => 'Are you sure you want to delete this clique?', :method => :delete if clique.can_destroy_as_user?(session[:user_id]) %></td>
+      <td><%= link_to image_tag("delete.png"), clique, :confirm => 'Are you sure you want to delete this clique?', :method => :delete if clique.can_destroy_as_user?(current_user.id) %></td>
     </tr>
   <% end %>
 </table>

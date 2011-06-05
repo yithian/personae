@@ -7,11 +7,11 @@
 
   <% @ideologies.each do |ideology| %>
     <tr>
-      <td><%= link_to image_tag("edit.png"), edit_ideology_path(ideology) if ideology.can_edit_as_user?(session[:user_id]) %></td>
+      <td><%= link_to image_tag("edit.png"), edit_ideology_path(ideology) if ideology.can_edit_as_user?(current_user.id) %></td>
       <td><%= link_to ideology.name, ideology %></td>
-      <td><%= link_to image_tag("delete.png"), ideology, :confirm => 'Are you sure you want to delete this ideology?', :method => :delete if ideology.can_destroy_as_user?(session[:user_id]) %></td>
+      <td><%= link_to image_tag("delete.png"), ideology, :confirm => 'Are you sure you want to delete this ideology?', :method => :delete if ideology.can_destroy_as_user?(current_user.id) %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to 'New ideology', new_ideology_path if session[:user_id] == User.find_by_name("Storyteller").id %>
+<%= link_to 'New ideology', new_ideology_path if current_user.id == User.find_by_name("Storyteller").id %>

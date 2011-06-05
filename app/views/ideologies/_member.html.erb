@@ -1,6 +1,6 @@
-<% if member.show_name_to_user?(session[:user_id]) and member.show_ideology_to_user?(session[:user_id]) %>
+<% if member.show_name_to_user?(current_user.id) and member.show_ideology_to_user?(current_user.id) %>
   <tr>
     <td><%= link_to member.name, member %></td>
-    <td><%= link_to member.clique.name, member.clique if member.show_clique_to_user?(session[:user_id]) %></td>
+    <td><%= link_to member.clique.name, member.clique if member.show_clique_to_user?(current_user.id) %></td>
   </tr>
 <% end %>

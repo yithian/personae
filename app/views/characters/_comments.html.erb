@@ -2,7 +2,7 @@
 <% @character.comments.each do |c| %>
     <p><b><%= c.speaker %></b></p>
     <p><%= simple_format(c.body) %></p>
-    <%= link_to 'Delete Comment', character_comment_path(@character, c), :confirm => 'Are you sure?', :method => :delete if c.can_edit_as_user?(session[:user_id]) %>
+    <%= link_to 'Delete Comment', character_comment_path(@character, c), :confirm => 'Are you sure?', :method => :delete if c.can_edit_as_user?(current_user.id) %>
     <hr />
 <% end %>
 <%= link_to 'Add Comment', new_character_comment_path(@character) %>

@@ -4,50 +4,50 @@
     <td colspan=3><%= @character.name %></td>
   <tr>
     <td><b>Virtue</b></td>
-    <td ><span id="virtue"><%= @character.virtue if @character.can_edit_as_user?(session[:user_id]) %></span></td>
+    <td ><span id="virtue"><%= @character.virtue if @character.can_edit_as_user?(current_user.id) %></span></td>
   </tr>
   <tr>
     <td><b>Vice</b></td>
-    <td><span id="vice"><%= @character.vice if @character.can_edit_as_user?(session[:user_id]) %></span></td>
-    <td><span id="nature_label"><b><%= @character.splat.nature_name if @character.show_nature_to_user?(session[:user_id]) %></b></span></td>
-    <td><span id="nature_name"><%= @character.nature.name if @character.show_nature_to_user?(session[:user_id]) %></span></td>
+    <td><span id="vice"><%= @character.vice if @character.can_edit_as_user?(current_user.id) %></span></td>
+    <td><span id="nature_label"><b><%= @character.splat.nature_name if @character.show_nature_to_user?(current_user.id) %></b></span></td>
+    <td><span id="nature_name"><%= @character.nature.name if @character.show_nature_to_user?(current_user.id) %></span></td>
   </tr>
   <tr>
-    <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(session[:user_id]) %></b></span></td>
-    <td><span id="clique_name"><%= link_to @character.clique.name, @character.clique if @character.show_clique_to_user?(session[:user_id]) %></span></td>
-    <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(session[:user_id]) %></b></span></td>
-    <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(session[:user_id]) %></span></td>
+    <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(current_user.id) %></b></span></td>
+    <td><span id="clique_name"><%= link_to @character.clique.name, @character.clique if @character.show_clique_to_user?(current_user.id) %></span></td>
+    <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user.id) %></b></span></td>
+    <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user.id) %></span></td>
   </tr>
   <tr>
     <td><b>Chronicle</b></td>
     <td><%= link_to @character.chronicle.name, @character.chronicle %></td>
-    <td><span id="ideology_label"><b><%= @character.splat.ideology_name if @character.show_ideology_to_user?(session[:user_id]) %></b></span></td>
-    <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_ideology_to_user?(session[:user_id]) %></span></td>
+    <td><span id="ideology_label"><b><%= @character.splat.ideology_name if @character.show_ideology_to_user?(current_user.id) %></b></span></td>
+    <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_ideology_to_user?(current_user.id) %></span></td>
   </tr>
 </table>
 
-<% if @character.show_description_to_user?(session[:user_id]) %>
+<% if @character.show_description_to_user?(current_user.id) %>
   <div id="description">
     <h3>Description</h3>
     <%= simple_format(@character.description) %>
   </div>
 <% end %>
 
-<% if @character.show_background_to_user?(session[:user_id]) %>
+<% if @character.show_background_to_user?(current_user.id) %>
   <div id="background">
     <h3>Background</h3>
     <%= simple_format(@character.background) %>
   </div>
 <% end %>
 
-<% if @character.show_deeds_to_user?(session[:user_id]) %>
+<% if @character.show_deeds_to_user?(current_user.id) %>
   <div id="deeds">
     <h3>Deeds</h3>
     <%= simple_format(@character.deeds) %>
   </div>
 <% end %>
 
-<% if @character.show_attributes_to_user?(session[:user_id]) %>
+<% if @character.show_attributes_to_user?(current_user.id) %>
   <div id="attributes">
     <h3>Attributes</h3>
     <table class="six_cells">
@@ -79,7 +79,7 @@
   </div>
 <% end %>
 
-<% if @character.show_skills_to_user?(session[:user_id]) %>
+<% if @character.show_skills_to_user?(current_user.id) %>
   <div id="skills">
     <h3>Skills</h3>
     <table class="six_cells">
@@ -155,7 +155,7 @@
   </div>
 <% end %>
 
-<% if @character.show_advantages_to_user?(session[:user_id]) %>
+<% if @character.show_advantages_to_user?(current_user.id) %>
   <div id="advantages">    
     <h3>Advantages</h3>
     <table class="four_cells">
@@ -221,21 +221,21 @@
   </div>
 <% end %>
 
-<% if @character.show_merits_to_user?(session[:user_id]) %>
+<% if @character.show_merits_to_user?(current_user.id) %>
   <div id="merits">    
     <h3>Merits</h3>
     <%= simple_format(@character.merits) %>
   </div>
 <% end %>
 
-<% if @character.show_equipment_to_user?(session[:user_id]) %>
+<% if @character.show_equipment_to_user?(current_user.id) %>
   <div id="equipment">
     <h3>Equipment</h3>
     <%= simple_format(@character.equipment) %>
   </div>
 <% end %>
 
-<% if @character.show_powers_to_user?(session[:user_id]) %>
+<% if @character.show_powers_to_user?(current_user.id) %>
   <div id="powers">
     <% if @character.is_mage? %>
       <h3>Arcana</h3>
@@ -537,14 +537,14 @@
   </div>
 <% end %>
 
-<% if @character.show_experience_to_user?(session[:user_id]) %>
+<% if @character.show_experience_to_user?(current_user.id) %>
   <div id="experience">
     <h3>Experience</h3>
     <%= simple_format(@character.experience) %>
   </div>
 <% end %>
 
-<% if @character.show_notes_to_user?(session[:user_id]) %>
+<% if @character.show_notes_to_user?(current_user.id) %>
   <div id="notes">
     <h3>Notes</h3>
     <%= form_for(@character, :remote => true) do |f| %>
@@ -556,6 +556,6 @@
 
 <%= render :partial => 'comments' %><br />
 
-<%= link_to("Toggle preview", {:action => :preview, :id => @character.id}, :remote => true) + " | " if @character.can_edit_as_user?(session[:user_id]) %>
-<%= link_to('Edit', edit_character_path(@character)) + " | " if @character.can_edit_as_user?(session[:user_id])%>
-<%= link_to 'Destroy', @character, :confirm => 'Are you sure you want to delete this character?', :method => :delete if @character.can_destroy_as_user?(session[:user_id]) %>
+<%= link_to("Toggle preview", {:action => :preview, :id => @character.id}, :remote => true) + " | " if @character.can_edit_as_user?(current_user.id) %>
+<%= link_to('Edit', edit_character_path(@character)) + " | " if @character.can_edit_as_user?(current_user.id)%>
+<%= link_to 'Destroy', @character, :confirm => 'Are you sure you want to delete this character?', :method => :delete if @character.can_destroy_as_user?(current_user.id) %>
