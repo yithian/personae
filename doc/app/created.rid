@@ -1,18 +1,17 @@
-Sat, 04 Jun 2011 13:19:49 -0400
+Sun, 05 Jun 2011 18:46:03 -0400
 doc/README_FOR_APP	Wed, 01 Jun 2011 21:51:05 -0400
 app/controllers/application_controller.rb	Sat, 04 Jun 2011 11:27:00 -0400
-app/controllers/characters_controller.rb	Sat, 04 Jun 2011 12:59:09 -0400
+app/controllers/characters_controller.rb	Sun, 05 Jun 2011 18:15:57 -0400
 app/controllers/chronicles_controller.rb	Sat, 04 Jun 2011 13:15:24 -0400
 app/controllers/cliques_controller.rb	Sat, 04 Jun 2011 13:09:59 -0400
-app/controllers/comments_controller.rb	Thu, 02 Jun 2011 17:33:29 -0400
+app/controllers/comments_controller.rb	Sun, 05 Jun 2011 18:12:10 -0400
 app/controllers/ideologies_controller.rb	Sat, 04 Jun 2011 13:11:00 -0400
-app/helpers/admin_helper.rb	Mon, 27 Sep 2010 21:53:21 -0400
-app/helpers/application_helper.rb	Sun, 17 Oct 2010 13:46:36 -0400
-app/helpers/characters_helper.rb	Sat, 23 Oct 2010 13:30:07 -0400
-app/helpers/chronicles_helper.rb	Sun, 21 Nov 2010 16:27:18 -0500
-app/helpers/cliques_helper.rb	Thu, 02 Dec 2010 17:34:19 -0500
-app/helpers/comment_helper.rb	Thu, 02 Dec 2010 17:37:12 -0500
-app/helpers/ideologies_helper.rb	Thu, 02 Dec 2010 17:37:15 -0500
+app/helpers/application_helper.rb	Sun, 05 Jun 2011 18:45:52 -0400
+app/helpers/characters_helper.rb	Sun, 05 Jun 2011 18:45:42 -0400
+app/helpers/chronicles_helper.rb	Sun, 05 Jun 2011 18:45:33 -0400
+app/helpers/cliques_helper.rb	Sun, 05 Jun 2011 18:45:27 -0400
+app/helpers/comment_helper.rb	Sun, 05 Jun 2011 18:45:18 -0400
+app/helpers/ideologies_helper.rb	Sun, 05 Jun 2011 18:45:08 -0400
 app/models/character.rb	Thu, 02 Jun 2011 17:53:54 -0400
 app/models/chronicle.rb	Fri, 03 Jun 2011 22:36:22 -0400
 app/models/clique.rb	Sat, 04 Jun 2011 13:00:10 -0400
@@ -21,4 +20,4 @@ app/models/ideology.rb	Thu, 02 Jun 2011 17:33:29 -0400
 app/models/nature.rb	Thu, 02 Jun 2011 17:33:29 -0400
 app/models/splat.rb	Thu, 02 Jun 2011 17:33:29 -0400
 app/models/subnature.rb	Thu, 02 Jun 2011 17:33:29 -0400
-app/models/user.rb	Sat, 04 Jun 2011 13:19:09 -0400
+app/models/user.rb	Sun, 05 Jun 2011 17:20:58 -0400
