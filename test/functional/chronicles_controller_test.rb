@@ -1,12 +1,10 @@
 require 'test_helper'
 
 class ChroniclesControllerTest < ActionController::TestCase
-  def login_as(user)
-    @request.session[:user_id] = user ? user.id : nil
-  end
+  include Devise::TestHelpers
   
   test "should get index" do
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     get :index
     assert_response :success
@@ -15,12 +13,12 @@ class ChroniclesControllerTest < ActionController::TestCase
 
   test "shouldn't get index" do
     get :index
-    assert_redirected_to :controller => "admin", :action => "login"
+    assert_redirected_to :controller => "users", :action => "sign_in"
     assert_nil assigns(:chronicles), "got past authentication"
   end
 
   test "should get new" do
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     get :new
     assert_response :success
@@ -29,18 +27,18 @@ class ChroniclesControllerTest < ActionController::TestCase
   test "shouldn't get new" do
     #not logged in
     get :new
-    assert_redirected_to :controller => "admin", :action => "login"
-    assert_equal("Please log in", flash[:notice])
+    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
     #logged in as user
-    login_as(users(:one))
+    sign_in(users(:one))
     
     get :new
     assert_response :redirect, @response.body
   end
 
   test "should create chronicle" do
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     assert_difference('Chronicle.count') do
       post :create, :chronicle => { :name => "Unique" }
@@ -54,10 +52,10 @@ class ChroniclesControllerTest < ActionController::TestCase
       post :create, :chronicle => { :name => "Unique" }
     end
 
-    assert_redirected_to :controller => "admin", :action => "login"
-    assert_equal("Please log in", flash[:notice])
+    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
-    login_as(users(:one))
+    sign_in(users(:one))
     assert_no_difference('Chronicle.count') do
       post :create, :chronicle => { :name => "Unique" }
     end
@@ -67,7 +65,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   end
 
   test "should show chronicle" do
-    login_as(users(:one))
+    sign_in(users(:one))
     
     get :show, :id => chronicles(:one).to_param
     assert_response :success
@@ -75,12 +73,12 @@ class ChroniclesControllerTest < ActionController::TestCase
   
   test "shouldn't show chronicle" do
     get :show, :id => chronicles(:one).to_param
-    assert_redirected_to :controller => "admin", :action => "login"
-    assert_equal("Please log in", flash[:notice])
+    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
   end
 
   test "should get edit" do
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     get :edit, :id => chronicles(:one).to_param
     assert_response :success
@@ -88,10 +86,10 @@ class ChroniclesControllerTest < ActionController::TestCase
   
   test "shouldn't get edit" do
     get :edit, :id => chronicles(:one).to_param
-    assert_redirected_to :controller => "admin", :action => "login"
-    assert_equal("Please log in", flash[:notice])
+    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
-    login_as(users(:one))
+    sign_in(users(:one))
     get :edit, :id => chronicles(:one).to_param
     
     assert_redirected_to :controller => "chronicles", :action => "show", :id => chronicles(:one)
@@ -99,7 +97,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   end
 
   test "should update chronicle" do
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     assert_redirected_to chronicle_path(assigns(:chronicle))
@@ -108,10 +106,10 @@ class ChroniclesControllerTest < ActionController::TestCase
   test "shouldn't update chronicle" do
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     
-    assert_redirected_to :controller => "admin", :action => "login"
-    assert_equal("Please log in", flash[:notice])
+    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
-    login_as(users(:one))
+    sign_in(users(:one))
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     
     assert_redirected_to :controller => "chronicles", :action => "show", :id => chronicles(:one)
@@ -119,7 +117,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   end
 
   test "should destroy chronicle" do
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     assert_difference('Chronicle.count', -1) do
       delete :destroy, :id => chronicles(:one).to_param
@@ -133,10 +131,10 @@ class ChroniclesControllerTest < ActionController::TestCase
       delete :destroy, :id => chronicles(:one).to_param
     end
     
-    assert_redirected_to :controller => "admin", :action => "login"
-    assert_equal("Please log in", flash[:notice])
+    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
-    login_as(users(:one))
+    sign_in(users(:one))
     
     assert_no_difference "Chronicle.count" do
       delete :destroy, :id => chronicles(:one).to_param

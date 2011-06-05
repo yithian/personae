@@ -1,12 +1,10 @@
 require 'test_helper'
 
 class CliquesControllerTest < ActionController::TestCase
-  def login_as(user)
-    @request.session[:user_id] = user ? user.id : nil
-  end
+  include Devise::TestHelpers
   
   test "should get index" do
-    login_as(users(:one))
+    sign_in(users(:one))
     
     get :index
     assert_response :success
@@ -15,12 +13,12 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "shouldn't get index" do
     get :index
-    assert_redirected_to :controller => :admin, :action => :login
-    assert_equal "Please log in", flash[:notice], "got past authentication"
+    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
   test "should get new" do
-    login_as(users(:one))
+    sign_in(users(:one))
     
     get :new, :chronicle_id => chronicles(:one).id
     assert_response :success
@@ -28,12 +26,12 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "shouldn't get new" do
     get :new
-    assert_redirected_to :controller => :admin, :action => :login
-    assert_equal "Please log in", flash[:notice], "got past authentication"
+    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
   test "should create clique" do
-    login_as(users(:one))
+    sign_in(users(:one))
     
     assert_difference('Clique.count') do
       post :create, :clique => { :name => "unique" }
@@ -48,13 +46,13 @@ class CliquesControllerTest < ActionController::TestCase
       post :create, :clique => { :name => "unique" }
     end
 
-    assert_redirected_to :controller => :admin, :action => :login
-    assert_equal "Please log in", flash[:notice], "got past authentication"
+    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
   test "should show clique" do
     # ST sees all cliques
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     get :show, :id => cliques(:one).to_param
     assert_response :success, "didn't show known clique as ST"
@@ -62,13 +60,13 @@ class CliquesControllerTest < ActionController::TestCase
     assert_response :success, "didn't show unknown clique as ST"
 
     # show clique as member
-    login_as(users(:one))
+    sign_in(users(:one))
 
     get :show, :id => cliques(:one).to_param
     assert_response :success, "didn't show known clique as owner"
 
     # show known clique as other user
-    login_as(users(:two))
+    sign_in(users(:two))
 
     get :show, :id => cliques(:two).to_param
     assert_response :success, "didn't show known clique"
@@ -77,10 +75,10 @@ class CliquesControllerTest < ActionController::TestCase
   test "shouldn't show clique" do
     # not logged in
     get :show, :id => cliques(:one).to_param
-    assert_redirected_to :controller => :admin, :action => :login
-    assert_equal "Please log in", flash[:notice], "got past authentication"
+    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
 
-    login_as(users(:one))
+    sign_in(users(:one))
     
     # clique two has write set to false
     get :show, :id => cliques(:two).to_param
@@ -89,13 +87,13 @@ class CliquesControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     get :edit, :id => cliques(:one).to_param
     assert_response :success
 
     # owning user
-    login_as(users(:one))
+    sign_in(users(:one))
 
     get :edit, :id => cliques(:one).to_param
     assert_response :success
@@ -107,7 +105,7 @@ class CliquesControllerTest < ActionController::TestCase
     assert_response :redirect, "got edit when not logged in"
 
     # non-owning user
-    login_as(users(:one))
+    sign_in(users(:one))
     
     get :edit, :id => cliques(:two).to_param
     assert_response :redirect
@@ -116,14 +114,14 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "should update clique" do
     # ST can update all
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     put :update, :id => cliques(:one).to_param, :clique => { }
     assert_redirected_to clique_path(assigns(:clique))
     assert_equal "Clique was successfully updated.", flash[:notice], "clique wasn't updated as ST"
     
     # update owned clique
-    login_as(users(:one))
+    sign_in(users(:one))
 
     put :update, :id => cliques(:one).to_param, :clique => { }
     assert_redirected_to clique_path(assigns(:clique))
@@ -133,11 +131,11 @@ class CliquesControllerTest < ActionController::TestCase
   test "shouldn't update clique" do
     # shouldn't update when not logged in
     put :update, :id => cliques(:one).to_param, :clique => { }
-    assert_redirected_to :controller => :admin, :action => :login
-    assert_equal "Please log in", flash[:notice], "got past authentication"
+    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
     
     # shouldn't update as non-owning user
-    login_as(users(:one))
+    sign_in(users(:one))
     
     put :update, :id => cliques(:two).to_param, :clique => { }
     assert_redirected_to clique_path(cliques(:two))
@@ -146,7 +144,7 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "should destroy clique" do
     # ST can destroy all
-    login_as(users(:Storyteller))
+    sign_in(users(:Storyteller))
     
     assert_difference('Clique.count', -1, "ST couldn't destroy clique") do
       delete :destroy, :id => cliques(:one).to_param
@@ -154,7 +152,7 @@ class CliquesControllerTest < ActionController::TestCase
     assert_redirected_to cliques_path
 
     # destroy clique as owner
-    login_as(users(:two))
+    sign_in(users(:two))
     
     assert_difference('Clique.count', -1, "owning user couldn't destroy clique") do
       delete :destroy, :id => cliques(:two).to_param
@@ -171,7 +169,7 @@ class CliquesControllerTest < ActionController::TestCase
     assert_response :redirect
 
     # shouldn't destroy as non-owning user
-    login_as(users(:two))
+    sign_in(users(:two))
     
     assert_no_difference('Clique.count', "destroyed as non-owning user") do
       delete :destroy, :id => cliques(:one).to_param
