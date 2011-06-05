@@ -1,12 +1,13 @@
 class DeviseCreateUsers < ActiveRecord::Migration
   def self.up
     change_table(:users) do |t|
-      t.remove :email_address
       t.remove :hashed_password
       t.remove :reset_code
       t.remove :salt
+      t.rename :email_address, :email
       
-      t.database_authenticatable :null => false
+      # t.database_authenticatable :null => false
+      t.string :encrypted_password, :null => false, :default => '', :limit => 128
       t.recoverable
       t.rememberable
       t.trackable
@@ -28,6 +29,33 @@ class DeviseCreateUsers < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :users
+    remove_index :users, :email
+    remove_index :users, :reset_password_token
+    
+    change_table :users do |t|
+      t.remove :encrypted_password
+      t.remove :password_salt
+      t.remove :authentication_token
+      t.remove :confirmation_token
+      t.remove :confirmed_at
+      t.remove :confirmation_sent_at
+      t.remove :reset_password_token
+      t.remove :reset_password_sent_at
+      t.remove :remember_token
+      t.remove :remember_created_at
+      t.remove :sign_in_count
+      t.remove :current_sign_in_at
+      t.remove :last_sign_in_at
+      t.remove :current_sign_in_ip
+      t.remove :last_sign_in_ip
+      t.remove :failed_attempts
+      t.remove :unlock_token
+      t.remove :locked_at
+      
+      t.rename :email, :email_address
+      t.string :hashed_password
+      t.string :reset_code
+      t.string :salt
+    end
   end
 end
