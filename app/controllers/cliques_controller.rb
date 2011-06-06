@@ -15,7 +15,7 @@ class CliquesController < ApplicationController
     @chronicles = Chronicle.all.collect
     
     @cliques = Clique.find_all_by_chronicle_id(0)
-    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user.id) }
+    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user) }
     @cliques.delete_if { |c| c == nil }
 
     respond_with @cliques
@@ -28,14 +28,14 @@ class CliquesController < ApplicationController
 
     @chronicle = Chronicle.find_by_id(current_user.selected_chronicle.id)
     @cliques = Clique.find_all_by_chronicle_id(0)
-    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user.id) }
+    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user) }
     @cliques.delete_if { |c| c == nil }
   end
 
   # GET /cliques/1
   # GET /cliques/1.xml
   def show
-    respond_with @clique if @clique.is_known_to_user?(current_user.id)
+    respond_with @clique if @clique.is_known_to_user?(current_user)
   end
 
   # GET /cliques/new
@@ -46,7 +46,7 @@ class CliquesController < ApplicationController
 
   # GET /cliques/1/edit
   def edit
-    respond_with @clique if @clique.can_edit_as_user?(current_user.id)
+    respond_with @clique if @clique.can_edit_as_user?(current_user)
   end
 
   # POST /cliques
@@ -112,7 +112,7 @@ class CliquesController < ApplicationController
   
   # Allows or denies access to a clique page based on Clique#is_known_to_user?
   def show_permission
-    unless @clique.is_known_to_user?(current_user.id)
+    unless @clique.is_known_to_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => "index"
     end
@@ -120,7 +120,7 @@ class CliquesController < ApplicationController
   
   # Allows or denies access to edit a clique based on Clique#can_edit_as_user?
   def edit_permission
-    unless @clique.can_edit_as_user?(current_user.id)
+    unless @clique.can_edit_as_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
       redirect_to clique_path(@clique)
     end
@@ -128,7 +128,7 @@ class CliquesController < ApplicationController
   
   # Allows or denies access to destroy a clique based on Clique#can_destroy_as_user?
   def destroy_permission
-    unless @clique.can_destroy_as_user?(current_user.id)
+    unless @clique.can_destroy_as_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => :index
     end

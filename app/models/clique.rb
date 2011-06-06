@@ -20,27 +20,27 @@ class Clique < ActiveRecord::Base
     has_werewolf
   end
 
-  # Returns true if the user_id can see any member of the clique who they
+  # Returns true if the user can see any member of the clique who they
   # also can see which clique they belong to.
-  def is_known_to_user?(user_id)
+  def is_known_to_user?(user)
     known_clique = false
-    known_clique = true if user_id == User.find_by_name("Storyteller").id or self.owner.id == user_id or self.write or self.id == Clique.find_by_name("Solitary").id
+    known_clique = true if user == User.find_by_name("Storyteller") or self.owner == user or self.write or self == Clique.find_by_name("Solitary")
 
     self.characters.each do |member|
-      known_clique = true if member.read_clique and member.show_clique_to_user?(user_id)
+      known_clique = true if member.read_clique and member.show_clique_to_user?(user)
     end
 
     known_clique
   end
 
   # Returns true if the user can edit the clique.
-  def can_edit_as_user?(user_id)
-    owned_by_user?(user_id) or self.write unless self.id == Clique.find_by_name("Solitary").id
+  def can_edit_as_user?(user)
+    owned_by_user?(user) or self.write unless self == Clique.find_by_name("Solitary")
   end
 
   # Returns true if the user can destroy the clique.
-  def can_destroy_as_user?(user_id)
-    owned_by_user?(user_id) unless self.id == Clique.find_by_name("Solitary").id
+  def can_destroy_as_user?(user)
+    owned_by_user?(user) unless self == Clique.find_by_name("Solitary")
   end
   
   # List cliques konwn to the given user
@@ -50,7 +50,7 @@ class Clique < ActiveRecord::Base
     end
     
     cliques = cliques + Clique.find_all_by_chronicle_id(user.selected_chronicle.id).collect do |c|
-      [c.name, c.id] if c.is_known_to_user?(user.id)
+      [c.name, c.id] if c.is_known_to_user?(user)
     end
     
     cliques.delete_if { |c| c == nil }
@@ -59,7 +59,7 @@ class Clique < ActiveRecord::Base
   # Returns true if the character is owned by the logged in user or if the logged in user is
   # the Storyteller.
   private
-  def owned_by_user?(user_id)
-    self.owner.id == user_id or user_id == User.find_by_name("Storyteller").id
+  def owned_by_user?(user)
+    self.owner == user or user == User.find_by_name("Storyteller")
   end
 end

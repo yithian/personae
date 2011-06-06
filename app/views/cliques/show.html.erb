@@ -33,5 +33,5 @@
 
 
 <%= link_to('New member', { :controller => :characters, :action => :new, :clique_id => @clique.id }) + " | " %>
-<%= link_to('Edit', edit_clique_path(@clique)) + " | " if @clique.can_edit_as_user?(current_user.id) %>
-<%= link_to 'Destroy', @clique, :confirm => 'Are you sure you want to delete this clique?', :method => :delete if @clique.can_destroy_as_user?(current_user.id) %>
+<%= link_to('Edit', edit_clique_path(@clique)) + " | " if @clique.can_edit_as_user?(current_user) %>
+<%= link_to 'Destroy', @clique, :confirm => 'Are you sure you want to delete this clique?', :method => :delete if @clique.can_destroy_as_user?(current_user) %>
