@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :characters, :foreign_key => "owner_id", :dependent => :destroy
   has_many :comments
   has_many :cliques, :foreign_key => "owner_id"
-  has_many :chronicles
+  has_many :chronicles, :foreign_key => "owner_id"
   belongs_to :selected_chronicle, :class_name => "Chronicle"
   
   validates :name, :presence => true, :uniqueness => true
