@@ -10,26 +10,26 @@ class Ideology < ActiveRecord::Base
   validates :splat_id, :presence => true
   
   # Returns true if the logged in user can see any characters with this ideology.
-  def is_known_to_user?(user_id)
+  def is_known_to_user?(user)
     known_ideology = false
-    known_ideology = true if user_id == User.find_by_name('Storyteller').id
+    known_ideology = true if user == User.find_by_name('Storyteller')
     self.characters.each do |member|
-      known_ideology = true if member.read_ideology and member.show_ideology_to_user?(user_id)
+      known_ideology = true if member.read_ideology and member.show_ideology_to_user?(user)
     end
-    User.find_by_id(user_id).characters.each do |character|
-      known_ideology = true if self.id == character.ideology.id
+    User.find_by_id(user).characters.each do |character|
+      known_ideology = true if self == character.ideology
     end
 
     known_ideology
   end
 
   # Returns true if the logged in user can edit this ideology.
-  def can_edit_as_user?(user_id)
-    user_id == User.find_by_name("Storyteller").id unless self.id == Ideology.find_by_name("Mortal").id
+  def can_edit_as_user?(user)
+    user == User.find_by_name("Storyteller") unless self == Ideology.find_by_name("Mortal")
   end
 
   # Returns true if the logged in user can destroy this ideology.
-  def can_destroy_as_user?(user_id)
-    user_id == User.find_by_name("Storyteller").id unless self.id == Ideology.find_by_name("Mortal").id
+  def can_destroy_as_user?(user)
+    user == User.find_by_name("Storyteller") unless self == Ideology.find_by_name("Mortal")
   end
 end
