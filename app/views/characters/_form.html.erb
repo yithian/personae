@@ -12,8 +12,8 @@
   <% end %>
 
   <% if params[:action] == "new" %>
-    <% @character.user_id = current_user.id %>
-    <input name="character[user_id]" type="hidden" value=<%= current_user.id %> >
+    <% @character.owner_id = current_user.id %>
+    <input name="character[owner_id]" type="hidden" value=<%= current_user.id %> >
   <% end %>
 
   <table class="four_cells">

@@ -65,7 +65,7 @@ one:
   time: 1
   equipment: MyEquipmentText
   common_spells: MyRotesText
-  user: one
+  owner: one
   read_name: true
   read_description: true
   read_background: true
@@ -199,7 +199,7 @@ two:
   time: 2
   equipment: MyOtherEquipmentText
   common_spells: MyOtherRotesText
-  user: two
+  owner: two
   read_name: false
   read_description: false
   read_background: false

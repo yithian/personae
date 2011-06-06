@@ -125,19 +125,19 @@ any later version.
 <p>
 Personae is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 details.
 </p>
 <p>
 You should have received a copy of the GNU General Public License along
-with Personae.  If not, see <<a
+with Personae. If not, see <<a
 href="http://www.gnu.org/licenses/">www.gnu.org/licenses/</a>>.
 </p>
 <h2>Welcome</h2>
 <p>
 Persona is a Ruby on Rails web application designed to hold character
-sheets for the New World of Darkness role playing games by White Wolf. 
-This program is designed to contain an entire chronicle&#8217;s worth of
+sheets for the New World of Darkness role playing games by White Wolf. This
+program is designed to contain an entire chronicle&#8217;s worth of
 characters and really shines when used for non-player-character sheets as
 well as the players&#8217; characters.
 </p>
@@ -158,68 +158,88 @@ href="../Clique.html">Clique</a> => Cabal (Mage), Cotorie (Vampire), Pack
 </p>
 <h2>Setup</h2>
 <p>
-Personae uses a single administrator-style account name Storyteller.  This
+Personae uses a single administrator-style account name Storyteller. This
 account can see all the Characters, Cliques and Ideologies in your game,
-regardless of their display settings.  Be careful!  The default password
-for this account is worldofdarkness &#8212; please change this once your
+regardless of their display settings. Be careful! The default password for
+this account is worldofdarkness &#8212; please change this once your
 database is set up!
 </p>
 <p>
 To run Personae, you must have the following software installed: Ruby, Ruby
-Gems, Ruby on Rails, sqlite3 and ruby-sqlite3.  It is highly suggested to
-use Apache httpd and mod_rails as well.
+Gems, Ruby on Rails, sqlite3 and ruby-sqlite3 and devise. It is highly
+suggested to use Apache httpd and mod_rails as well.
 </p>
 <p>
 If you don&#8217;t have this software installed, you can download it from
 <a href="http://ruby-lang.org">ruby-lang.org</a> <a
 href="http://rubygems.org">rubygems.org</a> and <a
-href="http://sqlite.org">sqlite.org</a> .  Once you have Ruby, Ruby Gems
-and Sqlite3 installed, use Ruby Gems to install Ruby on Rails: *nix:  `gem
-install rails` Windows:  Start -> Programs -> Ruby -> Ruby Gems -> RubyGems
-Package Manager.
+href="http://sqlite.org">sqlite.org</a> . Once you have Ruby, Ruby Gems and
+Sqlite3 installed, use Ruby Gems to install Ruby on Rails: *nix:
 </p>
 <pre>
-          `gem install rails`
+  gem install rails
+</pre>
+<p>
+Windows: Start -> Programs -> Ruby -> Ruby Gems -> RubyGems Package
+Manager.
+</p>
+<pre>
+  gem install rails
 </pre>
 <p>
 With Ruby on Rails installed, install the rest of the required gems by
 changing into Personae&#8217;s install directory (from a shell or cmd
-prompt) and run `bundle install`. This should install the proper versions
-of all the gems you&#8217;ll need.
+prompt) and run
+</p>
+<pre>
+  bundle install.
+</pre>
+<p>
+This should install the proper versions of all the gems you&#8217;ll need.
 </p>
 <p>
 Once you have Personae downloaded and placed where you want it, open a
-command prompt (Terminal on Mac, xterm on Linux, cmd on Windows).  Run the
-following to configure your database: `cd <personae location>;
-RAILS_ENV=production rake db:setup`
-</p>
-<p>
-If you prefer, you can use the built-in web server with Ruby on Rails. 
-This is not recommended, though.  A better solution is to download Apache
-httpd and mod_rails from <a
-href="http://httpd.apache.org">httpd.apache.org</a> and <a
-href="http://mod_rails.com">mod_rails.com</a> on a POSIX-compliant
-operating system (that is, just about anything but Windows).  On a Windows
-environment, Apache httpd and mongrel is your best bet. Windows:  Start ->
-Programs -> Ruby -> Ruby Gems -> RubyGems Package Manager.
+command prompt (Terminal on Mac, xterm on Linux, cmd on Windows). Run the
+following to configure your database:
 </p>
 <pre>
-          `gem install mongrel`
+  cd &lt;personae location&gt;; RAILS_ENV=production rake db:setup
+</pre>
+<p>
+If you prefer, you can use the built-in web server with Ruby on Rails. This
+is not recommended, though. A better solution is to download Apache httpd
+and mod_rails from <a href="http://httpd.apache.org">httpd.apache.org</a>
+and <a href="http://mod_rails.com">mod_rails.com</a> on a POSIX-compliant
+operating system (that is, just about anything but Windows). On a Windows
+environment, Apache httpd and mongrel is your best bet.
+</p>
+<p>
+Windows: Start -> Programs -> Ruby -> Ruby Gems -> RubyGems Package
+Manager.
+</p>
+<pre>
+  gem install mongrel
 </pre>
 <h2>POSIX (Linux, Mac, Solaris, etc) Apache setup</h2>
 <p>
-If you&#8217;re using Mac, httpd is already installed for you.  Otherwise,
+If you&#8217;re using Mac, httpd is already installed for you. Otherwise,
 use your distribution&#8217;s package manager to install httpd.
 </p>
 <p>
-Open a terminal and install mod_rails: `gem install passenger`
+Open a terminal and install mod_rails:
 </p>
+<pre>
+  gem install passenger
+</pre>
 <p>
-Run the mod_rails installer: `passenger-install-apache2-module`
+Run the mod_rails installer:
 </p>
+<pre>
+  passenger-install-apache2-module
+</pre>
 <p>
 The mod_rails installer should provide you with several lines to copy/paste
-into your Apache httpd.conf file.  Do so.
+into your Apache httpd.conf file. Do so.
 </p>
 <p>
 Now, when you start Apache httpd, it will automatically begin serving up
@@ -229,48 +249,52 @@ Personae.
 <p>
 As above, download Apache httpd from <a
 href="http://httpd.apache.org">httpd.apache.org</a> and run the installer.
-Use the RubyGem package manager to install mongrel: `gem install mongrel`
+Use the RubyGem package manager to install mongrel:
 </p>
+<pre>
+  gem install mongrel
+</pre>
 <p>
 With mongrel installed, add the following lines to Apache&#8217;s
 httpd.conf file: LoadModule proxy_module modules/mod_proxy.so LoadModule
-proxy_http_module modules/mod_proxy_http.so <VirtualHost localhost:80>
+proxy_http_module modules/mod_proxy_http.so
 </p>
 <pre>
+  &lt;VirtualHost localhost:80&gt;
     ServerName www.myapp.comm
     DocumentRoot &quot;C:/web/myapp/public&quot;
     ProxyPass / http://www.myapp.com:3000/
     ProxyPassReverse / http://www.myapp.com:3000/
     ProxyPreserveHost On
+  &lt;/VirtualHost&gt;
 </pre>
-<p>
-</VirtualHost>
-</p>
 <p>
 Use the Apache tools to start httpd.
 </p>
 <p>
-Open a command prompt (Start -> Run -> cmd) and type: `cd <personae install
-path>; mongrel_rails start -d`
+Open a command prompt (Start -> Run -> cmd) and type:
 </p>
+<pre>
+  cd &lt;personae install path&gt;; mongrel_rails start -d
+</pre>
 <h2>Accessing your site</h2>
 <p>
 Without further modification to httpd.conf, Personae will be running on
-port 80 of the computer it is installed on.  You will need to allow access
+port 80 of the computer it is installed on. You will need to allow access
 through whatever firewall you might be running to this port and will likely
-need to enable port forwarding on your router.  <a
+need to enable port forwarding on your router. <a
 href="http://portforward.com">portforward.com</a> can help you with this.
 </p>
 <p>
 It is unlikely that your computer will have a fully-qualified domain name
-(eg. google.com, white-wolf.com, etc).  You can either register a domain
+(eg. google.com, white-wolf.com, etc). You can either register a domain
 name or use a service such as no-ip (<a
 href="http://no-ip.org">no-ip.org</a>) to give you one.
 </p>
 <h2>A word of caution</h2>
 <p>
 Running a web server presents a potential security vulnerability, which can
-be mitigated by frequently updating Apache and Ruby on Rails.  If
+be mitigated by frequently updating Apache and Ruby on Rails. If
 you&#8217;re not OK with that, then your best bet is to not use Personae.
 </p>
 <h2>Description of Contents</h2>

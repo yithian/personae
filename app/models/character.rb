@@ -36,7 +36,7 @@ class Character < ActiveRecord::Base
   belongs_to :nature
   belongs_to :subnature
   belongs_to :splat 
-  belongs_to :user
+  belongs_to :owner, :class_name => "User"
   belongs_to :chronicle
   has_many :comments, :dependent => :destroy
   
@@ -263,6 +263,6 @@ class Character < ActiveRecord::Base
   # Returns true if the character is owned by the logged in user or if the
   # logged in user is the Storyteller.
   def owned_by_user?(user_id)
-    user_id == User.find_by_name("Storyteller").id or self.user_id == user_id
+    user_id == User.find_by_name("Storyteller").id or self.owner.id == user_id
   end
 end

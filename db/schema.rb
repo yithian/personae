@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110604121355) do
+ActiveRecord::Schema.define(:version => 20110606162540) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20110604121355) do
     t.text     "common_spells"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",                             :default => 1
+    t.integer  "owner_id",                            :default => 1
     t.boolean  "read_name",                           :default => false
     t.boolean  "read_description",                    :default => false
     t.boolean  "read_background",                     :default => false
