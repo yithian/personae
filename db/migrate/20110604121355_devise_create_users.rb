@@ -1,6 +1,8 @@
 class DeviseCreateUsers < ActiveRecord::Migration
   def self.up
     change_table(:users) do |t|
+      User.update_all("email_address = ''", "email_address IS NULL")
+      
       t.remove :hashed_password
       t.remove :reset_code
       t.remove :salt
