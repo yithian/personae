@@ -35,24 +35,24 @@ class Chronicle < ActiveRecord::Base
   end
   
   # Returns true if the user has admin permissions.
-  def can_create_as_user?(user_id)
-    super_user?(user_id)
+  def can_create_as_user?(user)
+    super_user?(user)
   end
   
   # Returns true if the user has admin permissions.
-  def can_edit_as_user?(user_id)
-    super_user?(user_id)
+  def can_edit_as_user?(user)
+    super_user?(user)
   end
 
   # Returns true if the user has admin permissions.
-  def can_destroy_as_user?(user_id)
-    super_user?(user_id)
+  def can_destroy_as_user?(user)
+    super_user?(user)
   end
   
   private
-  # Returns true if the user_id belongs to Storyteller. This exists to allow
+  # Returns true if the user belongs to Storyteller. This exists to allow
   # a future upgrade for multiple administrative accounts.
-  def super_user?(user_id)
-    user_id == User.find_by_name("Storyteller").id
+  def super_user?(user)
+    user == User.find_by_name("Storyteller")
   end
 end
