@@ -343,7 +343,7 @@ href="Comment.html#method-i-can_edit_as_user%3F">Comment#can_edit_as_user?</a>
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/comments_controller.rb, line 61</span>
 61:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy_permission</span>
-62:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+62:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">current_user</span>)
 63:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 64:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">character_path</span>(<span class="ruby-ivar">@character</span>)
 65:     <span class="ruby-keyword kw">end</span>
@@ -385,7 +385,7 @@ href="Character.html#method-i-show_name_to_user%3F">Character#show_name_to_user?
     <span class="ruby-comment cmt"># File app/controllers/comments_controller.rb, line 41</span>
 41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_character</span>
 42:     <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:character_id</span>])
-43:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+43:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">current_user</span>)
 44:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 45:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;characters&quot;</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span> 
 46:     <span class="ruby-keyword kw">end</span>

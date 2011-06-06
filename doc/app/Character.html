@@ -316,7 +316,7 @@ List characters known to the given user
 				<div class="method-heading">
 				
 					<span class="method-name">can_destroy_as_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -324,7 +324,7 @@ List characters known to the given user
 				<div class="method-description">
 					
 					<p>
-Returns true if the character can be destroyed by the given user_id. This
+Returns true if the character can be destroyed by the given user. This
 currently implemented with the same check as <a
 href="Character.html#method-i-can_edit_as_user%3F">Character#can_edit_as_user?</a>
 and exists mostly in case the logic changes in the future. That way, less
@@ -337,8 +337,8 @@ code will need to change.
 						id="can-destroy-as-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 132</span>
-132:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-133:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>)
+132:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user</span>)
+133:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>)
 134:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -356,7 +356,7 @@ code will need to change.
 				<div class="method-heading">
 				
 					<span class="method-name">can_edit_as_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -364,7 +364,7 @@ code will need to change.
 				<div class="method-description">
 					
 					<p>
-Returns true if the character can be altered by the given user_id
+Returns true if the character can be altered by the given user
 </p>
 					
 
@@ -373,8 +373,8 @@ Returns true if the character can be altered by the given user_id
 						id="can-edit-as-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 124</span>
-124:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-125:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>)
+124:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user</span>)
+125:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>)
 126:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -644,7 +644,7 @@ Returns true if the character is a werewolf.
 				<div class="method-heading">
 				
 					<span class="method-name">show_advantages_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -652,8 +652,8 @@ Returns true if the character is a werewolf.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s advantages (Morality, Health, etc). Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+advantages (Morality, Health, etc). Defaults to false.
 </p>
 					
 
@@ -662,8 +662,8 @@ character&#8217;s advantages (Morality, Health, etc). Defaults to false.
 						id="show-advantages-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 193</span>
-193:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_advantages_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-194:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_advantages</span>
+193:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_advantages_to_user?</span>(<span class="ruby-identifier">user</span>)
+194:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_advantages</span>
 195:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -681,7 +681,7 @@ character&#8217;s advantages (Morality, Health, etc). Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_attributes_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -689,8 +689,8 @@ character&#8217;s advantages (Morality, Health, etc). Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s attributes (Strength, Wits, etc). Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+attributes (Strength, Wits, etc). Defaults to false.
 </p>
 					
 
@@ -699,8 +699,8 @@ character&#8217;s attributes (Strength, Wits, etc). Defaults to false.
 						id="show-attributes-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 181</span>
-181:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_attributes_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-182:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_attributes</span>
+181:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_attributes_to_user?</span>(<span class="ruby-identifier">user</span>)
+182:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_attributes</span>
 183:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -718,7 +718,7 @@ character&#8217;s attributes (Strength, Wits, etc). Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_background_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -726,8 +726,8 @@ character&#8217;s attributes (Strength, Wits, etc). Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s background. Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+background. Defaults to false.
 </p>
 					
 
@@ -736,8 +736,8 @@ character&#8217;s background. Defaults to false.
 						id="show-background-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 169</span>
-169:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_background_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-170:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_background</span>
+169:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_background_to_user?</span>(<span class="ruby-identifier">user</span>)
+170:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_background</span>
 171:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -755,7 +755,7 @@ character&#8217;s background. Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_clique_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -763,8 +763,8 @@ character&#8217;s background. Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s clique. Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+clique. Defaults to false.
 </p>
 					
 
@@ -773,8 +773,8 @@ character&#8217;s clique. Defaults to false.
 						id="show-clique-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 151</span>
-151:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_clique_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-152:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_clique</span>
+151:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_clique_to_user?</span>(<span class="ruby-identifier">user</span>)
+152:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_clique</span>
 153:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -792,7 +792,7 @@ character&#8217;s clique. Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_deeds_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -800,8 +800,8 @@ character&#8217;s clique. Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s deeds. Defaults to true.
+Returns true if the given user has permission to read the character&#8217;s
+deeds. Defaults to true.
 </p>
 					
 
@@ -810,8 +810,8 @@ character&#8217;s deeds. Defaults to true.
 						id="show-deeds-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 175</span>
-175:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_deeds_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-176:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_deeds</span>
+175:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_deeds_to_user?</span>(<span class="ruby-identifier">user</span>)
+176:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_deeds</span>
 177:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -829,7 +829,7 @@ character&#8217;s deeds. Defaults to true.
 				<div class="method-heading">
 				
 					<span class="method-name">show_description_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -837,8 +837,8 @@ character&#8217;s deeds. Defaults to true.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s description. Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+description. Defaults to false.
 </p>
 					
 
@@ -847,8 +847,8 @@ character&#8217;s description. Defaults to false.
 						id="show-description-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 163</span>
-163:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_description_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-164:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_description</span>
+163:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_description_to_user?</span>(<span class="ruby-identifier">user</span>)
+164:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_description</span>
 165:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -866,7 +866,7 @@ character&#8217;s description. Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_equipment_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -874,8 +874,8 @@ character&#8217;s description. Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s equipment Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+equipment Defaults to false.
 </p>
 					
 
@@ -884,8 +884,8 @@ character&#8217;s equipment Defaults to false.
 						id="show-equipment-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 211</span>
-211:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_equipment_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-212:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_equipment</span>
+211:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_equipment_to_user?</span>(<span class="ruby-identifier">user</span>)
+212:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_equipment</span>
 213:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -903,7 +903,7 @@ character&#8217;s equipment Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_experience_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -911,8 +911,8 @@ character&#8217;s equipment Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s experience. Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+experience. Defaults to false.
 </p>
 					
 
@@ -921,8 +921,8 @@ character&#8217;s experience. Defaults to false.
 						id="show-experience-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 217</span>
-217:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_experience_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-218:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_experience</span>
+217:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_experience_to_user?</span>(<span class="ruby-identifier">user</span>)
+218:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_experience</span>
 219:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -940,7 +940,7 @@ character&#8217;s experience. Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_ideology_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -948,8 +948,8 @@ character&#8217;s experience. Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s ideology. Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+ideology. Defaults to false.
 </p>
 					
 
@@ -958,8 +958,8 @@ character&#8217;s ideology. Defaults to false.
 						id="show-ideology-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 157</span>
-157:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_ideology_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-158:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_ideology</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Mortal&quot;</span>
+157:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_ideology_to_user?</span>(<span class="ruby-identifier">user</span>)
+158:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_ideology</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Mortal&quot;</span>
 159:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -977,7 +977,7 @@ character&#8217;s ideology. Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_merits_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -985,8 +985,8 @@ character&#8217;s ideology. Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s merits Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+merits Defaults to false.
 </p>
 					
 
@@ -995,8 +995,8 @@ character&#8217;s merits Defaults to false.
 						id="show-merits-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 199</span>
-199:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_merits_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-200:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_merits</span>
+199:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_merits_to_user?</span>(<span class="ruby-identifier">user</span>)
+200:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_merits</span>
 201:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -1014,7 +1014,7 @@ character&#8217;s merits Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_name_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -1022,10 +1022,9 @@ character&#8217;s merits Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s name. This is also the check used to determine if a
-character&#8217;s entry shows up in index and clique pages, etc. Defaults
-to false.
+Returns true if the given user has permission to read the character&#8217;s
+name. This is also the check used to determine if a character&#8217;s entry
+shows up in index and clique pages, etc. Defaults to false.
 </p>
 					
 
@@ -1034,8 +1033,8 @@ to false.
 						id="show-name-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 139</span>
-139:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-140:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_name</span>
+139:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">user</span>)
+140:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_name</span>
 141:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -1053,7 +1052,7 @@ to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_nature_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -1061,8 +1060,8 @@ to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s nature. Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+nature. Defaults to false.
 </p>
 					
 
@@ -1071,8 +1070,8 @@ character&#8217;s nature. Defaults to false.
 						id="show-nature-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 145</span>
-145:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_nature_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-146:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_nature</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Mortal&quot;</span>
+145:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_nature_to_user?</span>(<span class="ruby-identifier">user</span>)
+146:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_nature</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Mortal&quot;</span>
 147:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -1090,7 +1089,7 @@ character&#8217;s nature. Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_notes_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -1098,8 +1097,8 @@ character&#8217;s nature. Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s notes. Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+notes. Defaults to false.
 </p>
 					
 
@@ -1108,8 +1107,8 @@ character&#8217;s notes. Defaults to false.
 						id="show-notes-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 223</span>
-223:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_notes_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-224:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_notes</span>
+223:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_notes_to_user?</span>(<span class="ruby-identifier">user</span>)
+224:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_notes</span>
 225:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -1127,7 +1126,7 @@ character&#8217;s notes. Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_powers_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -1135,9 +1134,9 @@ character&#8217;s notes. Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s supernatural powers. These are associated with the
-character&#8217;s nature. Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+supernatural powers. These are associated with the character&#8217;s
+nature. Defaults to false.
 </p>
 					
 
@@ -1146,8 +1145,8 @@ character&#8217;s nature. Defaults to false.
 						id="show-powers-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 205</span>
-205:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_powers_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-206:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_powers</span>
+205:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_powers_to_user?</span>(<span class="ruby-identifier">user</span>)
+206:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_powers</span>
 207:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -1165,7 +1164,7 @@ character&#8217;s nature. Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">show_skills_to_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -1173,8 +1172,8 @@ character&#8217;s nature. Defaults to false.
 				<div class="method-description">
 					
 					<p>
-Returns true if the given user_id has permission to read the
-character&#8217;s skills (Academics, Firearms, etc). Defaults to false.
+Returns true if the given user has permission to read the character&#8217;s
+skills (Academics, Firearms, etc). Defaults to false.
 </p>
 					
 
@@ -1183,8 +1182,8 @@ character&#8217;s skills (Academics, Firearms, etc). Defaults to false.
 						id="show-skills-to-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 187</span>
-187:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_skills_to_user?</span>(<span class="ruby-identifier">user_id</span>)
-188:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_skills</span>
+187:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_skills_to_user?</span>(<span class="ruby-identifier">user</span>)
+188:     <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read_skills</span>
 189:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -1208,7 +1207,7 @@ character&#8217;s skills (Academics, Firearms, etc). Defaults to false.
 				<div class="method-heading">
 				
 					<span class="method-name">owned_by_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -1226,8 +1225,8 @@ logged in user is the Storyteller.
 						id="owned-by-user--source">
 <pre>
      <span class="ruby-comment cmt"># File app/models/character.rb, line 274</span>
-274:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>)
-275:     <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">owner</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
+274:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>)
+275:     <span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">owner</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span>
 276:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					

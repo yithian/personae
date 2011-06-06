@@ -189,7 +189,7 @@ Implements basic commenting support
 				<div class="method-heading">
 				
 					<span class="method-name">can_edit_as_user?</span><span
-						class="method-args">(user_id)</span>
+						class="method-args">(user)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -206,8 +206,8 @@ Returns true if the logged in user can edit the comment.
 						id="can-edit-as-user--source">
 <pre>
     <span class="ruby-comment cmt"># File app/models/comment.rb, line 12</span>
-12:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user_id</span>)
-13:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+12:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user</span>)
+13:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>)
 14:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					

@@ -238,7 +238,7 @@ POST /cliques/change_chronicle
 28: 
 29:     <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
 30:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>)
-31:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>) }
+31:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>) }
 32:     <span class="ruby-ivar">@cliques</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
 33:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
@@ -365,7 +365,7 @@ GET /cliques/1/edit
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 48</span>
 48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
-49:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+49:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">current_user</span>)
 50:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -404,7 +404,7 @@ GET /cliques GET /cliques.xml
 15:     <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
 16:     
 17:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>)
-18:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>) }
+18:     <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>) }
 19:     <span class="ruby-ivar">@cliques</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
 20: 
 21:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@cliques</span>
@@ -479,7 +479,7 @@ GET /cliques/1 GET /cliques/1.xml
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 37</span>
 37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
-38:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+38:     <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>)
 39:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -560,7 +560,7 @@ href="Clique.html#method-i-can_destroy_as_user%3F">Clique#can_destroy_as_user?</
 <pre>
      <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 130</span>
 130:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy_permission</span>
-131:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+131:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">current_user</span>)
 132:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 133:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
 134:     <span class="ruby-keyword kw">end</span>
@@ -600,7 +600,7 @@ href="Clique.html#method-i-can_edit_as_user%3F">Clique#can_edit_as_user?</a>
 <pre>
      <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 122</span>
 122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_permission</span>
-123:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+123:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">current_user</span>)
 124:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 125:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">clique_path</span>(<span class="ruby-ivar">@clique</span>)
 126:     <span class="ruby-keyword kw">end</span>
@@ -755,7 +755,7 @@ href="Clique.html#method-i-is_known_to_user%3F">Clique#is_known_to_user?</a>
 <pre>
      <span class="ruby-comment cmt"># File app/controllers/cliques_controller.rb, line 114</span>
 114:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_permission</span>
-115:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+115:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>)
 116:       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-value str">&quot;You don't have permission to do that&quot;</span>
 117:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;index&quot;</span>
 118:     <span class="ruby-keyword kw">end</span>
