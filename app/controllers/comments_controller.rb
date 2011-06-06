@@ -59,7 +59,7 @@ class CommentsController < ApplicationController
   # Allows or denies access to destroy a comment based on
   # Comment#can_edit_as_user?
   def destroy_permission
-    unless @comment.can_edit_as_user?(current_user.id)
+    unless @comment.can_edit_as_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
       redirect_to character_path(@character)
     end
