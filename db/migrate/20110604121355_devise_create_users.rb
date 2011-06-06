@@ -5,6 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.remove :reset_code
       t.remove :salt
       t.rename :email_address, :email
+      t.change :email, :string, :default => "", :null => false
       
       # t.database_authenticatable :null => false
       t.string :encrypted_password, :null => false, :default => '', :limit => 128
@@ -52,6 +53,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.remove :unlock_token
       t.remove :locked_at
       
+      t.change :email, :null => true
       t.rename :email, :email_address
       t.string :hashed_password
       t.string :reset_code

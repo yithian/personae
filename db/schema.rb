@@ -232,8 +232,8 @@ ActiveRecord::Schema.define(:version => 20110604121355) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "selected_character"
-    t.integer  "selected_chronicle_id",                 :default => 1,  :null => false
     t.string   "email",                                 :default => "", :null => false
+    t.integer  "selected_chronicle_id",                 :default => 1,  :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
