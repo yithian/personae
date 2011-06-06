@@ -120,108 +120,108 @@ class Character < ActiveRecord::Base
   validates :obfuscate, :numericality => true
   validates :vigor, :numericality => true
 
-  # Returns true if the character can be altered by the given user_id
-  def can_edit_as_user?(user_id)
-    owned_by_user?(user_id)
+  # Returns true if the character can be altered by the given user
+  def can_edit_as_user?(user)
+    owned_by_user?(user)
   end
   
-  # Returns true if the character can be destroyed by the given user_id. This
+  # Returns true if the character can be destroyed by the given user. This
   # currently implemented with the same check as Character#can_edit_as_user? and exists
   # mostly in case the logic changes in the future. That way, less code will
   # need to change.
-  def can_destroy_as_user?(user_id)
-    owned_by_user?(user_id)
+  def can_destroy_as_user?(user)
+    owned_by_user?(user)
   end
   
-  # Returns true if the given user_id has permission to read the character's name.
+  # Returns true if the given user has permission to read the character's name.
   # This is also the check used to determine if a character's entry shows up in
   # index and clique pages, etc. Defaults to false.
-  def show_name_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_name
+  def show_name_to_user?(user)
+    owned_by_user?(user) or self.read_name
   end
   
-  # Returns true if the given user_id has permission to read the character's nature.
+  # Returns true if the given user has permission to read the character's nature.
   # Defaults to false.
-  def show_nature_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_nature unless self.splat.name == "Mortal"
+  def show_nature_to_user?(user)
+    owned_by_user?(user) or self.read_nature unless self.splat.name == "Mortal"
   end
   
-  # Returns true if the given user_id has permission to read the character's clique.
+  # Returns true if the given user has permission to read the character's clique.
   # Defaults to false.
-  def show_clique_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_clique
+  def show_clique_to_user?(user)
+    owned_by_user?(user) or self.read_clique
   end
   
-  # Returns true if the given user_id has permission to read the character's ideology.
+  # Returns true if the given user has permission to read the character's ideology.
   # Defaults to false.
-  def show_ideology_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_ideology unless self.splat.name == "Mortal"
+  def show_ideology_to_user?(user)
+    owned_by_user?(user) or self.read_ideology unless self.splat.name == "Mortal"
   end
   
-  # Returns true if the given user_id has permission to read the character's description.
+  # Returns true if the given user has permission to read the character's description.
   # Defaults to false.
-  def show_description_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_description
+  def show_description_to_user?(user)
+    owned_by_user?(user) or self.read_description
   end
   
-  # Returns true if the given user_id has permission to read the character's background.
+  # Returns true if the given user has permission to read the character's background.
   # Defaults to false.
-  def show_background_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_background
+  def show_background_to_user?(user)
+    owned_by_user?(user) or self.read_background
   end
   
-  # Returns true if the given user_id has permission to read the character's deeds.
+  # Returns true if the given user has permission to read the character's deeds.
   # Defaults to true.
-  def show_deeds_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_deeds
+  def show_deeds_to_user?(user)
+    owned_by_user?(user) or self.read_deeds
   end
   
-  # Returns true if the given user_id has permission to read the character's attributes
+  # Returns true if the given user has permission to read the character's attributes
   # (Strength, Wits, etc). Defaults to false.
-  def show_attributes_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_attributes
+  def show_attributes_to_user?(user)
+    owned_by_user?(user) or self.read_attributes
   end
   
-  # Returns true if the given user_id has permission to read the character's skills
+  # Returns true if the given user has permission to read the character's skills
   # (Academics, Firearms, etc). Defaults to false.
-  def show_skills_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_skills
+  def show_skills_to_user?(user)
+    owned_by_user?(user) or self.read_skills
   end
   
-  # Returns true if the given user_id has permission to read the character's advantages
+  # Returns true if the given user has permission to read the character's advantages
   # (Morality, Health, etc). Defaults to false.
-  def show_advantages_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_advantages
+  def show_advantages_to_user?(user)
+    owned_by_user?(user) or self.read_advantages
   end
   
-  # Returns true if the given user_id has permission to read the character's merits
+  # Returns true if the given user has permission to read the character's merits
   # Defaults to false.
-  def show_merits_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_merits
+  def show_merits_to_user?(user)
+    owned_by_user?(user) or self.read_merits
   end
   
-  # Returns true if the given user_id has permission to read the character's supernatural
+  # Returns true if the given user has permission to read the character's supernatural
   # powers. These are associated with the character's nature. Defaults to false.
-  def show_powers_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_powers
+  def show_powers_to_user?(user)
+    owned_by_user?(user) or self.read_powers
   end
   
-  # Returns true if the given user_id has permission to read the character's equipment
+  # Returns true if the given user has permission to read the character's equipment
   # Defaults to false.
-  def show_equipment_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_equipment
+  def show_equipment_to_user?(user)
+    owned_by_user?(user) or self.read_equipment
   end
   
-  # Returns true if the given user_id has permission to read the character's experience.
+  # Returns true if the given user has permission to read the character's experience.
   # Defaults to false.
-  def show_experience_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_experience
+  def show_experience_to_user?(user)
+    owned_by_user?(user) or self.read_experience
   end
 
-  # Returns true if the given user_id has permission to read the character's notes.
+  # Returns true if the given user has permission to read the character's notes.
   # Defaults to false.
-  def show_notes_to_user?(user_id)
-    owned_by_user?(user_id) or self.read_notes
+  def show_notes_to_user?(user)
+    owned_by_user?(user) or self.read_notes
   end
   
   # Returns true if the character is a mortal or a hunter (close enough).
@@ -271,7 +271,7 @@ class Character < ActiveRecord::Base
   private
   # Returns true if the character is owned by the logged in user or if the
   # logged in user is the Storyteller.
-  def owned_by_user?(user_id)
-    user_id == User.find_by_name("Storyteller").id or self.owner.id == user_id
+  def owned_by_user?(user)
+    user == User.find_by_name("Storyteller") or self.owner == user
   end
 end

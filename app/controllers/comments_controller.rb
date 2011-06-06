@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
   # comment on it based on Character#show_name_to_user?
   def find_character
     @character = Character.find_by_id(params[:character_id])
-    unless @character.show_name_to_user?(current_user.id)
+    unless @character.show_name_to_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
       redirect_to :controller => "characters", :action => "index" 
     end
