@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110606162540) do
+ActiveRecord::Schema.define(:version => 20110606164635) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(:version => 20110606162540) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "write",        :default => false
-    t.integer  "user_id",      :default => 1,     :null => false
+    t.integer  "owner_id",     :default => 1,     :null => false
     t.integer  "chronicle_id", :default => 1
     t.text     "totem"
   end

@@ -5,7 +5,7 @@ Solitary:
   description: loners
   territory: none
   write: true
-  user: Storyteller
+  owner: Storyteller
   totem: NoTotemText
   chronicle: one
 
@@ -14,7 +14,7 @@ one:
   description: MyDescriptionText
   territory: MyTerritory
   write: true
-  user: one
+  owner: one
   totem: MyTotemText
   chronicle: one
 
@@ -23,7 +23,7 @@ two:
   description: MyOtherDescritionText
   territory: MyOtherTerritory
   write: false
-  user: two
+  owner: two
   totem: MyOtherTotemText
   chronicle: two
 

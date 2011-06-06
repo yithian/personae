@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   has_many :characters, :foreign_key => "owner_id", :dependent => :destroy
   has_many :comments
-  has_many :cliques
+  has_many :cliques, :foreign_key => "owner_id"
   has_many :chronicles
   belongs_to :selected_chronicle, :class_name => "Chronicle"
   
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     end
 
     user.cliques.each do |clique|
-      clique.user_id = User.find_by_name("Storyteller").id
+      clique.owner.id = User.find_by_name("Storyteller").id
       clique.save
     end
   end

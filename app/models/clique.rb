@@ -3,11 +3,11 @@
 
 class Clique < ActiveRecord::Base
   has_many :characters
-  belongs_to :user
+  belongs_to :owner, :class_name => "User"
   belongs_to :chronicle
   
   validates :name, :presence => true, :uniqueness => true
-  validates :user_id, :presence => true
+  validates :owner_id, :presence => true
 
   # Returns true if the clique has a werewolf member. Used to determine
   # if the clique's totem field should be shown in the view.
@@ -24,7 +24,7 @@ class Clique < ActiveRecord::Base
   # also can see which clique they belong to.
   def is_known_to_user?(user_id)
     known_clique = false
-    known_clique = true if user_id == User.find_by_name("Storyteller").id or self.user_id == user_id or self.write or self.id == Clique.find_by_name("Solitary").id
+    known_clique = true if user_id == User.find_by_name("Storyteller").id or self.owner.id == user_id or self.write or self.id == Clique.find_by_name("Solitary").id
 
     self.characters.each do |member|
       known_clique = true if member.read_clique and member.show_clique_to_user?(user_id)
@@ -47,6 +47,6 @@ class Clique < ActiveRecord::Base
   # the Storyteller.
   private
   def owned_by_user?(user_id)
-    self.user_id == user_id or user_id == User.find_by_name("Storyteller").id
+    self.owner.id == user_id or user_id == User.find_by_name("Storyteller").id
   end
 end
