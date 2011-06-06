@@ -24,8 +24,7 @@ class CharactersController < ApplicationController
     current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
     current_user.save
     
-    @characters = Character.find_all_by_chronicle_id(current_user.selected_chronicle.id, :order => "clique_id ASC").collect { |c| c if c.show_name_to_user?(current_user.id) }
-    @characters.delete_if { |c| c == nil }
+    @characters = Character.known_to current_user
   end
 
   # GET /characters/1
@@ -55,8 +54,7 @@ class CharactersController < ApplicationController
   def update_splat
     @splat = Splat.find_by_id(params[:splat_id])
     @nature_list = Nature.find_all_by_splat_id(params[:splat_id])
-    @subnature_list = Subnature.find_all_by_nature_id_and_splat_id(0, @splat.id)
-    @subnature_list = @subnature_list + Subnature.find_all_by_nature_id(@nature_list.first.id)
+    @subnature_list = Subnature.list_for_nature(@nature_list.first)
     @ideology_list = Ideology.find_all_by_splat_id(params[:splat_id])
 
     respond_to do |format|
@@ -142,16 +140,11 @@ class CharactersController < ApplicationController
   # Restricts dropdowns to only include information appropriate to the character's
   # chronicle and splat.
   def find_lists
-    @clique_list = Clique.find_all_by_chronicle_id(0).collect { |c| [c.name, c.id] }
-    @clique_list = @clique_list + Clique.find_all_by_chronicle_id(@character.chronicle.id).collect { |c| [c.name, c.id] if c.is_known_to_user?(current_user.id) }
-    @clique_list.delete_if { |c| c == nil }
-
+    @clique_list = Clique.known_to current_user
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect
-    @subnature_list = Subnature.find_all_by_nature_id_and_splat_id(0, @character.splat.id)
-    @subnature_list = @subnature_list + Subnature.find_all_by_nature_id(@nature_list.first.id)
-    @subnature_list = @subnature_list.collect.each { |s| [s.name, s.id] }
-    @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect { |i| [i.name, i.id] }
-
+    @subnature_list = Subnature.list_for_nature(@nature_list.first)
+    @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect
+    
     @splat_list = Splat.all.collect
     @chronicle_list = Chronicle.all.collect
   end

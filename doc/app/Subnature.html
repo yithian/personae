@@ -65,6 +65,15 @@
 
 			<!-- Method Quickref -->
 			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-list_for_nature">::list_for_nature</a></li>
+					
+				</ul>
+			</div>
+			
 
 			<!-- Included Modules -->
 			
@@ -172,6 +181,50 @@ analogous item.
 
 		<!-- Methods -->
 		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="list-for-nature-method" class="method-detail ">
+				<a name="method-c-list_for_nature"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">list_for_nature</span><span
+						class="method-args">(nature)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+List subnatures for a given nature
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="list-for-nature-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/subnature.rb, line 15</span>
+15:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">list_for_nature</span>(<span class="ruby-identifier">nature</span>)
+16:     <span class="ruby-identifier">subnatures</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id_and_splat_id</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">nature</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>)
+17:     <span class="ruby-identifier">subnatures</span> = <span class="ruby-identifier">subnatures</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id</span>(<span class="ruby-identifier">nature</span>.<span class="ruby-identifier">id</span>)
+18:     <span class="ruby-identifier">subnatures</span>.<span class="ruby-identifier">collect</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">s</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">s</span>.<span class="ruby-identifier">id</span>] }
+19:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
 
 	</div>
 

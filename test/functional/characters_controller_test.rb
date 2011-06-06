@@ -21,7 +21,7 @@ class CharactersControllerTest < ActionController::TestCase
   test "should get new" do
     sign_in(users(:one))
 
-    get :new, :splat_id => splats(:one).id, :nature_id => natures(:one).id, :chronicle_id => chronicles(:one).id
+    get :new, :splat_id => splats(:one).id, :nature_id => natures(:one).id, :chronicle_id => chronicles(:one).id, :ideology_id => ideologies(:one).id
     assert_response :success
   end
 

@@ -69,6 +69,8 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
+					<li><a href="#method-c-known_to">::known_to</a></li>
+					
 					<li><a href="#method-i-can_destroy_as_user%3F">#can_destroy_as_user?</a></li>
 					
 					<li><a href="#method-i-can_edit_as_user%3F">#can_edit_as_user?</a></li>
@@ -188,6 +190,56 @@ members. Characters may belong to only one clique.
 
 		<!-- Methods -->
 		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="known-to-method" class="method-detail ">
+				<a name="method-c-known_to"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">known_to</span><span
+						class="method-args">(user)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+List cliques konwn to the given user
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="known-to-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/clique.rb, line 47</span>
+47:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>)
+48:     <span class="ruby-identifier">cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+49:       [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span>]
+50:     <span class="ruby-keyword kw">end</span>
+51:     
+52:     <span class="ruby-identifier">cliques</span> = <span class="ruby-identifier">cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+53:       [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>)
+54:     <span class="ruby-keyword kw">end</span>
+55:     
+56:     <span class="ruby-identifier">cliques</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
+57:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
 		<div id="public-instance-method-details" class="method-section section">
 			<h3 class="section-header">Public Instance Methods</h3>
 
@@ -379,10 +431,10 @@ logged in user is the Storyteller.
 					<div class="method-source-code"
 						id="owned-by-user--source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/clique.rb, line 49</span>
-49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>)
-50:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">owner</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
-51:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File app/models/clique.rb, line 62</span>
+62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>)
+63:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">owner</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span>
+64:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

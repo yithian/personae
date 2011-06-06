@@ -43,6 +43,19 @@ class Clique < ActiveRecord::Base
     owned_by_user?(user_id) unless self.id == Clique.find_by_name("Solitary").id
   end
   
+  # List cliques konwn to the given user
+  def self.known_to(user)
+    cliques = Clique.find_all_by_chronicle_id(0).collect do |c|
+      [c.name, c.id]
+    end
+    
+    cliques = cliques + Clique.find_all_by_chronicle_id(user.selected_chronicle.id).collect do |c|
+      [c.name, c.id] if c.is_known_to_user?(user.id)
+    end
+    
+    cliques.delete_if { |c| c == nil }
+  end
+  
   # Returns true if the character is owned by the logged in user or if the logged in user is
   # the Storyteller.
   private

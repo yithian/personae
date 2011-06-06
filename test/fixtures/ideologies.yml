@@ -6,7 +6,6 @@ Mortal:
 one:
   name: MyName
   splat: two
-
 two:
   name: MyOtherName
   splat: three

@@ -258,6 +258,15 @@ class Character < ActiveRecord::Base
   def is_geist?
     self.splat.name == "Geist"
   end
+  
+  # List characters known to the given user
+  def self.known_to(user)
+    characters = Character.find_all_by_chronicle_id(user.selected_chronicle.id, :order => "clique_id ASC").collect do |c|
+      c if c.show_name_to_user?(user.id)
+    end
+    
+    characters.delete_if { |c| c == nil }
+  end
 
   private
   # Returns true if the character is owned by the logged in user or if the

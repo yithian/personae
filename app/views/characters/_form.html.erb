@@ -58,7 +58,8 @@
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
       </td>
       <td class="data" id="ideology_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
-        <%= f.select :ideology_id, @ideology_list %>
+        <%= select_tag :ideology_id, options_from_collection_for_select(@ideology_list, 'id', 'name', @character.ideology.id) %>
+        <input name="character[ideology_id]" type="hidden" value="<%= @character.ideology_id %>" id="character_ideology_id" />
       </td>
     </tr>
     <tr>

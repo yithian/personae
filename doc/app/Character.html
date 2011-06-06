@@ -69,6 +69,8 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
+					<li><a href="#method-c-known_to">::known_to</a></li>
+					
 					<li><a href="#method-i-can_destroy_as_user%3F">#can_destroy_as_user?</a></li>
 					
 					<li><a href="#method-i-can_edit_as_user%3F">#can_edit_as_user?</a></li>
@@ -258,6 +260,52 @@ used to populate dropdown menus.
 
 		<!-- Methods -->
 		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="known-to-method" class="method-detail ">
+				<a name="method-c-known_to"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">known_to</span><span
+						class="method-args">(user)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+List characters known to the given user
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="known-to-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/models/character.rb, line 263</span>
+263:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>)
+264:     <span class="ruby-identifier">characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;clique_id ASC&quot;</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+265:       <span class="ruby-identifier">c</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>)
+266:     <span class="ruby-keyword kw">end</span>
+267:     
+268:     <span class="ruby-identifier">characters</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> }
+269:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
 		<div id="public-instance-method-details" class="method-section section">
 			<h3 class="section-header">Public Instance Methods</h3>
 
@@ -1177,10 +1225,10 @@ logged in user is the Storyteller.
 					<div class="method-source-code"
 						id="owned-by-user--source">
 <pre>
-     <span class="ruby-comment cmt"># File app/models/character.rb, line 265</span>
-265:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>)
-266:     <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">owner</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
-267:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File app/models/character.rb, line 274</span>
+274:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user_id</span>)
+275:     <span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-value str">&quot;Storyteller&quot;</span>).<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">owner</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
+276:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
