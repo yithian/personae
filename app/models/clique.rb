@@ -44,12 +44,12 @@ class Clique < ActiveRecord::Base
   end
   
   # List cliques konwn to the given user
-  def self.known_to(user)
+  def self.known_to(user, chronicle_id=user.selected_chronicle.id)
     cliques = Clique.find_all_by_chronicle_id(0).collect do |c|
       [c.name, c.id]
     end
     
-    cliques = cliques + Clique.find_all_by_chronicle_id(user.selected_chronicle.id).collect do |c|
+    cliques = cliques + Clique.find_all_by_chronicle_id(chronicle_id).collect do |c|
       [c.name, c.id] if c.is_known_to_user?(user)
     end
     

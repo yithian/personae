@@ -1,0 +1,4 @@
+// update the hidden field in the form to save the chronicle_id
+$('character_chronicle_id').value = '<%= @chronicle.id %>';
+
+$('character_clique_id').update('<%= options_for_select(@clique_list).gsub(/[\n]/, ' ') %>');

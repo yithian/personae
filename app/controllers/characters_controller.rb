@@ -72,6 +72,12 @@ class CharactersController < ApplicationController
       format.js
     end
   end
+  
+  # POST /characters/update_chronicle
+  def update_chronicle
+    @clique_list = Clique.known_to(current_user, params[:chronicle_id])
+    @chronicle = Chronicle.find_by_id(params[:chronicle_id])
+  end
 
   # POST /characters/shapeshift
   def shapeshift
@@ -140,7 +146,12 @@ class CharactersController < ApplicationController
   # Restricts dropdowns to only include information appropriate to the character's
   # chronicle and splat.
   def find_lists
-    @clique_list = Clique.known_to current_user
+    if params[:chronicle_id]
+      @clique_list = Clique.known_to current_user, params[:chronicle_id]
+    else
+      @clique_list = Clique.known_to current_user
+    end
+    
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect
     @subnature_list = Subnature.list_for_nature(@nature_list.first)
     @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect

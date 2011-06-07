@@ -53,7 +53,10 @@
     </tr>
     <tr>
       <td><b><%= f.label :chronicle_id, "Chronicle" %></b></td>
-      <td><%= f.select :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id) %></td>
+      <td>
+        <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :remote => true, :action => url_for(:action => :update_chronicle) %>
+        <input name="character[chronicle_id]" type="hidden" value="<%= @character.chronicle.id %>" id="character_chronicle_id">
+      </td>
       <td class="label" id="ideology_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
       </td>
