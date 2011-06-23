@@ -54,9 +54,7 @@ class CharactersController < ApplicationController
   def update_splat
     @splat = Splat.find_by_id(params[:splat_id])
     @nature_list = Nature.find_all_by_splat_id(params[:splat_id])
-    logger.debug "LOOK HERE: #{@nature_list.inspect}"
     @subnature_list = Subnature.list_for_nature(@nature_list.first).collect
-    logger.debug "LOOK HERE: #{@subnature_list.inspect}"
     @ideology_list = Ideology.find_all_by_splat_id(params[:splat_id])
 
     respond_to do |format|
