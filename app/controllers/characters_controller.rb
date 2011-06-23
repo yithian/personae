@@ -152,7 +152,7 @@ class CharactersController < ApplicationController
     end
     
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect
-    @subnature_list = Subnature.list_for_nature(@nature_list.first)
+    @subnature_list = Subnature.list_for_nature(@character.nature)
     @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect
     
     @splat_list = Splat.all.collect
