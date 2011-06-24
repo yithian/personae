@@ -43,7 +43,7 @@
         <b><%= f.label :subnature_label, @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>
       <td class="data" id="subnature_id_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
-        <%= f.select :subnature_id, @subnature_list %>
+        <%= f.select :subnature_id, options_from_collection_for_select(@subnature_list, 'id', 'name', @character.subnature_id) %>
       </td>
     </tr>
     <tr>

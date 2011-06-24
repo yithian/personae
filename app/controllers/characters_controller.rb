@@ -54,7 +54,7 @@ class CharactersController < ApplicationController
   def update_splat
     @splat = Splat.find_by_id(params[:splat_id])
     @nature_list = Nature.find_all_by_splat_id(params[:splat_id])
-    @subnature_list = Subnature.list_for_nature(@nature_list.first)
+    @subnature_list = Subnature.list_for_nature(@nature_list.first).collect
     @ideology_list = Ideology.find_all_by_splat_id(params[:splat_id])
 
     respond_to do |format|
@@ -65,8 +65,7 @@ class CharactersController < ApplicationController
   # POST /characters/update_nature
   def update_nature
     @nature = Nature.find_by_id(params[:nature_id])
-    @subnature_list = Subnature.find_all_by_nature_id_and_splat_id(0, @nature.splat.id)
-    @subnature_list = @subnature_list + Subnature.find_all_by_nature_id(@nature.id)
+    @subnature_list = Subnature.list_for_nature(@nature)
 
     respond_to do |format|
       format.js
@@ -154,7 +153,7 @@ class CharactersController < ApplicationController
     end
     
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect
-    @subnature_list = Subnature.list_for_nature(@nature_list.first)
+    @subnature_list = Subnature.list_for_nature(@character.nature)
     @ideology_list = Ideology.find_all_by_splat_id(@character.splat.id).collect
     
     @splat_list = Splat.all.collect

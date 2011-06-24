@@ -21,7 +21,7 @@ class CharactersControllerTest < ActionController::TestCase
   test "should get new" do
     sign_in(users(:one))
 
-    get :new, :splat_id => splats(:one).id, :nature_id => natures(:one).id, :chronicle_id => chronicles(:one).id, :ideology_id => ideologies(:one).id
+    get :new, :splat_id => splats(:one).id, :nature_id => natures(:one).id, :subnature_id => subnatures(:one).id, :chronicle_id => chronicles(:one).id, :ideology_id => ideologies(:one).id
     assert_response :success
   end
 
@@ -35,7 +35,7 @@ class CharactersControllerTest < ActionController::TestCase
     sign_in(users(:one))
 
     assert_difference('Character.count') do
-      post :create, :character => { :name => "unique", :splat_id => splats(:one).id, :chronicle_id => chronicles(:one).id, :subnature_id => subnatures(:one).id }
+      post :create, :character => { :name => "unique", :splat_id => splats(:one).id, :chronicle_id => chronicles(:one).id, :nature_id => subnatures(:one).id }
     end
 
     assert_redirected_to character_path(assigns(:character))
