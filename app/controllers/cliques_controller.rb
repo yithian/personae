@@ -53,6 +53,7 @@ class CliquesController < ApplicationController
   # POST /cliques.xml
   def create
     @clique = Clique.new(params[:clique])
+    @clique.owner = current_user
 
     flash[:notice] = 'Clique was successfully created.' if @clique.save
 

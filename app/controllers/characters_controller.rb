@@ -92,6 +92,7 @@ class CharactersController < ApplicationController
   # POST /characters.xml
   def create
     @character = Character.new(params[:character])
+    @character.owner = current_user
     find_lists
 
     flash[:notice] = 'Character was successfully created.' if @character.save

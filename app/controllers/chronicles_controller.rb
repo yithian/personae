@@ -38,6 +38,7 @@ class ChroniclesController < ApplicationController
   # POST /chronicles.xml
   def create
     @chronicle = Chronicle.new(params[:chronicle])
+    @chronicle.owner = current_user
 
     if @chronicle.save
       flash[:notice] = "Chronicle successfully created"
