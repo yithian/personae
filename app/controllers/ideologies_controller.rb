@@ -96,7 +96,7 @@ class IdeologiesController < ApplicationController
   # Allows or denies access to create, edit or destroy an ideology
   # based on wether or not the user is the Storyteller user.
   def permission
-    unless current_user == User.find_by_name("Storyteller")
+    unless current_user.admin?
       flash[:notice] = "You don't have permission to do that"
       redirect_to :action => "index"
     end

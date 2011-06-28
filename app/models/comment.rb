@@ -10,6 +10,6 @@ class Comment < ActiveRecord::Base
   
   # Returns true if the logged in user can edit the comment.
   def can_edit_as_user?(user)
-    self.user == user or user == User.find_by_name("Storyteller")
+    self.user == user or user.admin?
   end
 end

@@ -14,4 +14,4 @@
   <% end %>
 </table>
 
-<%= link_to 'New ideology', new_ideology_path if current_user == User.find_by_name("Storyteller") %>
+<%= link_to 'New ideology', new_ideology_path if current_user.admin? %>

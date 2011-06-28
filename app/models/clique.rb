@@ -24,7 +24,7 @@ class Clique < ActiveRecord::Base
   # also can see which clique they belong to.
   def is_known_to_user?(user)
     known_clique = false
-    known_clique = true if user == User.find_by_name("Storyteller") or self.owner == user or self.write or self == Clique.find_by_name("Solitary")
+    known_clique = true if user.admin? or self.owner == user or self.write or self == Clique.find_by_name("Solitary")
 
     self.characters.each do |member|
       known_clique = true if member.read_clique and member.show_clique_to_user?(user)
@@ -60,6 +60,6 @@ class Clique < ActiveRecord::Base
   # the Storyteller.
   private
   def owned_by_user?(user)
-    self.owner == user or user == User.find_by_name("Storyteller")
+    self.owner == user or user.admin?
   end
 end
