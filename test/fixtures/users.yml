@@ -6,6 +6,7 @@ Storyteller:
   selected_character: 3
   email: fake@email.com
   selected_chronicle: one
+  admin: true
 
 one:
   name: MyName
@@ -13,6 +14,7 @@ one:
   selected_character: 1
   email: asdf@asdf.com
   selected_chronicle: two
+  admin: false
 
 two:
   name: MyOtherName
@@ -20,3 +22,4 @@ two:
   selected_character: 2
   email: no-reply@asdf.com
   selected_chronicle: three
+  admin: false
