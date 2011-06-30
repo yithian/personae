@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-  <title>Class: ApplicationController</title>
+  <title>Module: AdminHelper</title>
 
   <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
@@ -15,7 +15,7 @@
   <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
-<body id="top" class="class">
+<body id="top" class="module">
 
   <div id="metadata">
     <div id="home-metadata">
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="./app/controllers/application_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></li>
+            <li><a href="./app/helpers/admin_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="app/helpers/admin_helper.rb">app/helpers/admin_helper.rb</a></li>
           
           </ul>
         </div>
@@ -46,29 +46,11 @@
 
     <div id="class-metadata">
       
-      <!-- Parent Class -->
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        
-        <p class="link">ActionController::Base</p>
-        
-      </div>
-      
 
       
 
       
 
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-i-authorize">#authorize</a></li>
-          
-        </ul>
-      </div>
       
 
       
@@ -161,14 +143,10 @@
   </div>
 
   <div id="documentation">
-    <h1 class="class">ApplicationController</h1>
+    <h1 class="module">AdminHelper</h1>
 
     <div id="description" class="description">
       
-<p>Filters added to this controller apply to all controllers in the
-application. Likewise, all the methods added will be available for all
-controllers.</p>
-
     </div><!-- description -->
 
     
@@ -183,50 +161,6 @@ controllers.</p>
 
       <!-- Methods -->
       
-      <div id="protected-instance-method-details" class="method-section section">
-        <h3 class="section-header">Protected Instance Methods</h3>
-
-      
-        <div id="authorize-method" class="method-detail ">
-          <a name="method-i-authorize"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">authorize</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Prompts for authentication if not logged in and redirects to original
-destination.</p>
-            
-
-            
-            <div class="method-source-code" id="authorize-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 12</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">authorize</span>
-  <span class="ruby-keyword">unless</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
-    <span class="ruby-identifier">session</span>[<span class="ruby-value">:original_uri</span>] = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>
-    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Please log in&quot;</span>
-    <span class="ruby-comment"># redirect_to :controller =&gt; :admin, :action =&gt; :login</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- authorize-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- authorize-method -->
-
-      
-      </div><!-- protected-instance-method-details -->
-    
     </div><!-- 5Buntitled-5D -->
   
 
