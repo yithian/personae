@@ -1,6 +1,12 @@
 Personae::Application.routes.draw do
   devise_for :users
 
+  resource :admin do
+    collection do
+      post 'manage'
+    end
+  end
+
   resources :chronicles
   resources :ideologies
   resources :cliques
