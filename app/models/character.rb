@@ -272,6 +272,6 @@ class Character < ActiveRecord::Base
   # Returns true if the character is owned by the logged in user or if the
   # logged in user is the Storyteller.
   def owned_by_user?(user)
-    user == User.find_by_name("Storyteller") or self.owner == user
+    user.admin? or self.owner == user
   end
 end

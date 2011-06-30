@@ -1,0 +1,13 @@
+<h3>Admins</h3>
+
+<%= form_tag(manage_admin_path, :method => :put) do %>
+<table>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= check_box_tag "admin_ids[]", user.id, user.admin? %></td>
+    <td><%= user.name %></td>
+  </tr>
+  <% end %>
+</table>
+<%= submit_tag "Save admins" %>
+<% end %>

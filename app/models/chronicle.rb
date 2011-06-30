@@ -53,6 +53,6 @@ class Chronicle < ActiveRecord::Base
   # Returns true if the user belongs to Storyteller. This exists to allow
   # a future upgrade for multiple administrative accounts.
   def super_user?(user)
-    user == User.find_by_name("Storyteller")
+    user.admin?
   end
 end
