@@ -172,7 +172,7 @@ class CharactersController < ApplicationController
   def show_permission
     unless @character.show_name_to_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => :index
+      redirect_to characters_path
     end
   end
 end

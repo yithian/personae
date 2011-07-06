@@ -98,7 +98,7 @@ class IdeologiesController < ApplicationController
   def permission
     unless current_user.admin?
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => "index"
+      redirect_to ideologies_path
     end
   end
   
@@ -107,7 +107,7 @@ class IdeologiesController < ApplicationController
   def show_permission
     unless @ideology.is_known_to_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => "index"
+      redirect_to ideologies_path
     end
   end
 end

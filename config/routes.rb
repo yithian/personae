@@ -9,8 +9,24 @@ Personae::Application.routes.draw do
 
   resources :chronicles
   resources :ideologies
-  resources :cliques
+
+  resources :cliques do
+    collection do
+      get 'change_chronicle'
+    end
+  end
+
   resources :characters do
+    collection do
+      get 'update_splat'
+      get 'update_nature'
+      get 'update_chronicle'
+      get 'change_chronicle'
+    end
+    member do
+      get 'shapeshift'
+      get 'preview'
+    end
     resources :comments
   end
   

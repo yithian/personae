@@ -262,7 +262,7 @@ class Character < ActiveRecord::Base
   # List characters known to the given user
   def self.known_to(user)
     characters = Character.find_all_by_chronicle_id(user.selected_chronicle.id, :order => "clique_id ASC").collect do |c|
-      c if c.show_name_to_user?(user.id)
+      c if c.show_name_to_user?(user)
     end
     
     characters.delete_if { |c| c == nil }

@@ -115,7 +115,7 @@ class CliquesController < ApplicationController
   def show_permission
     unless @clique.is_known_to_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => "index"
+      redirect_to cliques_path
     end
   end
   
@@ -131,7 +131,7 @@ class CliquesController < ApplicationController
   def destroy_permission
     unless @clique.can_destroy_as_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => :index
+      redirect_to cliques_path
     end
   end
 end

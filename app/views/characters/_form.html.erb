@@ -21,7 +21,7 @@
       <td><%= f.select :virtue, Character::VIRTUES %></td>
       <td><b><%= f.label :splat_id, "Template" %></b></td>
       <td>
-	      <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :remote => true, :action => url_for(:action => :update_splat) %>
+        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :remote => true, :action => update_splat_characters_path %>
         <input name="character[splat_id]" type="hidden" value="<%= @character.splat_id %>" id="character_splat_id" />
       </td>
     </tr>
@@ -32,7 +32,7 @@
         <b><%= f.label :nature_id, @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
       <td class="data" id="nature_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
-        <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :remote => true, :action => url_for(:action => :update_nature) %>
+        <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :remote => true, :action => update_nature_characters_path %>
         <input name="character[nature_id]" type="hidden" value="<%= @character.nature_id %>" id="character_nature_id" />
       </td>
     </tr>
@@ -49,7 +49,7 @@
     <tr>
       <td><b><%= f.label :chronicle_id, "Chronicle" %></b></td>
       <td>
-        <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :remote => true, :action => url_for(:action => :update_chronicle) %>
+        <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :remote => true, :action => update_chronicle_characters_path %>
         <input name="character[chronicle_id]" type="hidden" value="<%= @character.chronicle.id %>" id="character_chronicle_id">
       </td>
       <td class="label" id="ideology_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>

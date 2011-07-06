@@ -86,7 +86,7 @@ class ChroniclesController < ApplicationController
   def create_permission
     unless current_user.super_user?
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :controller => "chronicles"
+      redirect_to chronicles_path
     end
   end
   
@@ -104,7 +104,7 @@ class ChroniclesController < ApplicationController
   def destroy_permission
     unless @chronicle.can_destroy_as_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :action => :index
+      redirect_to chronicles_path
     end
   end
 end

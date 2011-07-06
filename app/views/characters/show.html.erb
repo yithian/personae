@@ -291,11 +291,11 @@
       <h3>Forms</h3>
         <table id="woof_forms" class="five_cells">
           <tr>
-	    <th><%= link_to "Hishu", {:action => :shapeshift, :id => @character.id, :form => "hishu"}, :remote => true, :class => "selected" %></th>
-	    <th><%= link_to "Dalu", {:action => :shapeshift, :id => @character.id, :form => "dalu"}, :remote => true %></th>
-	    <th><%= link_to "Gauru", {:action => :shapeshift, :id => @character.id, :form => "gauru"}, :remote => true %></th>
-	    <th><%= link_to "Urshul", {:action => :shapeshift, :id => @character.id, :form => "urshul"}, :remote => true %></th>
-	    <th><%= link_to "Urhan", {:action => :shapeshift, :id => @character.id, :form => "urhan"}, :remote => true %></th>
+	    <th><%= link_to "Hishu", shapeshift_character_path(:form => "hishu"), :remote => true, :class => "selected" %></th>
+	    <th><%= link_to "Dalu", shapeshift_character_path(:form => "dalu"), :remote => true %></th>
+	    <th><%= link_to "Gauru", shapeshift_character_path(:form => "gauru"), :remote => true %></th>
+	    <th><%= link_to "Urshul", shapeshift_character_path(:form => "urshul"), :remote => true %></th>
+	    <th><%= link_to "Urhan", shapeshift_character_path(:form => "urhan"), :remote => true %></th>
           </tr>
           <tr>
             <td></td>
@@ -556,6 +556,6 @@
 
 <%= render :partial => 'comments' %><br />
 
-<%= link_to("Toggle preview", {:action => :preview, :id => @character.id}, :remote => true) + " | " if @character.can_edit_as_user?(current_user) %>
+<%= link_to("Toggle preview", preview_character_path(@character), :remote => true) + " | " if @character.can_edit_as_user?(current_user) %>
 <%= link_to('Edit', edit_character_path(@character)) + " | " if @character.can_edit_as_user?(current_user)%>
 <%= link_to 'Destroy', @character, :confirm => 'Are you sure you want to delete this character?', :method => :delete if @character.can_destroy_as_user?(current_user) %>
