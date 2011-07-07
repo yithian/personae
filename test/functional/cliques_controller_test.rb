@@ -13,7 +13,7 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "shouldn't get index" do
     get :index
-    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
@@ -26,7 +26,7 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "shouldn't get new" do
     get :new
-    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
@@ -46,7 +46,7 @@ class CliquesControllerTest < ActionController::TestCase
       post :create, :clique => { :name => "unique" }
     end
 
-    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
@@ -75,7 +75,7 @@ class CliquesControllerTest < ActionController::TestCase
   test "shouldn't show clique" do
     # not logged in
     get :show, :id => cliques(:one).to_param
-    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
 
     sign_in(users(:one))
@@ -131,7 +131,7 @@ class CliquesControllerTest < ActionController::TestCase
   test "shouldn't update clique" do
     # shouldn't update when not logged in
     put :update, :id => cliques(:one).to_param, :clique => { }
-    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
     
     # shouldn't update as non-owning user
@@ -166,7 +166,7 @@ class CliquesControllerTest < ActionController::TestCase
       delete :destroy, :id => cliques(:one).to_param
     end
 
-    assert_response :redirect
+    assert_redirected_to new_user_session_path
 
     # shouldn't destroy as non-owning user
     sign_in(users(:two))

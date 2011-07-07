@@ -13,14 +13,14 @@ class CommentsControllerTest < ActionController::TestCase
   test "shouldn't get new" do
     # when not logged in
     get :new, :character_id => characters(:one).id
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
 
     sign_in(users(:one))
 
     # character two isn't visible
     get :new, :character_id => characters(:two).id
-    assert_redirected_to :controller => "characters", :action => "index"
+    assert_redirected_to characters_path
   end
   
   test "should create comment" do
@@ -29,7 +29,7 @@ class CommentsControllerTest < ActionController::TestCase
     assert_difference('Comment.count', 1, :message => "didn't create comment") do
       post :create, { :character_id => characters(:one).id, :comment => { :character_id => characters(:one).id, :user_id => users(:one).id, :speaker => characters(:one).name, :body => "some words" } }
     end
-    assert_redirected_to :controller => "characters", :action => "show", :id => characters(:one).id
+    assert_redirected_to character_path(characters(:one))
   end
 
   test "shouldn't create comment" do
@@ -37,7 +37,7 @@ class CommentsControllerTest < ActionController::TestCase
     assert_no_difference('Comment.count', "got past authentication") do
       post :create, { :character_id => characters(:one).id, :comment => { :character_id => characters(:one).id, :user_id => users(:one).id, :speaker => characters(:one).name, :body => "some words" } }
     end
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
 
     # character two isn't visible
@@ -46,7 +46,7 @@ class CommentsControllerTest < ActionController::TestCase
     assert_no_difference('Comment.count', "commented on character that shouldn't be visible") do
       post :create, { :character_id => characters(:two).id, :comment => { :character_id => characters(:two).id, :user_id => users(:one).id, :speaker => characters(:one).name, :body => "some words" } }
     end
-    assert_redirected_to :controller => "characters", :action => "index"
+    assert_redirected_to characters_path
   end
 
   test "should destroy comment" do
@@ -72,7 +72,7 @@ class CommentsControllerTest < ActionController::TestCase
     assert_no_difference('Comment.count', "got past authentication") do
       delete :destroy, :id => comments(:one).id, :character_id => characters(:one).id
     end
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
     
     # destroy other user's comment

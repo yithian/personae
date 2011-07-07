@@ -13,7 +13,7 @@ class ChroniclesControllerTest < ActionController::TestCase
 
   test "shouldn't get index" do
     get :index
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_nil assigns(:chronicles), "got past authentication"
   end
 
@@ -33,7 +33,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   test "shouldn't get new" do
     #not logged in
     get :new
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
   end
 
@@ -72,7 +72,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   
   test "shouldn't show chronicle" do
     get :show, :id => chronicles(:one).to_param
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
   end
 
@@ -85,7 +85,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   
   test "shouldn't get edit" do
     get :edit, :id => chronicles(:one).to_param
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
     sign_in(users(:one))
@@ -105,7 +105,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   test "shouldn't update chronicle" do
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
     sign_in(users(:one))
@@ -130,7 +130,7 @@ class ChroniclesControllerTest < ActionController::TestCase
       delete :destroy, :id => chronicles(:one).to_param
     end
     
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
     sign_in(users(:one))
