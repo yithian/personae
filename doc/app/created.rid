@@ -1,20 +1,21 @@
-Thu, 30 Jun 2011 13:53:33 -0400
+Thu, 07 Jul 2011 16:24:54 -0400
 doc/README_FOR_APP	Mon, 06 Jun 2011 12:43:26 -0400
-app/controllers/admin_controller.rb	Thu, 30 Jun 2011 13:52:21 -0400
-app/controllers/application_controller.rb	Thu, 30 Jun 2011 13:53:22 -0400
-app/controllers/characters_controller.rb	Thu, 23 Jun 2011 22:24:46 -0400
-app/controllers/chronicles_controller.rb	Thu, 23 Jun 2011 22:01:41 -0400
-app/controllers/cliques_controller.rb	Thu, 23 Jun 2011 22:00:33 -0400
-app/controllers/comments_controller.rb	Mon, 06 Jun 2011 17:27:55 -0400
-app/controllers/ideologies_controller.rb	Thu, 30 Jun 2011 13:52:21 -0400
-app/helpers/admin_helper.rb	Thu, 30 Jun 2011 13:52:21 -0400
+app/controllers/admin_controller.rb	Thu, 07 Jul 2011 15:48:47 -0400
+app/controllers/application_controller.rb	Thu, 07 Jul 2011 16:19:13 -0400
+app/controllers/characters_controller.rb	Thu, 07 Jul 2011 15:44:57 -0400
+app/controllers/chronicles_controller.rb	Thu, 07 Jul 2011 15:35:22 -0400
+app/controllers/cliques_controller.rb	Thu, 07 Jul 2011 15:31:13 -0400
+app/controllers/comments_controller.rb	Thu, 07 Jul 2011 14:21:44 -0400
+app/controllers/ideologies_controller.rb	Thu, 07 Jul 2011 15:18:49 -0400
+app/helpers/admin_helper.rb	Thu, 07 Jul 2011 16:24:44 -0400
 app/helpers/application_helper.rb	Sun, 05 Jun 2011 23:15:41 -0400
 app/helpers/characters_helper.rb	Sat, 11 Jun 2011 10:28:34 -0400
 app/helpers/chronicles_helper.rb	Sun, 05 Jun 2011 23:15:41 -0400
 app/helpers/cliques_helper.rb	Sun, 05 Jun 2011 23:15:41 -0400
 app/helpers/comment_helper.rb	Sun, 05 Jun 2011 23:15:41 -0400
 app/helpers/ideologies_helper.rb	Sun, 05 Jun 2011 23:15:41 -0400
-app/models/character.rb	Thu, 30 Jun 2011 13:52:21 -0400
+app/models/ability.rb	Thu, 07 Jul 2011 16:22:11 -0400
+app/models/character.rb	Wed, 06 Jul 2011 20:11:21 -0400
 app/models/chronicle.rb	Thu, 30 Jun 2011 13:52:21 -0400
 app/models/clique.rb	Thu, 30 Jun 2011 13:52:21 -0400
 app/models/comment.rb	Thu, 30 Jun 2011 13:52:21 -0400

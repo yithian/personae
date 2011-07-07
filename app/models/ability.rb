@@ -1,6 +1,13 @@
+# This class handles authorization via the CanCan gem. The only real
+# contents of it is Ability.initialize(user), which contains the
+# authorization permissions settings.
+
 class Ability
   include CanCan::Ability
 
+  # Contains the authorization permissions map for user objects. As
+  # of now, the only two roles are admin and !admin, whose permissions
+  # are defined inside.
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
