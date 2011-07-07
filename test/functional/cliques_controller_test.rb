@@ -109,7 +109,7 @@ class CliquesControllerTest < ActionController::TestCase
     
     get :edit, :id => cliques(:two).to_param
     assert_response :redirect
-    assert_equal "You don't have permission to do that", flash[:notice], "got edit as non-owning user"
+    assert_equal "Access denied!", flash[:error], "got edit as non-owning user"
   end
 
   test "should update clique" do
@@ -139,7 +139,7 @@ class CliquesControllerTest < ActionController::TestCase
     
     put :update, :id => cliques(:two).to_param, :clique => { }
     assert_redirected_to clique_path(cliques(:two))
-    assert_equal "You don't have permission to do that", flash[:notice], "clique was updated"
+    assert_equal "Access denied!", flash[:error], "clique was updated"
   end
 
   test "should destroy clique" do
@@ -175,6 +175,7 @@ class CliquesControllerTest < ActionController::TestCase
       delete :destroy, :id => cliques(:one).to_param
     end
 
-    assert_redirected_to cliques_path
+    assert_redirected_to clique_path(cliques(:one))
+    assert_equal("Access denied!", flash[:error])
   end
 end

@@ -2,8 +2,8 @@
 
 class IdeologiesController < ApplicationController
   respond_to :html, :xml
+  load_and_authorize_resource
   before_filter :find_ideology, :only => [:new, :show, :edit, :update, :destroy]
-  before_filter :permission, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :show_permission, :only => [:show]
   before_filter :set_params, :onlye => [:new]
   before_filter :find_lists, :only => [:new, :create, :edit, :update]

@@ -2,10 +2,9 @@
 
 class CliquesController < ApplicationController
   respond_to :html, :xml
+  load_and_authorize_resource
   before_filter :find_clique, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :show_permission, :only => ["show"]
-  before_filter :edit_permission, :only => ["edit", "update"]
-  before_filter :destroy_permission, :only => ["destroy"]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
   
@@ -114,22 +113,6 @@ class CliquesController < ApplicationController
   # Allows or denies access to a clique page based on Clique#is_known_to_user?
   def show_permission
     unless @clique.is_known_to_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to cliques_path
-    end
-  end
-  
-  # Allows or denies access to edit a clique based on Clique#can_edit_as_user?
-  def edit_permission
-    unless @clique.can_edit_as_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to clique_path(@clique)
-    end
-  end
-  
-  # Allows or denies access to destroy a clique based on Clique#can_destroy_as_user?
-  def destroy_permission
-    unless @clique.can_destroy_as_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
       redirect_to cliques_path
     end

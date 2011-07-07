@@ -35,8 +35,8 @@ class IdeologiesControllerTest < ActionController::TestCase
     sign_in(users(:one))
 
     get :new
-    assert_redirected_to :action => :index
-    assert_equal "You don't have permission to do that", flash[:notice], "got new as user"
+    assert_redirected_to ideologies_path
+    assert_equal "Access denied!", flash[:error], "got new as user"
   end
 
   test "should create ideology" do
@@ -63,8 +63,8 @@ class IdeologiesControllerTest < ActionController::TestCase
     assert_no_difference('Ideology.count') do
       post :create, :ideology => { :name => "test" }
     end
-    assert_redirected_to :controller => :ideologies, :action => :index
-    assert_equal "You don't have permission to do that", flash[:notice], "created ideology as user"
+    assert_redirected_to ideologies_path
+    assert_equal "Access denied!", flash[:error], "created ideology as user"
   end
 
   test "should show ideology" do
@@ -111,8 +111,8 @@ class IdeologiesControllerTest < ActionController::TestCase
     sign_in(users(:one))
 
     get :edit, :id => ideologies(:one).to_param
-    assert_redirected_to :action => :index
-    assert_equal "You don't have permission to do that", flash[:notice], "got edit for ideology as user"
+    assert_redirected_to ideology_path(ideologies(:one))
+    assert_equal "Access denied!", flash[:error], "got edit for ideology as user"
   end
 
   test "should update ideology" do
@@ -128,7 +128,8 @@ class IdeologiesControllerTest < ActionController::TestCase
 
     sign_in(users(:one))
     put :update, :id => ideologies(:one).to_param, :ideology => { }
-    assert_redirected_to :action => :index
+    assert_equal("Access denied!", flash[:error], "updated ideology as user")
+    assert_redirected_to ideology_path(ideologies(:one))
   end
 
   test "should destroy ideology" do
@@ -154,6 +155,7 @@ class IdeologiesControllerTest < ActionController::TestCase
     assert_no_difference('Ideology.count', "user destroyed ideology") do
       delete :destroy, :id => ideologies(:one).to_param
     end
-    assert_equal "You don't have permission to do that", flash[:notice]
+    assert_redirected_to ideology_path(ideologies(:one))
+    assert_equal "Access denied!", flash[:error]
   end
 end

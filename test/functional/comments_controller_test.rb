@@ -82,6 +82,6 @@ class CommentsControllerTest < ActionController::TestCase
       delete :destroy, :id => comments(:one).id, :character_id => characters(:one).id
     end
     assert_redirected_to character_path(characters(:one))
-    assert_equal "You don't have permission to do that", flash[:notice]
+    assert_equal "Access denied!", flash[:error]
   end
 end

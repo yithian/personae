@@ -12,7 +12,7 @@ class AdminControllerTest < ActionController::TestCase
     
     get :manage
     assert_redirected_to root_path
-    assert_equal "You don't have permission to do that", flash[:notice]
+    assert_equal "Access denied!", flash[:error]
   end
   
   test "should get manage" do
@@ -31,7 +31,7 @@ class AdminControllerTest < ActionController::TestCase
     
     put :manage
     assert_redirected_to root_path
-    assert_equal "You don't have permission to do that", flash[:notice]
+    assert_equal "Access denied!", flash[:error]
   end
   
   test "should put manage" do

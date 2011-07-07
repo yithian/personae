@@ -22,6 +22,12 @@ class ChroniclesControllerTest < ActionController::TestCase
     
     get :new
     assert_response :success
+    
+    #logged in as user
+    sign_in(users(:one))
+    
+    get :new
+    assert_response :success
   end
   
   test "shouldn't get new" do
@@ -29,12 +35,6 @@ class ChroniclesControllerTest < ActionController::TestCase
     get :new
     assert_redirected_to :controller => "users", :action => "sign_in"
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
-    
-    #logged in as user
-    sign_in(users(:one))
-    
-    get :new
-    assert_response :redirect, @response.body
   end
 
   test "should create chronicle" do
@@ -45,6 +45,13 @@ class ChroniclesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to chronicle_path(assigns(:chronicle))
+    
+    sign_in(users(:one))
+    assert_difference('Chronicle.count') do
+      post :create, :chronicle => { :name => "Other" }
+    end
+
+    assert_redirected_to chronicle_path(assigns(:chronicle))
   end
   
   test "shouldn't create chronicle" do
@@ -52,16 +59,8 @@ class ChroniclesControllerTest < ActionController::TestCase
       post :create, :chronicle => { :name => "Unique" }
     end
 
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
-    
-    sign_in(users(:one))
-    assert_no_difference('Chronicle.count') do
-      post :create, :chronicle => { :name => "Unique" }
-    end
-
-    assert_redirected_to :controller => "chronicles"
-    assert_equal("You don't have permission to do that", flash[:notice])
   end
 
   test "should show chronicle" do
@@ -92,8 +91,8 @@ class ChroniclesControllerTest < ActionController::TestCase
     sign_in(users(:one))
     get :edit, :id => chronicles(:one).to_param
     
-    assert_redirected_to :controller => "chronicles", :action => "show", :id => chronicles(:one)
-    assert_equal("You don't have permission to do that", flash[:notice])
+    assert_redirected_to chronicle_path(chronicles(:one))
+    assert_equal("Access denied!", flash[:error])
   end
 
   test "should update chronicle" do
@@ -112,8 +111,8 @@ class ChroniclesControllerTest < ActionController::TestCase
     sign_in(users(:one))
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     
-    assert_redirected_to :controller => "chronicles", :action => "show", :id => chronicles(:one)
-    assert_equal("You don't have permission to do that", flash[:notice])
+    assert_redirected_to chronicle_path(chronicles(:one))
+    assert_equal("Access denied!", flash[:error])
   end
 
   test "should destroy chronicle" do
@@ -140,7 +139,7 @@ class ChroniclesControllerTest < ActionController::TestCase
       delete :destroy, :id => chronicles(:one).to_param
     end
     
-    assert_redirected_to :action => "index"
-    assert_equal("You don't have permission to do that", flash[:notice])
+    assert_redirected_to chronicle_path(chronicles(:one))
+    assert_equal("Access denied!", flash[:error])
   end
 end

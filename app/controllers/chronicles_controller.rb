@@ -2,10 +2,8 @@
 
 class ChroniclesController < ApplicationController
   respond_to :html, :xml
+  load_and_authorize_resource
   before_filter :find_chronicle, :only => [:new, :show, :edit, :update, :destroy]
-  before_filter :create_permission, :only => [:new, :create]
-  before_filter :edit_permission, :only => [:edit, :update]
-  before_filter :destroy_permission, :only => [:destroy]
   
   # GET /chronicles
   # GET /chronicles.xml
@@ -78,33 +76,6 @@ class ChroniclesController < ApplicationController
       @chronicle = Chronicle.new
     else
       @chronicle = Chronicle.find_by_id(params[:id])
-    end
-  end
-  
-  # Allows or denies access to create a new chronicle based on
-  # wether or not the user is Storyteller
-  def create_permission
-    unless current_user.super_user?
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to chronicles_path
-    end
-  end
-  
-  # Allows or denies access to create a new chronicle based on
-  # Chronicle#can_edit_as_user?
-  def edit_permission
-    unless @chronicle.can_edit_as_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to chronicle_path(@chronicle)
-    end
-  end
-  
-  # Allows or denies access to create a new chronicle based on
-  # Chronicle#can_destroy_as_user?
-  def destroy_permission
-    unless @chronicle.can_destroy_as_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to chronicles_path
     end
   end
 end
