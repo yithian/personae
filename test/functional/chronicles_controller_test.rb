@@ -4,17 +4,14 @@ class ChroniclesControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   
   test "should get index" do
+    get :index
+    assert_response :success, @response
+
     sign_in(users(:Storyteller))
     
     get :index
     assert_response :success
     assert_not_nil(assigns(:chronicles), "no chronicles assigned")
-  end
-
-  test "shouldn't get index" do
-    get :index
-    assert_redirected_to new_user_session_path
-    assert_nil assigns(:chronicles), "got past authentication"
   end
 
   test "should get new" do
