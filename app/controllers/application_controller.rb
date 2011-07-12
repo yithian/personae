@@ -27,10 +27,13 @@ class ApplicationController < ActionController::Base
   end
   
   protected
+  # allows access to helper methods. example:
+  # help.selected_chronicle_id(user, session)
   def help
     Helper.instance
   end
   
+  # exists only to allow access to helper methods
   class Helper
     include Singleton
     include ApplicationHelper
