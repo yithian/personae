@@ -51,6 +51,11 @@ class CharactersControllerTest < ActionController::TestCase
   end
 
   test "should show character" do
+    # not logged in
+    get :show, :id => characters(:one).to_param
+
+    assert_response :succes, @response
+
     # ST can see all characters
     sign_in(users(:Storyteller))
 
@@ -65,12 +70,6 @@ class CharactersControllerTest < ActionController::TestCase
   end
 
   test "shouldn't show character" do
-    # not logged in
-    get :show, :id => characters(:one).to_param
-
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
-
     # can't see hidden character
     sign_in(users(:one))
 

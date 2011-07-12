@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   load_and_authorize_resource
   before_filter :find_character, :only => [:new, :create, :destroy]
   before_filter :find_comment, :only => ["new", "destroy"]
-  before_filter :destroy_permission, :only => ["destroy"]
 
   # GET /characters/comments/new
   # GET /characters/comments/new.xml
@@ -54,15 +53,6 @@ class CommentsController < ApplicationController
       @comment = @character.comments.build
     else
       @comment = Comment.find(params[:id])
-    end
-  end
-
-  # Allows or denies access to destroy a comment based on
-  # Comment#can_edit_as_user?
-  def destroy_permission
-    unless @comment.can_edit_as_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to character_path(@character)
     end
   end
 end
