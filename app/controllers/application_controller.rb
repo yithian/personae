@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
     
     case exception.subject.class.name
     when "Symbol" # The admin controller has no model, and thus appears as a symbol
-      target = root_path
+      if user_signed_in?
+        target = root_path
+      else
+        target = new_user_session_path
+      end
     when "Comment"
       target = character_path(exception.subject.character)
     else
