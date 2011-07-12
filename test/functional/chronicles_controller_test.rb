@@ -64,16 +64,13 @@ class ChroniclesControllerTest < ActionController::TestCase
   end
 
   test "should show chronicle" do
+    get :show, :id => chronicles(:one).to_param
+    assert_response :success, @response
+
     sign_in(users(:one))
     
     get :show, :id => chronicles(:one).to_param
     assert_response :success
-  end
-  
-  test "shouldn't show chronicle" do
-    get :show, :id => chronicles(:one).to_param
-    assert_redirected_to new_user_session_path
-    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
   end
 
   test "should get edit" do
