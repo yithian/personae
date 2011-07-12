@@ -153,12 +153,12 @@ class CharactersController < ApplicationController
   # chronicle and splat.
   def find_lists
     if params[:chronicle_id]
-      @clique_list = Clique.known_to current_user, params[:chronicle_id].collect do |clique|
-      [c.name, c.id]
+      @clique_list = Clique.known_to(current_user, params[:chronicle_id]).collect do |clique|
+      [clique.name, clique.id]
     end
     else
-      @clique_list = Clique.known_to current_user.collect do |clique|
-      [c.name, c.id]
+      @clique_list = Clique.known_to(current_user).collect do |clique|
+      [clique.name, clique.id]
     end
     end
     
