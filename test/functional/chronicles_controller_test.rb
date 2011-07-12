@@ -10,7 +10,7 @@ class ChroniclesControllerTest < ActionController::TestCase
     sign_in(users(:Storyteller))
     
     get :index
-    assert_response :success
+    assert_response :success, @response
     assert_not_nil(assigns(:chronicles), "no chronicles assigned")
   end
 
@@ -18,13 +18,13 @@ class ChroniclesControllerTest < ActionController::TestCase
     sign_in(users(:Storyteller))
     
     get :new
-    assert_response :success
+    assert_response :success, @response
     
     #logged in as user
     sign_in(users(:one))
     
     get :new
-    assert_response :success
+    assert_response :success, @response
   end
   
   test "shouldn't get new" do
@@ -67,14 +67,14 @@ class ChroniclesControllerTest < ActionController::TestCase
     sign_in(users(:one))
     
     get :show, :id => chronicles(:one).to_param
-    assert_response :success
+    assert_response :success, @response
   end
 
   test "should get edit" do
     sign_in(users(:Storyteller))
     
     get :edit, :id => chronicles(:one).to_param
-    assert_response :success
+    assert_response :success, @response
   end
   
   test "shouldn't get edit" do
