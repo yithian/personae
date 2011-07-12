@@ -2,7 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   check_authorization :unless => :devise_controller?
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -20,5 +20,15 @@ class ApplicationController < ActionController::Base
     end
     
     redirect_to target
+  end
+  
+  protected
+  def help
+    Helper.instance
+  end
+  
+  class Helper
+    include Singleton
+    include ApplicationHelper
   end
 end

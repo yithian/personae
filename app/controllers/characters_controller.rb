@@ -13,8 +13,7 @@ class CharactersController < ApplicationController
   def index
     @chronicles = Chronicle.all.collect
     
-    @characters = Character.find_all_by_chronicle_id(current_user.selected_chronicle.id, :order => "clique_id ASC").collect { |c| c if c.show_name_to_user?(current_user) }
-    @characters.delete_if { |c| c == nil }
+    @characters = Character.known_to(current_user)
 
     respond_with @characters
   end

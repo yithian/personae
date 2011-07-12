@@ -12,24 +12,24 @@ class Ideology < ActiveRecord::Base
   # Returns true if the logged in user can see any characters with this ideology.
   def is_known_to_user?(user)
     known_ideology = false
-    known_ideology = true if user.admin?
+    known_ideology = true if user and user.admin?
     self.characters.each do |member|
-      known_ideology = true if member.read_ideology and member.show_ideology_to_user?(user)
+      known_ideology = true if member.read_ideology and user and member.show_ideology_to_user?(user)
     end
     User.find_by_id(user).characters.each do |character|
-      known_ideology = true if self == character.ideology
-    end
+      known_ideology = true if self == character.ideology.owner
+    end if user
 
     known_ideology
   end
 
   # Returns true if the logged in user can edit this ideology.
   def can_edit_as_user?(user)
-    user.admin? unless self == Ideology.find_by_name("Mortal")
+    user and user.admin? unless self == Ideology.find_by_name("Mortal")
   end
 
   # Returns true if the logged in user can destroy this ideology.
   def can_destroy_as_user?(user)
-    user.admin? unless self == Ideology.find_by_name("Mortal")
+    user and user.admin? unless self == Ideology.find_by_name("Mortal")
   end
 end

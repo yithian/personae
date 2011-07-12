@@ -4,18 +4,22 @@ class CliquesController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
   before_filter :find_clique, :only => [:new, :show, :edit, :update, :destroy]
-  before_filter :show_permission, :only => ["show"]
+  before_filter :show_permission, :only => [:show]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
   
   # GET /cliques
   # GET /cliques.xml
   def index
+    # Needed for the chronicle drop-down on the index
     @chronicles = Chronicle.all.collect
+    @selected_chronicle = help.selected_chronicle_id(current_user, session)
     
-    @cliques = Clique.find_all_by_chronicle_id(0)
-    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user) }
-    @cliques.delete_if { |c| c == nil }
+    if current_user
+      @cliques = Clique.known_to current_user
+    else
+      @cliques = Clique.known_to User.new, @selected_chronicle
+    end
 
     respond_with @cliques
   end

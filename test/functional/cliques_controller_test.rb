@@ -51,6 +51,10 @@ class CliquesControllerTest < ActionController::TestCase
   end
 
   test "should show clique" do
+    # not logged in
+    get :show, :id => cliques(:one).to_param
+    assert_response :success, @response.body
+    
     # ST sees all cliques
     sign_in(users(:Storyteller))
     
@@ -73,11 +77,6 @@ class CliquesControllerTest < ActionController::TestCase
   end
 
   test "shouldn't show clique" do
-    # not logged in
-    get :show, :id => cliques(:one).to_param
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
-
     sign_in(users(:one))
     
     # clique two has write set to false

@@ -6,4 +6,6 @@
   <%= render :partial => 'list' %>
 </div>
 
-<%= link_to 'New clique', new_clique_path(:chronicle_id => current_user.selected_chronicle.id), :id => "new_link" %>
+<% if can? :create, Clique %>
+  <%= link_to 'New clique', new_clique_path(:chronicle_id => current_user.selected_chronicle.id), :id => "new_link" %>
+<% end %>

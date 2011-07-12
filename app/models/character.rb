@@ -260,8 +260,8 @@ class Character < ActiveRecord::Base
   end
   
   # List characters known to the given user
-  def self.known_to(user)
-    characters = Character.find_all_by_chronicle_id(user.selected_chronicle.id, :order => "clique_id ASC").collect do |c|
+  def self.known_to(user, selected_chronicle=user.selected_chronicle)
+    characters = Character.find_all_by_chronicle_id(selected_chronicle.id, :order => "clique_id ASC").collect do |c|
       c if c.show_name_to_user?(user)
     end
     
@@ -272,6 +272,7 @@ class Character < ActiveRecord::Base
   # Returns true if the character is owned by the logged in user or if the
   # logged in user is the Storyteller.
   def owned_by_user?(user)
+    return false unless user
     user.admin? or self.owner == user
   end
 end

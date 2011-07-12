@@ -20,3 +20,13 @@ two:
   power_stat_name: MyOtherPowerStatName
   fuel_name: MyOtherFuelName
 
+three:
+  name: MyThirdName
+  nature_name: MyThirdNatureName
+  subnature_name: MyThirdSubnatureName
+  clique_name: MyThirdCliqueName
+  ideology_name: MyThirdIdeologyName
+  morality_name: MyThirdMoralityName
+  power_stat_name: MyThirdPowerStatName
+  fuel_name: MyThirdFuelName
+    

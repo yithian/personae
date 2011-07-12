@@ -4,18 +4,11 @@ class IdeologiesControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   test "should get index" do
-    sign_in(users(:one))
+    # sign_in(users(:one))
 
     get :index
     assert_response :success
     assert_not_nil assigns(:ideologies)
-  end
-
-  test "shouldn't get index" do
-    # when not logged in
-    get :index
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
   test "should get new" do
@@ -68,30 +61,15 @@ class IdeologiesControllerTest < ActionController::TestCase
   end
 
   test "should show ideology" do
-    sign_in(users(:Storyteller))
-
-    get :show, :id => ideologies(:one).to_param
-    assert_response :success
-
-    # should get known ideology
-    sign_in(users(:one))
-
-    get :show, :id => ideologies(:one).to_param
-    assert_response :success
-  end
-
-  test "shouldn't show ideology" do
     # when not logged in
-    get :show, :id => ideologies(:one).to_param
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
+    get :show, :id => ideologies(:two).to_param
+    assert_response :success, @response.body
 
-    # shouldn't show unknown ideology
+    # should get ideology
     sign_in(users(:one))
 
-    get :show, :id => ideologies(:two).to_param
-    assert_redirected_to ideologies_path
-    assert_equal "You don't have permission to do that", flash[:notice], "showed unknown ideology"
+    get :show, :id => ideologies(:one).to_param
+    assert_response :success
   end
 
   test "should get edit" do
