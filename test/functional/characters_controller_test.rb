@@ -7,7 +7,7 @@ class CharactersControllerTest < ActionController::TestCase
     sign_in(users(:one))
 
     get :index
-    assert_response :success
+    assert_response :success, @response
     assert_not_nil assigns(:characters)
   end
 
@@ -22,7 +22,7 @@ class CharactersControllerTest < ActionController::TestCase
     sign_in(users(:one))
 
     get :new, :splat_id => splats(:one).id, :nature_id => natures(:one).id, :subnature_id => subnatures(:one).id, :chronicle_id => chronicles(:one).id, :ideology_id => ideologies(:one).id
-    assert_response :success
+    assert_response :success, @response
   end
 
   test "shouldn't get new" do
@@ -60,13 +60,13 @@ class CharactersControllerTest < ActionController::TestCase
     sign_in(users(:Storyteller))
 
     get :show, :id => characters(:two).to_param
-    assert_response :success
+    assert_response :success, @response
 
     # can see own characters
     sign_in(users(:one))
 
     get :show, :id => characters(:one).to_param
-    assert_response :success
+    assert_response :success, @response
   end
 
   test "shouldn't show character" do
@@ -84,13 +84,13 @@ class CharactersControllerTest < ActionController::TestCase
     sign_in(users(:Storyteller))
 
     get :edit, :id => characters(:one).to_param
-    assert_response :success
+    assert_response :success, @response
 
     # can edit own characters
     sign_in(users(:two))
 
     get :edit, :id => characters(:two).to_param
-    assert_response :success
+    assert_response :success, @response
   end
 
   test "shouldn't get edit" do
