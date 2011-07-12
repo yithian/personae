@@ -49,7 +49,7 @@ class CliquesController < ApplicationController
 
   # GET /cliques/1/edit
   def edit
-    respond_with @clique if @clique.can_edit_as_user?(current_user)
+    respond_with @clique
   end
 
   # POST /cliques

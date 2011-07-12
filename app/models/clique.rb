@@ -34,16 +34,6 @@ class Clique < ActiveRecord::Base
     known_clique
   end
 
-  # Returns true if the user can edit the clique.
-  def can_edit_as_user?(user)
-    owned_by_user?(user) or self.write unless self == Clique.find_by_name("Solitary")
-  end
-
-  # Returns true if the user can destroy the clique.
-  def can_destroy_as_user?(user)
-    owned_by_user?(user) unless self == Clique.find_by_name("Solitary")
-  end
-  
   # List cliques konwn to the given user
   # if the user provided is nil, create a new, temporary user
   # as a base
