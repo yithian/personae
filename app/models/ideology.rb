@@ -22,14 +22,4 @@ class Ideology < ActiveRecord::Base
 
     known_ideology
   end
-
-  # Returns true if the logged in user can edit this ideology.
-  def can_edit_as_user?(user)
-    user and user.admin? unless self == Ideology.find_by_name("Mortal")
-  end
-
-  # Returns true if the logged in user can destroy this ideology.
-  def can_destroy_as_user?(user)
-    user and user.admin? unless self == Ideology.find_by_name("Mortal")
-  end
 end
