@@ -38,13 +38,9 @@ class Clique < ActiveRecord::Base
   # if the user provided is nil, create a new, temporary user
   # as a base
   def self.known_to(user, chronicle_id=user.selected_chronicle.id)
-    cliques = Clique.find_all_by_chronicle_id(0).collect do |c|
-      [c.name, c.id]
-    end
+    cliques = Clique.find_all_by_chronicle_id(0)
     
-    cliques = cliques + Clique.find_all_by_chronicle_id(chronicle_id).collect do |c|
-      [c.name, c.id] if c.is_known_to_user?(user)
-    end
+    cliques = cliques + Clique.find_all_by_chronicle_id(chronicle_id)
     
     cliques.delete_if { |c| c == nil }
   end
