@@ -3,7 +3,6 @@ require 'test_helper'
 class AdminControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   
-  # Replace this with your real tests.
   test "shouldn't get manage" do
     get :manage
     assert_redirected_to new_user_session_path
