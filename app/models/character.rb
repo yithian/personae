@@ -247,8 +247,8 @@ class Character < ActiveRecord::Base
   end
   
   # List characters known to the given user
-  def self.known_to(user, selected_chronicle=user.selected_chronicle)
-    characters = Character.find_all_by_chronicle_id(selected_chronicle.id, :order => "clique_id ASC").collect do |c|
+  def self.known_to(user, selected_chronicle=user.selected_chronicle.id)
+    characters = Character.find_all_by_chronicle_id(selected_chronicle, :order => "clique_id ASC").collect do |c|
       c if c.show_name_to_user?(user)
     end
     

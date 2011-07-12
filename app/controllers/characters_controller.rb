@@ -12,8 +12,13 @@ class CharactersController < ApplicationController
   # GET /characters.xml
   def index
     @chronicles = Chronicle.all.collect
+    @selected_chronicle = help.selected_chronicle_id(current_user, session)
     
-    @characters = Character.known_to(current_user)
+    if current_user
+      @characters = Character.known_to current_user
+    else
+      @characters = Character.known_to User.new, @selected_chronicle
+    end
 
     respond_with @characters
   end

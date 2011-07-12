@@ -4,18 +4,15 @@ class CharactersControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   
   test "should get index" do
+    get :index
+    assert_response :success, @response
+    assert_not_nil assigns(:characters)
+
     sign_in(users(:one))
 
     get :index
     assert_response :success, @response
     assert_not_nil assigns(:characters)
-  end
-
-  test "shouldn't get index" do
-    get :index
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
-    assert_nil assigns(:characters), "got past authentication"
   end
 
   test "should get new" do
@@ -54,7 +51,7 @@ class CharactersControllerTest < ActionController::TestCase
     # not logged in
     get :show, :id => characters(:one).to_param
 
-    assert_response :succes, @response
+    assert_response :success, @response
 
     # ST can see all characters
     sign_in(users(:Storyteller))
