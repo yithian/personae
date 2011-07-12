@@ -106,13 +106,15 @@
 
         <ul class="link-list">
         
+          <li><a href="./ApplicationController.html">ApplicationController</a></li>
+        
+          <li><a href="./ApplicationController/Helper.html">ApplicationController::Helper</a></li>
+        
           <li><a href="./Ability.html">Ability</a></li>
         
           <li><a href="./AdminController.html">AdminController</a></li>
         
           <li><a href="./AdminHelper.html">AdminHelper</a></li>
-        
-          <li><a href="./ApplicationController.html">ApplicationController</a></li>
         
           <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
         
@@ -210,7 +212,7 @@
             
             <div class="method-source-code" id="create-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 18</span>
+<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>])
 
@@ -249,7 +251,7 @@
             
             <div class="method-source-code" id="destroy-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 30</span>
+<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">destroy</span>
 
@@ -287,7 +289,7 @@
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 12</span>
+<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@comment</span>
 <span class="ruby-keyword">end</span></pre>
