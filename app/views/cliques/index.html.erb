@@ -1,5 +1,5 @@
 <h3>Chronicle</h3>
-<%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', current_user.selected_chronicle.id), :remote => true, :action => change_chronicle_cliques_path %>
+<%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', selected_chronicle_id(current_user, session)), :remote => true, :action => change_chronicle_cliques_path %>
 
 <h3>Cliques</h3>
 <div id='list'>
@@ -7,5 +7,5 @@
 </div>
 
 <% if can? :create, Clique %>
-  <%= link_to 'New clique', new_clique_path(:chronicle_id => current_user.selected_chronicle.id), :id => "new_link" %>
+  <%= link_to 'New clique', new_clique_path(:chronicle_id => selected_chronicle_id(current_user, session)), :id => "new_link" %>
 <% end %>

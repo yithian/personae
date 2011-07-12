@@ -4,17 +4,14 @@ class CliquesControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   
   test "should get index" do
+    get :index
+    assert_response :success
+
     sign_in(users(:one))
     
     get :index
     assert_response :success
     assert_not_nil assigns(:cliques)
-  end
-
-  test "shouldn't get index" do
-    get :index
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
   test "should get new" do
