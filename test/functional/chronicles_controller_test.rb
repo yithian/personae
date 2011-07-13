@@ -4,37 +4,34 @@ class ChroniclesControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   
   test "should get index" do
+    get :index
+    assert_response :success, @response
+
     sign_in(users(:Storyteller))
     
     get :index
-    assert_response :success
+    assert_response :success, @response
     assert_not_nil(assigns(:chronicles), "no chronicles assigned")
-  end
-
-  test "shouldn't get index" do
-    get :index
-    assert_redirected_to :controller => "users", :action => "sign_in"
-    assert_nil assigns(:chronicles), "got past authentication"
   end
 
   test "should get new" do
     sign_in(users(:Storyteller))
     
     get :new
-    assert_response :success
-  end
-  
-  test "shouldn't get new" do
-    #not logged in
-    get :new
-    assert_redirected_to :controller => "users", :action => "sign_in"
-    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
+    assert_response :success, @response
     
     #logged in as user
     sign_in(users(:one))
     
     get :new
-    assert_response :redirect, @response.body
+    assert_response :success, @response
+  end
+  
+  test "shouldn't get new" do
+    #not logged in
+    get :new
+    assert_redirected_to new_user_session_path
+    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
   end
 
   test "should create chronicle" do
@@ -45,6 +42,13 @@ class ChroniclesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to chronicle_path(assigns(:chronicle))
+    
+    sign_in(users(:one))
+    assert_difference('Chronicle.count') do
+      post :create, :chronicle => { :name => "Other" }
+    end
+
+    assert_redirected_to chronicle_path(assigns(:chronicle))
   end
   
   test "shouldn't create chronicle" do
@@ -52,48 +56,37 @@ class ChroniclesControllerTest < ActionController::TestCase
       post :create, :chronicle => { :name => "Unique" }
     end
 
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
-    
-    sign_in(users(:one))
-    assert_no_difference('Chronicle.count') do
-      post :create, :chronicle => { :name => "Unique" }
-    end
-
-    assert_redirected_to :controller => "chronicles"
-    assert_equal("You don't have permission to do that", flash[:notice])
   end
 
   test "should show chronicle" do
+    get :show, :id => chronicles(:one).to_param
+    assert_response :success, @response
+
     sign_in(users(:one))
     
     get :show, :id => chronicles(:one).to_param
-    assert_response :success
-  end
-  
-  test "shouldn't show chronicle" do
-    get :show, :id => chronicles(:one).to_param
-    assert_redirected_to :controller => "users", :action => "sign_in"
-    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
+    assert_response :success, @response
   end
 
   test "should get edit" do
     sign_in(users(:Storyteller))
     
     get :edit, :id => chronicles(:one).to_param
-    assert_response :success
+    assert_response :success, @response
   end
   
   test "shouldn't get edit" do
     get :edit, :id => chronicles(:one).to_param
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
     sign_in(users(:one))
     get :edit, :id => chronicles(:one).to_param
     
-    assert_redirected_to :controller => "chronicles", :action => "show", :id => chronicles(:one)
-    assert_equal("You don't have permission to do that", flash[:notice])
+    assert_redirected_to chronicle_path(chronicles(:one))
+    assert_equal("Access denied!", flash[:error])
   end
 
   test "should update chronicle" do
@@ -106,14 +99,14 @@ class ChroniclesControllerTest < ActionController::TestCase
   test "shouldn't update chronicle" do
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
     sign_in(users(:one))
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     
-    assert_redirected_to :controller => "chronicles", :action => "show", :id => chronicles(:one)
-    assert_equal("You don't have permission to do that", flash[:notice])
+    assert_redirected_to chronicle_path(chronicles(:one))
+    assert_equal("Access denied!", flash[:error])
   end
 
   test "should destroy chronicle" do
@@ -131,7 +124,7 @@ class ChroniclesControllerTest < ActionController::TestCase
       delete :destroy, :id => chronicles(:one).to_param
     end
     
-    assert_redirected_to :controller => "users", :action => "sign_in"
+    assert_redirected_to new_user_session_path
     assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
     
     sign_in(users(:one))
@@ -140,7 +133,7 @@ class ChroniclesControllerTest < ActionController::TestCase
       delete :destroy, :id => chronicles(:one).to_param
     end
     
-    assert_redirected_to :action => "index"
-    assert_equal("You don't have permission to do that", flash[:notice])
+    assert_redirected_to chronicle_path(chronicles(:one))
+    assert_equal("Access denied!", flash[:error])
   end
 end

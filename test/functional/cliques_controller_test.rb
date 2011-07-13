@@ -4,17 +4,14 @@ class CliquesControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   
   test "should get index" do
+    get :index
+    assert_response :success
+
     sign_in(users(:one))
     
     get :index
     assert_response :success
     assert_not_nil assigns(:cliques)
-  end
-
-  test "shouldn't get index" do
-    get :index
-    assert_redirected_to :controller => :users, :action => :sign_in
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
   test "should get new" do
@@ -26,7 +23,7 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "shouldn't get new" do
     get :new
-    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
@@ -46,11 +43,15 @@ class CliquesControllerTest < ActionController::TestCase
       post :create, :clique => { :name => "unique" }
     end
 
-    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
   end
 
   test "should show clique" do
+    # not logged in
+    get :show, :id => cliques(:one).to_param
+    assert_response :success, @response.body
+    
     # ST sees all cliques
     sign_in(users(:Storyteller))
     
@@ -73,11 +74,6 @@ class CliquesControllerTest < ActionController::TestCase
   end
 
   test "shouldn't show clique" do
-    # not logged in
-    get :show, :id => cliques(:one).to_param
-    assert_redirected_to :controller => :users, :action => :sign_in
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
-
     sign_in(users(:one))
     
     # clique two has write set to false
@@ -109,7 +105,7 @@ class CliquesControllerTest < ActionController::TestCase
     
     get :edit, :id => cliques(:two).to_param
     assert_response :redirect
-    assert_equal "You don't have permission to do that", flash[:notice], "got edit as non-owning user"
+    assert_equal "Access denied!", flash[:error], "got edit as non-owning user"
   end
 
   test "should update clique" do
@@ -131,7 +127,7 @@ class CliquesControllerTest < ActionController::TestCase
   test "shouldn't update clique" do
     # shouldn't update when not logged in
     put :update, :id => cliques(:one).to_param, :clique => { }
-    assert_redirected_to :controller => :users, :action => :sign_in
+    assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
     
     # shouldn't update as non-owning user
@@ -139,7 +135,7 @@ class CliquesControllerTest < ActionController::TestCase
     
     put :update, :id => cliques(:two).to_param, :clique => { }
     assert_redirected_to clique_path(cliques(:two))
-    assert_equal "You don't have permission to do that", flash[:notice], "clique was updated"
+    assert_equal "Access denied!", flash[:error], "clique was updated"
   end
 
   test "should destroy clique" do
@@ -166,7 +162,7 @@ class CliquesControllerTest < ActionController::TestCase
       delete :destroy, :id => cliques(:one).to_param
     end
 
-    assert_response :redirect
+    assert_redirected_to new_user_session_path
 
     # shouldn't destroy as non-owning user
     sign_in(users(:two))
@@ -175,6 +171,7 @@ class CliquesControllerTest < ActionController::TestCase
       delete :destroy, :id => cliques(:one).to_param
     end
 
-    assert_redirected_to cliques_path
+    assert_redirected_to clique_path(cliques(:one))
+    assert_equal("Access denied!", flash[:error])
   end
 end

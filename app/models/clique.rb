@@ -24,34 +24,23 @@ class Clique < ActiveRecord::Base
   # also can see which clique they belong to.
   def is_known_to_user?(user)
     known_clique = false
-    known_clique = true if user.admin? or self.owner == user or self.write or self == Clique.find_by_name("Solitary")
+    # TODO: cliques with write=true shouldn't be editable by all users
+    known_clique = true if self.write or (user and user.admin?) or (user and self.owner == user) or self == Clique.find_by_name("Solitary")
 
     self.characters.each do |member|
-      known_clique = true if member.read_clique and member.show_clique_to_user?(user)
+      known_clique = true if member.show_clique_to_user?(user)
     end
 
     known_clique
   end
 
-  # Returns true if the user can edit the clique.
-  def can_edit_as_user?(user)
-    owned_by_user?(user) or self.write unless self == Clique.find_by_name("Solitary")
-  end
-
-  # Returns true if the user can destroy the clique.
-  def can_destroy_as_user?(user)
-    owned_by_user?(user) unless self == Clique.find_by_name("Solitary")
-  end
-  
   # List cliques konwn to the given user
+  # if the user provided is nil, create a new, temporary user
+  # as a base
   def self.known_to(user, chronicle_id=user.selected_chronicle.id)
-    cliques = Clique.find_all_by_chronicle_id(0).collect do |c|
-      [c.name, c.id]
-    end
+    cliques = Clique.find_all_by_chronicle_id(0)
     
-    cliques = cliques + Clique.find_all_by_chronicle_id(chronicle_id).collect do |c|
-      [c.name, c.id] if c.is_known_to_user?(user)
-    end
+    cliques = cliques + Clique.find_all_by_chronicle_id(chronicle_id)
     
     cliques.delete_if { |c| c == nil }
   end
@@ -60,6 +49,7 @@ class Clique < ActiveRecord::Base
   # the Storyteller.
   private
   def owned_by_user?(user)
+    return false unless user
     self.owner == user or user.admin?
   end
 end

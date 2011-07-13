@@ -2,10 +2,9 @@
 
 class IdeologiesController < ApplicationController
   respond_to :html, :xml
+  load_and_authorize_resource
   before_filter :find_ideology, :only => [:new, :show, :edit, :update, :destroy]
-  before_filter :permission, :only => [:new, :create, :edit, :update, :destroy]
-  before_filter :show_permission, :only => [:show]
-  before_filter :set_params, :onlye => [:new]
+  before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :create, :edit, :update]
   
   # GET /ideologies
@@ -91,23 +90,5 @@ class IdeologiesController < ApplicationController
   # Creates a list of all splats. Used to create a new ideology.
   def find_lists
     @splat_list = Splat.all.collect
-  end
-
-  # Allows or denies access to create, edit or destroy an ideology
-  # based on wether or not the user is the Storyteller user.
-  def permission
-    unless current_user.admin?
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to ideologies_path
-    end
-  end
-  
-  # Allows or denies access to an ideology page based on
-  # Ideology.is_known_to_user?
-  def show_permission
-    unless @ideology.is_known_to_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to ideologies_path
-    end
   end
 end

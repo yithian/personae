@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   
   # Clean up after the deletion of a non-Storyteller user
   before_destroy do |user|
-    if user.admin?
+    if user.name == "Storyteller"
       raise "Can't delete the Storyteller user"
     end
 

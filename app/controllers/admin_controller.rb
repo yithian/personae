@@ -2,8 +2,8 @@
 # functions, such as managing users with admin access.
 
 class AdminController < ApplicationController
-  before_filter :permission, :only => [ :manage ]
   respond_to :html, :xml
+  load_and_authorize_resource :class => false
   
   # GET /admin/manage
   # GET /admin/manage.xml
@@ -28,13 +28,5 @@ class AdminController < ApplicationController
     @users = User.all.delete_if { |u| u.name == "Storyteller" }
     
     respond_with @users
-  end
-  
-  private
-  def permission
-    unless current_user.admin?
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to root_path
-    end
   end
 end

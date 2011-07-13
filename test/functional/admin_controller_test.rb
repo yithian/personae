@@ -3,7 +3,6 @@ require 'test_helper'
 class AdminControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   
-  # Replace this with your real tests.
   test "shouldn't get manage" do
     get :manage
     assert_redirected_to new_user_session_path
@@ -12,7 +11,7 @@ class AdminControllerTest < ActionController::TestCase
     
     get :manage
     assert_redirected_to root_path
-    assert_equal "You don't have permission to do that", flash[:notice]
+    assert_equal "Access denied!", flash[:error]
   end
   
   test "should get manage" do
@@ -31,7 +30,7 @@ class AdminControllerTest < ActionController::TestCase
     
     put :manage
     assert_redirected_to root_path
-    assert_equal "You don't have permission to do that", flash[:notice]
+    assert_equal "Access denied!", flash[:error]
   end
   
   test "should put manage" do

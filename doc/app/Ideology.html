@@ -106,11 +106,15 @@
 
         <ul class="link-list">
         
+          <li><a href="./ApplicationController.html">ApplicationController</a></li>
+        
+          <li><a href="./ApplicationController/Helper.html">ApplicationController::Helper</a></li>
+        
+          <li><a href="./Ability.html">Ability</a></li>
+        
           <li><a href="./AdminController.html">AdminController</a></li>
         
           <li><a href="./AdminHelper.html">AdminHelper</a></li>
-        
-          <li><a href="./ApplicationController.html">ApplicationController</a></li>
         
           <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
         
@@ -213,7 +217,7 @@ motivations.</p>
 <pre>
 <span class="ruby-comment"># File app/models/ideology.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">can_destroy_as_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin?</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">&quot;Mortal&quot;</span>)
+  <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin?</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">&quot;Mortal&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
             </div><!-- can_destroy_as_user-3F-source -->
             
@@ -246,7 +250,7 @@ motivations.</p>
 <pre>
 <span class="ruby-comment"># File app/models/ideology.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">can_edit_as_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin?</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">&quot;Mortal&quot;</span>)
+  <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin?</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">&quot;Mortal&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
             </div><!-- can_edit_as_user-3F-source -->
             
@@ -281,13 +285,13 @@ ideology.</p>
 <span class="ruby-comment"># File app/models/ideology.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">known_ideology</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-identifier">known_ideology</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin?</span>
+  <span class="ruby-identifier">known_ideology</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">known_ideology</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">read_ideology</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">show_ideology_to_user?</span>(<span class="ruby-identifier">user</span>)
+    <span class="ruby-identifier">known_ideology</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">read_ideology</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">show_ideology_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">user</span>).<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">character</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">known_ideology</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">character</span>.<span class="ruby-identifier">ideology</span>
-  <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">known_ideology</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">character</span>.<span class="ruby-identifier">ideology</span>.<span class="ruby-identifier">owner</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>
 
   <span class="ruby-identifier">known_ideology</span>
 <span class="ruby-keyword">end</span></pre>

@@ -1,9 +1,9 @@
 <h3>Chronicle</h3>
-<%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', current_user.selected_chronicle.id), :remote => true, :action => change_chronicle_characters_path %>
+<%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle_id), :remote => true, :action => change_chronicle_characters_path %>
 
 <h3>Characters</h3>
 <div id="list">
   <%= render :partial => 'list' %>
 </div>
 
-<%= link_to 'New character', new_character_path(:chronicle_id => current_user.selected_chronicle_id), :id => "new_link" %><br />
+<%= link_to 'New character', new_character_path(:chronicle_id => @selected_chronicle_id), :id => "new_link" %><br />

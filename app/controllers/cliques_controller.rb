@@ -2,34 +2,42 @@
 
 class CliquesController < ApplicationController
   respond_to :html, :xml
+  load_and_authorize_resource
   before_filter :find_clique, :only => [:new, :show, :edit, :update, :destroy]
-  before_filter :show_permission, :only => ["show"]
-  before_filter :edit_permission, :only => ["edit", "update"]
-  before_filter :destroy_permission, :only => ["destroy"]
+  before_filter :show_permission, :only => [:show]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
   
   # GET /cliques
   # GET /cliques.xml
   def index
+    # Needed for the chronicle drop-down on the index
     @chronicles = Chronicle.all.collect
+    @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
     
-    @cliques = Clique.find_all_by_chronicle_id(0)
-    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user) }
-    @cliques.delete_if { |c| c == nil }
+    if user_signed_in?
+      @cliques = Clique.known_to current_user
+    else
+      @cliques = Clique.known_to User.new, @selected_chronicle_id
+    end
 
     respond_with @cliques
   end
 
   # POST /cliques/change_chronicle
   def change_chronicle
-    current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
-    current_user.save
+    # this bit of weirdness is to ensure the chronicle actually exists
+    @selected_chronicle_id = Chronicle.find_by_id(params[:chronicle_id])
 
-    @chronicle = Chronicle.find_by_id(current_user.selected_chronicle.id)
-    @cliques = Clique.find_all_by_chronicle_id(0)
-    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user) }
-    @cliques.delete_if { |c| c == nil }
+    if user_signed_in?
+      current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
+      current_user.save
+    else
+      session[:selected_chronicle_id] = @selected_chronicle_id
+    end
+
+    @chronicle = Chronicle.find_by_id(@selected_chronicle_id)
+    @cliques = Clique.known_to current_user, @selected_chornicle_id
   end
 
   # GET /cliques/1
@@ -46,7 +54,7 @@ class CliquesController < ApplicationController
 
   # GET /cliques/1/edit
   def edit
-    respond_with @clique if @clique.can_edit_as_user?(current_user)
+    respond_with @clique
   end
 
   # POST /cliques
@@ -114,22 +122,6 @@ class CliquesController < ApplicationController
   # Allows or denies access to a clique page based on Clique#is_known_to_user?
   def show_permission
     unless @clique.is_known_to_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to cliques_path
-    end
-  end
-  
-  # Allows or denies access to edit a clique based on Clique#can_edit_as_user?
-  def edit_permission
-    unless @clique.can_edit_as_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to clique_path(@clique)
-    end
-  end
-  
-  # Allows or denies access to destroy a clique based on Clique#can_destroy_as_user?
-  def destroy_permission
-    unless @clique.can_destroy_as_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
       redirect_to cliques_path
     end

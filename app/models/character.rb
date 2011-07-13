@@ -120,19 +120,6 @@ class Character < ActiveRecord::Base
   validates :obfuscate, :numericality => true
   validates :vigor, :numericality => true
 
-  # Returns true if the character can be altered by the given user
-  def can_edit_as_user?(user)
-    owned_by_user?(user)
-  end
-  
-  # Returns true if the character can be destroyed by the given user. This
-  # currently implemented with the same check as Character#can_edit_as_user? and exists
-  # mostly in case the logic changes in the future. That way, less code will
-  # need to change.
-  def can_destroy_as_user?(user)
-    owned_by_user?(user)
-  end
-  
   # Returns true if the given user has permission to read the character's name.
   # This is also the check used to determine if a character's entry shows up in
   # index and clique pages, etc. Defaults to false.
@@ -260,8 +247,8 @@ class Character < ActiveRecord::Base
   end
   
   # List characters known to the given user
-  def self.known_to(user)
-    characters = Character.find_all_by_chronicle_id(user.selected_chronicle.id, :order => "clique_id ASC").collect do |c|
+  def self.known_to(user, selected_chronicle=user.selected_chronicle.id)
+    characters = Character.find_all_by_chronicle_id(selected_chronicle, :order => "clique_id ASC").collect do |c|
       c if c.show_name_to_user?(user)
     end
     
@@ -272,6 +259,7 @@ class Character < ActiveRecord::Base
   # Returns true if the character is owned by the logged in user or if the
   # logged in user is the Storyteller.
   def owned_by_user?(user)
+    return false unless user
     user.admin? or self.owner == user
   end
 end

@@ -2,9 +2,9 @@
 
 class CharactersController < ApplicationController
   respond_to :html, :xml
+  load_and_authorize_resource
   before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :destroy, :preview]
   before_filter :show_permission, :only => [:show]
-  before_filter :edit_permission, :only => [:edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
   
@@ -12,19 +12,30 @@ class CharactersController < ApplicationController
   # GET /characters.xml
   def index
     @chronicles = Chronicle.all.collect
+    @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
     
-    @characters = Character.find_all_by_chronicle_id(current_user.selected_chronicle.id, :order => "clique_id ASC").collect { |c| c if c.show_name_to_user?(current_user) }
-    @characters.delete_if { |c| c == nil }
+    if user_signed_in?
+      @characters = Character.known_to current_user
+    else
+      @characters = Character.known_to User.new, @selected_chronicle_id
+    end
 
     respond_with @characters
   end
   
   # POST /characters/change_chronicle
   def change_chronicle
-    current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
-    current_user.save
+    # this bit of weirdness is to ensure the chronicle actually exists
+    @selected_chronicle_id = Chronicle.find_by_id(params[:chronicle_id]).id
     
-    @characters = Character.known_to current_user
+    if user_signed_in?
+      current_user.selected_chronicle = Chronicle.find_by_id(@selected_chronicle_id)
+      current_user.save
+    else
+      session[:selected_chronicle_id] = @selected_chronicle_id
+    end
+
+    @characters = Character.known_to current_user, @selected_chronicle_id
   end
 
   # GET /characters/1
@@ -74,7 +85,9 @@ class CharactersController < ApplicationController
   
   # POST /characters/update_chronicle
   def update_chronicle
-    @clique_list = Clique.known_to(current_user, params[:chronicle_id])
+    @clique_list = Clique.known_to(current_user, params[:chronicle_id]).collect do |clique|
+      [c.name, c.id]
+    end
     @chronicle = Chronicle.find_by_id(params[:chronicle_id])
   end
 
@@ -147,9 +160,13 @@ class CharactersController < ApplicationController
   # chronicle and splat.
   def find_lists
     if params[:chronicle_id]
-      @clique_list = Clique.known_to current_user, params[:chronicle_id]
+      @clique_list = Clique.known_to(current_user, params[:chronicle_id]).collect do |clique|
+      [clique.name, clique.id]
+    end
     else
-      @clique_list = Clique.known_to current_user
+      @clique_list = Clique.known_to(current_user).collect do |clique|
+      [clique.name, clique.id]
+    end
     end
     
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect
