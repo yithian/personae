@@ -12,12 +12,12 @@ class CharactersController < ApplicationController
   # GET /characters.xml
   def index
     @chronicles = Chronicle.all.collect
-    @selected_chronicle = help.selected_chronicle_id(current_user, session)
+    @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
     
     if current_user
       @characters = Character.known_to current_user
     else
-      @characters = Character.known_to User.new, @selected_chronicle
+      @characters = Character.known_to User.new, @selected_chronicle_id
     end
 
     respond_with @characters
@@ -25,10 +25,17 @@ class CharactersController < ApplicationController
   
   # POST /characters/change_chronicle
   def change_chronicle
-    current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
-    current_user.save
+    # this bit of weirdness is to ensure the chronicle actually exists
+    @selected_chronicle_id = Chronicle.find_by_id(params[:chronicle_id]).id
     
-    @characters = Character.known_to current_user
+    if user_signed_in?
+      current_user.selected_chronicle = Chronicle.find_by_id(@selected_chronicle_id)
+      current_user.save
+    else
+      session[:selected_chronicle_id] = @selected_chronicle_id
+    end
+
+    @characters = Character.known_to current_user, @selected_chronicle_id
   end
 
   # GET /characters/1
