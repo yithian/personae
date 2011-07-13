@@ -14,7 +14,7 @@ class CharactersController < ApplicationController
     @chronicles = Chronicle.all.collect
     @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
     
-    if current_user
+    if user_signed_in?
       @characters = Character.known_to current_user
     else
       @characters = Character.known_to User.new, @selected_chronicle_id

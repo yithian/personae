@@ -15,7 +15,7 @@ class CliquesController < ApplicationController
     @chronicles = Chronicle.all.collect
     @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
     
-    if current_user
+    if user_signed_in?
       @cliques = Clique.known_to current_user
     else
       @cliques = Clique.known_to User.new, @selected_chronicle_id
