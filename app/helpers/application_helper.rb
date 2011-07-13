@@ -9,6 +9,7 @@ module ApplicationHelper
       user.selected_chronicle.id
     else
       session[:selected_chronicle_id] ||= Chronicle.first.id
+      return session[:selected_chronicle_id]
     end
   end
 end
