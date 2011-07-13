@@ -17,7 +17,7 @@ along with Personae. If not, see <http://www.gnu.org/licenses/>.
 
 Persona is a Ruby on Rails web application designed to hold character sheets
 for the New World of Darkness role playing games by White Wolf. This program is
-designed to contain an entire chronicle's worth of characters and really shines
+designed to contain entire chronicles worth of characters and really shines
 when used for non-player-character sheets as well as the players' characters.
 
 == Terms
@@ -36,29 +36,30 @@ Ideology => Silver Ladder (Mage), Lancae Sanctum (Vampire), Storm Lords
 
 == Setup
 
-Personae uses a single administrator-style account name Storyteller. This
+Personae uses an administrator-style account named Storyteller. This
 account can see all the Characters, Cliques and Ideologies in your game,
 regardless of their display settings. Be careful! The default password for
 this account is worldofdarkness -- please change this once your database is
-set up!
+set up! Once this account is active it can mark any others as admins as
+well. These accounts will have the same permissions as Storyteller.
 
-To run Personae, you must have the following software installed: Ruby, Ruby
-Gems, Ruby on Rails, sqlite3 and ruby-sqlite3 and devise. It is highly
-suggested to use Apache httpd and mod_rails as well.
+To run Personae, you must have the following software installed: Ruby, 
+Ruby on Rails, and sqlite3. It is highly suggested to use Apache httpd and
+mod_rails as well.
 
 If you don't have this software installed, you can download it from
-http://ruby-lang.org http://rubygems.org and http://sqlite.org . Once you have
-Ruby, Ruby Gems and Sqlite3 installed, use Ruby Gems to install Ruby on Rails:
+http://ruby-lang.org and http://sqlite.org . Once you have
+Ruby and Sqlite3 installed, use Ruby Gems to install bundler:
 *nix:
-  gem install rails
+  gem install bundler
 Windows: Start -> Programs -> Ruby -> Ruby Gems -> RubyGems Package Manager.
-  gem install rails
+  gem install bundler
 
-With Ruby on Rails installed, install the rest of the required gems by changing
+With bundler installed, install the rest of the required gems by changing
 into Personae's install directory (from a shell or cmd prompt) and run
   bundle install.
 
-This should install the proper versions of all the gems you'll need.
+This will install the proper versions of all the gems you'll need.
 
 Once you have Personae downloaded and placed where you want it, open a command
 prompt (Terminal on Mac, xterm on Linux, cmd on Windows). Run the following to
