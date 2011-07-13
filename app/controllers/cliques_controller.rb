@@ -13,12 +13,12 @@ class CliquesController < ApplicationController
   def index
     # Needed for the chronicle drop-down on the index
     @chronicles = Chronicle.all.collect
-    @selected_chronicle = help.selected_chronicle_id(current_user, session)
+    @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
     
     if current_user
       @cliques = Clique.known_to current_user
     else
-      @cliques = Clique.known_to User.new, @selected_chronicle
+      @cliques = Clique.known_to User.new, @selected_chronicle_id
     end
 
     respond_with @cliques
@@ -26,13 +26,18 @@ class CliquesController < ApplicationController
 
   # POST /cliques/change_chronicle
   def change_chronicle
-    current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
-    current_user.save
+    # this bit of weirdness is to ensure the chronicle actually exists
+    @selected_chronicle_id = Chronicle.find_by_id(params[:chronicle_id])
 
-    @chronicle = Chronicle.find_by_id(current_user.selected_chronicle.id)
-    @cliques = Clique.find_all_by_chronicle_id(0)
-    @cliques = @cliques + Clique.find_all_by_chronicle_id(current_user.selected_chronicle.id).collect { |c| c if c.is_known_to_user?(current_user) }
-    @cliques.delete_if { |c| c == nil }
+    if user_signed_in?
+      current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
+      current_user.save
+    else
+      session[:selected_chronicle_id] = @selected_chronicle_id
+    end
+
+    @chronicle = Chronicle.find_by_id(@selected_chronicle_id)
+    @cliques = Clique.known_to current_user, @selected_chornicle_id
   end
 
   # GET /cliques/1
