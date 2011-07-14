@@ -3,6 +3,16 @@ require 'test_helper'
 class ChroniclesControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   
+  def assert_login
+    assert_redirected_to new_user_session_path
+    assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
+  end
+
+  def assert_denied
+    assert_redirected_to root_path
+    assert_equal "Access denied!", flash[:error]
+  end
+
   test "should get index" do
     get :index
     assert_response :success, @response
@@ -30,8 +40,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   test "shouldn't get new" do
     #not logged in
     get :new
-    assert_redirected_to new_user_session_path
-    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
+    assert_login
   end
 
   test "should create chronicle" do
@@ -56,18 +65,19 @@ class ChroniclesControllerTest < ActionController::TestCase
       post :create, :chronicle => { :name => "Unique" }
     end
 
-    assert_redirected_to new_user_session_path
-    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
+    assert_login
   end
 
   test "should show chronicle" do
     get :show, :id => chronicles(:one).to_param
     assert_response :success, @response
+    assert_not_nil assigns(:chronicle)
 
     sign_in(users(:one))
     
     get :show, :id => chronicles(:one).to_param
     assert_response :success, @response
+    assert_not_nil assigns(:chronicle)
   end
 
   test "should get edit" do
@@ -75,12 +85,12 @@ class ChroniclesControllerTest < ActionController::TestCase
     
     get :edit, :id => chronicles(:one).to_param
     assert_response :success, @response
+    assert_not_nil assigns(:chronicle)
   end
   
   test "shouldn't get edit" do
     get :edit, :id => chronicles(:one).to_param
-    assert_redirected_to new_user_session_path
-    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
+    assert_login
     
     sign_in(users(:one))
     get :edit, :id => chronicles(:one).to_param
@@ -99,8 +109,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   test "shouldn't update chronicle" do
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     
-    assert_redirected_to new_user_session_path
-    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
+    assert_login
     
     sign_in(users(:one))
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
@@ -124,8 +133,7 @@ class ChroniclesControllerTest < ActionController::TestCase
       delete :destroy, :id => chronicles(:one).to_param
     end
     
-    assert_redirected_to new_user_session_path
-    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
+    assert_login
     
     sign_in(users(:one))
     

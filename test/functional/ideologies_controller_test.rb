@@ -3,11 +3,27 @@ require 'test_helper'
 class IdeologiesControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
+  def assert_login
+    assert_redirected_to new_user_session_path
+    assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
+  end
+
+  def assert_denied
+    assert_redirected_to root_path
+    assert_equal "Access denied!", flash[:error]
+  end
+
   test "should get index" do
     # sign_in(users(:one))
 
     get :index
-    assert_response :success
+    assert_response :success, @response
+    assert_not_nil assigns(:ideologies)
+
+    sign_in(users(:one))
+
+    get :index
+    assert_response :success, @response
     assert_not_nil assigns(:ideologies)
   end
 
@@ -21,8 +37,7 @@ class IdeologiesControllerTest < ActionController::TestCase
   test "shouldn't get new" do
     # when not logged in
     get :new
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
+    assert_login
 
     # or when logged in
     sign_in(users(:one))
@@ -47,8 +62,7 @@ class IdeologiesControllerTest < ActionController::TestCase
     assert_no_difference('Ideology.count', "created when not logged in") do
       post :create, :ideology => { :name => "test" }
     end
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
+    assert_login
 
     # shouldn't create as user
     sign_in(users(:one))
@@ -69,21 +83,20 @@ class IdeologiesControllerTest < ActionController::TestCase
     sign_in(users(:one))
 
     get :show, :id => ideologies(:one).to_param
-    assert_response :success
+    assert_response :success, @response
   end
 
   test "should get edit" do
     sign_in(users(:Storyteller))
 
     get :edit, :id => ideologies(:one).to_param
-    assert_response :success
+    assert_response :success, @response
   end
 
   test "shouldn't get edit" do
     # shouldn't get edit when not logged in
     get :edit, :id => ideologies(:one).to_param
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert], "got past authentication"
+    assert_login
 
     # shouldn't get edit as user
     sign_in(users(:one))
@@ -102,7 +115,7 @@ class IdeologiesControllerTest < ActionController::TestCase
 
   test "shouldn't update ideology" do
     put :update, :id => ideologies(:one).to_param, :ideology => { }
-    assert_redirected_to new_user_session_path
+    assert_login
 
     sign_in(users(:one))
     put :update, :id => ideologies(:one).to_param, :ideology => { }
@@ -125,8 +138,7 @@ class IdeologiesControllerTest < ActionController::TestCase
       delete :destroy, :id => ideologies(:one).to_param
     end
 
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
+    assert_login
 
     sign_in(users(:one))
 

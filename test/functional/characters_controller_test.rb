@@ -2,6 +2,16 @@ require 'test_helper'
 
 class CharactersControllerTest < ActionController::TestCase
   include Devise::TestHelpers
+
+  def assert_login
+    assert_redirected_to new_user_session_path
+    assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
+  end
+
+  def assert_denied
+    assert_redirected_to root_path
+    assert_equal "Access denied!", flash[:error]
+  end
   
   test "should get index" do
     get :index
@@ -24,8 +34,8 @@ class CharactersControllerTest < ActionController::TestCase
 
   test "shouldn't get new" do
     get :new
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
+
+    assert_login
   end
 
   test "should create character" do
@@ -43,8 +53,7 @@ class CharactersControllerTest < ActionController::TestCase
       post :create, :character => { }
     end
 
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
+    assert_login
   end
 
   test "should show character" do
@@ -52,18 +61,21 @@ class CharactersControllerTest < ActionController::TestCase
     get :show, :id => characters(:one).to_param
 
     assert_response :success, @response
+    assert_not_nil assigns(:character)
 
     # ST can see all characters
     sign_in(users(:Storyteller))
 
     get :show, :id => characters(:two).to_param
     assert_response :success, @response
+    assert_not_nil assigns(:character)
 
     # can see own characters
     sign_in(users(:one))
 
     get :show, :id => characters(:one).to_param
     assert_response :success, @response
+    assert_not_nil assigns(:character)
   end
 
   test "shouldn't show character" do
@@ -82,20 +94,21 @@ class CharactersControllerTest < ActionController::TestCase
 
     get :edit, :id => characters(:one).to_param
     assert_response :success, @response
+    assert_not_nil assigns(:character)
 
     # can edit own characters
     sign_in(users(:two))
 
     get :edit, :id => characters(:two).to_param
     assert_response :success, @response
+    assert_not_nil assigns(:character)
   end
 
   test "shouldn't get edit" do
     # not logged in
     get :edit, :id => characters(:one).to_param
 
-    assert_redirected_to new_user_session_path
-    assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
+    assert_login
 
     # can't edit other users' characters
     sign_in(users(:one))
@@ -103,7 +116,6 @@ class CharactersControllerTest < ActionController::TestCase
     get :edit, :id => characters(:two).to_param
 
     assert_redirected_to character_path(characters(:two))
-    assert_equal "Access denied!", flash[:error]
   end
 
   test "should update character" do
@@ -125,8 +137,7 @@ class CharactersControllerTest < ActionController::TestCase
   test "shouldn't update character" do
     # not logged in    
     put :update, :id => characters(:one).to_param, :character => {:name => "newname", :virtue => "Charity", :splat_id => "1", :vice => "Envy", :nature_id => "1", :clique_id => "1", :ideology_id => "1", :read_name => "0", :read_clique => "0", :read_nature => "0", :read_ideology => "0", :description => "", :read_description => "0", :background => "", :read_background => "0", :deeds => "", :read_deeds => "1", :intelligence => "1", :strength => "1", :presence => "1", :wits => "1", :dexterity => "1", :manipulation => "1", :resolve => "1", :stamina => "1", :composure => "1", :read_attributes => "0", :academics => "0", :athletics => "0", :animal_ken => "0", :computer => "0", :brawl => "0", :empathy => "0", :crafts => "0", :drive => "0", :expression => "0", :investigation => "0", :firearms => "0", :intimidation => "0", :medicine => "0", :larceny => "0", :persuasion => "0", :occult => "0", :stealth => "0", :socialize => "0", :politics => "0", :survival => "0", :streetwise => "0", :science => "0", :weaponry => "0", :subterfuge => "0", :skill_specialties => "", :read_skills => "0", :health => "6", :willpower => "2", :derangements => "", :size => "5", :initiative => "2", :speed => "5", :defense => "1", :armor => "0", :morality => "7", :power_stat => "1", :max_fuel => "7", :current_fuel => "1", :read_advantages => "0", :merits => "", :read_merits => "0", :equipment => "", :read_equipment => "0", :death => "0", :fate => "0", :common_spells => "", :forces => "0", :life => "0", :matter => "0", :mind => "0", :prime => "0", :space => "0", :spirit => "0", :time => "0", :purity => "0", :glory => "0", :gifts => "", :honor => "0", :wisdom => "0", :cunning => "0", :animalism => "0", :auspex => "0", :covenant_disciplines => "", :celerity => "0", :dominate => "0", :majesty => "0", :nightmare => "0", :protean => "0", :obfuscate => "0", :vigor => "0", :transmutations => "", :dream => "0", :hearth => "0", :goblin_contracts => "", :mirror => "0", :smoke => "0", :artifice => "0", :darkness => "0", :elements => "0", :fang_and_tooth => "0", :stone => "0", :vainglory => "0", :fleeting_spring => "0", :eternal_spring => "0", :fleeting_summer => "0", :eternal_summer => "0", :fleeting_autumn => "0", :eternal_autumn => "0", :fleeting_winter => "0", :eternal_winter => "0", :boneyard => "0", :caul => "0", :keys => "", :curse => "0", :oracle => "0", :marionette => "0", :rage => "0", :shroud => "0", :ceremonies => "", :read_powers => "0", :experience => "", :read_experience => "0", :splat_id => "1"}
-    assert_redirected_to new_user_session_path
-    assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
+    assert_login
     assert_not_equal("newname", Character.find_by_id(characters(:one).id).name, "updated when not logged in")
     
     # can't update others' characters
@@ -162,8 +173,7 @@ class CharactersControllerTest < ActionController::TestCase
     assert_no_difference "Character.count", "destroyed when not logged in" do
       delete :destroy, :id => characters(:one).to_param
     end
-      assert_redirected_to new_user_session_path
-      assert_equal("You need to sign in or sign up before continuing.", flash[:alert])
+    assert_login
     
     # can't destroy other users' characters
     sign_in(users(:one))
