@@ -17,6 +17,7 @@ class Ability
       can :manage, :all
     else
       can :manage, Character, :owner_id => user.id
+      can :shapeshift, Character
       can :manage, Clique, :owner_id => user.id
       can :manage, Chronicle, :owner_id => user.id
       can :manage, Comment, :user_id => user.id
