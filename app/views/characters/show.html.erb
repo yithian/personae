@@ -53,27 +53,27 @@
     <table class="six_cells">
       <tr>
         <td>Intelligence:</td>
-        <td><%= @character.intelligence %></td>
+        <td><%= "•" * @character.intelligence %></td>
         <td>Strength:</td>
-        <td id="strength"><%= @character.strength %></td>
+        <td id="strength"><%= "•" * @character.strength %></td>
         <td>Presence:</td>
-        <td><%= @character.presence %></td>
+        <td><%= "•" * @character.presence %></td>
       </tr>
       <tr>
         <td>Wits:</td>
-        <td><%= @character.wits %></td>
+        <td><%= "•" * @character.wits %></td>
         <td>Dexterity:</td>
-        <td id="dexterity"><%= @character.dexterity %></td>
+        <td id="dexterity"><%= "•" * @character.dexterity %></td>
         <td>Manipulation:</td>
-        <td id="manipulation"><%= @character.manipulation %></td>
+        <td id="manipulation"><%= "•" * @character.manipulation %></td>
       </tr>
       <tr>
         <td>Resolve:</td>
-        <td><%= @character.resolve %></td>
+        <td><%= "•" * @character.resolve %></td>
         <td>Stamina:</td>
-        <td id="stamina"><%= @character.stamina %></td>
+        <td id="stamina"><%= "•" * @character.stamina %></td>
         <td>Composure:</td>
-        <td><%= @character.composure %></td>
+        <td><%= "•" * @character.composure %></td>
       </tr>
     </table>
   </div>
@@ -85,67 +85,67 @@
     <table class="six_cells">
       <tr>
         <td>Academics:</td>
-        <td><%= @character.academics %></td>
+        <td><%= "•" * @character.academics %></td>
         <td>Athletics:</td>
-        <td><%= @character.athletics %></td>
+        <td><%= "•" * @character.athletics %></td>
         <td>Animal Ken:</td>
-        <td><%= @character.animal_ken %></td>
+        <td><%= "•" * @character.animal_ken %></td>
       </tr>
       <tr>
         <td>Computer:</td>
-        <td><%= @character.computer %></td>
+        <td><%= "•" * @character.computer %></td>
         <td>Brawl:</td>
-        <td><%= @character.brawl %></td>
+        <td><%= "•" * @character.brawl %></td>
         <td>Empathy:</td>
-        <td><%= @character.empathy %></td>
+        <td><%= "•" * @character.empathy %></td>
       </tr>
       <tr>
         <td>Crafts:</td>
-        <td><%= @character.crafts %></td>
+        <td><%= "•" * @character.crafts %></td>
         <td>Drive:</td>
-        <td><%= @character.drive %></td>
+        <td><%= "•" * @character.drive %></td>
         <td>Expression:</td>
-        <td><%= @character.expression %></td>
+        <td><%= "•" * @character.expression %></td>
       </tr>
       <tr>
         <td>Investigation:</td>
-        <td><%= @character.investigation %></td>
+        <td><%= "•" * @character.investigation %></td>
         <td>Firearms:</td>
-        <td><%= @character.firearms %></td>
+        <td><%= "•" * @character.firearms %></td>
         <td>Intimidation:</td>
-        <td><%= @character.intimidation %></td>
+        <td><%= "•" * @character.intimidation %></td>
       </tr>
       <tr>
         <td>Medicine:</td>
-        <td><%= @character.medicine %></td>
+        <td><%= "•" * @character.medicine %></td>
         <td>Larceny:</td>
-        <td><%= @character.larceny %></td>
+        <td><%= "•" * @character.larceny %></td>
         <td>Persuasion:</td>
-        <td><%= @character.persuasion %></td>
+        <td><%= "•" * @character.persuasion %></td>
       </tr>
       <tr>
         <td>Occult:</td>
-        <td><%= @character.occult %></td>
+        <td><%= "•" * @character.occult %></td>
         <td>Stealth:</td>
-        <td><%= @character.stealth %></td>
+        <td><%= "•" * @character.stealth %></td>
         <td>Socialize:</td>
-        <td><%= @character.socialize %></td>
+        <td><%= "•" * @character.socialize %></td>
       </tr>
       <tr>
         <td>Politics:</td>
-        <td><%= @character.politics %></td>
+        <td><%= "•" * @character.politics %></td>
         <td>Survival:</td>
-        <td><%= @character.survival %></td>
+        <td><%= "•" * @character.survival %></td>
         <td>Streetwise:</td>
-        <td><%= @character.streetwise %></td>
+        <td><%= "•" * @character.streetwise %></td>
       </tr>
       <tr>
         <td>Science:</td>
-        <td><%= @character.science %></td>
+        <td><%= "•" * @character.science %></td>
         <td>Weaponry:</td>
-        <td><%= @character.weaponry %></td>
+        <td><%= "•" * @character.weaponry %></td>
         <td>Subterfuge:</td>
-        <td><%= @character.subterfuge %></td>
+        <td><%= "•" * @character.subterfuge %></td>
       </tr>
       <tr>
         <td>Skill Specialties:</td>
@@ -161,9 +161,9 @@
     <table class="four_cells">
       <tr>
         <td>Health:</td>
-        <td id="health"><%= @character.health %></td>
+        <td id="health"><%= "•" * @character.health %></td>
         <td>Willpower:</td>
-        <td id="willpower"><%= @character.willpower %></td>
+        <td id="willpower"><%= "•" * @character.willpower %></td>
       </tr>
       <tr>
 	<%= form_for(@character) do |f| %>
@@ -242,45 +242,45 @@
       <table class="three_cells">
         <tr>
           <td>Death:</td>
-          <td><%= @character.death %></td>
+          <td><%= "•" * @character.death %></td>
           <td>Common Spells</td>
         </tr>
         <tr>
           <td>Fate:</td>
-          <td><%= @character.fate %></td>
+          <td><%= "•" * @character.fate %></td>
           <td rowspan="10"><%= simple_format(@character.common_spells) %></td>
         </tr>
         <tr>
           <td>Forces:</td>
-          <td><%= @character.forces %></td>
+          <td><%= "•" * @character.forces %></td>
         </tr>
         <tr>
           <td>Life:</td>
-          <td><%= @character.life %></td>
+          <td><%= "•" * @character.life %></td>
         </tr>
         <tr>
           <td>Matter:</td>
-          <td><%= @character.matter %></td>
+          <td><%= "•" * @character.matter %></td>
         </tr>
         <tr>
           <td>Mind:</td>
-          <td><%= @character.mind %></td>
+          <td><%= "•" * @character.mind %></td>
         </tr>
         <tr>
           <td>Prime:</td>
-          <td><%= @character.prime %></td>
+          <td><%= "•" * @character.prime %></td>
         </tr>
         <tr>
           <td>Space:</td>
-          <td><%= @character.space %></td>
+          <td><%= "•" * @character.space %></td>
         </tr>
         <tr>
           <td>Spirit:</td>
-          <td><%= @character.spirit %></td>
+          <td><%= "•" * @character.spirit %></td>
         </tr>
         <tr>
           <td>Time:</td>
-          <td><%= @character.time %></td>
+          <td><%= "•" * @character.time %></td>
         </tr>
         <tr>
         </tr>
@@ -330,25 +330,25 @@
       <table class="three_cells">
         <tr>
           <td>Purity:</td>
-          <td><%= @character.purity %></td>
+          <td><%= "•" * @character.purity %></td>
           <td>Gifts</td>
         </tr>
         <tr>
           <td>Glory:</td>
-          <td><%= @character.glory %></td>
+          <td><%= "•" * @character.glory %></td>
           <td id="gifts" rowspan="5"><%= simple_format(@character.gifts) %></td>
         </tr>
         <tr>
           <td>Honor:</td>
-          <td><%= @character.honor %></td>
+          <td><%= "•" * @character.honor %></td>
         </tr>
         <tr>
           <td>Wisdom:</td>
-          <td><%= @character.wisdom %></td>
+          <td><%= "•" * @character.wisdom %></td>
         </tr>
         <tr>
           <td>Cunning:</td>
-          <td><%= @character.cunning %></td>
+          <td><%= "•" * @character.cunning %></td>
         </tr>
         <tr>
         </tr>
@@ -362,41 +362,41 @@
       <table class="three_cells">
         <tr>
           <td>Animalism</td>
-          <td><%= @character.animalism %></td>
+          <td><%= "•" * @character.animalism %></td>
           <td>Covenant Disciplines</td>
         </tr>
         <tr>
           <td>Auspex</td>
-          <td><%= @character.auspex %></td>
+          <td><%= "•" * @character.auspex %></td>
           <td rowspan="8"><%= simple_format(@character.covenant_disciplines) %></td>
         </tr>
         <tr>
           <td>Dominate</td>
-          <td><%= @character.dominate %></td>
+          <td><%= "•" * @character.dominate %></td>
         </tr>
         <tr>
           <td>Majesty</td>
-          <td><%= @character.majesty %></td>
+          <td><%= "•" * @character.majesty %></td>
         </tr>
         <tr>
           <td>Nightmare</td>
-          <td><%= @character.nightmare %></td>
+          <td><%= "•" * @character.nightmare %></td>
         </tr>
         <tr>
           <td>Obfuscate</td>
-          <td><%= @character.obfuscate %></td>
+          <td><%= "•" * @character.obfuscate %></td>
         </tr>
         <tr>
           <td>Protean</td>
-          <td><%= @character.protean %></td>
+          <td><%= "•" * @character.protean %></td>
         </tr>
         <tr>
           <td>Resilience</td>
-          <td><%= @character.resilience %></td>
+          <td><%= "•" * @character.resilience %></td>
         </tr>
         <tr>
           <td>Vigor</td>
-          <td><%= @character.vigor %></td>
+          <td><%= "•" * @character.vigor %></td>
         </tr>
         <tr>
         </tr>
@@ -413,81 +413,81 @@
       <table class="three_cells">
                           <tr>
           <td>Dream</td>
-          <td><%= @character.dream %></td>
+          <td><%= "•" * @character.dream %></td>
           <td>Goblin Contracts</td>
         </tr>
         <tr>
           <td>Hearth</td>
-          <td><%= @character.hearth %></td>
+          <td><%= "•" * @character.hearth %></td>
           <td rowspan="19"><%= simple_format(@character.goblin_contracts) %></td>
         </tr>
         <tr>
           <td>Mirror</td>
-          <td><%= @character.mirror %></td>
+          <td><%= "•" * @character.mirror %></td>
         </tr>
         <tr>
           <td>Smoke</td>
-          <td><%= @character.smoke %></td>
+          <td><%= "•" * @character.smoke %></td>
         </tr>
         <tr>
           <td>Artifice</td>
-          <td><%= @character.artifice %></td>
+          <td><%= "•" * @character.artifice %></td>
         </tr>
         <tr>
           <td>Darkness</td>
-          <td><%= @character.darkness %></td>
+          <td><%= "•" * @character.darkness %></td>
         </tr>
         <tr>
           <td>Elements</td>
-          <td><%= @character.elements %></td>
+          <td><%= "•" * @character.elements %></td>
         </tr>
         <tr>
           <td>Fang and Tooth</td>
-          <td><%= @character.fang_and_tooth %></td>
+          <td><%= "•" * @character.fang_and_tooth %></td>
         </tr>
         <tr>
           <td>Stone</td>
-          <td><%= @character.stone %></td>
+          <td><%= "•" * @character.stone %></td>
         </tr>
         <tr>
           <td>Vainglory</td>
-          <td><%= @character.vainglory %></td>
+          <td><%= "•" * @character.vainglory %></td>
         </tr>
         <tr>
           <td>Fleeting Spring</td>
-          <td><%= @character.fleeting_spring %></td>
+          <td><%= "•" * @character.fleeting_spring %></td>
         </tr>
         <tr>
           <td>Eternal Spring</td>
-          <td><%= @character.eternal_spring %></td>
+          <td><%= "•" * @character.eternal_spring %></td>
         </tr>
         <tr>
           <td>Fleeting Summer</td>
-          <td><%= @character.fleeting_summer %></td>
+          <td><%= "•" * @character.fleeting_summer %></td>
         </tr>
         <tr>
           <td>Eternal Summer</td>
-          <td><%= @character.eternal_summer %></td>
+          <td><%= "•" * @character.eternal_summer %></td>
         </tr>
         <tr>
           <td>Eternal Summer</td>
-          <td><%= @character.eternal_summer %></td>
+          <td><%= "•" * @character.eternal_summer %></td>
         </tr>
         <tr>
           <td>Fleeting Autumn</td>
-          <td><%= @character.fleeting_autumn %></td>
+          <td><%= "•" * @character.fleeting_autumn %></td>
         </tr>
         <tr>
           <td>Eternal Autumn</td>
-          <td><%= @character.eternal_autumn %></td>
+          <td><%= "•" * @character.eternal_autumn %></td>
         </tr>
         <tr>
           <td>Fleeting Winter</td>
-          <td><%= @character.fleeting_winter %></td>
+          <td><%= "•" * @character.fleeting_winter %></td>
         </tr>
         <tr>
           <td>Eternal Winter</td>
-          <td><%= @character.eternal_winter %></td>
+          <td><%= "•" * @character.eternal_winter %></td>
         </tr>
         <tr>
         </tr>
@@ -499,33 +499,33 @@
       <table class="three_cells">
         <tr>
           <td>Boneyard</td>
-          <td><%= @character.boneyard %></td>
+          <td><%= "•" * @character.boneyard %></td>
           <td>Keys</td>
         </tr>
         <tr>
           <td>Caul</td>
-          <td><%= @character.caul %></td>
+          <td><%= "•" * @character.caul %></td>
           <td rowspan="7"><%= simple_format(@character.keys) %></td>
         </tr>
         <tr>
           <td>Curse</td>
-          <td><%= @character.curse %></td>
+          <td><%= "•" * @character.curse %></td>
         </tr>
         <tr>
           <td>Marionette</td>
-          <td><%= @character.marionette %></td>
+          <td><%= "•" * @character.marionette %></td>
         </tr>
         <tr>
           <td>Oracle</td>
-          <td><%= @character.oracle %></td>
+          <td><%= "•" * @character.oracle %></td>
         </tr>
         <tr>
           <td>Rage</td>
-          <td><%= @character.rage %></td>
+          <td><%= "•" * @character.rage %></td>
         </tr>
         <tr>
           <td>Shroud</td>
-          <td><%= @character.shroud %></td>
+          <td><%= "•" * @character.shroud %></td>
         </tr>
         <tr>
         </tr>
