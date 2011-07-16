@@ -211,7 +211,7 @@
 <pre>
 <span class="ruby-comment"># File app/models/character.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
-  <span class="ruby-keyword">unless</span> [ <span class="ruby-string">'Charity'</span>, <span class="ruby-string">'Faith'</span>, <span class="ruby-string">'Fortitude'</span>, <span class="ruby-string">'Hope'</span>, <span class="ruby-string">'Justice'</span>, <span class="ruby-string">'Prudence'</span>, <span class="ruby-string">'Temperance'</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-constant">Character</span><span class="ruby-operator">::</span><span class="ruby-constant">VIRTUES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">value</span>)
     <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{value} is an invalid virtue&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

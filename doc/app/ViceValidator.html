@@ -211,8 +211,14 @@
 <pre>
 <span class="ruby-comment"># File app/models/character.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
-  <span class="ruby-keyword">unless</span> [ <span class="ruby-string">'Envy'</span>, <span class="ruby-string">'Gluttony'</span>, <span class="ruby-string">'Greed'</span>, <span class="ruby-string">'Lust'</span>, <span class="ruby-string">'Sloth'</span>, <span class="ruby-string">'Pride'</span>, <span class="ruby-string">'Wrath'</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">value</span>)
-    <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{value} is an invalid vice&quot;</span>
+  <span class="ruby-identifier">vices</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)
+  
+  <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Too many vices selected&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">vices</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span>
+  
+  <span class="ruby-identifier">vices</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">vice</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-constant">Character</span><span class="ruby-operator">::</span><span class="ruby-constant">VICES</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">vice</span>
+      <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{vice} is an invalid vice&quot;</span>
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- validate_each-source -->
