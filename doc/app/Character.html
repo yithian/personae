@@ -278,7 +278,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="known_to-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 256</span>
+<span class="ruby-comment"># File app/models/character.rb, line 226</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">selected_chronicle</span>=<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">selected_chronicle</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;clique_id ASC&quot;</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">c</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">user</span>)
@@ -321,7 +321,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_changeling-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 246</span>
+<span class="ruby-comment"># File app/models/character.rb, line 216</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_changeling?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Changeling&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -354,7 +354,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_geist-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 251</span>
+<span class="ruby-comment"># File app/models/character.rb, line 221</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_geist?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Geist&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -387,7 +387,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_mage-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 226</span>
+<span class="ruby-comment"># File app/models/character.rb, line 196</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_mage?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mage&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -420,7 +420,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_mortal-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 221</span>
+<span class="ruby-comment"># File app/models/character.rb, line 191</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_mortal?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mortal&quot;</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Hunter&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -453,7 +453,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_promethean-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 241</span>
+<span class="ruby-comment"># File app/models/character.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_promethean?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Promethean&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -486,7 +486,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_vampire-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 236</span>
+<span class="ruby-comment"># File app/models/character.rb, line 206</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_vampire?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Vampire&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -519,7 +519,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_werewolf-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 231</span>
+<span class="ruby-comment"># File app/models/character.rb, line 201</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_werewolf?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Werewolf&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -553,7 +553,7 @@ advantages (Morality, Health, etc). Defaults to false.</p>
             
             <div class="method-source-code" id="show_advantages_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 186</span>
+<span class="ruby-comment"># File app/models/character.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_advantages_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_advantages</span>
 <span class="ruby-keyword">end</span></pre>
@@ -587,7 +587,7 @@ attributes (Strength, Wits, etc). Defaults to false.</p>
             
             <div class="method-source-code" id="show_attributes_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 174</span>
+<span class="ruby-comment"># File app/models/character.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_attributes_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_attributes</span>
 <span class="ruby-keyword">end</span></pre>
@@ -621,7 +621,7 @@ background. Defaults to false.</p>
             
             <div class="method-source-code" id="show_background_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 162</span>
+<span class="ruby-comment"># File app/models/character.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_background_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_background</span>
 <span class="ruby-keyword">end</span></pre>
@@ -655,7 +655,7 @@ clique. Defaults to false.</p>
             
             <div class="method-source-code" id="show_clique_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 144</span>
+<span class="ruby-comment"># File app/models/character.rb, line 114</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_clique_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_clique</span>
 <span class="ruby-keyword">end</span></pre>
@@ -689,7 +689,7 @@ deeds. Defaults to true.</p>
             
             <div class="method-source-code" id="show_deeds_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 168</span>
+<span class="ruby-comment"># File app/models/character.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_deeds_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_deeds</span>
 <span class="ruby-keyword">end</span></pre>
@@ -723,7 +723,7 @@ description. Defaults to false.</p>
             
             <div class="method-source-code" id="show_description_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 156</span>
+<span class="ruby-comment"># File app/models/character.rb, line 126</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_description_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_description</span>
 <span class="ruby-keyword">end</span></pre>
@@ -757,7 +757,7 @@ equipment Defaults to false.</p>
             
             <div class="method-source-code" id="show_equipment_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 204</span>
+<span class="ruby-comment"># File app/models/character.rb, line 174</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_equipment_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_equipment</span>
 <span class="ruby-keyword">end</span></pre>
@@ -791,7 +791,7 @@ experience. Defaults to false.</p>
             
             <div class="method-source-code" id="show_experience_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 210</span>
+<span class="ruby-comment"># File app/models/character.rb, line 180</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_experience_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_experience</span>
 <span class="ruby-keyword">end</span></pre>
@@ -825,7 +825,7 @@ ideology. Defaults to false.</p>
             
             <div class="method-source-code" id="show_ideology_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 150</span>
+<span class="ruby-comment"># File app/models/character.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_ideology_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_ideology</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mortal&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -859,7 +859,7 @@ merits Defaults to false.</p>
             
             <div class="method-source-code" id="show_merits_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 192</span>
+<span class="ruby-comment"># File app/models/character.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_merits_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_merits</span>
 <span class="ruby-keyword">end</span></pre>
@@ -894,7 +894,7 @@ index and clique pages, etc. Defaults to false.</p>
             
             <div class="method-source-code" id="show_name_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 132</span>
+<span class="ruby-comment"># File app/models/character.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -928,7 +928,7 @@ nature. Defaults to false.</p>
             
             <div class="method-source-code" id="show_nature_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 138</span>
+<span class="ruby-comment"># File app/models/character.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_nature_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_nature</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mortal&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -962,7 +962,7 @@ notes. Defaults to false.</p>
             
             <div class="method-source-code" id="show_notes_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 216</span>
+<span class="ruby-comment"># File app/models/character.rb, line 186</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_notes_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_notes</span>
 <span class="ruby-keyword">end</span></pre>
@@ -997,7 +997,7 @@ Defaults to false.</p>
             
             <div class="method-source-code" id="show_powers_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 198</span>
+<span class="ruby-comment"># File app/models/character.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_powers_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_powers</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1031,7 +1031,7 @@ skills (Academics, Firearms, etc). Defaults to false.</p>
             
             <div class="method-source-code" id="show_skills_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 180</span>
+<span class="ruby-comment"># File app/models/character.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_skills_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_skills</span>
 <span class="ruby-keyword">end</span></pre>

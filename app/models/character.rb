@@ -1,33 +1,3 @@
-# Creates a validator for Character.virtue . Valid virtues are 'Charity', 'Faith', 'Fortitude'
-# 'Hope', 'Justice', 'Prudence' and 'Temperance'
-
-class VirtueValidator < ActiveModel::EachValidator
-  # Validates all records passed to it
-  def validate_each(record, attribute, value)
-    unless Character::VIRTUES.include?(value)
-      record.errors[attribute] << "#{value} is an invalid virtue"
-    end
-  end
-end
-
-# Creates a validator for Character.vice . Valid vices are 'Envy', 'Gluttony', 'Greed', 'Lust'
-# 'Sloth', 'Pride', 'Wrath'
-
-class ViceValidator < ActiveModel::EachValidator
-  # Validates all records passed to it
-  def validate_each(record, attribute, value)
-    vices = value.split(" ")
-    
-    record.errors[attribute] << "Too many vices selected" unless vices.length < 3
-    
-    vices.each do |vice|
-      unless Character::VICES.include? vice
-        record.errors[attribute] << "#{vice} is an invalid vice"
-      end
-    end
-  end
-end
-
 # The basic building block of personae, the character class represents a
 # World of Darkness character. Specifically, it holds all the information
 # that would be represented on a player's character sheet.
