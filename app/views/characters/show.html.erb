@@ -3,26 +3,28 @@
     <td><b>Name</b></td>
     <td colspan=3><%= @character.name %></td>
   <tr>
-    <td><b>Virtue</b></td>
-    <td ><span id="virtue"><%= @character.virtue if can? :edit, @character %></span></td>
-  </tr>
-  <tr>
-    <td><b>Vice</b></td>
-    <td><span id="vice"><%= @character.vice if can? :edit, @character %></span></td>
+    <td><b>Chronicle</b></td>
+    <td><%= link_to @character.chronicle.name, @character.chronicle %></td>
     <td><span id="nature_label"><b><%= @character.splat.nature_name if @character.show_nature_to_user?(current_user) %></b></span></td>
     <td><span id="nature_name"><%= @character.nature.name if @character.show_nature_to_user?(current_user) %></span></td>
   </tr>
   <tr>
-    <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(current_user) %></b></span></td>
-    <td><span id="clique_name"><%= link_to @character.clique.name, @character.clique if @character.show_clique_to_user?(current_user) %></span></td>
+    <td><b>Virtue</b></td>
+    <td ><span id="virtue"><%= @character.virtue if can? :edit, @character %></span></td>
     <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user) %></b></span></td>
     <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user) %></span></td>
   </tr>
   <tr>
-    <td><b>Chronicle</b></td>
-    <td><%= link_to @character.chronicle.name, @character.chronicle %></td>
+    <td><b>Vice</b></td>
+    <td><span id="vice"><%= @character.vice.gsub(/\ /, " and ") if can? :edit, @character %></span></td>
     <td><span id="ideology_label"><b><%= @character.splat.ideology_name if @character.show_ideology_to_user?(current_user) %></b></span></td>
     <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_ideology_to_user?(current_user) %></span></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(current_user) %></b></span></td>
+    <td><span id="clique_name"><%= link_to @character.clique.name, @character.clique if @character.show_clique_to_user?(current_user) %></span></td>
   </tr>
 </table>
 

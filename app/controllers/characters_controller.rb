@@ -115,6 +115,7 @@ class CharactersController < ApplicationController
   # PUT /characters/1
   # PUT /characters/1.xml
   def update
+    @character.vice = params[:character_vice].join(" ")
     flash[:notice] = 'Character was successfully updated.' if @character.update_attributes(params[:character])
 
     respond_with @character
