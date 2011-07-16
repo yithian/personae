@@ -551,7 +551,7 @@
     <h3>Notes</h3>
     <%= form_for(@character, :remote => true) do |f| %>
       <%= f.text_area :notes %>
-      <%= f.submit "Save notes" %>
+      <%= f.submit "Save notes" if can? :edit, @character %>
     <% end %>
   </div>
 <% end %>
