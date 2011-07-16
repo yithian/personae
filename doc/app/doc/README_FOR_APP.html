@@ -144,8 +144,8 @@ href="http://www.gnu.org/licenses/">www.gnu.org/licenses/</a>&gt;.</p>
 
 <p>Persona is a Ruby on Rails web application designed to hold character
 sheets for the New World of Darkness role playing games by White Wolf. This
-program is designed to contain an entire chronicle’s worth of characters
-and really shines when used for non-player-character sheets as well as the
+program is designed to contain entire chronicles worth of characters and
+really shines when used for non-player-character sheets as well as the
 players’ characters.</p>
 
 <h2>Terms</h2>
@@ -164,36 +164,35 @@ Sanctum (Vampire), Storm Lords (Werewolf), etc</p>
 
 <h2>Setup</h2>
 
-<p>Personae uses a single administrator-style account name Storyteller. This
+<p>Personae uses an administrator-style account named Storyteller. This
 account can see all the Characters, Cliques and Ideologies in your game,
 regardless of their display settings. Be careful! The default password for
 this account is worldofdarkness – please change this once your database is
-set up!</p>
+set up! Once this account is active it can mark any others as admins as
+well. These accounts will have the same permissions as Storyteller.</p>
 
-<p>To run Personae, you must have the following software installed: Ruby, Ruby
-Gems, Ruby on Rails, sqlite3 and ruby-sqlite3 and devise. It is highly
-suggested to use Apache httpd and mod_rails as well.</p>
+<p>To run Personae, you must have the following software installed: Ruby, 
+Ruby on Rails, and sqlite3. It is highly suggested to use Apache httpd and
+mod_rails as well.</p>
 
 <p>If you don’t have this software installed, you can download it from <a
-href="http://ruby-lang.org">ruby-lang.org</a> <a
-href="http://rubygems.org">rubygems.org</a> and <a
-href="http://sqlite.org">sqlite.org</a> . Once you have Ruby, Ruby Gems and
-Sqlite3 installed, use Ruby Gems to install Ruby on Rails: *nix:</p>
+href="http://ruby-lang.org">ruby-lang.org</a> and <a
+href="http://sqlite.org">sqlite.org</a> . Once you have Ruby and Sqlite3
+installed, use Ruby Gems to install bundler: *nix:</p>
 
-<pre>gem install rails</pre>
+<pre>gem install bundler</pre>
 
 <p>Windows: Start -&gt; Programs -&gt; Ruby -&gt; Ruby Gems -&gt; RubyGems
 Package Manager.</p>
 
-<pre>gem install rails</pre>
+<pre>gem install bundler</pre>
 
-<p>With Ruby on Rails installed, install the rest of the required gems by
-changing into Personae’s install directory (from a shell or cmd prompt) and
-run</p>
+<p>With bundler installed, install the rest of the required gems by changing
+into Personae’s install directory (from a shell or cmd prompt) and run</p>
 
 <pre>bundle install.</pre>
 
-<p>This should install the proper versions of all the gems you’ll need.</p>
+<p>This will install the proper versions of all the gems you’ll need.</p>
 
 <p>Once you have Personae downloaded and placed where you want it, open a
 command prompt (Terminal on Mac, xterm on Linux, cmd on Windows). Run the
@@ -276,82 +275,6 @@ href="http://no-ip.org">no-ip.org</a>) to give you one.</p>
 <p>Running a web server presents a potential security vulnerability, which can
 be mitigated by frequently updating Apache and Ruby on Rails. If you’re not
 OK with that, then your best bet is to not use Personae.</p>
-
-<h2>Description of Contents</h2>
-
-<p>app</p>
-
-<pre>Holds all the code that's specific to this particular application.</pre>
-
-<p>app/controllers</p>
-
-<pre>Holds controllers that should be named like weblogs_controller.rb for
-automated URL mapping. All controllers should descend from ApplicationController
-which itself descends from ActionController::Base.</pre>
-
-<p>app/models</p>
-
-<pre>Holds models that should be named like post.rb.
-Most models will descend from ActiveRecord::Base.</pre>
-
-<p>app/views</p>
-
-<pre>Holds the template files for the view that should be named like
-weblogs/index.html.erb for the WeblogsController#index action. All views use eRuby
-syntax.</pre>
-
-<p>app/views/layouts</p>
-
-<pre>Holds the template files for layouts to be used with views. This models the common
-header/footer method of wrapping views. In your views, define a layout using the
-&lt;tt&gt;layout :default&lt;/tt&gt; and create a file named default.html.erb. Inside default.html.erb,
-call &lt;% yield %&gt; to render the view using this layout.</pre>
-
-<p>app/helpers</p>
-
-<pre>Holds view helpers that should be named like weblogs_helper.rb. These are generated
-for you automatically when using script/generate for controllers. Helpers can be used to
-wrap functionality for your views into methods.</pre>
-
-<p>config</p>
-
-<pre>Configuration files for the Rails environment, the routing map, the database, and other dependencies.</pre>
-
-<p>db</p>
-
-<pre>Contains the database schema in schema.rb.  db/migrate contains all
-the sequence of Migrations for your schema.</pre>
-
-<p>doc</p>
-
-<pre>This directory is where your application documentation will be stored when generated
-using &lt;tt&gt;rake doc:app&lt;/tt&gt;</pre>
-
-<p>lib</p>
-
-<pre>Application specific libraries. Basically, any kind of custom code that doesn't
-belong under controllers, models, or helpers. This directory is in the load path.</pre>
-
-<p>public</p>
-
-<pre>The directory available for the web server. Contains subdirectories for images, stylesheets,
-and javascripts. Also contains the dispatchers and the default HTML files. This should be
-set as the DOCUMENT_ROOT of your web server.</pre>
-
-<p>script</p>
-
-<pre>Helper scripts for automation and generation.</pre>
-
-<p>test</p>
-
-<pre>Unit and functional tests along with fixtures. When using the script/generate scripts, template
-test files will be generated for you and placed in this directory.</pre>
-
-<p>vendor</p>
-
-<pre>External libraries that the application depends on. Also includes the plugins subdirectory.
-If the app has frozen rails, those gems also go here, under vendor/rails/.
-This directory is in the load path.</pre>
 
   </div>
 
