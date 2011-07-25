@@ -3,6 +3,7 @@
 class ChroniclesController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
+  before_filter :obsidian_portal_login_required
   before_filter :find_chronicle, :only => [:new, :show, :edit, :update, :destroy]
   
   # GET /chronicles
@@ -24,12 +25,20 @@ class ChroniclesController < ApplicationController
   # GET /chronicles/new
   # GET /chronicles/new.xml
   def new
+    @campaigns = obsidian_portal.current_user.campaigns.collect do |campaign|
+      [campaign.name, campaign.id]
+    end
+    @campaigns.insert(0, ['-', '0'])
+    
     respond_with @chronicle
   end
 
   # GET /chronicles/1/edit
   def edit
-    @chronicle = Chronicle.find(params[:id])
+    @campaigns = obsidian_portal.current_user.campaigns.collect do |campaign|
+      [campaign.name, campaign.id]
+    end
+    @campaigns.insert(0, ['-', '0'])
   end
 
   # POST /chronicles
@@ -41,7 +50,7 @@ class ChroniclesController < ApplicationController
     if @chronicle.save
       flash[:notice] = "Chronicle successfully created"
       
-      user = User.find_by_id(current_user)
+      user = current_user.id
       user.selected_chronicle = @chronicle
       user.save
     end

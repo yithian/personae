@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110628173234) do
+ActiveRecord::Schema.define(:version => 20110725180423) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -160,7 +160,8 @@ ActiveRecord::Schema.define(:version => 20110628173234) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id",    :default => 1, :null => false
+    t.integer  "owner_id",             :default => 1, :null => false
+    t.string   "obsidian_campaign_id"
   end
 
   create_table "cliques", :force => true do |t|
