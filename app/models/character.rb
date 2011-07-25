@@ -31,70 +31,95 @@ class Character < ActiveRecord::Base
   validates :ideology_id, :numericality => true
   validates :splat_id, :numericality => true
   validates :nature_id, :numericality => true
-  validates :intelligence, :presence => true, :numericality => true
-  validates :strength, :presence => true, :numericality => true
-  validates :presence, :presence => true, :numericality => true
-  validates :wits, :presence => true, :numericality => true
-  validates :dexterity, :presence => true, :numericality => true
-  validates :manipulation, :presence => true, :numericality => true
-  validates :resolve, :presence => true, :numericality => true
-  validates :stamina, :presence => true, :numericality => true
-  validates :composure, :presence => true, :numericality => true
-  validates :academics, :presence => true, :numericality => true
-  validates :athletics, :presence => true, :numericality => true
-  validates :animal_ken, :presence => true, :numericality => true
-  validates :computer, :presence => true, :numericality => true
-  validates :brawl, :presence => true, :numericality => true
-  validates :empathy, :presence => true, :numericality => true
-  validates :crafts, :presence => true, :numericality => true
-  validates :drive, :presence => true, :numericality => true
-  validates :expression, :presence => true, :numericality => true
-  validates :investigation, :presence => true, :numericality => true
-  validates :firearms, :presence => true, :numericality => true
-  validates :intimidation, :presence => true, :numericality => true
-  validates :medicine, :presence => true, :numericality => true
-  validates :larceny, :presence => true, :numericality => true
-  validates :persuasion, :presence => true, :numericality => true
-  validates :occult, :presence => true, :numericality => true
-  validates :stealth, :presence => true, :numericality => true
-  validates :socialize, :presence => true, :numericality => true
-  validates :politics, :presence => true, :numericality => true
-  validates :survival, :presence => true, :numericality => true
-  validates :streetwise, :presence => true, :numericality => true
-  validates :science, :presence => true, :numericality => true
-  validates :weaponry, :presence => true, :numericality => true
-  validates :subterfuge, :presence => true, :numericality => true
-  validates :speed, :presence => true, :numericality => true
-  validates :initiative, :presence => true, :numericality => true
-  validates :defense, :presence => true, :numericality => true
-  validates :morality, :presence => true, :numericality => true
-  validates :power_stat, :numericality => true
-  validates :max_fuel, :numericality => true
-  validates :current_fuel, :numericality => true
-  validates :death, :numericality => true
-  validates :fate, :numericality => true
-  validates :forces, :numericality => true
-  validates :life, :numericality => true
-  validates :matter, :numericality => true
-  validates :mind, :numericality => true
-  validates :prime, :numericality => true
-  validates :space, :numericality => true
-  validates :spirit, :numericality => true
-  validates :time, :numericality => true
-  validates :purity, :numericality => true
-  validates :glory, :numericality => true
-  validates :honor, :numericality => true
-  validates :wisdom, :numericality => true
-  validates :cunning, :numericality => true
-  validates :animalism, :numericality => true
-  validates :auspex, :numericality => true
-  validates :celerity, :numericality => true
-  validates :dominate, :numericality => true
-  validates :majesty, :numericality => true
-  validates :nightmare, :numericality => true
-  validates :protean, :numericality => true
-  validates :obfuscate, :numericality => true
-  validates :vigor, :numericality => true
+  validates :intelligence, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :strength, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :presence, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :wits, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :dexterity, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :manipulation, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :resolve, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :stamina, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :composure, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :academics, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :athletics, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :animal_ken, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :computer, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :brawl, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :empathy, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :crafts, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :drive, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :expression, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :investigation, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :firearms, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :intimidation, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :medicine, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :larceny, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :persuasion, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :occult, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :stealth, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :socialize, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :politics, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :survival, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :streetwise, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :science, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :weaponry, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :subterfuge, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :speed, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :initiative, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :defense, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :morality, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :power_stat, :numericality => {:greater_than_or_equal_to => 0}
+  validates :max_fuel, :numericality => {:greater_than_or_equal_to => 0}
+  validates :current_fuel, :numericality => {:greater_than_or_equal_to => 0}
+  validates :death, :numericality => {:greater_than_or_equal_to => 0}
+  validates :fate, :numericality => {:greater_than_or_equal_to => 0}
+  validates :forces, :numericality => {:greater_than_or_equal_to => 0}
+  validates :life, :numericality => {:greater_than_or_equal_to => 0}
+  validates :matter, :numericality => {:greater_than_or_equal_to => 0}
+  validates :mind, :numericality => {:greater_than_or_equal_to => 0}
+  validates :prime, :numericality => {:greater_than_or_equal_to => 0}
+  validates :space, :numericality => {:greater_than_or_equal_to => 0}
+  validates :spirit, :numericality => {:greater_than_or_equal_to => 0}
+  validates :time, :numericality => {:greater_than_or_equal_to => 0}
+  validates :purity, :numericality => {:greater_than_or_equal_to => 0}
+  validates :glory, :numericality => {:greater_than_or_equal_to => 0}
+  validates :honor, :numericality => {:greater_than_or_equal_to => 0}
+  validates :wisdom, :numericality => {:greater_than_or_equal_to => 0}
+  validates :cunning, :numericality => {:greater_than_or_equal_to => 0}
+  validates :animalism, :numericality => {:greater_than_or_equal_to => 0}
+  validates :auspex, :numericality => {:greater_than_or_equal_to => 0}
+  validates :celerity, :numericality => {:greater_than_or_equal_to => 0}
+  validates :dominate, :numericality => {:greater_than_or_equal_to => 0}
+  validates :majesty, :numericality => {:greater_than_or_equal_to => 0}
+  validates :nightmare, :numericality => {:greater_than_or_equal_to => 0}
+  validates :protean, :numericality => {:greater_than_or_equal_to => 0}
+  validates :obfuscate, :numericality => {:greater_than_or_equal_to => 0}
+  validates :vigor, :numericality => {:greater_than_or_equal_to => 0}
+  validates :dream, :numericality => {:greater_than_or_equal_to => 0}
+  validates :hearth, :numericality => {:greater_than_or_equal_to => 0}
+  validates :mirror, :numericality => {:greater_than_or_equal_to => 0}
+  validates :smoke, :numericality => {:greater_than_or_equal_to => 0}
+  validates :artifice, :numericality => {:greater_than_or_equal_to => 0}
+  validates :darkness, :numericality => {:greater_than_or_equal_to => 0}
+  validates :elements, :numericality => {:greater_than_or_equal_to => 0}
+  validates :fang_and_tooth, :numericality => {:greater_than_or_equal_to => 0}
+  validates :stone, :numericality => {:greater_than_or_equal_to => 0}
+  validates :vainglory, :numericality => {:greater_than_or_equal_to => 0}
+  validates :fleeting_spring, :numericality => {:greater_than_or_equal_to => 0}
+  validates :eternal_spring, :numericality => {:greater_than_or_equal_to => 0}
+  validates :fleeting_summer, :numericality => {:greater_than_or_equal_to => 0}
+  validates :eternal_summer, :numericality => {:greater_than_or_equal_to => 0}
+  validates :fleeting_autumn, :numericality => {:greater_than_or_equal_to => 0}
+  validates :eternal_autumn, :numericality => {:greater_than_or_equal_to => 0}
+  validates :fleeting_winter, :numericality => {:greater_than_or_equal_to => 0}
+  validates :eternal_winter, :numericality => {:greater_than_or_equal_to => 0}
+  validates :boneyard, :numericality => {:greater_than_or_equal_to => 0}
+  validates :caul, :numericality => {:greater_than_or_equal_to => 0}
+  validates :curse, :numericality => {:greater_than_or_equal_to => 0}
+  validates :oracle, :numericality => {:greater_than_or_equal_to => 0}
+  validates :marionette, :numericality => {:greater_than_or_equal_to => 0}
+  validates :rage, :numericality => {:greater_than_or_equal_to => 0}
+  validates :shroud, :numericality => {:greater_than_or_equal_to => 0}
 
   # Returns true if the given user has permission to read the character's name.
   # This is also the check used to determine if a character's entry shows up in
