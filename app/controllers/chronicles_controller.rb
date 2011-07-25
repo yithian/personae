@@ -4,7 +4,8 @@ class ChroniclesController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
   before_filter :obsidian_portal_login_required
-  before_filter :find_chronicle, :only => [:new, :show, :edit, :update, :destroy]
+  before_filter :find_campaign, :only => [:new, :create, :show, :edit, :update]
+  before_filter :find_chronicle, :only => [:create, :show, :edit, :update, :destroy]
   
   # GET /chronicles
   # GET /chronicles.xml
@@ -19,6 +20,9 @@ class ChroniclesController < ApplicationController
   def show
     @characters = @chronicle.characters
     @cliques = @chronicle.cliques
+    
+    @chronicle.description = @campaign.wiki_pages[0].body_html
+    
     respond_with @chronicle
   end
 
@@ -85,6 +89,18 @@ class ChroniclesController < ApplicationController
       @chronicle = Chronicle.new
     else
       @chronicle = Chronicle.find_by_id(params[:id])
+    end
+  end
+  
+  # sets up a campaign variable from the obsidian_campaign_id saved in
+  # the chronicle
+  def find_campaign
+    @campaign = nil
+    obsidian_portal.current_user.campaigns.each do |c|
+      if c.id == @chronicle.obsidian_campaign_id
+        @campaign = c
+        break
+      end
     end
   end
 end
