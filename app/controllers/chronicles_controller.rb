@@ -95,12 +95,6 @@ class ChroniclesController < ApplicationController
   # sets up a campaign variable from the obsidian_campaign_id saved in
   # the chronicle
   def find_campaign
-    @campaign = nil
-    obsidian_portal.current_user.campaigns.each do |c|
-      if c.id == @chronicle.obsidian_campaign_id
-        @campaign = c
-        break
-      end
-    end
+    @campaign = MageHand::Campaign.find(@chronicle.obsidian_campaign_id)
   end
 end
