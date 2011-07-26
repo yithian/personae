@@ -558,6 +558,6 @@
 
 <%= render :partial => 'comments' %><br />
 
-<%= link_to("Toggle preview", preview_character_path(@character), :remote => true) + " | " if can? :edit, @character %>
-<%= link_to('Edit', edit_character_path(@character)) + " | " if can? :edit, @character %>
-<%= link_to 'Destroy', @character, :confirm => "Are you sure you want to delete #{@character.name}?", :method => :delete if can? :destroy, @character %>
+<%= link_to("Toggle preview", preview_character_path(@character), :remote => true) if can? :edit, @character %>
+<%= " | " + link_to('Edit', edit_character_path(@character)) if can? :edit, @character %>
+<%= " | " + link_to('Destroy', @character, :confirm => "Are you sure you want to delete #{@character.name}?", :method => :delete) if can? :destroy, @character %>
