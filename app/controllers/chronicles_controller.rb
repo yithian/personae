@@ -45,6 +45,8 @@ class ChroniclesController < ApplicationController
       [campaign.name, campaign.id]
     end
     @campaigns.insert(0, ['-', '0'])
+
+    @chronicle.description = @campaign.wiki_pages[0].body unless @campaign.nil?
   end
 
   # POST /chronicles
@@ -68,6 +70,10 @@ class ChroniclesController < ApplicationController
   # PUT /chronicles/1.xml
   def update
     flash[:notice] = "Chronicle successfully updated" if @chronicle.update_attributes(params[:chronicle])
+
+    json_page = JSON.generate({:wiki_page => { :body => @chronicle.description }})
+
+    obsidian_portal.access_token.put("/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}", json_page)
 
     respond_with @chronicle
   end
