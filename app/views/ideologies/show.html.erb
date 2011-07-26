@@ -16,5 +16,9 @@
 
 
 <%= link_to('New member', new_character_path(:ideology_id => @ideology.id)) if can? :create, Character %>
-<%= " | " + link_to('Edit', edit_ideology_path(@ideology)) if can? :edit, @ideology %>
-<%= " | " + link_to('Destroy', @ideology, :confirm => 'Are you sure you want to delete this ideology?', :method => :delete) if can? :destroy, @ideology %>
+<% if can? :edit, @ideology %>
+  | <%= link_to('Edit', edit_ideology_path(@ideology)) %>
+<% end %>
+<% if can? :destroy, @ideology %>
+  | <%= link_to('Destroy', @ideology, :confirm => 'Are you sure you want to delete this ideology?', :method => :delete) %>
+<% end %>
