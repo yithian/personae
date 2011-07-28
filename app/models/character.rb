@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # The basic building block of personae, the character class represents a
 # World of Darkness character. Specifically, it holds all the information
 # that would be represented on a player's character sheet.
@@ -247,6 +249,124 @@ class Character < ActiveRecord::Base
     self.splat.name == "Geist"
   end
   
+  # Returns what Obsidian Portal calls the character's
+  # bio. In personae terms, that is the character's
+  # description and background.
+  def obsidian_bio
+    "h5. Description\n#{self.description}\n\nh5. Background\n#{self.background}"
+  end
+
+  # Returns what Obsidian Portal calls the character's
+  # description, which is all of the mechanical bits.
+  # I know, it doesn't make sense to me either.
+  def obsidian_description
+    desc = ""
+    desc << "|_. Virtue|#{self.virtue}|_. Nature|#{self.nature.name}|\n"
+    desc << "|_. Vice|#{self.vice}|_. Subnature|#{self.subnature.name}|\n"
+    desc << "|||_. Idology|#{self.ideology.name}|\n"
+    desc << "|||_. Clique|#{self.clique.name}|\n"
+    desc << "*h5. Attributes\n"
+    desc << "|_. Intelligence:|#{'•' * self.intelligence}|_. Strength:|#{'•' * self.strength}|_. Presence:|#{'•' * self.presence}|\n"
+    desc << "|_. Wits:|#{'•' * self.wits}|_. Dexterity:|#{'•' * self.dexterity}|_. Manipulation:|#{'•' * self.manipulation}|\n"
+    desc << "|_. Resolve:|#{'•' * self.resolve}|_. Stamina:|#{'•' * self.stamina}|_. Composure:|#{'•' * self.composure}|\n\n"
+    desc << "h5. Skills\n"
+    desc << "|_. Academics:|#{'•' * self.academics}|_. Athletics:|#{'•' * self.athletics}|_. Animal Ken:|#{'•' * self.animal_ken}|\n"
+    desc << "|_. Computer:|#{'•' * self.computer}|_. Brawl:|#{'•' * self.brawl}|_. Empathy:|#{'•' * self.empathy}|\n"
+    desc << "|_. Crafts:|#{'•' * self.crafts}|_. Drive:|#{'•' * self.drive}|_. Expression:|#{'•' * self.expression}|\n"
+    desc << "|_. Investigation:|#{'•' * self.investigation}|_. Firearms:|#{'•' * self.firearms}|_. Intimidation:|#{'•' * self.intimidation}|\n"
+    desc << "|_. Medicine:|#{'•' * self.medicine}|_. Larceny:|#{'•' * self.larceny}|_. Persuasion:|#{'•' * self.persuasion}|\n"
+    desc << "|_. Occult:|#{'•' * self.occult}|_. Stealth:|#{'•' * self.stealth}|_. Socialize:|#{'•' * self.socialize}|\n"
+    desc << "|_. Politics:|#{'•' * self.politics}|_. Survival:|#{'•' * self.survival}|_. Streetwise:|#{'•' * self.streetwise}|\n"
+    desc << "|_. Science:|#{'•' * self.science}|_. Weaponry:|#{'•' * self.weaponry}|_. Subterfuge:|#{'•' * self.subterfuge}|\n"
+    desc << "|\\2_. Skill Specialties:|\\4#{self.skill_specialties}\n\n"
+    desc << "h5. Advantages\n"
+    desc << "|_. Health:|#{'•' * self.health}|_. Willpower:|#{'•' * self.willpower}|\n"
+    desc << "|_. Size:|#{ self.size}|\n"
+    desc << "|_. Initiative:|#{self.initiative}|\n"
+    desc << "|_. Speed:|#{self.speed}|\n"
+    desc << "|_. Defense:|#{self.defense}|\n"
+    desc << "|_. Armor:|#{self.armor}|\n"
+    desc << "|_. Morality:|#{self.morality}|\n"
+    desc << "|_. Power Stat:|#{self.power_stat}|\n"
+    desc << "|_. Fuel:|#{self.max_fuel}|\n\n"
+    desc << "h5. Merits\n"
+    desc << "#{self.merits}\n\n"
+    desc << "h5. Equipment\n"
+    desc << "#{self.equipment}\n\n"
+
+    case self.nature.name
+    when "Vampire"
+      desc << "h5. Disciplines\n"
+      desc << "|_. Animalism:|#{'•' * self.animalism}|_. Covenant Disciplines:|\n"
+      desc << "|_. Auspex:|#{'•' * self.auspex}|/9 #{self.covenant_disciplines}|\n"
+      desc << "|_. Celerity:|#{'•' * self.celerity}|\n"
+      desc << "|_. Dominate:|#{'•' * self.dominate}|\n"
+      desc << "|_. Majesty:|#{'•' * self.majesty}|\n"
+      desc << "|_. Nightmare:|#{'•' * self.nightmare}|\n"
+      desc << "|_. Obfuscate:|#{'•' * self.obfuscate}|\n"
+      desc << "|_. Protean:|#{'•' * self.protean}|\n"
+      desc << "|_. Resilience:|#{'•' * self.resilience}|\n"
+      desc << "|_. Vigor:|#{'•' * self.vigor}|\n\n"
+    when "Werewolf"
+      desc << "h5. Renown\n"
+      desc << "|_. Purity:|#{'•' * self.purity}|_. Gifts:|\n"
+      desc << "|_. Glory:|#{'•' * self.glory}|/4 #{self.gifts}|\n"
+      desc << "|_. Honor:|#{'•' * self.honor}|\n"
+      desc << "|_. Wisdom:|#{'•' * self.wisdom}|\n"
+      desc << "|_. Cunning:|#{'•' * self.cunning}|\n\n"
+    when "Mage"
+      desc << "h5. Arcana\n"
+      desc << "|_. Death:|#{'•' * self.death}|_. Common spells:|\n"
+      desc << "|_. Fate:|#{'•' * self.fate}|/9 #{self.common_spells}|\n"
+      desc << "|_. Forces:|#{'•' * self.forces}|\n"
+      desc << "|_. Life:|#{'•' * self.life}|\n"
+      desc << "|_. Matter:|#{'•' * self.matter}|\n"
+      desc << "|_. Mind:|#{'•' * self.mind}|\n"
+      desc << "|_. Prime:|#{'•' * self.prime}|\n"
+      desc << "|_. Space:|#{'•' * self.space}|\n"
+      desc << "|_. Spirit:|#{'•' * self.spirit}|\n"
+      desc << "|_. Time:|#{'•' * self.time}|\n\n"
+    when "Promethean"
+      desc << "h5. Transmutations\n"
+      desc << "#{self.transmutations}\n\n"
+    when "Changeling"
+      desc << "h5. Contracts\n"
+      desc << "_. Dream:|#{'•' * self.dream}|_. Goblin contracts:|\n"
+      desc << "_. Hearth:|#{'•' * self.hearth}|/17 #{self.goblin_contracts}|\n"
+      desc << "_. Mirror:|#{'•' * self.mirror}|\n"
+      desc << "_. Smoke:|#{'•' * self.smoke}|\n"
+      desc << "_. Artifice:|#{'•' * self.artifice}|\n"
+      desc << "_. Darkness:|#{'•' * self.darkness}|\n"
+      desc << "_. Elements:|#{'•' * self.elements}|\n"
+      desc << "_. Fang and Tooth:|#{'•' * self.fang_and_tooth}|\n"
+      desc << "_. Stone:|#{'•' * self.stone}|\n"
+      desc << "_. Vainglory:|#{'•' * self.vainglory}|\n"
+      desc << "_. Fleeting Spring:|#{'•' * self.fleeting_spring}|\n"
+      desc << "_. Eternal Spring:|#{'•' * self.eternal_spring}|\n"
+      desc << "_. Fleeting Summer:|#{'•' * self.fleeting_summer}|\n"
+      desc << "_. Eternal Summer:|#{'•' * self.eternal_summer}|\n"
+      desc << "_. Fleeting Autumn:|#{'•' * self.fleeting_autumn}|\n"
+      desc << "_. Eternal Autumn:|#{'•' * self.eternal_autumn}|\n"
+      desc << "_. Fleeting Winter:|#{'•' * self.fleeting_winter}|\n"
+      desc << "_. Eternal Winter:|#{'•' * self.eternal_winter}|\n\n"
+    when "Geist"
+      desc << "_. Boneyard:|#{'•' * self.boneyard}|_. Keys:|\n"
+      desc << "_. Caul:|#{'•' * self.caul}|/6 #{self.keys}|\n"
+      desc << "_. Curse:|#{'•' * self.curse}|\n"
+      desc << "_. Oracle:|#{'•' * self.oracle}|\n"
+      desc << "_. Marionette:|#{'•' * self.marionette}|\n"
+      desc << "_. Rage:|#{'•' * self.rage}|\n"
+      desc << "_. Shroud:|#{'•' * self.shroud}|\n\n"
+    end
+
+    desc << "h5. Experience\n"
+    desc << "#{self.experience}\n\n"
+    desc << "h5. Notes\n"
+    desc << "#{self.notes}\n"
+
+    desc
+  end
+
   # List characters known to the given user
   def self.known_to(user, selected_chronicle=user.selected_chronicle.id)
     characters = Character.find_all_by_chronicle_id(selected_chronicle, :order => "clique_id ASC").collect do |c|
