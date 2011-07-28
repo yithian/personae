@@ -69,7 +69,6 @@ class ChroniclesController < ApplicationController
     flash[:notice] = "Chronicle successfully updated" if @chronicle.update_attributes(params[:chronicle])
 
     json_page = JSON.generate({:wiki_page => { :body => @chronicle.description }})
-
     obsidian_portal.access_token.put("/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}", json_page)
 
     respond_with @chronicle
@@ -100,6 +99,6 @@ class ChroniclesController < ApplicationController
   # sets up a campaign variable from the obsidian_campaign_id saved in
   # the chronicle
   def find_campaign
-    @campaign = MageHand::Campaign.find(@chronicle.obsidian_campaign_id)
+    @campaign = MageHand::Campaign.find(@chronicle.obsidian_campaign_id) if @chronicle.obsidian_campaign_id and @chronicle.obsidian_campaign_id != 0
   end
 end
