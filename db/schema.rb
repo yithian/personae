@@ -10,149 +10,150 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725180423) do
+ActiveRecord::Schema.define(:version => 20110728182305) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
-    t.string   "virtue",                              :default => "Charity"
-    t.string   "vice",                                :default => "Envy"
-    t.integer  "clique_id",                           :default => 1,         :null => false
-    t.integer  "ideology_id",                         :default => 1,         :null => false
+    t.string   "virtue",                               :default => "Charity"
+    t.string   "vice",                                 :default => "Envy"
+    t.integer  "clique_id",                            :default => 1,         :null => false
+    t.integer  "ideology_id",                          :default => 1,         :null => false
     t.text     "description"
     t.text     "background"
-    t.integer  "intelligence",                        :default => 1
-    t.integer  "strength",                            :default => 1
-    t.integer  "presence",                            :default => 1
-    t.integer  "wits",                                :default => 1
-    t.integer  "dexterity",                           :default => 1
-    t.integer  "manipulation",                        :default => 1
-    t.integer  "resolve",                             :default => 1
-    t.integer  "stamina",                             :default => 1
-    t.integer  "composure",                           :default => 1
-    t.integer  "academics",                           :default => 0
-    t.integer  "athletics",                           :default => 0
-    t.integer  "animal_ken",                          :default => 0
-    t.integer  "computer",                            :default => 0
-    t.integer  "brawl",                               :default => 0
-    t.integer  "empathy",                             :default => 0
-    t.integer  "crafts",                              :default => 0
-    t.integer  "drive",                               :default => 0
-    t.integer  "expression",                          :default => 0
-    t.integer  "investigation",                       :default => 0
-    t.integer  "firearms",                            :default => 0
-    t.integer  "intimidation",                        :default => 0
-    t.integer  "medicine",                            :default => 0
-    t.integer  "larceny",                             :default => 0
-    t.integer  "persuasion",                          :default => 0
-    t.integer  "occult",                              :default => 0
-    t.integer  "stealth",                             :default => 0
-    t.integer  "socialize",                           :default => 0
-    t.integer  "politics",                            :default => 0
-    t.integer  "survival",                            :default => 0
-    t.integer  "streetwise",                          :default => 0
-    t.integer  "science",                             :default => 0
-    t.integer  "weaponry",                            :default => 0
-    t.integer  "subterfuge",                          :default => 0
+    t.integer  "intelligence",                         :default => 1
+    t.integer  "strength",                             :default => 1
+    t.integer  "presence",                             :default => 1
+    t.integer  "wits",                                 :default => 1
+    t.integer  "dexterity",                            :default => 1
+    t.integer  "manipulation",                         :default => 1
+    t.integer  "resolve",                              :default => 1
+    t.integer  "stamina",                              :default => 1
+    t.integer  "composure",                            :default => 1
+    t.integer  "academics",                            :default => 0
+    t.integer  "athletics",                            :default => 0
+    t.integer  "animal_ken",                           :default => 0
+    t.integer  "computer",                             :default => 0
+    t.integer  "brawl",                                :default => 0
+    t.integer  "empathy",                              :default => 0
+    t.integer  "crafts",                               :default => 0
+    t.integer  "drive",                                :default => 0
+    t.integer  "expression",                           :default => 0
+    t.integer  "investigation",                        :default => 0
+    t.integer  "firearms",                             :default => 0
+    t.integer  "intimidation",                         :default => 0
+    t.integer  "medicine",                             :default => 0
+    t.integer  "larceny",                              :default => 0
+    t.integer  "persuasion",                           :default => 0
+    t.integer  "occult",                               :default => 0
+    t.integer  "stealth",                              :default => 0
+    t.integer  "socialize",                            :default => 0
+    t.integer  "politics",                             :default => 0
+    t.integer  "survival",                             :default => 0
+    t.integer  "streetwise",                           :default => 0
+    t.integer  "science",                              :default => 0
+    t.integer  "weaponry",                             :default => 0
+    t.integer  "subterfuge",                           :default => 0
     t.text     "skill_specialties"
-    t.integer  "health",               :limit => 255, :default => 6
-    t.integer  "willpower",            :limit => 255, :default => 2
-    t.integer  "speed",                               :default => 7
-    t.integer  "initiative",                          :default => 2
-    t.integer  "defense",                             :default => 1
-    t.integer  "armor",                               :default => 0
-    t.integer  "morality",                            :default => 7
+    t.integer  "health",                :limit => 255, :default => 6
+    t.integer  "willpower",             :limit => 255, :default => 2
+    t.integer  "speed",                                :default => 7
+    t.integer  "initiative",                           :default => 2
+    t.integer  "defense",                              :default => 1
+    t.integer  "armor",                                :default => 0
+    t.integer  "morality",                             :default => 7
     t.text     "derangements"
     t.text     "merits"
-    t.integer  "power_stat",                          :default => 1
-    t.integer  "death",                               :default => 0
-    t.integer  "fate",                                :default => 0
-    t.integer  "forces",                              :default => 0
-    t.integer  "life",                                :default => 0
-    t.integer  "matter",                              :default => 0
-    t.integer  "mind",                                :default => 0
-    t.integer  "prime",                               :default => 0
-    t.integer  "space",                               :default => 0
-    t.integer  "spirit",                              :default => 0
-    t.integer  "time",                                :default => 0
+    t.integer  "power_stat",                           :default => 1
+    t.integer  "death",                                :default => 0
+    t.integer  "fate",                                 :default => 0
+    t.integer  "forces",                               :default => 0
+    t.integer  "life",                                 :default => 0
+    t.integer  "matter",                               :default => 0
+    t.integer  "mind",                                 :default => 0
+    t.integer  "prime",                                :default => 0
+    t.integer  "space",                                :default => 0
+    t.integer  "spirit",                               :default => 0
+    t.integer  "time",                                 :default => 0
     t.text     "equipment"
     t.text     "common_spells"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id",                            :default => 1
-    t.boolean  "read_name",                           :default => false
-    t.boolean  "read_description",                    :default => false
-    t.boolean  "read_background",                     :default => false
-    t.boolean  "read_attributes",                     :default => false
-    t.boolean  "read_skills",                         :default => false
-    t.boolean  "read_advantages",                     :default => false
-    t.boolean  "read_merits",                         :default => false
-    t.boolean  "read_powers",                         :default => false
-    t.boolean  "read_equipment",                      :default => false
-    t.integer  "max_fuel",                            :default => 7
+    t.integer  "owner_id",                             :default => 1
+    t.boolean  "read_name",                            :default => false
+    t.boolean  "read_description",                     :default => false
+    t.boolean  "read_background",                      :default => false
+    t.boolean  "read_attributes",                      :default => false
+    t.boolean  "read_skills",                          :default => false
+    t.boolean  "read_advantages",                      :default => false
+    t.boolean  "read_merits",                          :default => false
+    t.boolean  "read_powers",                          :default => false
+    t.boolean  "read_equipment",                       :default => false
+    t.integer  "max_fuel",                             :default => 7
     t.text     "experience"
-    t.boolean  "read_experience",                     :default => false
-    t.boolean  "read_clique",                         :default => false
-    t.boolean  "read_ideology",                       :default => false
-    t.boolean  "read_nature",                         :default => false
-    t.integer  "splat_id",                            :default => 1,         :null => false
-    t.integer  "purity",                              :default => 0
-    t.integer  "glory",                               :default => 0
-    t.integer  "honor",                               :default => 0
-    t.integer  "wisdom",                              :default => 0
-    t.integer  "cunning",                             :default => 0
+    t.boolean  "read_experience",                      :default => false
+    t.boolean  "read_clique",                          :default => false
+    t.boolean  "read_ideology",                        :default => false
+    t.boolean  "read_nature",                          :default => false
+    t.integer  "splat_id",                             :default => 1,         :null => false
+    t.integer  "purity",                               :default => 0
+    t.integer  "glory",                                :default => 0
+    t.integer  "honor",                                :default => 0
+    t.integer  "wisdom",                               :default => 0
+    t.integer  "cunning",                              :default => 0
     t.text     "gifts"
-    t.integer  "nature_id",                           :default => 1,         :null => false
-    t.integer  "animalism",                           :default => 0
-    t.integer  "auspex",                              :default => 0
-    t.integer  "celerity",                            :default => 0
-    t.integer  "dominate",                            :default => 0
-    t.integer  "majesty",                             :default => 0
-    t.integer  "nightmare",                           :default => 0
-    t.integer  "protean",                             :default => 0
-    t.integer  "obfuscate",                           :default => 0
-    t.integer  "vigor",                               :default => 0
+    t.integer  "nature_id",                            :default => 1,         :null => false
+    t.integer  "animalism",                            :default => 0
+    t.integer  "auspex",                               :default => 0
+    t.integer  "celerity",                             :default => 0
+    t.integer  "dominate",                             :default => 0
+    t.integer  "majesty",                              :default => 0
+    t.integer  "nightmare",                            :default => 0
+    t.integer  "protean",                              :default => 0
+    t.integer  "obfuscate",                            :default => 0
+    t.integer  "vigor",                                :default => 0
     t.text     "covenant_disciplines"
-    t.integer  "size",                                :default => 5,         :null => false
+    t.integer  "size",                                 :default => 5,         :null => false
     t.text     "transmutations"
-    t.integer  "dream",                               :default => 0,         :null => false
-    t.integer  "hearth",                              :default => 0,         :null => false
-    t.integer  "mirror",                              :default => 0,         :null => false
-    t.integer  "smoke",                               :default => 0,         :null => false
-    t.integer  "artifice",                            :default => 0,         :null => false
-    t.integer  "darkness",                            :default => 0,         :null => false
-    t.integer  "elements",                            :default => 0,         :null => false
-    t.integer  "fang_and_tooth",                      :default => 0,         :null => false
-    t.integer  "stone",                               :default => 0,         :null => false
-    t.integer  "vainglory",                           :default => 0,         :null => false
-    t.integer  "fleeting_spring",                     :default => 0,         :null => false
-    t.integer  "eternal_spring",                      :default => 0,         :null => false
-    t.integer  "fleeting_summer",                     :default => 0,         :null => false
-    t.integer  "eternal_summer",                      :default => 0,         :null => false
-    t.integer  "fleeting_autumn",                     :default => 0,         :null => false
-    t.integer  "eternal_autumn",                      :default => 0,         :null => false
-    t.integer  "fleeting_winter",                     :default => 0,         :null => false
-    t.integer  "eternal_winter",                      :default => 0,         :null => false
+    t.integer  "dream",                                :default => 0,         :null => false
+    t.integer  "hearth",                               :default => 0,         :null => false
+    t.integer  "mirror",                               :default => 0,         :null => false
+    t.integer  "smoke",                                :default => 0,         :null => false
+    t.integer  "artifice",                             :default => 0,         :null => false
+    t.integer  "darkness",                             :default => 0,         :null => false
+    t.integer  "elements",                             :default => 0,         :null => false
+    t.integer  "fang_and_tooth",                       :default => 0,         :null => false
+    t.integer  "stone",                                :default => 0,         :null => false
+    t.integer  "vainglory",                            :default => 0,         :null => false
+    t.integer  "fleeting_spring",                      :default => 0,         :null => false
+    t.integer  "eternal_spring",                       :default => 0,         :null => false
+    t.integer  "fleeting_summer",                      :default => 0,         :null => false
+    t.integer  "eternal_summer",                       :default => 0,         :null => false
+    t.integer  "fleeting_autumn",                      :default => 0,         :null => false
+    t.integer  "eternal_autumn",                       :default => 0,         :null => false
+    t.integer  "fleeting_winter",                      :default => 0,         :null => false
+    t.integer  "eternal_winter",                       :default => 0,         :null => false
     t.text     "goblin_contracts"
     t.text     "pledges"
-    t.integer  "boneyard",                            :default => 0,         :null => false
-    t.integer  "caul",                                :default => 0,         :null => false
-    t.integer  "curse",                               :default => 0,         :null => false
-    t.integer  "marionette",                          :default => 0,         :null => false
-    t.integer  "oracle",                              :default => 0,         :null => false
-    t.integer  "rage",                                :default => 0,         :null => false
-    t.integer  "shroud",                              :default => 0,         :null => false
+    t.integer  "boneyard",                             :default => 0,         :null => false
+    t.integer  "caul",                                 :default => 0,         :null => false
+    t.integer  "curse",                                :default => 0,         :null => false
+    t.integer  "marionette",                           :default => 0,         :null => false
+    t.integer  "oracle",                               :default => 0,         :null => false
+    t.integer  "rage",                                 :default => 0,         :null => false
+    t.integer  "shroud",                               :default => 0,         :null => false
     t.text     "keys"
     t.text     "ceremonies"
     t.text     "deeds"
-    t.boolean  "read_deeds",                          :default => true
+    t.boolean  "read_deeds",                           :default => true
     t.string   "current_health"
     t.string   "current_willpower"
     t.text     "notes"
-    t.boolean  "read_notes",                          :default => false
-    t.integer  "chronicle_id",                        :default => 1
-    t.integer  "subnature_id",                        :default => 1,         :null => false
-    t.integer  "resilience",                          :default => 0,         :null => false
-    t.integer  "current_fuel",                        :default => 7
+    t.boolean  "read_notes",                           :default => false
+    t.integer  "chronicle_id",                         :default => 1
+    t.integer  "subnature_id",                         :default => 1,         :null => false
+    t.integer  "resilience",                           :default => 0,         :null => false
+    t.integer  "current_fuel",                         :default => 7
+    t.string   "obsidian_character_id"
   end
 
   create_table "chronicles", :force => true do |t|
@@ -161,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20110725180423) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id",             :default => 1, :null => false
+    t.string   "obsidian_id"
     t.string   "obsidian_campaign_id"
   end
 
