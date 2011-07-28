@@ -61,16 +61,16 @@
         <td><%= f.select :clique_id, @clique_list %></td>
       </tr>
     <tr>
-      <td><%= f.check_box :read_name %> <%= f.label :read_name %></td>
-      <td><%= f.check_box :read_clique %> <%= f.label :read_clique, "Read " + @character.splat.clique_name, :id => "read_clique_label" %></td>
+      <td><%= f.check_box :read_name %> <%= f.label :read_name, "Reveal name" %></td>
+      <td><%= f.check_box :read_clique %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label" %></td>
       <td>
 	<span id="read_nature_span" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
-          <%= f.check_box :read_nature %> <%= f.label :read_nature, "Read " + @character.splat.nature_name, :id => "read_nature_label" %>
+          <%= f.check_box :read_nature %> <%= f.label :read_nature, "Reveal " + @character.splat.nature_name, :id => "read_nature_label" %>
         </span>
       </td>
       <td>
         <span id="read_ideology_span" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
-          <%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Read " + @character.splat.ideology_name, :id => "read_ideology_label" %>
+          <%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Reveal " + @character.splat.ideology_name, :id => "read_ideology_label" %>
         </span>
       </td>
   </table>
@@ -78,17 +78,17 @@
   
   <h3>Description</h3>
   <p><%= f.text_area :description %></p>
-  <%= f.check_box :read_description %> <%= f.label :read_description %>
+  <%= f.check_box :read_description %> <%= f.label :read_description, "Reveal description" %>
 
 
   <h3>Background</h3>
   <p><%= f.text_area :background %></p>
-  <%= f.check_box :read_background %> <%= f.label :read_background %>
+  <%= f.check_box :read_background %> <%= f.label :read_background, "Reveal background" %>
 
 
   <h3>Deeds</h3>
   <p><%= f.text_area :deeds %></p>
-  <%= f.check_box :read_deeds %> <%= f.label :read_deeds %>
+  <%= f.check_box :read_deeds %> <%= f.label :read_deeds, "Reveal known deeds" %>
 
 
   <h3>Attributes</h3>
@@ -118,7 +118,7 @@
       <td><%= f.text_field :composure, :class => "parent_number" %></td>
     </tr>
   </table>
-  <%= f.check_box :read_attributes %> <%= f.label :read_attributes %>
+  <%= f.check_box :read_attributes %> <%= f.label :read_attributes, "Reveal attributes" %>
 
 
   <h3>Skills</h3>
@@ -192,7 +192,7 @@
       <td colspan="5" class="growdown"><%= f.text_area :skill_specialties %></td>
     </tr>
   </table>
-  <%= f.check_box :read_skills %> <%= f.label :read_skills %>
+  <%= f.check_box :read_skills %> <%= f.label :read_skills, "Reveal skills" %>
 
 
   <h3>Advantages</h3>
@@ -262,17 +262,17 @@
     <tr>
     </tr>
   </table>
-  <%= f.check_box :read_advantages %> <%= f.label :read_advantages %>
+  <%= f.check_box :read_advantages %> <%= f.label :read_advantages, "Reveal advantages" %>
   
   
   <h3>Merits</h3>
   <p><%= f.text_area :merits %></p>
-  <%= f.check_box :read_merits %> <%= f.label :read_merits %>
+  <%= f.check_box :read_merits %> <%= f.label :read_merits, "Reveal merits" %>
   
   
   <h3>Equipment</h3>
   <p><%= f.text_area :equipment %></p>
-  <%= f.check_box :read_equipment %> <%= f.label :read_equipment %>
+  <%= f.check_box :read_equipment %> <%= f.label :read_equipment, "Reveal equipment" %>
   
   
   <span id="mage_powers" <%= "style='display: none'" unless @character.is_mage? %> >
@@ -535,18 +535,18 @@
   </span>
   
   <span id="read_powers_span" <%= "style='display: none'" if @character.is_mortal? %> >
-    <%= f.check_box :read_powers %> <%= f.label :read_powers %>
+    <%= f.check_box :read_powers %> <%= f.label :read_powers, "Reveal powers" %>
   </span>
 
 
   <h3>Experience</h3>
   <p><%= f.text_area :experience %></p>
-  <%= f.check_box :read_experience %> <%= f.label :read_experience %>
+  <%= f.check_box :read_experience %> <%= f.label :read_experience, "Reveal experience" %>
   
 
   <h3>Notes</h3>
   <p><%= f.text_area :notes %></p>
-  <%= f.check_box :read_notes %> <%= f.label :read_notes %>
+  <%= f.check_box :read_notes %> <%= f.label :read_notes, "Reveal notes" %>
   <br />
 
   
