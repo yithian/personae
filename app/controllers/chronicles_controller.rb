@@ -22,10 +22,6 @@ class ChroniclesController < ApplicationController
     @characters = @chronicle.characters
     @cliques = @chronicle.cliques
     
-    if @chronicle.description.nil? and not @campaign.nil?
-      @chronicle.description = @campaign.wiki_pages[0].body_html
-    end
-    
     respond_with @chronicle
   end
 
