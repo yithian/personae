@@ -1,9 +1,10 @@
 # Controller for chronicle actions: show/create/edit/etc
 
 class ChroniclesController < ApplicationController
+  include MageHand
   respond_to :html, :xml
   load_and_authorize_resource
-  before_filter :obsidian_portal_login_required
+  before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :find_campaign, :only => [:new, :create, :show, :edit, :update]
   before_filter :find_chronicle, :only => [:create, :show, :edit, :update, :destroy]
   

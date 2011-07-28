@@ -15,6 +15,12 @@
     <tr>
       <td><b><%= f.label :name %></b></td>
       <td><%= f.text_field :name %></td>
+    <% if @obsidian_characters %>
+    </tr>
+    <tr>
+      <td><b><%= f.label :obsidian_character_id, "Obisidan Portal" %></td>
+      <td><%= f.select :obsidian_character_id, @obsidian_characters %></td>
+    <% end %>
       <td><b><%= f.label :splat_id, "Template" %></b></td>
       <td>
         <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :remote => true, :action => update_splat_characters_path %>
