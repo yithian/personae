@@ -56,14 +56,14 @@ class CharactersController < ApplicationController
   # GET /characters/new
   # GET /characters/new.xml
   def new
+    obsidian_characters
+    
     respond_with @character
   end
 
   # GET /characters/1/edit
   def edit
-    @obsidian_characters = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json").body).collect { |c| [c["name"], c["id"]] }
-    @obsidian_characters.insert(0, ["-", 0])
-    @obsidian_characters << ["Create new", -1]
+    obsidian_characters
   end
   
   # POST /characters/update_splat
@@ -201,6 +201,12 @@ class CharactersController < ApplicationController
     
     @splat_list = Splat.all.collect
     @chronicle_list = Chronicle.all.collect
+  end
+  
+  def obsidian_characters
+    @obsidian_characters = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json").body).collect { |c| [c["name"], c["id"]] }
+    @obsidian_characters.insert(0, ["-", 0])
+    @obsidian_characters << ["Create new", -1]
   end
   
   # Allows or denies access to a character page based on Character#show_name_to_user?
