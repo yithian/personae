@@ -1,7 +1,19 @@
 require 'test_helper'
 
 class ChroniclesControllerTest < ActionController::TestCase
+  require 'fakeweb'
   include Devise::TestHelpers
+
+  def setup
+    FakeWeb.allow_net_connect = false
+    FakeWeb.register_uri(:post, 'https://www.obsidianportal.com/oauth/request_token', :body => 'oauth_token=fake&oauth_token_secret=fake')
+    FakeWeb.register_uri(:post, 'https://www.obsidianportal.com/oauth/access_token', :body => 'oauth_token=fake&oauth_token_secret=fake')
+    FakeWeb.register_uri(:get, 'https://www.obsidianportal.com/oauth/authorize', :response => File.join(Rails.root.to_s, 'test', 'fixtures', 'authorize'))
+    FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/users/me.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_user'))
+
+    @request.session[:access_token_key] = "zbSBqRLcixlAVpdZ9DRQ"
+    @request.session[:access_token_secret] = "XrkwQiAHQUl4U6Xzwx0mjXE90DtM4cXmz2jYDK2V"
+  end
   
   def assert_login
     assert_redirected_to new_user_session_path
@@ -82,7 +94,7 @@ class ChroniclesControllerTest < ActionController::TestCase
 
   test "should get edit" do
     sign_in(users(:Storyteller))
-    
+
     get :edit, :id => chronicles(:one).to_param
     assert_response :success, @response
     assert_not_nil assigns(:chronicle)
@@ -102,6 +114,7 @@ class ChroniclesControllerTest < ActionController::TestCase
   test "should update chronicle" do
     sign_in(users(:Storyteller))
     
+
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     assert_redirected_to chronicle_path(assigns(:chronicle))
   end

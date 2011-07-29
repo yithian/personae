@@ -49,7 +49,7 @@ class ChroniclesController < ApplicationController
     if @chronicle.save
       flash[:notice] = "Chronicle successfully created"
       
-      user = current_user.id
+      user = current_user
       user.selected_chronicle = @chronicle
       user.save
     end
@@ -62,8 +62,10 @@ class ChroniclesController < ApplicationController
   def update
     flash[:notice] = "Chronicle successfully updated" if @chronicle.update_attributes(params[:chronicle])
 
-    json_page = JSON.generate({:wiki_page => { :body => @chronicle.description }})
-    obsidian_portal.access_token.put("/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}", json_page)
+    unless @campaign.nil?
+      json_page = JSON.generate({:wiki_page => { :body => @chronicle.description }})
+      obsidian_portal.access_token.put("/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}", json_page)
+    end
 
     respond_with @chronicle
   end
