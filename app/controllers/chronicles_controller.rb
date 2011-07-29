@@ -28,20 +28,14 @@ class ChroniclesController < ApplicationController
   # GET /chronicles/new
   # GET /chronicles/new.xml
   def new
-    @campaigns = obsidian_portal.current_user.campaigns.collect do |campaign|
-      [campaign.name, campaign.id]
-    end
-    @campaigns.insert(0, ['-', '0'])
+    obsidian_campaigns
     
     respond_with @chronicle
   end
 
   # GET /chronicles/1/edit
   def edit
-    @campaigns = obsidian_portal.current_user.campaigns.collect do |campaign|
-      [campaign.name, campaign.id]
-    end
-    @campaigns.insert(0, ['-', '0'])
+    obsidian_campaigns
 
     @chronicle.description = @campaign.wiki_pages[0].body unless @campaign.nil?
   end
@@ -100,5 +94,15 @@ class ChroniclesController < ApplicationController
   # the chronicle
   def find_campaign
     @campaign = MageHand::Campaign.find(@chronicle.obsidian_campaign_id) if @chronicle.obsidian_campaign_id and @chronicle.obsidian_campaign_id != 0
+  end
+  
+  # sets up a variable to hold an array of obsidian portal campaign names
+  # and ids
+  def obsidian_campaigns
+    @campaigns = obsidian_portal.current_user.campaigns.collect do |campaign|
+      [campaign.name, campaign.id]
+    end
+    @campaigns.insert(0, ['-', 0])
+    @campaigns << ['Create new', -1]
   end
 end
