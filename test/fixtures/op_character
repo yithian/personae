@@ -1,38 +1,40 @@
-{
- "id" : "e06993fcf24411dfba8140403656340d",
- "slug" : "bbeg",
- "name" : "BBEG",
- "tagline" : "Awaiting in his fortress",
- "wiki_page_url" : "http://www.obsidianportal.com/campaigns/kensing/characters/bbeg",
- "campaign" : {
-    "id" : "5b6ef1e0f24411dfba8140403656340d",
-    "name" : "Kensing",
-    "slug" : "kensing",
-    "campaign_url" : "http://www.obsidianportal.com/campaigns/kensing"
+[
+  {
+   "id" : "e06993fcf24411dfba8140403656340d",
+   "slug" : "bbeg",
+   "name" : "BBEG",
+   "tagline" : "Awaiting in his fortress",
+   "wiki_page_url" : "http://www.obsidianportal.com/campaigns/kensing/characters/bbeg",
+   "campaign" : {
+      "id" : "5b6ef1e0f24411dfba8140403656340d",
+      "name" : "Kensing",
+      "slug" : "kensing",
+      "campaign_url" : "http://www.obsidianportal.com/campaigns/kensing"
+     },
+   "dynamic_sheet_template" : {
+    "id" : "4a938f60f24211dfba7940403656340d",
+    "name" : "Chainsaws DnD 3.5",
+    "slug" : "chainsaw_dnd_35"
    },
- "dynamic_sheet_template" : {
-  "id" : "4a938f60f24211dfba7940403656340d",
-  "name" : "Chainsaws DnD 3.5",
-  "slug" : "chainsaw_dnd_35"
- },
- "dynamic_sheet" : {
-  "race" : "Drow",
-  "class" : "Wizard",
-  "level" : "30"
- },
- "description" : "Level 30 wizard",
- "description_html" : "<p>Level 30 wizard</p>",
- "bio" : "Dark lord of destruction, watching from on high",
- "bio_html" : "<p>Dark lord of destruction, watching from on high</p>",
- "is_player_character" : false,
- "author" : {
-    "id" : "1b938f60f24211dfba7940403656340d",
-    "username" : "Micah",
-    "profile_url" : "http://www.obsidianportal.com/profile/Micah"
+   "dynamic_sheet" : {
+    "race" : "Drow",
+    "class" : "Wizard",
+    "level" : "30"
    },
- "created_at" : "2010-11-01T21:42:13Z",
- "updated_at" : "2010-11-01T21:42:13Z",
- "is_game_master_only" : true,
- "game_master_info" : "Actually quite cuddly",
- "game_master_info_html" : "<p>Actually quite cuddly</p>"
-}
+   "description" : "Level 30 wizard",
+   "description_html" : "<p>Level 30 wizard</p>",
+   "bio" : "Dark lord of destruction, watching from on high",
+   "bio_html" : "<p>Dark lord of destruction, watching from on high</p>",
+   "is_player_character" : false,
+   "author" : {
+      "id" : "1b938f60f24211dfba7940403656340d",
+      "username" : "Micah",
+      "profile_url" : "http://www.obsidianportal.com/profile/Micah"
+     },
+   "created_at" : "2010-11-01T21:42:13Z",
+   "updated_at" : "2010-11-01T21:42:13Z",
+   "is_game_master_only" : true,
+   "game_master_info" : "Actually quite cuddly",
+   "game_master_info_html" : "<p>Actually quite cuddly</p>"
+  }
+]
