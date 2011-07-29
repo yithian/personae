@@ -105,6 +105,5 @@ class ChroniclesController < ApplicationController
       [campaign.name, campaign.id]
     end
     @campaigns.insert(0, ['-', 0])
-    @campaigns << ['Create new', -1]
   end
 end

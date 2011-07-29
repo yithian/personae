@@ -19,7 +19,8 @@ class CharactersController < ApplicationController
     if user_signed_in?
       @characters = Character.known_to current_user
     else
-      @characters = Character.known_to User.new, @selected_chronicle_id
+      # this is an awful hack because User.new seemed to be conflicting with MageHand::User.new (which doesn't exist?)
+      @characters = Character.known_to 0, @selected_chronicle_id
     end
 
     respond_with @characters
@@ -120,7 +121,7 @@ class CharactersController < ApplicationController
     when -1
       # create a new character
       json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description}})
-      obsidian_portal.access_token.post("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)
+      obsidian_portal.access_token.post("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json", json_character)
     else
       # update existing character
       json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description}})

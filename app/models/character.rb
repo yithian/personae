@@ -261,10 +261,10 @@ class Character < ActiveRecord::Base
   # I know, it doesn't make sense to me either.
   def obsidian_description
     desc = %{
-|_. Virtue|#{self.virtue}|_. Nature|#{self.nature.name}|
-|_. Vice|#{self.vice}|_. Subnature|#{self.subnature.name}|
-|||_. Idology|#{self.ideology.name}|
-|||_. Clique|#{self.clique.name}|
+|_. Virtue|#{self.virtue}|_. #{self.splat.nature_name}|#{self.nature.name}|
+|_. Vice|#{self.vice}|_. #{self.splat.subnature_name}|#{self.subnature.name}|
+|||_. #{self.splat.ideology_name}|#{self.ideology.name}|
+|||_. #{self.splat.clique_name}|#{self.clique.name}|
 
 h5. Attributes
 
@@ -388,6 +388,7 @@ h5. Notes
 
   # List characters known to the given user
   def self.known_to(user, selected_chronicle=user.selected_chronicle.id)
+    user = User.new if user == 0
     characters = Character.find_all_by_chronicle_id(selected_chronicle, :order => "clique_id ASC").collect do |c|
       c if c.show_name_to_user?(user)
     end

@@ -133,6 +133,8 @@ one:
   ceremonies: MyCeremoniesText
   deeds: MyDeedsText
   read_deeds: true
+  subnature: one
+  obsidian_character_id: 1
 
 two:
   name: MyOtherName
@@ -267,4 +269,6 @@ two:
   ceremonies: MyOtherCeremoniesText
   deeds: MyOtherDeedsText
   read_deeds: false
+  subnature: one
+  obsidian_character_id: 2
 
