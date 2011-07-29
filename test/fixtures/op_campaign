@@ -1,0 +1,46 @@
+{
+ "id" : "1",
+ "name" : "Kensing",
+ "slug" : "kensing",
+ "campaign_url" : "http://www.obsidianportal.com/campaigns/kensing",
+ "visibility" : "public",
+ "game_master" : {
+  "id" : "b777d6b6f266f2638853636baf8575453fb9417a",
+  "username" : "Micah",
+  "profile_url" : "http://www.obsidianportal.com/profile/Micah",
+  "avatar_image_url" : "http://cdn.obsidianportal.com/foo/bar/myface.jpg"
+ },
+ "play_status" : "on_hiatus",
+ "players" : [
+  {
+   "id" : "a123d6b6f266f2638853636baf8575453fb9417a",
+   "username" : "Player1",
+   "profile_url" : "http://www.obsidianportal.com/profile/Player1"
+  },
+  {
+   "id" : "b123d6b6f266f2638853636baf8575453fb9417a",
+   "username" : "Player2",
+   "profile_url" : "http://www.obsidianportal.com/profile/Player2"
+  }
+ ],
+ "fans" : [
+  {
+   "id" : "c123d6b6f266f2638853636baf8575453fb9417a",
+   "username" : "Fan1",
+   "profile_url" : "http://www.obsidianportal.com/profile/Player2",
+   "avatar_image_url" : "http://cdn.obsidianportal.com/foo/bar/somepic.png"
+  },
+  {
+   "id" : "d123d6b6f266f2638853636baf8575453fb9417a",
+   "username" : "Fan2",
+   "profile_url" : "http://www.obsidianportal.com/profile/Player2"
+  }
+ ],
+ "looking_for_players" : false,
+ "created_at" : "2007-07-04T12:00:00Z",
+ "updated_at" : "2010-10-28T12:22:00Z",
+ "location" : {
+  "lat" : 33.7759,
+  "lng" : -84.3927
+ }
+}
