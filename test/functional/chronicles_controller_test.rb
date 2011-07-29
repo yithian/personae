@@ -12,6 +12,7 @@ class ChroniclesControllerTest < ActionController::TestCase
     FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/users/me.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_user'))
     FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/campaigns/1.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_campaign'))
     FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/campaigns/1/wikis.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_wiki'))
+    FakeWeb.register_uri(:put, 'http://api.obsidianportal.com/v1/campaigns/1/wikis/1.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_wiki'))
 
     @request.session[:access_token_key] = "zbSBqRLcixlAVpdZ9DRQ"
     @request.session[:access_token_secret] = "XrkwQiAHQUl4U6Xzwx0mjXE90DtM4cXmz2jYDK2V"
