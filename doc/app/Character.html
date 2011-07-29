@@ -282,7 +282,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="known_to-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 345</span>
+<span class="ruby-comment"># File app/models/character.rb, line 364</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">selected_chronicle</span>=<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">selected_chronicle</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;clique_id ASC&quot;</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">c</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">user</span>)
@@ -559,7 +559,7 @@ that is the character’s description and background.</p>
 <pre>
 <span class="ruby-comment"># File app/models/character.rb, line 229</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_bio</span>
-  <span class="ruby-node">&quot;h5. Description\n#{self.description}\n\nh5. Background\n#{self.background}&quot;</span>
+  <span class="ruby-node">&quot;h5. Description\n\n#{self.description}\n\nh5. Background\n\n#{self.background}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- obsidian_bio-source -->
             
@@ -592,113 +592,132 @@ all of the mechanical bits. I know, it doesn’t make sense to me either.</p>
             <div class="method-source-code" id="obsidian_description-source">
 <pre>
 <span class="ruby-comment"># File app/models/character.rb, line 236</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_description</span>
-  <span class="ruby-identifier">desc</span> = <span class="ruby-string">&quot;&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Virtue|#{self.virtue}|_. Nature|#{self.nature.name}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Vice|#{self.vice}|_. Subnature|#{self.subnature.name}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|||_. Idology|#{self.ideology.name}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|||_. Clique|#{self.clique.name}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;*h5. Attributes\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Intelligence:|#{'•' * self.intelligence}|_. Strength:|#{'•' * self.strength}|_. Presence:|#{'•' * self.presence}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Wits:|#{'•' * self.wits}|_. Dexterity:|#{'•' * self.dexterity}|_. Manipulation:|#{'•' * self.manipulation}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Resolve:|#{'•' * self.resolve}|_. Stamina:|#{'•' * self.stamina}|_. Composure:|#{'•' * self.composure}|\n\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Skills\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Academics:|#{'•' * self.academics}|_. Athletics:|#{'•' * self.athletics}|_. Animal Ken:|#{'•' * self.animal_ken}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Computer:|#{'•' * self.computer}|_. Brawl:|#{'•' * self.brawl}|_. Empathy:|#{'•' * self.empathy}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Crafts:|#{'•' * self.crafts}|_. Drive:|#{'•' * self.drive}|_. Expression:|#{'•' * self.expression}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Investigation:|#{'•' * self.investigation}|_. Firearms:|#{'•' * self.firearms}|_. Intimidation:|#{'•' * self.intimidation}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Medicine:|#{'•' * self.medicine}|_. Larceny:|#{'•' * self.larceny}|_. Persuasion:|#{'•' * self.persuasion}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Occult:|#{'•' * self.occult}|_. Stealth:|#{'•' * self.stealth}|_. Socialize:|#{'•' * self.socialize}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Politics:|#{'•' * self.politics}|_. Survival:|#{'•' * self.survival}|_. Streetwise:|#{'•' * self.streetwise}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Science:|#{'•' * self.science}|_. Weaponry:|#{'•' * self.weaponry}|_. Subterfuge:|#{'•' * self.subterfuge}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|\\2_. Skill Specialties:|\\4#{self.skill_specialties}\n\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Advantages\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Health:|#{'•' * self.health}|_. Willpower:|#{'•' * self.willpower}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Size:|#{ self.size}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Initiative:|#{self.initiative}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Speed:|#{self.speed}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Defense:|#{self.defense}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Armor:|#{self.armor}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Morality:|#{self.morality}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Power Stat:|#{self.power_stat}|\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Fuel:|#{self.max_fuel}|\n\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Merits\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{self.merits}\n\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Equipment\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{self.equipment}\n\n&quot;</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_description</span>
+    <span class="ruby-identifier">desc</span> = <span class="ruby-node">%{
+|_. Virtue|#{self.virtue}|_. Nature|#{self.nature.name}|
+|_. Vice|#{self.vice}|_. Subnature|#{self.subnature.name}|
+|||_. Idology|#{self.ideology.name}|
+|||_. Clique|#{self.clique.name}|
 
-  <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">nature</span>.<span class="ruby-identifier">name</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Vampire&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Disciplines\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Animalism:|#{'•' * self.animalism}|_. Covenant Disciplines:|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Auspex:|#{'•' * self.auspex}|/9 #{self.covenant_disciplines}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Celerity:|#{'•' * self.celerity}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Dominate:|#{'•' * self.dominate}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Majesty:|#{'•' * self.majesty}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Nightmare:|#{'•' * self.nightmare}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Obfuscate:|#{'•' * self.obfuscate}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Protean:|#{'•' * self.protean}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Resilience:|#{'•' * self.resilience}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Vigor:|#{'•' * self.vigor}|\n\n&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Werewolf&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Renown\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Purity:|#{'•' * self.purity}|_. Gifts:|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Glory:|#{'•' * self.glory}|/4 #{self.gifts}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Honor:|#{'•' * self.honor}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Wisdom:|#{'•' * self.wisdom}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Cunning:|#{'•' * self.cunning}|\n\n&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Mage&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Arcana\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Death:|#{'•' * self.death}|_. Common spells:|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Fate:|#{'•' * self.fate}|/9 #{self.common_spells}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Forces:|#{'•' * self.forces}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Life:|#{'•' * self.life}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Matter:|#{'•' * self.matter}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Mind:|#{'•' * self.mind}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Prime:|#{'•' * self.prime}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Space:|#{'•' * self.space}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Spirit:|#{'•' * self.spirit}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;|_. Time:|#{'•' * self.time}|\n\n&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Promethean&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Transmutations\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{self.transmutations}\n\n&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Changeling&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Contracts\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Dream:|#{'•' * self.dream}|_. Goblin contracts:|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Hearth:|#{'•' * self.hearth}|/17 #{self.goblin_contracts}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Mirror:|#{'•' * self.mirror}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Smoke:|#{'•' * self.smoke}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Artifice:|#{'•' * self.artifice}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Darkness:|#{'•' * self.darkness}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Elements:|#{'•' * self.elements}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Fang and Tooth:|#{'•' * self.fang_and_tooth}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Stone:|#{'•' * self.stone}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Vainglory:|#{'•' * self.vainglory}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Fleeting Spring:|#{'•' * self.fleeting_spring}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Eternal Spring:|#{'•' * self.eternal_spring}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Fleeting Summer:|#{'•' * self.fleeting_summer}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Eternal Summer:|#{'•' * self.eternal_summer}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Fleeting Autumn:|#{'•' * self.fleeting_autumn}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Eternal Autumn:|#{'•' * self.eternal_autumn}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Fleeting Winter:|#{'•' * self.fleeting_winter}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Eternal Winter:|#{'•' * self.eternal_winter}|\n\n&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Geist&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Boneyard:|#{'•' * self.boneyard}|_. Keys:|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Caul:|#{'•' * self.caul}|/6 #{self.keys}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Curse:|#{'•' * self.curse}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Oracle:|#{'•' * self.oracle}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Marionette:|#{'•' * self.marionette}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Rage:|#{'•' * self.rage}|\n&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_. Shroud:|#{'•' * self.shroud}|\n\n&quot;</span>
-  <span class="ruby-keyword">end</span>
+h5. Attributes
 
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Experience\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{self.experience}\n\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;h5. Notes\n&quot;</span>
-  <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{self.notes}\n&quot;</span>
+|_. Intelligence:|#{'•' * self.intelligence}|_. Strength:|#{'•' * self.strength}|_. Presence:|#{'•' * self.presence}|
+|_. Wits:|#{'•' * self.wits}|_. Dexterity:|#{'•' * self.dexterity}|_. Manipulation:|#{'•' * self.manipulation}|
+|_. Resolve:|#{'•' * self.resolve}|_. Stamina:|#{'•' * self.stamina}|_. Composure:|#{'•' * self.composure}|
 
-  <span class="ruby-identifier">desc</span>
-<span class="ruby-keyword">end</span></pre>
+h5. Skills
+
+|_. Academics:|#{'•' * self.academics}|_. Athletics:|#{'•' * self.athletics}|_. Animal Ken:|#{'•' * self.animal_ken}|
+|_. Computer:|#{'•' * self.computer}|_. Brawl:|#{'•' * self.brawl}|_. Empathy:|#{'•' * self.empathy}|
+|_. Crafts:|#{'•' * self.crafts}|_. Drive:|#{'•' * self.drive}|_. Expression:|#{'•' * self.expression}|
+|_. Investigation:|#{'•' * self.investigation}|_. Firearms:|#{'•' * self.firearms}|_. Intimidation:|#{'•' * self.intimidation}|
+|_. Medicine:|#{'•' * self.medicine}|_. Larceny:|#{'•' * self.larceny}|_. Persuasion:|#{'•' * self.persuasion}|
+|_. Occult:|#{'•' * self.occult}|_. Stealth:|#{'•' * self.stealth}|_. Socialize:|#{'•' * self.socialize}|
+|_. Politics:|#{'•' * self.politics}|_. Survival:|#{'•' * self.survival}|_. Streetwise:|#{'•' * self.streetwise}|
+|_. Science:|#{'•' * self.science}|_. Weaponry:|#{'•' * self.weaponry}|_. Subterfuge:|#{'•' * self.subterfuge}|
+|_. Skill Specialties:|\\5. #{self.skill_specialties}|
+
+h5. Advantages
+
+|_. Health:|#{'•' * self.health}|_. Willpower:|#{'•' * self.willpower}|
+|_. Size:|#{ self.size}|
+|_. Initiative:|#{self.initiative}|
+|_. Speed:|#{self.speed}|
+|_. Defense:|#{self.defense}|
+|_. Armor:|#{self.armor}|
+|_. Morality:|#{self.morality}|
+|_. Power Stat:|#{self.power_stat}|
+|_. Fuel:|#{self.max_fuel}|
+
+h5. Merits
+
+#{self.merits}
+
+h5. Equipment
+
+#{self.equipment}}</span>
+
+    <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Vampire&quot;</span>
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+h5. Disciplines
+|_. Animalism:|#{'•' * self.animalism}|_. Covenant Disciplines:|
+|_. Auspex:|#{'•' * self.auspex}|/9. #{self.covenant_disciplines}|
+|_. Celerity:|#{'•' * self.celerity}|
+|_. Dominate:|#{'•' * self.dominate}|
+|_. Majesty:|#{'•' * self.majesty}|
+|_. Nightmare:|#{'•' * self.nightmare}|
+|_. Obfuscate:|#{'•' * self.obfuscate}|
+|_. Protean:|#{'•' * self.protean}|
+|_. Resilience:|#{'•' * self.resilience}|
+|_. Vigor:|#{'•' * self.vigor}|}</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Werewolf&quot;</span>
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+h5. Renown
+|_. Purity:|#{'•' * self.purity}|_. Gifts:|
+|_. Glory:|#{'•' * self.glory}|/4. #{self.gifts}|
+|_. Honor:|#{'•' * self.honor}|
+|_. Wisdom:|#{'•' * self.wisdom}|
+|_. Cunning:|#{'•' * self.cunning}|}</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Mage&quot;</span>
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+h5. Arcana
+|_. Death:|#{'•' * self.death}|_. Common spells:|
+|_. Fate:|#{'•' * self.fate}|/9. #{self.common_spells}|
+|_. Forces:|#{'•' * self.forces}|
+|_. Life:|#{'•' * self.life}|
+|_. Matter:|#{'•' * self.matter}|
+|_. Mind:|#{'•' * self.mind}|
+|_. Prime:|#{'•' * self.prime}|
+|_. Space:|#{'•' * self.space}|
+|_. Spirit:|#{'•' * self.spirit}|
+|_. Time:|#{'•' * self.time}|}</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Promethean&quot;</span>
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+h5. Transmutations\
+#{self.transmutations}}</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Changeling&quot;</span>
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+h5. Contracts
+|_. Dream:|#{'•' * self.dream}|_. Goblin contracts:|
+|_. Hearth:|#{'•' * self.hearth}|/17. #{self.goblin_contracts}|
+|_. Mirror:|#{'•' * self.mirror}|
+|_. Smoke:|#{'•' * self.smoke}|
+|_. Artifice:|#{'•' * self.artifice}|
+|_. Darkness:|#{'•' * self.darkness}|
+|_. Elements:|#{'•' * self.elements}|
+|_. Fang and Tooth:|#{'•' * self.fang_and_tooth}|
+|_. Stone:|#{'•' * self.stone}|
+|_. Vainglory:|#{'•' * self.vainglory}|
+|_. Fleeting Spring:|#{'•' * self.fleeting_spring}|
+|_. Eternal Spring:|#{'•' * self.eternal_spring}|
+|_. Fleeting Summer:|#{'•' * self.fleeting_summer}|
+|_. Eternal Summer:|#{'•' * self.eternal_summer}|
+|_. Fleeting Autumn:|#{'•' * self.fleeting_autumn}|
+|_. Eternal Autumn:|#{'•' * self.eternal_autumn}|
+|_. Fleeting Winter:|#{'•' * self.fleeting_winter}|
+|_. Eternal Winter:|#{'•' * self.eternal_winter}|}</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Geist&quot;</span>
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+h5. Manifestations
+|_. Boneyard:|#{'•' * self.boneyard}|_. Keys:|
+|_. Caul:|#{'•' * self.caul}|/6. #{self.keys}|
+|_. Curse:|#{'•' * self.curse}|
+|_. Oracle:|#{'•' * self.oracle}|
+|_. Marionette:|#{'•' * self.marionette}|
+|_. Rage:|#{'•' * self.rage}|
+|_. Shroud:|#{'•' * self.shroud}|}</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+h5. Experience
+#{self.experience}
+
+h5. Notes
+#{self.notes}}</span>
+
+    <span class="ruby-identifier">desc</span>
+  <span class="ruby-keyword">end</span></pre>
             </div><!-- obsidian_description-source -->
             
           </div>

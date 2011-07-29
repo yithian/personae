@@ -84,6 +84,18 @@
       
 
       
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><span class="include">MageHand</span></li>
+        
+        
+        </ul>
+      </div>
+      
     </div>
 
     <div id="project-metadata">
@@ -220,7 +232,7 @@
             
             <div class="method-source-code" id="create-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 54</span>
+<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
   <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">owner</span> = <span class="ruby-identifier">current_user</span>
@@ -264,7 +276,7 @@
             
             <div class="method-source-code" id="destroy-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 83</span>
+<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">destroy</span>
 
@@ -302,7 +314,7 @@
             
             <div class="method-source-code" id="edit-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 43</span>
+<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@campaigns</span> = <span class="ruby-identifier">obsidian_portal</span>.<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">campaigns</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">campaign</span><span class="ruby-operator">|</span>
     [<span class="ruby-identifier">campaign</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">campaign</span>.<span class="ruby-identifier">id</span>]
@@ -340,7 +352,7 @@
             
             <div class="method-source-code" id="index-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 12</span>
+<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>
 
@@ -375,7 +387,7 @@
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 33</span>
+<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@campaigns</span> = <span class="ruby-identifier">obsidian_portal</span>.<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">campaigns</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">campaign</span><span class="ruby-operator">|</span>
     [<span class="ruby-identifier">campaign</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">campaign</span>.<span class="ruby-identifier">id</span>]
@@ -413,14 +425,10 @@
             
             <div class="method-source-code" id="show-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 20</span>
+<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@characters</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">characters</span>
   <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">cliques</span>
-  
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">description</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@campaign</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">description</span> = <span class="ruby-ivar">@campaign</span>.<span class="ruby-identifier">wiki_pages</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">body_html</span>
-  <span class="ruby-keyword">end</span>
   
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
 <span class="ruby-keyword">end</span></pre>
@@ -453,12 +461,11 @@
             
             <div class="method-source-code" id="update-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 71</span>
+<span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Chronicle successfully updated&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
 
   <span class="ruby-identifier">json_page</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>({<span class="ruby-value">:wiki_page</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:body</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">description</span> }})
-
   <span class="ruby-identifier">obsidian_portal</span>.<span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}&quot;</span>, <span class="ruby-identifier">json_page</span>)
 
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>

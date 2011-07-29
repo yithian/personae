@@ -203,6 +203,8 @@ class CharactersController < ApplicationController
     @chronicle_list = Chronicle.all.collect
   end
   
+  # sets up a variable of obsidian portal character names and ids
+  # for use in a select tag
   def obsidian_characters
     @obsidian_characters = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json").body).collect { |c| [c["name"], c["id"]] }
     @obsidian_characters.insert(0, ["-", 0])
