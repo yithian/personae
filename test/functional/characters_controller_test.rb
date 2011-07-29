@@ -11,6 +11,7 @@ class CharactersControllerTest < ActionController::TestCase
     FakeWeb.register_uri(:get, 'https://www.obsidianportal.com/oauth/authorize', :response => File.join(Rails.root.to_s, 'test', 'fixtures', 'authorize'))
     FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/users/me.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_user'))
     FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/campaigns/1/characters.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
+    FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/campaigns/2/characters.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
     FakeWeb.register_uri(:post, 'http://api.obsidianportal.com/v1/campaigns/1/characters.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
     FakeWeb.register_uri(:put, 'http://api.obsidianportal.com/v1/campaigns/1/characters/1.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
     FakeWeb.register_uri(:put, 'http://api.obsidianportal.com/v1/campaigns/2/characters/2.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
