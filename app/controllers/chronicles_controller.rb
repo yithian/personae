@@ -4,8 +4,8 @@ class ChroniclesController < ApplicationController
   include MageHand
   respond_to :html, :xml
   load_and_authorize_resource
-  before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update]
-  before_filter :find_campaign, :only => [:new, :create, :show, :edit, :update]
+  before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update], :if => :obsidian_enabled?
+  before_filter :find_campaign, :only => [:new, :create, :show, :edit, :update], :if => :obsidian_enabled?
   before_filter :find_chronicle, :only => [:create, :show, :edit, :update, :destroy]
   
   # GET /chronicles
@@ -28,16 +28,18 @@ class ChroniclesController < ApplicationController
   # GET /chronicles/new
   # GET /chronicles/new.xml
   def new
-    obsidian_campaigns
+    obsidian_campaigns if obsidian_enabled?
     
     respond_with @chronicle
   end
 
   # GET /chronicles/1/edit
   def edit
-    obsidian_campaigns
+    if obsidian_enabled?
+      obsidian_campaigns
 
-    @chronicle.description = @campaign.wiki_pages[0].body unless @campaign.nil?
+      @chronicle.description = @campaign.wiki_pages[0].body unless @campaign.nil?
+    end
   end
 
   # POST /chronicles
@@ -65,7 +67,7 @@ class ChroniclesController < ApplicationController
     unless @campaign.nil?
       json_page = JSON.generate({:wiki_page => {:body => @chronicle.description }})
       obsidian_portal.access_token.put("/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}.json", json_page)
-    end
+    end if obsidian_enabled?
 
     respond_with @chronicle
   end

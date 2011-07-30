@@ -4,7 +4,7 @@ class CharactersController < ApplicationController
   include MageHand
   respond_to :html, :xml
   load_and_authorize_resource
-  before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update, :destroy], :if => :obsidian_enabled?
   before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :destroy, :preview]
   before_filter :show_permission, :only => [:show]
   before_filter :set_params, :only => [:new]
@@ -57,14 +57,14 @@ class CharactersController < ApplicationController
   # GET /characters/new
   # GET /characters/new.xml
   def new
-    obsidian_characters
+    obsidian_characters if obsidian_enabled?
     
     respond_with @character
   end
 
   # GET /characters/1/edit
   def edit
-    obsidian_characters
+    obsidian_characters if obsidian_enabled?
   end
   
   # POST /characters/update_splat
@@ -126,7 +126,7 @@ class CharactersController < ApplicationController
       # update existing character
       json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description}})
       obsidian_portal.access_token.put("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)
-    end
+    end if obsidian_enabled?
 
     respond_with @character
   end
@@ -151,7 +151,7 @@ class CharactersController < ApplicationController
       # update existing character
       json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description}})
       obsidian_portal.access_token.put("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)
-    end
+    end if obsidian_enabled?
 
     respond_with @character
   end

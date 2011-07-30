@@ -27,6 +27,12 @@ class ApplicationController < ActionController::Base
   end
   
   protected
+  # returns true if obsidian portal integration is running via MageHand
+  # and the user has linked his/her account
+  def obsidian_enabled?
+    not SERVICES['obsidianportal']['consumer_key'].empty? and obsidian_portal.logged_in?
+  end
+  
   # allows access to helper methods. example:
   # help.selected_chronicle_id(user, session)
   def help

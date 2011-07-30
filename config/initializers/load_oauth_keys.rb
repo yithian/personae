@@ -5,9 +5,8 @@ def load_config_yaml filename
 end
 
 if File.exist? oauth_keys_file
-  keys = load_config_yaml(oauth_keys_file)["obsidianportal"]
+  SERVICES = load_config_yaml(oauth_keys_file)
+  MageHand::Client.set_app_keys SERVICES['obsidianportal']['consumer_key'], SERVICES['obsidianportal']['consumer_secret']
 else
-  keys = load_config_yaml("#{Rails.root}/config/oauth_keys.yml.example")
+  SERVICES = load_config_yaml("#{Rails.root}/config/oauth_keys.yml.example")
 end
-
-MageHand::Client.set_app_keys keys['consumer_key'], keys['consumer_secret']

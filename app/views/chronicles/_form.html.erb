@@ -14,8 +14,10 @@
   <h3>Name</h3>
   <%= f.text_field :name %>
   
-  <h3>Obsidian Portal Link</h3>
-  <%= f.select :obsidian_campaign_id, @campaigns %>
+  <% unless @campaigns.nil? %>
+    <h3>Obsidian Portal Link</h3>
+    <%= f.select :obsidian_campaign_id, @campaigns %>
+  <% end %>
   
   <h3>Description</h3>
   <%= f.text_area :description %>
