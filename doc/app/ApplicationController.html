@@ -77,6 +77,8 @@
           
           <li><a href="#method-i-help">#help</a></li>
           
+          <li><a href="#method-i-obsidian_enabled-3F">#obsidian_enabled?</a></li>
+          
         </ul>
       </div>
       
@@ -221,7 +223,7 @@ session)</p>
             
             <div class="method-source-code" id="help-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 32</span>
+<span class="ruby-comment"># File app/controllers/application_controller.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
   <span class="ruby-constant">Helper</span>.<span class="ruby-identifier">instance</span>
 <span class="ruby-keyword">end</span></pre>
@@ -233,6 +235,40 @@ session)</p>
 
           
         </div><!-- help-method -->
+
+      
+        <div id="obsidian_enabled-3F-method" class="method-detail ">
+          <a name="method-i-obsidian_enabled-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">obsidian_enabled?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>returns true if obsidian portal integration is running via MageHand and the
+user has linked his/her account</p>
+            
+
+            
+            <div class="method-source-code" id="obsidian_enabled-3F-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/application_controller.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_enabled?</span>
+  <span class="ruby-keyword">not</span> <span class="ruby-constant">SERVICES</span>[<span class="ruby-string">'obsidianportal'</span>][<span class="ruby-string">'consumer_key'</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">obsidian_portal</span>.<span class="ruby-identifier">logged_in?</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- obsidian_enabled-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- obsidian_enabled-3F-method -->
 
       
       </div><!-- protected-instance-method-details -->

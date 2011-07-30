@@ -306,7 +306,7 @@
     <span class="ruby-comment"># update existing character</span>
     <span class="ruby-identifier">json_character</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>({<span class="ruby-value">:character</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">:bio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">obsidian_bio</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">obsidian_description</span>}})
     <span class="ruby-identifier">obsidian_portal</span>.<span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json&quot;</span>, <span class="ruby-identifier">json_character</span>)
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
 
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
 <span class="ruby-keyword">end</span></pre>
@@ -379,7 +379,7 @@
 <pre>
 <span class="ruby-comment"># File app/controllers/characters_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-identifier">obsidian_characters</span>
+  <span class="ruby-identifier">obsidian_characters</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- edit-source -->
             
@@ -455,7 +455,7 @@
 <pre>
 <span class="ruby-comment"># File app/controllers/characters_controller.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-identifier">obsidian_characters</span>
+  <span class="ruby-identifier">obsidian_characters</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
   
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
 <span class="ruby-keyword">end</span></pre>
@@ -612,7 +612,7 @@ obsidian_character_id is specified</p>
     <span class="ruby-comment"># update existing character</span>
     <span class="ruby-identifier">json_character</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>({<span class="ruby-value">:character</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">:bio</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">obsidian_bio</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">obsidian_description</span>}})
     <span class="ruby-identifier">obsidian_portal</span>.<span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json&quot;</span>, <span class="ruby-identifier">json_character</span>)
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
 
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
 <span class="ruby-keyword">end</span></pre>
