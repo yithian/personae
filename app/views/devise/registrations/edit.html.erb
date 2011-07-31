@@ -25,7 +25,7 @@
   <%= button_to 'Connect to Obsidian Portal', obsidian_connect_path %>
 <% else %>
   Connected to Obsidian Portal as <%= current_user.obsidian_user_name %>. <%= button_to 'Disconnect?', obsidian_disconnect_path %>
-<% end %>
+<% end if SERVICES['obsidianportal']['consumer_key'] %>
 
 <h3>Cancel my account</h3>
 
