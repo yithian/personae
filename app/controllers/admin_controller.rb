@@ -7,6 +7,7 @@ class AdminController < ApplicationController
   
   # GET /admin/manage
   # GET /admin/manage.xml
+  # POST /admin/manage
   def manage
     # set selected users as admins. this will most
     # likely not scale well and should probably be

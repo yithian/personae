@@ -10,14 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110728182305) do
+ActiveRecord::Schema.define(:version => 20110730021125) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
     t.string   "virtue",                               :default => "Charity"
     t.string   "vice",                                 :default => "Envy"
-    t.integer  "clique_id",                            :default => 1,         :null => false
-    t.integer  "ideology_id",                          :default => 1,         :null => false
+    t.integer  "clique_id",                            :default => 13,        :null => false
+    t.integer  "ideology_id",                          :default => 8,         :null => false
     t.text     "description"
     t.text     "background"
     t.integer  "intelligence",                         :default => 1
@@ -162,7 +162,6 @@ ActiveRecord::Schema.define(:version => 20110728182305) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id",             :default => 1, :null => false
-    t.string   "obsidian_id"
     t.string   "obsidian_campaign_id"
   end
 
@@ -247,6 +246,8 @@ ActiveRecord::Schema.define(:version => 20110728182305) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                                 :default => false
+    t.string   "obsidian_user_id"
+    t.string   "obsidian_user_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

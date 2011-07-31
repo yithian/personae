@@ -28,10 +28,10 @@
       <li <%= "class='selected'" if params[:controller] == "ideologies" %> ><%= link_to "Ideologies", ideologies_path %></li>
         <li <%= "class='selected'" if params[:controller] == "chronicles" %> ><%= link_to "Chronicles", chronicles_path %></li>
       <% if user_signed_in? and current_user.admin? %>
-        <li <%= "class='selected'" if params[:controller] == "admin" %> ><%= link_to "Admins", manage_admin_path %></li>
+        <li <%= "class='selected'" if params[:controller] == "admin" %> ><%= link_to "Admins", manage_admins_path %></li>
       <% end %>
       <% if user_signed_in? %>
-        <li <%= "class='selected'" if params[:controller] == "users" %> ><%= link_to "Account", edit_user_registration_path %></li>
+        <li <%= "class='selected'" if params[:controller] == "devise/registrations" %> ><%= link_to "Account", edit_user_registration_path %></li>
         <li><%= link_to "Log out", destroy_user_session_path %></li>        
       <% else %>
         <li><%= link_to "Log in", new_user_session_path %></li>
