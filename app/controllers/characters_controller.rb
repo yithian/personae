@@ -216,9 +216,11 @@ class CharactersController < ApplicationController
   # sets up a variable of obsidian portal character names and ids
   # for use in a select tag
   def obsidian_characters
-    @obsidian_characters = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json").body).collect { |c| [c["name"], c["id"]] }
-    @obsidian_characters.insert(0, ["-", 0])
-    @obsidian_characters << ["Create new", -1]
+    unless @character.chronicle.obsidian_campaign_id == '0' or @character.chronicle.obsidian_campaign_id.nil? 
+      @obsidian_characters = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json").body).collect { |c| [c["name"], c["id"]] }
+      @obsidian_characters.insert(0, ["-", 0])
+      @obsidian_characters << ["Create new", -1]
+    end
   end
   
   # Allows or denies access to a character page based on Character#show_name_to_user?

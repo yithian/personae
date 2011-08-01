@@ -97,7 +97,7 @@ class ChroniclesController < ApplicationController
   # sets up a campaign variable from the obsidian_campaign_id saved in
   # the chronicle
   def find_campaign
-    @campaign = MageHand::Campaign.find(@chronicle.obsidian_campaign_id) if @chronicle.obsidian_campaign_id and @chronicle.obsidian_campaign_id != 0
+    @campaign = MageHand::Campaign.find(@chronicle.obsidian_campaign_id) unless @chronicle.obsidian_campaign_id == '0' or @chronicle.obsidian_campaign_id.nil?
   end
   
   # sets up a variable to hold an array of obsidian portal campaign names
