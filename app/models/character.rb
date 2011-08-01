@@ -260,18 +260,25 @@ class Character < ActiveRecord::Base
   # description, which is all of the mechanical bits.
   # I know, it doesn't make sense to me either.
   def obsidian_description
-    desc = %{
-|_. Virtue|#{self.virtue}|_. #{self.splat.nature_name}|#{self.nature.name}|
-|_. Vice|#{self.vice}|_. #{self.splat.subnature_name}|#{self.subnature.name}|
-|||_. #{self.splat.ideology_name}|#{self.ideology.name}|
-|||_. #{self.splat.clique_name}|#{self.clique.name}|
+    return "" unless self.read_name
 
+    desc = ""
+    desc << %{
+|_. Virtue|#{self.virtue}|_. #{self.splat.nature_name if self.read_nature}|#{self.nature.name if self.read_nature}|
+|_. Vice|#{self.vice}|_. #{self.splat.subnature_name if self.is_changeling? and self.read_nature}|#{self.subnature.name if self.is_changeling? and self.read_nature}|
+|||_. #{self.splat.ideology_name if self.read_ideology}|#{self.ideology.name if self.read_ideology}|
+|||_. #{self.splat.clique_name if self.read_clique}|#{self.clique.name if self.read_clique}|
+    }
+
+    desc << %{
 h5. Attributes
 
 |_. Intelligence:|#{'•' * self.intelligence}|_. Strength:|#{'•' * self.strength}|_. Presence:|#{'•' * self.presence}|
 |_. Wits:|#{'•' * self.wits}|_. Dexterity:|#{'•' * self.dexterity}|_. Manipulation:|#{'•' * self.manipulation}|
 |_. Resolve:|#{'•' * self.resolve}|_. Stamina:|#{'•' * self.stamina}|_. Composure:|#{'•' * self.composure}|
+    } if self.read_attributes
 
+    desc << %{
 h5. Skills
 
 |_. Academics:|#{'•' * self.academics}|_. Athletics:|#{'•' * self.athletics}|_. Animal Ken:|#{'•' * self.animal_ken}|
@@ -283,7 +290,9 @@ h5. Skills
 |_. Politics:|#{'•' * self.politics}|_. Survival:|#{'•' * self.survival}|_. Streetwise:|#{'•' * self.streetwise}|
 |_. Science:|#{'•' * self.science}|_. Weaponry:|#{'•' * self.weaponry}|_. Subterfuge:|#{'•' * self.subterfuge}|
 |_. Skill Specialties:|\\5. #{self.skill_specialties}|
+    } if self.read_skills
 
+    desc << %{
 h5. Advantages
 
 |_. Health:|#{'•' * self.health}|_. Willpower:|#{'•' * self.willpower}|
@@ -295,14 +304,19 @@ h5. Advantages
 |_. Morality:|#{self.morality}|
 |_. Power Stat:|#{self.power_stat}|
 |_. Fuel:|#{self.max_fuel}|
+    } if self.read_advantages
 
+    desc << %{
 h5. Merits
 
 #{self.merits}
+    } if self.read_merits
 
+    desc << %{
 h5. Equipment
 
-#{self.equipment}}
+#{self.equipment}
+    } if self.read_equipment
 
     case self.splat.name
     when "Vampire"
@@ -380,16 +394,19 @@ h5. Manifestations
 |_. Marionette:|#{'•' * self.marionette}|
 |_. Rage:|#{'•' * self.rage}|
 |_. Shroud:|#{'•' * self.shroud}|}
-    end
+    end if self.read_powers
 
     desc << %{
 h5. Experience
 
 #{self.experience}
+    } if self.read_experience
 
+    desc << %{
 h5. Notes
 
-#{self.notes}}
+#{self.notes}
+    } if self.read_notes
 
     desc
   end
