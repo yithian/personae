@@ -308,6 +308,7 @@ h5. Equipment
     when "Vampire"
       desc << %{
 h5. Disciplines
+
 |_. Animalism:|#{'•' * self.animalism}|_. Covenant Disciplines:|
 |_. Auspex:|#{'•' * self.auspex}|/9. #{self.covenant_disciplines}|
 |_. Celerity:|#{'•' * self.celerity}|
@@ -321,6 +322,7 @@ h5. Disciplines
     when "Werewolf"
       desc << %{
 h5. Renown
+
 |_. Purity:|#{'•' * self.purity}|_. Gifts:|
 |_. Glory:|#{'•' * self.glory}|/4. #{self.gifts}|
 |_. Honor:|#{'•' * self.honor}|
@@ -329,6 +331,7 @@ h5. Renown
     when "Mage"
       desc << %{
 h5. Arcana
+
 |_. Death:|#{'•' * self.death}|_. Common spells:|
 |_. Fate:|#{'•' * self.fate}|/9. #{self.common_spells}|
 |_. Forces:|#{'•' * self.forces}|
@@ -341,11 +344,13 @@ h5. Arcana
 |_. Time:|#{'•' * self.time}|}
     when "Promethean"
       desc << %{
-h5. Transmutations\
+h5. Transmutations
+
 #{self.transmutations}}
     when "Changeling"
       desc << %{
 h5. Contracts
+
 |_. Dream:|#{'•' * self.dream}|_. Goblin contracts:|
 |_. Hearth:|#{'•' * self.hearth}|/17. #{self.goblin_contracts}|
 |_. Mirror:|#{'•' * self.mirror}|
@@ -367,6 +372,7 @@ h5. Contracts
     when "Geist"
       desc << %{
 h5. Manifestations
+
 |_. Boneyard:|#{'•' * self.boneyard}|_. Keys:|
 |_. Caul:|#{'•' * self.caul}|/6. #{self.keys}|
 |_. Curse:|#{'•' * self.curse}|
@@ -378,9 +384,11 @@ h5. Manifestations
 
     desc << %{
 h5. Experience
+
 #{self.experience}
 
 h5. Notes
+
 #{self.notes}}
 
     desc
