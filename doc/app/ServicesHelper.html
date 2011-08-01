@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-  <title>Class: VirtueValidator</title>
+  <title>Module: ServicesHelper</title>
 
   <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
@@ -15,7 +15,7 @@
   <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
-<body id="top" class="class">
+<body id="top" class="module">
 
   <div id="metadata">
     <div id="home-metadata">
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="./app/models/virtue_validator_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/models/virtue_validator.rb">app/models/virtue_validator.rb</a></li>
+            <li><a href="./app/helpers/services_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="app/helpers/services_helper.rb">app/helpers/services_helper.rb</a></li>
           
           </ul>
         </div>
@@ -46,29 +46,11 @@
 
     <div id="class-metadata">
       
-      <!-- Parent Class -->
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        
-        <p class="link">ActiveModel::EachValidator</p>
-        
-      </div>
-      
 
       
 
       
 
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-i-validate_each">#validate_each</a></li>
-          
-        </ul>
-      </div>
       
 
       
@@ -169,12 +151,11 @@
   </div>
 
   <div id="documentation">
-    <h1 class="class">VirtueValidator</h1>
+    <h1 class="module">ServicesHelper</h1>
 
     <div id="description" class="description">
       
-<p>Creates a validator for Character.virtue . Valid virtues are ‘Charity’,
-‘Faith’, ‘Fortitude’ ‘Hope’, ‘Justice’, ‘Prudence’ and ‘Temperance’</p>
+<p>helper module for services controller</p>
 
     </div><!-- description -->
 
@@ -190,47 +171,6 @@
 
       <!-- Methods -->
       
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
-
-      
-        <div id="validate_each-method" class="method-detail ">
-          <a name="method-i-validate_each"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">validate_each</span><span
-              class="method-args">(record, attribute, value)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Validates all records passed to it</p>
-            
-
-            
-            <div class="method-source-code" id="validate_each-source">
-<pre>
-<span class="ruby-comment"># File app/models/virtue_validator.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
-  <span class="ruby-keyword">unless</span> <span class="ruby-constant">Character</span><span class="ruby-operator">::</span><span class="ruby-constant">VIRTUES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">value</span>)
-    <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{value} is an invalid virtue&quot;</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- validate_each-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- validate_each-method -->
-
-      
-      </div><!-- public-instance-method-details -->
-    
     </div><!-- 5Buntitled-5D -->
   
 

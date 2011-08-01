@@ -158,6 +158,10 @@
         
           <li><a href="./Nature.html">Nature</a></li>
         
+          <li><a href="./ServicesController.html">ServicesController</a></li>
+        
+          <li><a href="./ServicesHelper.html">ServicesHelper</a></li>
+        
           <li><a href="./Splat.html">Splat</a></li>
         
           <li><a href="./Subnature.html">Subnature</a></li>
@@ -259,7 +263,7 @@ user has linked his/her account</p>
 <pre>
 <span class="ruby-comment"># File app/controllers/application_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_enabled?</span>
-  <span class="ruby-keyword">not</span> <span class="ruby-constant">SERVICES</span>[<span class="ruby-string">'obsidianportal'</span>][<span class="ruby-string">'consumer_key'</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">obsidian_portal</span>.<span class="ruby-identifier">logged_in?</span>
+  <span class="ruby-keyword">not</span> <span class="ruby-constant">SERVICES</span>[<span class="ruby-string">'obsidianportal'</span>][<span class="ruby-string">'consumer_key'</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user_signed_in?</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">obsidian_user_id</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- obsidian_enabled-3F-source -->
             
