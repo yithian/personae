@@ -26,6 +26,7 @@ class ServicesController < ApplicationController
 
     user = current_user
     user.obsidian_user_id = nil
+    user.obsidian_user_name = ''
 
     user.save
 

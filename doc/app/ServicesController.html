@@ -276,6 +276,7 @@ services such as Obsidian Portal</p>
 
   <span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">obsidian_user_id</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">obsidian_user_name</span> = <span class="ruby-string">''</span>
 
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
 
@@ -317,7 +318,7 @@ from connecting or disconnecting to obsidian portal</p>
             
             <div class="method-source-code" id="ensure_logged_in-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/services_controller.rb, line 38</span>
+<span class="ruby-comment"># File app/controllers/services_controller.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ensure_logged_in</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user_signed_in?</span>
     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:alert</span>] = <span class="ruby-string">&quot;You need to sign in or sign up before continuing.&quot;</span>
