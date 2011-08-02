@@ -137,7 +137,7 @@ class CharactersController < ApplicationController
   # this will also sync a character's sheet to obsidian portal,
   # if an obsidian_character_id is specified
   def update
-    @character.vice = params[:character_vice].join(" ")
+    @character.vice = params[:character_vice].join(" ") if params[:character_vice]
     flash[:notice] = 'Character was successfully updated.' if @character.update_attributes(params[:character])
 
     case @character.obsidian_character_id 
