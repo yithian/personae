@@ -37,7 +37,7 @@ class CliquesController < ApplicationController
     end
 
     @chronicle = Chronicle.find_by_id(@selected_chronicle_id)
-    @cliques = Clique.known_to current_user, @selected_chornicle_id
+    @cliques = Clique.known_to current_user, @selected_chronicle_id
   end
 
   # GET /cliques/1
