@@ -15,6 +15,9 @@ class Ability
     
     if user.admin?
       can :manage, :all
+      cannot :edit, Clique, :name => "Solitary"
+      cannot :update, Clique, :name => "Solitary"
+      cannot :destroy, Clique, :name => "Solitary"
     else
       can :manage, Character, :owner_id => user.id
       can :shapeshift, Character

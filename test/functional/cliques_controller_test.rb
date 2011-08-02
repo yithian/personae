@@ -124,6 +124,48 @@ class CliquesControllerTest < ActionController::TestCase
     assert_equal "Access denied!", flash[:error], "got edit as non-owning user"
   end
 
+  test "shouldn't get edit for static clique" do
+    # no one should be able to edit the Solitary clique
+    sign_in(users(:Storyteller))
+    
+    get :edit, :id => cliques(:Solitary).to_param
+    assert_redirected_to clique_path(cliques(:Solitary))
+    assert_equal "Access denied!", flash[:error], "got edit for static clique"
+
+    sign_in(users(:one))
+    
+    get :edit, :id => cliques(:Solitary).to_param
+    assert_redirected_to clique_path(cliques(:Solitary))
+    assert_equal "Access denied!", flash[:error], "got edit for static clique"
+  end
+
+  test "shouldn't put update for static clique" do
+    # no one should be able to edit the Solitary clique
+    sign_in(users(:Storyteller))
+    
+    put :update, :id => cliques(:Solitary).to_param
+    assert_redirected_to clique_path(cliques(:Solitary))
+    assert_equal "Access denied!", flash[:error], "got edit for static clique"
+
+    sign_in(users(:one))
+    
+    put :update, :id => cliques(:Solitary).to_param
+    assert_redirected_to clique_path(cliques(:Solitary))
+    assert_equal "Access denied!", flash[:error], "got edit for static clique"
+  end
+
+  test "shouldn't destroy static clique" do
+    # no one should be able to edit the Solitary clique
+    sign_in(users(:Storyteller))
+
+    assert_no_difference('Clique.count', "destroyed static clique") do
+      delete :destroy, :id => cliques(:Solitary).to_param
+    end
+
+    assert_redirected_to clique_path(cliques(:Solitary))
+    assert_equal("Access denied!", flash[:error])
+  end
+
   test "should update clique" do
     # ST can update all
     sign_in(users(:Storyteller))
