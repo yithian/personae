@@ -56,6 +56,11 @@ class ChroniclesController < ApplicationController
       user.save
     end
 
+    unless @campaign.nil?
+      json_page = JSON.generate({:wiki_page => {:body => @chronicle.description }})
+      obsidian_portal.access_token.put("/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}.json", json_page)
+    end if obsidian_enabled?
+
     respond_with @chronicle
   end
 
