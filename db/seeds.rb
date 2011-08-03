@@ -1,4 +1,7 @@
-User.create(:name => "Storyteller", :password => "worldofdarkness", :email => "change@me.com", :admin => true)
+User.create(:name => "Storyteller", :password => "worldofdarkness", :email => "change@me.com")
+u = User.first
+u.admin = true
+u.save!
 
 Chronicle.create(:name => "Generic", :description => "This should be customized for your chronicle's needs")
 
