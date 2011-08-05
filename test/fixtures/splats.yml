@@ -30,3 +30,13 @@ three:
   power_stat_name: MyThirdPowerStatName
   fuel_name: MyThirdFuelName
     
+Werewolf:
+  name: Werewolf
+  nature_name: MyWerewolfNatureName
+  subnature_name: MyWerewolfSubnatureName
+  clique_name: MyWerewolfCliqueName
+  ideology_name: MyWerewolfIdeologyName
+  morality_name: MyWerewolfMoralityName
+  power_stat_name: MyWerewolfPowerStatName
+  fuel_name: MyWerewolfFuelName
+    

@@ -82,7 +82,7 @@ one:
   read_clique: true
   read_ideology: true
   read_nature: true
-  splat: one
+  splat: Werewolf
   purity: 1
   glory: 1
   honor: 1
