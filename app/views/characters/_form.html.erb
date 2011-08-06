@@ -21,20 +21,20 @@
       <td><b><%= f.label :obsidian_character_id, "Obisidan Portal" %></td>
       <td><%= f.select :obsidian_character_id, @obsidian_characters %></td>
     <% end %>
-      <td><b><%= f.label :splat_id, "Template" %></b></td>
+      <td><b><%= label_tag 'splat_id', "Template" %></b></td>
       <td>
         <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :remote => true, :action => update_splat_characters_path %>
         <input name="character[splat_id]" type="hidden" value="<%= @character.splat_id %>" id="character_splat_id" />
       </td>
     </tr>
     <tr>
-      <td><b><%= f.label :chronicle_id, "Chronicle" %></b></td>
+      <td><b><%= label_tag 'chronicle_id', "Chronicle" %></b></td>
       <td>
         <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :remote => true, :action => update_chronicle_characters_path %>
         <input name="character[chronicle_id]" type="hidden" value="<%= @character.chronicle.id %>" id="character_chronicle_id">
       </td>
       <td class="label" id="nature_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
-        <b><%= f.label :nature_id, @character.splat.nature_name, :id => "nature_label" %></b>
+        <b><%= label_tag 'nature_id', @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
       <td class="data" id="nature_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
         <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :remote => true, :action => update_nature_characters_path %>
@@ -45,14 +45,14 @@
       <td><b><%= f.label :virtue %></b></td>
       <td><%= f.select :virtue, Character::VIRTUES %></td>
       <td class="label" id="subnature_label_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
-        <b><%= f.label :subnature_label, @character.splat.subnature_name, :id => "subnature_label" %></b>
+        <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>
       <td class="data" id="subnature_id_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
         <%= f.select :subnature_id, options_from_collection_for_select(@subnature_list, 'id', 'name', @character.subnature_id) %>
       </td>
     </tr>
     <tr>
-      <td><b><%= f.label :vice %></b></td>
+      <td><b><%= label_tag 'character_vice', "Vice" %></b></td>
       <td rowspan="2"><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 3, :id => "character[vice]" %></td>
       <td class="label" id="ideology_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
@@ -61,16 +61,16 @@
         <%= f.select :ideology_id, options_from_collection_for_select(@ideology_list, 'id', 'name', @character.ideology.id) %>
       </td>
     </tr>
-      <tr>
-        <td></td>
-        <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
-        <td><%= f.select :clique_id, @clique_list %></td>
-      </tr>
+    <tr>
+      <td></td>
+      <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
+      <td><%= f.select :clique_id, @clique_list %></td>
+    </tr>
     <tr>
       <td><%= f.check_box :read_name %> <%= f.label :read_name, "Reveal name" %></td>
       <td><%= f.check_box :read_clique %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label" %></td>
       <td>
-	<span id="read_nature_span" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
+      	<span id="read_nature_span" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
           <%= f.check_box :read_nature %> <%= f.label :read_nature, "Reveal " + @character.splat.nature_name, :id => "read_nature_label" %>
         </span>
       </td>
@@ -79,6 +79,7 @@
           <%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Reveal " + @character.splat.ideology_name, :id => "read_ideology_label" %>
         </span>
       </td>
+    </tr>
   </table>
 
   
@@ -218,12 +219,12 @@
     <tr>
       <td><%= f.label :size %></td>
       <td><%= f.text_field :size, :class => "number" %></td>
-      <td><%= f.label :derangements %></td>
+      <td colspan="2"><%= f.label :derangements %></td>
     </tr>
     <tr>
       <td><%= f.label :initiative %></td>
       <td><%= f.text_field :initiative, :class => "number" %></td>
-      <td rowspan="10" colspan="2" class="growdown"><%= f.text_area :derangements %></td>
+      <td rowspan="8" colspan="2" class="growdown"><%= f.text_area :derangements %></td>
     </tr>
     <tr>
       <td><%= f.label :speed %></td>
@@ -265,8 +266,6 @@
         <%= f.text_field :current_fuel, :class => "number" %>
       </td>
     </tr>
-    <tr>
-    </tr>
   </table>
   <%= f.check_box :read_advantages %> <%= f.label :read_advantages, "Reveal advantages" %>
   
@@ -281,7 +280,7 @@
   <%= f.check_box :read_equipment %> <%= f.label :read_equipment, "Reveal equipment" %>
   
   
-  <span id="mage_powers" <%= "style='display: none'" unless @character.is_mage? %> >
+  <div id="mage_powers" <%= "style='display: none'" unless @character.is_mage? %> >
     <h3>Arcana</h3>
     <table class="three_cells">
       <tr>
@@ -292,7 +291,7 @@
       <tr>
         <td><%= f.label :fate %></td>
         <td><%= f.text_field :fate, :class => "number" %></td>
-        <td rowspan="10" class="growdown"><%= f.text_area :common_spells %></td>
+        <td rowspan="9" class="growdown"><%= f.text_area :common_spells %></td>
       </tr>
       <tr>
         <td><%= f.label :forces %></td>
@@ -326,13 +325,11 @@
         <td><%= f.label :time %></td>
         <td><%= f.text_field :time, :class => "number" %></td>
       </tr>
-      <tr>
-      </tr>
     </table>
-  </span>
+  </div>
   
   
-  <span id="woof_powers" <%= "style='display: none'" unless @character.is_werewolf? %> >
+  <div id="woof_powers" <%= "style='display: none'" unless @character.is_werewolf? %> >
     <h3>Renown</h3>
     <table class="three_cells">
       <tr>
@@ -343,7 +340,7 @@
       <tr>
         <td><%= f.label :glory %></td>
         <td><%= f.text_field :glory, :class => "number" %></td>
-        <td rowspan="5" class="growdown"><%= f.text_area :gifts %></td>
+        <td rowspan="4" class="growdown"><%= f.text_area :gifts %></td>
       </tr>
       <tr>
         <td><%= f.label :honor %></td>
@@ -357,13 +354,11 @@
         <td><%= f.label :cunning %></td>
         <td><%= f.text_field :cunning, :class => "number" %></td>
       </tr>
-      <tr>
-      </tr>
     </table>
-  </span>
+  </div>
   
   
-  <span id="vampire_powers" <%= "style='display: none'" unless @character.is_vampire? %> >
+  <div id="vampire_powers" <%= "style='display: none'" unless @character.is_vampire? %> >
     <h3>Disciplines</h3>
     <table class="three_cells">
       <tr>
@@ -408,19 +403,17 @@
         <td><%= f.label :vigor %></td>
         <td><%= f.text_field :vigor, :class => "number" %></td>
       </tr>
-      <tr>
-      </tr>
     </table>
-  </span>
+  </div>
   
   
-  <span id="promethean_powers" <%= "style='display: none'" unless @character.is_promethean? %> >
+  <div id="promethean_powers" <%= "style='display: none'" unless @character.is_promethean? %> >
     <h3>Transmutations</h3>
     <p><%= f.text_area :transmutations %></p>
-  </span>
+  </div>
   
   
-  <span id="changeling_powers" <%= "style='display: none'" unless @character.is_changeling? %> >
+  <div id="changeling_powers" <%= "style='display: none'" unless @character.is_changeling? %> >
     <h3>Contracts</h3>
     <table class="three_cells">
       <tr>
@@ -431,7 +424,7 @@
       <tr>
         <td><%= f.label :hearth %></td>
         <td><%= f.text_field :hearth, :class => "number" %></td>
-        <td rowspan="18" class="growdown"><%= f.text_area :goblin_contracts %></td>
+        <td rowspan="17" class="growdown"><%= f.text_area :goblin_contracts %></td>
       </tr>
       <tr>
         <td><%= f.label :mirror %></td>
@@ -498,10 +491,10 @@
         <td><%= f.text_field :eternal_winter, :class => "number" %></td>
       </tr>
     </table>
-  </span>
+  </div>
   
   
-  <span id="geist_powers" <%= "style='display: none'" unless @character.is_geist? %> >
+  <div id="geist_powers" <%= "style='display: none'" unless @character.is_geist? %> >
     <h3>Manifestations</h3>
     <table class="three_cells">
       <tr>
@@ -538,11 +531,11 @@
     
     <h3>Ceremonies</h3>
     <p><%= f.text_area :ceremonies %></p>
-  </span>
+  </div>
   
-  <span id="read_powers_span" <%= "style='display: none'" if @character.is_mortal? %> >
+  <div id="read_powers_span" <%= "style='display: none'" if @character.is_mortal? %> >
     <%= f.check_box :read_powers %> <%= f.label :read_powers, "Reveal powers" %>
-  </span>
+  </div>
 
 
   <h3>Experience</h3>
