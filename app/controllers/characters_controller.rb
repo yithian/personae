@@ -91,7 +91,7 @@ class CharactersController < ApplicationController
   
   # POST /characters/update_chronicle
   def update_chronicle
-    @clique_list = Clique.known_to(current_user, params[:chronicle_id]).collect do |clique|
+    @clique_list = Clique.known_to(current_user, params[:chronicle_id]).collect do |c|
       [c.name, c.id]
     end
     @chronicle = Chronicle.find_by_id(params[:chronicle_id])
