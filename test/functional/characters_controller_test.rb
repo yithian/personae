@@ -224,7 +224,7 @@ class CharactersControllerTest < ActionController::TestCase
     get :new, :splat_id => splats(:one).id, :chronicle_id => chronicles(:one).id, :ideology_id => ideologies(:one).id, :nature_id => natures(:one).id
     
     assert_tag :tag => 'select', :attributes => {:id => 'nature_id'}, :child => {:tag => "option", :content => /#{natures(:two).name}/}
-    assert_tag :tag => 'select', :attributes => {:id => 'character_subnature_id'}, :child => {:tag => "option", :content => /#{subnatures(:two).name}/}
+    assert_tag :tag => 'select', :attributes => {:id => 'character_subnature_id'}, :child => {:tag => "option", :content => /#{subnatures(:one).name}/}
     assert_tag :tag => 'select', :attributes => {:id => 'character_ideology_id'}, :child => {:tag => "option", :content => /#{ideologies(:one).name}/}
     assert_tag :tag => 'select', :attributes => {:id => 'character_clique_id'}, :child => {:tag => "option", :content => /#{cliques(:one).name}/}
     
@@ -235,13 +235,25 @@ class CharactersControllerTest < ActionController::TestCase
     assert response.body =~ /MyOtherCliqueName/, "did not include proper clique name"
     
     # ensure that changing splat updates everything
-    xhr :get, :update_splat, :splat_id => splats(:two)
+    xhr :get, :update_splat, :splat_id => splats(:two).to_param
     
-    assert response.body =~ /#{splats(:two).id}/, "did not include proper splat id"
-    assert response.body =~ /#{splats(:two).nature_name}/, "did not include proper nature name"
-    assert response.body =~ /#{splats(:two).subnature_name}/, "did not include proper subnature name"
-    assert response.body =~ /#{splats(:two).clique_name}/, "did not include proper clique name"
-    assert response.body =~ /#{splats(:two).ideology_name}/, "did not include proper ideology name"
+    assert response.body =~ /#{splats(:two).id}/, "didn't include proper splat id"
+    assert response.body =~ /#{splats(:two).nature_name}/, "didn't include proper nature name"
+    assert response.body =~ /#{Nature.find_by_splat_id(splats(:two).id).id}/, "didn't include proper nature id"
+    assert response.body =~ /#{splats(:two).subnature_name}/, "didn't include proper subnature name"
+    assert response.body =~ /#{Subnature.find_by_splat_id(splats(:two).id).id}/, "didn't include proper subnature id"
+    assert response.body =~ /#{splats(:two).ideology_name}/, "didn't include proper ideology name"
+    assert response.body =~ /#{Ideology.find_by_splat_id(splats(:two).id).id}/, "didn't include proper ideology id"
+    assert response.body =~ /#{splats(:two).clique_name}/, "didn't include proper clique name"
+    assert response.body =~ /#{splats(:two).morality_name}/, "didn't include proper morality name"
+    assert response.body =~ /#{splats(:two).power_stat_name}/, "didn't include proper power stat name"
+    assert response.body =~ /#{splats(:two).fuel_name}/, "didn't include proper fuel name"
+    
+    # ensure changing nature updates subnatures
+    xhr :get, :update_nature, :nature_id => natures(:one).to_param
+    
+    assert response.body =~ /#{natures(:one).id}/, "didn't include proper nature id"
+    assert response.body =~ /#{Subnature.find_by_nature_id(natures(:one).id).name}/, "didn't include proper nature name"
   end
 
   test "shouldn't show character" do
