@@ -4,15 +4,15 @@ $('character_nature_id').value = '<%= @nature_list.first.id %>';
 
 // update the splat-specific terms
 $('clique_label').update('<%= @splat.clique_name %>');
-$('read_clique_label').update('Read <%= @splat.clique_name %>');
+$('read_clique_label').update('Reveal <%= @splat.clique_name %>');
 $('nature_label').update('<%= @splat.nature_name %>');
 $('nature_id').update('<%= options_from_collection_for_select(@nature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
 $('subnature_label').update('<%= @splat.subnature_name %>');
 $('character_subnature_id').update('<%= options_from_collection_for_select(@subnature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
-$('read_nature_label').update('Read <%= @splat.nature_name %>');
+$('read_nature_label').update('Reveal <%= @splat.nature_name %>');
 $('ideology_label').update('<%= @splat.ideology_name %>');
 $('character_ideology_id').update('<%= options_from_collection_for_select(@ideology_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
-$('read_ideology_label').update('Read <%= @splat.ideology_name %>');
+$('read_ideology_label').update('Reveal <%= @splat.ideology_name %>');
 $('morality_label').update('<%= @splat.morality_name %>');
 $('power_stat_label').update('<%= @splat.power_stat_name %>');
 $('max_fuel_label').update('Max <%= @splat.fuel_name %>');
