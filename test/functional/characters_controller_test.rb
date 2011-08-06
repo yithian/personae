@@ -216,6 +216,33 @@ class CharactersControllerTest < ActionController::TestCase
     assert count == 10, "too few updates: #{count}"
     assert_not_nil assigns(:character)
   end
+  
+  test "validate form view functionality" do
+    sign_in(users(:one))
+    
+    # start with a valid base
+    get :new, :splat_id => splats(:one).id, :chronicle_id => chronicles(:one).id, :ideology_id => ideologies(:one).id, :nature_id => natures(:one).id
+    
+    assert_tag :tag => 'select', :attributes => {:id => 'nature_id'}, :child => {:tag => "option", :content => /#{natures(:two).name}/}
+    assert_tag :tag => 'select', :attributes => {:id => 'character_subnature_id'}, :child => {:tag => "option", :content => /#{subnatures(:two).name}/}
+    assert_tag :tag => 'select', :attributes => {:id => 'character_ideology_id'}, :child => {:tag => "option", :content => /#{ideologies(:one).name}/}
+    assert_tag :tag => 'select', :attributes => {:id => 'character_clique_id'}, :child => {:tag => "option", :content => /#{cliques(:one).name}/}
+    
+    # ensure that changing chronicle updates clique select options
+    xhr :get, :update_chronicle, :chronicle_id => chronicles(:two).to_param
+    
+    assert response.body =~ /#{chronicles(:two).id}/, "did not include proper chronicle id"
+    assert response.body =~ /MyOtherCliqueName/, "did not include proper clique name"
+    
+    # ensure that changing splat updates everything
+    xhr :get, :update_splat, :splat_id => splats(:two)
+    
+    assert response.body =~ /#{splats(:two).id}/, "did not include proper splat id"
+    assert response.body =~ /#{splats(:two).nature_name}/, "did not include proper nature name"
+    assert response.body =~ /#{splats(:two).subnature_name}/, "did not include proper subnature name"
+    assert response.body =~ /#{splats(:two).clique_name}/, "did not include proper clique name"
+    assert response.body =~ /#{splats(:two).ideology_name}/, "did not include proper ideology name"
+  end
 
   test "shouldn't show character" do
     # can't see hidden character
