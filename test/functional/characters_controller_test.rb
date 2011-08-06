@@ -29,24 +29,125 @@ class CharactersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
     assert_equal "Access denied!", flash[:error]
   end
-  
-  test "should get index" do
+
+  test "should get index as nobody" do
     get :index
-    assert_response :success, @response
+    assert_template "list"
+    assert_response :success, @response.body
     assert_not_nil assigns(:characters)
 
+    # asserts the change_chronicle dropdown works
+    assert_select "select" do |elements|
+      elements.each do |element|
+        assert_select element, "option", {:minimum => 1}
+      end
+    end
+
+    # asserts presence of known characters
+    Character.known_to(User.new, chronicles(:two).id).each do |character|
+      assert_select "td", /#{character.name}/
+    end
+
+    # ensure hidden characters don't show
+    (Character.all - Character.known_to(User.new, chronicles(:two).id)).each do |char|
+      assert_no_tag "td", :content => /#{char.name}/
+    end
+
+    # change chronicle via dropdown
+    xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
+
+    Character.known_to(User.new, chronicles(:one).id).each do |character|
+      assert_js_select "td", :content => /#{character.name}/
+    end
+
+    # ensure hidden characters don't show
+    (Character.all - Character.known_to(User.new, chronicles(:one).id)).each do |char|
+      assert_no_tag "td", :content => /#{char.name}/
+    end
+  end
+ 
+  test "should get index as user" do
     sign_in(users(:one))
 
     get :index
-    assert_response :success, @response
+    assert_template "list"
+    assert_response :success, @response.body
     assert_not_nil assigns(:characters)
-  end
 
+    # asserts the change_chronicle dropdown works
+    assert_select "select" do |elements|
+      elements.each do |element|
+        assert_select element, "option", {:minimum => 1}
+      end
+    end
+
+    # asserts presence of known characters
+    Character.known_to(users(:one), chronicles(:two).id).each do |character|
+      assert_select "td", /#{character.name}/
+    end
+
+    # ensure hidden characters don't show
+    (Character.all - Character.known_to(users(:one), chronicles(:two).id)).each do |char|
+      assert_no_tag "td", :content => /#{char.name}/
+    end
+
+    # change chronicle via dropdown
+    xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
+
+    Character.known_to(users(:one), chronicles(:one).id).each do |character|
+      assert_js_select "td", :content => /#{character.name}/
+    end
+
+    # ensure hidden characters don't show
+    (Character.all - Character.known_to(users(:one), chronicles(:one).id)).each do |char|
+      assert_no_tag "td", :content => /#{char.name}/
+    end
+  end
+  
+  test "should get index as ST" do
+    sign_in(users(:Storyteller))
+
+    get :index
+    assert_template "list"
+    assert_response :success, @response.body
+    assert_not_nil assigns(:characters)
+
+    # asserts the change_chronicle dropdown works
+    assert_select "select" do |elements|
+      elements.each do |element|
+        assert_select element, "option", {:minimum => 1}
+      end
+    end
+
+    # asserts presence of known characters
+    Character.known_to(users(:Storyteller), chronicles(:one).id).each do |character|
+      assert_select "td", /#{character.name}/
+    end
+
+    # ensure hidden characters don't show
+    (Character.all - Character.known_to(users(:Storyteller), chronicles(:one).id)).each do |char|
+      assert_no_tag "td", :content => /#{char.name}/
+    end
+
+    # change chronicle via dropdown
+    xhr :get, :change_chronicle, :chronicle_id => chronicles(:two).id
+
+    Character.known_to(users(:Storyteller), chronicles(:two).id).each do |character|
+      assert_js_select "td", :content => /#{character.name}/
+    end
+
+    # ensure hidden characters don't show
+    (Character.all - Character.known_to(users(:Storyteller), chronicles(:two).id)).each do |char|
+      assert_no_tag "td", :content => /#{char.name}/
+    end
+  end
+ 
   test "should get new" do
     sign_in(users(:one))
 
     get :new, :splat_id => splats(:one).id, :nature_id => natures(:one).id, :subnature_id => subnatures(:one).id, :chronicle_id => chronicles(:one).id, :ideology_id => ideologies(:one).id
-    assert_response :success, @response
+    assert_template "form"
+    assert_response :success, @response.body
   end
 
   test "shouldn't get new" do
@@ -77,21 +178,42 @@ class CharactersControllerTest < ActionController::TestCase
     # not logged in
     get :show, :id => characters(:one).to_param
 
-    assert_response :success, @response
+    assert_response :success, @response.body
     assert_not_nil assigns(:character)
 
+    # testing shapeshift action
+    xhr :get, :shapeshift, :id => characters(:one).id, :form => "hishu"
+
+    count = 0
+    response.body.split("\n").each { |line| count += 1 if line =~ /update/ }
+    assert count == 10, "too few updates: #{count}"
+    
     # ST can see all characters
     sign_in(users(:Storyteller))
 
     get :show, :id => characters(:two).to_param
-    assert_response :success, @response
+    assert_response :success, @response.body
     assert_not_nil assigns(:character)
+
+    # testing shapeshift action
+    xhr :get, :shapeshift, :id => characters(:one).id, :form => "hishu"
+
+    count = 0
+    response.body.split("\n").each { |line| count += 1 if line =~ /update/ }
+    assert count == 10, "too few updates: #{count}"
 
     # can see own characters
     sign_in(users(:one))
 
     get :show, :id => characters(:one).to_param
-    assert_response :success, @response
+    assert_response :success, @response.body
+
+    # testing shapeshift action
+    xhr :get, :shapeshift, :id => characters(:one).id, :form => "hishu"
+
+    count = 0
+    response.body.split("\n").each { |line| count += 1 if line =~ /update/ }
+    assert count == 10, "too few updates: #{count}"
     assert_not_nil assigns(:character)
   end
 
@@ -117,7 +239,7 @@ class CharactersControllerTest < ActionController::TestCase
     sign_in(users(:two))
 
     get :edit, :id => characters(:two).to_param
-    assert_response :success, @response
+    assert_response :success, @response.body
     assert_not_nil assigns(:character)
   end
 
