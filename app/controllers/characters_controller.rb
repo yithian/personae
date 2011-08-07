@@ -116,16 +116,16 @@ class CharactersController < ApplicationController
     flash[:notice] = 'Character was successfully created.' if @character.save
     
     case @character.obsidian_character_id 
-    when 0
+    when "0"
       # do not sync
-    when -1
+    when "-1"
       # create a new character
       json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description}})
-      obsidian_portal.access_token.post("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json", json_character)
+      response =   obsidian_portal.access_token.post("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json", json_character)
     else
       # update existing character
       json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description}})
-      obsidian_portal.access_token.put("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)
+      response =  obsidian_portal.access_token.put("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)
     end if obsidian_enabled?
 
     respond_with @character
@@ -141,12 +141,12 @@ class CharactersController < ApplicationController
     flash[:notice] = 'Character was successfully updated.' if @character.update_attributes(params[:character])
 
     case @character.obsidian_character_id 
-    when 0
+    when "0"
       # do not sync
-    when -1
+    when "-1"
       # create a new character
       json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description}})
-      obsidian_portal.access_token.post("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)
+       obsidian_portal.access_token.post("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json", json_character)
     else
       # update existing character
       json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description}})
