@@ -22,19 +22,32 @@
   <div id="header">
     <h1>City of Darkness</h1>
     
-    <ul class="menu">
-      <li <%= "class='selected'" if params[:controller] == "characters" %> ><%= link_to "Characters", characters_path %></li>
-      <li <%= "class='selected'" if params[:controller] == "cliques" %> ><%= link_to "Cliques", cliques_path %></li>
-      <li <%= "class='selected'" if params[:controller] == "ideologies" %> ><%= link_to "Ideologies", ideologies_path %></li>
-        <li <%= "class='selected'" if params[:controller] == "chronicles" %> ><%= link_to "Chronicles", chronicles_path %></li>
-      <% if user_signed_in? and current_user.admin? %>
-        <li <%= "class='selected'" if params[:controller] == "admin" %> ><%= link_to "Admins", manage_admins_path %></li>
+    <ul id="menu">
+      <%= li_selected_if(params[:controller] == "characters") do %>
+        <%= link_to "Characters", characters_path %>
+      <% end %>
+      <%= li_selected_if(params[:controller] == "cliques") do %>
+        <%= link_to "Cliques", cliques_path %>
+      <% end %>
+      <%= li_selected_if(params[:controller] == "ideologies") do %>
+        <%= link_to "Ideologies", ideologies_path %>
+      <% end %>
+      <%= li_selected_if(params[:controller] == "chronicles") do %>
+        <%= link_to "Chronicles", chronicles_path %>
       <% end %>
       <% if user_signed_in? %>
-        <li <%= "class='selected'" if params[:controller] == "devise/registrations" %> ><%= link_to "Account", edit_user_registration_path %></li>
-        <li><%= link_to "Log out", destroy_user_session_path %></li>        
+        <%= li_selected_if((params[:controller] == "admin" or params[:controller] == "devise/registrations")) do %>
+          Account
+          <ul>
+            <li><%= link_to "Edit account", edit_user_registration_path %></li>
+            <%= ("<li>" + link_to("Admins", manage_admins_path) + "</li>").html_safe if current_user.admin? %>
+            <li><%= link_to "Log out", destroy_user_session_path %></li>
+          </ul>
+        <% end %>
       <% else %>
-        <li><%= link_to "Log in", new_user_session_path %></li>
+        <%= li_selected_if(params[:controller] == "devise/sessions") do %>
+          <%= link_to "Log in", new_user_session_path %>
+        <% end %>
       <% end %>
     </ul>
   </div>
