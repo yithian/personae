@@ -1,9 +1,9 @@
 <% if @form == 'hishu' %>
-  $('strength').update("<%= "•" * @character.strength %>");
-  $('dexterity').update("<%= "•" * @character.dexterity %>");
-  $('stamina').update("<%= "•" * @character.stamina %>");
-  $('manipulation').update("<%= "•" * @character.manipulation %>");
-  $('health').update("<%= "•" * @character.health %>");
+  $('strength').update("<%= dot_format(@character.strength) %>");
+  $('dexterity').update("<%= dot_format(@character.dexterity) %>");
+  $('stamina').update("<%= dot_format(@character.stamina) %>");
+  $('manipulation').update("<%= dot_format(@character.manipulation) %>");
+  $('health').update("<%= dot_format(@character.health) %>");
   $('size').update("<%= @character.size %>");
   $('initiative').update("<%= @character.initiative %>");
   $('speed').update("<%= @character.speed %>");
@@ -11,11 +11,11 @@
   $('armor').update("<%= @character.armor %>");
   formHeader = 1;
 <% elsif @form == 'dalu' %>
-  $('strength').update("<%= "#{"•" * (@character.strength + 1)} (#{"•" * @character.strength})" %>");
-  $('dexterity').update("<%= "•" * @character.dexterity %>");
-  $('stamina').update("<%= "#{"•" * (@character.stamina + 1)} (#{"•" * @character.stamina})" %>");
-  $('manipulation').update("<%= "#{"•" * [@character.manipulation - 1, 1].max} (#{"•" * @character.manipulation})" %>");
-  $('health').update("<%= "#{"•" * (@character.health + 2)} (#{"•" * @character.health})" %>");
+  $('strength').update("<%= "#{dot_format(@character.strength + 1)} (#{dot_format(@character.strength)})" %>");
+  $('dexterity').update("<%= dot_format(@character.dexterity) %>");
+  $('stamina').update("<%= "#{dot_format(@character.stamina + 1)} (#{dot_format(@character.stamina)})" %>");
+  $('manipulation').update("<%= "#{dot_format([@character.manipulation - 1, 1].max)} (#{dot_format(@character.manipulation)})" %>");
+  $('health').update("<%= "#{dot_format(@character.health + 2)} (#{dot_format(@character.health)})" %>");
   $('size').update("<%= "#{@character.size + 1} (#{@character.size})" %>");
   $('initiative').update("<%= @character.initiative %>");
   $('speed').update("<%= "#{@character.speed + 1} (#{@character.speed})" %>");
@@ -23,11 +23,11 @@
   $('armor').update("<%= @character.armor %>");
   formHeader = 2;
 <% elsif @form == 'gauru' %>
-  $('strength').update("<%= "#{"•" * (@character.strength + 3)} (#{"•" * @character.strength})" %>");
-  $('dexterity').update("<%= "#{"•" * (@character.dexterity + 1)} (#{"•" * @character.dexterity})" %>");
-  $('stamina').update("<%= "#{"•" * (@character.stamina + 2)} (#{"•" * @character.stamina})" %>");
-  $('manipulation').update("<%= "- (#{"•" * @character.manipulation})" %>");
-  $('health').update("<%= "#{"•" * (@character.health + 4)} (#{"•" * @character.health})" %>");
+  $('strength').update("<%= "#{dot_format(@character.strength + 3)} (#{dot_format(@character.strength)})" %>");
+  $('dexterity').update("<%= "#{dot_format(@character.dexterity + 1)} (#{dot_format(@character.dexterity)})" %>");
+  $('stamina').update("<%= "#{dot_format(@character.stamina + 2)} (#{dot_format(@character.stamina)})" %>");
+  $('manipulation').update("<%= "- (#{dot_format(@character.manipulation)})" %>");
+  $('health').update("<%= "#{dot_format(@character.health + 4)} (#{dot_format(@character.health)})" %>");
   $('size').update("<%= "#{@character.size + 2} (#{@character.size})" %>");
   $('initiative').update("<%= "#{@character.initiative + 1} (#{@character.initiative})" %>");
   $('speed').update("<%= "#{@character.speed + 4} (#{@character.speed})" %>");
@@ -35,9 +35,9 @@
   $('armor').update("<%= "1/1 (#{@character.armor})" %>");
   formHeader = 3;
 <% elsif @form == 'urshul' %>
-  $('strength').update("<%= "#{"•" * (@character.strength + 2)} (#{"•" * @character.strength})" %>");
-  $('dexterity').update("<%= "#{"•" * (@character.dexterity + 2)} (#{"•" * @character.dexterity})" %>");
-  $('stamina').update("<%= "#{"•" * (@character.stamina + 2)} (#{"•" * @character.stamina})" %>");
+  $('strength').update("<%= "#{dot_format(@character.strength + 2)} (#{dot_format(@character.strength)})" %>");
+  $('dexterity').update("<%= "#{dot_format(@character.dexterity + 2)} (#{dot_format(@character.dexterity)})" %>");
+  $('stamina').update("<%= "#{dot_format(@character.stamina + 2)} (#{dot_format(@character.stamina)})" %>");
   $('manipulation').update("<%= "#{"•" * [@character.manipulation - 3, 1].max} (#{"•" * @character.manipulation})" %>");
   $('health').update("<%= "#{"•" * (@character.health + 3)} (#{"•" * @character.health})" %>");
   $('size').update("<%= "#{@character.size + 1} (#{@character.size})" %>");
