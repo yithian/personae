@@ -52,6 +52,16 @@
       
 
       
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-i-dot_format">#dot_format</a></li>
+          
+        </ul>
+      </div>
+      
 
       
     </div>
@@ -171,6 +181,45 @@
 
       <!-- Methods -->
       
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="dot_format-method" class="method-detail ">
+          <a name="method-i-dot_format"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">dot_format</span><span
+              class="method-args">(rating)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>breaks strings of •s into groups of 5 for readability</p>
+            
+
+            
+            <div class="method-source-code" id="dot_format-source">
+<pre>
+<span class="ruby-comment"># File app/helpers/characters_helper.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dot_format</span>(<span class="ruby-identifier">rating</span>)
+  (<span class="ruby-string">&quot;•&quot;</span> * <span class="ruby-identifier">rating</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/•{5}/</span>, <span class="ruby-string">&quot;••••• &quot;</span>).<span class="ruby-identifier">strip</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- dot_format-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- dot_format-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
     </div><!-- 5Buntitled-5D -->
   
 
