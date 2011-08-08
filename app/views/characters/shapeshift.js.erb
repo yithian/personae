@@ -38,8 +38,8 @@
   $('strength').update("<%= "#{dot_format(@character.strength + 2)} (#{dot_format(@character.strength)})" %>");
   $('dexterity').update("<%= "#{dot_format(@character.dexterity + 2)} (#{dot_format(@character.dexterity)})" %>");
   $('stamina').update("<%= "#{dot_format(@character.stamina + 2)} (#{dot_format(@character.stamina)})" %>");
-  $('manipulation').update("<%= "#{"•" * [@character.manipulation - 3, 1].max} (#{"•" * @character.manipulation})" %>");
-  $('health').update("<%= "#{"•" * (@character.health + 3)} (#{"•" * @character.health})" %>");
+  $('manipulation').update("<%= "#{dot_format([@character.manipulation - 3, 1].max)} (#{dot_format(@character.manipulation)})" %>");
+  $('health').update("<%= "#{dot_format(@character.health + 3)} (#{dot_format(@character.health)})" %>");
   $('size').update("<%= "#{@character.size + 1} (#{@character.size})" %>");
   $('defense').update("<%= "#{[@character.wits, @character.dexterity + 2].min} (#{@character.defense})" %>");
   $('initiative').update("<%= "#{@character.initiative + 2} (#{@character.initiative})" %>");
@@ -47,11 +47,11 @@
   $('armor').update("<%= @character.armor %>");
   formHeader = 4;
 <% elsif @form == 'urhan' %>
-  $('strength').update("<%= "•" * @character.strength %>");
-  $('dexterity').update("<%= "#{"•" * (@character.dexterity + 2)} (#{"•" * @character.dexterity})" %>");
-  $('stamina').update("<%= "#{"•" * (@character.stamina + 1)} (#{"•" * @character.stamina})" %>");
-  $('manipulation').update("<%= "#{"•" * [@character.manipulation - 1, 1].max} (#{"•" * @character.manipulation})" %>");
-  $('health').update("<%= "•" * @character.health %>");
+  $('strength').update("<%= dot_format(@character.strength) %>");
+  $('dexterity').update("<%= "#{dot_format(@character.dexterity + 2)} (#{dot_format(@character.dexterity)})" %>");
+  $('stamina').update("<%= "#{dot_format(@character.stamina + 1)} (#{dot_format(@character.stamina)})" %>");
+  $('manipulation').update("<%= "#{dot_format([@character.manipulation - 1, 1].max)} (#{dot_format(@character.manipulation)})" %>");
+  $('health').update("<%= dot_format(@character.health) %>");
   $('size').update("<%= "#{@character.size + 1} (#{@character.size})" %>");
   $('initiative').update("<%= "#{@character.initiative + 2} (#{@character.initiative})" %>");
   $('speed').update("<%= "#{@character.speed + 5} (#{@character.speed})" %>");
