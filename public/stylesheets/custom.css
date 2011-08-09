@@ -136,7 +136,7 @@ body {
 
 #content input.number { width: 2em; }
 #content input.parent_number { width: 2em; }
-#content input.long { width: 38em; }
+#content input.long { width: 36em; }
 
 #content textarea {
 	width: 100%;
