@@ -27,6 +27,7 @@ class Character < ActiveRecord::Base
   VICES = [ 'Envy', 'Gluttony', 'Greed', 'Lust', 'Sloth', 'Pride', 'Wrath' ]
   
   validates :name, :presence => true, :uniqueness => true
+  validates :concept, :presence => true
   validates :virtue, :presence => true, :virtue => true
   validates :vice, :presence => true, :vice => true
   validates :clique_id, :presence => true, :numericality => true

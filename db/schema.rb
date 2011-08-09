@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110730021125) do
+ActiveRecord::Schema.define(:version => 20110809175816) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20110730021125) do
     t.integer  "resilience",                           :default => 0,         :null => false
     t.integer  "current_fuel",                         :default => 7
     t.string   "obsidian_character_id"
+    t.string   "concept",                              :default => ""
   end
 
   create_table "chronicles", :force => true do |t|

@@ -16,16 +16,13 @@
       <td><b><%= f.label :name %></b></td>
       <td><%= f.text_field :name %></td>
     <% if @obsidian_characters %>
-    </tr>
-    <tr>
       <td><b><%= f.label :obsidian_character_id, "Obisidan Portal" %></td>
       <td><%= f.select :obsidian_character_id, @obsidian_characters %></td>
     <% end %>
-      <td><b><%= label_tag 'splat_id', "Template" %></b></td>
-      <td>
-        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :remote => true, :action => update_splat_characters_path %>
-        <input name="character[splat_id]" type="hidden" value="<%= @character.splat_id %>" id="character_splat_id" />
-      </td>
+    </tr>
+    <tr>
+      <td><b><%= f.label :concept %></b></td>
+      <td colspan='3'><%= f.text_field :concept, :class => 'long' %></td>
     </tr>
     <tr>
       <td><b><%= label_tag 'chronicle_id', "Chronicle" %></b></td>
@@ -33,6 +30,15 @@
         <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :remote => true, :action => update_chronicle_characters_path %>
         <input name="character[chronicle_id]" type="hidden" value="<%= @character.chronicle.id %>" id="character_chronicle_id">
       </td>
+      <td><b><%= label_tag 'splat_id', "Template" %></b></td>
+      <td>
+        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :remote => true, :action => update_splat_characters_path %>
+        <input name="character[splat_id]" type="hidden" value="<%= @character.splat_id %>" id="character_splat_id" />
+      </td>
+    </tr>
+    <tr>
+      <td><b><%= f.label :virtue %></b></td>
+      <td><%= f.select :virtue, Character::VIRTUES %></td>
       <td class="label" id="nature_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
         <b><%= label_tag 'nature_id', @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
@@ -42,8 +48,8 @@
       </td>
     </tr>
     <tr>
-      <td><b><%= f.label :virtue %></b></td>
-      <td><%= f.select :virtue, Character::VIRTUES %></td>
+      <td rowspan='3' valign='top'><b><%= label_tag 'character_vice', "Vice" %></b></td>
+      <td rowspan='3' valign='top'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]" %></td>
       <td class="label" id="subnature_label_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
         <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>
@@ -52,8 +58,6 @@
       </td>
     </tr>
     <tr>
-      <td><b><%= label_tag 'character_vice', "Vice" %></b></td>
-      <td rowspan="2"><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 3, :id => "character[vice]" %></td>
       <td class="label" id="ideology_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
       </td>
@@ -62,7 +66,6 @@
       </td>
     </tr>
     <tr>
-      <td></td>
       <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
       <td><%= f.select :clique_id, @clique_list %></td>
     </tr>

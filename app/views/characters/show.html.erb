@@ -4,6 +4,10 @@
     <td colspan=3><%= @character.name %></td>
   </tr>
   <tr>
+    <td><b>Concept</b></td>
+    <td colspan=3><%= @character.concept %></td>
+  </tr>
+  <tr>
     <td><b>Chronicle</b></td>
     <td><%= link_to @character.chronicle.name, @character.chronicle %></td>
     <td><span id="nature_label"><b><%= @character.splat.nature_name if @character.show_nature_to_user?(current_user) %></b></span></td>
