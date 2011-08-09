@@ -58,6 +58,8 @@ body {
 	left: -9999px;
 	background: #2937A1;
 	padding: 0px;
+  border: 2px solid #97A2DE;
+  text-align: left;
 }
 #menu ul li {
 	display: block;
