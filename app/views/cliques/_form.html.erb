@@ -27,7 +27,7 @@
 
   <h3>Chronicle</h3>
   <p><%= f.select :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @clique.chronicle.id) %></p>
-  <%= f.check_box :write %> <%= f.label :write %>
+  <%= f.check_box :write %> <%= f.label :write, "Available for players" %>
   <br />
   
   <%= f.submit 'Save' %>
