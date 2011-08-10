@@ -111,6 +111,10 @@
     $('character_speed').value = a + b + 5;
   }
 
+  function hide_notice() {
+    setTimeout("new Effect.Fade($('notice'));", 5000);
+  }
+
   document.observe("dom:loaded", function() {
     // fires the javascript to update derived stats on keyup in certain input classes
     $$('input.parent_number').invoke('observe', 'keyup', updateStats);
@@ -129,5 +133,7 @@
       handleRemote(this);
       event.stop();
     });
+    
+    hide_notice();
   });
 }) ();
