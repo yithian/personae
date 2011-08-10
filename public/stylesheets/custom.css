@@ -130,6 +130,10 @@ body {
 
 #content table.six_cells td { width: 9em; }
 
+#content table.list th {
+  text-align: center;
+  padding: 0px 4px;
+}
 #content table.list td { padding: 0px 4px; }
 
 #content input[type="text"], input[type="password"] { width: 9em; }
