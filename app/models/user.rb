@@ -36,9 +36,9 @@ class User < ActiveRecord::Base
     end
   end
   
-  # Returns true if the current user is a super user. This will
-  # probably need to change as the permissions model changes.
-  def super_user?
-    self.name == "Storyteller"
+  # Returns true if the current user is an admin for the specified
+  # chronicle.
+  def super_user?(chronicle)
+    self.admin? or chronicle.owner == self
   end
 end

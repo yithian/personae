@@ -19,9 +19,25 @@ class Ability
       cannot :update, Clique, :name => "Solitary"
       cannot :destroy, Clique, :name => "Solitary"
     else
+      # can manage characters created by yourself and any character
+      # in a chronicle you created
       can :manage, Character, :owner_id => user.id
+      can :manage, Character, do |character|
+        user.chronicles.each do |chronicle|
+          return true if character.chronicle_id == chronicle.id
+        end
+      end
       can :shapeshift, Character
+
+      # can manage cliques created by yourself and any clique
+      # in a chronicle you created
       can :manage, Clique, :owner_id => user.id
+      can :manage, Clique, do |clique|
+        user.chronicles.each do |chronicle|
+          return true if clique.chronicle_id == chronicle.id
+        end
+      end
+
       can :manage, Chronicle, :owner_id => user.id
       can :manage, Comment, :user_id => user.id
       can :manage, User, :id => user.id
