@@ -13,7 +13,47 @@ class CliquesControllerTest < ActionController::TestCase
     assert_equal "Access denied!", flash[:error]
   end
 
-  def assert_index_view
+  def assert_show_view
+    assert_select "h3", :minimum => 2
+
+    assert_template "member"
+    
+    get :show, :id => cliques(:one).to_param
+    assert_select "h3", :content => /Totem/
+  end
+  
+  test "should get index when logged out" do
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:cliques)
+    
+    # asserts the change_chronicle dropdown works
+    assert_select "select" do |elements|
+      elements.each do |element|
+        assert_select element, "option", {:minimum => 1}
+      end
+    end
+
+    assert_tag "td", :content => /MyThirdCliqueName/
+
+    xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
+
+    assert_js_select "td", :content => /MyCliqueName/
+
+    # asserts that hidden cliques do not show
+    hidden_cliques = Clique.all - Clique.known_to(User.new, chronicles(:one).id)
+    hidden_cliques.each do |clique|
+      assert_no_tag "td", :content => /#{clique.name}/
+    end
+  end
+  
+  test "should get index when logged in" do
+    sign_in(users(:one))
+    
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:cliques)
+
     # asserts the change_chronicle dropdown works
     assert_select "select" do |elements|
       elements.each do |element|
@@ -32,29 +72,6 @@ class CliquesControllerTest < ActionController::TestCase
     hidden_cliques.each do |clique|
       assert_no_tag "td", :content => /#{clique.name}/
     end
-  end
-
-  def assert_show_view
-    assert_select "h3", :minimum => 2
-
-    assert_template "member"
-    
-    get :show, :id => cliques(:one).to_param
-    assert_select "h3", :content => /Totem/
-  end
-  
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:cliques)
-    assert_index_view
-
-    sign_in(users(:one))
-    
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:cliques)
-    assert_index_view
   end
 
   test "should get new" do

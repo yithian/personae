@@ -359,7 +359,7 @@ class CharactersControllerTest < ActionController::TestCase
     assert_no_difference "Character.count", "removed another user's character" do
       delete :destroy, :id => characters(:two).to_param
     end
-    assert_redirected_to character_path(users(:two))
+    assert_redirected_to character_path(characters(:two))
     assert_equal("Access denied!", flash[:error])
   end
 end

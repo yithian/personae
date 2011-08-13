@@ -12,3 +12,8 @@ two:
   owner_id: two
   obsidian_campaign_id: 2
 
+three:
+  name: MyThirdName
+  description: MyThirdDescriptionText
+  owner_id: Storyteller
+  obsidian_campaign_id: 3

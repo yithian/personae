@@ -27,3 +27,12 @@ two:
   totem: MyOtherTotemText
   chronicle: two
 
+three:
+  name: MyThirdCliqueName
+  description: MyThirdDescritionText
+  territory: MyThirdTerritory
+  write: false
+  owner: three
+  totem: MyOtherTotemText
+  chronicle: three
+
