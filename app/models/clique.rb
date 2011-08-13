@@ -25,7 +25,7 @@ class Clique < ActiveRecord::Base
   def is_known_to_user?(user)
     known_clique = false
     # TODO: cliques with write=true shouldn't be editable by all users
-    known_clique = true if self.write or (user and user.admin?) or (user and self.owner == user) or self == Clique.find_by_name("Solitary")
+    known_clique = true if self.write or (user and user.super_user?(self.chronicle)) or (user and self.owner == user) or self == Clique.find_by_name("Solitary")
 
     self.characters.each do |member|
       known_clique = true if member.show_clique_to_user?(user)
@@ -46,10 +46,10 @@ class Clique < ActiveRecord::Base
   end
   
   # Returns true if the character is owned by the logged in user or if the logged in user is
-  # the Storyteller.
+  # the a User.super_user?
   private
   def owned_by_user?(user)
     return false unless user
-    self.owner == user or user.admin?
+    self.owner == user or user.super_user?(self.chronicle)
   end
 end

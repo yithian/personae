@@ -423,9 +423,9 @@ h5. Notes
 
   private
   # Returns true if the character is owned by the logged in user or if the
-  # logged in user is the Storyteller.
+  # logged in user is a User.super_user?
   def owned_by_user?(user)
     return false unless user
-    user.admin? or self.owner == user
+    user.super_user?(self.chronicle) or self.owner == user
   end
 end
