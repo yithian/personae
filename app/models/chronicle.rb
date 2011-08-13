@@ -4,7 +4,7 @@
 # database.
 
 class Chronicle < ActiveRecord::Base
-  has_one :owner, :class_name => "User"
+  belongs_to :owner, :class_name => "User"
   has_many :characters
   has_many :cliques
   has_many :selected_users, :class_name => "User", :foreign_key => "selected_chronicle_id"
