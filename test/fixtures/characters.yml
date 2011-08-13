@@ -337,7 +337,7 @@ three:
   time: 3
   equipment: MyThirdEquipmentText
   common_spells: MyThirdRotesText
-  owner: two
+  owner: one
   read_name: false
   read_description: false
   read_background: false
