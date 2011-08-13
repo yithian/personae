@@ -215,6 +215,20 @@ class CharactersControllerTest < ActionController::TestCase
     response.body.split("\n").each { |line| count += 1 if line =~ /update/ }
     assert count == 10, "too few updates: #{count}"
     assert_not_nil assigns(:character)
+    
+    # can see others' characters in own chronicle
+    sign_in(users(:two))
+
+    get :show, :id => characters(:three).to_param
+    assert_response :success, @response.body
+
+    # testing shapeshift action
+    xhr :get, :shapeshift, :id => characters(:one).id, :form => "hishu"
+
+    count = 0
+    response.body.split("\n").each { |line| count += 1 if line =~ /update/ }
+    assert count == 10, "too few updates: #{count}"
+    assert_not_nil assigns(:character)
   end
   
   test "validate form view functionality" do
@@ -280,6 +294,13 @@ class CharactersControllerTest < ActionController::TestCase
     get :edit, :id => characters(:two).to_param
     assert_response :success, @response.body
     assert_not_nil assigns(:character)
+    
+    # can edit other users' characters if it's your chronicle
+    sign_in(users(:two))
+
+    get :edit, :id => characters(:three).to_param
+    assert_response :success, @response.body
+    assert_not_nil assigns(:character)
   end
 
   test "shouldn't get edit" do
@@ -310,6 +331,14 @@ class CharactersControllerTest < ActionController::TestCase
     put :update, :id => characters(:one).to_param, :character => {:name => "newername", :concept => 'other guy', :virtue => "Charity", :splat_id => splats(:one).id, :vice => "Envy", :nature_id => natures(:one).id, :clique_id => cliques(:one).id, :ideology_id => ideologies(:one).id, :read_name => "0", :read_clique => "0", :read_nature => "0", :read_ideology => "0", :description => "", :read_description => "0", :background => "", :read_background => "0", :deeds => "", :read_deeds => "1", :intelligence => "1", :strength => "1", :presence => "1", :wits => "1", :dexterity => "1", :manipulation => "1", :resolve => "1", :stamina => "1", :composure => "1", :read_attributes => "0", :academics => "0", :athletics => "0", :animal_ken => "0", :computer => "0", :brawl => "0", :empathy => "0", :crafts => "0", :drive => "0", :expression => "0", :investigation => "0", :firearms => "0", :intimidation => "0", :medicine => "0", :larceny => "0", :persuasion => "0", :occult => "0", :stealth => "0", :socialize => "0", :politics => "0", :survival => "0", :streetwise => "0", :science => "0", :weaponry => "0", :subterfuge => "0", :skill_specialties => "", :read_skills => "0", :health => "6", :willpower => "2", :derangements => "", :size => "5", :initiative => "2", :speed => "5", :defense => "1", :armor => "0", :morality => "7", :power_stat => "1", :max_fuel => "7", :current_fuel => "1", :read_advantages => "0", :merits => "", :read_merits => "0", :equipment => "", :read_equipment => "0", :death => "0", :fate => "0", :common_spells => "", :forces => "0", :life => "0", :matter => "0", :mind => "0", :prime => "0", :space => "0", :spirit => "0", :time => "0", :purity => "0", :glory => "0", :gifts => "", :honor => "0", :wisdom => "0", :cunning => "0", :animalism => "0", :auspex => "0", :covenant_disciplines => "", :celerity => "0", :dominate => "0", :majesty => "0", :nightmare => "0", :protean => "0", :obfuscate => "0", :vigor => "0", :transmutations => "", :dream => "0", :hearth => "0", :goblin_contracts => "", :mirror => "0", :smoke => "0", :artifice => "0", :darkness => "0", :elements => "0", :fang_and_tooth => "0", :stone => "0", :vainglory => "0", :fleeting_spring => "0", :eternal_spring => "0", :fleeting_summer => "0", :eternal_summer => "0", :fleeting_autumn => "0", :eternal_autumn => "0", :fleeting_winter => "0", :eternal_winter => "0", :boneyard => "0", :caul => "0", :keys => "", :curse => "0", :oracle => "0", :marionette => "0", :rage => "0", :shroud => "0", :ceremonies => "", :read_powers => "0", :experience => "", :read_experience => "0", :splat_id => "1"}, :character_vice => ["Greed", "Envy"]
     assert_redirected_to character_path(assigns(:character))
     assert_equal("newername", Character.find_by_id(characters(:one).id).name, "didn't update own user")
+    
+    # should update other users' characters if they're in your chronicle
+    # update own characters
+    sign_in(users(:two))
+    
+    put :update, :id => characters(:three).to_param, :character => {:name => "newerername", :concept => 'other guy', :virtue => "Charity", :splat_id => splats(:one).id, :vice => "Envy", :nature_id => natures(:one).id, :clique_id => cliques(:one).id, :ideology_id => ideologies(:one).id, :read_name => "0", :read_clique => "0", :read_nature => "0", :read_ideology => "0", :description => "", :read_description => "0", :background => "", :read_background => "0", :deeds => "", :read_deeds => "1", :intelligence => "1", :strength => "1", :presence => "1", :wits => "1", :dexterity => "1", :manipulation => "1", :resolve => "1", :stamina => "1", :composure => "1", :read_attributes => "0", :academics => "0", :athletics => "0", :animal_ken => "0", :computer => "0", :brawl => "0", :empathy => "0", :crafts => "0", :drive => "0", :expression => "0", :investigation => "0", :firearms => "0", :intimidation => "0", :medicine => "0", :larceny => "0", :persuasion => "0", :occult => "0", :stealth => "0", :socialize => "0", :politics => "0", :survival => "0", :streetwise => "0", :science => "0", :weaponry => "0", :subterfuge => "0", :skill_specialties => "", :read_skills => "0", :health => "6", :willpower => "2", :derangements => "", :size => "5", :initiative => "2", :speed => "5", :defense => "1", :armor => "0", :morality => "7", :power_stat => "1", :max_fuel => "7", :current_fuel => "1", :read_advantages => "0", :merits => "", :read_merits => "0", :equipment => "", :read_equipment => "0", :death => "0", :fate => "0", :common_spells => "", :forces => "0", :life => "0", :matter => "0", :mind => "0", :prime => "0", :space => "0", :spirit => "0", :time => "0", :purity => "0", :glory => "0", :gifts => "", :honor => "0", :wisdom => "0", :cunning => "0", :animalism => "0", :auspex => "0", :covenant_disciplines => "", :celerity => "0", :dominate => "0", :majesty => "0", :nightmare => "0", :protean => "0", :obfuscate => "0", :vigor => "0", :transmutations => "", :dream => "0", :hearth => "0", :goblin_contracts => "", :mirror => "0", :smoke => "0", :artifice => "0", :darkness => "0", :elements => "0", :fang_and_tooth => "0", :stone => "0", :vainglory => "0", :fleeting_spring => "0", :eternal_spring => "0", :fleeting_summer => "0", :eternal_summer => "0", :fleeting_autumn => "0", :eternal_autumn => "0", :fleeting_winter => "0", :eternal_winter => "0", :boneyard => "0", :caul => "0", :keys => "", :curse => "0", :oracle => "0", :marionette => "0", :rage => "0", :shroud => "0", :ceremonies => "", :read_powers => "0", :experience => "", :read_experience => "0", :splat_id => "1"}, :character_vice => ["Greed", "Envy"]
+    assert_redirected_to character_path(assigns(:character))
+    assert_equal("newerername", Character.find_by_id(characters(:three).id).name, "didn't update other user's character in own chronicle")
   end
 
   test "shouldn't update character" do
@@ -341,6 +370,15 @@ class CharactersControllerTest < ActionController::TestCase
     
     assert_difference('Character.count', -1) do
       delete :destroy, :id => characters(:one).to_param
+    end
+
+    assert_redirected_to characters_path
+    
+    # destroy other users' characters in own chronicle
+    sign_in(users(:two))
+    
+    assert_difference('Character.count', -1) do
+      delete :destroy, :id => characters(:three).to_param
     end
 
     assert_redirected_to characters_path
