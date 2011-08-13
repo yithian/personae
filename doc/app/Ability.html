@@ -241,9 +241,21 @@ only two roles are admin and !admin, whose permissions are defined inside.</p>
     <span class="ruby-identifier">cannot</span> <span class="ruby-value">:update</span>, <span class="ruby-constant">Clique</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Solitary&quot;</span>
     <span class="ruby-identifier">cannot</span> <span class="ruby-value">:destroy</span>, <span class="ruby-constant">Clique</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Solitary&quot;</span>
   <span class="ruby-keyword">else</span>
+    <span class="ruby-comment"># can manage characters created by yourself and any character</span>
+    <span class="ruby-comment"># in a chronicle you created</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Character</span>, <span class="ruby-value">:owner_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Character</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">character</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">chronicles</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span> }.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">character</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:shapeshift</span>, <span class="ruby-constant">Character</span>
+
+    <span class="ruby-comment"># can manage cliques created by yourself and any clique</span>
+    <span class="ruby-comment"># in a chronicle you created</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Clique</span>, <span class="ruby-value">:owner_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Clique</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">clique</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">chronicles</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span> }.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">clique</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">end</span>
+
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Chronicle</span>, <span class="ruby-value">:owner_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Comment</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">User</span>, <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
