@@ -149,7 +149,7 @@ class CliquesControllerTest < ActionController::TestCase
     sign_in(users(:one))
     
     # clique two has write set to false
-    get :show, :id => cliques(:two).to_param
+    get :show, :id => cliques(:three).to_param
     assert_redirected_to cliques_path
     assert_equal "You don't have permission to do that", flash[:notice], "showed unknown clique when logged in"
   end
