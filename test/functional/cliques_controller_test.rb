@@ -125,6 +125,13 @@ class CliquesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:clique)
 
     assert_show_view
+    
+    # so does user who owns chronicle
+    sign_in(users(:two))
+    
+    get :show, :id => cliques(:three).to_param
+    assert_response :success, @response
+    assert_not_nil assigns(:clique)
 
     # show clique as member
     sign_in(users(:one))
@@ -164,6 +171,12 @@ class CliquesControllerTest < ActionController::TestCase
     sign_in(users(:one))
 
     get :edit, :id => cliques(:one).to_param
+    assert_response :success, @response
+    
+    # user owns chronicle
+    sign_in(users(:two))
+
+    get :edit, :id => cliques(:three).to_param
     assert_response :success, @response
   end
 
@@ -230,6 +243,13 @@ class CliquesControllerTest < ActionController::TestCase
     assert_redirected_to clique_path(assigns(:clique))
     assert_equal "Clique was successfully updated.", flash[:notice], "clique wasn't updated as ST"
     
+    # update clique in owned chronicle
+    sign_in(users(:two))
+    
+    put :update, :id => cliques(:three).to_param, :clique => { }
+    assert_redirected_to clique_path(assigns(:clique))
+    assert_equal "Clique was successfully updated.", flash[:notice], "clique wasn't updated as user who owns chronicle"
+    
     # update owned clique
     sign_in(users(:one))
 
@@ -257,6 +277,14 @@ class CliquesControllerTest < ActionController::TestCase
     
     assert_difference('Clique.count', -1, "ST couldn't destroy clique") do
       delete :destroy, :id => cliques(:one).to_param
+    end
+    assert_redirected_to cliques_path
+    
+    # user who owns chronicle can destroy any inside said chronicle
+    sign_in(users(:two))
+
+    assert_difference('Clique.count', -1, "user who owns chronicle couldn't destroy clique") do
+      delete :destroy, :id => cliques(:three).to_param
     end
     assert_redirected_to cliques_path
 
