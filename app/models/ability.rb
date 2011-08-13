@@ -22,20 +22,16 @@ class Ability
       # can manage characters created by yourself and any character
       # in a chronicle you created
       can :manage, Character, :owner_id => user.id
-      can :manage, Character, do |character|
-        user.chronicles.each do |chronicle|
-          return true if character.chronicle_id == chronicle.id
-        end
+      can :manage, Character do |character|
+        user.chronicles.collect { |c| c.id }.include?(character.id)
       end
       can :shapeshift, Character
 
       # can manage cliques created by yourself and any clique
       # in a chronicle you created
       can :manage, Clique, :owner_id => user.id
-      can :manage, Clique, do |clique|
-        user.chronicles.each do |chronicle|
-          return true if clique.chronicle_id == chronicle.id
-        end
+      can :manage, Clique do |clique|
+        user.chronicles.collect { |c| c.id }.include?(clique.id)
       end
 
       can :manage, Chronicle, :owner_id => user.id
