@@ -1,4 +1,4 @@
-Sun, 14 Aug 2011 22:37:17 -0400
+Mon, 15 Aug 2011 11:27:48 -0400
 doc/README_FOR_APP	Mon, 25 Jul 2011 13:54:27 -0400
 app/controllers/admin_controller.rb	Sun, 31 Jul 2011 16:50:31 -0400
 app/controllers/application_controller.rb	Sun, 31 Jul 2011 11:34:10 -0400
@@ -17,7 +17,7 @@ app/helpers/comment_helper.rb	Sun, 05 Jun 2011 23:15:41 -0400
 app/helpers/ideologies_helper.rb	Sun, 05 Jun 2011 23:15:41 -0400
 app/helpers/services_helper.rb	Mon, 01 Aug 2011 17:47:51 -0400
 app/models/ability.rb	Sat, 13 Aug 2011 17:19:59 -0400
-app/models/character.rb	Sat, 13 Aug 2011 17:19:59 -0400
+app/models/character.rb	Mon, 15 Aug 2011 11:22:36 -0400
 app/models/chronicle.rb	Sat, 13 Aug 2011 17:19:59 -0400
 app/models/clique.rb	Sat, 13 Aug 2011 17:19:59 -0400
 app/models/comment.rb	Wed, 13 Jul 2011 21:25:10 -0400
