@@ -2,8 +2,8 @@
 
 one:
   name: MyName
-  virtue: MyVirtue
-  vice: MyVice
+  virtue: Charity
+  vice: Envy
   clique: one
   ideology: one
   description: MyDescriptionText
@@ -138,8 +138,8 @@ one:
 
 two:
   name: MyOtherName
-  virtue: MyOtherVirtue
-  vice: MyOtherVice
+  virtue: Temperance
+  vice: Pride
   clique: two
   ideology: two
   description: MyOtherDescriptionText
@@ -274,8 +274,8 @@ two:
 
 three:
   name: MyThirdName
-  virtue: MyThirdVirtue
-  vice: MyThirdVice
+  virtue: Fortitude
+  vice: Greed
   clique: two
   ideology: two
   description: MyThirdDescriptionText
