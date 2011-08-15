@@ -71,7 +71,15 @@ class CliquesController < ApplicationController
   # PUT /cliques/1
   # PUT /cliques/1.xml
   def update
-    flash[:notice] = 'Clique was successfully updated.' if @clique.update_attributes(params[:clique])
+    if @clique.update_attributes(params[:clique])
+      # updates the clique's characters' chronicle as well
+      @clique.characters.each do |character|
+        character.chronicle = @clique.chronicle
+        character.save
+      end if current_user.super_user?(@clique.chronicle) and current_user.super_user?(Chronicle.find_by_id(params[:clique][:chronicle_id] ))
+      
+      flash[:notice] = 'Clique was successfully updated.'
+    end
 
     respond_with @clique
   end

@@ -315,4 +315,33 @@ class CliquesControllerTest < ActionController::TestCase
     assert_redirected_to clique_path(cliques(:one))
     assert_equal("Access denied!", flash[:error])
   end
+  
+  test "should update members' chronicles" do
+    sign_in(users(:Storyteller))
+    
+    put :update, :id => cliques(:one).to_param, :clique => {:chronicle_id => chronicles(:two).id}
+    
+    assert_equal(chronicles(:two), Character.find_by_id(characters(:one).id).chronicle, "updating clique's chronicle didn't update it's characters'")
+    
+    # owning non-Storyteller user
+    sign_in(users(:two))
+
+    put :update, :id => cliques(:two).to_param, :clique => {:chronicle_id => chronicles(:three).id}
+
+    assert_equal(chronicles(:three), Character.find_by_id(characters(:two).id).chronicle, "updating clique's chronicle didn't update it's characters'")
+  end
+  
+  test "shouldn't update members' chronicles" do
+    # not logged in
+    put :update, :id => cliques(:one).to_param, :clique => {:chronicle_id => chronicles(:two).id}
+    
+    assert_not_equal(chronicles(:two), Character.find_by_id(characters(:one).id).chronicle, "updating clique's chronicle updated it's characters' when not logged in")
+    
+    # non-owning non-Storyteller user
+    sign_in(users(:one))
+
+    put :update, :id => cliques(:two).to_param, :clique => {:chronicle_id => chronicles(:three).id}
+
+    assert_not_equal(chronicles(:three), Character.find_by_id(characters(:two).id).chronicle, "updating clique's chronicle didn't update it's characters'")
+  end
 end
