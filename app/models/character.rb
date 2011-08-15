@@ -253,7 +253,20 @@ class Character < ActiveRecord::Base
   # bio. In personae terms, that is the character's
   # description and background.
   def obsidian_bio
-    "h5. Description\n\n#{self.description}\n\nh5. Background\n\n#{self.background}"
+    bio = ""
+    bio << %{
+h5. Description
+
+#{self.description}
+    } if self.read_description
+    
+    bio << %{
+h5. Background
+
+#{self.background}
+    } if self.read_background
+    
+    bio
   end
 
   # Returns what Obsidian Portal calls the character's
