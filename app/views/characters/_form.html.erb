@@ -71,7 +71,6 @@
     </tr>
     <tr>
       <td><%= f.check_box :read_name %> <%= f.label :read_name, "Reveal name" %></td>
-      <td><%= f.check_box :read_clique %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label" %></td>
       <td>
       	<span id="read_nature_span" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
           <%= f.check_box :read_nature %> <%= f.label :read_nature, "Reveal " + @character.splat.nature_name, :id => "read_nature_label" %>
@@ -82,6 +81,7 @@
           <%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Reveal " + @character.splat.ideology_name, :id => "read_ideology_label" %>
         </span>
       </td>
+      <td><%= f.check_box :read_clique %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label" %></td>
     </tr>
   </table>
 
