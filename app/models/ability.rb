@@ -23,7 +23,13 @@ class Ability
       # in a chronicle you created
       can :manage, Character, :owner_id => user.id
       can :manage, Character do |character|
-        user.chronicles.collect { |c| c.id }.include?(character.id)
+        char_ids = []
+        user.chronicles.collect do |chronicle|
+          Character.find_all_by_chronicle_id(chronicle.id).collect do |c|
+            char_ids << c.id
+          end
+        end
+        char_ids.include?(character.id)
       end
       can :shapeshift, Character
 
@@ -31,7 +37,13 @@ class Ability
       # in a chronicle you created
       can :manage, Clique, :owner_id => user.id
       can :manage, Clique do |clique|
-        user.chronicles.collect { |c| c.id }.include?(clique.id)
+        clique_ids = []
+        user.chronicles.collect do |chronicle|
+          Clique.find_all_by_chronicle_id(chronicle.id).collect do |c|
+            clique_ids << c.id 
+          end
+        end 
+        clique_ids.include?(clique.id)
       end
 
       can :manage, Chronicle, :owner_id => user.id
