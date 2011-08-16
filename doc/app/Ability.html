@@ -245,7 +245,13 @@ only two roles are admin and !admin, whose permissions are defined inside.</p>
     <span class="ruby-comment"># in a chronicle you created</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Character</span>, <span class="ruby-value">:owner_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Character</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">character</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">chronicles</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span> }.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">character</span>.<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">char_ids</span> = []
+      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">chronicles</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">chronicle</span><span class="ruby-operator">|</span>
+        <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">char_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">char_ids</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">character</span>.<span class="ruby-identifier">id</span>)
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:shapeshift</span>, <span class="ruby-constant">Character</span>
 
@@ -253,7 +259,13 @@ only two roles are admin and !admin, whose permissions are defined inside.</p>
     <span class="ruby-comment"># in a chronicle you created</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Clique</span>, <span class="ruby-value">:owner_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Clique</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">clique</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">chronicles</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span> }.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">clique</span>.<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">clique_ids</span> = []
+      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">chronicles</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">chronicle</span><span class="ruby-operator">|</span>
+        <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">clique_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span> 
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span> 
+      <span class="ruby-identifier">clique_ids</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">clique</span>.<span class="ruby-identifier">id</span>)
     <span class="ruby-keyword">end</span>
 
     <span class="ruby-identifier">can</span> <span class="ruby-value">:manage</span>, <span class="ruby-constant">Chronicle</span>, <span class="ruby-value">:owner_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
