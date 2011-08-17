@@ -66,6 +66,13 @@ body {
 	white-space: nowrap;
 }
 #menu li:hover ul { left: 0px; }
+#menu li.selected ul a {
+  color: #97A2DE;
+  background: #2937A1;
+  padding: 0em 1em;
+  text-decoration: none;
+  border: none;
+}
 
 /* notice messages */
 #notice {
