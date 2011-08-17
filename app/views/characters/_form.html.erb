@@ -16,7 +16,7 @@
       <td><b><%= f.label :name %></b></td>
       <td><%= f.text_field :name %></td>
     <% if @obsidian_characters %>
-      <td><b><%= f.label :obsidian_character_id, "Obisidan Portal" %></td>
+      <td><b><%= f.label :obsidian_character_id, "Obisidan Portal" %></b></td>
       <td><%= f.select :obsidian_character_id, @obsidian_characters %></td>
     <% end %>
     </tr>
@@ -48,8 +48,8 @@
       </td>
     </tr>
     <tr>
-      <td rowspan='3' valign='top'><b><%= label_tag 'character_vice', "Vice" %></b></td>
-      <td rowspan='3' valign='top'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]" %></td>
+      <td rowspan='3' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
+      <td rowspan='3' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]" %></td>
       <td class="label" id="subnature_label_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
         <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>
