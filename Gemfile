@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.10'
 gem 'devise'
 gem 'cancan'
 gem 'mage-hand', :git => "git://github.com/yithian/mage-hand.git", :branch => "change_oauth_case"
