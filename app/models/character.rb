@@ -410,6 +410,7 @@ h5. Manifestations
     end if self.read_powers
 
     desc << %{
+
 h5. Experience
 
 #{self.experience}
