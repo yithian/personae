@@ -15,6 +15,8 @@ class AdminController < ApplicationController
     if request.method == "POST"
       params[:admin_ids] = [] unless defined?(params[:admin_ids])
 
+      puts params[:admin_ids]
+
       User.all.each do |user|
         if params[:admin_ids].include? user.id
           user.admin = true
