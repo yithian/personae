@@ -52,7 +52,7 @@
   $('stamina').update("<%=raw "<abbr title='#{dot_format(@character.stamina)}'>#{dot_format(@character.stamina + 1)}</abbr>" %>");
   $('manipulation').update("<%=raw "<abbr title='#{dot_format(@character.manipulation)}'>#{dot_format([@character.manipulation - 1, 1].max)}</abbr>" %>");
   $('health').update("<%= dot_format(@character.health) %>");
-  $('size').update("<%=raw "<abbr title='#{@character.size}'>#{@character.size + 1}</abbr>" %>");
+  $('size').update("<%=raw "<abbr title='#{@character.size}'>#{@character.size - 1}</abbr>" %>");
   $('initiative').update("<%=raw "<abbr title='#{@character.initiative}'>#{@character.initiative + 2}</abbr>" %>");
   $('speed').update("<%=raw "<abbr title='#{@character.speed}'>#{@character.speed + 5}</abbr>" %>");
   $('defense').update("<%=raw "<abbr title='#{@character.defense}'>#{[@character.wits, @character.dexterity + 2].min}</abbr>" %>");
