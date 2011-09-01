@@ -13,10 +13,10 @@ class AdminController < ApplicationController
     # likely not scale well and should probably be
     # replaced
     if request.method == "POST"
-      params[:admin_ids] = [] unless defined?(params[:admin_ids])
-
+      params['admin_ids'] ||= []
+      
       User.all.each do |user|
-        if params[:admin_ids].include? user.id
+        if params['admin_ids'].include? user.id.to_s
           user.admin = true
         else
           user.admin = false unless user.name == "Storyteller"
