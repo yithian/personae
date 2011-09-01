@@ -221,10 +221,10 @@ users with admin access.</p>
   <span class="ruby-comment"># likely not scale well and should probably be</span>
   <span class="ruby-comment"># replaced</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">method</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;POST&quot;</span>
-    <span class="ruby-identifier">params</span>[<span class="ruby-value">:admin_ids</span>] = [] <span class="ruby-keyword">unless</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:admin_ids</span>])
-
+    <span class="ruby-identifier">params</span>[<span class="ruby-string">'admin_ids'</span>] <span class="ruby-operator">||=</span> []
+    
     <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:admin_ids</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">'admin_ids'</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
         <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin</span> = <span class="ruby-keyword">true</span>
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">user</span>.<span class="ruby-identifier">admin</span> = <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Storyteller&quot;</span>
