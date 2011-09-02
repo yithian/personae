@@ -185,7 +185,7 @@ class CharactersControllerTest < ActionController::TestCase
     xhr :get, :shapeshift, :id => characters(:one).id, :form => "hishu"
 
     count = 0
-    response.body.split("\n").each { |line| count += 1 if line =~ /update/ }
+    response.body.split("\n").each { |line| count += 1 if line =~ /html/ }
     assert count == 10, "too few updates: #{count}"
     
     # ST can see all characters
@@ -199,7 +199,7 @@ class CharactersControllerTest < ActionController::TestCase
     xhr :get, :shapeshift, :id => characters(:one).id, :form => "hishu"
 
     count = 0
-    response.body.split("\n").each { |line| count += 1 if line =~ /update/ }
+    response.body.split("\n").each { |line| count += 1 if line =~ /html/ }
     assert count == 10, "too few updates: #{count}"
 
     # can see own characters
@@ -212,7 +212,7 @@ class CharactersControllerTest < ActionController::TestCase
     xhr :get, :shapeshift, :id => characters(:one).id, :form => "hishu"
 
     count = 0
-    response.body.split("\n").each { |line| count += 1 if line =~ /update/ }
+    response.body.split("\n").each { |line| count += 1 if line =~ /html/ }
     assert count == 10, "too few updates: #{count}"
     assert_not_nil assigns(:character)
     
@@ -226,7 +226,7 @@ class CharactersControllerTest < ActionController::TestCase
     xhr :get, :shapeshift, :id => characters(:one).id, :form => "hishu"
 
     count = 0
-    response.body.split("\n").each { |line| count += 1 if line =~ /update/ }
+    response.body.split("\n").each { |line| count += 1 if line =~ /html/ }
     assert count == 10, "too few updates: #{count}"
     assert_not_nil assigns(:character)
   end
