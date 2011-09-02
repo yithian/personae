@@ -1,83 +1,83 @@
-// update the hidden fields in the form
-$('character_splat_id').value = '<%= @splat.id.to_s %>';
-$('character_nature_id').value = '<%= @nature_list.first.id %>';
+// html the hidden fields in the form
+$('#character_splat_id').value = '<%= @splat.id.to_s %>';
+$('#character_nature_id').value = '<%= @nature_list.first.id %>';
 
-// update the splat-specific terms
-$('clique_label').update('<%= @splat.clique_name %>');
-$('read_clique_label').update('Reveal <%= @splat.clique_name %>');
-$('nature_label').update('<%= @splat.nature_name %>');
-$('nature_id').update('<%= options_from_collection_for_select(@nature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
-$('subnature_label').update('<%= @splat.subnature_name %>');
-$('character_subnature_id').update('<%= options_from_collection_for_select(@subnature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
-$('read_nature_label').update('Reveal <%= @splat.nature_name %>');
-$('ideology_label').update('<%= @splat.ideology_name %>');
-$('character_ideology_id').update('<%= options_from_collection_for_select(@ideology_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
-$('read_ideology_label').update('Reveal <%= @splat.ideology_name %>');
-$('morality_label').update('<%= @splat.morality_name %>');
-$('power_stat_label').update('<%= @splat.power_stat_name %>');
-$('max_fuel_label').update('Max <%= @splat.fuel_name %>');
-$('current_fuel_label').update('Current <%= @splat.fuel_name %>');
+// html the splat-specific terms
+$('#clique_label').html('<%= @splat.clique_name %>');
+$('#read_clique_label').html('Reveal <%= @splat.clique_name %>');
+$('#nature_label').html('<%= @splat.nature_name %>');
+$('#nature_id').html('<%= options_from_collection_for_select(@nature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
+$('#subnature_label').html('<%= @splat.subnature_name %>');
+$('#character_subnature_id').html('<%= options_from_collection_for_select(@subnature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
+$('#read_nature_label').html('Reveal <%= @splat.nature_name %>');
+$('#ideology_label').html('<%= @splat.ideology_name %>');
+$('#character_ideology_id').html('<%= options_from_collection_for_select(@ideology_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
+$('#read_ideology_label').html('Reveal <%= @splat.ideology_name %>');
+$('#morality_label').html('<%= @splat.morality_name %>');
+$('#power_stat_label').html('<%= @splat.power_stat_name %>');
+$('#max_fuel_label').html('Max <%= @splat.fuel_name %>');
+$('#current_fuel_label').html('Current <%= @splat.fuel_name %>');
 
 // show or hide only the appropriate fields
 <% if @splat.name == "Mortal" %>
-  $('nature_label_cell').hide();
-  $('nature_id_cell').hide();
-  $('ideology_label_cell').hide();
-  $('ideology_id_cell').hide();
-  $('read_nature_span').hide();
-  $('read_ideology_span').hide();
-  $('power_stat_label_cell').hide();
-  $('power_stat_cell').hide();
-  $('max_fuel_label_cell').hide();
-  $('current_fuel_label_cell').hide();
-  $('max_fuel_cell').hide();
-  $('current_fuel_cell').hide();
-  $('read_powers_span').hide();
+  $('#nature_label_cell').hide();
+  $('#nature_id_cell').hide();
+  $('#ideology_label_cell').hide();
+  $('#ideology_id_cell').hide();
+  $('#read_nature_span').hide();
+  $('#read_ideology_span').hide();
+  $('#power_stat_label_cell').hide();
+  $('#power_stat_cell').hide();
+  $('#max_fuel_label_cell').hide();
+  $('#current_fuel_label_cell').hide();
+  $('#max_fuel_cell').hide();
+  $('#current_fuel_cell').hide();
+  $('#read_powers_span').hide();
 <% elsif @splat.name == "Hunter" %>
-  $('nature_label_cell').show();
-  $('nature_id_cell').show();
-  $('ideology_label_cell').show();
-  $('ideology_id_cell').show();
-  $('read_nature_span').show();
-  $('read_ideology_span').show();
-  $('power_stat_label_cell').hide();
-  $('power_stat_cell').hide();
-  $('max_fuel_label_cell').hide();
-  $('current_fuel_label_cell').hide();
-  $('max_fuel_cell').hide();
-  $('current_fuel_cell').hide();
-  $('read_powers_span').hide();
+  $('#nature_label_cell').show();
+  $('#nature_id_cell').show();
+  $('#ideology_label_cell').show();
+  $('#ideology_id_cell').show();
+  $('#read_nature_span').show();
+  $('#read_ideology_span').show();
+  $('#power_stat_label_cell').hide();
+  $('#power_stat_cell').hide();
+  $('#max_fuel_label_cell').hide();
+  $('#current_fuel_label_cell').hide();
+  $('#max_fuel_cell').hide();
+  $('#current_fuel_cell').hide();
+  $('#read_powers_span').hide();
 <% else %>
-  $('nature_label_cell').show();
-  $('nature_id_cell').show();
-  $('ideology_label_cell').show();
-  $('ideology_id_cell').show();
-  $('read_nature_span').show();
-  $('read_ideology_span').show();
-  $('power_stat_label_cell').show();
-  $('power_stat_cell').show();
-  $('max_fuel_label_cell').show();
-  $('current_fuel_label_cell').show();
-  $('max_fuel_cell').show();
-  $('current_fuel_cell').show();
-  $('read_powers_span').show();
+  $('#nature_label_cell').show();
+  $('#nature_id_cell').show();
+  $('#ideology_label_cell').show();
+  $('#ideology_id_cell').show();
+  $('#read_nature_span').show();
+  $('#read_ideology_span').show();
+  $('#power_stat_label_cell').show();
+  $('#power_stat_cell').show();
+  $('#max_fuel_label_cell').show();
+  $('#current_fuel_label_cell').show();
+  $('#max_fuel_cell').show();
+  $('#current_fuel_cell').show();
+  $('#read_powers_span').show();
 <% end %>
 
 <% if @splat.name != "Changeling" %>
-  $('subnature_label_cell').hide();
-  $('subnature_id_cell').hide();
+  $('#subnature_label_cell').hide();
+  $('#subnature_id_cell').hide();
 <% else %>
-  $('subnature_label_cell').show();
-  $('subnature_id_cell').show();
+  $('#subnature_label_cell').show();
+  $('#subnature_id_cell').show();
 <% end %>
 
-$('mage_powers', 'woof_powers', 'vampire_powers', 'promethean_powers', 'changeling_powers', 'geist_powers').invoke('hide');
+$('#mage_powers', '#woof_powers', '#vampire_powers', '#promethean_powers', '#changeling_powers', '#geist_powers').hide();
 
 <% case @splat.name
-  when "Mage" then %> Effect.BlindDown($('mage_powers'));
-  <% when "Werewolf" then %> Effect.BlindDown($('woof_powers'));
-  <% when "Vampire" then %> Effect.BlindDown($('vampire_powers'));
-  <% when "Promethean" then %> Effect.BlindDown($('promethean_powers'));
-  <% when "Changeling" then %> Effect.BlindDown($('changeling_powers'));
-  <% when "Geist" then %> Effect.BlindDown($('geist_powers'));
+  when "Mage" then %> $('#mage_powers').slideDown();
+  <% when "Werewolf" then %> $('#woof_powers').slideDown();
+  <% when "Vampire" then %> $('#vampire_powers').slideDown();
+  <% when "Promethean" then %> $('#promethean_powers').slideDown();
+  <% when "Changeling" then %> $('#changeling_powers').slideDown();
+  <% when "Geist" then %> $('#geist_powers').slideDown();
 <% end %>
