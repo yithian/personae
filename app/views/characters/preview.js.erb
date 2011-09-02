@@ -1,49 +1,49 @@
-$('virtue').toggle();
-$('vice').toggle();
+$('#virtue').slideToggle();
+$('#vice').slideToggle();
 <% unless @character.read_nature %>
-  $('nature_label').toggle();
-  $('nature_name').toggle();
-  $('subnature_label').toggle();
-  $('subnature_name').toggle();
+  $('#nature_label').slideToggle();
+  $('#nature_name').slideToggle();
+  $('#subnature_label').slideToggle();
+  $('#subnature_name').slideToggle();
 <% end
 unless @character.read_clique %>
-  $('clique_label').toggle();
-  $('clique_name').toggle();
+  $('#clique_label').slideToggle();
+  $('#clique_name').slideToggle();
 <% end
 unless @character.read_ideology %>
-  $('ideology_label').toggle();
-  $('ideology_name').toggle();
+  $('#ideology_label').slideToggle();
+  $('#ideology_name').slideToggle();
 <% end
 unless @character.read_description %>
-  $('description').toggle();
+  $('#description').slideToggle();
 <% end
 unless @character.read_background %>
-  $('background').toggle();
+  $('#background').slideToggle();
 <% end
 unless @character.read_deeds %>
-  $('deeds').toggle();
+  $('#deeds').slideToggle();
 <% end
 unless @character.read_attributes %>
-  $('attributes').toggle();
+  $('#attributes').slideToggle();
 <% end
 unless @character.read_skills %>
-  $('skills').toggle();
+  $('#skills').slideToggle();
 <% end
 unless @character.read_advantages %>
-  $('advantages').toggle();
+  $('#advantages').slideToggle();
 <% end
 unless @character.read_merits %>
-  $('merits').toggle();
+  $('#merits').slideToggle();
 <% end
 unless @character.read_equipment %>
-  $('equipment').toggle();
+  $('#equipment').slideToggle();
 <% end
 unless @character.read_powers %>
-  $('powers').toggle();
+  $('#powers').slideToggle();
 <% end
 unless @character.read_experience %>
-  $('experience').toggle();
+  $('#experience').slideToggle();
 <% end
 unless @character.read_notes %>
-  $('notes').toggle();
+  $('#notes').slideToggle();
 <% end %>
