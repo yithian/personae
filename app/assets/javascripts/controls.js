@@ -86,12 +86,10 @@
     });
   });
 
-  document.observe("dom:loaded", function() {
+  $(document).ready(function() {
     // fires an ajax action when marked dropdown menus have their value changed
-    $$('select[remote=true]').invoke('observe', 'change', function(event, element) {
-      if (event.stopped) return;
-      handleRemote(this);
-      event.stop();
+    $('select[remote=true]').change(function() {
+      $.get($(this).attr('action'), { selected_id : $(this).val() });
     });
 
     // fires an ajax action when marked input fields have their contents updated
