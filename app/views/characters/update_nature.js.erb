@@ -1,4 +1,4 @@
 // update the hidden field in the form to save the splat_id
-$('character_nature_id').value = '<%= @nature.id.to_s %>';
+$('#character_nature_id').val('<%= @nature.id.to_s %>');
 
-$('character_subnature_id').update('<%= options_from_collection_for_select(@subnature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
+$('#character_subnature_id').html('<%= options_from_collection_for_select(@subnature_list, "id", "name").gsub(/[\n]/, "").gsub(/[\']/, "&#39").html_safe %>');
