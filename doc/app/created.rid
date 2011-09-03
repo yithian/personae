@@ -1,8 +1,8 @@
-Wed, 31 Aug 2011 22:37:09 -0400
+Sat, 03 Sep 2011 15:02:34 -0400
 doc/README_FOR_APP	Thu, 25 Aug 2011 07:16:56 -0400
-app/controllers/admin_controller.rb	Wed, 31 Aug 2011 22:34:23 -0400
+app/controllers/admin_controller.rb	Thu, 01 Sep 2011 20:37:14 -0400
 app/controllers/application_controller.rb	Sun, 28 Aug 2011 23:18:17 -0400
-app/controllers/characters_controller.rb	Sun, 28 Aug 2011 20:49:16 -0400
+app/controllers/characters_controller.rb	Sat, 03 Sep 2011 09:17:55 -0400
 app/controllers/chronicles_controller.rb	Mon, 29 Aug 2011 20:29:57 -0400
 app/controllers/cliques_controller.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/controllers/comments_controller.rb	Thu, 25 Aug 2011 07:16:56 -0400
