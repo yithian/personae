@@ -1,0 +1,233 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+$background-color: #090233;
+$header-background: #2937A1;
+$header-highlight: #EEEEEC;
+$tab-highlight: #97A2DE;
+$red-splash: #990033;
+$main-background: #333333;
+
+body {
+	background: $background-color;
+	text-align: center;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size:   13px;
+	line-height: 18px;
+}
+
+#column {
+	width: 80%;
+	max-width: 60em;
+	margin: 0 auto;
+	padding: 0em 1em;
+}
+
+/* top of page header */
+#header {
+	text-align: center;
+	background: $header-background;
+	color: $header-highlight;
+	border: 1px solid black;
+	border-bottom: 3px solid $tab-highlight;
+}
+
+
+/* menu */
+#menu {
+	color: $tab-highlight;
+	list-style: none;
+	margin: 0px;
+	
+	li {
+		display: inline;
+		font-weight: bold;
+		position: relative;
+		
+		&.selected a {
+			background: $tab-highlight;
+			color: $red-splash;
+			border-bottom: 1px solid $tab-highlight;
+			
+			&:hover { color: $header-highlight; }
+		}
+		/* drop-down menu effect*/
+		&:hover ul { left: 0px; }
+		
+		/* drop-down menu styling */
+		ul {
+			position: absolute;
+			left: -9999px;
+			background: $header-background;
+			padding: 0px;
+			border: 2px solid $tab-highlight;
+			text-align: left;
+
+			li {
+				display: block;
+				white-space: nowrap;
+			}
+		}
+	}
+	
+	li.selected {
+		ul {
+			a {
+				color: $tab-highlight;
+				background: $header-background;
+				padding: 0em 1em;
+				text-decoration: none;
+				border: none;
+			}
+		}
+	}
+	
+	a {
+		color: $tab-highlight;
+		padding: 0em 1em;
+		text-decoration: none;
+	
+		&:hover {
+			background: $tab-highlight;
+			color: $header-highlight;
+			border-bottom: 1px solid $tab-highlight;
+		}
+	}
+}
+
+/* notice messages */
+#notice {
+	text-align: center;
+	color: $red-splash;
+}
+
+/* page content */
+#content {
+	color: $main-background;
+	background: $header-highlight;
+	border: 1px solid black;
+	border-top: none;
+	padding: 0.5em 4em;
+	text-align: justify;
+	
+	a {
+		text-decoration: none;
+		border-style: none;
+		color: $header-background;
+		
+		&:hover {
+			color: $red-splash;
+			text-decoration: underline;
+		}
+	}
+	
+	a.selected {
+		color: $red-splash;
+		text-decoration: none;
+		
+		&:hover { background: $header-highlight; }
+	}
+	
+	h3 {
+		color: $header-highlight;
+		background: $red-splash;
+		background: url(../images/h3_gradient.svg); background: -webkit-gradient(linear, left top, right top, from($red-splash), to($header-highlight)); background: -moz-linear-gradient(left, $red-splash, $header-highlight);
+		-webkit-border-top-right-radius: 15px; -moz-border-radius-topright: 15px;
+		-webkit-border-bottom-right-radius:15px; -moz-border-radius-bottomright: 15px;
+		padding: 0.2em 1.5em;
+		font-family: serif;
+		width: 10em;
+		position: relative;
+		left: -3.5em;
+	}
+	
+	label.sized {
+		width: 7em;
+		text-align: right;
+		margin-right: .5em;
+		float: left;
+	}
+	
+	table {
+		td.growdown { vertical-align: top; }
+	}
+	
+	table.three_cells {
+		td { width: 9em; }
+	}
+	
+	table.three_cells {
+		td:nth-child(3) { width: 36em;}
+	}
+	
+	table.four_cells {
+		th, td { width: 14em; }
+	}
+	
+	table.five_cells {
+		th, td { width: 12em; }
+	}
+	
+	table.six_cells td { width: 9em; }
+	
+	table.list {
+		th {
+			text-align: center;
+			padding: 0px 4px;
+		}
+		
+		td { padding: 0px 4px; }
+	}
+	
+	input[type="text"], input[type="password"] { width: 9em; }
+	
+	input.number { width: 2em; }
+	input.parent_number { width: 2em; }
+	input.long { width: 36em; }
+	
+	textarea 	{
+		width: 100%;
+		height: 5em;
+	}
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: $red-splash;
+  color: $header-highlight;
+}
+
+#error_explanation {
+  width: 400px;
+  border: 2px solid $red-splash;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: $red-splash;
+  color: $header-highlight;
+}
+
+#error_explanation p {
+  color: $main-background;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
