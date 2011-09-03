@@ -173,7 +173,7 @@
         <td id="willpower"><%= dot_format(@character.willpower) %></td>
       </tr>
       <tr>
-	<%= form_for(@character) do |f| %>
+      	<%= form_for(@character) do |f| %>
           <td><%= f.label :current_health, "Current Health:" %></td>
           <td><%= f.text_field :current_health, :remote => true, :action => url_for(:action => "update", :id => @character.id), :method => "put" %></td>
           <td><%= f.label :current_willpower, "Current Willpower:" %></td>
