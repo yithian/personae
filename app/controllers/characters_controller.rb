@@ -69,7 +69,7 @@ class CharactersController < ApplicationController
   
   # POST /characters/update_splat
   def update_splat
-    @splat = Splat.find_by_id(params[:selected_id])
+    @splat = Splat.find_by_id(params[:splat_id])
     @nature_list = Nature.find_all_by_splat_id(@splat.id)
     @subnature_list = Subnature.list_for_nature(@nature_list.first).collect
     @ideology_list = Ideology.find_all_by_splat_id(@splat.id)
@@ -81,7 +81,7 @@ class CharactersController < ApplicationController
   
   # POST /characters/update_nature
   def update_nature
-    @nature = Nature.find_by_id(params[:selected_id])
+    @nature = Nature.find_by_id(params[:nature_id])
     @subnature_list = Subnature.list_for_nature(@nature)
 
     respond_to do |format|
@@ -91,8 +91,8 @@ class CharactersController < ApplicationController
   
   # POST /characters/update_chronicle
   def update_chronicle
-    @chronicle = Chronicle.find_by_id(params[:selected_id])
-    @clique_list = Clique.known_to(current_user, @chronicle.id.collect) do |c|
+    @chronicle = Chronicle.find_by_id(params[:chronicle_id])
+    @clique_list = Clique.known_to(current_user, @chronicle.id).collect do |c|
       [c.name, c.id]
     end
   end
