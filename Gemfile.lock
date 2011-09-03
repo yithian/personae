@@ -54,7 +54,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
-    devise (1.4.3)
+    devise (1.4.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
