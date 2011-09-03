@@ -12,4 +12,7 @@ $(document).ready(function() {
 	  data: $(this).serializeArray()
 	});
   });
+  
+  // dynamically expands text areas
+  $('textarea').elastic();
 });
