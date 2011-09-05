@@ -2,6 +2,6 @@
   <tr>
     <td><%= link_to member.name, member %></td>
     <td><%= member.concept %></td>
-    <td><%= link_to member.ideology.name, member.ideology if member.show_clique_to_user?(current_user) %></td>
+    <td><%= link_to member.ideology.name, member.ideology if member.show_ideology_to_user?(current_user) %></td>
   </tr>
 <% end %>
