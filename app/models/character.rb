@@ -26,7 +26,7 @@ class Character < ActiveRecord::Base
   # populate dropdown menus.
   VICES = [ 'Envy', 'Gluttony', 'Greed', 'Lust', 'Sloth', 'Pride', 'Wrath' ]
   
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, :presence => true, :unique_in_chronicle => true
   validates :virtue, :presence => true, :virtue => true
   validates :vice, :presence => true, :vice => true
   validates :clique_id, :presence => true, :numericality => true

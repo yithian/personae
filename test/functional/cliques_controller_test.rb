@@ -91,7 +91,7 @@ class CliquesControllerTest < ActionController::TestCase
     sign_in(users(:one))
     
     assert_difference('Clique.count') do
-      post :create, :clique => { :name => "unique" }
+      post :create, :clique => { :name => "unique", :chronicle_id => chronicles(:one).id }
     end
 
     assert_redirected_to clique_path(assigns(:clique))
@@ -101,7 +101,7 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "shouldn't create clique" do
     assert_no_difference('Clique.count') do
-      post :create, :clique => { :name => "unique" }
+      post :create, :clique => { :name => "unique", :chronicle_id => chronicles(:one).id }
     end
 
     assert_login

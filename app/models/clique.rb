@@ -6,7 +6,7 @@ class Clique < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
   belongs_to :chronicle
   
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, :presence => true, :unique_in_chronicle => true
   validates :owner_id, :presence => true
 
   # Returns true if the clique has a werewolf member. Used to determine
