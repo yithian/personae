@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-  <title>Class: Subnature</title>
+  <title>Class: UniqueInChronicleValidator</title>
 
   <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="./app/models/subnature_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/models/subnature.rb">app/models/subnature.rb</a></li>
+            <li><a href="./app/models/unique_in_chronicle_validator_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="app/models/unique_in_chronicle_validator.rb">app/models/unique_in_chronicle_validator.rb</a></li>
           
           </ul>
         </div>
@@ -50,7 +50,7 @@
       <div id="parent-class-section" class="section">
         <h3 class="section-header">Parent</h3>
         
-        <p class="link">ActiveRecord::Base</p>
+        <p class="link">ActiveModel::EachValidator</p>
         
       </div>
       
@@ -65,7 +65,7 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li><a href="#method-c-list_for_nature">::list_for_nature</a></li>
+          <li><a href="#method-i-validate_each">#validate_each</a></li>
           
         </ul>
       </div>
@@ -171,13 +171,13 @@
   </div>
 
   <div id="documentation">
-    <h1 class="class">Subnature</h1>
+    <h1 class="class">UniqueInChronicleValidator</h1>
 
     <div id="description" class="description">
       
-<p><a href="Subnature.html">Subnature</a> is only meaningful to the Changeling
-splat, and is included to represent their kiths. No other splat has an
-analogous item.</p>
+<p>Creates a validator which ensures only one <a
+href="Character.html">Character</a> or <a href="Clique.html">Clique</a> may
+have the same name within a <a href="Chronicle.html">Chronicle</a></p>
 
     </div><!-- description -->
 
@@ -195,46 +195,52 @@ analogous item.</p>
 
       <!-- Methods -->
       
-      <div id="public-class-method-details" class="method-section section">
-        <h3 class="section-header">Public Class Methods</h3>
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
 
       
-        <div id="list_for_nature-method" class="method-detail ">
-          <a name="method-c-list_for_nature"></a>
+        <div id="validate_each-method" class="method-detail ">
+          <a name="method-i-validate_each"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">list_for_nature</span><span
-              class="method-args">(nature)</span>
+            <span class="method-name">validate_each</span><span
+              class="method-args">(record, attribute, value)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
 
           <div class="method-description">
             
-            <p>List subnatures for a given nature</p>
+            <p>Validates all records passed to it</p>
             
 
             
-            <div class="method-source-code" id="list_for_nature-source">
+            <div class="method-source-code" id="validate_each-source">
 <pre>
-<span class="ruby-comment"># File app/models/subnature.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">list_for_nature</span>(<span class="ruby-identifier">nature</span>)
-  <span class="ruby-identifier">subnatures</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id_and_splat_id</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">nature</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">id</span>)
-  <span class="ruby-identifier">subnatures</span> = <span class="ruby-identifier">subnatures</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">find_all_by_nature_id</span>(<span class="ruby-identifier">nature</span>.<span class="ruby-identifier">id</span>)
-  <span class="ruby-identifier">subnatures</span>.<span class="ruby-identifier">collect</span>
+<span class="ruby-comment"># File app/models/unique_in_chronicle_validator.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Character&quot;</span>
+    <span class="ruby-identifier">record</span>.<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">character</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Another character with this name already exists in this chronicle.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">character</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">value</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">character</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Clique&quot;</span>
+    <span class="ruby-identifier">record</span>.<span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">cliques</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">clique</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Another clique with this name already exists in this chronicle.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">clique</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">value</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">clique</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- list_for_nature-source -->
+            </div><!-- validate_each-source -->
             
           </div>
 
           
 
           
-        </div><!-- list_for_nature-method -->
+        </div><!-- validate_each-method -->
 
       
-      </div><!-- public-class-method-details -->
+      </div><!-- public-instance-method-details -->
     
     </div><!-- 5Buntitled-5D -->
   
