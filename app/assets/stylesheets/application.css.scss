@@ -9,7 +9,7 @@
 $tab-highlight: #97A2DE;
 $header-color: #EEEEEC;
 $header-background: darken($tab-highlight, 30%);
-$splash-color: #990033;
+$splash-color: #a40000;
 $content-color: #333333;
 $background-color: #090233;
 
@@ -137,14 +137,12 @@ body {
 	}
 	
 	h3 {
-		color: $header-color;
+		color: $content-color;
 		background: $splash-color;
-		background: url(../h3_gradient.svg); background: -webkit-gradient(linear, left top, right top, from($splash-color), to($header-color)); background: -moz-linear-gradient(left, $splash-color, $header-color);
-		-webkit-border-top-right-radius: 15px; -moz-border-radius-topright: 15px;
-		-webkit-border-bottom-right-radius:15px; -moz-border-radius-bottomright: 15px;
+		background: url(smudge.png) left no-repeat;
+		overflow: visible;
 		padding: 0.2em 1.5em;
 		font-family: serif;
-		width: 10em;
 		position: relative;
 		left: -3.5em;
 	}
