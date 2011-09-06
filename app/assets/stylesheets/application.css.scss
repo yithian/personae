@@ -6,14 +6,15 @@
  *= require_tree . 
 */
 
-$background-color: #090233;
-$header-background: #2937A1;
-$header-highlight: #EEEEEC;
 $tab-highlight: #97A2DE;
-$red-splash: #990033;
-$main-background: #333333;
+$header-color: #EEEEEC;
+$header-background: darken($tab-highlight, 30%);
+$splash-color: #990033;
+$content-color: #333333;
+$background-color: #090233;
 
 body {
+	margin: 0px;
 	background: $background-color;
 	text-align: center;
 	font-family: verdana, arial, helvetica, sans-serif;
@@ -30,11 +31,13 @@ body {
 
 /* top of page header */
 #header {
+	border: 1px solid black;
+	border-top: 0px;
+	border-bottom: 3px solid $tab-highlight;
+	padding-top: 10px;
 	text-align: center;
 	background: $header-background;
-	color: $header-highlight;
-	border: 1px solid black;
-	border-bottom: 3px solid $tab-highlight;
+	color: $header-color;
 }
 
 
@@ -51,10 +54,10 @@ body {
 		
 		&.selected a {
 			background: $tab-highlight;
-			color: $red-splash;
+			color: $splash-color;
 			border-bottom: 1px solid $tab-highlight;
 			
-			&:hover { color: $header-highlight; }
+			&:hover { color: $header-color; }
 		}
 		/* drop-down menu effect*/
 		&:hover ul { left: 0px; }
@@ -94,7 +97,7 @@ body {
 	
 		&:hover {
 			background: $tab-highlight;
-			color: $header-highlight;
+			color: $header-color;
 			border-bottom: 1px solid $tab-highlight;
 		}
 	}
@@ -103,13 +106,13 @@ body {
 /* notice messages */
 #notice {
 	text-align: center;
-	color: $red-splash;
+	color: $splash-color;
 }
 
 /* page content */
 #content {
-	color: $main-background;
-	background: $header-highlight;
+	color: $content-color;
+	background: $header-color;
 	border: 1px solid black;
 	border-top: none;
 	padding: 0.5em 4em;
@@ -121,22 +124,22 @@ body {
 		color: $header-background;
 		
 		&:hover {
-			color: $red-splash;
+			color: $splash-color;
 			text-decoration: underline;
 		}
 	}
 	
 	a.selected {
-		color: $red-splash;
+		color: $splash-color;
 		text-decoration: none;
 		
-		&:hover { background: $header-highlight; }
+		&:hover { background: $header-color; }
 	}
 	
 	h3 {
-		color: $header-highlight;
-		background: $red-splash;
-		background: url(../images/h3_gradient.svg); background: -webkit-gradient(linear, left top, right top, from($red-splash), to($header-highlight)); background: -moz-linear-gradient(left, $red-splash, $header-highlight);
+		color: $header-color;
+		background: $splash-color;
+		background: url(../h3_gradient.svg); background: -webkit-gradient(linear, left top, right top, from($splash-color), to($header-color)); background: -moz-linear-gradient(left, $splash-color, $header-color);
 		-webkit-border-top-right-radius: 15px; -moz-border-radius-topright: 15px;
 		-webkit-border-bottom-right-radius:15px; -moz-border-radius-bottomright: 15px;
 		padding: 0.2em 1.5em;
@@ -198,13 +201,13 @@ body {
 
 .field_with_errors {
   padding: 2px;
-  background-color: $red-splash;
-  color: $header-highlight;
+  background-color: $splash-color;
+  color: $header-color;
 }
 
 #error_explanation {
   width: 400px;
-  border: 2px solid $red-splash;
+  border: 2px solid $splash-color;
   padding: 7px;
   padding-bottom: 12px;
   margin-bottom: 20px;
@@ -217,12 +220,12 @@ body {
   padding: 5px 5px 5px 15px;
   font-size: 12px;
   margin: -7px;
-  background-color: $red-splash;
-  color: $header-highlight;
+  background-color: $splash-color;
+  color: $header-color;
 }
 
 #error_explanation p {
-  color: $main-background;
+  color: $content-color;
   margin-bottom: 0;
   padding: 5px;
 }
