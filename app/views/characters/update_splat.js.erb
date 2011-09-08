@@ -1,6 +1,6 @@
 // html the hidden fields in the form
-$('#character_splat_id').value = '<%= @splat.id.to_s %>';
-$('#character_nature_id').value = '<%= @nature_list.first.id %>';
+$('#character_splat_id').val('<%= @splat.id.to_s %>');
+$('#character_nature_id').val('<%= @nature_list.first.id %>');
 
 // html the splat-specific terms
 $('#clique_label').html('<%= @splat.clique_name %>');
