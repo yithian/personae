@@ -1,8 +1,8 @@
-Mon, 05 Sep 2011 10:02:53 -0400
+Wed, 07 Sep 2011 20:17:32 -0400
 doc/README_FOR_APP	Thu, 25 Aug 2011 07:16:56 -0400
-app/controllers/admin_controller.rb	Thu, 01 Sep 2011 20:37:14 -0400
+app/controllers/admin_controller.rb	Mon, 05 Sep 2011 20:11:00 -0400
 app/controllers/application_controller.rb	Sun, 28 Aug 2011 23:18:17 -0400
-app/controllers/characters_controller.rb	Sun, 04 Sep 2011 22:55:09 -0400
+app/controllers/characters_controller.rb	Mon, 05 Sep 2011 20:11:00 -0400
 app/controllers/chronicles_controller.rb	Mon, 29 Aug 2011 20:29:57 -0400
 app/controllers/cliques_controller.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/controllers/comments_controller.rb	Thu, 25 Aug 2011 07:16:56 -0400
@@ -17,15 +17,15 @@ app/helpers/comment_helper.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/helpers/ideologies_helper.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/helpers/services_helper.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/ability.rb	Thu, 25 Aug 2011 07:16:56 -0400
-app/models/character.rb	Mon, 05 Sep 2011 08:58:56 -0400
+app/models/character.rb	Mon, 05 Sep 2011 20:11:00 -0400
 app/models/chronicle.rb	Wed, 31 Aug 2011 18:20:55 -0400
-app/models/clique.rb	Mon, 05 Sep 2011 09:46:30 -0400
+app/models/clique.rb	Mon, 05 Sep 2011 20:11:00 -0400
 app/models/comment.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/ideology.rb	Wed, 31 Aug 2011 18:20:55 -0400
 app/models/nature.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/splat.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/subnature.rb	Thu, 25 Aug 2011 07:16:56 -0400
-app/models/unique_in_chronicle_validator.rb	Mon, 05 Sep 2011 09:59:25 -0400
+app/models/unique_in_chronicle_validator.rb	Wed, 07 Sep 2011 19:36:04 -0400
 app/models/user.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/vice_validator.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/virtue_validator.rb	Thu, 25 Aug 2011 07:16:56 -0400
