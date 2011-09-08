@@ -35,28 +35,28 @@
 
 <% if @character.show_description_to_user?(current_user) %>
   <div id="description">
-    <h3>Description</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Description</h3>
     <%= simple_format(@character.description) %>
   </div>
 <% end %>
 
 <% if @character.show_background_to_user?(current_user) %>
   <div id="background">
-    <h3>Background</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Background</h3>
     <%= simple_format(@character.background) %>
   </div>
 <% end %>
 
 <% if @character.show_deeds_to_user?(current_user) %>
   <div id="deeds">
-    <h3>Deeds</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Deeds</h3>
     <%= simple_format(@character.deeds) %>
   </div>
 <% end %>
 
 <% if @character.show_attributes_to_user?(current_user) %>
   <div id="attributes">
-    <h3>Attributes</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Attributes</h3>
     <table class="six_cells">
       <tr>
         <td>Intelligence:</td>
@@ -88,7 +88,7 @@
 
 <% if @character.show_skills_to_user?(current_user) %>
   <div id="skills">
-    <h3>Skills</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Skills</h3>
     <table class="six_cells">
       <tr>
         <td>Academics:</td>
@@ -164,7 +164,7 @@
 
 <% if @character.show_advantages_to_user?(current_user) %>
   <div id="advantages">    
-    <h3>Advantages</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Advantages</h3>
     <table class="four_cells">
       <tr>
         <td>Health:</td>
@@ -230,14 +230,14 @@
 
 <% if @character.show_merits_to_user?(current_user) %>
   <div id="merits">    
-    <h3>Merits</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Merits</h3>
     <%= simple_format(@character.merits) %>
   </div>
 <% end %>
 
 <% if @character.show_equipment_to_user?(current_user) %>
   <div id="equipment">
-    <h3>Equipment</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Equipment</h3>
     <%= simple_format(@character.equipment) %>
   </div>
 <% end %>
@@ -245,7 +245,7 @@
 <% if @character.show_powers_to_user?(current_user) %>
   <div id="powers">
     <% if @character.is_mage? %>
-      <h3>Arcana</h3>
+      <h3 class="<%= @character.splat.name.downcase %>">Arcana</h3>
       <table class="three_cells">
         <tr>
           <td>Death:</td>
@@ -295,7 +295,7 @@
     <% end %>
   
     <% if @character.is_werewolf? %>
-      <h3>Forms</h3>
+      <h3 class="<%= @character.splat.name.downcase %>">Forms</h3>
         <table id="woof_forms" class="five_cells">
           <tr>
 	    <th><%= link_to "Hishu", shapeshift_character_path(:form => "hishu"), :remote => true, :class => "selected" %></th>
@@ -333,7 +333,7 @@
             <td></td>
           </tr>
         </table>
-      <h3>Renown</h3>
+      <h3 class="<%= @character.splat.name.downcase %>">Renown</h3>
       <table class="three_cells">
         <tr>
           <td>Purity:</td>
@@ -360,12 +360,12 @@
         <tr>
         </tr>
       </table>
-      <h3>Totem</h3>
+      <h3 class="<%= @character.splat.name.downcase %>">Totem</h3>
       <%= simple_format(@character.clique.totem)%>
     <% end %>
 
     <% if @character.is_vampire? %>
-      <h3>Disciplines</h3>
+      <h3 class="<%= @character.splat.name.downcase %>">Disciplines</h3>
       <table class="three_cells">
         <tr>
           <td>Animalism</td>
@@ -411,12 +411,12 @@
     <% end %>
 
     <% if @character.is_promethean? %>
-      <h3>Transmutations</h3>
+      <h3 class="<%= @character.splat.name.downcase %>">Transmutations</h3>
       <%= simple_format(@character.transmutations) %>
     <% end %>
 
     <% if @character.is_changeling? %>
-      <h3>Contracts</h3>
+      <h3 class="<%= @character.splat.name.downcase %>">Contracts</h3>
       <table class="three_cells">
                           <tr>
           <td>Dream</td>
@@ -502,7 +502,7 @@
     <% end %>
     
     <% if @character.is_geist? %>
-      <h3>Manifestations</h3>
+      <h3 class="<%= @character.splat.name.downcase %>">Manifestations</h3>
       <table class="three_cells">
         <tr>
           <td>Boneyard</td>
@@ -538,7 +538,7 @@
         </tr>
       </table>
       
-      <h3>Ceremonies</h3>
+      <h3 class="<%= @character.splat.name.downcase %>">Ceremonies</h3>
       <p><%= simple_format(@character.ceremonies) %></p>
     <% end %>
   </div>
@@ -546,14 +546,14 @@
 
 <% if @character.show_experience_to_user?(current_user) %>
   <div id="experience">
-    <h3>Experience</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Experience</h3>
     <%= simple_format(@character.experience) %>
   </div>
 <% end %>
 
 <% if @character.show_notes_to_user?(current_user) %>
   <div id="notes">
-    <h3>Notes</h3>
+    <h3 class="<%= @character.splat.name.downcase %>">Notes</h3>
     <%= form_for(@character, :remote => true) do |f| %>
       <%= f.text_area :notes %>
       <%= f.submit "Save notes" if can? :edit, @character %>

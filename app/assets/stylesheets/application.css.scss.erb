@@ -138,13 +138,20 @@ body {
 	
 	h3 {
 		color: $header-color;
-		background: $splash-color;
 		background: url(<%= asset_path("mortal-smudge.png") %>) no-repeat -10px -6px;
 		overflow: visible;
 		padding: 0.2em 1.5em;
 		font-family: serif;
 		position: relative;
 		left: -3.5em;
+
+		&.mage { background: url(<%= asset_path("mage-smudge.png") %>) no-repeat -10px -6px; }
+		&.vampire { background: url(<%= asset_path("vampire-smudge.png") %>) no-repeat -10px -6px; }
+		&.werewolf { background: url(<%= asset_path("werewolf-smudge.png") %>) no-repeat -10px -6px; }
+		&.promethean { background: url(<%= asset_path("promethean-smudge.png") %>) no-repeat -10px -6px; }
+		&.changeling { background: url(<%= asset_path("changeling-smudge.png") %>) no-repeat -10px -6px; }
+		&.hunter { background: url(<%= asset_path("hunter-smudge.png") %>) no-repeat -10px -6px; }
+		&.geist { background: url(<%= asset_path("geist-smudge.png") %>) no-repeat -10px -6px; }
 	}
 	
 	label.sized {

@@ -86,22 +86,22 @@
   </table>
 
   
-  <h3>Description</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Description</h3>
   <p><%= f.text_area :description %></p>
   <%= f.check_box :read_description %> <%= f.label :read_description, "Reveal description" %>
 
 
-  <h3>Background</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Background</h3>
   <p><%= f.text_area :background %></p>
   <%= f.check_box :read_background %> <%= f.label :read_background, "Reveal background" %>
 
 
-  <h3>Deeds</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Deeds</h3>
   <p><%= f.text_area :deeds %></p>
   <%= f.check_box :read_deeds %> <%= f.label :read_deeds, "Reveal known deeds" %>
 
 
-  <h3>Attributes</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Attributes</h3>
   <table class="six_cells">
     <tr>
       <td><%= f.label :intelligence %></td>
@@ -131,7 +131,7 @@
   <%= f.check_box :read_attributes %> <%= f.label :read_attributes, "Reveal attributes" %>
 
 
-  <h3>Skills</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Skills</h3>
   <table class="six_cells">
     <tr>
       <td><%= f.label :academics %></td>
@@ -205,7 +205,7 @@
   <%= f.check_box :read_skills %> <%= f.label :read_skills, "Reveal skills" %>
 
 
-  <h3>Advantages</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Advantages</h3>
   <table class="four_cells">
     <tr>
       <td><%= f.label :health %></td>
@@ -273,18 +273,18 @@
   <%= f.check_box :read_advantages %> <%= f.label :read_advantages, "Reveal advantages" %>
   
   
-  <h3>Merits</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Merits</h3>
   <p><%= f.text_area :merits %></p>
   <%= f.check_box :read_merits %> <%= f.label :read_merits, "Reveal merits" %>
   
   
-  <h3>Equipment</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Equipment</h3>
   <p><%= f.text_area :equipment %></p>
   <%= f.check_box :read_equipment %> <%= f.label :read_equipment, "Reveal equipment" %>
   
   
   <div id="mage_powers" <%= "style='display: none'" unless @character.is_mage? %> >
-    <h3>Arcana</h3>
+    <h3 class='<%= @character.splat.name.downcase %>'>Arcana</h3>
     <table class="three_cells">
       <tr>
         <td><%= f.label :death %></td>
@@ -333,7 +333,7 @@
   
   
   <div id="woof_powers" <%= "style='display: none'" unless @character.is_werewolf? %> >
-    <h3>Renown</h3>
+    <h3 class='<%= @character.splat.name.downcase %>'>Renown</h3>
     <table class="three_cells">
       <tr>
         <td><%= f.label :purity %></td>
@@ -362,7 +362,7 @@
   
   
   <div id="vampire_powers" <%= "style='display: none'" unless @character.is_vampire? %> >
-    <h3>Disciplines</h3>
+    <h3 class='<%= @character.splat.name.downcase %>'>Disciplines</h3>
     <table class="three_cells">
       <tr>
         <td><%= f.label :animalism %></td>
@@ -411,13 +411,13 @@
   
   
   <div id="promethean_powers" <%= "style='display: none'" unless @character.is_promethean? %> >
-    <h3>Transmutations</h3>
+    <h3 class='<%= @character.splat.name.downcase %>'>Transmutations</h3>
     <p><%= f.text_area :transmutations %></p>
   </div>
   
   
   <div id="changeling_powers" <%= "style='display: none'" unless @character.is_changeling? %> >
-    <h3>Contracts</h3>
+    <h3 class='<%= @character.splat.name.downcase %>'>Contracts</h3>
     <table class="three_cells">
       <tr>
         <td><%= f.label :dream %></td>
@@ -498,7 +498,7 @@
   
   
   <div id="geist_powers" <%= "style='display: none'" unless @character.is_geist? %> >
-    <h3>Manifestations</h3>
+    <h3 class='<%= @character.splat.name.downcase %>'>Manifestations</h3>
     <table class="three_cells">
       <tr>
         <td><%= f.label :boneyard %></td>
@@ -532,7 +532,7 @@
       </tr>
     </table>
     
-    <h3>Ceremonies</h3>
+    <h3 class='<%= @character.splat.name.downcase %>'>Ceremonies</h3>
     <p><%= f.text_area :ceremonies %></p>
   </div>
   
@@ -541,12 +541,12 @@
   </div>
 
 
-  <h3>Experience</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Experience</h3>
   <p><%= f.text_area :experience %></p>
   <%= f.check_box :read_experience %> <%= f.label :read_experience, "Reveal experience" %>
   
 
-  <h3>Notes</h3>
+  <h3 class='<%= @character.splat.name.downcase %>'>Notes</h3>
   <p><%= f.text_area :notes %></p>
   <%= f.check_box :read_notes %> <%= f.label :read_notes, "Reveal notes" %>
   <br />
