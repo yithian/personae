@@ -1,8 +1,8 @@
-// html the hidden fields in the form
+// update the hidden fields in the form
 $('#character_splat_id').val('<%= @splat.id.to_s %>');
 $('#character_nature_id').val('<%= @nature_list.first.id %>');
 
-// html the splat-specific terms
+// update the splat-specific terms
 $('#clique_label').html('<%= @splat.clique_name %>');
 $('#read_clique_label').html('Reveal <%= @splat.clique_name %>');
 $('#nature_label').html('<%= @splat.nature_name %>');
@@ -17,6 +17,9 @@ $('#morality_label').html('<%= @splat.morality_name %>');
 $('#power_stat_label').html('<%= @splat.power_stat_name %>');
 $('#max_fuel_label').html('Max <%= @splat.fuel_name %>');
 $('#current_fuel_label').html('Current <%= @splat.fuel_name %>');
+
+// update the h3 smudge color
+$('h3').attr('class', '<%= @splat.name.downcase %>');
 
 // show or hide only the appropriate fields
 <% if @splat.name == "Mortal" %>
