@@ -23,22 +23,12 @@ unless @character.read_background %>
 unless @character.read_deeds %>
   $('#deeds').slideToggle();
 <% end
-unless @character.read_attributes %>
+unless @character.read_crunch %>
   $('#attributes').slideToggle();
-<% end
-unless @character.read_skills %>
   $('#skills').slideToggle();
-<% end
-unless @character.read_advantages %>
   $('#advantages').slideToggle();
-<% end
-unless @character.read_merits %>
   $('#merits').slideToggle();
-<% end
-unless @character.read_equipment %>
   $('#equipment').slideToggle();
-<% end
-unless @character.read_powers %>
   $('#powers').slideToggle();
 <% end
 unless @character.read_experience %>

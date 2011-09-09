@@ -128,7 +128,6 @@
       <td><%= f.text_field :composure, :class => "parent_number" %></td>
     </tr>
   </table>
-  <%= f.check_box :read_attributes %> <%= f.label :read_attributes, "Reveal attributes" %>
 
 
   <h3 class='<%= @character.splat.name.downcase %>'>Skills</h3>
@@ -202,7 +201,6 @@
       <td colspan="5" class="growdown"><%= f.text_area :skill_specialties %></td>
     </tr>
   </table>
-  <%= f.check_box :read_skills %> <%= f.label :read_skills, "Reveal skills" %>
 
 
   <h3 class='<%= @character.splat.name.downcase %>'>Advantages</h3>
@@ -270,17 +268,14 @@
       </td>
     </tr>
   </table>
-  <%= f.check_box :read_advantages %> <%= f.label :read_advantages, "Reveal advantages" %>
   
   
   <h3 class='<%= @character.splat.name.downcase %>'>Merits</h3>
   <p><%= f.text_area :merits %></p>
-  <%= f.check_box :read_merits %> <%= f.label :read_merits, "Reveal merits" %>
   
   
   <h3 class='<%= @character.splat.name.downcase %>'>Equipment</h3>
   <p><%= f.text_area :equipment %></p>
-  <%= f.check_box :read_equipment %> <%= f.label :read_equipment, "Reveal equipment" %>
   
   
   <div id="mage_powers" <%= "style='display: none'" unless @character.is_mage? %> >
@@ -535,10 +530,7 @@
     <h3 class='<%= @character.splat.name.downcase %>'>Ceremonies</h3>
     <p><%= f.text_area :ceremonies %></p>
   </div>
-  
-  <div id="read_powers_span" <%= "style='display: none'" if @character.is_mortal? %> >
-    <%= f.check_box :read_powers %> <%= f.label :read_powers, "Reveal powers" %>
-  </div>
+  <%= f.check_box :read_crunch %> <%= f.label :read_crunch, "Reveal crunch", :title => "Crunch is defined as a character's attributes, skills, advantages, merits, equipment and any supernatural powers" %>
 
 
   <h3 class='<%= @character.splat.name.downcase %>'>Experience</h3>

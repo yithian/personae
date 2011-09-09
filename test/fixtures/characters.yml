@@ -69,12 +69,7 @@ one:
   read_name: true
   read_description: true
   read_background: true
-  read_attributes: true
-  read_skills: true
-  read_advantages: true
-  read_merits: true
-  read_powers: true
-  read_equipment: true
+  read_crunch: true
   max_fuel: 10
   current_fuel: 1
   experience: MyExperienceText
@@ -205,12 +200,7 @@ two:
   read_name: false
   read_description: false
   read_background: false
-  read_attributes: false
-  read_skills: false
-  read_advantages: false
-  read_merits: false
-  read_powers: false
-  read_equipment: false
+  read_crunch: false
   max_fuel: 20
   current_fuel: 20
   experience: MyOtherExperienceText
@@ -341,12 +331,7 @@ three:
   read_name: false
   read_description: false
   read_background: false
-  read_attributes: false
-  read_skills: false
-  read_advantages: false
-  read_merits: false
-  read_powers: false
-  read_equipment: false
+  read_crunch: false
   max_fuel: 30
   current_fuel: 30
   experience: MyThirdExperienceText
