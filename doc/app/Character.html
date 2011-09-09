@@ -85,35 +85,25 @@
           
           <li><a href="#method-i-obsidian_description">#obsidian_description</a></li>
           
-          <li><a href="#method-i-show_advantages_to_user-3F">#show_advantages_to_user?</a></li>
-          
-          <li><a href="#method-i-show_attributes_to_user-3F">#show_attributes_to_user?</a></li>
-          
           <li><a href="#method-i-show_background_to_user-3F">#show_background_to_user?</a></li>
           
           <li><a href="#method-i-show_clique_to_user-3F">#show_clique_to_user?</a></li>
+          
+          <li><a href="#method-i-show_crunch_to_user-3F">#show_crunch_to_user?</a></li>
           
           <li><a href="#method-i-show_deeds_to_user-3F">#show_deeds_to_user?</a></li>
           
           <li><a href="#method-i-show_description_to_user-3F">#show_description_to_user?</a></li>
           
-          <li><a href="#method-i-show_equipment_to_user-3F">#show_equipment_to_user?</a></li>
-          
           <li><a href="#method-i-show_experience_to_user-3F">#show_experience_to_user?</a></li>
           
           <li><a href="#method-i-show_ideology_to_user-3F">#show_ideology_to_user?</a></li>
-          
-          <li><a href="#method-i-show_merits_to_user-3F">#show_merits_to_user?</a></li>
           
           <li><a href="#method-i-show_name_to_user-3F">#show_name_to_user?</a></li>
           
           <li><a href="#method-i-show_nature_to_user-3F">#show_nature_to_user?</a></li>
           
           <li><a href="#method-i-show_notes_to_user-3F">#show_notes_to_user?</a></li>
-          
-          <li><a href="#method-i-show_powers_to_user-3F">#show_powers_to_user?</a></li>
-          
-          <li><a href="#method-i-show_skills_to_user-3F">#show_skills_to_user?</a></li>
           
         </ul>
       </div>
@@ -290,7 +280,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="known_to-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 428</span>
+<span class="ruby-comment"># File app/models/character.rb, line 390</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">selected_chronicle</span>=<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
   <span class="ruby-identifier">characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">selected_chronicle</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;clique_id ASC&quot;</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
@@ -334,7 +324,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_changeling-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 242</span>
+<span class="ruby-comment"># File app/models/character.rb, line 212</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_changeling?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Changeling&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -367,7 +357,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_geist-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 247</span>
+<span class="ruby-comment"># File app/models/character.rb, line 217</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_geist?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Geist&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -400,7 +390,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_mage-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 222</span>
+<span class="ruby-comment"># File app/models/character.rb, line 192</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_mage?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mage&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -433,7 +423,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_mortal-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 217</span>
+<span class="ruby-comment"># File app/models/character.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_mortal?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mortal&quot;</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Hunter&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -466,7 +456,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_promethean-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 237</span>
+<span class="ruby-comment"># File app/models/character.rb, line 207</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_promethean?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Promethean&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -499,7 +489,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_vampire-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 232</span>
+<span class="ruby-comment"># File app/models/character.rb, line 202</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_vampire?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Vampire&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -532,7 +522,7 @@ used to populate dropdown menus.</p></dd>
             
             <div class="method-source-code" id="is_werewolf-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 227</span>
+<span class="ruby-comment"># File app/models/character.rb, line 197</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_werewolf?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Werewolf&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -566,7 +556,7 @@ that is the character’s description and background.</p>
             
             <div class="method-source-code" id="obsidian_bio-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 254</span>
+<span class="ruby-comment"># File app/models/character.rb, line 224</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_bio</span>
     <span class="ruby-identifier">bio</span> = <span class="ruby-string">&quot;&quot;</span>
     <span class="ruby-identifier">bio</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
@@ -613,7 +603,7 @@ all of the mechanical bits. I know, it doesn’t make sense to me either.</p>
             
             <div class="method-source-code" id="obsidian_description-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 274</span>
+<span class="ruby-comment"># File app/models/character.rb, line 244</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_description</span>
     <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_name</span>
 
@@ -631,9 +621,7 @@ h5. Attributes
 |_. Intelligence:|#{'•' * self.intelligence}|_. Strength:|#{'•' * self.strength}|_. Presence:|#{'•' * self.presence}|
 |_. Wits:|#{'•' * self.wits}|_. Dexterity:|#{'•' * self.dexterity}|_. Manipulation:|#{'•' * self.manipulation}|
 |_. Resolve:|#{'•' * self.resolve}|_. Stamina:|#{'•' * self.stamina}|_. Composure:|#{'•' * self.composure}|
-    }</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_attributes</span>
 
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
 h5. Skills
 
 |_. Academics:|#{'•' * self.academics}|_. Athletics:|#{'•' * self.athletics}|_. Animal Ken:|#{'•' * self.animal_ken}|
@@ -645,9 +633,7 @@ h5. Skills
 |_. Politics:|#{'•' * self.politics}|_. Survival:|#{'•' * self.survival}|_. Streetwise:|#{'•' * self.streetwise}|
 |_. Science:|#{'•' * self.science}|_. Weaponry:|#{'•' * self.weaponry}|_. Subterfuge:|#{'•' * self.subterfuge}|
 |_. Skill Specialties:|\\5. #{self.skill_specialties}|
-    }</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_skills</span>
 
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
 h5. Advantages
 
 |_. Health:|#{'•' * self.health}|_. Willpower:|#{'•' * self.willpower}|
@@ -659,19 +645,15 @@ h5. Advantages
 |_. Morality:|#{self.morality}|
 |_. Power Stat:|#{self.power_stat}|
 |_. Fuel:|#{self.max_fuel}|
-    }</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_advantages</span>
 
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
 h5. Merits
 
 #{self.merits}
-    }</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_merits</span>
 
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
 h5. Equipment
 
 #{self.equipment}
-    }</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_equipment</span>
+    }</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_crunch</span>
 
     <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Vampire&quot;</span>
@@ -749,7 +731,7 @@ h5. Manifestations
 |_. Marionette:|#{'•' * self.marionette}|
 |_. Rage:|#{'•' * self.rage}|
 |_. Shroud:|#{'•' * self.shroud}|}</span>
-    <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_powers</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_crunch</span>
 
     <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
 
@@ -774,74 +756,6 @@ h5. Notes
 
           
         </div><!-- obsidian_description-method -->
-
-      
-        <div id="show_advantages_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_advantages_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_advantages_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
-advantages (Morality, Health, etc). Defaults to false.</p>
-            
-
-            
-            <div class="method-source-code" id="show_advantages_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 182</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_advantages_to_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_advantages</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- show_advantages_to_user-3F-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- show_advantages_to_user-3F-method -->
-
-      
-        <div id="show_attributes_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_attributes_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_attributes_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
-attributes (Strength, Wits, etc). Defaults to false.</p>
-            
-
-            
-            <div class="method-source-code" id="show_attributes_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 170</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_attributes_to_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_attributes</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- show_attributes_to_user-3F-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- show_attributes_to_user-3F-method -->
 
       
         <div id="show_background_to_user-3F-method" class="method-detail ">
@@ -912,6 +826,40 @@ clique. Defaults to false.</p>
         </div><!-- show_clique_to_user-3F-method -->
 
       
+        <div id="show_crunch_to_user-3F-method" class="method-detail ">
+          <a name="method-i-show_crunch_to_user-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">show_crunch_to_user?</span><span
+              class="method-args">(user)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns true if the given user has permission to read the character’s cruch
+(Strength, Drive, powers, etc). Defaults to false.</p>
+            
+
+            
+            <div class="method-source-code" id="show_crunch_to_user-3F-source">
+<pre>
+<span class="ruby-comment"># File app/models/character.rb, line 170</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_crunch_to_user?</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_crunch</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- show_crunch_to_user-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- show_crunch_to_user-3F-method -->
+
+      
         <div id="show_deeds_to_user-3F-method" class="method-detail ">
           <a name="method-i-show_deeds_to_user-3F"></a>
 
@@ -980,40 +928,6 @@ description. Defaults to false.</p>
         </div><!-- show_description_to_user-3F-method -->
 
       
-        <div id="show_equipment_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_equipment_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_equipment_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
-equipment Defaults to false.</p>
-            
-
-            
-            <div class="method-source-code" id="show_equipment_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 200</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_equipment_to_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_equipment</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- show_equipment_to_user-3F-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- show_equipment_to_user-3F-method -->
-
-      
         <div id="show_experience_to_user-3F-method" class="method-detail ">
           <a name="method-i-show_experience_to_user-3F"></a>
 
@@ -1034,7 +948,7 @@ experience. Defaults to false.</p>
             
             <div class="method-source-code" id="show_experience_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 206</span>
+<span class="ruby-comment"># File app/models/character.rb, line 176</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_experience_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_experience</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1080,40 +994,6 @@ ideology. Defaults to false.</p>
 
           
         </div><!-- show_ideology_to_user-3F-method -->
-
-      
-        <div id="show_merits_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_merits_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_merits_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
-merits Defaults to false.</p>
-            
-
-            
-            <div class="method-source-code" id="show_merits_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 188</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_merits_to_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_merits</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- show_merits_to_user-3F-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- show_merits_to_user-3F-method -->
 
       
         <div id="show_name_to_user-3F-method" class="method-detail ">
@@ -1205,7 +1085,7 @@ notes. Defaults to false.</p>
             
             <div class="method-source-code" id="show_notes_to_user-3F-source">
 <pre>
-<span class="ruby-comment"># File app/models/character.rb, line 212</span>
+<span class="ruby-comment"># File app/models/character.rb, line 182</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_notes_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_notes</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1217,75 +1097,6 @@ notes. Defaults to false.</p>
 
           
         </div><!-- show_notes_to_user-3F-method -->
-
-      
-        <div id="show_powers_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_powers_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_powers_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
-supernatural powers. These are associated with the character’s nature.
-Defaults to false.</p>
-            
-
-            
-            <div class="method-source-code" id="show_powers_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 194</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_powers_to_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_powers</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- show_powers_to_user-3F-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- show_powers_to_user-3F-method -->
-
-      
-        <div id="show_skills_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_skills_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_skills_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
-skills (Academics, Firearms, etc). Defaults to false.</p>
-            
-
-            
-            <div class="method-source-code" id="show_skills_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 176</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_skills_to_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_skills</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- show_skills_to_user-3F-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- show_skills_to_user-3F-method -->
 
       
       </div><!-- public-instance-method-details -->
