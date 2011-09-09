@@ -166,42 +166,12 @@ class Character < ActiveRecord::Base
     owned_by_user?(user) or self.read_deeds
   end
   
-  # Returns true if the given user has permission to read the character's attributes
-  # (Strength, Wits, etc). Defaults to false.
-  def show_attributes_to_user?(user)
-    owned_by_user?(user) or self.read_attributes
+  # Returns true if the given user has permission to read the character's cruch
+  # (Strength, Drive, powers, etc). Defaults to false.
+  def show_crunch_to_user?(user)
+    owned_by_user?(user) or self.read_crunch
   end
-  
-  # Returns true if the given user has permission to read the character's skills
-  # (Academics, Firearms, etc). Defaults to false.
-  def show_skills_to_user?(user)
-    owned_by_user?(user) or self.read_skills
-  end
-  
-  # Returns true if the given user has permission to read the character's advantages
-  # (Morality, Health, etc). Defaults to false.
-  def show_advantages_to_user?(user)
-    owned_by_user?(user) or self.read_advantages
-  end
-  
-  # Returns true if the given user has permission to read the character's merits
-  # Defaults to false.
-  def show_merits_to_user?(user)
-    owned_by_user?(user) or self.read_merits
-  end
-  
-  # Returns true if the given user has permission to read the character's supernatural
-  # powers. These are associated with the character's nature. Defaults to false.
-  def show_powers_to_user?(user)
-    owned_by_user?(user) or self.read_powers
-  end
-  
-  # Returns true if the given user has permission to read the character's equipment
-  # Defaults to false.
-  def show_equipment_to_user?(user)
-    owned_by_user?(user) or self.read_equipment
-  end
-  
+
   # Returns true if the given user has permission to read the character's experience.
   # Defaults to false.
   def show_experience_to_user?(user)
@@ -289,9 +259,7 @@ h5. Attributes
 |_. Intelligence:|#{'•' * self.intelligence}|_. Strength:|#{'•' * self.strength}|_. Presence:|#{'•' * self.presence}|
 |_. Wits:|#{'•' * self.wits}|_. Dexterity:|#{'•' * self.dexterity}|_. Manipulation:|#{'•' * self.manipulation}|
 |_. Resolve:|#{'•' * self.resolve}|_. Stamina:|#{'•' * self.stamina}|_. Composure:|#{'•' * self.composure}|
-    } if self.read_attributes
 
-    desc << %{
 h5. Skills
 
 |_. Academics:|#{'•' * self.academics}|_. Athletics:|#{'•' * self.athletics}|_. Animal Ken:|#{'•' * self.animal_ken}|
@@ -303,9 +271,7 @@ h5. Skills
 |_. Politics:|#{'•' * self.politics}|_. Survival:|#{'•' * self.survival}|_. Streetwise:|#{'•' * self.streetwise}|
 |_. Science:|#{'•' * self.science}|_. Weaponry:|#{'•' * self.weaponry}|_. Subterfuge:|#{'•' * self.subterfuge}|
 |_. Skill Specialties:|\\5. #{self.skill_specialties}|
-    } if self.read_skills
 
-    desc << %{
 h5. Advantages
 
 |_. Health:|#{'•' * self.health}|_. Willpower:|#{'•' * self.willpower}|
@@ -317,19 +283,15 @@ h5. Advantages
 |_. Morality:|#{self.morality}|
 |_. Power Stat:|#{self.power_stat}|
 |_. Fuel:|#{self.max_fuel}|
-    } if self.read_advantages
 
-    desc << %{
 h5. Merits
 
 #{self.merits}
-    } if self.read_merits
 
-    desc << %{
 h5. Equipment
 
 #{self.equipment}
-    } if self.read_equipment
+    } if self.read_crunch
 
     case self.splat.name
     when "Vampire"
@@ -407,7 +369,7 @@ h5. Manifestations
 |_. Marionette:|#{'•' * self.marionette}|
 |_. Rage:|#{'•' * self.rage}|
 |_. Shroud:|#{'•' * self.shroud}|}
-    end if self.read_powers
+    end if self.read_crunch
 
     desc << %{
 

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110809175816) do
+ActiveRecord::Schema.define(:version => 20110909134606) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -82,12 +83,7 @@ ActiveRecord::Schema.define(:version => 20110809175816) do
     t.boolean  "read_name",                            :default => false
     t.boolean  "read_description",                     :default => false
     t.boolean  "read_background",                      :default => false
-    t.boolean  "read_attributes",                      :default => false
-    t.boolean  "read_skills",                          :default => false
-    t.boolean  "read_advantages",                      :default => false
-    t.boolean  "read_merits",                          :default => false
-    t.boolean  "read_powers",                          :default => false
-    t.boolean  "read_equipment",                       :default => false
+    t.boolean  "read_crunch",                          :default => false
     t.integer  "max_fuel",                             :default => 7
     t.text     "experience"
     t.boolean  "read_experience",                      :default => false

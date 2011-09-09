@@ -54,7 +54,7 @@
   </div>
 <% end %>
 
-<% if @character.show_attributes_to_user?(current_user) %>
+<% if @character.show_crunch_to_user?(current_user) %>
   <div id="attributes">
     <h3 class="<%= @character.splat.name.downcase %>">Attributes</h3>
     <table class="six_cells">
@@ -84,9 +84,7 @@
       </tr>
     </table>
   </div>
-<% end %>
 
-<% if @character.show_skills_to_user?(current_user) %>
   <div id="skills">
     <h3 class="<%= @character.splat.name.downcase %>">Skills</h3>
     <table class="six_cells">
@@ -160,9 +158,7 @@
       </tr>
     </table>
   </div>
-<% end %>
 
-<% if @character.show_advantages_to_user?(current_user) %>
   <div id="advantages">    
     <h3 class="<%= @character.splat.name.downcase %>">Advantages</h3>
     <table class="four_cells">
@@ -226,23 +222,17 @@
       <% end %>
     </table>
   </div>
-<% end %>
 
-<% if @character.show_merits_to_user?(current_user) %>
   <div id="merits">    
     <h3 class="<%= @character.splat.name.downcase %>">Merits</h3>
     <%= simple_format(@character.merits) %>
   </div>
-<% end %>
 
-<% if @character.show_equipment_to_user?(current_user) %>
   <div id="equipment">
     <h3 class="<%= @character.splat.name.downcase %>">Equipment</h3>
     <%= simple_format(@character.equipment) %>
   </div>
-<% end %>
 
-<% if @character.show_powers_to_user?(current_user) %>
   <div id="powers">
     <% if @character.is_mage? %>
       <h3 class="<%= @character.splat.name.downcase %>">Arcana</h3>
