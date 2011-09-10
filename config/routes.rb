@@ -30,5 +30,4 @@ Personae::Application.routes.draw do
   end
   
   root :to => 'characters#index'
-  match '/:controller(/:action(/:id))'
 end
