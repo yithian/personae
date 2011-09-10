@@ -491,6 +491,11 @@
       </table>
     <% end %>
     
+    <% if @character.is_hunter? %>
+      <h3 class="<%= @character.splat.name.downcase %>">Tactics</h3>
+      <%= simple_format(@character.tactics) %>
+    <% end %>
+    
     <% if @character.is_geist? %>
       <h3 class="<%= @character.splat.name.downcase %>">Manifestations</h3>
       <table class="three_cells">

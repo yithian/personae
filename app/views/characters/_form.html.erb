@@ -492,6 +492,12 @@
   </div>
   
   
+  <div id="hunter_powers" <%= "style='display: none'" unless @character.is_hunter? %> >
+    <h3 class='<%= @character.splat.name.downcase %>'>Tactics</h3>
+    <p><%= f.text_area :tactics %></p>
+  </div>
+  
+  
   <div id="geist_powers" <%= "style='display: none'" unless @character.is_geist? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Manifestations</h3>
     <table class="three_cells">

@@ -74,7 +74,13 @@ $('h3').attr('class', '<%= @splat.name.downcase %>');
   $('#subnature_id_cell').show();
 <% end %>
 
-$('#mage_powers', '#woof_powers', '#vampire_powers', '#promethean_powers', '#changeling_powers', '#geist_powers').hide();
+$('#mage_powers').hide();
+$('#woof_powers').hide();
+$('#vampire_powers').hide();
+$('#promethean_powers').hide();
+$('#changeling_powers').hide();
+$('#hunter_powers').hide();
+$('#geist_powers').hide();
 
 <% case @splat.name
   when "Mage" then %> $('#mage_powers').slideDown();
@@ -82,5 +88,6 @@ $('#mage_powers', '#woof_powers', '#vampire_powers', '#promethean_powers', '#cha
   <% when "Vampire" then %> $('#vampire_powers').slideDown();
   <% when "Promethean" then %> $('#promethean_powers').slideDown();
   <% when "Changeling" then %> $('#changeling_powers').slideDown();
+  <% when "Hunter" then %> $('#hunter_powers').slideDown();
   <% when "Geist" then %> $('#geist_powers').slideDown();
 <% end %>

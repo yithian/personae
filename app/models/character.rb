@@ -214,6 +214,11 @@ class Character < ActiveRecord::Base
     self.splat.name == "Changeling"
   end
   
+  # Returns true if the character is a hunter (close enough).
+  def is_hunter?
+    self.splat.name == "Hunter"
+  end
+  
   # Returns true if the character is a geist.
   def is_geist?
     self.splat.name == "Geist"
