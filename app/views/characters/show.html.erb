@@ -15,13 +15,13 @@
   </tr>
   <tr>
     <td><b>Virtue</b></td>
-    <td ><span id="virtue"><%= @character.virtue if can? :edit, @character %></span></td>
+    <td ><span id="virtue"><%= @character.virtue %></span></td>
     <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user) %></b></span></td>
     <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user) %></span></td>
   </tr>
   <tr>
     <td><b>Vice</b></td>
-    <td><span id="vice"><%= @character.vice.gsub(/\ /, " and ") if can? :edit, @character %></span></td>
+    <td><span id="vice"><%= @character.vice.gsub(/\ /, " and ") %></span></td>
     <td><span id="ideology_label"><b><%= @character.splat.ideology_name if @character.show_ideology_to_user?(current_user) %></b></span></td>
     <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_ideology_to_user?(current_user) %></span></td>
   </tr>
