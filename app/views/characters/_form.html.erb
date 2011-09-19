@@ -549,6 +549,8 @@
   <%= f.check_box :read_notes %> <%= f.label :read_notes, "Reveal notes" %>
   <br />
 
+  <h3 class='<%= @character.splat.name.downcase %>'>Status</h3>
+  <p><%= f.check_box :pc %> <%= f.label :pc, "Character is a PC" %></p>
   
   <%= f.submit 'Save' %>
 <% end %>

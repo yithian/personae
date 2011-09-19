@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110910172910) do
+ActiveRecord::Schema.define(:version => 20110919171512) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20110910172910) do
     t.string   "obsidian_character_id"
     t.string   "concept",                              :default => ""
     t.text     "tactics"
+    t.boolean  "pc",                                   :default => false
   end
 
   create_table "chronicles", :force => true do |t|

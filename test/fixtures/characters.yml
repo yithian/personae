@@ -131,6 +131,7 @@ one:
   subnature: one
   obsidian_character_id: 1
   tactics: MyTacticsText
+  pc: true
 
 two:
   name: MyOtherName
@@ -263,6 +264,7 @@ two:
   subnature: one
   obsidian_character_id: 2
   tactics: MyTacticsText
+  pc: false
 
 three:
   name: MyThirdName
@@ -395,3 +397,4 @@ three:
   subnature: one
   obsidian_character_id: 3
   tactics: MyTacticsText
+  pc: true
