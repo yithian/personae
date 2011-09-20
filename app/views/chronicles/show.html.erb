@@ -4,15 +4,35 @@
 <h3>Description</h3>
 <%= simple_format(@chronicle.description) %>
 
-<div id="pcs_list">
-  <h3>PCs</h3>
-  <%= render :partial => 'characters/list', :object => @chronicle.pcs %>
-</div>
+<table class="list">
+  <tbody>
+    <tr>
+      <th></th>
+      <th>PC Name</th>
+      <th>Concept</th>
+      <th>Clique</th>
+      <th></th>
+    </tr>
+  </tbody>
 
-<div id="npcs_list">
-  <h3>NPCs</h3>
-  <%= render :partial => 'characters/list', :object => @chronicle.npcs %>
-</div>
+  <tbody id="pcs_list">
+    <%= render :partial => 'characters/character', :collection => @chronicle.pcs %>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <th></th>
+      <th>NPC Name</th>
+      <th>Concept</th>
+      <th>Clique</th>
+      <th></th>
+    </tr>
+  </tbody>
+
+  <tbody id="npcs_list">
+    <%= render :partial => 'characters/character', :collection => @chronicle.npcs %>
+  </tbody>
+</table>
 
 <h3>Cliques</h3>
 <%= render :partial => 'cliques/list' %>

@@ -32,7 +32,6 @@ class CharactersControllerTest < ActionController::TestCase
 
   test "should get index as nobody" do
     get :index
-    assert_template "list"
     assert_response :success, @response.body
     assert_not_nil assigns(:characters)
 
@@ -70,7 +69,6 @@ class CharactersControllerTest < ActionController::TestCase
     sign_in(users(:one))
 
     get :index
-    assert_template "list"
     assert_response :success, @response.body
     assert_not_nil assigns(:characters)
 
@@ -108,7 +106,6 @@ class CharactersControllerTest < ActionController::TestCase
     sign_in(users(:Storyteller))
 
     get :index
-    assert_template "list"
     assert_response :success, @response.body
     assert_not_nil assigns(:characters)
 
