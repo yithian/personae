@@ -15,6 +15,10 @@ class CharactersController < ApplicationController
   def index
     @chronicles = Chronicle.all.collect
     @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
+
+    chronicle = Chronicle.find_by_id(@selected_chronicle_id)
+    @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
+    @npcs = chronicle.npcs.reject { |c| not c.show_name_to_user?(current_user) }
     
     if user_signed_in?
       @characters = Character.known_to current_user
@@ -23,13 +27,17 @@ class CharactersController < ApplicationController
       @characters = Character.known_to 0, @selected_chronicle_id
     end
 
-    respond_with @characters
+    respond_with @characters, @selected_chronicle_id, @pcs, @npcs
   end
   
   # POST /characters/change_chronicle
   def change_chronicle
     # this bit of weirdness is to ensure the chronicle actually exists
     @selected_chronicle_id = Chronicle.find_by_id(params[:chronicle_id]).id
+    
+    chronicle = Chronicle.find_by_id(@selected_chronicle_id)
+    @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
+    @npcs = chronicle.npcs.reject { |c| not c.show_name_to_user?(current_user) }
     
     if user_signed_in?
       current_user.selected_chronicle = Chronicle.find_by_id(@selected_chronicle_id)

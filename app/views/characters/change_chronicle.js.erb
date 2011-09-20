@@ -1,3 +1,4 @@
-$('#list').html('<%= escape_javascript(render(:partial => "list")) %>');
+$('#pcs_list').html('<%= escape_javascript(render(:partial => "list", :object => @pcs)) %>');
+$('#npcs_list').html('<%= escape_javascript(render(:partial => "list", :object => @npcs)) %>');
 
 $('#new_link').html('<%= escape_javascript(link_to "New character", new_character_path(:chronicle_id => @selected_chronicle_id), :id => "new_link") %>');

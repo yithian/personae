@@ -4,8 +4,15 @@
 <h3>Description</h3>
 <%= simple_format(@chronicle.description) %>
 
-<h3>Characters</h3>
-<%= render :partial => 'characters/list' %>
+<div id="pcs_list">
+  <h3>PCs</h3>
+  <%= render :partial => 'characters/list', :object => @chronicle.pcs %>
+</div>
+
+<div id="npcs_list">
+  <h3>NPCs</h3>
+  <%= render :partial => 'characters/list', :object => @chronicle.npcs %>
+</div>
 
 <h3>Cliques</h3>
 <%= render :partial => 'cliques/list' %>
