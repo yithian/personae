@@ -188,12 +188,12 @@ class CharactersController < ApplicationController
   def find_lists
     if params[:chronicle_id]
       @clique_list = Clique.known_to(current_user, params[:chronicle_id]).collect do |clique|
-      [clique.name, clique.id]
-    end
+        [clique.name, clique.id]
+      end
     else
-      @clique_list = Clique.known_to(current_user).collect do |clique|
-      [clique.name, clique.id]
-    end
+      @clique_list = Clique.known_to(current_user, @character.chronicle_id).collect do |clique|
+        [clique.name, clique.id]
+      end
     end
     
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect
@@ -225,7 +225,6 @@ class CharactersController < ApplicationController
     when "-1"
       # create a new character
       result =   obsidian_portal.access_token.post("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json", json_character)
-      
     else
       # update existing character
       result =  obsidian_portal.access_token.put("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)
