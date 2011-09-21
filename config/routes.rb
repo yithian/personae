@@ -23,6 +23,7 @@ Personae::Application.routes.draw do
       get 'change_chronicle'
     end
     member do
+      put 'save_notes'
       get 'shapeshift'
       get 'preview'
     end

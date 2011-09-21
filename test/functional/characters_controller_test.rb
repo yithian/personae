@@ -351,6 +351,48 @@ class CharactersControllerTest < ActionController::TestCase
     assert_redirected_to character_path(assigns(:character))
     assert_not_equal("newername", Character.find_by_id(characters(:two).id).name, "updated other user's character")
   end
+
+  test "should update notes as ST" do
+    sign_in(users(:Storyteller))
+
+    xhr :put, :save_notes, :id => characters(:one).to_param, :character => {:notes => "new notes"}
+
+    assert_equal("new notes", Character.find_by_id(characters(:one).id).notes)
+    assert response.body =~ /success.*\.png/
+    assert response.body =~ /fadeOut/
+    assert response.body =~ /remove/
+  end
+  
+  test "should update notes as owning user" do
+    sign_in(users(:one))
+
+    xhr :put, :save_notes, :id => characters(:one).to_param, :character => {:notes => "new notes"}
+
+    assert_equal("new notes", Character.find_by_id(characters(:one).id).notes)
+    assert response.body =~ /success.*\.png/
+    assert response.body =~ /fadeOut/
+    assert response.body =~ /remove/
+  end
+  
+  test "shouldn't update notes as non-owning user" do
+    sign_in(users(:two))
+
+    xhr :put, :save_notes, :id => characters(:one).to_param, :character => {:notes => "new notes"}
+
+    assert_not_equal("new notes", Character.find_by_id(characters(:one).id).notes)
+    assert response.body !~ /success.*\.png/
+    assert response.body !~ /fadeOut/
+    assert response.body !~ /remove/
+  end
+  
+  test "shouldn't update notes as nobody" do
+    xhr :put, :save_notes, :id => characters(:one).to_param, :character => {:notes => "new notes"}
+
+    assert_not_equal("new notes", Character.find_by_id(characters(:one).id).notes)
+    assert response.body !~ /success.*\.png/
+    assert response.body !~ /fadeOut/
+    assert response.body !~ /remove/
+  end
   
   test "should destroy character" do
     # ST can destroy all characters

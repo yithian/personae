@@ -1,0 +1,5 @@
+<% if @successful %>
+  $('#save_notes').after('<%= image_tag asset_path("success.png"), :id => "success" %>');
+  $('#success').delay(3000).fadeOut();
+  setTimeout("$('#success').remove()", 3500);
+<% end %>

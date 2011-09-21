@@ -549,9 +549,9 @@
 <% if @character.show_notes_to_user?(current_user) %>
   <div id="notes">
     <h3 class="<%= @character.splat.name.downcase %>">Notes</h3>
-    <%= form_for(@character, :remote => true) do |f| %>
+    <%= form_for(@character, :remote => true, :method => :put, :url => save_notes_character_url) do |f| %>
       <%= f.text_area :notes %>
-      <%= f.submit "Save notes" if can? :edit, @character %>
+      <%= f.submit "Save notes", :id => "save_notes" if can? :edit, @character %>
     <% end %>
   </div>
 <% end %>
