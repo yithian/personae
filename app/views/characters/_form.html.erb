@@ -245,7 +245,7 @@
     </tr>
     <tr>
       <td class="label" id="power_stat_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
-        <%= f.label :power_stat, @character.splat.power_stat_name, :tabindex => "13", :id => "power_stat_label" %>
+        <%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %>
       </td>
       <td class="data" id="power_stat_cell" <%= "style='display: none'" if @character.is_mortal? %> >
         <%= f.text_field :power_stat, :tabindex => "13", :class => "number" %>
