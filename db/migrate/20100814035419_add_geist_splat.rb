@@ -1,6 +1,6 @@
 class AddGeistSplat < ActiveRecord::Migration
   def self.up
-    Splat.create(:name => "Geist", :nature_name => "Threshold", :clique_name => "Krewe", :ideology_name => "Archetype", :morality_name => "Syngergy", :power_stat_name => "Psyche", :fuel_name => "Plasm")
+    Splat.create(:name => "Geist", :nature_name => "Threshold", :clique_name => "Krewe", :ideology_name => "Archetype", :morality_name => "Synergy", :power_stat_name => "Psyche", :fuel_name => "Plasm")
     
     Nature.create(:name => "Torn", :splat_id => Splat.find_by_name("Geist").id)
     Nature.create(:name => "Silent", :splat_id => Splat.find_by_name("Geist").id)

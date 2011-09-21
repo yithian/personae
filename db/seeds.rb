@@ -12,7 +12,7 @@ Splat.create(:name => "Vampire", :nature_name => "Clan", :subnature_name => "Sub
 Splat.create(:name => "Promethean", :nature_name => "Lineage", :subnature_name => "Subnature", :clique_name => "Throng", :ideology_name => "Refinement", :morality_name => "Humanity", :power_stat_name => "Azoth", :fuel_name => "Pyros")
 Splat.create(:name => "Changeling", :nature_name => "Seeming", :subnature_name => "Kith", :clique_name => "Motley", :ideology_name => "Court", :morality_name => "Clarity", :power_stat_name => "Wyrd", :fuel_name => "Glamour")
 Splat.create(:name => "Hunter", :nature_name => "Profession", :subnature_name => "Subnature", :clique_name => "Cell", :ideology_name => "Organization", :morality_name => "Morality", :power_stat_name => "Power Stat", :fuel_name => "Fuel")
-Splat.create(:name => "Geist", :nature_name => "Threshold", :subnature_name => "Subnature", :clique_name => "Krewe", :ideology_name => "Archetype", :morality_name => "Syngergy", :power_stat_name => "Psyche", :fuel_name => "Plasm")
+Splat.create(:name => "Geist", :nature_name => "Threshold", :subnature_name => "Subnature", :clique_name => "Krewe", :ideology_name => "Archetype", :morality_name => "Synergy", :power_stat_name => "Psyche", :fuel_name => "Plasm")
 
 Nature.create(:name => "Mortal", :splat_id => Splat.find_by_name("Mortal").id)
 Nature.create(:name => "Acanthus", :splat_id => Splat.find_by_name("Mage").id)
