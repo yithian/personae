@@ -79,6 +79,8 @@
           
           <li><a href="#method-i-preview">#preview</a></li>
           
+          <li><a href="#method-i-save_notes">#save_notes</a></li>
+          
           <li><a href="#method-i-shapeshift">#shapeshift</a></li>
           
           <li><a href="#method-i-show">#show</a></li>
@@ -342,7 +344,7 @@
             
             <div class="method-source-code" id="destroy-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 152</span>
+<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 160</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">destroy</span>
 
@@ -509,6 +511,42 @@
 
           
         </div><!-- preview-method -->
+
+      
+        <div id="save_notes-method" class="method-detail ">
+          <a name="method-i-save_notes"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">save_notes</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>PUT /characters/1/save_notes</p>
+
+<p>this will animate saving the notes on a character’s page</p>
+            
+
+            
+            <div class="method-source-code" id="save_notes-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_notes</span>
+  <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:notes</span>]
+  <span class="ruby-ivar">@successful</span> = <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- save_notes-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- save_notes-method -->
 
       
         <div id="shapeshift-method" class="method-detail ">
