@@ -26,6 +26,12 @@ class ApplicationController < ActionController::Base
     redirect_to target
   end
   
+  def expire_cache
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = Time.now.httpdate
+  end
+  
   protected
   # returns true if obsidian portal integration is running via MageHand
   # and the user has linked his/her account

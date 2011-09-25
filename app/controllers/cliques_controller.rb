@@ -7,6 +7,7 @@ class CliquesController < ApplicationController
   before_filter :show_permission, :only => [:show]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
+  before_filter :expire_cache, :only => [:index]
   
   # GET /cliques
   # GET /cliques.xml
