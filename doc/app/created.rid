@@ -1,4 +1,4 @@
-Sun, 25 Sep 2011 21:58:15 -0400
+Sun, 25 Sep 2011 22:23:59 -0400
 doc/README_FOR_APP	Thu, 25 Aug 2011 07:16:56 -0400
 app/controllers/admin_controller.rb	Fri, 09 Sep 2011 21:11:46 -0400
 app/controllers/application_controller.rb	Sun, 25 Sep 2011 21:58:09 -0400
@@ -17,7 +17,7 @@ app/helpers/comment_helper.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/helpers/ideologies_helper.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/helpers/services_helper.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/ability.rb	Thu, 25 Aug 2011 07:16:56 -0400
-app/models/character.rb	Sat, 10 Sep 2011 13:44:25 -0400
+app/models/character.rb	Sun, 25 Sep 2011 22:21:00 -0400
 app/models/chronicle.rb	Sun, 25 Sep 2011 14:49:46 -0400
 app/models/clique.rb	Fri, 09 Sep 2011 21:11:46 -0400
 app/models/comment.rb	Thu, 25 Aug 2011 07:16:56 -0400
@@ -27,5 +27,3 @@ app/models/splat.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/subnature.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/unique_in_chronicle_validator.rb	Fri, 09 Sep 2011 21:11:46 -0400
 app/models/user.rb	Thu, 25 Aug 2011 07:16:56 -0400
-app/models/vice_validator.rb	Thu, 25 Aug 2011 07:16:56 -0400
-app/models/virtue_validator.rb	Thu, 25 Aug 2011 07:16:56 -0400
