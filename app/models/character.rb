@@ -9,6 +9,35 @@
 # The Storyteller user is considered to be an owner of every character.
 
 class Character < ActiveRecord::Base
+  # Creates a validator for Character.virtue . Valid virtues are 'Charity', 'Faith', 'Fortitude'
+  # 'Hope', 'Justice', 'Prudence' and 'Temperance'
+
+  class VirtueValidator < ActiveModel::EachValidator
+    # Validates all records passed to it
+    def validate_each(record, attribute, value)
+      unless Character::VIRTUES.include?(value)
+        record.errors[attribute] << "#{value} is an invalid virtue"
+      end
+    end
+  end
+  
+  # Creates a validator for Character.vice . Valid vices are 'Envy', 'Gluttony', 'Greed', 'Lust'
+  # 'Sloth', 'Pride', 'Wrath'
+  class ViceValidator < ActiveModel::EachValidator
+    # Validates all records passed to it
+    def validate_each(record, attribute, value)
+      vices = value.split(" ")
+
+      record.errors[attribute] << "Too many vices selected" unless vices.length < 3
+
+      vices.each do |vice|
+        unless Character::VICES.include? vice
+          record.errors[attribute] << "#{vice} is an invalid vice"
+        end
+      end
+    end
+  end
+  
   belongs_to :clique
   belongs_to :ideology
   belongs_to :nature
