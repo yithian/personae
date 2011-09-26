@@ -26,6 +26,12 @@ class ApplicationController < ActionController::Base
     redirect_to target
   end
   
+  # Includes header tags that instruct browsers not to cache the page.
+  # Ajax methods that update pages (eg: change_chronicle) update the page
+  # but hitting the back button in a browser will display un-updated
+  # contents.
+  # 
+  # Calling this method prevents that behavior.
   def expire_cache
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"

@@ -75,6 +75,8 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
+          <li><a href="#method-i-expire_cache">#expire_cache</a></li>
+          
           <li><a href="#method-i-help">#help</a></li>
           
           <li><a href="#method-i-obsidian_enabled-3F">#obsidian_enabled?</a></li>
@@ -207,6 +209,51 @@ controllers.</p>
 
       <!-- Methods -->
       
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="expire_cache-method" class="method-detail ">
+          <a name="method-i-expire_cache"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">expire_cache</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Includes header tags that instruct browsers not to cache the page. Ajax
+methods that update pages (eg: change_chronicle) update the page but
+hitting the back button in a browser will display un-updated contents.</p>
+
+<p>Calling this method prevents that behavior.</p>
+            
+
+            
+            <div class="method-source-code" id="expire_cache-source">
+<pre>
+<span class="ruby-comment"># File app/controllers/application_controller.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">expire_cache</span>
+  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>[<span class="ruby-string">&quot;Cache-Control&quot;</span>] = <span class="ruby-string">&quot;no-cache, no-store, max-age=0, must-revalidate&quot;</span>
+  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>[<span class="ruby-string">&quot;Pragma&quot;</span>] = <span class="ruby-string">&quot;no-cache&quot;</span>
+  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>[<span class="ruby-string">&quot;Expires&quot;</span>] = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">httpdate</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- expire_cache-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- expire_cache-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
       <div id="protected-instance-method-details" class="method-section section">
         <h3 class="section-header">Protected Instance Methods</h3>
 
@@ -231,7 +278,7 @@ session)</p>
             
             <div class="method-source-code" id="help-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 38</span>
+<span class="ruby-comment"># File app/controllers/application_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
   <span class="ruby-constant">Helper</span>.<span class="ruby-identifier">instance</span>
 <span class="ruby-keyword">end</span></pre>
@@ -265,7 +312,7 @@ user has linked his/her account</p>
             
             <div class="method-source-code" id="obsidian_enabled-3F-source">
 <pre>
-<span class="ruby-comment"># File app/controllers/application_controller.rb, line 32</span>
+<span class="ruby-comment"># File app/controllers/application_controller.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_enabled?</span>
   <span class="ruby-keyword">not</span> <span class="ruby-constant">SERVICES</span>[<span class="ruby-string">'obsidianportal'</span>][<span class="ruby-string">'consumer_key'</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user_signed_in?</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">obsidian_user_id</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
