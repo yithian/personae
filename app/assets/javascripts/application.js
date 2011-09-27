@@ -6,6 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.elastic.source
+//= require autoresize.jquery
 //= require_tree .
 
