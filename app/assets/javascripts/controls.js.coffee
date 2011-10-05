@@ -9,5 +9,4 @@ $(document).ready =>
   	
 	# dynamically expands text areas
 	$('textarea').each ->
-		$(this).autoResize({animate : false})
-		$(this).keyup()
+		$(this).autogrow({animate : false})
