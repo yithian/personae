@@ -227,6 +227,17 @@ class CharactersControllerTest < ActionController::TestCase
     assert count == 10, "too few updates: #{count}"
     assert_not_nil assigns(:character)
   end
+
+  test "should show character with a weird name" do
+    sign_in(users(:one))
+    
+    char = Character.find_by_id(characters(:one).id)
+    char.name = "dr. w#!rd _n[am}e?"
+    char.save!
+
+    get :show, :id => characters(:one).to_param
+    assert_response :success, @response.body
+  end
   
   test "validate form view functionality" do
     sign_in(users(:one))

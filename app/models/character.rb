@@ -433,7 +433,7 @@ h5. Notes
 
   # Show the character's name in the url
   def to_param
-    "#{self.id}-#{self.name.gsub(' ', '-')}"
+    "#{self.id}-#{self.name.gsub(/[ '"#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&?\/:;=@]/, '')}"
   end
 
   private

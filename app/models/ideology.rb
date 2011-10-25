@@ -11,6 +11,6 @@ class Ideology < ActiveRecord::Base
 
   # Show the ideology's name in the url
   def to_param
-    "#{self.id}-#{self.name.gsub(' ', '-')}"
+    "#{self.id}-#{self.name.gsub(/[ '"#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&?\/:;=@]/, '')}"
   end
 end

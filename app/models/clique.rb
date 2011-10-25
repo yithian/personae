@@ -36,7 +36,7 @@ class Clique < ActiveRecord::Base
 
   # Show the clique's name in the url
   def to_param
-    "#{self.id}-#{self.name.gsub(' ', '-')}"
+    "#{self.id}-#{self.name.gsub(/[ '"#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&?\/:;=@]/, '')}"
   end
 
   # List cliques konwn to the given user

@@ -327,7 +327,7 @@ see which clique they belong to.</p>
           <div class="method-source-code" id="to_param-source">
             <pre><span class="ruby-comment"># File app/models/clique.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_param</span>
-  <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(' ', '-')}&quot;</span>
+  <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(/[ '&quot;#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&amp;?\/:;=@]/, '')}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- to_param-source -->
           

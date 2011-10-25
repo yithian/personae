@@ -206,7 +206,7 @@ games present in the same database.</p>
           <div class="method-source-code" id="to_param-source">
             <pre><span class="ruby-comment"># File app/models/chronicle.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_param</span>
-  <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(' ', '-')}&quot;</span>
+  <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(/[ '&quot;#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&amp;?\/:;=@]/, '')}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- to_param-source -->
           
