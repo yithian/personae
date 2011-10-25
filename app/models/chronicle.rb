@@ -35,4 +35,9 @@ class Chronicle < ActiveRecord::Base
       user.save
     end
   end
+
+  # Show the chronicle's name in the url
+  def to_param
+    "#{self.id}-#{self.name.gsub(' ', '-')}"
+  end
 end

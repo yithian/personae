@@ -431,6 +431,11 @@ h5. Notes
     characters.delete_if { |c| c == nil }
   end
 
+  # Show the character's name in the url
+  def to_param
+    "#{self.id}-#{self.name.gsub(' ', '-')}"
+  end
+
   private
   # Returns true if the character is owned by the logged in user or if the
   # logged in user is a User.super_user?

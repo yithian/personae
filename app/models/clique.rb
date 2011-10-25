@@ -34,6 +34,11 @@ class Clique < ActiveRecord::Base
     known_clique
   end
 
+  # Show the clique's name in the url
+  def to_param
+    "#{self.id}-#{self.name.gsub(' ', '-')}"
+  end
+
   # List cliques konwn to the given user
   # if the user provided is nil, create a new, temporary user
   # as a base
