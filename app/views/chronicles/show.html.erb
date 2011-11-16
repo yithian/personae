@@ -4,8 +4,35 @@
 <h3>Description</h3>
 <%= simple_format(@chronicle.description) %>
 
-<h3>Characters</h3>
-<%= render :partial => 'characters/list' %>
+<table class="list">
+  <tbody>
+    <tr>
+      <th></th>
+      <th>PC Name</th>
+      <th>Concept</th>
+      <th>Clique</th>
+      <th></th>
+    </tr>
+  </tbody>
+
+  <tbody id="pcs_list">
+    <%= render :partial => 'characters/character', :collection => @chronicle.pcs %>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <th></th>
+      <th>NPC Name</th>
+      <th>Concept</th>
+      <th>Clique</th>
+      <th></th>
+    </tr>
+  </tbody>
+
+  <tbody id="npcs_list">
+    <%= render :partial => 'characters/character', :collection => @chronicle.npcs %>
+  </tbody>
+</table>
 
 <h3>Cliques</h3>
 <%= render :partial => 'cliques/list' %>

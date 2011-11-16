@@ -130,6 +130,8 @@ one:
   read_deeds: true
   subnature: one
   obsidian_character_id: 1
+  tactics: MyTacticsText
+  pc: true
 
 two:
   name: MyOtherName
@@ -261,6 +263,8 @@ two:
   read_deeds: false
   subnature: one
   obsidian_character_id: 2
+  tactics: MyTacticsText
+  pc: false
 
 three:
   name: MyThirdName
@@ -392,3 +396,5 @@ three:
   read_deeds: false
   subnature: one
   obsidian_character_id: 3
+  tactics: MyTacticsText
+  pc: true

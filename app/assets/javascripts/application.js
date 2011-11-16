@@ -6,6 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.elastic.source
+//= require jquery.autogrow-textarea
 //= require_tree .
 

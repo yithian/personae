@@ -1,10 +1,10 @@
-Fri, 09 Sep 2011 13:37:37 -0400
+Tue, 25 Oct 2011 11:00:50 -0400
 doc/README_FOR_APP	Fri, 09 Sep 2011 09:34:26 -0400
 app/controllers/admin_controller.rb	Fri, 09 Sep 2011 09:34:25 -0400
-app/controllers/application_controller.rb	Fri, 09 Sep 2011 09:34:25 -0400
-app/controllers/characters_controller.rb	Fri, 09 Sep 2011 09:34:25 -0400
-app/controllers/chronicles_controller.rb	Fri, 09 Sep 2011 09:34:25 -0400
-app/controllers/cliques_controller.rb	Fri, 09 Sep 2011 09:34:25 -0400
+app/controllers/application_controller.rb	Thu, 29 Sep 2011 14:31:41 -0400
+app/controllers/characters_controller.rb	Thu, 29 Sep 2011 14:31:41 -0400
+app/controllers/chronicles_controller.rb	Tue, 20 Sep 2011 13:33:34 -0400
+app/controllers/cliques_controller.rb	Thu, 29 Sep 2011 14:31:41 -0400
 app/controllers/comments_controller.rb	Fri, 09 Sep 2011 09:34:25 -0400
 app/controllers/ideologies_controller.rb	Fri, 09 Sep 2011 09:34:25 -0400
 app/controllers/services_controller.rb	Fri, 09 Sep 2011 09:34:25 -0400
@@ -17,15 +17,13 @@ app/helpers/comment_helper.rb	Fri, 09 Sep 2011 09:34:25 -0400
 app/helpers/ideologies_helper.rb	Fri, 09 Sep 2011 09:34:25 -0400
 app/helpers/services_helper.rb	Fri, 09 Sep 2011 09:34:25 -0400
 app/models/ability.rb	Fri, 09 Sep 2011 09:34:25 -0400
-app/models/character.rb	Fri, 09 Sep 2011 13:34:24 -0400
-app/models/chronicle.rb	Fri, 09 Sep 2011 09:34:25 -0400
-app/models/clique.rb	Fri, 09 Sep 2011 09:34:25 -0400
+app/models/character.rb	Tue, 25 Oct 2011 10:45:31 -0400
+app/models/chronicle.rb	Tue, 25 Oct 2011 10:46:42 -0400
+app/models/clique.rb	Tue, 25 Oct 2011 10:46:34 -0400
 app/models/comment.rb	Fri, 09 Sep 2011 09:34:25 -0400
-app/models/ideology.rb	Fri, 09 Sep 2011 09:34:25 -0400
+app/models/ideology.rb	Tue, 25 Oct 2011 10:46:51 -0400
 app/models/nature.rb	Fri, 09 Sep 2011 09:34:25 -0400
 app/models/splat.rb	Fri, 09 Sep 2011 09:34:25 -0400
 app/models/subnature.rb	Fri, 09 Sep 2011 09:34:25 -0400
 app/models/unique_in_chronicle_validator.rb	Fri, 09 Sep 2011 09:34:25 -0400
 app/models/user.rb	Fri, 09 Sep 2011 09:34:25 -0400
-app/models/vice_validator.rb	Fri, 09 Sep 2011 09:34:25 -0400
-app/models/virtue_validator.rb	Fri, 09 Sep 2011 09:34:25 -0400

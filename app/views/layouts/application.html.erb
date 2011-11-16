@@ -9,18 +9,19 @@
       when "cliques" then @clique.name + " : " if @clique and @clique.name
       when "ideologies" then @ideology.name + " : " if @clique and @ideology.name
     end %>
-    City of Darkness
+    Infinite Personae
   </title>
 
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tag %>
+  <%= favicon_link_tag %>
 </head>
 <body>
 
 <div id="column">
   <div id="header">
-    <%= image_tag("title.png", :alt => "City of Darkness") %>
+    <%= image_tag("title.png", :alt => "Infinite Personae") %>
     
     <ul id="menu">
       <%= li_selected_if(params[:controller] == "characters") do %>

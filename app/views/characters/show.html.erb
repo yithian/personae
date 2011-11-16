@@ -15,13 +15,13 @@
   </tr>
   <tr>
     <td><b>Virtue</b></td>
-    <td ><span id="virtue"><%= @character.virtue if can? :edit, @character %></span></td>
+    <td ><span id="virtue"><%= @character.virtue %></span></td>
     <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user) %></b></span></td>
     <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user) %></span></td>
   </tr>
   <tr>
     <td><b>Vice</b></td>
-    <td><span id="vice"><%= @character.vice.gsub(/\ /, " and ") if can? :edit, @character %></span></td>
+    <td><span id="vice"><%= @character.vice.gsub(/\ /, " and ") %></span></td>
     <td><span id="ideology_label"><b><%= @character.splat.ideology_name if @character.show_ideology_to_user?(current_user) %></b></span></td>
     <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_ideology_to_user?(current_user) %></span></td>
   </tr>
@@ -491,6 +491,11 @@
       </table>
     <% end %>
     
+    <% if @character.is_hunter? %>
+      <h3 class="<%= @character.splat.name.downcase %>">Tactics</h3>
+      <%= simple_format(@character.tactics) %>
+    <% end %>
+    
     <% if @character.is_geist? %>
       <h3 class="<%= @character.splat.name.downcase %>">Manifestations</h3>
       <table class="three_cells">
@@ -544,9 +549,9 @@
 <% if @character.show_notes_to_user?(current_user) %>
   <div id="notes">
     <h3 class="<%= @character.splat.name.downcase %>">Notes</h3>
-    <%= form_for(@character, :remote => true) do |f| %>
+    <%= form_for(@character, :remote => true, :method => :put, :url => save_notes_character_url) do |f| %>
       <%= f.text_area :notes %>
-      <%= f.submit "Save notes" if can? :edit, @character %>
+      <%= f.submit "Save notes", :id => "save_notes" if can? :edit, @character %>
     <% end %>
   </div>
 <% end %>

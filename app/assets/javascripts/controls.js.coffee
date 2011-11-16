@@ -8,4 +8,5 @@ $(document).ready =>
 		$.ajax({type: $(this).attr('method'), url: $(this).attr('action'), data: $(this).serializeArray()})
   	
 	# dynamically expands text areas
-	$('textarea').elastic()
+	$('textarea').each ->
+		$(this).autogrow({animate : false})

@@ -8,4 +8,9 @@ class Ideology < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true
   validates :splat_id, :presence => true
+
+  # Show the ideology's name in the url
+  def to_param
+    "#{self.id}-#{self.name.gsub(/[ '"#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&?\/:;=@]/, '')}"
+  end
 end

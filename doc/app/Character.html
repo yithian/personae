@@ -1,218 +1,211 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-  <title>Class: Character</title>
+<title>Class: Character</title>
 
-  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
-  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-</head>
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
 <body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-  <div id="metadata">
-    <div id="home-metadata">
-      <div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-      </div>
-    </div>
 
-    <div id="file-metadata">
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li><a href="./app/models/character_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/models/character.rb">app/models/character.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
 
-      
-    </div>
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
 
-    <div id="class-metadata">
-      
-      <!-- Parent Class -->
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        
-        <p class="link">ActiveRecord::Base</p>
-        
-      </div>
-      
 
-      
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/character.rb
+  </ul>
+</nav>
 
-      
-
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-c-known_to">::known_to</a></li>
-          
-          <li><a href="#method-i-is_changeling-3F">#is_changeling?</a></li>
-          
-          <li><a href="#method-i-is_geist-3F">#is_geist?</a></li>
-          
-          <li><a href="#method-i-is_mage-3F">#is_mage?</a></li>
-          
-          <li><a href="#method-i-is_mortal-3F">#is_mortal?</a></li>
-          
-          <li><a href="#method-i-is_promethean-3F">#is_promethean?</a></li>
-          
-          <li><a href="#method-i-is_vampire-3F">#is_vampire?</a></li>
-          
-          <li><a href="#method-i-is_werewolf-3F">#is_werewolf?</a></li>
-          
-          <li><a href="#method-i-obsidian_bio">#obsidian_bio</a></li>
-          
-          <li><a href="#method-i-obsidian_description">#obsidian_description</a></li>
-          
-          <li><a href="#method-i-show_background_to_user-3F">#show_background_to_user?</a></li>
-          
-          <li><a href="#method-i-show_clique_to_user-3F">#show_clique_to_user?</a></li>
-          
-          <li><a href="#method-i-show_crunch_to_user-3F">#show_crunch_to_user?</a></li>
-          
-          <li><a href="#method-i-show_deeds_to_user-3F">#show_deeds_to_user?</a></li>
-          
-          <li><a href="#method-i-show_description_to_user-3F">#show_description_to_user?</a></li>
-          
-          <li><a href="#method-i-show_experience_to_user-3F">#show_experience_to_user?</a></li>
-          
-          <li><a href="#method-i-show_ideology_to_user-3F">#show_ideology_to_user?</a></li>
-          
-          <li><a href="#method-i-show_name_to_user-3F">#show_name_to_user?</a></li>
-          
-          <li><a href="#method-i-show_nature_to_user-3F">#show_nature_to_user?</a></li>
-          
-          <li><a href="#method-i-show_notes_to_user-3F">#show_notes_to_user?</a></li>
-          
-        </ul>
-      </div>
-      
-
-      
-    </div>
-
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a></li>
-        
-        </ul>
-      </div>
-      
-
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class/Module Index
-          <span class="search-toggle"><img src="./images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
-
-        <ul class="link-list">
-        
-          <li><a href="./ApplicationController.html">ApplicationController</a></li>
-        
-          <li><a href="./ApplicationController/Helper.html">ApplicationController::Helper</a></li>
-        
-          <li><a href="./Ability.html">Ability</a></li>
-        
-          <li><a href="./AdminController.html">AdminController</a></li>
-        
-          <li><a href="./AdminHelper.html">AdminHelper</a></li>
-        
-          <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
-        
-          <li><a href="./Character.html">Character</a></li>
-        
-          <li><a href="./CharactersController.html">CharactersController</a></li>
-        
-          <li><a href="./CharactersHelper.html">CharactersHelper</a></li>
-        
-          <li><a href="./Chronicle.html">Chronicle</a></li>
-        
-          <li><a href="./ChroniclesController.html">ChroniclesController</a></li>
-        
-          <li><a href="./ChroniclesHelper.html">ChroniclesHelper</a></li>
-        
-          <li><a href="./Clique.html">Clique</a></li>
-        
-          <li><a href="./CliquesController.html">CliquesController</a></li>
-        
-          <li><a href="./CliquesHelper.html">CliquesHelper</a></li>
-        
-          <li><a href="./Comment.html">Comment</a></li>
-        
-          <li><a href="./CommentHelper.html">CommentHelper</a></li>
-        
-          <li><a href="./CommentsController.html">CommentsController</a></li>
-        
-          <li><a href="./IdeologiesController.html">IdeologiesController</a></li>
-        
-          <li><a href="./IdeologiesHelper.html">IdeologiesHelper</a></li>
-        
-          <li><a href="./Ideology.html">Ideology</a></li>
-        
-          <li><a href="./Nature.html">Nature</a></li>
-        
-          <li><a href="./ServicesController.html">ServicesController</a></li>
-        
-          <li><a href="./ServicesHelper.html">ServicesHelper</a></li>
-        
-          <li><a href="./Splat.html">Splat</a></li>
-        
-          <li><a href="./Subnature.html">Subnature</a></li>
-        
-          <li><a href="./UniqueInChronicleValidator.html">UniqueInChronicleValidator</a></li>
-        
-          <li><a href="./User.html">User</a></li>
-        
-          <li><a href="./ViceValidator.html">ViceValidator</a></li>
-        
-          <li><a href="./VirtueValidator.html">VirtueValidator</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
+    
   </div>
 
-  <div id="documentation">
-    <h1 class="class">Character</h1>
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActiveRecord::Base
+  
+</nav>
 
-    <div id="description" class="description">
-      
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-known_to">::known_to</a>
+    
+    <li><a href="#method-i-is_changeling-3F">#is_changeling?</a>
+    
+    <li><a href="#method-i-is_geist-3F">#is_geist?</a>
+    
+    <li><a href="#method-i-is_hunter-3F">#is_hunter?</a>
+    
+    <li><a href="#method-i-is_mage-3F">#is_mage?</a>
+    
+    <li><a href="#method-i-is_mortal-3F">#is_mortal?</a>
+    
+    <li><a href="#method-i-is_promethean-3F">#is_promethean?</a>
+    
+    <li><a href="#method-i-is_vampire-3F">#is_vampire?</a>
+    
+    <li><a href="#method-i-is_werewolf-3F">#is_werewolf?</a>
+    
+    <li><a href="#method-i-obsidian_bio">#obsidian_bio</a>
+    
+    <li><a href="#method-i-obsidian_description">#obsidian_description</a>
+    
+    <li><a href="#method-i-show_background_to_user-3F">#show_background_to_user?</a>
+    
+    <li><a href="#method-i-show_clique_to_user-3F">#show_clique_to_user?</a>
+    
+    <li><a href="#method-i-show_crunch_to_user-3F">#show_crunch_to_user?</a>
+    
+    <li><a href="#method-i-show_deeds_to_user-3F">#show_deeds_to_user?</a>
+    
+    <li><a href="#method-i-show_description_to_user-3F">#show_description_to_user?</a>
+    
+    <li><a href="#method-i-show_experience_to_user-3F">#show_experience_to_user?</a>
+    
+    <li><a href="#method-i-show_ideology_to_user-3F">#show_ideology_to_user?</a>
+    
+    <li><a href="#method-i-show_name_to_user-3F">#show_name_to_user?</a>
+    
+    <li><a href="#method-i-show_nature_to_user-3F">#show_nature_to_user?</a>
+    
+    <li><a href="#method-i-show_notes_to_user-3F">#show_notes_to_user?</a>
+    
+    <li><a href="#method-i-to_param">#to_param</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Character.html">Character</a>
+  
+    <li><a href="./Character/ViceValidator.html">Character::ViceValidator</a>
+  
+    <li><a href="./Character/VirtueValidator.html">Character::VirtueValidator</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationController/Helper.html">ApplicationController::Helper</a>
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./CharactersController.html">CharactersController</a>
+  
+    <li><a href="./CharactersHelper.html">CharactersHelper</a>
+  
+    <li><a href="./Chronicle.html">Chronicle</a>
+  
+    <li><a href="./ChroniclesController.html">ChroniclesController</a>
+  
+    <li><a href="./ChroniclesHelper.html">ChroniclesHelper</a>
+  
+    <li><a href="./Clique.html">Clique</a>
+  
+    <li><a href="./CliquesController.html">CliquesController</a>
+  
+    <li><a href="./CliquesHelper.html">CliquesHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentHelper.html">CommentHelper</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./IdeologiesController.html">IdeologiesController</a>
+  
+    <li><a href="./IdeologiesHelper.html">IdeologiesHelper</a>
+  
+    <li><a href="./Ideology.html">Ideology</a>
+  
+    <li><a href="./Nature.html">Nature</a>
+  
+    <li><a href="./ServicesController.html">ServicesController</a>
+  
+    <li><a href="./ServicesHelper.html">ServicesHelper</a>
+  
+    <li><a href="./Splat.html">Splat</a>
+  
+    <li><a href="./Subnature.html">Subnature</a>
+  
+    <li><a href="./UniqueInChronicleValidator.html">UniqueInChronicleValidator</a>
+  
+    <li><a href="./User.html">User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Character</h1>
+
+  <div id="description" class="description">
+    
 <p>The basic building block of personae, the character class represents a
 World of Darkness character. Specifically, it holds all the information
 that would be represented on a player’s character sheet.</p>
@@ -221,66 +214,63 @@ that would be represented on a player’s character sheet.</p>
 
 <p>The Storyteller user is considered to be an owner of every character.</p>
 
-    </div><!-- description -->
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
 
     
+
     
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="VICES">VICES
+        
+        <dd class="description"><p>An Array of Strings of valid vices in World of Darkness games. Primarily
+used to populate dropdown menus.</p>
+        
+      
+        <dt id="VIRTUES">VIRTUES
+        
+        <dd class="description"><p>An Array of Strings of valid virtues in World of Darkness games. Primarily
+used to populate dropdown menus.</p>
+        
+      
+      </dl>
+    </section>
     
-    <div id="5Buntitled-5D" class="documentation-section">
-      
 
-      
+    
 
-      
-      <!-- Constants -->
-      <div id="constants-list" class="section">
-        <h3 class="section-header">Constants</h3>
-        <dl>
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-known_to" class="method-detail ">
         
-          <dt><a name="VICES">VICES</a></dt>
-          
-          <dd class="description"><p>An Array of Strings of valid vices in World of Darkness games. Primarily
-used to populate dropdown menus.</p></dd>
-          
+        <div class="method-heading">
+          <span class="method-name">known_to</span><span
+            class="method-args">(user, selected_chronicle=user.selected_chronicle.id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
         
-          <dt><a name="VIRTUES">VIRTUES</a></dt>
+
+        <div class="method-description">
           
-          <dd class="description"><p>An Array of Strings of valid virtues in World of Darkness games. Primarily
-used to populate dropdown menus.</p></dd>
-          
-        
-        </dl>
-      </div>
-      
-
-      
-
-      <!-- Methods -->
-      
-      <div id="public-class-method-details" class="method-section section">
-        <h3 class="section-header">Public Class Methods</h3>
-
-      
-        <div id="known_to-method" class="method-detail ">
-          <a name="method-c-known_to"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">known_to</span><span
-              class="method-args">(user, selected_chronicle=user.selected_chronicle.id)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+          <p>List characters known to the given user</p>
           
 
-          <div class="method-description">
-            
-            <p>List characters known to the given user</p>
-            
-
-            
-            <div class="method-source-code" id="known_to-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 390</span>
+          
+          <div class="method-source-code" id="known_to-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 424</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">selected_chronicle</span>=<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
   <span class="ruby-identifier">characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">selected_chronicle</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;clique_id ASC&quot;</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
@@ -289,283 +279,289 @@ used to populate dropdown menus.</p></dd>
   
   <span class="ruby-identifier">characters</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> }
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- known_to-source -->
-            
-          </div>
-
+          </div><!-- known_to-source -->
           
+        </div>
 
-          
-        </div><!-- known_to-method -->
+        
 
-      
-      </div><!-- public-class-method-details -->
+        
+      </div><!-- known_to-method -->
+
     
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
 
-      
-        <div id="is_changeling-3F-method" class="method-detail ">
-          <a name="method-i-is_changeling-3F"></a>
+    
+      <div id="method-i-is_changeling-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_changeling?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the character is a changeling.</p>
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">is_changeling?</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the character is a changeling.</p>
-            
-
-            
-            <div class="method-source-code" id="is_changeling-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 212</span>
+          <div class="method-source-code" id="is_changeling-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 241</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_changeling?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Changeling&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- is_changeling-3F-source -->
-            
-          </div>
+          </div><!-- is_changeling-3F-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- is_changeling-3F-method -->
+
+    
+      <div id="method-i-is_geist-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_geist?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the character is a geist.</p>
           
 
           
-        </div><!-- is_changeling-3F-method -->
-
-      
-        <div id="is_geist-3F-method" class="method-detail ">
-          <a name="method-i-is_geist-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">is_geist?</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the character is a geist.</p>
-            
-
-            
-            <div class="method-source-code" id="is_geist-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 217</span>
+          <div class="method-source-code" id="is_geist-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 251</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_geist?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Geist&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- is_geist-3F-source -->
-            
-          </div>
+          </div><!-- is_geist-3F-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- is_geist-3F-method -->
+
+    
+      <div id="method-i-is_hunter-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_hunter?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the character is a hunter (close enough).</p>
           
 
           
-        </div><!-- is_geist-3F-method -->
+          <div class="method-source-code" id="is_hunter-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 246</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_hunter?</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Hunter&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_hunter-3F-source -->
+          
+        </div>
 
-      
-        <div id="is_mage-3F-method" class="method-detail ">
-          <a name="method-i-is_mage-3F"></a>
+        
+
+        
+      </div><!-- is_hunter-3F-method -->
+
+    
+      <div id="method-i-is_mage-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_mage?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the character is a mage.</p>
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">is_mage?</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the character is a mage.</p>
-            
-
-            
-            <div class="method-source-code" id="is_mage-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 192</span>
+          <div class="method-source-code" id="is_mage-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 221</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_mage?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mage&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- is_mage-3F-source -->
-            
-          </div>
+          </div><!-- is_mage-3F-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- is_mage-3F-method -->
+
+    
+      <div id="method-i-is_mortal-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_mortal?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the character is a mortal or a hunter (close enough).</p>
           
 
           
-        </div><!-- is_mage-3F-method -->
-
-      
-        <div id="is_mortal-3F-method" class="method-detail ">
-          <a name="method-i-is_mortal-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">is_mortal?</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the character is a mortal or a hunter (close enough).</p>
-            
-
-            
-            <div class="method-source-code" id="is_mortal-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 187</span>
+          <div class="method-source-code" id="is_mortal-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 216</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_mortal?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mortal&quot;</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Hunter&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- is_mortal-3F-source -->
-            
-          </div>
+          </div><!-- is_mortal-3F-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- is_mortal-3F-method -->
+
+    
+      <div id="method-i-is_promethean-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_promethean?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the character is a promethean.</p>
           
 
           
-        </div><!-- is_mortal-3F-method -->
-
-      
-        <div id="is_promethean-3F-method" class="method-detail ">
-          <a name="method-i-is_promethean-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">is_promethean?</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the character is a promethean.</p>
-            
-
-            
-            <div class="method-source-code" id="is_promethean-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 207</span>
+          <div class="method-source-code" id="is_promethean-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 236</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_promethean?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Promethean&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- is_promethean-3F-source -->
-            
-          </div>
+          </div><!-- is_promethean-3F-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- is_promethean-3F-method -->
+
+    
+      <div id="method-i-is_vampire-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_vampire?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the character is a vampire.</p>
           
 
           
-        </div><!-- is_promethean-3F-method -->
-
-      
-        <div id="is_vampire-3F-method" class="method-detail ">
-          <a name="method-i-is_vampire-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">is_vampire?</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the character is a vampire.</p>
-            
-
-            
-            <div class="method-source-code" id="is_vampire-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 202</span>
+          <div class="method-source-code" id="is_vampire-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 231</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_vampire?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Vampire&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- is_vampire-3F-source -->
-            
-          </div>
+          </div><!-- is_vampire-3F-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- is_vampire-3F-method -->
+
+    
+      <div id="method-i-is_werewolf-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_werewolf?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the character is a werewolf.</p>
           
 
           
-        </div><!-- is_vampire-3F-method -->
-
-      
-        <div id="is_werewolf-3F-method" class="method-detail ">
-          <a name="method-i-is_werewolf-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">is_werewolf?</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the character is a werewolf.</p>
-            
-
-            
-            <div class="method-source-code" id="is_werewolf-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 197</span>
+          <div class="method-source-code" id="is_werewolf-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 226</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_werewolf?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Werewolf&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- is_werewolf-3F-source -->
-            
-          </div>
-
+          </div><!-- is_werewolf-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- is_werewolf-3F-method -->
+
+    
+      <div id="method-i-obsidian_bio" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">obsidian_bio</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- is_werewolf-3F-method -->
-
-      
-        <div id="obsidian_bio-method" class="method-detail ">
-          <a name="method-i-obsidian_bio"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">obsidian_bio</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns what Obsidian Portal calls the character’s bio. In personae terms,
+          <p>Returns what Obsidian Portal calls the character’s bio. In personae terms,
 that is the character’s description and background.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="obsidian_bio-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 224</span>
+          
+          <div class="method-source-code" id="obsidian_bio-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 258</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_bio</span>
     <span class="ruby-identifier">bio</span> = <span class="ruby-string">&quot;&quot;</span>
-    <span class="ruby-identifier">bio</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+    <span class="ruby-identifier">bio</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Description
 
 #{self.description}
     }</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_description</span>
     
-    <span class="ruby-identifier">bio</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+    <span class="ruby-identifier">bio</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Background
 
 #{self.background}
@@ -573,49 +569,46 @@ h5. Background
     
     <span class="ruby-identifier">bio</span>
   <span class="ruby-keyword">end</span></pre>
-            </div><!-- obsidian_bio-source -->
-            
-          </div>
-
+          </div><!-- obsidian_bio-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- obsidian_bio-method -->
+
+    
+      <div id="method-i-obsidian_description" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">obsidian_description</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- obsidian_bio-method -->
-
-      
-        <div id="obsidian_description-method" class="method-detail ">
-          <a name="method-i-obsidian_description"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">obsidian_description</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns what Obsidian Portal calls the character’s description, which is
+          <p>Returns what Obsidian Portal calls the character’s description, which is
 all of the mechanical bits. I know, it doesn’t make sense to me either.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="obsidian_description-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 244</span>
+          
+          <div class="method-source-code" id="obsidian_description-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 278</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_description</span>
     <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_name</span>
 
     <span class="ruby-identifier">desc</span> = <span class="ruby-string">&quot;&quot;</span>
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 |_. Virtue|#{self.virtue}|_. #{self.splat.nature_name if self.read_nature}|#{self.nature.name if self.read_nature}|
 |_. Vice|#{self.vice}|_. #{self.splat.subnature_name if self.is_changeling? and self.read_nature}|#{self.subnature.name if self.is_changeling? and self.read_nature}|
 |||_. #{self.splat.ideology_name if self.read_ideology}|#{self.ideology.name if self.read_ideology}|
 |||_. #{self.splat.clique_name if self.read_clique}|#{self.clique.name if self.read_clique}|
     }</span>
 
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Attributes
 
 |_. Intelligence:|#{'•' * self.intelligence}|_. Strength:|#{'•' * self.strength}|_. Presence:|#{'•' * self.presence}|
@@ -657,7 +650,7 @@ h5. Equipment
 
     <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Vampire&quot;</span>
-      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Disciplines
 
 |_. Animalism:|#{'•' * self.animalism}|_. Covenant Disciplines:|
@@ -671,7 +664,7 @@ h5. Disciplines
 |_. Resilience:|#{'•' * self.resilience}|
 |_. Vigor:|#{'•' * self.vigor}|}</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Werewolf&quot;</span>
-      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Renown
 
 |_. Purity:|#{'•' * self.purity}|_. Gifts:|
@@ -680,7 +673,7 @@ h5. Renown
 |_. Wisdom:|#{'•' * self.wisdom}|
 |_. Cunning:|#{'•' * self.cunning}|}</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Mage&quot;</span>
-      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Arcana
 
 |_. Death:|#{'•' * self.death}|_. Common spells:|
@@ -694,12 +687,12 @@ h5. Arcana
 |_. Spirit:|#{'•' * self.spirit}|
 |_. Time:|#{'•' * self.time}|}</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Promethean&quot;</span>
-      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Transmutations
 
 #{self.transmutations}}</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Changeling&quot;</span>
-      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Contracts
 
 |_. Dream:|#{'•' * self.dream}|_. Goblin contracts:|
@@ -721,7 +714,7 @@ h5. Contracts
 |_. Fleeting Winter:|#{'•' * self.fleeting_winter}|
 |_. Eternal Winter:|#{'•' * self.eternal_winter}|}</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Geist&quot;</span>
-      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+      <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Manifestations
 
 |_. Boneyard:|#{'•' * self.boneyard}|_. Keys:|
@@ -733,14 +726,14 @@ h5. Manifestations
 |_. Shroud:|#{'•' * self.shroud}|}</span>
     <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_crunch</span>
 
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 
 h5. Experience
 
 #{self.experience}
     }</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_experience</span>
 
-    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{
+    <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Notes
 
 #{self.notes}
@@ -748,370 +741,367 @@ h5. Notes
 
     <span class="ruby-identifier">desc</span>
   <span class="ruby-keyword">end</span></pre>
-            </div><!-- obsidian_description-source -->
-            
-          </div>
-
+          </div><!-- obsidian_description-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- obsidian_description-method -->
+
+    
+      <div id="method-i-show_background_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_background_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- obsidian_description-method -->
-
-      
-        <div id="show_background_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_background_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_background_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
+          <p>Returns true if the given user has permission to read the character’s
 background. Defaults to false.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_background_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 158</span>
+          
+          <div class="method-source-code" id="show_background_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_background_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_background</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_background_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_background_to_user-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show_background_to_user-3F-method -->
+
+    
+      <div id="method-i-show_clique_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_clique_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show_background_to_user-3F-method -->
-
-      
-        <div id="show_clique_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_clique_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_clique_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
+          <p>Returns true if the given user has permission to read the character’s
 clique. Defaults to false.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_clique_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 140</span>
+          
+          <div class="method-source-code" id="show_clique_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 169</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_clique_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_clique</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_clique_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_clique_to_user-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show_clique_to_user-3F-method -->
+
+    
+      <div id="method-i-show_crunch_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_crunch_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show_clique_to_user-3F-method -->
-
-      
-        <div id="show_crunch_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_crunch_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_crunch_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s cruch
+          <p>Returns true if the given user has permission to read the character’s cruch
 (Strength, Drive, powers, etc). Defaults to false.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_crunch_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 170</span>
+          
+          <div class="method-source-code" id="show_crunch_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 199</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_crunch_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_crunch</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_crunch_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_crunch_to_user-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show_crunch_to_user-3F-method -->
+
+    
+      <div id="method-i-show_deeds_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_deeds_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show_crunch_to_user-3F-method -->
-
-      
-        <div id="show_deeds_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_deeds_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_deeds_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
+          <p>Returns true if the given user has permission to read the character’s
 deeds. Defaults to true.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_deeds_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 164</span>
+          
+          <div class="method-source-code" id="show_deeds_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 193</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_deeds_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_deeds</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_deeds_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_deeds_to_user-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show_deeds_to_user-3F-method -->
+
+    
+      <div id="method-i-show_description_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_description_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show_deeds_to_user-3F-method -->
-
-      
-        <div id="show_description_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_description_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_description_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
+          <p>Returns true if the given user has permission to read the character’s
 description. Defaults to false.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_description_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 152</span>
+          
+          <div class="method-source-code" id="show_description_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 181</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_description_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_description</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_description_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_description_to_user-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show_description_to_user-3F-method -->
+
+    
+      <div id="method-i-show_experience_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_experience_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show_description_to_user-3F-method -->
-
-      
-        <div id="show_experience_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_experience_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_experience_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
+          <p>Returns true if the given user has permission to read the character’s
 experience. Defaults to false.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_experience_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 176</span>
+          
+          <div class="method-source-code" id="show_experience_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 205</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_experience_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_experience</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_experience_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_experience_to_user-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show_experience_to_user-3F-method -->
+
+    
+      <div id="method-i-show_ideology_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_ideology_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show_experience_to_user-3F-method -->
-
-      
-        <div id="show_ideology_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_ideology_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_ideology_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
+          <p>Returns true if the given user has permission to read the character’s
 ideology. Defaults to false.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_ideology_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 146</span>
+          
+          <div class="method-source-code" id="show_ideology_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 175</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_ideology_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_ideology</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mortal&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_ideology_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_ideology_to_user-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show_ideology_to_user-3F-method -->
+
+    
+      <div id="method-i-show_name_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_name_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show_ideology_to_user-3F-method -->
-
-      
-        <div id="show_name_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_name_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_name_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s name.
+          <p>Returns true if the given user has permission to read the character’s name.
 This is also the check used to determine if a character’s entry shows up in
 index and clique pages, etc. Defaults to false.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_name_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 128</span>
+          
+          <div class="method-source-code" id="show_name_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 157</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_name</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_name_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_name_to_user-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show_name_to_user-3F-method -->
+
+    
+      <div id="method-i-show_nature_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_nature_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show_name_to_user-3F-method -->
-
-      
-        <div id="show_nature_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_nature_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_nature_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
+          <p>Returns true if the given user has permission to read the character’s
 nature. Defaults to false.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_nature_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 134</span>
+          
+          <div class="method-source-code" id="show_nature_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_nature_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_nature</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mortal&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_nature_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_nature_to_user-3F-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show_nature_to_user-3F-method -->
+
+    
+      <div id="method-i-show_notes_to_user-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_notes_to_user?</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show_nature_to_user-3F-method -->
-
-      
-        <div id="show_notes_to_user-3F-method" class="method-detail ">
-          <a name="method-i-show_notes_to_user-3F"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show_notes_to_user?</span><span
-              class="method-args">(user)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Returns true if the given user has permission to read the character’s
+          <p>Returns true if the given user has permission to read the character’s
 notes. Defaults to false.</p>
-            
+          
 
-            
-            <div class="method-source-code" id="show_notes_to_user-3F-source">
-<pre>
-<span class="ruby-comment"># File app/models/character.rb, line 182</span>
+          
+          <div class="method-source-code" id="show_notes_to_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_notes_to_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_notes</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show_notes_to_user-3F-source -->
-            
-          </div>
-
+          </div><!-- show_notes_to_user-3F-source -->
           
+        </div>
 
-          
-        </div><!-- show_notes_to_user-3F-method -->
+        
 
-      
-      </div><!-- public-instance-method-details -->
+        
+      </div><!-- show_notes_to_user-3F-method -->
+
     
-    </div><!-- 5Buntitled-5D -->
+      <div id="method-i-to_param" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_param</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Show the character’s name in the url</p>
+          
+
+          
+          <div class="method-source-code" id="to_param-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 434</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_param</span>
+  <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(/[ '&quot;#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&amp;?\/:;=@]/, '')}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_param-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_param-method -->
+
+    
+    </section><!-- public-instance-method-details -->
   
+  </section><!-- 5Buntitled-5D -->
 
-  </div><!-- documentation -->
+</div><!-- documentation -->
 
-  <div id="validator-badges">
-    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-      Rdoc Generator</a> 2</small>.</p>
-  </div>
 
-</body>
-</html>
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.10.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 

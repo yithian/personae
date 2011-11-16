@@ -5,16 +5,21 @@ class CharactersController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
   before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update, :destroy], :if => :obsidian_enabled?
-  before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :destroy, :preview]
+  before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :save_notes, :destroy, :preview]
   before_filter :show_permission, :only => [:show]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
+  before_filter :expire_cache, :only => [:index]
   
   # GET /characters
   # GET /characters.xml
   def index
     @chronicles = Chronicle.all.collect
     @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
+
+    chronicle = Chronicle.find_by_id(@selected_chronicle_id)
+    @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
+    @npcs = chronicle.npcs.reject { |c| not c.show_name_to_user?(current_user) }
     
     if user_signed_in?
       @characters = Character.known_to current_user
@@ -23,13 +28,17 @@ class CharactersController < ApplicationController
       @characters = Character.known_to 0, @selected_chronicle_id
     end
 
-    respond_with @characters
+    respond_with @characters, @selected_chronicle_id, @pcs, @npcs
   end
   
   # POST /characters/change_chronicle
   def change_chronicle
     # this bit of weirdness is to ensure the chronicle actually exists
     @selected_chronicle_id = Chronicle.find_by_id(params[:chronicle_id]).id
+    
+    chronicle = Chronicle.find_by_id(@selected_chronicle_id)
+    @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
+    @npcs = chronicle.npcs.reject { |c| not c.show_name_to_user?(current_user) }
     
     if user_signed_in?
       current_user.selected_chronicle = Chronicle.find_by_id(@selected_chronicle_id)
@@ -138,6 +147,14 @@ class CharactersController < ApplicationController
     
     respond_with @character
   end
+  
+  # PUT /characters/1/save_notes
+  # 
+  # this will animate saving the notes on a character's page
+  def save_notes
+    @character.notes = params[:character][:notes]
+    @successful = @character.save
+  end
 
   # DELETE /characters/1
   # DELETE /characters/1.xml
@@ -180,12 +197,12 @@ class CharactersController < ApplicationController
   def find_lists
     if params[:chronicle_id]
       @clique_list = Clique.known_to(current_user, params[:chronicle_id]).collect do |clique|
-      [clique.name, clique.id]
-    end
+        [clique.name, clique.id]
+      end
     else
-      @clique_list = Clique.known_to(current_user).collect do |clique|
-      [clique.name, clique.id]
-    end
+      @clique_list = Clique.known_to(current_user, @character.chronicle_id).collect do |clique|
+        [clique.name, clique.id]
+      end
     end
     
     @nature_list = Nature.find_all_by_splat_id(@character.splat.id).collect
@@ -217,7 +234,6 @@ class CharactersController < ApplicationController
     when "-1"
       # create a new character
       result =   obsidian_portal.access_token.post("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json", json_character)
-      
     else
       # update existing character
       result =  obsidian_portal.access_token.put("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)

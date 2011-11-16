@@ -6,6 +6,8 @@
 class Chronicle < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
   has_many :characters
+  has_many :pcs, :class_name => "Character", :conditions => {:pc => true}
+  has_many :npcs, :class_name => "Character", :conditions => {:pc => false}
   has_many :cliques
   has_many :selected_users, :class_name => "User", :foreign_key => "selected_chronicle_id"
   
@@ -32,5 +34,10 @@ class Chronicle < ActiveRecord::Base
       user.selected_chronicle_id = nc
       user.save
     end
+  end
+
+  # Show the chronicle's name in the url
+  def to_param
+    "#{self.id}-#{self.name.gsub(/[ '"#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&?\/:;=@]/, '')}"
   end
 end

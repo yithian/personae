@@ -14,47 +14,47 @@
   <table class="four_cells">
     <tr>
       <td><b><%= f.label :name %></b></td>
-      <td><%= f.text_field :name %></td>
+      <td><%= f.text_field :name, :tabindex => "1" %></td>
     <% if @obsidian_characters %>
-      <td><b><%= f.label :obsidian_character_id, "Obisidan Portal" %></b></td>
+      <td><b><%= f.label :obsidian_character_id, "Obsidian Portal" %></b></td>
       <td><%= f.select :obsidian_character_id, @obsidian_characters %></td>
     <% end %>
     </tr>
     <tr>
       <td><b><%= f.label :concept %></b></td>
-      <td colspan='3'><%= f.text_field :concept, :class => 'long' %></td>
+      <td colspan='3'><%= f.text_field :concept, :tabindex => "1", :class => 'long' %></td>
     </tr>
     <tr>
       <td><b><%= label_tag 'chronicle_id', "Chronicle" %></b></td>
       <td>
-        <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :remote => true, :action => update_chronicle_characters_path %>
-        <input name="character[chronicle_id]" type="hidden" value="<%= @character.chronicle.id %>" id="character_chronicle_id">
+        <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :tabindex => "1", :remote => true, :action => update_chronicle_characters_path %>
+	<%= f.hidden_field :chronicle_id %>
       </td>
       <td><b><%= label_tag 'splat_id', "Template" %></b></td>
       <td>
-        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :remote => true, :action => update_splat_characters_path %>
-        <input name="character[splat_id]" type="hidden" value="<%= @character.splat_id %>" id="character_splat_id" />
+        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :tabindex => "1", :remote => true, :action => update_splat_characters_path %>
+	<%= f.hidden_field :splat_id %>
       </td>
     </tr>
     <tr>
       <td><b><%= f.label :virtue %></b></td>
-      <td><%= f.select :virtue, Character::VIRTUES %></td>
+      <td><%= f.select :virtue, Character::VIRTUES, {}, {:tabindex => "1"} %></td>
       <td class="label" id="nature_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
         <b><%= label_tag 'nature_id', @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
       <td class="data" id="nature_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
-        <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :remote => true, :action => update_nature_characters_path %>
-        <input name="character[nature_id]" type="hidden" value="<%= @character.nature_id %>" id="character_nature_id" />
+        <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :tabindex => "1", :remote => true, :action => update_nature_characters_path %>
+	<%= f.hidden_field :nature_id %>
       </td>
     </tr>
     <tr>
       <td rowspan='3' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
-      <td rowspan='3' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]" %></td>
+      <td rowspan='3' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]", :tabindex => "1" %></td>
       <td class="label" id="subnature_label_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
         <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>
       <td class="data" id="subnature_id_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
-        <%= f.select :subnature_id, options_from_collection_for_select(@subnature_list, 'id', 'name', @character.subnature_id) %>
+        <%= f.select :subnature_id, options_from_collection_for_select(@subnature_list, 'id', 'name', @character.subnature_id), {}, {:tabindex => "1"} %>
       </td>
     </tr>
     <tr>
@@ -62,12 +62,12 @@
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
       </td>
       <td class="data" id="ideology_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
-        <%= f.select :ideology_id, options_from_collection_for_select(@ideology_list, 'id', 'name', @character.ideology.id) %>
+        <%= f.select :ideology_id, options_from_collection_for_select(@ideology_list, 'id', 'name', @character.ideology.id), {}, {:tabindex => "1"} %>
       </td>
     </tr>
     <tr>
       <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
-      <td><%= f.select :clique_id, @clique_list %></td>
+      <td><%= f.select :clique_id, @clique_list, {}, {:tabindex => "1"} %></td>
     </tr>
     <tr>
       <td><%= f.check_box :read_name %> <%= f.label :read_name, "Reveal name" %></td>
@@ -87,17 +87,17 @@
 
   
   <h3 class='<%= @character.splat.name.downcase %>'>Description</h3>
-  <p><%= f.text_area :description %></p>
+  <p><%= f.text_area :description, :tabindex => "3" %></p>
   <%= f.check_box :read_description %> <%= f.label :read_description, "Reveal description" %>
 
 
   <h3 class='<%= @character.splat.name.downcase %>'>Background</h3>
-  <p><%= f.text_area :background %></p>
+  <p><%= f.text_area :background, :tabindex => "4" %></p>
   <%= f.check_box :read_background %> <%= f.label :read_background, "Reveal background" %>
 
 
   <h3 class='<%= @character.splat.name.downcase %>'>Deeds</h3>
-  <p><%= f.text_area :deeds %></p>
+  <p><%= f.text_area :deeds, :tabindex => "5" %></p>
   <%= f.check_box :read_deeds %> <%= f.label :read_deeds, "Reveal known deeds" %>
 
 
@@ -105,27 +105,27 @@
   <table class="six_cells">
     <tr>
       <td><%= f.label :intelligence %></td>
-      <td><%= f.text_field :intelligence, :class => "number" %></td>
+      <td><%= f.text_field :intelligence, :tabindex => "6", :class => "number" %></td>
       <td><%= f.label :strength %></td>
-      <td><%= f.text_field :strength, :class => "parent_number" %></td>
+      <td><%= f.text_field :strength, :tabindex => "7", :class => "parent_number" %></td>
       <td><%= f.label :presence %></td>
-      <td><%= f.text_field :presence, :class => "number" %></td>
+      <td><%= f.text_field :presence, :tabindex => "8", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :wits %></td>
-      <td><%= f.text_field :wits, :class => "parent_number" %></td>
+      <td><%= f.text_field :wits, :tabindex => "6", :class => "parent_number" %></td>
       <td><%= f.label :dexterity %></td>
-      <td><%= f.text_field :dexterity, :class => "parent_number" %></td>
+      <td><%= f.text_field :dexterity, :tabindex => "7", :class => "parent_number" %></td>
       <td><%= f.label :manipulation %></td>
-      <td><%= f.text_field :manipulation, :class => "number" %></td>
+      <td><%= f.text_field :manipulation, :tabindex => "8", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :resolve %></td>
-      <td><%= f.text_field :resolve, :class => "parent_number" %></td>
+      <td><%= f.text_field :resolve, :tabindex => "6", :class => "parent_number" %></td>
       <td><%= f.label :stamina %></td>
-      <td><%= f.text_field :stamina, :class => "parent_number" %></td>
+      <td><%= f.text_field :stamina, :tabindex => "7", :class => "parent_number" %></td>
       <td><%= f.label :composure %></td>
-      <td><%= f.text_field :composure, :class => "parent_number" %></td>
+      <td><%= f.text_field :composure, :tabindex => "8", :class => "parent_number" %></td>
     </tr>
   </table>
 
@@ -134,71 +134,71 @@
   <table class="six_cells">
     <tr>
       <td><%= f.label :academics %></td>
-      <td><%= f.text_field :academics, :class => "number" %></td>
+      <td><%= f.text_field :academics, :tabindex => "9", :class => "number" %></td>
       <td><%= f.label :athletics %></td>
-      <td><%= f.text_field :athletics, :class => "number" %></td>
+      <td><%= f.text_field :athletics, :tabindex => "10", :class => "number" %></td>
       <td><%= f.label :animal_ken %></td>
-      <td><%= f.text_field :animal_ken, :class => "number" %></td>
+      <td><%= f.text_field :animal_ken, :tabindex => "11", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :computer %></td>
-      <td><%= f.text_field :computer, :class => "number" %></td>
+      <td><%= f.text_field :computer, :tabindex => "9", :class => "number" %></td>
       <td><%= f.label :brawl %></td>
-      <td><%= f.text_field :brawl, :class => "number" %></td>
+      <td><%= f.text_field :brawl, :tabindex => "10", :class => "number" %></td>
       <td><%= f.label :empathy %></td>
-      <td><%= f.text_field :empathy, :class => "number" %></td>
+      <td><%= f.text_field :empathy, :tabindex => "11", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :crafts %></td>
-      <td><%= f.text_field :crafts, :class => "number" %></td>
+      <td><%= f.text_field :crafts, :tabindex => "9", :class => "number" %></td>
       <td><%= f.label :drive %></td>
-      <td><%= f.text_field :drive, :class => "number" %></td>
+      <td><%= f.text_field :drive, :tabindex => "10", :class => "number" %></td>
       <td><%= f.label :expression %></td>
-      <td><%= f.text_field :expression, :class => "number" %></td>
+      <td><%= f.text_field :expression, :tabindex => "11", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :investigation %></td>
-      <td><%= f.text_field :investigation, :class => "number" %></td>
+      <td><%= f.text_field :investigation, :tabindex => "9", :class => "number" %></td>
       <td><%= f.label :firearms %></td>
-      <td><%= f.text_field :firearms, :class => "number" %></td>
+      <td><%= f.text_field :firearms, :tabindex => "10", :class => "number" %></td>
       <td><%= f.label :intimidation %></td>
-      <td><%= f.text_field :intimidation, :class => "number" %></td>
+      <td><%= f.text_field :intimidation, :tabindex => "11", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :medicine %></td>
-      <td><%= f.text_field :medicine, :class => "number" %></td>
+      <td><%= f.text_field :medicine, :tabindex => "9", :class => "number" %></td>
       <td><%= f.label :larceny %></td>
-      <td><%= f.text_field :larceny, :class => "number" %></td>
+      <td><%= f.text_field :larceny, :tabindex => "10", :class => "number" %></td>
       <td><%= f.label :persuasion %></td>
-      <td><%= f.text_field :persuasion, :class => "number" %></td>
+      <td><%= f.text_field :persuasion, :tabindex => "11", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :occult %></td>
-      <td><%= f.text_field :occult, :class => "number" %></td>
+      <td><%= f.text_field :occult, :tabindex => "9", :class => "number" %></td>
       <td><%= f.label :stealth %></td>
-      <td><%= f.text_field :stealth, :class => "number" %></td>
+      <td><%= f.text_field :stealth, :tabindex => "10", :class => "number" %></td>
       <td><%= f.label :socialize %></td>
-      <td><%= f.text_field :socialize, :class => "number" %></td>
+      <td><%= f.text_field :socialize, :tabindex => "11", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :politics %></td>
-      <td><%= f.text_field :politics, :class => "number" %></td>
+      <td><%= f.text_field :politics, :tabindex => "9", :class => "number" %></td>
       <td><%= f.label :survival %></td>
-      <td><%= f.text_field :survival, :class => "number" %></td>
+      <td><%= f.text_field :survival, :tabindex => "10", :class => "number" %></td>
       <td><%= f.label :streetwise %></td>
-      <td><%= f.text_field :streetwise, :class => "number" %></td>
+      <td><%= f.text_field :streetwise, :tabindex => "11", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :science %></td>
-      <td><%= f.text_field :science, :class => "number" %></td>
+      <td><%= f.text_field :science, :tabindex => "9", :class => "number" %></td>
       <td><%= f.label :weaponry %></td>
-      <td><%= f.text_field :weaponry, :class => "number" %></td>
+      <td><%= f.text_field :weaponry, :tabindex => "10", :class => "number" %></td>
       <td><%= f.label :subterfuge %></td>
-      <td><%= f.text_field :subterfuge, :class => "number" %></td>
+      <td><%= f.text_field :subterfuge, :tabindex => "11", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :skill_specialties %></td>
-      <td colspan="5" class="growdown"><%= f.text_area :skill_specialties %></td>
+      <td colspan="5" class="growdown"><%= f.text_area :skill_specialties, :tabindex => "12" %></td>
     </tr>
   </table>
 
@@ -207,9 +207,9 @@
   <table class="four_cells">
     <tr>
       <td><%= f.label :health %></td>
-      <td><%= f.text_field :health, :class => "number" %></td>
+      <td><%= f.text_field :health, :tabindex => "13", :class => "number" %></td>
       <td><%= f.label :willpower %></td>
-      <td><%= f.text_field :willpower, :class => "number" %></td>
+      <td><%= f.text_field :willpower, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :current_health %></td>
@@ -219,36 +219,36 @@
     </tr>
     <tr>
       <td><%= f.label :size %></td>
-      <td><%= f.text_field :size, :class => "number" %></td>
+      <td><%= f.text_field :size, :tabindex => "13", :class => "number" %></td>
       <td colspan="2"><%= f.label :derangements %></td>
     </tr>
     <tr>
       <td><%= f.label :initiative %></td>
-      <td><%= f.text_field :initiative, :class => "number" %></td>
-      <td rowspan="8" colspan="2" class="growdown"><%= f.text_area :derangements %></td>
+      <td><%= f.text_field :initiative, :tabindex => "13", :class => "number" %></td>
+      <td rowspan="8" colspan="2" class="growdown"><%= f.text_area :derangements, :tabindex => "14" %></td>
     </tr>
     <tr>
       <td><%= f.label :speed %></td>
-      <td><%= f.text_field :speed, :class => "number" %></td>
+      <td><%= f.text_field :speed, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :defense %></td>
-      <td><%= f.text_field :defense, :class => "number" %></td>
+      <td><%= f.text_field :defense, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :armor %></td>
-      <td><%= f.text_field :armor, :class => "number" %></td>
+      <td><%= f.text_field :armor, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
       <td><%= f.label :morality, @character.splat.morality_name, :id => "morality_label" %></td>
-      <td><%= f.text_field :morality, :class => "number" %></td>
+      <td><%= f.text_field :morality, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
       <td class="label" id="power_stat_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
         <%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %>
       </td>
       <td class="data" id="power_stat_cell" <%= "style='display: none'" if @character.is_mortal? %> >
-        <%= f.text_field :power_stat, :class => "number" %>
+        <%= f.text_field :power_stat, :tabindex => "13", :class => "number" %>
       </td>
     </tr>
     <tr>
@@ -256,7 +256,7 @@
         <%= f.label :max_fuel, "Max #{@character.splat.fuel_name}", :id => "max_fuel_label" %>
       </td>
       <td class="data" id="max_fuel_cell" <%= "style='display: none'" if @character.is_mortal? %> >
-        <%= f.text_field :max_fuel, :class => "number" %>
+        <%= f.text_field :max_fuel, :tabindex => "13", :class => "number" %>
       </td>
     </tr>
     <tr>
@@ -264,18 +264,18 @@
         <%= f.label :current_fuel, "Current #{@character.splat.fuel_name}", :id => "current_fuel_label" %>
       </td>
       <td class="data" id="current_fuel_cell" <%= "style='display: none'" if @character.is_mortal? %> >
-        <%= f.text_field :current_fuel, :class => "number" %>
+        <%= f.text_field :current_fuel, :tabindex => "13", :class => "number" %>
       </td>
     </tr>
   </table>
   
   
   <h3 class='<%= @character.splat.name.downcase %>'>Merits</h3>
-  <p><%= f.text_area :merits %></p>
+  <p><%= f.text_area :merits, :tabindex => "15" %></p>
   
   
   <h3 class='<%= @character.splat.name.downcase %>'>Equipment</h3>
-  <p><%= f.text_area :equipment %></p>
+  <p><%= f.text_area :equipment, :tabindex => "15" %></p>
   
   
   <div id="mage_powers" <%= "style='display: none'" unless @character.is_mage? %> >
@@ -283,45 +283,45 @@
     <table class="three_cells">
       <tr>
         <td><%= f.label :death %></td>
-        <td><%= f.text_field :death, :class => "number" %></td>
+        <td><%= f.text_field :death, :tabindex => "16", :class => "number" %></td>
         <td><%= f.label :common_spells %></td>
       </tr>
       <tr>
         <td><%= f.label :fate %></td>
-        <td><%= f.text_field :fate, :class => "number" %></td>
-        <td rowspan="9" class="growdown"><%= f.text_area :common_spells %></td>
+        <td><%= f.text_field :fate, :tabindex => "16", :class => "number" %></td>
+        <td rowspan="9" class="growdown"><%= f.text_area :common_spells, :tabindex => "17" %></td>
       </tr>
       <tr>
         <td><%= f.label :forces %></td>
-        <td><%= f.text_field :forces, :class => "number" %></td>
+        <td><%= f.text_field :forces, :tabindex => "16", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :life %></td>
-        <td><%= f.text_field :life, :class => "number" %></td>
+        <td><%= f.text_field :life, :tabindex => "16", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :matter %></td>
-        <td><%= f.text_field :matter, :class => "number" %></td>
+        <td><%= f.text_field :matter, :tabindex => "16", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :mind %></td>
-        <td><%= f.text_field :mind, :class => "number" %></td>
+        <td><%= f.text_field :mind, :tabindex => "16", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :prime %></td>
-        <td><%= f.text_field :prime, :class => "number" %></td>
+        <td><%= f.text_field :prime, :tabindex => "16", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :space %></td>
-        <td><%= f.text_field :space, :class => "number" %></td>
+        <td><%= f.text_field :space, :tabindex => "16", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :spirit %></td>
-        <td><%= f.text_field :spirit, :class => "number" %></td>
+        <td><%= f.text_field :spirit, :tabindex => "16", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :time %></td>
-        <td><%= f.text_field :time, :class => "number" %></td>
+        <td><%= f.text_field :time, :tabindex => "16", :class => "number" %></td>
       </tr>
     </table>
   </div>
@@ -332,25 +332,25 @@
     <table class="three_cells">
       <tr>
         <td><%= f.label :purity %></td>
-        <td><%= f.text_field :purity, :class => "number" %></td>
+        <td><%= f.text_field :purity, :tabindex => "18", :class => "number" %></td>
         <td><%= f.label :gifts %></td>
       </tr>
       <tr>
         <td><%= f.label :glory %></td>
-        <td><%= f.text_field :glory, :class => "number" %></td>
-        <td rowspan="4" class="growdown"><%= f.text_area :gifts %></td>
+        <td><%= f.text_field :glory, :tabindex => "18", :class => "number" %></td>
+        <td rowspan="4" class="growdown"><%= f.text_area :gifts, :tabindex => "19" %></td>
       </tr>
       <tr>
         <td><%= f.label :honor %></td>
-        <td><%= f.text_field :honor, :class => "number" %></td>
+        <td><%= f.text_field :honor, :tabindex => "18", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :wisdom %></td>
-        <td><%= f.text_field :wisdom, :class => "number" %></td>
+        <td><%= f.text_field :wisdom, :tabindex => "18", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :cunning %></td>
-        <td><%= f.text_field :cunning, :class => "number" %></td>
+        <td><%= f.text_field :cunning, :tabindex => "18", :class => "number" %></td>
       </tr>
     </table>
   </div>
@@ -361,45 +361,45 @@
     <table class="three_cells">
       <tr>
         <td><%= f.label :animalism %></td>
-        <td><%= f.text_field :animalism, :class => "number" %></td>
+        <td><%= f.text_field :animalism, :tabindex => "20", :class => "number" %></td>
         <td><%= f.label :covenant_disciplines %></td>
       </tr>
       <tr>
         <td><%= f.label :auspex %></td>
-        <td><%= f.text_field :auspex, :class => "number" %></td>
-        <td rowspan="9" class="growdown"><%= f.text_area :covenant_disciplines %></td>
+        <td><%= f.text_field :auspex, :tabindex => "20", :class => "number" %></td>
+        <td rowspan="9" class="growdown"><%= f.text_area :covenant_disciplines, :tabindex => "21" %></td>
       </tr>
       <tr>
         <td><%= f.label :celerity %></td>
-        <td><%= f.text_field :celerity, :class => "number" %></td>
+        <td><%= f.text_field :celerity, :tabindex => "20", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :dominate %></td>
-        <td><%= f.text_field :dominate, :class => "number" %></td>
+        <td><%= f.text_field :dominate, :tabindex => "20", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :majesty %></td>
-        <td><%= f.text_field :majesty, :class => "number" %></td>
+        <td><%= f.text_field :majesty, :tabindex => "20", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :nightmare %></td>
-        <td><%= f.text_field :nightmare, :class => "number" %></td>
+        <td><%= f.text_field :nightmare, :tabindex => "20", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :obfuscate %></td>
-        <td><%= f.text_field :obfuscate, :class => "number" %></td>
+        <td><%= f.text_field :obfuscate, :tabindex => "20", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :protean %></td>
-        <td><%= f.text_field :protean, :class => "number" %></td>
+        <td><%= f.text_field :protean, :tabindex => "20", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :resilience %></td>
-        <td><%= f.text_field :resilience, :class => "number" %></td>
+        <td><%= f.text_field :resilience, :tabindex => "20", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :vigor %></td>
-        <td><%= f.text_field :vigor, :class => "number" %></td>
+        <td><%= f.text_field :vigor, :tabindex => "20", :class => "number" %></td>
       </tr>
     </table>
   </div>
@@ -407,7 +407,7 @@
   
   <div id="promethean_powers" <%= "style='display: none'" unless @character.is_promethean? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Transmutations</h3>
-    <p><%= f.text_area :transmutations %></p>
+    <p><%= f.text_area :transmutations, :tabindex => "22" %></p>
   </div>
   
   
@@ -416,79 +416,85 @@
     <table class="three_cells">
       <tr>
         <td><%= f.label :dream %></td>
-        <td><%= f.text_field :dream, :class => "number" %></td>
+        <td><%= f.text_field :dream, :tabindex => "23", :class => "number" %></td>
         <td><%= f.label :goblin_contracts %></td>
       </tr>
       <tr>
         <td><%= f.label :hearth %></td>
-        <td><%= f.text_field :hearth, :class => "number" %></td>
-        <td rowspan="17" class="growdown"><%= f.text_area :goblin_contracts %></td>
+        <td><%= f.text_field :hearth, :tabindex => "23", :class => "number" %></td>
+        <td rowspan="17" class="growdown"><%= f.text_area :goblin_contracts, :tabindex => "24" %></td>
       </tr>
       <tr>
         <td><%= f.label :mirror %></td>
-        <td><%= f.text_field :mirror, :class => "number" %></td>
+        <td><%= f.text_field :mirror, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :smoke %></td>
-        <td><%= f.text_field :smoke, :class => "number" %></td>
+        <td><%= f.text_field :smoke, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :artifice %></td>
-        <td><%= f.text_field :artifice, :class => "number" %></td>
+        <td><%= f.text_field :artifice, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :darkness %></td>
-        <td><%= f.text_field :darkness, :class => "number" %></td>
+        <td><%= f.text_field :darkness, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :elements %></td>
-        <td><%= f.text_field :elements, :class => "number" %></td>
+        <td><%= f.text_field :elements, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :fang_and_tooth %></td>
-        <td><%= f.text_field :fang_and_tooth, :class => "number" %></td>
+        <td><%= f.text_field :fang_and_tooth, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :stone %></td>
-        <td><%= f.text_field :stone, :class => "number" %></td>
+        <td><%= f.text_field :stone, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :vainglory %></td>
-        <td><%= f.text_field :vainglory, :class => "number" %></td>
+        <td><%= f.text_field :vainglory, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :fleeting_spring %></td>
-        <td><%= f.text_field :fleeting_spring, :class => "number" %></td>
+        <td><%= f.text_field :fleeting_spring, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :eternal_spring %></td>
-        <td><%= f.text_field :eternal_spring, :class => "number" %></td>
+        <td><%= f.text_field :eternal_spring, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :fleeting_summer %></td>
-        <td><%= f.text_field :fleeting_summer, :class => "number" %></td>
+        <td><%= f.text_field :fleeting_summer, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :eternal_summer %></td>
-        <td><%= f.text_field :eternal_summer, :class => "number" %></td>
+        <td><%= f.text_field :eternal_summer, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :fleeting_autumn %></td>
-        <td><%= f.text_field :fleeting_autumn, :class => "number" %></td>
+        <td><%= f.text_field :fleeting_autumn, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :eternal_autumn %></td>
-        <td><%= f.text_field :eternal_autumn, :class => "number" %></td>
+        <td><%= f.text_field :eternal_autumn, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :fleeting_winter %></td>
-        <td><%= f.text_field :fleeting_winter, :class => "number" %></td>
+        <td><%= f.text_field :fleeting_winter, :tabindex => "23", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :eternal_winter %></td>
-        <td><%= f.text_field :eternal_winter, :class => "number" %></td>
+        <td><%= f.text_field :eternal_winter, :tabindex => "23", :class => "number" %></td>
       </tr>
     </table>
+  </div>
+  
+  
+  <div id="hunter_powers" <%= "style='display: none'" unless @character.is_hunter? %> >
+    <h3 class='<%= @character.splat.name.downcase %>'>Tactics</h3>
+    <p><%= f.text_area :tactics, :tabindex => "25" %></p>
   </div>
   
   
@@ -497,52 +503,54 @@
     <table class="three_cells">
       <tr>
         <td><%= f.label :boneyard %></td>
-        <td><%= f.text_field :boneyard, :class => "number" %></td>
+        <td><%= f.text_field :boneyard, :tabindex => "26", :class => "number" %></td>
         <td><%= f.label :keys %></td>
       </tr>
       <tr>
         <td><%= f.label :caul %></td>
-        <td><%= f.text_field :caul, :class => "number" %></td>
-        <td rowspan="6" class="growdown"><%= f.text_area :keys %></td>
+        <td><%= f.text_field :caul, :tabindex => "26", :class => "number" %></td>
+        <td rowspan="6" class="growdown"><%= f.text_area :keys, :tabindex => "27" %></td>
       </tr>
       <tr>
         <td><%= f.label :curse %></td>
-        <td><%= f.text_field :curse, :class => "number" %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :oracle %></td>
-        <td><%= f.text_field :oracle, :class => "number" %></td>
+        <td><%= f.text_field :curse, :tabindex => "26", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :marionette %></td>
-        <td><%= f.text_field :marionette, :class => "number" %></td>
+        <td><%= f.text_field :marionette, :tabindex => "26", :class => "number" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :oracle %></td>
+        <td><%= f.text_field :oracle, :tabindex => "26", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :rage %></td>
-        <td><%= f.text_field :rage, :class => "number" %></td>
+        <td><%= f.text_field :rage, :tabindex => "26", :class => "number" %></td>
       </tr>
       <tr>
         <td><%= f.label :shroud %></td>
-        <td><%= f.text_field :shroud, :class => "number" %></td>
+        <td><%= f.text_field :shroud, :tabindex => "26", :class => "number" %></td>
       </tr>
     </table>
     
     <h3 class='<%= @character.splat.name.downcase %>'>Ceremonies</h3>
-    <p><%= f.text_area :ceremonies %></p>
+    <p><%= f.text_area :ceremonies, :tabindex => "28" %></p>
   </div>
   <%= f.check_box :read_crunch %> <%= f.label :read_crunch, "Reveal crunch", :title => "Crunch is defined as a character's attributes, skills, advantages, merits, equipment and any supernatural powers" %>
 
 
   <h3 class='<%= @character.splat.name.downcase %>'>Experience</h3>
-  <p><%= f.text_area :experience %></p>
+  <p><%= f.text_area :experience, :tabindex => "29" %></p>
   <%= f.check_box :read_experience %> <%= f.label :read_experience, "Reveal experience" %>
   
 
   <h3 class='<%= @character.splat.name.downcase %>'>Notes</h3>
-  <p><%= f.text_area :notes %></p>
+  <p><%= f.text_area :notes, :tabindex => "29" %></p>
   <%= f.check_box :read_notes %> <%= f.label :read_notes, "Reveal notes" %>
   <br />
 
+  <h3 class='<%= @character.splat.name.downcase %>'>Status</h3>
+  <p><%= f.check_box :pc %> <%= f.label :pc, "Character is a PC" %></p>
   
   <%= f.submit 'Save' %>
 <% end %>

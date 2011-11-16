@@ -1,261 +1,253 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-  <title>Class: CharactersController</title>
+<title>Class: CharactersController</title>
 
-  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
-  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-</head>
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
 <body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-  <div id="metadata">
-    <div id="home-metadata">
-      <div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-      </div>
-    </div>
 
-    <div id="file-metadata">
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li><a href="./app/controllers/characters_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/controllers/characters_controller.rb">app/controllers/characters_controller.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
 
-      
-    </div>
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
 
-    <div id="class-metadata">
-      
-      <!-- Parent Class -->
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        
-        <p class="link"><a href="ApplicationController.html">ApplicationController</a></p>
-        
-      </div>
-      
 
-      
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/characters_controller.rb
+  </ul>
+</nav>
 
-      
-
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-i-change_chronicle">#change_chronicle</a></li>
-          
-          <li><a href="#method-i-create">#create</a></li>
-          
-          <li><a href="#method-i-destroy">#destroy</a></li>
-          
-          <li><a href="#method-i-edit">#edit</a></li>
-          
-          <li><a href="#method-i-index">#index</a></li>
-          
-          <li><a href="#method-i-new">#new</a></li>
-          
-          <li><a href="#method-i-preview">#preview</a></li>
-          
-          <li><a href="#method-i-shapeshift">#shapeshift</a></li>
-          
-          <li><a href="#method-i-show">#show</a></li>
-          
-          <li><a href="#method-i-update">#update</a></li>
-          
-          <li><a href="#method-i-update_chronicle">#update_chronicle</a></li>
-          
-          <li><a href="#method-i-update_nature">#update_nature</a></li>
-          
-          <li><a href="#method-i-update_splat">#update_splat</a></li>
-          
-        </ul>
-      </div>
-      
-
-      
-      <!-- Included Modules -->
-      <div id="includes-section" class="section">
-        <h3 class="section-header">Included Modules</h3>
-        <ul class="link-list">
-        
-        
-          <li><span class="include">MageHand</span></li>
-        
-        
-        </ul>
-      </div>
-      
-    </div>
-
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a></li>
-        
-        </ul>
-      </div>
-      
-
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class/Module Index
-          <span class="search-toggle"><img src="./images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
-
-        <ul class="link-list">
-        
-          <li><a href="./ApplicationController.html">ApplicationController</a></li>
-        
-          <li><a href="./ApplicationController/Helper.html">ApplicationController::Helper</a></li>
-        
-          <li><a href="./Ability.html">Ability</a></li>
-        
-          <li><a href="./AdminController.html">AdminController</a></li>
-        
-          <li><a href="./AdminHelper.html">AdminHelper</a></li>
-        
-          <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
-        
-          <li><a href="./Character.html">Character</a></li>
-        
-          <li><a href="./CharactersController.html">CharactersController</a></li>
-        
-          <li><a href="./CharactersHelper.html">CharactersHelper</a></li>
-        
-          <li><a href="./Chronicle.html">Chronicle</a></li>
-        
-          <li><a href="./ChroniclesController.html">ChroniclesController</a></li>
-        
-          <li><a href="./ChroniclesHelper.html">ChroniclesHelper</a></li>
-        
-          <li><a href="./Clique.html">Clique</a></li>
-        
-          <li><a href="./CliquesController.html">CliquesController</a></li>
-        
-          <li><a href="./CliquesHelper.html">CliquesHelper</a></li>
-        
-          <li><a href="./Comment.html">Comment</a></li>
-        
-          <li><a href="./CommentHelper.html">CommentHelper</a></li>
-        
-          <li><a href="./CommentsController.html">CommentsController</a></li>
-        
-          <li><a href="./IdeologiesController.html">IdeologiesController</a></li>
-        
-          <li><a href="./IdeologiesHelper.html">IdeologiesHelper</a></li>
-        
-          <li><a href="./Ideology.html">Ideology</a></li>
-        
-          <li><a href="./Nature.html">Nature</a></li>
-        
-          <li><a href="./ServicesController.html">ServicesController</a></li>
-        
-          <li><a href="./ServicesHelper.html">ServicesHelper</a></li>
-        
-          <li><a href="./Splat.html">Splat</a></li>
-        
-          <li><a href="./Subnature.html">Subnature</a></li>
-        
-          <li><a href="./UniqueInChronicleValidator.html">UniqueInChronicleValidator</a></li>
-        
-          <li><a href="./User.html">User</a></li>
-        
-          <li><a href="./ViceValidator.html">ViceValidator</a></li>
-        
-          <li><a href="./VirtueValidator.html">VirtueValidator</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
+    
   </div>
 
-  <div id="documentation">
-    <h1 class="class">CharactersController</h1>
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
 
-    <div id="description" class="description">
-      
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">MageHand</span>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-change_chronicle">#change_chronicle</a>
+    
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-destroy">#destroy</a>
+    
+    <li><a href="#method-i-edit">#edit</a>
+    
+    <li><a href="#method-i-index">#index</a>
+    
+    <li><a href="#method-i-new">#new</a>
+    
+    <li><a href="#method-i-preview">#preview</a>
+    
+    <li><a href="#method-i-save_notes">#save_notes</a>
+    
+    <li><a href="#method-i-shapeshift">#shapeshift</a>
+    
+    <li><a href="#method-i-show">#show</a>
+    
+    <li><a href="#method-i-update">#update</a>
+    
+    <li><a href="#method-i-update_chronicle">#update_chronicle</a>
+    
+    <li><a href="#method-i-update_nature">#update_nature</a>
+    
+    <li><a href="#method-i-update_splat">#update_splat</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Character.html">Character</a>
+  
+    <li><a href="./Character/ViceValidator.html">Character::ViceValidator</a>
+  
+    <li><a href="./Character/VirtueValidator.html">Character::VirtueValidator</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationController/Helper.html">ApplicationController::Helper</a>
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./CharactersController.html">CharactersController</a>
+  
+    <li><a href="./CharactersHelper.html">CharactersHelper</a>
+  
+    <li><a href="./Chronicle.html">Chronicle</a>
+  
+    <li><a href="./ChroniclesController.html">ChroniclesController</a>
+  
+    <li><a href="./ChroniclesHelper.html">ChroniclesHelper</a>
+  
+    <li><a href="./Clique.html">Clique</a>
+  
+    <li><a href="./CliquesController.html">CliquesController</a>
+  
+    <li><a href="./CliquesHelper.html">CliquesHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentHelper.html">CommentHelper</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./IdeologiesController.html">IdeologiesController</a>
+  
+    <li><a href="./IdeologiesHelper.html">IdeologiesHelper</a>
+  
+    <li><a href="./Ideology.html">Ideology</a>
+  
+    <li><a href="./Nature.html">Nature</a>
+  
+    <li><a href="./ServicesController.html">ServicesController</a>
+  
+    <li><a href="./ServicesHelper.html">ServicesHelper</a>
+  
+    <li><a href="./Splat.html">Splat</a>
+  
+    <li><a href="./Subnature.html">Subnature</a>
+  
+    <li><a href="./UniqueInChronicleValidator.html">UniqueInChronicleValidator</a>
+  
+    <li><a href="./User.html">User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class CharactersController</h1>
+
+  <div id="description" class="description">
+    
 <p>Controller for character actions: show/create/edit/etc</p>
 
-    </div><!-- description -->
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
 
     
+
     
+
     
-    <div id="5Buntitled-5D" class="documentation-section">
-      
 
-      
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
 
-      
+    
+      <div id="method-i-change_chronicle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">change_chronicle</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
 
-      
-
-      <!-- Methods -->
-      
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
-
-      
-        <div id="change_chronicle-method" class="method-detail ">
-          <a name="method-i-change_chronicle"></a>
+        <div class="method-description">
+          
+          <p>POST /characters/change_chronicle</p>
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">change_chronicle</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>POST /characters/change_chronicle</p>
-            
-
-            
-            <div class="method-source-code" id="change_chronicle-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 30</span>
+          <div class="method-source-code" id="change_chronicle-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_chronicle</span>
   <span class="ruby-comment"># this bit of weirdness is to ensure the chronicle actually exists</span>
   <span class="ruby-ivar">@selected_chronicle_id</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>]).<span class="ruby-identifier">id</span>
+  
+  <span class="ruby-identifier">chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-ivar">@selected_chronicle_id</span>)
+  <span class="ruby-ivar">@pcs</span> = <span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">pcs</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">current_user</span>) }
+  <span class="ruby-ivar">@npcs</span> = <span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">npcs</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">current_user</span>) }
   
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_signed_in?</span>
     <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-ivar">@selected_chronicle_id</span>)
@@ -266,36 +258,33 @@
 
   <span class="ruby-ivar">@characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">known_to</span> <span class="ruby-identifier">current_user</span>, <span class="ruby-ivar">@selected_chronicle_id</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- change_chronicle-source -->
-            
-          </div>
+          </div><!-- change_chronicle-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- change_chronicle-method -->
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /characters POST /characters.xml</p>
           
 
           
-        </div><!-- change_chronicle-method -->
-
-      
-        <div id="create-method" class="method-detail ">
-          <a name="method-i-create"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">create</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>POST /characters POST /characters.xml</p>
-            
-
-            
-            <div class="method-source-code" id="create-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 111</span>
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>])
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">owner</span> = <span class="ruby-identifier">current_user</span>
@@ -309,36 +298,33 @@
 
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- create-source -->
-            
-          </div>
+          </div><!-- create-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>DELETE /characters/1 DELETE /characters/1.xml</p>
           
 
           
-        </div><!-- create-method -->
-
-      
-        <div id="destroy-method" class="method-detail ">
-          <a name="method-i-destroy"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">destroy</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>DELETE /characters/1 DELETE /characters/1.xml</p>
-            
-
-            
-            <div class="method-source-code" id="destroy-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 144</span>
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">destroy</span>
 
@@ -347,72 +333,70 @@
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- destroy-source -->
-            
-          </div>
+          </div><!-- destroy-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- destroy-method -->
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /characters/1/edit</p>
           
 
           
-        </div><!-- destroy-method -->
-
-      
-        <div id="edit-method" class="method-detail ">
-          <a name="method-i-edit"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">edit</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>GET /characters/1/edit</p>
-            
-
-            
-            <div class="method-source-code" id="edit-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 66</span>
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-identifier">obsidian_characters</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- edit-source -->
-            
-          </div>
+          </div><!-- edit-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- edit-method -->
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /characters GET /characters.xml</p>
           
 
           
-        </div><!-- edit-method -->
-
-      
-        <div id="index-method" class="method-detail ">
-          <a name="method-i-index"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">index</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>GET /characters GET /characters.xml</p>
-            
-
-            
-            <div class="method-source-code" id="index-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 15</span>
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
   <span class="ruby-ivar">@selected_chronicle_id</span> = <span class="ruby-identifier">help</span>.<span class="ruby-identifier">selected_chronicle_id</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">session</span>)
+
+  <span class="ruby-identifier">chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-ivar">@selected_chronicle_id</span>)
+  <span class="ruby-ivar">@pcs</span> = <span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">pcs</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">current_user</span>) }
+  <span class="ruby-ivar">@npcs</span> = <span class="ruby-identifier">chronicle</span>.<span class="ruby-identifier">npcs</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">show_name_to_user?</span>(<span class="ruby-identifier">current_user</span>) }
   
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_signed_in?</span>
     <span class="ruby-ivar">@characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">known_to</span> <span class="ruby-identifier">current_user</span>
@@ -421,108 +405,132 @@
     <span class="ruby-ivar">@characters</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">known_to</span> <span class="ruby-value">0</span>, <span class="ruby-ivar">@selected_chronicle_id</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@characters</span>
+  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@characters</span>, <span class="ruby-ivar">@selected_chronicle_id</span>, <span class="ruby-ivar">@pcs</span>, <span class="ruby-ivar">@npcs</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- index-source -->
-            
-          </div>
+          </div><!-- index-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- index-method -->
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /characters/new GET /characters/new.xml</p>
           
 
           
-        </div><!-- index-method -->
-
-      
-        <div id="new-method" class="method-detail ">
-          <a name="method-i-new"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">new</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>GET /characters/new GET /characters/new.xml</p>
-            
-
-            
-            <div class="method-source-code" id="new-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 59</span>
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">obsidian_characters</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
   
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- new-source -->
-            
-          </div>
+          </div><!-- new-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- new-method -->
+
+    
+      <div id="method-i-preview" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">preview</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /characters/preview</p>
           
 
           
-        </div><!-- new-method -->
-
-      
-        <div id="preview-method" class="method-detail ">
-          <a name="method-i-preview"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">preview</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>GET /characters/preview</p>
-            
-
-            
-            <div class="method-source-code" id="preview-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 51</span>
+          <div class="method-source-code" id="preview-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">preview</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- preview-source -->
-            
-          </div>
+          </div><!-- preview-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- preview-method -->
+
+    
+      <div id="method-i-save_notes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_notes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>PUT /characters/1/save_notes</p>
+
+<p>this will animate saving the notes on a character’s page</p>
           
 
           
-        </div><!-- preview-method -->
+          <div class="method-source-code" id="save_notes-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_notes</span>
+  <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:notes</span>]
+  <span class="ruby-ivar">@successful</span> = <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_notes-source -->
+          
+        </div>
 
-      
-        <div id="shapeshift-method" class="method-detail ">
-          <a name="method-i-shapeshift"></a>
+        
+
+        
+      </div><!-- save_notes-method -->
+
+    
+      <div id="method-i-shapeshift" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">shapeshift</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /characters/shapeshift</p>
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">shapeshift</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>POST /characters/shapeshift</p>
-            
-
-            
-            <div class="method-source-code" id="shapeshift-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 101</span>
+          <div class="method-source-code" id="shapeshift-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">shapeshift</span>
   <span class="ruby-ivar">@form</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:form</span>]
 
@@ -530,72 +538,66 @@
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- shapeshift-source -->
-            
-          </div>
+          </div><!-- shapeshift-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- shapeshift-method -->
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /characters/1 GET /characters/1.xml</p>
           
 
           
-        </div><!-- shapeshift-method -->
-
-      
-        <div id="show-method" class="method-detail ">
-          <a name="method-i-show"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>GET /characters/1 GET /characters/1.xml</p>
-            
-
-            
-            <div class="method-source-code" id="show-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 46</span>
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show-source -->
-            
-          </div>
-
+          </div><!-- show-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- show-method -->
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- show-method -->
-
-      
-        <div id="update-method" class="method-detail ">
-          <a name="method-i-update"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">update</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>PUT /characters/1 PUT /characters/1.xml</p>
+          <p>PUT /characters/1 PUT /characters/1.xml</p>
 
 <p>this will also sync a character’s sheet to obsidian portal, if an
 obsidian_character_id is specified</p>
-            
+          
 
-            
-            <div class="method-source-code" id="update-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 130</span>
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">vice</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character_vice</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character_vice</span>]
   
@@ -607,72 +609,66 @@ obsidian_character_id is specified</p>
   
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@character</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- update-source -->
-            
-          </div>
+          </div><!-- update-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- update-method -->
+
+    
+      <div id="method-i-update_chronicle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_chronicle</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /characters/update_chronicle</p>
           
 
           
-        </div><!-- update-method -->
-
-      
-        <div id="update_chronicle-method" class="method-detail ">
-          <a name="method-i-update_chronicle"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">update_chronicle</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>POST /characters/update_chronicle</p>
-            
-
-            
-            <div class="method-source-code" id="update_chronicle-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 93</span>
+          <div class="method-source-code" id="update_chronicle-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_chronicle</span>
   <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>])
   <span class="ruby-ivar">@clique_list</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
     [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span>]
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- update_chronicle-source -->
-            
-          </div>
+          </div><!-- update_chronicle-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- update_chronicle-method -->
+
+    
+      <div id="method-i-update_nature" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_nature</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /characters/update_nature</p>
           
 
           
-        </div><!-- update_chronicle-method -->
-
-      
-        <div id="update_nature-method" class="method-detail ">
-          <a name="method-i-update_nature"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">update_nature</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>POST /characters/update_nature</p>
-            
-
-            
-            <div class="method-source-code" id="update_nature-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 83</span>
+          <div class="method-source-code" id="update_nature-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_nature</span>
   <span class="ruby-ivar">@nature</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:nature_id</span>])
   <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">list_for_nature</span>(<span class="ruby-ivar">@nature</span>)
@@ -681,36 +677,33 @@ obsidian_character_id is specified</p>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- update_nature-source -->
-            
-          </div>
+          </div><!-- update_nature-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- update_nature-method -->
+
+    
+      <div id="method-i-update_splat" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_splat</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /characters/update_splat</p>
           
 
           
-        </div><!-- update_nature-method -->
-
-      
-        <div id="update_splat-method" class="method-detail ">
-          <a name="method-i-update_splat"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">update_splat</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>POST /characters/update_splat</p>
-            
-
-            
-            <div class="method-source-code" id="update_splat-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/characters_controller.rb, line 71</span>
+          <div class="method-source-code" id="update_splat-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_splat</span>
   <span class="ruby-ivar">@splat</span> = <span class="ruby-constant">Splat</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:splat_id</span>])
   <span class="ruby-ivar">@nature_list</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-ivar">@splat</span>.<span class="ruby-identifier">id</span>)
@@ -721,29 +714,26 @@ obsidian_character_id is specified</p>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- update_splat-source -->
-            
-          </div>
-
+          </div><!-- update_splat-source -->
           
+        </div>
 
-          
-        </div><!-- update_splat-method -->
+        
 
-      
-      </div><!-- public-instance-method-details -->
+        
+      </div><!-- update_splat-method -->
+
     
-    </div><!-- 5Buntitled-5D -->
+    </section><!-- public-instance-method-details -->
   
+  </section><!-- 5Buntitled-5D -->
 
-  </div><!-- documentation -->
+</div><!-- documentation -->
 
-  <div id="validator-badges">
-    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-      Rdoc Generator</a> 2</small>.</p>
-  </div>
 
-</body>
-</html>
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.10.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 

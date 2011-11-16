@@ -2,8 +2,34 @@
 <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle_id), :remote => true, :action => change_chronicle_characters_path %>
 
 <h3>Characters</h3>
-<div id="list">
-  <%= render :partial => 'list' %>
-</div>
+<table class='list'>
+  <tbody>
+    <tr>
+      <th></th>
+      <th>PC Name</th>
+      <th>Concept</th>
+      <th>Clique</th>
+      <th></th>
+    </tr>
+  </tbody>
+
+  <tbody id="pcs_list">
+    <%= render :partial => 'character', :collection => @pcs %>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <th></th>
+      <th>NPC Name</th>
+      <th>Concept</th>
+      <th>Clique</th>
+      <th></th>
+    </tr>
+  </tbody>
+
+  <tbody id="npcs_list">
+    <%= render :partial => 'character', :collection => @npcs %>
+  </tbody>
+</table>
 
 <%= link_to 'New character', new_character_path(:chronicle_id => @selected_chronicle_id), :id => "new_link" %><br />

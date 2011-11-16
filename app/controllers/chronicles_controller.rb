@@ -21,6 +21,9 @@ class ChroniclesController < ApplicationController
   def show
     @characters = @chronicle.characters
     @cliques = @chronicle.cliques
+
+    @pcs = @chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
+    @npcs = @chronicle.npcs.reject { |c| not c.show_name_to_user?(current_user) }
     
     respond_with @chronicle
   end
