@@ -7,6 +7,7 @@ Personae::Application.routes.draw do
   devise_for :users
 
   resources :chronicles
+  resources :natures
   resources :ideologies
 
   resources :cliques do

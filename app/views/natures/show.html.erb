@@ -1,0 +1,25 @@
+<p>
+    <h3>Name</h3>
+    <%= @nature.name %>
+</p>
+
+<p>
+  <table class='list'>
+    <tr>
+      <th>Member</th>
+      <th>Concept</th>
+      <th><%= @nature.splat.clique_name %></th>
+    </tr>
+
+    <%= render(:partial => "member", :collection => @nature.characters) %>
+  </table>
+</p>
+
+
+<%= link_to('New member', new_character_path(:nature_id => @nature.id)) if can? :create, Character %>
+<% if can? :edit, @nature %>
+  | <%= link_to('Edit', edit_nature_path(@nature)) %>
+<% end %>
+<% if can? :destroy, @nature %>
+  | <%= link_to('Destroy', @nature, :confirm => 'Are you sure you want to delete this nature?', :method => :delete) %>
+<% end %>
