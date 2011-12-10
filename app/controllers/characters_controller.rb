@@ -225,7 +225,7 @@ class CharactersController < ApplicationController
   
   # saves a character to obsidian portal if appropriate
   def obsidian_save
-    json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description, :is_game_master_only => (not @character.read_name), :tagline => @character.concept}})
+    json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description, :is_game_master_only => (not @character.read_name), :is_player_character => @character.player_character, :tagline => @character.concept}})
     
     case @character.obsidian_character_id 
     when "0"
