@@ -1,9 +1,9 @@
-Sat, 07 Jan 2012 21:07:39 -0500
+Sat, 07 Jan 2012 21:21:39 -0500
 doc/README_FOR_APP	Thu, 25 Aug 2011 07:16:56 -0400
 app/controllers/admin_controller.rb	Fri, 09 Sep 2011 21:11:46 -0400
 app/controllers/application_controller.rb	Sun, 25 Sep 2011 21:58:09 -0400
 app/controllers/characters_controller.rb	Fri, 09 Dec 2011 21:18:27 -0500
-app/controllers/chronicles_controller.rb	Sat, 07 Jan 2012 21:06:06 -0500
+app/controllers/chronicles_controller.rb	Sat, 07 Jan 2012 21:08:27 -0500
 app/controllers/cliques_controller.rb	Sun, 25 Sep 2011 21:53:43 -0400
 app/controllers/comments_controller.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/controllers/ideologies_controller.rb	Thu, 25 Aug 2011 07:16:56 -0400
