@@ -33,6 +33,8 @@ class ChroniclesController < ApplicationController
   def new
     obsidian_campaigns if obsidian_enabled?
     
+    @users = ::User.all
+    
     respond_with @chronicle
   end
 
@@ -43,6 +45,8 @@ class ChroniclesController < ApplicationController
 
       @chronicle.description = @campaign.wiki_pages[0].body unless @campaign.nil?
     end
+    
+    @users = ::User.all
   end
 
   # POST /chronicles

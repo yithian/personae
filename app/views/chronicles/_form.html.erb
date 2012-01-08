@@ -19,6 +19,9 @@
     <%= f.select :obsidian_campaign_id, @campaigns %>
   <% end %>
   
+  <h3>Storyteller</h3>
+  <%= f.select :owner_id, options_from_collection_for_select(@users, :id, :name) %>
+  
   <h3>Description</h3>
   <%= f.text_area :description %>
   

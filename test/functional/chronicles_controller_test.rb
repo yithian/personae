@@ -101,6 +101,7 @@ class ChroniclesControllerTest < ActionController::TestCase
     get :edit, :id => chronicles(:one).to_param
     assert_response :success, @response
     assert_not_nil assigns(:chronicle)
+    assert_not_nil(assigns(:users))
   end
   
   test "shouldn't get edit" do
@@ -118,7 +119,7 @@ class ChroniclesControllerTest < ActionController::TestCase
     sign_in(users(:Storyteller))
     
 
-    put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
+    put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique", :owner_id => users(:two).id }
     assert_redirected_to chronicle_path(assigns(:chronicle))
   end
   
