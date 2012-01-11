@@ -33,8 +33,6 @@ class ChroniclesController < ApplicationController
   def new
     obsidian_campaigns if obsidian_enabled?
     
-    @users = ::User.all
-    
     respond_with @chronicle
   end
 
