@@ -74,6 +74,7 @@ class CharactersController < ApplicationController
   # GET /characters/1/edit
   def edit
     obsidian_characters if obsidian_enabled?
+    @users = ::User.all
   end
   
   # POST /characters/update_splat
