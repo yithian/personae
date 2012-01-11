@@ -288,7 +288,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 120</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>])
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">owner</span> = <span class="ruby-identifier">current_user</span>
@@ -328,7 +328,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 161</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">destroy</span>
 
@@ -366,6 +366,7 @@
             <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-identifier">obsidian_characters</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
+  <span class="ruby-ivar">@users</span> = <span class="ruby-operator">::</span><span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
           
@@ -503,7 +504,7 @@
 
           
           <div class="method-source-code" id="save_notes-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 154</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 155</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_notes</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:notes</span>]
   <span class="ruby-ivar">@successful</span> = <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">save</span>
@@ -534,7 +535,7 @@
 
           
           <div class="method-source-code" id="shapeshift-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 110</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">shapeshift</span>
   <span class="ruby-ivar">@form</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:form</span>]
 
@@ -601,7 +602,7 @@ obsidian_character_id is specified</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 139</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">vice</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character_vice</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character_vice</span>]
   
@@ -639,7 +640,7 @@ obsidian_character_id is specified</p>
 
           
           <div class="method-source-code" id="update_chronicle-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 102</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_chronicle</span>
   <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>])
   <span class="ruby-ivar">@clique_list</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
@@ -672,7 +673,7 @@ obsidian_character_id is specified</p>
 
           
           <div class="method-source-code" id="update_nature-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 92</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_nature</span>
   <span class="ruby-ivar">@nature</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:nature_id</span>])
   <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">list_for_nature</span>(<span class="ruby-ivar">@nature</span>)
@@ -707,7 +708,7 @@ obsidian_character_id is specified</p>
 
           
           <div class="method-source-code" id="update_splat-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 80</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_splat</span>
   <span class="ruby-ivar">@splat</span> = <span class="ruby-constant">Splat</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:splat_id</span>])
   <span class="ruby-ivar">@nature_list</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_all_by_splat_id</span>(<span class="ruby-ivar">@splat</span>.<span class="ruby-identifier">id</span>)
