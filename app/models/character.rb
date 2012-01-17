@@ -269,6 +269,12 @@ h5. Background
 
 #{self.background}
     } if self.read_background
+
+    bio << %{
+h5. Deeds
+
+#{self.deeds}
+    } if self.read_deeds
     
     bio
   end
