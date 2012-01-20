@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.2.0'
 gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
@@ -8,8 +8,8 @@ gem 'minitest'
 gem 'mage-hand', :git => "git://github.com/yithian/mage-hand.git", :branch => "change_oauth_case"
 
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.1"
-  gem 'coffee-rails', "~> 3.1.1"
+  gem 'sass-rails', "  ~> 3.2.0"
+  gem 'coffee-rails', "~> 3.2.0"
   gem 'uglifier'
 end
 
