@@ -169,11 +169,18 @@
         <td id="willpower"><%= dot_format(@character.willpower) %></td>
       </tr>
       <tr>
-      	<%= form_for(@character) do |f| %>
-          <td><%= f.label :current_health, "Current Health:" %></td>
-          <td><%= f.text_field :current_health, :remote => true, :action => url_for(:action => "update", :id => @character.id), :method => "put" %></td>
-          <td><%= f.label :current_willpower, "Current Willpower:" %></td>
-          <td><%= f.text_field :current_willpower, :remote => true, :action => url_for(:action => "update", :id => @character.id), :method => "put" %></td>
+        <% if can? :edit, @character %>
+        	<%= form_for(@character) do |f| %>
+            <td><%= f.label :current_health, "Current Health:" %></td>
+            <td><%= f.text_field :current_health, :remote => true, :action => url_for(:action => :save_current, :id => @character.id), :method => "put" %></td>
+            <td><%= f.label :current_willpower, "Current Willpower:" %></td>
+            <td><%= f.text_field :current_willpower, :remote => true, :action => url_for(:action => :save_current, :id => @character.id), :method => "put" %></td>
+          <% end %>
+        <% else %>
+          <td>Current Health:</td>
+          <td><%= @character.current_health %></td>
+          <td>Current Willpower:</td>
+          <td><%= @character.current_willpower %></td>
         <% end %>
       </tr>
       <tr>
@@ -212,9 +219,14 @@
         <td><%= @character.max_fuel %></td>
       </tr>
       <tr>
-        <%= form_for(@character) do |f| %>
-          <td><%= f.label :current_fuel, "Current #{@character.splat.fuel_name}:" %></td>
-          <td><%= f.text_field :current_fuel, :class => "number", :remote => true, :action => url_for(:action => "update", :id => @character.id), :method => "put" %></td>
+        <% if can? :edit, @character %>
+          <%= form_for(@character) do |f| %>
+            <td><%= f.label :current_fuel, "Current #{@character.splat.fuel_name}:" %></td>
+            <td><%= f.text_field :current_fuel, :class => "number", :remote => true, :action => url_for(:action => "save_current", :id => @character.id), :method => "put" %></td>
+          <% end %>
+        <% else %>
+          <td>Current <%= @character.splat.fuel_name %>:</td>
+          <td><%= @character.current_fuel %></td>
         <% end %>
       </tr>
       <tr>
