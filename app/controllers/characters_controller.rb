@@ -162,9 +162,9 @@ class CharactersController < ApplicationController
   # this will only save the current_health and current_willpower
   # attributes (and not do anything with the notice area)
   def save_current
-    @character.current_health = params[:character][:current_health]
-    @character.current_willpower = params[:character][:current_willpower]
-    @character.current_fuel = params[:character][:current_fuel]
+    @character.current_health = params[:character][:current_health] if params[:character][:current_health]
+    @character.current_willpower = params[:character][:current_willpower] if params[:character][:current_willpower]
+    @character.current_fuel = params[:character][:current_fuel] if params[:character][:current_fuel]
     
     if @character.save
       head :success

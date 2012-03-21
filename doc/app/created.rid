@@ -1,8 +1,8 @@
-Tue, 20 Mar 2012 21:11:00 -0400
+Tue, 20 Mar 2012 23:12:49 -0400
 doc/README_FOR_APP	Thu, 25 Aug 2011 07:16:56 -0400
 app/controllers/admin_controller.rb	Fri, 09 Sep 2011 21:11:46 -0400
 app/controllers/application_controller.rb	Sun, 25 Sep 2011 21:58:09 -0400
-app/controllers/characters_controller.rb	Tue, 20 Mar 2012 20:42:23 -0400
+app/controllers/characters_controller.rb	Tue, 20 Mar 2012 23:12:11 -0400
 app/controllers/chronicles_controller.rb	Tue, 10 Jan 2012 19:07:26 -0500
 app/controllers/cliques_controller.rb	Sun, 25 Sep 2011 21:53:43 -0400
 app/controllers/comments_controller.rb	Thu, 25 Aug 2011 07:16:56 -0400
