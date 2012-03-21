@@ -25,6 +25,7 @@ Personae::Application.routes.draw do
     end
     member do
       put 'save_notes'
+      put 'save_current'
       get 'shapeshift'
       get 'preview'
     end

@@ -72,6 +72,8 @@ one:
   read_crunch: true
   max_fuel: 10
   current_fuel: 1
+  current_health: 1
+  current_willpower: 1
   experience: MyExperienceText
   read_experience: true
   read_clique: true
@@ -205,6 +207,8 @@ two:
   read_crunch: false
   max_fuel: 20
   current_fuel: 20
+  current_health: 2
+  current_willpower: 2
   experience: MyOtherExperienceText
   read_experience: false
   read_clique: false
@@ -338,6 +342,8 @@ three:
   read_crunch: false
   max_fuel: 30
   current_fuel: 30
+  current_health: 30
+  current_willpower: 30
   experience: MyThirdExperienceText
   read_experience: false
   read_clique: false
