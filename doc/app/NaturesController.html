@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>class IdeologiesController - Rails Application Documentation</title>
+<title>class NaturesController - Rails Application Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/controllers/ideologies_controller.rb
+    <li>app/controllers/natures_controller.rb
   </ul>
 </nav>
 
@@ -176,11 +176,11 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class IdeologiesController</h1>
+  <h1 class="class">class NaturesController</h1>
 
   <div id="description" class="description">
     
-<p>Controller for ideology actions: show/create/edit/etc</p>
+<p>Controller for nature actions: show/create/edit/etc</p>
 
   </div><!-- description -->
 
@@ -213,18 +213,18 @@
 
         <div class="method-description">
           
-          <p>POST /ideologies POST /ideologies.xml</p>
+          <p>POST /natures POST /natures.xml</p>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/ideologies_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/natures_controller.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-ivar">@ideology</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ideology</span>])
+  <span class="ruby-ivar">@nature</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:nature</span>])
 
-  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Ideology was successfully created.'</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Nature was successfully created.'</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nature</span>.<span class="ruby-identifier">save</span>
 
-  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
+  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@nature</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- create-source -->
           
@@ -247,26 +247,26 @@
 
         <div class="method-description">
           
-          <p>DELETE /ideologies/1 DELETE /ideologies/1.xml</p>
+          <p>DELETE /natures/1 DELETE /natures/1.xml</p>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/ideologies_controller.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/controllers/natures_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Mortal'</span>)
-    <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">ideology_id</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Mortal'</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nature</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Mortal'</span>)
+    <span class="ruby-ivar">@nature</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">nature_id</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Mortal'</span>)
       <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-keyword">end</span>
 
-    <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">destroy</span>
+    <span class="ruby-ivar">@nature</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Cannot delete this Ideology'</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Cannot delete this Nature'</span>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">ideologies_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Ideology successfully deleted.'</span>) }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">natures_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Nature successfully deleted.'</span>) }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -291,12 +291,12 @@
 
         <div class="method-description">
           
-          <p>GET /ideologies/1/edit</p>
+          <p>GET /natures/1/edit</p>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/ideologies_controller.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/controllers/natures_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
@@ -320,16 +320,16 @@
 
         <div class="method-description">
           
-          <p>GET /ideologies GET /ideologies.xml</p>
+          <p>GET /natures GET /natures.xml</p>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/ideologies_controller.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/controllers/natures_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@ideologies</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@natures</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">all</span>
 
-  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideologies</span>
+  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@natures</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           
@@ -352,14 +352,14 @@
 
         <div class="method-description">
           
-          <p>GET /ideologies/new GET /ideologies/new.xml</p>
+          <p>GET /natures/new GET /natures/new.xml</p>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/ideologies_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/natures_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
+  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@nature</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -382,14 +382,14 @@
 
         <div class="method-description">
           
-          <p>GET /ideologies/1 GET /ideologies/1.xml</p>
+          <p>GET /natures/1 GET /natures/1.xml</p>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/ideologies_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/natures_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
-  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
+  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@nature</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
           
@@ -412,16 +412,16 @@
 
         <div class="method-description">
           
-          <p>PUT /ideologies/1 PUT /ideologies/1.xml</p>
+          <p>PUT /natures/1 PUT /natures/1.xml</p>
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/ideologies_controller.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/controllers/natures_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
-  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Ideology was successfully updated.'</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ideology</span>])
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Nature was successfully updated.'</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nature</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:nature</span>])
 
-  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
+  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@nature</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update-source -->
           

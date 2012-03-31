@@ -1,0 +1,7 @@
+<% if member.show_name_to_user?(current_user) and member.show_ideology_to_user?(current_user) %>
+  <tr>
+    <td><%= link_to member.name, member %></td>
+    <td><%= member.concept %></td>
+    <td><%= link_to member.clique.name, member.clique if member.show_clique_to_user?(current_user) %></td>
+  </tr>
+<% end %>

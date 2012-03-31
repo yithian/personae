@@ -7,7 +7,8 @@
       when "chronicles" then @chronicle.name + " : " if @chronicle and @chronicle.name
       when "characters" then @character.name + " : " if @character and @character.name
       when "cliques" then @clique.name + " : " if @clique and @clique.name
-      when "ideologies" then @ideology.name + " : " if @clique and @ideology.name
+      when "ideologies" then @ideology.name + " : " if @ideology and @ideology.name
+      when "ideologies" then @nature.name + " : " if @nature and @nature.name
     end %>
     Infinite Personae
   </title>
@@ -32,6 +33,9 @@
       <% end %>
       <%= li_selected_if(params[:controller] == "ideologies") do %>
         <%= link_to "Ideologies", ideologies_path %>
+      <% end %>
+      <%= li_selected_if(params[:controller] == "natures") do %>
+        <%= link_to "Natures", natures_path %>
       <% end %>
       <%= li_selected_if(params[:controller] == "chronicles") do %>
         <%= link_to "Chronicles", chronicles_path %>

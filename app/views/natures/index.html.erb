@@ -1,0 +1,17 @@
+<table class='list'>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th></th>
+  </tr>
+
+  <% @natures.each do |nature| %>
+    <tr>
+      <td><%= link_to image_tag("edit.png"), edit_nature_path(nature) if can? :edit, nature %></td>
+      <td><%= link_to nature.name, nature %></td>
+      <td><%= link_to image_tag("delete.png"), nature, :confirm => 'Are you sure you want to delete this nature?', :method => :delete if can? :destroy, nature %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New nature', new_nature_path if can? :create, Nature %>

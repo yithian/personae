@@ -128,6 +128,24 @@ It is unlikely that your computer will have a fully-qualified domain name
 use a service such as no-ip (http://no-ip.org) to give you one.
 
 
+== Email notifications
+
+Personae uses the devise gem for user authentication and one of its features
+is email notifications for various events. To send these messages requires a
+mail server of some type. You may use a hosted proxy such as Sendgrid 
+(http://sendgrid.com) to relay messages through or you may use a local mail
+server instead. My personal favorite is postifx (http://www.postifx.org).
+
+To use a mail proxy, you must 1: edit personae/config/initializers/mail.rb to
+point to your relay of choice and 2: set environment variables to contain
+your username and password. In bash (in a *nix environment), this would be
+done like `export SENDGRID_USERNAME="your_username"` before starting
+Personae.
+
+If you would rather use a local mailserver, you may simply remove mail.rb.
+Don't worry! I promise it won't break anything!
+
+
 == A word of caution
 
 Running a web server presents a potential security vulnerability, which can be

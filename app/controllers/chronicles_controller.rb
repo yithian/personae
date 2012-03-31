@@ -43,6 +43,8 @@ class ChroniclesController < ApplicationController
 
       @chronicle.description = @campaign.wiki_pages[0].body unless @campaign.nil?
     end
+    
+    @users = ::User.all
   end
 
   # POST /chronicles

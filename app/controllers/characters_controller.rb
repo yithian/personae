@@ -5,7 +5,7 @@ class CharactersController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
   before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update, :destroy], :if => :obsidian_enabled?
-  before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :save_notes, :destroy, :preview]
+  before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :save_notes, :save_current, :destroy, :preview]
   before_filter :show_permission, :only => [:show]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
@@ -74,6 +74,7 @@ class CharactersController < ApplicationController
   # GET /characters/1/edit
   def edit
     obsidian_characters if obsidian_enabled?
+    @users = ::User.all
   end
   
   # POST /characters/update_splat
@@ -155,6 +156,22 @@ class CharactersController < ApplicationController
     @character.notes = params[:character][:notes]
     @successful = @character.save
   end
+  
+  # PUT /characters/1/save_current
+  #
+  # this will only save the current_health and current_willpower
+  # attributes (and not do anything with the notice area)
+  def save_current
+    @character.current_health = params[:character][:current_health] if params[:character][:current_health]
+    @character.current_willpower = params[:character][:current_willpower] if params[:character][:current_willpower]
+    @character.current_fuel = params[:character][:current_fuel] if params[:character][:current_fuel]
+    
+    if @character.save
+      head :success
+    else
+      head 500
+    end
+  end
 
   # DELETE /characters/1
   # DELETE /characters/1.xml
@@ -225,7 +242,7 @@ class CharactersController < ApplicationController
   
   # saves a character to obsidian portal if appropriate
   def obsidian_save
-    json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description, :is_game_master_only => (not @character.read_name), :tagline => @character.concept}})
+    json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description, :is_game_master_only => (not @character.read_name), :is_player_character => @character.pc, :tagline => @character.concept}})
     
     case @character.obsidian_character_id 
     when "0"

@@ -1,0 +1,20 @@
+<%= form_for(@nature) do |f| %>
+  <% if @nature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nature.errors.count, "error") %> prohibited this ideology from being saved:</h2>
+
+      <ul>
+      <% @nature.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3>Name</h3>
+  <p><%= f.text_field :name %></p>
+
+  <h3>Template</h3>
+  <p><%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @nature.splat) %></p>
+  <%= f.submit 'Save' %>
+<% end %>

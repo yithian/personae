@@ -405,6 +405,44 @@ class CharactersControllerTest < ActionController::TestCase
     assert response.body !~ /remove/
   end
   
+  test "should update current stats as ST" do
+    sign_in(users(:Storyteller))
+    
+    xhr :put, :save_current, :id => characters(:one).to_param, :character => {:current_health => "*XX", :current_willpower => "X", :current_fuel => "7"}
+    
+    assert_equal("*XX", Character.find_by_id(characters(:one).id).current_health)
+    assert_equal("X", Character.find_by_id(characters(:one).id).current_willpower)
+    assert_not_equal("Character was successfully updated.", flash[:notice])
+  end
+  
+  test "should update current stats as owning user" do
+    sign_in(users(:one))
+    
+    xhr :put, :save_current, :id => characters(:one).to_param, :character => {:current_health => "*XX", :current_willpower => "X", :current_fuel => "7"}
+    
+    assert_equal("*XX", Character.find_by_id(characters(:one).id).current_health)
+    assert_equal("X", Character.find_by_id(characters(:one).id).current_willpower)
+    assert_not_equal("Character was successfully updated.", flash[:notice])
+  end
+  
+  test "shouldn't update current stats as non-owning user" do
+    sign_in(users(:two))
+    
+    xhr :put, :save_current, :id => characters(:one).to_param, :character => {:current_health => "*XX", :current_willpower => "X", :current_fuel => "7"}
+    
+    assert_equal("1", Character.find_by_id(characters(:one).id).current_health)
+    assert_equal("1", Character.find_by_id(characters(:one).id).current_willpower)
+    assert_not_equal("Character was successfully updated.", flash[:notice])
+  end
+  
+  test "shouldn't update current stats as nobody" do
+    xhr :put, :save_current, :id => characters(:one).to_param, :character => {:current_health => "*XX", :current_willpower => "X", :current_fuel => "7"}
+    
+    assert_equal("1", Character.find_by_id(characters(:one).id).current_health)
+    assert_equal("1", Character.find_by_id(characters(:one).id).current_willpower)
+    assert_not_equal("Character was successfully updated.", flash[:notice])
+  end
+  
   test "should destroy character" do
     # ST can destroy all characters
     sign_in(users(:Storyteller))
