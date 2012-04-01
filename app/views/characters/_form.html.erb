@@ -54,7 +54,7 @@
       </td>
     </tr>
     <tr>
-      <td rowspan='3' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
+      <td rowspan='2' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
       <td rowspan='3' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]", :tabindex => "1" %></td>
       <td class="label" id="subnature_label_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
         <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
@@ -72,6 +72,16 @@
       </td>
     </tr>
     <tr>
+      <td><%= f.check_box :possessed %> <%= f.label :possessed, "Possessed" %></td>
+    </tr>
+    <tr>
+      <% if @character.possessed %>
+        <td><b><%= f.label :primary_vice %></b></td>
+        <td><%= f.select :primary_vice, Character::VICES, {}, {:tabindex => "1"} %></td>
+      <% else %>
+        <td></td>
+        <td></td>
+      <% end %>
       <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
       <td><%= f.select :clique_id, @clique_list, {}, {:tabindex => "1"} %></td>
     </tr>
@@ -542,6 +552,42 @@
     <h3 class='<%= @character.splat.name.downcase %>'>Ceremonies</h3>
     <p><%= f.text_area :ceremonies, :tabindex => "28" %></p>
   </div>
+  <div id="possessed_powers" <%= "style='display: none'" unless @character.possessed %> >
+    <h3 class='<%= @character.splat.name.downcase %>'>Vestments</h3>
+    <table class="three_cells">
+      <tr>
+        <td><%= f.label :envy %> </td>
+        <td><%= f.text_field :envy, :tabindex => "26", :class => "number" %></td>
+        <td><%=f.label :vestments %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :gluttony %> </td>
+        <td><%= f.text_field :gluttony, :tabindex => "26", :class => "number" %></td>
+        <td rowspan="8" class="growdown"><%= f.text_area :vestments, :tabindex => "27" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :greed %> </td>
+        <td><%= f.text_field :greed, :tabindex => "26", :class => "number" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :lust %> </td>
+        <td><%= f.text_field :lust, :tabindex => "26", :class => "number" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :pride %> </td>
+        <td><%= f.text_field :pride, :tabindex => "26", :class => "number" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :sloth %> </td>
+        <td><%= f.text_field :sloth, :tabindex => "26", :class => "number" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :wrath %> </td>
+        <td><%= f.text_field :wrath, :tabindex => "26", :class => "number" %></td>
+      </tr>
+    </table>
+  </div>
+
   <%= f.check_box :read_crunch %> <%= f.label :read_crunch, "Reveal crunch", :title => "Crunch is defined as a character's attributes, skills, advantages, merits, equipment and any supernatural powers" %>
 
 
