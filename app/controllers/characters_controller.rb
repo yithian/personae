@@ -165,6 +165,7 @@ class CharactersController < ApplicationController
     @character.current_health = params[:character][:current_health] if params[:character][:current_health]
     @character.current_willpower = params[:character][:current_willpower] if params[:character][:current_willpower]
     @character.current_fuel = params[:character][:current_fuel] if params[:character][:current_fuel]
+    @character.infernal_will = params[:character][:infernal_will] if params[:character][:infernal_will]
     
     if @character.save
       head :success

@@ -252,6 +252,26 @@ class Character < ActiveRecord::Base
   def is_geist?
     self.splat.name == "Geist"
   end
+
+  def max_infernal_will
+    if self.primary_vice == "Envy"
+      return self.envy
+    elsif self.primary_vice == "Gluttony"
+      return self.gluttony
+    elsif self.primary_vice == "Greed"
+      return self.greed
+    elsif self.primary_vice == "Lust"
+      return self.lust
+    elsif self.primary_vice == "Pride"
+      return self.pride
+    elsif self.primary_vice == "Sloth"
+      return self.sloth
+    elsif self.primary_vice == "Wrath"
+      return self.wrath
+    else
+      return 0
+    end
+  end
   
   # Returns what Obsidian Portal calls the character's
   # bio. In personae terms, that is the character's
