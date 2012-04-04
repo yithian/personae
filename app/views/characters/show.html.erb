@@ -26,8 +26,13 @@
     <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_ideology_to_user?(current_user) %></span></td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
+    <% if @character.possessed %>
+      <td><b>Primary Vice</b></td>
+      <td><span id="primary_vice"><%= @character.primary_vice.gsub(/\ /, " and ") %></span></td>
+    <% else %>
+      <td></td>
+      <td></td>
+    <% end %>
     <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(current_user) %></b></span></td>
     <td><span id="clique_name"><%= link_to @character.clique.name, @character.clique if @character.show_clique_to_user?(current_user) %></span></td>
   </tr>
@@ -186,20 +191,42 @@
       <tr>
         <td>Size:</td>
         <td id="size"><%= @character.size %></td>
-        <td>Derangements:</td>
+        <% if @character.possessed %>
+          <td>Infernal Will</td>
+          <td id="infernal_will"><%= dot_format(@character.max_infernal_will) %></td>
+        <% else %>
+          <td>Derangements:</td>
+        <% end %>
       </tr>
       <tr>
         <td>Initiative:</td>
         <td id="initiative"><%= @character.initiative %></td>
-        <td rowspan="10" colspan="2"><%= simple_format(@character.derangements) %></td>
+        <% if @character.possessed %>
+          <% if can? :edit, @character %>
+            <%= form_for(@character) do |f| %>
+              <td><%= f.label :current_infernal_will, "Current Infernal Will:" %></td>
+              <td><%= f.text_field :infernal_will, :remote => true, :action => url_for(:action => :save_current, :id => @character.id), :method => "put" %></td>
+            <% end %>
+          <% else %>
+            <td><%= @character.infernal_will %></td>
+          <% end %>
+        <% else %>
+          <td rowspan="10" colspan="2"><%= simple_format(@character.derangements) %></td>
+        <% end %>
       </tr>
       <tr>
         <td>Speed:</td>
         <td id="speed"><%= @character.speed %></td>
+        <% if @character.possessed %>
+          <td>Derangements:</td>
+        <% end %>
       </tr>
       <tr>
         <td>Defense:</td>
         <td id="defense"><%= @character.defense %></td>
+        <% if @character.possessed %>
+          <td rowspan="10" colspan="2"><%= simple_format(@character.derangements) %></td>
+        <% end %>
       </tr>
       <tr>
         <td>Armor:</td>
@@ -547,6 +574,41 @@
       
       <h3 class="<%= @character.splat.name.downcase %>">Ceremonies</h3>
       <p><%= simple_format(@character.ceremonies) %></p>
+    <% end %>
+    <% if @character.possessed %>
+      <h3 class="<%= @character.splat.name.downcase %>">Vestments</h3>
+      <table class="three_cells">
+        <tr>
+          <td>Envy</td>
+          <td><%= dot_format(@character.envy) %></td>
+          <td>Vestments</td>
+        </tr>
+        <tr>
+          <td>Gluttony</td>
+          <td><%= dot_format(@character.gluttony) %></td>
+          <td rowspan="7"><%= simple_format(@character.vestments) %></td>
+        </tr>
+        <tr>
+          <td>Greed</td>
+          <td><%= dot_format(@character.greed) %></td>
+        </tr>
+        <tr>
+          <td>Lust</td>
+          <td><%= dot_format(@character.lust) %></td>
+        </tr>
+        <tr>
+          <td>Pride</td>
+          <td><%= dot_format(@character.pride) %></td>
+        </tr>
+        <tr>
+          <td>Sloth</td>
+          <td><%= dot_format(@character.sloth) %></td>
+        </tr>
+        <tr>
+          <td>Wrath</td>
+          <td><%= dot_format(@character.wrath) %></td>
+        </tr>
+      </table>
     <% end %>
   </div>
 <% end %>
