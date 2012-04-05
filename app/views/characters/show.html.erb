@@ -26,9 +26,9 @@
     <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_ideology_to_user?(current_user) %></span></td>
   </tr>
   <tr>
-    <% if @character.possessed %>
+    <% if @character.is_possessed? %>
       <td><b>Primary Vice</b></td>
-      <td><span id="primary_vice"><%= @character.primary_vice.gsub(/\ /, " and ") %></span></td>
+      <td><%= @character.primary_vice %></td>
     <% else %>
       <td></td>
       <td></td>
@@ -191,42 +191,33 @@
       <tr>
         <td>Size:</td>
         <td id="size"><%= @character.size %></td>
-        <% if @character.possessed %>
-          <td>Infernal Will</td>
+        <% if @character.is_possessed? %>
+          <td>Infernal Will:</td>
           <td id="infernal_will"><%= dot_format(@character.max_infernal_will) %></td>
-        <% else %>
-          <td>Derangements:</td>
         <% end %>
       </tr>
       <tr>
         <td>Initiative:</td>
         <td id="initiative"><%= @character.initiative %></td>
-        <% if @character.possessed %>
-          <% if can? :edit, @character %>
-            <%= form_for(@character) do |f| %>
-              <td><%= f.label :current_infernal_will, "Current Infernal Will:" %></td>
-              <td><%= f.text_field :infernal_will, :remote => true, :action => url_for(:action => :save_current, :id => @character.id), :method => "put" %></td>
-            <% end %>
-          <% else %>
-            <td><%= @character.infernal_will %></td>
+        <% if can? :edit, @character %>
+          <%= form_for(@character) do |f| %>
+            <td><%= f.label :current_infernal_will, "Current Infernal Will:" %></td>
+            <td><%= f.text_field :current_infernal_will, :remote => true, :action => url_for(:action => :save_current, :id => @character.id), :method => "put" %></td>
           <% end %>
         <% else %>
-          <td rowspan="10" colspan="2"><%= simple_format(@character.derangements) %></td>
-        <% end %>
+          <td>Current Infernal Will:</td>
+          <td><%= @character.current_infernal_will %></td>
+        <% end if @character.is_possessed? %>
       </tr>
       <tr>
         <td>Speed:</td>
         <td id="speed"><%= @character.speed %></td>
-        <% if @character.possessed %>
-          <td>Derangements:</td>
-        <% end %>
+        <td>Derangements:</td>
       </tr>
       <tr>
         <td>Defense:</td>
         <td id="defense"><%= @character.defense %></td>
-        <% if @character.possessed %>
-          <td rowspan="10" colspan="2"><%= simple_format(@character.derangements) %></td>
-        <% end %>
+        <td rowspan="10" colspan="2"><%= simple_format(@character.derangements) %></td>
       </tr>
       <tr>
         <td>Armor:</td>
@@ -575,7 +566,8 @@
       <h3 class="<%= @character.splat.name.downcase %>">Ceremonies</h3>
       <p><%= simple_format(@character.ceremonies) %></p>
     <% end %>
-    <% if @character.possessed %>
+    
+    <% if @character.is_possessed? %>
       <h3 class="<%= @character.splat.name.downcase %>">Vestments</h3>
       <table class="three_cells">
         <tr>
