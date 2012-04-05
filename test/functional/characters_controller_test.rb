@@ -276,17 +276,6 @@ class CharactersControllerTest < ActionController::TestCase
     
     assert response.body =~ /#{natures(:one).id}/, "didn't include proper nature id"
     assert response.body =~ /#{Subnature.find_by_nature_id(natures(:one).id).name}/, "didn't include proper nature name"
-    
-    # ensure being possessed toggles form elements
-    xhr :get, :possess, :possessed => true
-    
-    assert response.body =~ /\$\('#primary_vice_label_cell'\).toggle\(\);/, "didn't toggle primary vice label cell"
-    assert response.body =~ /\$\('#primary_vice_cell'\).toggle\(\);/, "didn't toggle primary vice cell"
-    assert response.body =~ /\$\('#infernal_will_label_cell'\).toggle\(\);/, "didn't toggle infernal will label cell"
-    assert response.body =~ /\$\('#infernal_will_cell'\).toggle\(\);/, "didn't toggle infernal will cell"
-    assert response.body =~ /\$\('#current_infernal_will_label_cell'\).toggle\(\);/, "didn't toggle current infernal will label cell"
-    assert response.body =~ /\$\('#current_infernal_will_cell'\).toggle\(\);/, "didn't toggle current infernal will cell"
-    assert response.body =~ /\$\('#possessed_powers'\).slideToggle\(\);/, "didn't toggle possessed powers"
   end
 
   test "shouldn't show character" do

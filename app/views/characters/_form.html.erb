@@ -232,14 +232,14 @@
     <tr>
       <td><%= f.label :size %></td>
       <td><%= f.text_field :size, :tabindex => "13", :class => "number" %></td>
-      <td id="infernal_will_label_cell" <%= "style='display: none'" unless @character.is_possessed? %>>Infernal Will</td>
-      <td id="infernal_will_cell" <%= "style='display: none'" unless @character.is_possessed? %>><%= @character.max_infernal_will %></td>
+      <td>Infernal Will</td>
+      <td id="character_infernal_will"><%= @character.max_infernal_will %></td>
     </tr>
     <tr>
       <td><%= f.label :initiative %></td>
       <td><%= f.text_field :initiative, :tabindex => "13", :class => "number" %></td>
-      <td id="current_infernal_will_label_cell" <%= "style='display: none'" unless @character.is_possessed? %>><%= f.label :current_infernal_will %></td>
-      <td id="current_infernal_will_cell" <%= "style='display: none'" unless @character.is_possessed? %>><%= f.text_field :current_infernal_will %></td>
+      <td><%= f.label :current_infernal_will %></td>
+      <td><%= f.text_field :current_infernal_will %></td>
     </tr>
     <tr>
       <td><%= f.label :speed %></td>
