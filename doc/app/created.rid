@@ -1,8 +1,8 @@
-Tue, 20 Mar 2012 23:12:49 -0400
+Thu, 05 Apr 2012 18:52:06 -0400
 doc/README_FOR_APP	Thu, 25 Aug 2011 07:16:56 -0400
 app/controllers/admin_controller.rb	Fri, 09 Sep 2011 21:11:46 -0400
 app/controllers/application_controller.rb	Sun, 25 Sep 2011 21:58:09 -0400
-app/controllers/characters_controller.rb	Tue, 20 Mar 2012 23:12:11 -0400
+app/controllers/characters_controller.rb	Thu, 05 Apr 2012 18:12:03 -0400
 app/controllers/chronicles_controller.rb	Tue, 10 Jan 2012 19:07:26 -0500
 app/controllers/cliques_controller.rb	Sun, 25 Sep 2011 21:53:43 -0400
 app/controllers/comments_controller.rb	Thu, 25 Aug 2011 07:16:56 -0400
@@ -19,7 +19,7 @@ app/helpers/ideologies_helper.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/helpers/natures_helper.rb	Fri, 09 Dec 2011 20:35:44 -0500
 app/helpers/services_helper.rb	Thu, 25 Aug 2011 07:16:56 -0400
 app/models/ability.rb	Thu, 25 Aug 2011 07:16:56 -0400
-app/models/character.rb	Fri, 20 Jan 2012 20:19:49 -0500
+app/models/character.rb	Thu, 05 Apr 2012 18:12:03 -0400
 app/models/chronicle.rb	Tue, 25 Oct 2011 19:18:52 -0400
 app/models/clique.rb	Tue, 25 Oct 2011 19:18:52 -0400
 app/models/comment.rb	Thu, 25 Aug 2011 07:16:56 -0400
