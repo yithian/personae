@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331163727) do
+ActiveRecord::Schema.define(:version => 20120404194303) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -154,7 +154,6 @@ ActiveRecord::Schema.define(:version => 20120331163727) do
     t.text     "tactics"
     t.boolean  "pc",                                   :default => false
     t.boolean  "possessed",                            :default => false
-    t.integer  "infernal_will",                        :default => 0
     t.integer  "envy",                                 :default => 0
     t.integer  "gluttony",                             :default => 0
     t.integer  "greed",                                :default => 0
@@ -164,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20120331163727) do
     t.integer  "wrath",                                :default => 0
     t.text     "vestments"
     t.string   "primary_vice"
+    t.string   "current_infernal_will"
   end
 
   create_table "chronicles", :force => true do |t|
