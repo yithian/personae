@@ -94,6 +94,8 @@
     
     <li><a href="#method-i-new">#new</a>
     
+    <li><a href="#method-i-possess">#possess</a>
+    
     <li><a href="#method-i-preview">#preview</a>
     
     <li><a href="#method-i-save_current">#save_current</a>
@@ -290,7 +292,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 121</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 130</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@character</span> = <span class="ruby-constant">Character</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>])
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">owner</span> = <span class="ruby-identifier">current_user</span>
@@ -330,7 +332,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 178</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 188</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">destroy</span>
 
@@ -456,6 +458,40 @@
       </div><!-- new-method -->
 
     
+      <div id="method-i-possess" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">possess</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /characters/possess</p>
+          
+
+          
+          <div class="method-source-code" id="possess-source">
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">possess</span>
+  <span class="ruby-ivar">@possessed</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:active</span>]
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- possess-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- possess-method -->
+
+    
       <div id="method-i-preview" class="method-detail ">
         
         <div class="method-heading">
@@ -507,11 +543,12 @@
 
           
           <div class="method-source-code" id="save_current-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 164</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_current</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_health</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_health</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_health</span>]
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_willpower</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_willpower</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_willpower</span>]
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_fuel</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_fuel</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_fuel</span>]
+  <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_infernal_will</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_infernal_will</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_infernal_will</span>]
   
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-identifier">head</span> <span class="ruby-value">:success</span>
@@ -547,7 +584,7 @@
 
           
           <div class="method-source-code" id="save_notes-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 155</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 164</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_notes</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:notes</span>]
   <span class="ruby-ivar">@successful</span> = <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">save</span>
@@ -578,7 +615,7 @@
 
           
           <div class="method-source-code" id="shapeshift-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 111</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">shapeshift</span>
   <span class="ruby-ivar">@form</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:form</span>]
 
@@ -645,7 +682,7 @@ obsidian_character_id is specified</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 140</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 149</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">vice</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character_vice</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character_vice</span>]
   
@@ -683,7 +720,7 @@ obsidian_character_id is specified</p>
 
           
           <div class="method-source-code" id="update_chronicle-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 103</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_chronicle</span>
   <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>])
   <span class="ruby-ivar">@clique_list</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
@@ -716,7 +753,7 @@ obsidian_character_id is specified</p>
 
           
           <div class="method-source-code" id="update_nature-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_nature</span>
   <span class="ruby-ivar">@nature</span> = <span class="ruby-constant">Nature</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:nature_id</span>])
   <span class="ruby-ivar">@subnature_list</span> = <span class="ruby-constant">Subnature</span>.<span class="ruby-identifier">list_for_nature</span>(<span class="ruby-ivar">@nature</span>)
