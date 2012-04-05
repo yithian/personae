@@ -34,4 +34,4 @@ $(document).ready =>
 		
 		a = $('#character_primary_vice').val()
 		b = $('#character_' + a.toLowerCase()).val()
-		$('#character_infernal_will').html(b)
+		$('#infernal_will_cell').html(b)
