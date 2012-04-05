@@ -253,6 +253,11 @@ class Character < ActiveRecord::Base
   def is_geist?
     self.splat.name == "Geist"
   end
+  
+  # Returns true if the character is possessed. (This is mostly just for standardization)
+  def is_possessed?
+    self.possessed
+  end
 
   def max_infernal_will
     if self.primary_vice == "Envy"
