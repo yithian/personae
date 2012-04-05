@@ -19,6 +19,7 @@ Personae::Application.routes.draw do
   resources :characters do
     collection do
       get 'update_splat'
+      get 'possess'
       get 'update_nature'
       get 'update_chronicle'
       get 'change_chronicle'

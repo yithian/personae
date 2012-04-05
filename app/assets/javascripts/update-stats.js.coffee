@@ -31,3 +31,7 @@ $(document).ready =>
 		b = parseInt($('#character_dexterity').val())
 		b = 0 if isNaN b
 		$('#character_speed').val(a + b + 5)
+		
+		a = $('#character_primary_vice').val()
+		b = $('#character_' + a.toLowerCase()).val()
+		$('#character_infernal_will').html(b)

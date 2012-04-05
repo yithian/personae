@@ -3,6 +3,12 @@ $(document).ready =>
 	$('select[remote=true]').change ->
 		$.get($(this).attr('action'), $(this).serializeArray())
 
+	# firex an ajax action when marked checkboxes are clicked
+	$('input[type=checkbox][remote=true]').change ->
+		checked = $(this).is(":checked")
+		
+		$.get($(this).attr('action'), {active : checked})
+
 	# fires an ajax action when marked input fields have their contents updated
 	$('input[remote=true]').keyup ->
 		$.ajax({type: $(this).attr('method'), url: $(this).attr('action'), data: $(this).serializeArray()})

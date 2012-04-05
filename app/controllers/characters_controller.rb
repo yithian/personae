@@ -89,6 +89,15 @@ class CharactersController < ApplicationController
     end
   end
   
+  # GET /characters/possess
+  def possess
+    @possessed = params[:active]
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   # POST /characters/update_nature
   def update_nature
     @nature = Nature.find_by_id(params[:nature_id])
@@ -165,7 +174,7 @@ class CharactersController < ApplicationController
     @character.current_health = params[:character][:current_health] if params[:character][:current_health]
     @character.current_willpower = params[:character][:current_willpower] if params[:character][:current_willpower]
     @character.current_fuel = params[:character][:current_fuel] if params[:character][:current_fuel]
-    @character.infernal_will = params[:character][:infernal_will] if params[:character][:infernal_will]
+    @character.current_infernal_will = params[:character][:current_infernal_will] if params[:character][:current_infernal_will]
     
     if @character.save
       head :success
