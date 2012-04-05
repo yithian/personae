@@ -151,6 +151,7 @@ class Character < ActiveRecord::Base
   validates :marionette, :numericality => {:greater_than_or_equal_to => 0}
   validates :rage, :numericality => {:greater_than_or_equal_to => 0}
   validates :shroud, :numericality => {:greater_than_or_equal_to => 0}
+  validates :envy, :gluttony, :greed, :lust, :sloth, :pride, :wrath, :numericality => {:greater_than_or_equal_to => 0}
 
   # Returns true if the given user has permission to read the character's name.
   # This is also the check used to determine if a character's entry shows up in
