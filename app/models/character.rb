@@ -315,7 +315,7 @@ h5. Deeds
     desc << %{
 |_. Virtue|#{self.virtue}|_. #{self.splat.nature_name if self.read_nature}|#{self.nature.name if self.read_nature}|
 |_. Vice|#{self.vice}|_. #{self.splat.subnature_name if self.is_changeling? and self.read_nature}|#{self.subnature.name if self.is_changeling? and self.read_nature}|
-|||_. #{self.splat.ideology_name if self.read_ideology}|#{self.ideology.name if self.read_ideology}|
+|_. #{"Primary Vice" if self.is_possessed?}|#{self.primary_vice if self.is_possessed?}|_. #{self.splat.ideology_name if self.read_ideology}|#{self.ideology.name if self.read_ideology}|
 |||_. #{self.splat.clique_name if self.read_clique}|#{self.clique.name if self.read_clique}|
     }
 
