@@ -15,7 +15,7 @@ test:
   pool: 5
   timeout: 5000
 
-development:
+production:
   adapter: mysql2
   encoding: utf8
   database: personae
