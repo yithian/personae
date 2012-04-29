@@ -18,7 +18,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: personae
+  database: <%=ENV['OPENSHIFT_APP_NAME']%>
   pool: 5
   username: <%= ENV['OPENSHIFT_DB_USERNAME'] %>
   password: <%= ENV['OPENSHIFT_DB_PASSWORD'] %>
