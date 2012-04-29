@@ -1,4 +1,4 @@
-source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
+source 'http://rubygems.org/'
 
 gem 'rails', '3.2.3'
 gem 'devise'
@@ -18,7 +18,6 @@ end
 # and rake tasks are available in development mode:
 
 group :production do
-  gem 'rake', "0.8.7"
   gem 'mysql2'
   gem 'thin'
 end
