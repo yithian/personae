@@ -1,6 +1,7 @@
 source 'http://rubygems.org/'
 
 gem 'rails', '3.2.3'
+gem 'rake'
 gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
