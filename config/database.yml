@@ -15,8 +15,12 @@ test:
   pool: 5
   timeout: 5000
 
-production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: personae
   pool: 5
-  timeout: 5000
+  username: ENV['OPENSHIFT_DB_USERNAME']
+  password: ENV['OPENSHIFT_DB_PASSWORD']
+  host: ENV['OPENSHIFT_DB_HOST']
+  port: ENV['OPENSHIFT_DB_PORT']

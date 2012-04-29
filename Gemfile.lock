@@ -11,7 +11,7 @@ GIT
       oauth (>= 0.4.4)
 
 GEM
-  remote: http://rubygems.org/
+  remote: http://mirror1.prod.rhcloud.com/mirror/ruby/
   specs:
     actionmailer (3.2.3)
       actionpack (= 3.2.3)
