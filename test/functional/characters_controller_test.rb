@@ -33,7 +33,8 @@ class CharactersControllerTest < ActionController::TestCase
   test "should get index as nobody" do
     get :index
     assert_response :success, @response.body
-    assert_not_nil assigns(:characters)
+    assert_not_nil assigns(:pcs)
+    assert_not_nil assigns(:npcs)
 
     # asserts the change_chronicle dropdown works
     assert_select "select" do |elements|
@@ -70,7 +71,8 @@ class CharactersControllerTest < ActionController::TestCase
 
     get :index
     assert_response :success, @response.body
-    assert_not_nil assigns(:characters)
+    assert_not_nil assigns(:pcs)
+    assert_not_nil assigns(:npcs)
 
     # asserts the change_chronicle dropdown works
     assert_select "select" do |elements|
