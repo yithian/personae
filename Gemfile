@@ -5,8 +5,8 @@ gem 'rake'
 gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
-gem 'minitest'
 gem 'mage-hand', :git => "git://github.com/yithian/mage-hand.git", :branch => "change_oauth_case"
+gem 'will_paginate'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.0"
@@ -24,6 +24,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'minitest'
   gem 'fakeweb'
   gem 'sqlite3'
 end
