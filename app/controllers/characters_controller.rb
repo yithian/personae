@@ -21,14 +21,7 @@ class CharactersController < ApplicationController
     @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
     @npcs = chronicle.npcs.reject { |c| not c.show_name_to_user?(current_user) }
     
-    if user_signed_in?
-      @characters = Character.known_to current_user
-    else
-      # this is an awful hack because User.new seemed to be conflicting with MageHand::User.new (which doesn't exist?)
-      @characters = Character.known_to 0, @selected_chronicle_id
-    end
-
-    respond_with @characters, @selected_chronicle_id, @pcs, @npcs
+    respond_with @selected_chronicle_id, @pcs, @npcs
   end
   
   # POST /characters/change_chronicle
@@ -46,8 +39,6 @@ class CharactersController < ApplicationController
     else
       session[:selected_chronicle_id] = @selected_chronicle_id
     end
-
-    @characters = Character.known_to current_user, @selected_chronicle_id
   end
 
   # GET /characters/1

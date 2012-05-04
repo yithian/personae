@@ -455,12 +455,11 @@ h5. Notes
 
   # List characters known to the given user
   def self.known_to(user, selected_chronicle=user.selected_chronicle.id)
-    user = User.new if user == 0
-    characters = Character.find_all_by_chronicle_id(selected_chronicle, :order => "clique_id ASC").collect do |c|
+    characters = Chronicle.find_by_id(selected_chronicle).characters.collect do |c|
       c if c.show_name_to_user?(user)
     end
     
-    characters.delete_if { |c| c == nil }
+    characters.delete_if { |c| c.nil? }
   end
 
   # Show the character's name in the url
