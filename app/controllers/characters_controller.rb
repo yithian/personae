@@ -19,7 +19,8 @@ class CharactersController < ApplicationController
 
     chronicle = Chronicle.find_by_id(@selected_chronicle_id)
     @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
-    @npcs = chronicle.npcs.reject { |c| not c.show_name_to_user?(current_user) }
+
+    find_npcs(chronicle, current_user, params[:page])
     
     respond_with @selected_chronicle_id, @pcs, @npcs
   end
@@ -31,7 +32,8 @@ class CharactersController < ApplicationController
     
     chronicle = Chronicle.find_by_id(@selected_chronicle_id)
     @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
-    @npcs = chronicle.npcs.reject { |c| not c.show_name_to_user?(current_user) }
+
+    find_npcs(chronicle, current_user, params[:page])
     
     if user_signed_in?
       current_user.selected_chronicle = Chronicle.find_by_id(@selected_chronicle_id)
@@ -193,6 +195,15 @@ class CharactersController < ApplicationController
       @character = Character.new
     else
       @character = Character.find_by_id(params[:id])
+    end
+  end
+
+  # gets a paginated list of NPCs based on chronicle and user
+  def find_npcs(chronicle, user, page)
+    unless user and user.super_user?(chronicle)
+      @npcs = Character.where("chronicle_id = #{chronicle.id} and read_name = true").page(page)
+    else
+      @npcs = Character.where("chronicle_id = #{chronicle.id}").page(page)
     end
   end
   

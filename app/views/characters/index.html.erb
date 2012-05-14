@@ -32,4 +32,6 @@
   </tbody>
 </table>
 
+<%= will_paginate @npcs, :id => 'npcs_paginate' %>
+
 <%= link_to 'New character', new_character_path(:chronicle_id => @selected_chronicle_id), :id => "new_link" %><br />
