@@ -3,3 +3,12 @@
 # available.  Otherwise it will execute while your application is stopped
 # before the deploy step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
+
+# this will spawn a sub-shell, so make sure we can use rvm
+source $OPENSHIFT_DATA_DIR/.rvm/scripts/rvm
+
+# make sure we're in the app-dir so we use the right gemset
+cd $OPENSHIFT_REPO_DIR/[appname]
+
+# install gems
+bundle install
