@@ -2,6 +2,7 @@ source 'http://rubygems.org/'
 
 gem 'rails', '3.2.3'
 gem 'rake'
+gem 'mysql2'
 gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
@@ -19,14 +20,12 @@ end
 # and rake tasks are available in development mode:
 
 group :production do
-  gem 'mysql2'
   gem 'thin'
 end
 
 group :development, :test do
   gem 'minitest'
   gem 'fakeweb'
-  gem 'sqlite3'
 end
 
 group :test do
