@@ -2,7 +2,7 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
   adapter: mysql2
-  database: personae
+  database: personaedev
   pool: 5
   timeout: 5000
   username: root
