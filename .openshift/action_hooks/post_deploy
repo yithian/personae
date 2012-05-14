@@ -2,3 +2,10 @@
 # This is a simple post deploy hook executed after your application 
 # is deployed and started.  This script gets executed directly, so 
 # it could be python, php, ruby, etc.
+
+# this will spawn a sub-shell, so make sure we can use rvm
+source $OPENSHIFT_DATA_DIR/.rvm/scripts/rvm
+
+# make sure our bundle is up to date
+cd $OPENSHIFT_REPO_DIR/[appname]
+bundle
