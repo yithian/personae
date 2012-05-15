@@ -44,12 +44,12 @@ set up! Once this account is active it can mark any others as admins as
 well. These accounts will have the same permissions as Storyteller.
 
 To run Personae, you must have the following software installed: Ruby, 
-Ruby on Rails, and sqlite3. It is highly suggested to use Apache httpd and
+Ruby on Rails, and mysql. It is highly suggested to use Apache httpd and
 mod_rails as well.
 
 If you don't have this software installed, you can download it from
-http://ruby-lang.org and http://sqlite.org . Once you have
-Ruby and Sqlite3 installed, use Ruby Gems to install bundler:
+http://ruby-lang.org and http://www.mysql.com . Once you have
+Ruby and mysql installed, use Ruby Gems to install bundler:
 *nix:
   gem install bundler
 Windows: Start -> Programs -> Ruby -> Ruby Gems -> RubyGems Package Manager.
