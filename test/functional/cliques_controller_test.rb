@@ -38,8 +38,6 @@ class CliquesControllerTest < ActionController::TestCase
 
     xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
 
-    assert_js_select "td", :content => /MyCliqueName/
-
     # asserts that hidden cliques do not show
     hidden_cliques = Clique.all - Clique.known_to(User.new, chronicles(:one).id)
     hidden_cliques.each do |clique|
@@ -64,8 +62,6 @@ class CliquesControllerTest < ActionController::TestCase
     assert_tag "td", :content => /MyOtherCliqueName/
 
     xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
-
-    assert_js_select "td", :content => /MyCliqueName/
 
     # asserts that hidden cliques do not show
     hidden_cliques = Clique.all - Clique.known_to(User.new, chronicles(:one).id)
