@@ -1,6 +1,1 @@
-$('#pcs_list').html('<%= escape_javascript(render(:partial => "character", :collection => @pcs)) %>');
-$('#npcs_list').html('<%= escape_javascript(render(:partial => "character", :collection => @npcs)) %>');
-
-$('#npcs_paginate').html('<%= escape_javascript(will_paginate @npcs, :params => {:action => :index} ) %>');
-
-$('#new_link').html('<%= escape_javascript(link_to "New character", new_character_path(:chronicle_id => @selected_chronicle_id), :id => "new_link") %>');
+location.reload();

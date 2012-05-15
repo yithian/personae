@@ -9,7 +9,6 @@ class CharactersController < ApplicationController
   before_filter :show_permission, :only => [:show]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
-  before_filter :expire_cache, :only => [:index]
   
   # GET /characters
   # GET /characters.xml
@@ -29,11 +28,6 @@ class CharactersController < ApplicationController
   def change_chronicle
     # this bit of weirdness is to ensure the chronicle actually exists
     @selected_chronicle_id = Chronicle.find_by_id(params[:chronicle_id]).id
-    
-    chronicle = Chronicle.find_by_id(@selected_chronicle_id)
-    @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
-
-    find_npcs(chronicle, current_user, params[:page])
     
     if user_signed_in?
       current_user.selected_chronicle = Chronicle.find_by_id(@selected_chronicle_id)

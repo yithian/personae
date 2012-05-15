@@ -56,10 +56,6 @@ class CharactersControllerTest < ActionController::TestCase
     # change chronicle via dropdown
     xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
 
-    Character.known_to(User.new, chronicles(:one).id).each do |character|
-      assert_js_select "td", :content => /#{character.name}/
-    end
-
     # ensure hidden characters don't show
     (Character.all - Character.known_to(User.new, chronicles(:one).id)).each do |char|
       assert_no_tag "td", :content => /#{char.name}/
@@ -93,15 +89,6 @@ class CharactersControllerTest < ActionController::TestCase
 
     # change chronicle via dropdown
     xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
-
-    Character.known_to(users(:one), chronicles(:one).id).each do |character|
-      assert_js_select "td", :content => /#{character.name}/
-    end
-
-    # ensure hidden characters don't show
-    (Character.all - Character.known_to(users(:one), chronicles(:one).id)).each do |char|
-      assert_no_tag "td", :content => /#{char.name}/
-    end
   end
   
   test "should get index as ST" do
@@ -130,15 +117,6 @@ class CharactersControllerTest < ActionController::TestCase
 
     # change chronicle via dropdown
     xhr :get, :change_chronicle, :chronicle_id => chronicles(:two).id
-
-    Character.known_to(users(:Storyteller), chronicles(:two).id).each do |character|
-      assert_js_select "td", :content => /#{character.name}/
-    end
-
-    # ensure hidden characters don't show
-    (Character.all - Character.known_to(users(:Storyteller), chronicles(:two).id)).each do |char|
-      assert_no_tag "td", :content => /#{char.name}/
-    end
   end
  
   test "should get new" do
