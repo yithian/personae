@@ -32,13 +32,8 @@ class Ability
       # in a chronicle you created
       can :manage, Clique, :owner_id => user.id
       can :manage, Clique do |clique|
-        clique_ids = []
-        user.chronicles.collect do |chronicle|
-          Clique.find_all_by_chronicle_id(chronicle.id).collect do |c|
-            clique_ids << c.id 
-          end
-        end 
-        clique_ids.include?(clique.id)
+        chronicle_ids = user.chronicles.each { |c| c.id }
+        chronicle_ids.include?(clique.chronicle_id)
       end
 
       can :manage, Chronicle, :owner_id => user.id
