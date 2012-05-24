@@ -26,5 +26,4 @@ production:
   pool: 5
   username: <%= ENV['OPENSHIFT_DB_USERNAME'] %>
   password: <%= ENV['OPENSHIFT_DB_PASSWORD'] %>
-  host: <%= ENV['OPENSHIFT_DB_HOST'] %>
-  port: <%= ENV['OPENSHIFT_DB_PORT'] %>
+  socket: <%= ENV['OPENSHIFT_DB_SOCKET'] %>
