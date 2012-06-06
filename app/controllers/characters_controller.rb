@@ -195,9 +195,9 @@ class CharactersController < ApplicationController
   # gets a paginated list of NPCs based on chronicle and user
   def find_npcs(chronicle, user, page)
     unless user and user.super_user?(chronicle)
-      @npcs = Character.where("chronicle_id = #{chronicle.id} and read_name = true").page(page)
+      @npcs = Character.where("chronicle_id = #{chronicle.id} and read_name = true and pc = false").page(page)
     else
-      @npcs = Character.where("chronicle_id = #{chronicle.id}").page(page)
+      @npcs = Character.where("chronicle_id = #{chronicle.id} and pc = false").page(page)
     end
   end
   
