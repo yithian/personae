@@ -10,12 +10,14 @@ class CommentsControllerTest < ActionController::TestCase
     assert_response :success, @response.message
   end
   
-  test "shouldn't get new" do
+  test "shouldn't get new as nobody" do
     # when not logged in
     get :new, :character_id => characters(:one).id
     assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
+  end
 
+  test "shouldn't get new on hidden character" do
     sign_in(users(:one))
 
     # character two isn't visible
@@ -32,14 +34,16 @@ class CommentsControllerTest < ActionController::TestCase
     assert_redirected_to character_path(characters(:one))
   end
 
-  test "shouldn't create comment" do
+  test "shouldn't create comment as nobody" do
     # not logged in
     assert_no_difference('Comment.count', "got past authentication") do
       post :create, { :character_id => characters(:one).id, :comment => { :character_id => characters(:one).id, :user_id => users(:one).id, :speaker => characters(:one).name, :body => "some words" } }
     end
     assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
+  end
 
+  test "shouldn't create comment on hidden character" do
     # character two isn't visible
     sign_in(users(:one))
 
@@ -67,14 +71,16 @@ class CommentsControllerTest < ActionController::TestCase
     assert_redirected_to character_path(characters(:two))
   end
 
-  test "shouldn't destroy comment" do
+  test "shouldn't destroy comment as nobody" do
     # logged out
     assert_no_difference('Comment.count', "got past authentication") do
       delete :destroy, :id => comments(:one).id, :character_id => characters(:one).id
     end
     assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert]
-    
+  end
+
+  test "shouldn't destroy other users' comments" do
     # destroy other user's comment
     sign_in(users(:two))
 

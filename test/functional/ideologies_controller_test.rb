@@ -34,11 +34,13 @@ class IdeologiesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "shouldn't get new" do
+  test "shouldn't get new as nobody" do
     # when not logged in
     get :new
     assert_login
+  end
 
+  test "shouldn't get new as user" do
     # or when logged in
     sign_in(users(:one))
 
@@ -57,13 +59,15 @@ class IdeologiesControllerTest < ActionController::TestCase
     assert_redirected_to ideology_path(assigns(:ideology))
   end
 
-  test "shouldn't create ideology" do
+  test "shouldn't create ideology as nobody" do
     # not logged in
     assert_no_difference('Ideology.count', "created when not logged in") do
       post :create, :ideology => { :name => "test" }
     end
     assert_login
+  end
 
+  test "shouldn't create ideology as user" do
     # shouldn't create as user
     sign_in(users(:one))
 
@@ -93,11 +97,13 @@ class IdeologiesControllerTest < ActionController::TestCase
     assert_response :success, @response
   end
 
-  test "shouldn't get edit" do
+  test "shouldn't get edit as nobody" do
     # shouldn't get edit when not logged in
     get :edit, :id => ideologies(:one).to_param
     assert_login
+  end
 
+  test "shouldn't get edit as user" do
     # shouldn't get edit as user
     sign_in(users(:one))
 
@@ -113,10 +119,12 @@ class IdeologiesControllerTest < ActionController::TestCase
     assert_redirected_to ideology_path(assigns(:ideology))
   end
 
-  test "shouldn't update ideology" do
+  test "shouldn't update ideology as nobody" do
     put :update, :id => ideologies(:one).to_param, :ideology => { }
     assert_login
+  end
 
+  test "shouldn't update ideology as user" do
     sign_in(users(:one))
     put :update, :id => ideologies(:one).to_param, :ideology => { }
     assert_equal("Access denied!", flash[:error], "updated ideology as user")
@@ -133,13 +141,15 @@ class IdeologiesControllerTest < ActionController::TestCase
     assert_redirected_to ideologies_path
   end
 
-  test "shouldn't destroy ideology" do
+  test "shouldn't destroy ideology as nobody" do
     assert_no_difference('Ideology.count', "got past authentication") do
       delete :destroy, :id => ideologies(:one).to_param
     end
 
     assert_login
+  end
 
+  test "shouldn't destroy ideology as user" do
     sign_in(users(:one))
 
     assert_no_difference('Ideology.count', "user destroyed ideology") do

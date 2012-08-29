@@ -104,10 +104,12 @@ class ChroniclesControllerTest < ActionController::TestCase
     assert_not_nil(assigns(:users))
   end
   
-  test "shouldn't get edit" do
+  test "shouldn't get edit as nobody" do
     get :edit, :id => chronicles(:one).to_param
     assert_login
-    
+  end
+
+  test "shouldn't get edit for other users' chronicles" do
     sign_in(users(:one))
     get :edit, :id => chronicles(:one).to_param
     
@@ -127,12 +129,15 @@ class ChroniclesControllerTest < ActionController::TestCase
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     
     assert_login
-    
+  end
+
+  test "shouldn't update other users' chronicles" do  
     sign_in(users(:one))
     put :update, :id => chronicles(:one).to_param, :chronicle => { :name => "Unique" }
     
-    assert_redirected_to chronicle_path(chronicles(:one))
+    assert_redirected_to chronicles(:one)
     assert_equal("Access denied!", flash[:error])
+    assert_not_equal("Unique", Chronicle.find_by_id(chronicles(:one).id).name)
   end
 
   test "should destroy chronicle" do
@@ -145,20 +150,23 @@ class ChroniclesControllerTest < ActionController::TestCase
     assert_redirected_to chronicles_path
   end
   
-  test "shouldn't destroy chronicle" do
+  test "shouldn't destroy chronicle as nobody" do
     assert_no_difference "Chronicle.count" do
       delete :destroy, :id => chronicles(:one).to_param
     end
     
     assert_login
-    
+  end
+
+  test "shouldn't destroy other users' chronicles" do
     sign_in(users(:one))
     
     assert_no_difference "Chronicle.count" do
       delete :destroy, :id => chronicles(:one).to_param
     end
     
-    assert_redirected_to chronicle_path(chronicles(:one))
+    assert_redirected_to chronicles(:one)
     assert_equal("Access denied!", flash[:error])
+    assert Chronicle.find_by_id(chronicles(:one).id)
   end
 end

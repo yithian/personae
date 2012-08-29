@@ -103,13 +103,15 @@ class CliquesControllerTest < ActionController::TestCase
     assert_login
   end
 
-  test "should show clique" do
+  test "should show clique as nobody" do
     # not logged in
     get :show, :id => cliques(:one).to_param
     assert_response :success, @response.body
     assert_not_nil assigns(:clique)
     assert_show_view
-    
+  end
+
+  test "should show clique as ST" do
     # ST sees all cliques
     sign_in(users(:Storyteller))
     
@@ -121,14 +123,18 @@ class CliquesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:clique)
 
     assert_show_view
-    
+  end
+
+  test "should show clique as admin" do
     # so does user who owns chronicle
     sign_in(users(:two))
     
     get :show, :id => cliques(:three).to_param
     assert_response :success, @response
     assert_not_nil assigns(:clique)
+  end
 
+  test "should show clique as member" do
     # show clique as member
     sign_in(users(:one))
 
@@ -137,7 +143,9 @@ class CliquesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:clique)
 
     assert_show_view
+  end
 
+  test "should show clique as other user" do
     # show known clique as other user
     sign_in(users(:two))
 
@@ -176,11 +184,13 @@ class CliquesControllerTest < ActionController::TestCase
     assert_response :success, @response
   end
 
-  test "shouldn't get edit" do
+  test "shouldn't get edit as nobody" do
     # not logged in
     get :edit, :id => cliques(:two).to_param
     assert_login
+  end
 
+  test "shouldn't get edit on other users' cliques" do
     # non-owning user
     sign_in(users(:one))
     
@@ -254,11 +264,13 @@ class CliquesControllerTest < ActionController::TestCase
     assert_equal "Clique was successfully updated.", flash[:notice], "clique wasn't updated as owner"
   end
 
-  test "shouldn't update clique" do
+  test "shouldn't update clique as nobody" do
     # shouldn't update when not logged in
     put :update, :id => cliques(:one).to_param, :clique => { }
     assert_login
-    
+  end
+
+  test "shouldn't update other users' cliques" do
     # shouldn't update as non-owning user
     sign_in(users(:one))
     
@@ -293,14 +305,16 @@ class CliquesControllerTest < ActionController::TestCase
     assert_redirected_to cliques_path
   end
 
-  test "shouldn't destroy clique" do
+  test "shouldn't destroy clique as nobody" do
     # shouldn't destroy when not logged in
     assert_no_difference('Clique.count', "destroyed when not logged in") do
       delete :destroy, :id => cliques(:one).to_param
     end
 
     assert_login
+  end
 
+  test "shouldn't destroy other users' cliques" do
     # shouldn't destroy as non-owning user
     sign_in(users(:two))
     

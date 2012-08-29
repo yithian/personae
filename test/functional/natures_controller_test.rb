@@ -34,11 +34,13 @@ class NaturesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "shouldn't get new" do
+  test "shouldn't get new as nobody" do
     # when not logged in
     get :new
     assert_login
+  end
 
+  test "shouldn't get new as user" do
     # or when logged in
     sign_in(users(:one))
 
@@ -57,13 +59,15 @@ class NaturesControllerTest < ActionController::TestCase
     assert_redirected_to nature_path(assigns(:nature))
   end
 
-  test "shouldn't create nature" do
+  test "shouldn't create nature as nobody" do
     # not logged in
     assert_no_difference('Nature.count', "created when not logged in") do
       post :create, :nature => { :name => "test" }
     end
     assert_login
+  end
 
+  test "shouldn't create nature as user" do
     # shouldn't create as user
     sign_in(users(:one))
 
@@ -93,11 +97,13 @@ class NaturesControllerTest < ActionController::TestCase
     assert_response :success, @response
   end
 
-  test "shouldn't get edit" do
+  test "shouldn't get edit as nobody" do
     # shouldn't get edit when not logged in
     get :edit, :id => natures(:one).to_param
     assert_login
+  end
 
+  test "shouldn't get edit as user" do
     # shouldn't get edit as user
     sign_in(users(:one))
 
@@ -113,10 +119,12 @@ class NaturesControllerTest < ActionController::TestCase
     assert_redirected_to nature_path(assigns(:nature))
   end
 
-  test "shouldn't update nature" do
+  test "shouldn't update nature as nobody" do
     put :update, :id => natures(:one).to_param, :nature => { }
     assert_login
+  end
 
+  test "shouldn't update nature as user" do
     sign_in(users(:one))
     put :update, :id => natures(:one).to_param, :nature => { }
     assert_equal("Access denied!", flash[:error], "updated nature as user")
@@ -133,13 +141,15 @@ class NaturesControllerTest < ActionController::TestCase
     assert_redirected_to natures_path
   end
 
-  test "shouldn't destroy nature" do
+  test "shouldn't destroy nature as nobody" do
     assert_no_difference('Nature.count', "got past authentication") do
       delete :destroy, :id => natures(:one).to_param
     end
 
     assert_login
+  end
 
+  test "shouldn't destroy nature as user" do
     sign_in(users(:one))
 
     assert_no_difference('Nature.count', "user destroyed nature") do
