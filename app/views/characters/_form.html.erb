@@ -45,10 +45,10 @@
     <tr>
       <td><b><%= f.label :virtue %></b></td>
       <td><%= f.select :virtue, Character::VIRTUES, {}, {:tabindex => "1"} %></td>
-      <td class="label" id="nature_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
+      <td class="label" id="nature_label_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
         <b><%= label_tag 'nature_id', @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
-      <td class="data" id="nature_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
+      <td class="data" id="nature_id_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
         <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :tabindex => "1", :remote => true, :action => update_nature_characters_path %>
 	<%= f.hidden_field :nature_id %>
       </td>
@@ -56,18 +56,18 @@
     <tr>
       <td rowspan='3' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
       <td rowspan='3' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]", :tabindex => "1" %></td>
-      <td class="label" id="subnature_label_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
+      <td class="label" id="subnature_label_cell" <%= "style='display: none'".html_safe if @character.splat.name != "Changeling" %>>
         <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>
-      <td class="data" id="subnature_id_cell" <%= "style='display: none'" if @character.splat.name != "Changeling" %>>
+      <td class="data" id="subnature_id_cell" <%= "style='display: none'".html_safe if @character.splat.name != "Changeling" %>>
         <%= f.select :subnature_id, options_from_collection_for_select(@subnature_list, 'id', 'name', @character.subnature_id), {}, {:tabindex => "1"} %>
       </td>
     </tr>
     <tr>
-      <td class="label" id="ideology_label_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
+      <td class="label" id="ideology_label_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %>>
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
       </td>
-      <td class="data" id="ideology_id_cell" <%= "style='display: none'" if @character.splat.name == "Mortal" %>>
+      <td class="data" id="ideology_id_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %>>
         <%= f.select :ideology_id, options_from_collection_for_select(@ideology_list, 'id', 'name', @character.ideology.id), {}, {:tabindex => "1"} %>
       </td>
     </tr>
@@ -76,20 +76,20 @@
       <td><%= f.select :clique_id, @clique_list, {}, {:tabindex => "1"} %></td>
     </tr>
     <tr>
-      <td class="label"><div id="primary_vice_label_cell" <%= "style='display: none'" unless @character.is_possessed? %>><b><%= f.label :primary_vice %></b></div></td>
-      <td class="data"><div id="primary_vice_cell" <%= "style='display: none'" unless @character.is_possessed? %>><%= f.select :primary_vice, Character::VICES, {}, {:tabindex => "1"} %></div></td>
+      <td class="label"><div id="primary_vice_label_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><b><%= f.label :primary_vice %></b></div></td>
+      <td class="data"><div id="primary_vice_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><%= f.select :primary_vice, Character::VICES, {}, {:tabindex => "1"} %></div></td>
       <td class="label"><b><%= f.label :possessed, "Possessed" %></b></td>
       <td ><%= f.check_box :possessed, :remote => true, :action => possess_characters_path %> </td>
       </tr>
     <tr>
       <td><%= f.check_box :read_name %> <%= f.label :read_name, "Reveal name" %></td>
       <td>
-      	<span id="read_nature_span" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
+      	<span id="read_nature_span" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
           <%= f.check_box :read_nature %> <%= f.label :read_nature, "Reveal " + @character.splat.nature_name, :id => "read_nature_label" %>
         </span>
       </td>
       <td>
-        <span id="read_ideology_span" <%= "style='display: none'" if @character.splat.name == "Mortal" %> >
+        <span id="read_ideology_span" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
           <%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Reveal " + @character.splat.ideology_name, :id => "read_ideology_label" %>
         </span>
       </td>
@@ -232,14 +232,14 @@
     <tr>
       <td><%= f.label :size %></td>
       <td><%= f.text_field :size, :tabindex => "13", :class => "number" %></td>
-      <td id="infernal_will_label_cell" <%= "style='display: none'" unless @character.is_possessed? %>>Infernal Will</td>
-      <td id="infernal_will_cell" <%= "style='display: none'" unless @character.is_possessed? %>><%= @character.max_infernal_will %></td>
+      <td id="infernal_will_label_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>>Infernal Will</td>
+      <td id="infernal_will_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><%= @character.max_infernal_will %></td>
     </tr>
     <tr>
       <td><%= f.label :initiative %></td>
       <td><%= f.text_field :initiative, :tabindex => "13", :class => "number" %></td>
-      <td id="current_infernal_will_label_cell" <%= "style='display: none'" unless @character.is_possessed? %>><%= f.label :current_infernal_will %></td>
-      <td id="current_infernal_will_cell" <%= "style='display: none'" unless @character.is_possessed? %>><%= f.text_field :current_infernal_will %></td>
+      <td id="current_infernal_will_label_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><%= f.label :current_infernal_will %></td>
+      <td id="current_infernal_will_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><%= f.text_field :current_infernal_will %></td>
     </tr>
     <tr>
       <td><%= f.label :speed %></td>
@@ -260,26 +260,26 @@
       <td><%= f.text_field :morality, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
-      <td class="label" id="power_stat_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+      <td class="label" id="power_stat_label_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
         <%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %>
       </td>
-      <td class="data" id="power_stat_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+      <td class="data" id="power_stat_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
         <%= f.text_field :power_stat, :tabindex => "13", :class => "number" %>
       </td>
     </tr>
     <tr>
-      <td class="label" id="max_fuel_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+      <td class="label" id="max_fuel_label_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
         <%= f.label :max_fuel, "Max #{@character.splat.fuel_name}", :id => "max_fuel_label" %>
       </td>
-      <td class="data" id="max_fuel_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+      <td class="data" id="max_fuel_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
         <%= f.text_field :max_fuel, :tabindex => "13", :class => "number" %>
       </td>
     </tr>
     <tr>
-      <td class="label" id="current_fuel_label_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+      <td class="label" id="current_fuel_label_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
         <%= f.label :current_fuel, "Current #{@character.splat.fuel_name}", :id => "current_fuel_label" %>
       </td>
-      <td class="data" id="current_fuel_cell" <%= "style='display: none'" if @character.is_mortal? %> >
+      <td class="data" id="current_fuel_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
         <%= f.text_field :current_fuel, :tabindex => "13", :class => "number" %>
       </td>
     </tr>
@@ -294,7 +294,7 @@
   <p><%= f.text_area :equipment, :tabindex => "15" %></p>
   
   
-  <div id="mage_powers" <%= "style='display: none'" unless @character.is_mage? %> >
+  <div id="mage_powers" <%= "style='display: none'".html_safe unless @character.is_mage? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Arcana</h3>
     <table class="three_cells">
       <tr>
@@ -343,7 +343,7 @@
   </div>
   
   
-  <div id="woof_powers" <%= "style='display: none'" unless @character.is_werewolf? %> >
+  <div id="woof_powers" <%= "style='display: none'".html_safe unless @character.is_werewolf? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Renown</h3>
     <table class="three_cells">
       <tr>
@@ -372,7 +372,7 @@
   </div>
   
   
-  <div id="vampire_powers" <%= "style='display: none'" unless @character.is_vampire? %> >
+  <div id="vampire_powers" <%= "style='display: none'".html_safe unless @character.is_vampire? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Disciplines</h3>
     <table class="three_cells">
       <tr>
@@ -421,13 +421,13 @@
   </div>
   
   
-  <div id="promethean_powers" <%= "style='display: none'" unless @character.is_promethean? %> >
+  <div id="promethean_powers" <%= "style='display: none'".html_safe unless @character.is_promethean? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Transmutations</h3>
     <p><%= f.text_area :transmutations, :tabindex => "22" %></p>
   </div>
   
   
-  <div id="changeling_powers" <%= "style='display: none'" unless @character.is_changeling? %> >
+  <div id="changeling_powers" <%= "style='display: none'".html_safe unless @character.is_changeling? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Contracts</h3>
     <table class="three_cells">
       <tr>
@@ -508,13 +508,13 @@
   </div>
   
   
-  <div id="hunter_powers" <%= "style='display: none'" unless @character.is_hunter? %> >
+  <div id="hunter_powers" <%= "style='display: none'".html_safe unless @character.is_hunter? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Tactics</h3>
     <p><%= f.text_area :tactics, :tabindex => "25" %></p>
   </div>
   
   
-  <div id="geist_powers" <%= "style='display: none'" unless @character.is_geist? %> >
+  <div id="geist_powers" <%= "style='display: none'".html_safe unless @character.is_geist? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Manifestations</h3>
     <table class="three_cells">
       <tr>
@@ -554,7 +554,7 @@
   </div>
   
   
-  <div id="possessed_powers" <%= "style='display: none'" unless @character.is_possessed? %> >
+  <div id="possessed_powers" <%= "style='display: none'".html_safe unless @character.is_possessed? %> >
     <h3 class='<%= @character.splat.name.downcase %>'>Vestments</h3>
     <table class="three_cells">
       <tr>
