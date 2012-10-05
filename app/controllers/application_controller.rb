@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  before_filter :chronicle_id
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   check_authorization :unless => :devise_controller?
   helper :all # include all helpers, all the time
@@ -43,5 +44,16 @@ class ApplicationController < ActionController::Base
   class Helper
     include Singleton
     include ApplicationHelper
+  end
+
+  # since users who aren't logged in won't have a current_user
+  # we need to stick a value in their session data to keep track
+  # of which chronicle they're viewing.
+  def chronicle_id
+    unless current_user.nil?
+      @selected_chronicle_id = current_user.selected_chronicle.id
+    else
+      @selected_chronicle_id = session[:selected_chronicle_id] ||= Chronicle.first.id
+    end
   end
 end

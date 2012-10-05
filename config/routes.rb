@@ -6,32 +6,33 @@ Personae::Application.routes.draw do
 
   devise_for :users
 
-  resources :chronicles
-  resources :natures
-  resources :ideologies
-
-  resources :cliques do
-    collection do
-      get 'change_chronicle'
+  resources :chronicles do
+    resources :characters do
+      collection do
+        get 'update_splat'
+        get 'possess'
+        get 'update_nature'
+        get 'update_chronicle'
+        get 'change_chronicle'
+      end
+      member do
+        put 'save_notes'
+        put 'save_current'
+        get 'shapeshift'
+        get 'preview'
+      end
+      resources :comments
     end
+
+    resources :cliques do
+      collection do
+        get 'change_chronicle'
+      end
+    end
+
+    resources :natures
+    resources :ideologies
   end
 
-  resources :characters do
-    collection do
-      get 'update_splat'
-      get 'possess'
-      get 'update_nature'
-      get 'update_chronicle'
-      get 'change_chronicle'
-    end
-    member do
-      put 'save_notes'
-      put 'save_current'
-      get 'shapeshift'
-      get 'preview'
-    end
-    resources :comments
-  end
-  
-  root :to => 'characters#index'
+  root :to => 'chronicles#index'
 end

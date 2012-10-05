@@ -14,7 +14,6 @@ class CharactersController < ApplicationController
   # GET /characters.xml
   def index
     @chronicles = Chronicle.all.collect
-    @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
 
     chronicle = Chronicle.find_by_id(@selected_chronicle_id)
     @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }

@@ -13,7 +13,6 @@ class CliquesController < ApplicationController
   def index
     # Needed for the chronicle drop-down on the index
     @chronicles = Chronicle.all.collect
-    @selected_chronicle_id = help.selected_chronicle_id(current_user, session)
     
     if user_signed_in?
       @cliques = Clique.known_to current_user
