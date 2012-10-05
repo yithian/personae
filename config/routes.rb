@@ -29,10 +29,10 @@ Personae::Application.routes.draw do
         get 'change_chronicle'
       end
     end
-
-    resources :natures
-    resources :ideologies
   end
+
+  resources :natures
+  resources :ideologies
 
   root :to => 'chronicles#index'
 end
