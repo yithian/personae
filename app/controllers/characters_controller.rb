@@ -124,7 +124,7 @@ class CharactersController < ApplicationController
       obsidian_save if obsidian_enabled?
     end
 
-    respond_with @character
+    respond_with(@character.chronicle, @character)
   end
 
   # PUT /characters/1
@@ -141,7 +141,7 @@ class CharactersController < ApplicationController
       obsidian_save if obsidian_enabled?      
     end
     
-    respond_with @character
+    respond_with(@character.chronicle, @character)
   end
   
   # PUT /characters/1/save_notes
@@ -175,7 +175,7 @@ class CharactersController < ApplicationController
     @character.destroy
 
     respond_to do |format|
-      format.html { redirect_to(characters_url, :notice => 'Character was successfully deleted.') }
+      format.html { redirect_to(chronicle_characters_url(Chronicle.find(@selected_chronicle_id)), :notice => 'Character was successfully deleted.') }
       format.xml  { head :ok }
     end
   end
@@ -268,7 +268,7 @@ class CharactersController < ApplicationController
   def show_permission
     unless @character.show_name_to_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
-      redirect_to characters_path
+      redirect_to chronicle_characters_path(Chronicle.find(@selected_chronicle_id))
     end
   end
 end

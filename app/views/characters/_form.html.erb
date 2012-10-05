@@ -1,4 +1,4 @@
-<%= form_for(@character) do |f| %>
+<%= form_for([@character.chronicle, @character]) do |f| %>
   <% if @character.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
@@ -33,12 +33,12 @@
     <tr>
       <td><b><%= label_tag 'chronicle_id', "Chronicle" %></b></td>
       <td>
-        <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :tabindex => "1", :remote => true, :action => update_chronicle_characters_path %>
+        <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :tabindex => "1", :remote => true, :action => update_chronicle_chronicle_characters_path %>
 	<%= f.hidden_field :chronicle_id %>
       </td>
       <td><b><%= label_tag 'splat_id', "Template" %></b></td>
       <td>
-        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :tabindex => "1", :remote => true, :action => update_splat_characters_path %>
+        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :tabindex => "1", :remote => true, :action => update_splat_chronicle_characters_path %>
 	<%= f.hidden_field :splat_id %>
       </td>
     </tr>
@@ -49,7 +49,7 @@
         <b><%= label_tag 'nature_id', @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
       <td class="data" id="nature_id_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
-        <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :tabindex => "1", :remote => true, :action => update_nature_characters_path %>
+        <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :tabindex => "1", :remote => true, :action => update_nature_chronicle_characters_path %>
 	<%= f.hidden_field :nature_id %>
       </td>
     </tr>
@@ -79,7 +79,7 @@
       <td class="label"><div id="primary_vice_label_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><b><%= f.label :primary_vice %></b></div></td>
       <td class="data"><div id="primary_vice_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><%= f.select :primary_vice, Character::VICES, {}, {:tabindex => "1"} %></div></td>
       <td class="label"><b><%= f.label :possessed, "Possessed" %></b></td>
-      <td ><%= f.check_box :possessed, :remote => true, :action => possess_characters_path %> </td>
+      <td ><%= f.check_box :possessed, :remote => true, :action => possess_chronicle_characters_path %> </td>
       </tr>
     <tr>
       <td><%= f.check_box :read_name %> <%= f.label :read_name, "Reveal name" %></td>

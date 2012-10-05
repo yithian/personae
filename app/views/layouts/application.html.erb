@@ -26,7 +26,7 @@
     
     <ul id="menu">
       <%= li_selected_if(params[:controller] == "characters") do %>
-        <%= link_to "Characters", characters_path %>
+        <%= link_to "Characters", chronicle_characters_path(@selected_chronicle_id) %>
       <% end %>
       <%= li_selected_if(params[:controller] == "cliques") do %>
         <%= link_to "Cliques", chronicle_cliques_path(@selected_chronicle_id) %>

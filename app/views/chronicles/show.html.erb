@@ -38,7 +38,7 @@
 <%= render :partial => 'cliques/list' %>
 
 <br />
-<%= link_to('New character', new_character_path(:chronicle_id => @chronicle.id)) if can? :create, Character %>
+<%= link_to('New character', new_chronicle_character_path(:chronicle_id => @chronicle.id)) if can? :create, Character %>
 <% if can? :edit, @chronicle %>
   | <%= link_to('Edit', edit_chronicle_path(@chronicle)) %>
 <% end %>

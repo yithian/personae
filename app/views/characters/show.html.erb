@@ -34,7 +34,7 @@
       <td></td>
     <% end %>
     <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(current_user) %></b></span></td>
-    <td><span id="clique_name"><%= link_to @character.clique.name, @character.clique if @character.show_clique_to_user?(current_user) %></span></td>
+    <td><span id="clique_name"><%= link_to @character.clique.name, {:chronicle_id => @character.clique.chronicle, :id => @character.clique} if @character.show_clique_to_user?(current_user) %></span></td>
   </tr>
 </table>
 
@@ -175,7 +175,7 @@
       </tr>
       <tr>
         <% if can? :edit, @character %>
-        	<%= form_for(@character) do |f| %>
+        	<%= form_for([@character.chronicle, @character]) do |f| %>
             <td><%= f.label :current_health, "Current Health:" %></td>
             <td><%= f.text_field :current_health, :remote => true, :action => url_for(:action => :save_current, :id => @character.id), :method => "put" %></td>
             <td><%= f.label :current_willpower, "Current Willpower:" %></td>
@@ -238,7 +238,7 @@
       </tr>
       <tr>
         <% if can? :edit, @character %>
-          <%= form_for(@character) do |f| %>
+          <%= form_for([@character.chronicle, @character]) do |f| %>
             <td><%= f.label :current_fuel, "Current #{@character.splat.fuel_name}:" %></td>
             <td><%= f.text_field :current_fuel, :class => "number", :remote => true, :action => url_for(:action => "save_current", :id => @character.id), :method => "put" %></td>
           <% end %>
@@ -318,11 +318,11 @@
       <h3 class="<%= @character.splat.name.downcase %>">Forms</h3>
         <table id="woof_forms" class="five_cells">
           <tr>
-	    <th><%= link_to "Hishu", shapeshift_character_path(:form => "hishu"), :remote => true, :class => "selected" %></th>
-	    <th><%= link_to "Dalu", shapeshift_character_path(:form => "dalu"), :remote => true %></th>
-	    <th><%= link_to "Gauru", shapeshift_character_path(:form => "gauru"), :remote => true %></th>
-	    <th><%= link_to "Urshul", shapeshift_character_path(:form => "urshul"), :remote => true %></th>
-	    <th><%= link_to "Urhan", shapeshift_character_path(:form => "urhan"), :remote => true %></th>
+	    <th><%= link_to "Hishu", shapeshift_chronicle_character_path(:form => "hishu"), :remote => true, :class => "selected" %></th>
+	    <th><%= link_to "Dalu", shapeshift_chronicle_character_path(:form => "dalu"), :remote => true %></th>
+	    <th><%= link_to "Gauru", shapeshift_chronicle_character_path(:form => "gauru"), :remote => true %></th>
+	    <th><%= link_to "Urshul", shapeshift_chronicle_character_path(:form => "urshul"), :remote => true %></th>
+	    <th><%= link_to "Urhan", shapeshift_chronicle_character_path(:form => "urhan"), :remote => true %></th>
           </tr>
           <tr>
             <td></td>
@@ -615,7 +615,7 @@
 <% if @character.show_notes_to_user?(current_user) %>
   <div id="notes">
     <h3 class="<%= @character.splat.name.downcase %>">Notes</h3>
-    <%= form_for(@character, :remote => true, :method => :put, :url => save_notes_character_url) do |f| %>
+    <%= form_for([@character.chronicle, @character], :remote => true, :method => :put, :url => save_notes_chronicle_character_url) do |f| %>
       <%= f.text_area :notes %>
       <%= f.submit "Save notes", :id => "save_notes" if can? :edit, @character %>
     <% end %>
@@ -624,10 +624,10 @@
 
 <%= render :partial => 'comments' %><br />
 
-<%= link_to("Toggle preview", preview_character_path(@character), :remote => true) if can? :edit, @character %>
+<%= link_to("Toggle preview", preview_chronicle_character_path(@character.chronicle, @character), :remote => true) if can? :edit, @character %>
 <% if can? :edit, @character %>
-  | <%= link_to('Edit', edit_character_path(@character)) %>
+  | <%= link_to('Edit', edit_chronicle_character_path(@character.chronicle, @character)) %>
 <% end %>
 <% if can? :destroy, @character %>
-  | <%= link_to('Destroy', @character, :confirm => "Are you sure you want to delete #{@character.name}?", :method => :delete) %>
+  | <%= link_to('Destroy', {:chronicle_id => @character.chronicle, :id => @character}, :confirm => "Are you sure you want to delete #{@character.name}?", :method => :delete) %>
 <% end %>

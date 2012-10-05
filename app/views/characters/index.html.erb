@@ -1,5 +1,5 @@
 <h3>Chronicle</h3>
-<%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle_id), :remote => true, :action => change_chronicle_characters_path %>
+<%= select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle_id), :remote => true, :action => change_chronicle_chronicle_characters_path %>
 
 <h3>Characters</h3>
 <table class='list'>
@@ -34,4 +34,4 @@
 
 <%= will_paginate @npcs, :id => 'npcs_paginate' %>
 
-<%= link_to 'New character', new_character_path(:chronicle_id => @selected_chronicle_id), :id => "new_link" %><br />
+<%= link_to 'New character', new_chronicle_character_path(:chronicle_id => @selected_chronicle_id), :id => "new_link" %><br />
