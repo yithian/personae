@@ -29,7 +29,7 @@
         <%= link_to "Characters", characters_path %>
       <% end %>
       <%= li_selected_if(params[:controller] == "cliques") do %>
-        <%= link_to "Cliques", cliques_path %>
+        <%= link_to "Cliques", chronicle_cliques_path(@selected_chronicle_id) %>
       <% end %>
       <%= li_selected_if(params[:controller] == "ideologies") do %>
         <%= link_to "Ideologies", ideologies_path %>

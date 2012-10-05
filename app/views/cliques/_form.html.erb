@@ -1,4 +1,4 @@
-<%= form_for(@clique) do |f| %>
+<%= form_for([@clique.chronicle, @clique]) do |f| %>
   <% if @clique.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@clique.errors.count, "error") %> prohibited this clique from being saved:</h2>

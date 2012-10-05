@@ -61,7 +61,7 @@ class CliquesController < ApplicationController
 
     flash[:notice] = 'Clique was successfully created.' if @clique.save
 
-    respond_with @clique
+    respond_with(@clique.chronicle, @clique)
   end
 
   # PUT /cliques/1
@@ -77,7 +77,7 @@ class CliquesController < ApplicationController
       flash[:notice] = 'Clique was successfully updated.'
     end
 
-    respond_with @clique
+    respond_with(@clique.chronicle, @clique)
   end
 
   # DELETE /cliques/1
@@ -95,7 +95,7 @@ class CliquesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to(cliques_url, :notice => 'Clique was successfully deleted') }
+      format.html { redirect_to(chronicle_cliques_url(@clique.chronicle), :notice => 'Clique was successfully deleted') }
       format.xml  { head :ok }
     end
   end
@@ -127,7 +127,7 @@ class CliquesController < ApplicationController
   def show_permission
     unless @clique.is_known_to_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
-      redirect_to cliques_path
+      redirect_to chronicle_cliques_path(Chronicle.find(@selected_chronicle_id))
     end
   end
 end

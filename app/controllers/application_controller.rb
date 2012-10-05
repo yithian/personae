@@ -20,6 +20,8 @@ class ApplicationController < ActionController::Base
       end
     when "Comment"
       target = character_path(exception.subject.character)
+    when "Clique"
+      target = chronicle_clique_path(exception.subject.chronicle, exception.subject)
     else
       target = exception.subject
     end

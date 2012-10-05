@@ -18,12 +18,12 @@ class CliquesControllerTest < ActionController::TestCase
 
     assert_template "member"
     
-    get :show, :id => cliques(:one).to_param
+    get :show, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
     assert_select "h3", :content => /Totem/
   end
   
   test "should get index when logged out" do
-    get :index
+    get :index, :chronicle_id => Chronicle.first
     assert_response :success
     assert_not_nil assigns(:cliques)
     
@@ -48,7 +48,7 @@ class CliquesControllerTest < ActionController::TestCase
   test "should get index when logged in" do
     sign_in(users(:one))
     
-    get :index
+    get :index, :chronicle_id => Chronicle.find(users(:one).selected_chronicle_id)
     assert_response :success
     assert_not_nil assigns(:cliques)
 
@@ -79,7 +79,7 @@ class CliquesControllerTest < ActionController::TestCase
   end
 
   test "shouldn't get new" do
-    get :new
+    get :new, :chronicle_id => chronicles(:one)
     assert_login
   end
 
@@ -87,17 +87,17 @@ class CliquesControllerTest < ActionController::TestCase
     sign_in(users(:one))
     
     assert_difference('Clique.count') do
-      post :create, :clique => { :name => "unique", :chronicle_id => chronicles(:one).id }
+      post :create, :clique => { :name => "unique", :chronicle_id => chronicles(:one).id }, :chronicle_id => chronicles(:one)
     end
 
-    assert_redirected_to clique_path(assigns(:clique))
+    assert_redirected_to chronicle_clique_path(Clique.last.chronicle, Clique.last)
     assert_not_nil assigns(:clique)
     assert_equal "Clique was successfully created.", flash[:notice], "clique wasn't updated"
   end
 
   test "shouldn't create clique" do
     assert_no_difference('Clique.count') do
-      post :create, :clique => { :name => "unique", :chronicle_id => chronicles(:one).id }
+      post :create, :clique => { :name => "unique", :chronicle_id => chronicles(:one).id }, :chronicle_id => cliques(:one).chronicle
     end
 
     assert_login
@@ -105,7 +105,7 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "should show clique as nobody" do
     # not logged in
-    get :show, :id => cliques(:one).to_param
+    get :show, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
     assert_response :success, @response.body
     assert_not_nil assigns(:clique)
     assert_show_view
@@ -115,10 +115,10 @@ class CliquesControllerTest < ActionController::TestCase
     # ST sees all cliques
     sign_in(users(:Storyteller))
     
-    get :show, :id => cliques(:one).to_param
+    get :show, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
     assert_response :success, @response
     assert_not_nil assigns(:clique)
-    get :show, :id => cliques(:two).to_param
+    get :show, :id => cliques(:two).to_param, :chronicle_id => cliques(:one).chronicle
     assert_response :success, @response
     assert_not_nil assigns(:clique)
 
@@ -129,7 +129,7 @@ class CliquesControllerTest < ActionController::TestCase
     # so does user who owns chronicle
     sign_in(users(:two))
     
-    get :show, :id => cliques(:three).to_param
+    get :show, :id => cliques(:three).to_param, :chronicle_id => cliques(:one).chronicle
     assert_response :success, @response
     assert_not_nil assigns(:clique)
   end
@@ -138,7 +138,7 @@ class CliquesControllerTest < ActionController::TestCase
     # show clique as member
     sign_in(users(:one))
 
-    get :show, :id => cliques(:one).to_param
+    get :show, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
     assert_response :success, @response
     assert_not_nil assigns(:clique)
 
@@ -149,7 +149,7 @@ class CliquesControllerTest < ActionController::TestCase
     # show known clique as other user
     sign_in(users(:two))
 
-    get :show, :id => cliques(:two).to_param
+    get :show, :id => cliques(:two).to_param, :chronicle_id => cliques(:one).chronicle
     assert_response :success, @repsonse
     assert_not_nil assigns(:clique)
 
@@ -160,33 +160,33 @@ class CliquesControllerTest < ActionController::TestCase
     sign_in(users(:one))
     
     # clique two has write set to false
-    get :show, :id => cliques(:three).to_param
-    assert_redirected_to cliques_path
+    get :show, :id => cliques(:three).to_param, :chronicle_id => cliques(:three).chronicle
+    assert_redirected_to chronicle_cliques_path(Chronicle.find(users(:one).selected_chronicle_id))
     assert_equal "You don't have permission to do that", flash[:notice], "showed unknown clique when logged in"
   end
 
   test "should get edit" do
     sign_in(users(:Storyteller))
     
-    get :edit, :id => cliques(:one).to_param
+    get :edit, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
     assert_response :success, @response
 
     # owning user
     sign_in(users(:one))
 
-    get :edit, :id => cliques(:one).to_param
+    get :edit, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
     assert_response :success, @response
     
     # user owns chronicle
     sign_in(users(:two))
 
-    get :edit, :id => cliques(:three).to_param
+    get :edit, :id => cliques(:three).to_param, :chronicle_id => cliques(:three).chronicle
     assert_response :success, @response
   end
 
   test "shouldn't get edit as nobody" do
     # not logged in
-    get :edit, :id => cliques(:two).to_param
+    get :edit, :id => cliques(:two).to_param, :chronicle_id => cliques(:two).chronicle
     assert_login
   end
 
@@ -194,8 +194,8 @@ class CliquesControllerTest < ActionController::TestCase
     # non-owning user
     sign_in(users(:one))
     
-    get :edit, :id => cliques(:two).to_param
-    assert_redirected_to clique_path(cliques(:two))
+    get :edit, :id => cliques(:two).to_param, :chronicle_id => cliques(:two).chronicle
+    assert_redirected_to chronicle_clique_path(cliques(:two).chronicle, cliques(:two))
     assert_equal "Access denied!", flash[:error], "got edit as non-owning user"
   end
 
@@ -203,14 +203,14 @@ class CliquesControllerTest < ActionController::TestCase
     # no one should be able to edit the Solitary clique
     sign_in(users(:Storyteller))
     
-    get :edit, :id => cliques(:Solitary).to_param
-    assert_redirected_to clique_path(cliques(:Solitary))
+    get :edit, :id => cliques(:Solitary).to_param, :chronicle_id => cliques(:two).chronicle
+    assert_redirected_to chronicle_clique_path(cliques(:one).chronicle, cliques(:Solitary))
     assert_equal "Access denied!", flash[:error], "got edit for static clique"
 
     sign_in(users(:one))
     
-    get :edit, :id => cliques(:Solitary).to_param
-    assert_redirected_to clique_path(cliques(:Solitary))
+    get :edit, :id => cliques(:Solitary).to_param, :chronicle_id => cliques(:two).chronicle
+    assert_redirected_to chronicle_clique_path(cliques(:one).chronicle, cliques(:Solitary))
     assert_equal "Access denied!", flash[:error], "got edit for static clique"
   end
 
@@ -218,14 +218,14 @@ class CliquesControllerTest < ActionController::TestCase
     # no one should be able to edit the Solitary clique
     sign_in(users(:Storyteller))
     
-    put :update, :id => cliques(:Solitary).to_param
-    assert_redirected_to clique_path(cliques(:Solitary))
+    put :update, :id => cliques(:Solitary).to_param, :chronicle_id => cliques(:one).chronicle
+    assert_redirected_to chronicle_clique_path(chronicles(:one), cliques(:Solitary))
     assert_equal "Access denied!", flash[:error], "got edit for static clique"
 
     sign_in(users(:one))
     
-    put :update, :id => cliques(:Solitary).to_param
-    assert_redirected_to clique_path(cliques(:Solitary))
+    put :update, :id => cliques(:Solitary).to_param, :chronicle_id => chronicles(:one)
+    assert_redirected_to chronicle_clique_path(chronicles(:one), cliques(:Solitary))
     assert_equal "Access denied!", flash[:error], "got edit for static clique"
   end
 
@@ -234,10 +234,10 @@ class CliquesControllerTest < ActionController::TestCase
     sign_in(users(:Storyteller))
 
     assert_no_difference('Clique.count', "destroyed static clique") do
-      delete :destroy, :id => cliques(:Solitary).to_param
+      delete :destroy, :id => cliques(:Solitary).to_param, :chronicle_id => cliques(:Solitary).chronicle
     end
 
-    assert_redirected_to clique_path(cliques(:Solitary))
+    assert_redirected_to chronicle_clique_path(cliques(:Solitary).chronicle, cliques(:Solitary))
     assert_equal("Access denied!", flash[:error])
   end
 
@@ -245,28 +245,28 @@ class CliquesControllerTest < ActionController::TestCase
     # ST can update all
     sign_in(users(:Storyteller))
     
-    put :update, :id => cliques(:one).to_param, :clique => { }
-    assert_redirected_to clique_path(assigns(:clique))
+    put :update, :id => cliques(:one).to_param, :clique => { }, :chronicle_id => cliques(:one).chronicle
+    assert_redirected_to chronicle_clique_path(assigns(:clique).chronicle, assigns(:clique))
     assert_equal "Clique was successfully updated.", flash[:notice], "clique wasn't updated as ST"
     
     # update clique in owned chronicle
     sign_in(users(:two))
     
-    put :update, :id => cliques(:three).to_param, :clique => { }
-    assert_redirected_to clique_path(assigns(:clique))
+    put :update, :id => cliques(:three).to_param, :clique => { }, :chronicle_id => cliques(:three).chronicle
+    assert_redirected_to chronicle_clique_path(assigns(:clique).chronicle, assigns(:clique))
     assert_equal "Clique was successfully updated.", flash[:notice], "clique wasn't updated as user who owns chronicle"
     
     # update owned clique
     sign_in(users(:one))
 
-    put :update, :id => cliques(:one).to_param, :clique => { }
-    assert_redirected_to clique_path(assigns(:clique))
+    put :update, :id => cliques(:one).to_param, :clique => { }, :chronicle_id => cliques(:one).chronicle
+    assert_redirected_to chronicle_clique_path(assigns(:clique).chronicle, assigns(:clique))
     assert_equal "Clique was successfully updated.", flash[:notice], "clique wasn't updated as owner"
   end
 
   test "shouldn't update clique as nobody" do
     # shouldn't update when not logged in
-    put :update, :id => cliques(:one).to_param, :clique => { }
+    put :update, :id => cliques(:one).to_param, :clique => { }, :chronicle_id => cliques(:one).chronicle
     assert_login
   end
 
@@ -274,8 +274,8 @@ class CliquesControllerTest < ActionController::TestCase
     # shouldn't update as non-owning user
     sign_in(users(:one))
     
-    put :update, :id => cliques(:two).to_param, :clique => { }
-    assert_redirected_to clique_path(cliques(:two))
+    put :update, :id => cliques(:two).to_param, :clique => { }, :chronicle_id => cliques(:one).chronicle
+    assert_redirected_to chronicle_clique_path(cliques(:two).chronicle, cliques(:two))
     assert_equal "Access denied!", flash[:error], "clique was updated"
   end
 
@@ -284,31 +284,31 @@ class CliquesControllerTest < ActionController::TestCase
     sign_in(users(:Storyteller))
     
     assert_difference('Clique.count', -1, "ST couldn't destroy clique") do
-      delete :destroy, :id => cliques(:one).to_param
+      delete :destroy, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
     end
-    assert_redirected_to cliques_path
+    assert_redirected_to chronicle_cliques_path(cliques(:one).chronicle)
     
     # user who owns chronicle can destroy any inside said chronicle
     sign_in(users(:two))
 
     assert_difference('Clique.count', -1, "user who owns chronicle couldn't destroy clique") do
-      delete :destroy, :id => cliques(:three).to_param
+      delete :destroy, :id => cliques(:three).to_param, :chronicle_id => cliques(:three).chronicle
     end
-    assert_redirected_to cliques_path
+    assert_redirected_to chronicle_cliques_path(cliques(:three).chronicle)
 
     # destroy clique as owner
     sign_in(users(:two))
     
     assert_difference('Clique.count', -1, "owning user couldn't destroy clique") do
-      delete :destroy, :id => cliques(:two).to_param
+      delete :destroy, :id => cliques(:two).to_param, :chronicle_id => cliques(:two).chronicle
     end
-    assert_redirected_to cliques_path
+    assert_redirected_to chronicle_cliques_path(cliques(:two).chronicle)
   end
 
   test "shouldn't destroy clique as nobody" do
     # shouldn't destroy when not logged in
     assert_no_difference('Clique.count', "destroyed when not logged in") do
-      delete :destroy, :id => cliques(:one).to_param
+      delete :destroy, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
     end
 
     assert_login
@@ -319,38 +319,38 @@ class CliquesControllerTest < ActionController::TestCase
     sign_in(users(:two))
     
     assert_no_difference('Clique.count', "destroyed as non-owning user") do
-      delete :destroy, :id => cliques(:one).to_param
+      delete :destroy, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
     end
 
-    assert_redirected_to clique_path(cliques(:one))
+    assert_redirected_to chronicle_clique_path(cliques(:one).chronicle, cliques(:one))
     assert_equal("Access denied!", flash[:error])
   end
   
   test "should update members' chronicles" do
     sign_in(users(:Storyteller))
     
-    put :update, :id => cliques(:one).to_param, :clique => {:chronicle_id => chronicles(:two).id}
+    put :update, :id => cliques(:one).to_param, :clique => {:chronicle_id => chronicles(:two).id}, :chronicle_id => cliques(:one).chronicle
     
     assert_equal(chronicles(:two), Character.find_by_id(characters(:one).id).chronicle, "updating clique's chronicle didn't update it's characters'")
     
     # owning non-Storyteller user
     sign_in(users(:two))
 
-    put :update, :id => cliques(:two).to_param, :clique => {:chronicle_id => chronicles(:three).id}
+    put :update, :id => cliques(:two).to_param, :clique => {:chronicle_id => chronicles(:three).id}, :chronicle_id => cliques(:one).chronicle
 
     assert_equal(chronicles(:three), Character.find_by_id(characters(:two).id).chronicle, "updating clique's chronicle didn't update it's characters'")
   end
   
   test "shouldn't update members' chronicles" do
     # not logged in
-    put :update, :id => cliques(:one).to_param, :clique => {:chronicle_id => chronicles(:two).id}
+    put :update, :id => cliques(:one).to_param, :clique => {:chronicle_id => chronicles(:two).id}, :chronicle_id => cliques(:one).chronicle
     
     assert_not_equal(chronicles(:two), Character.find_by_id(characters(:one).id).chronicle, "updating clique's chronicle updated it's characters' when not logged in")
     
     # non-owning non-Storyteller user
     sign_in(users(:one))
 
-    put :update, :id => cliques(:two).to_param, :clique => {:chronicle_id => chronicles(:three).id}
+    put :update, :id => cliques(:two).to_param, :clique => {:chronicle_id => chronicles(:three).id}, :chronicle_id => cliques(:one).chronicle
 
     assert_not_equal(chronicles(:three), Character.find_by_id(characters(:two).id).chronicle, "updating clique's chronicle didn't update it's characters'")
   end
