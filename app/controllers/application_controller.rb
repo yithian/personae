@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
         target = new_user_session_path
       end
     when "Comment"
-      target = character_path(exception.subject.character)
+      target = chronicle_character_path(exception.subject.character.chronicle, exception.subject.character)
     when "Clique"
       target = chronicle_clique_path(exception.subject.chronicle, exception.subject)
     else

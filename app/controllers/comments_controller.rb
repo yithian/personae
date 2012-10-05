@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @comment = @character.comments.build(params[:comment])
 
     if @comment.save
-      redirect_to character_path(@character)
+      redirect_to chronicle_character_path(@character.chronicle, @character)
     else
       render :action => :new
     end
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to character_path(@character), :notice => 'Comment successfully deleted.' }
+      format.html { redirect_to chronicle_character_path(@character.chronicle, @character), :notice => 'Comment successfully deleted.' }
       format.xml  { head :ok }
     end
   end
@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
     @character = Character.find_by_id(params[:character_id])
     unless @character.show_name_to_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
-      redirect_to :controller => "characters", :action => "index" 
+      redirect_to chronicle_characters_path(@character.chronicle)
     end
   end
 
