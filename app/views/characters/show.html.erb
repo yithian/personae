@@ -34,7 +34,7 @@
       <td></td>
     <% end %>
     <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(current_user) %></b></span></td>
-    <td><span id="clique_name"><%= link_to @character.clique.name, {:chronicle_id => @character.clique.chronicle, :id => @character.clique} if @character.show_clique_to_user?(current_user) %></span></td>
+    <td><span id="clique_name"><%= link_to @character.clique.name, chronicle_clique_path(@character.chronicle, @character.clique) if @character.show_clique_to_user?(current_user) %></span></td>
   </tr>
 </table>
 
