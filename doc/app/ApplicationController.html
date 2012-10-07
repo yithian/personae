@@ -70,7 +70,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-expire_cache">#expire_cache</a>
+    <li><a href="#method-i-chronicle_id">#chronicle_id</a>
     
     <li><a href="#method-i-help">#help</a>
     
@@ -192,14 +192,14 @@ controllers.</p>
 
     <!-- Methods -->
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Protected Instance Methods</h3>
 
     
-      <div id="method-i-expire_cache" class="method-detail ">
+      <div id="method-i-chronicle_id" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">expire_cache</span><span
+          <span class="method-name">chronicle_id</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -207,35 +207,31 @@ controllers.</p>
 
         <div class="method-description">
           
-          <p>Includes header tags that instruct browsers not to cache the page. Ajax
-methods that update pages (eg: change_chronicle) update the page but
-hitting the back button in a browser will display un-updated contents.</p>
-
-<p>Calling this method prevents that behavior.</p>
+          <p>since users who aren’t logged in won’t have a current_user we need to stick
+a value in their session data to keep track of which chronicle they’re
+viewing.</p>
           
 
           
-          <div class="method-source-code" id="expire_cache-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 35</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">expire_cache</span>
-  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>[<span class="ruby-string">&quot;Cache-Control&quot;</span>] = <span class="ruby-string">&quot;no-cache, no-store, max-age=0, must-revalidate&quot;</span>
-  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>[<span class="ruby-string">&quot;Pragma&quot;</span>] = <span class="ruby-string">&quot;no-cache&quot;</span>
-  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>[<span class="ruby-string">&quot;Expires&quot;</span>] = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">httpdate</span>
+          <div class="method-source-code" id="chronicle_id-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">chronicle_id</span>
+  <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@selected_chronicle_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@selected_chronicle_id</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value">:selected_chronicle_id</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- expire_cache-source -->
+          </div><!-- chronicle_id-source -->
           
         </div>
 
         
 
         
-      </div><!-- expire_cache-method -->
-
-    
-    </section><!-- public-instance-method-details -->
-  
-     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Protected Instance Methods</h3>
+      </div><!-- chronicle_id-method -->
 
     
       <div id="method-i-help" class="method-detail ">
@@ -255,7 +251,7 @@ session)</p>
 
           
           <div class="method-source-code" id="help-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
   <span class="ruby-constant">Helper</span>.<span class="ruby-identifier">instance</span>
 <span class="ruby-keyword">end</span></pre>
@@ -286,7 +282,7 @@ user has linked his/her account</p>
 
           
           <div class="method-source-code" id="obsidian_enabled-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_enabled?</span>
   <span class="ruby-keyword">not</span> <span class="ruby-constant">SERVICES</span>[<span class="ruby-string">'obsidianportal'</span>][<span class="ruby-string">'consumer_key'</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user_signed_in?</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">obsidian_user_id</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>

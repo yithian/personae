@@ -13,8 +13,6 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.xml
   def index
-    @chronicles = Chronicle.all.collect
-
     chronicle = Chronicle.find_by_id(@selected_chronicle_id)
     @pcs = chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
 

@@ -220,7 +220,7 @@
 
           
           <div class="method-source-code" id="change_chronicle-source">
-            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_chronicle</span>
   <span class="ruby-comment"># this bit of weirdness is to ensure the chronicle actually exists</span>
   <span class="ruby-ivar">@selected_chronicle_id</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>])
@@ -231,9 +231,6 @@
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">session</span>[<span class="ruby-value">:selected_chronicle_id</span>] = <span class="ruby-ivar">@selected_chronicle_id</span>
   <span class="ruby-keyword">end</span>
-
-  <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-ivar">@selected_chronicle_id</span>)
-  <span class="ruby-ivar">@cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">known_to</span> <span class="ruby-identifier">current_user</span>, <span class="ruby-ivar">@selected_chronicle_id</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- change_chronicle-source -->
           
@@ -261,14 +258,14 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@clique</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:clique</span>])
   <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">owner</span> = <span class="ruby-identifier">current_user</span>
 
   <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Clique was successfully created.'</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">save</span>
 
-  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
+  <span class="ruby-identifier">respond_with</span>(<span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle</span>, <span class="ruby-ivar">@clique</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- create-source -->
           
@@ -296,7 +293,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 90</span>
+            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@clique</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Solitary'</span>)
     <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
@@ -310,7 +307,7 @@
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">cliques_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Clique was successfully deleted'</span>) }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">chronicle_cliques_url</span>(<span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle</span>), <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Clique was successfully deleted'</span>) }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -340,7 +337,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
 <span class="ruby-keyword">end</span></pre>
@@ -370,12 +367,8 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-comment"># Needed for the chronicle drop-down on the index</span>
-  <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">collect</span>
-  <span class="ruby-ivar">@selected_chronicle_id</span> = <span class="ruby-identifier">help</span>.<span class="ruby-identifier">selected_chronicle_id</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">session</span>)
-  
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_signed_in?</span>
     <span class="ruby-ivar">@cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">known_to</span> <span class="ruby-identifier">current_user</span>
   <span class="ruby-keyword">else</span>
@@ -410,7 +403,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
 <span class="ruby-keyword">end</span></pre>
@@ -440,7 +433,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">current_user</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -470,7 +463,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:clique</span>])
     <span class="ruby-comment"># updates the clique's characters' chronicle as well</span>
@@ -482,7 +475,7 @@
     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Clique was successfully updated.'</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@clique</span>
+  <span class="ruby-identifier">respond_with</span>(<span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle</span>, <span class="ruby-ivar">@clique</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update-source -->
           

@@ -38,14 +38,14 @@
       </td>
       <td><b><%= label_tag 'splat_id', "Template" %></b></td>
       <td>
-        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :tabindex => "1", :remote => true, :action => update_splat_chronicle_characters_path %>
+        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :class => 'btn-small', :tabindex => "1", :remote => true, :action => update_splat_chronicle_characters_path %>
 	<%= f.hidden_field :splat_id %>
       </td>
     </tr>
     <tr>
       <td><b><%= f.label :virtue %></b></td>
       <td><%= f.select :virtue, Character::VIRTUES, {}, {:tabindex => "1"} %></td>
-      <td class="label" id="nature_label_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
+      <td id="nature_label_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
         <b><%= label_tag 'nature_id', @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
       <td class="data" id="nature_id_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
@@ -56,7 +56,7 @@
     <tr>
       <td rowspan='3' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
       <td rowspan='3' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]", :tabindex => "1" %></td>
-      <td class="label" id="subnature_label_cell" <%= "style='display: none'".html_safe if @character.splat.name != "Changeling" %>>
+      <td id="subnature_label_cell" <%= "style='display: none'".html_safe if @character.splat.name != "Changeling" %>>
         <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>
       <td class="data" id="subnature_id_cell" <%= "style='display: none'".html_safe if @character.splat.name != "Changeling" %>>
@@ -64,7 +64,7 @@
       </td>
     </tr>
     <tr>
-      <td class="label" id="ideology_label_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %>>
+      <td id="ideology_label_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %>>
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
       </td>
       <td class="data" id="ideology_id_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %>>
@@ -76,44 +76,44 @@
       <td><%= f.select :clique_id, @clique_list, {}, {:tabindex => "1"} %></td>
     </tr>
     <tr>
-      <td class="label"><div id="primary_vice_label_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><b><%= f.label :primary_vice %></b></div></td>
+      <td><div id="primary_vice_label_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><b><%= f.label :primary_vice %></b></div></td>
       <td class="data"><div id="primary_vice_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><%= f.select :primary_vice, Character::VICES, {}, {:tabindex => "1"} %></div></td>
-      <td class="label"><b><%= f.label :possessed, "Possessed" %></b></td>
+      <td><b><%= f.label :possessed, "Possessed" %></b></td>
       <td ><%= f.check_box :possessed, :remote => true, :action => possess_chronicle_characters_path %> </td>
       </tr>
     <tr>
-      <td><%= f.check_box :read_name %> <%= f.label :read_name, "Reveal name" %></td>
+      <td><%= f.check_box :read_name, :class => 'checkbox' %> <%= f.label :read_name, "Reveal name", :class => "checkbox inline" %></td>
       <td>
       	<span id="read_nature_span" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
-          <%= f.check_box :read_nature %> <%= f.label :read_nature, "Reveal " + @character.splat.nature_name, :id => "read_nature_label" %>
+          <%= f.check_box :read_nature, :class => "checkbox" %> <%= f.label :read_nature, "Reveal " + @character.splat.nature_name, :id => "read_nature_label", :class => "checkbox inline" %>
         </span>
       </td>
       <td>
         <span id="read_ideology_span" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
-          <%= f.check_box :read_ideology %> <%= f.label :read_ideology, "Reveal " + @character.splat.ideology_name, :id => "read_ideology_label" %>
+          <%= f.check_box :read_ideology, :class => "checkbox" %> <%= f.label :read_ideology, "Reveal " + @character.splat.ideology_name, :id => "read_ideology_label", :class => "checkbox inline" %>
         </span>
       </td>
-      <td><%= f.check_box :read_clique %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label" %></td>
+      <td><%= f.check_box :read_clique, :class => "checkbox" %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label", :class => "checkbox inline" %></td>
     </tr>
   </table>
 
   
-  <h3 class='<%= @character.splat.name.downcase %>'>Description</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Description</h4>
   <p><%= f.text_area :description, :tabindex => "3" %></p>
-  <%= f.check_box :read_description %> <%= f.label :read_description, "Reveal description" %>
+  <%= f.check_box :read_description, :class => "checkbox" %> <%= f.label :read_description, "Reveal description", :class => "checkbox inline" %>
 
 
-  <h3 class='<%= @character.splat.name.downcase %>'>Background</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Background</h4>
   <p><%= f.text_area :background, :tabindex => "4" %></p>
-  <%= f.check_box :read_background %> <%= f.label :read_background, "Reveal background" %>
+  <%= f.check_box :read_background, :class => "checkbox" %> <%= f.label :read_background, "Reveal background", :class => "checkbox inline" %>
 
 
-  <h3 class='<%= @character.splat.name.downcase %>'>Deeds</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Deeds</h4>
   <p><%= f.text_area :deeds, :tabindex => "5" %></p>
-  <%= f.check_box :read_deeds %> <%= f.label :read_deeds, "Reveal known deeds" %>
+  <%= f.check_box :read_deeds, :class => "checkbox" %> <%= f.label :read_deeds, "Reveal known deeds", :class => "checkbox inline" %>
 
 
-  <h3 class='<%= @character.splat.name.downcase %>'>Attributes</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Attributes</h4>
   <table class="six_cells">
     <tr>
       <td><%= f.label :intelligence %></td>
@@ -142,7 +142,7 @@
   </table>
 
 
-  <h3 class='<%= @character.splat.name.downcase %>'>Skills</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Skills</h4>
   <table class="six_cells">
     <tr>
       <td><%= f.label :academics %></td>
@@ -215,7 +215,7 @@
   </table>
 
 
-  <h3 class='<%= @character.splat.name.downcase %>'>Advantages</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Advantages</h4>
   <table class="four_cells">
     <tr>
       <td><%= f.label :health %></td>
@@ -260,7 +260,7 @@
       <td><%= f.text_field :morality, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
-      <td class="label" id="power_stat_label_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
+      <td id="power_stat_label_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
         <%= f.label :power_stat, @character.splat.power_stat_name, :id => "power_stat_label" %>
       </td>
       <td class="data" id="power_stat_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
@@ -268,7 +268,7 @@
       </td>
     </tr>
     <tr>
-      <td class="label" id="max_fuel_label_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
+      <td id="max_fuel_label_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
         <%= f.label :max_fuel, "Max #{@character.splat.fuel_name}", :id => "max_fuel_label" %>
       </td>
       <td class="data" id="max_fuel_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
@@ -276,7 +276,7 @@
       </td>
     </tr>
     <tr>
-      <td class="label" id="current_fuel_label_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
+      <td id="current_fuel_label_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
         <%= f.label :current_fuel, "Current #{@character.splat.fuel_name}", :id => "current_fuel_label" %>
       </td>
       <td class="data" id="current_fuel_cell" <%= "style='display: none'".html_safe if @character.is_mortal? %> >
@@ -286,16 +286,16 @@
   </table>
   
   
-  <h3 class='<%= @character.splat.name.downcase %>'>Merits</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Merits</h4>
   <p><%= f.text_area :merits, :tabindex => "15" %></p>
   
   
-  <h3 class='<%= @character.splat.name.downcase %>'>Equipment</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Equipment</h4>
   <p><%= f.text_area :equipment, :tabindex => "15" %></p>
   
   
   <div id="mage_powers" <%= "style='display: none'".html_safe unless @character.is_mage? %> >
-    <h3 class='<%= @character.splat.name.downcase %>'>Arcana</h3>
+    <h4 class='<%= @character.splat.name.downcase %>'>Arcana</h4>
     <table class="three_cells">
       <tr>
         <td><%= f.label :death %></td>
@@ -344,7 +344,7 @@
   
   
   <div id="woof_powers" <%= "style='display: none'".html_safe unless @character.is_werewolf? %> >
-    <h3 class='<%= @character.splat.name.downcase %>'>Renown</h3>
+    <h4 class='<%= @character.splat.name.downcase %>'>Renown</h4>
     <table class="three_cells">
       <tr>
         <td><%= f.label :purity %></td>
@@ -373,7 +373,7 @@
   
   
   <div id="vampire_powers" <%= "style='display: none'".html_safe unless @character.is_vampire? %> >
-    <h3 class='<%= @character.splat.name.downcase %>'>Disciplines</h3>
+    <h4 class='<%= @character.splat.name.downcase %>'>Disciplines</h4>
     <table class="three_cells">
       <tr>
         <td><%= f.label :animalism %></td>
@@ -422,13 +422,13 @@
   
   
   <div id="promethean_powers" <%= "style='display: none'".html_safe unless @character.is_promethean? %> >
-    <h3 class='<%= @character.splat.name.downcase %>'>Transmutations</h3>
+    <h4 class='<%= @character.splat.name.downcase %>'>Transmutations</h4>
     <p><%= f.text_area :transmutations, :tabindex => "22" %></p>
   </div>
   
   
   <div id="changeling_powers" <%= "style='display: none'".html_safe unless @character.is_changeling? %> >
-    <h3 class='<%= @character.splat.name.downcase %>'>Contracts</h3>
+    <h4 class='<%= @character.splat.name.downcase %>'>Contracts</h4>
     <table class="three_cells">
       <tr>
         <td><%= f.label :dream %></td>
@@ -509,13 +509,13 @@
   
   
   <div id="hunter_powers" <%= "style='display: none'".html_safe unless @character.is_hunter? %> >
-    <h3 class='<%= @character.splat.name.downcase %>'>Tactics</h3>
+    <h4 class='<%= @character.splat.name.downcase %>'>Tactics</h4>
     <p><%= f.text_area :tactics, :tabindex => "25" %></p>
   </div>
   
   
   <div id="geist_powers" <%= "style='display: none'".html_safe unless @character.is_geist? %> >
-    <h3 class='<%= @character.splat.name.downcase %>'>Manifestations</h3>
+    <h4 class='<%= @character.splat.name.downcase %>'>Manifestations</h4>
     <table class="three_cells">
       <tr>
         <td><%= f.label :boneyard %></td>
@@ -549,13 +549,13 @@
       </tr>
     </table>
     
-    <h3 class='<%= @character.splat.name.downcase %>'>Ceremonies</h3>
+    <h4 class='<%= @character.splat.name.downcase %>'>Ceremonies</h4>
     <p><%= f.text_area :ceremonies, :tabindex => "28" %></p>
   </div>
   
   
   <div id="possessed_powers" <%= "style='display: none'".html_safe unless @character.is_possessed? %> >
-    <h3 class='<%= @character.splat.name.downcase %>'>Vestments</h3>
+    <h4 class='<%= @character.splat.name.downcase %>'>Vestments</h4>
     <table class="three_cells">
       <tr>
         <td><%= f.label :envy %> </td>
@@ -590,21 +590,21 @@
     </table>
   </div>
 
-  <%= f.check_box :read_crunch %> <%= f.label :read_crunch, "Reveal crunch", :title => "Crunch is defined as a character's attributes, skills, advantages, merits, equipment and any supernatural powers" %>
+  <%= f.check_box :read_crunch, :class => "checkbox" %> <%= f.label :read_crunch, "Reveal crunch", :class => "checkbox inline", :title => "Crunch is defined as a character's attributes, skills, advantages, merits, equipment and any supernatural powers" %>
 
 
-  <h3 class='<%= @character.splat.name.downcase %>'>Experience</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Experience</h4>
   <p><%= f.text_area :experience, :tabindex => "29" %></p>
-  <%= f.check_box :read_experience %> <%= f.label :read_experience, "Reveal experience" %>
+  <%= f.check_box :read_experience, :class => "checkbox" %> <%= f.label :read_experience, "Reveal experience", :class => "checkbox inline" %>
   
 
-  <h3 class='<%= @character.splat.name.downcase %>'>Notes</h3>
+  <h4 class='<%= @character.splat.name.downcase %>'>Notes</h4>
   <p><%= f.text_area :notes, :tabindex => "29" %></p>
-  <%= f.check_box :read_notes %> <%= f.label :read_notes, "Reveal notes" %>
+  <%= f.check_box :read_notes, :class => "checkbox" %> <%= f.label :read_notes, "Reveal notes", :class => "checkbox inline" %>
   <br />
 
-  <h3 class='<%= @character.splat.name.downcase %>'>Status</h3>
-  <p><%= f.check_box :pc %> <%= f.label :pc, "Character is a PC" %></p>
+  <h4 class='<%= @character.splat.name.downcase %>'>Status</h4>
+  <p><%= f.check_box :pc, :class => "checkbox" %> <%= f.label :pc, "Character is a PC", :class => "checkbox inline" %></p>
   
   <%= f.submit 'Save' %>
 <% end %>

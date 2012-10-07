@@ -1,15 +1,15 @@
 <p>
-  <h3>Name</h3>
+  <h4>Name</h4>
   <p><%= @clique.name %></p>
 </p>
 
 <p>
-  <h3>Territory</h3>
+  <h4>Territory</h4>
   <p><%= @clique.territory %></p>
 </p>
 
 <p>
-  <h3>Description</h3>
+  <h4>Description</h4>
   <p><%= simple_format @clique.description %></p>
 </p>
 
@@ -28,7 +28,7 @@
 
 <% if @clique.has_totem? %>
   <p>
-    <h3>Totem</h3>
+    <h4>Totem</h4>
     <p><%= simple_format(@clique.totem) %></p>
   </p>
 <% end %>

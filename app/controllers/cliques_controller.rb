@@ -11,9 +11,6 @@ class CliquesController < ApplicationController
   # GET /cliques
   # GET /cliques.xml
   def index
-    # Needed for the chronicle drop-down on the index
-    @chronicles = Chronicle.all.collect
-    
     if user_signed_in?
       @cliques = Clique.known_to current_user
     else

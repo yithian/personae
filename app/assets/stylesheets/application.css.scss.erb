@@ -3,7 +3,6 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require_tree . 
 */
 
 $tab-highlight: #97A2DE;
@@ -13,95 +12,27 @@ $splash-color: #a40000;
 $content-color: #333333;
 $background-color: #090233;
 
+@font-face {
+	font-family: optimus;
+	src: url(<%= asset_path('OptimusPrinceps.ttf') %>);
+}
+
 body {
 	margin: 0px;
-	background: $background-color;
+	background: $header-color;
 	text-align: center;
 	font-family: verdana, arial, helvetica, sans-serif;
-	font-size:   13px;
+	font-size:   14px;
 	line-height: 18px;
 }
 
-#column {
-	width: 80%;
-	max-width: 60em;
-	margin: 0 auto;
-	padding: 0em 1em;
-}
-
-/* top of page header */
-#header {
-	border: 1px solid black;
-	border-top: 0px;
-	border-bottom: 3px solid $tab-highlight;
-	padding-top: 10px;
-	text-align: center;
-	background: $header-background;
-	color: $header-color;
-}
-
-
-/* menu */
-#menu {
-	color: $tab-highlight;
-	list-style: none;
+select, textarea, input[type="text"] {
+	line-height: 14px;
+	padding: 0px;
 	margin: 0px;
-	
-	li {
-		display: inline;
-		font-weight: bold;
-		position: relative;
-		
-		&.selected a {
-			background: $tab-highlight;
-			color: $splash-color;
-			border-bottom: 1px solid $tab-highlight;
-			
-			&:hover { color: $header-color; }
-		}
-		/* drop-down menu effect*/
-		&:hover ul { left: 0px; }
-		
-		/* drop-down menu styling */
-		ul {
-			position: absolute;
-			left: -9999px;
-			background: $header-background;
-			padding: 0px;
-			border: 2px solid $tab-highlight;
-			text-align: left;
-
-			li {
-				display: block;
-				white-space: nowrap;
-			}
-		}
-	}
-	
-	li.selected {
-		ul {
-			a {
-				color: $tab-highlight;
-				background: $header-background;
-				padding: 0em 1em;
-				text-decoration: none;
-				border: none;
-			}
-		}
-	}
-	
-	a {
-		color: $tab-highlight;
-		padding: 0em 1em;
-		text-decoration: none;
-	
-		&:hover {
-			background: $tab-highlight;
-			color: $header-color;
-			border-bottom: 1px solid $tab-highlight;
-		}
-	}
 }
+
+label { margin: 0px; }
 
 /* notice messages */
 #notice {
@@ -109,13 +40,38 @@ body {
 	color: $splash-color;
 }
 
+/* navbar */
+#navbar {
+	background-color: #1b1b1b;
+	margin-bottom: 0px;
+	
+	.brand {
+		font-family: optimus;
+		color: $tab-highlight;
+	}
+	
+	select {
+		margin: 8px 6px 0px 6px;
+		height: 22px;
+	}
+}
+
+.navbar-inverse .nav {
+  color: $splash-color;
+}
+
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+  color: $splash-color;
+}
+
 /* page content */
 #content {
 	color: $content-color;
 	background: $header-color;
-	border: 1px solid black;
 	border-top: none;
-	padding: 0.5em 4em;
+	padding: 1em 4em;
 	text-align: justify;
 	
 	a {
@@ -136,14 +92,14 @@ body {
 		&:hover { background: $header-color; }
 	}
 	
-	h3 {
+	h4 {
 		color: $header-color;
 		background: url(<%= asset_path("mortal-smudge.png") %>) no-repeat -10px -6px;
 		overflow: visible;
 		padding: 0.2em 1.5em;
 		font-family: serif;
 		position: relative;
-		left: -3.5em;
+		left: -4em;
 
 		&.mage { background: url(<%= asset_path("mage-smudge.png") %>) no-repeat -10px -6px; }
 		&.vampire { background: url(<%= asset_path("vampire-smudge.png") %>) no-repeat -10px -6px; }
@@ -162,16 +118,13 @@ body {
 	}
 	
 	table {
-    width: 100%;
-    text-align: left;
+	    width: 100%;
+	    text-align: left;
 		td.growdown { vertical-align: top; }
 	}
 	
 	table.three_cells {
 		td { width: 9em; }
-	}
-	
-	table.three_cells {
 		td:nth-child(3) { width: 36em;}
 	}
 	
@@ -191,7 +144,10 @@ body {
 			padding: 0px 4px;
 		}
 		
-		td { padding: 0px 4px; }
+		td {
+			padding: 0px 4px;
+			text-align: center;
+		}
 	}
 	
 	input[type="text"], input[type="password"] { width: 9em; }

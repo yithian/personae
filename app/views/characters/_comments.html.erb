@@ -1,4 +1,4 @@
-<h3 class='<%= @character.splat.name.downcase %>'>Comments</h3>
+<h4 class='<%= @character.splat.name.downcase %>'>Comments</h3>
 <% @character.comments.each do |c| %>
     <p><b><%= c.speaker %></b></p>
     <p><%= simple_format(c.body) %></p>

@@ -54,6 +54,8 @@ class ApplicationController < ActionController::Base
   # we need to stick a value in their session data to keep track
   # of which chronicle they're viewing.
   def chronicle_id
+    @chronicles = Chronicle.all
+    
     unless current_user.nil?
       @selected_chronicle_id = current_user.selected_chronicle.id
     else

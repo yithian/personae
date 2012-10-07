@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <h3>Name</h3>
+  <h4>Name</h4>
   <p><%= f.text_field :name %></p>
 
-  <h3>Template</h3>
+  <h4>Template</h4>
   <p><%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @nature.splat) %></p>
   <%= f.submit 'Save' %>
 <% end %>

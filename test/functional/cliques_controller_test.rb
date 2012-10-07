@@ -14,12 +14,12 @@ class CliquesControllerTest < ActionController::TestCase
   end
 
   def assert_show_view
-    assert_select "h3", :minimum => 2
+    assert_select "h4", :minimum => 2
 
     assert_template "member"
     
     get :show, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
-    assert_select "h3", :content => /Totem/
+    assert_select "h4", :content => /Totem/
   end
   
   test "should get index when logged out" do

@@ -64,9 +64,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-li_selected_if">#li_selected_if</a>
-    
-    <li><a href="#method-i-selected_chronicle_id">#selected_chronicle_id</a>
+    <li><a href="#method-i-li_active_if">#li_active_if</a>
     
   </ul>
 </nav>
@@ -186,10 +184,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-li_selected_if" class="method-detail ">
+      <div id="method-i-li_active_if" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">li_selected_if</span><span
+          <span class="method-name">li_active_if</span><span
             class="method-args">(condition, attributes = {}, &block)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -201,58 +199,21 @@
           
 
           
-          <div class="method-source-code" id="li_selected_if-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">li_selected_if</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;class&quot;</span>] = <span class="ruby-string">&quot;selected&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">condition</span>
+          <div class="method-source-code" id="li_active_if-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">li_active_if</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;class&quot;</span>] = <span class="ruby-string">&quot;active&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">condition</span>
   
   <span class="ruby-identifier">content_tag</span>(<span class="ruby-string">'li'</span>, <span class="ruby-identifier">attributes</span>, &amp;<span class="ruby-identifier">block</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- li_selected_if-source -->
+          </div><!-- li_active_if-source -->
           
         </div>
 
         
 
         
-      </div><!-- li_selected_if-method -->
-
-    
-      <div id="method-i-selected_chronicle_id" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">selected_chronicle_id</span><span
-            class="method-args">(user, session)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>since users who aren’t logged in won’t have a current_user we need to stick
-a value in their session data to keep track of which chronicle they’re
-viewing.</p>
-          
-
-          
-          <div class="method-source-code" id="selected_chronicle_id-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">selected_chronicle_id</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">session</span>)
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">session</span>[<span class="ruby-value">:selected_chronicle_id</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">id</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:selected_chronicle_id</span>]
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- selected_chronicle_id-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- selected_chronicle_id-method -->
+      </div><!-- li_active_if-method -->
 
     
     </section><!-- public-instance-method-details -->

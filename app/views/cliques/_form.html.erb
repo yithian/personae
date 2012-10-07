@@ -11,23 +11,23 @@
     </div>
   <% end %>
   
-  <h3>Name</h3>
+  <h4>Name</h4>
   <p><%= f.text_field :name %></p>
 
-  <h3>Territory</h3>
+  <h4>Territory</h4>
   <p><%= f.text_field :territory %></p>
 
-  <h3>Description</h3>
+  <h4>Description</h4>
   <p><%= f.text_area :description %></p>
 
   <% if @clique.has_totem? %>
-    <h3>Totem</h3>
+    <h4>Totem</h4>
     <p><%= f.text_area :totem %></p>
   <% end %>
 
-  <h3>Chronicle</h3>
+  <h4>Chronicle</h4>
   <p><%= f.select :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @clique.chronicle.id) %></p>
-  <%= f.check_box :write %> <%= f.label :write, "Available for players" %>
+  <%= f.check_box :write, :class => "checkbox" %> <%= f.label :write, "Available for players", :class => "checkbox inline" %>
   <br />
   
   <%= f.submit 'Save' %>

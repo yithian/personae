@@ -13,56 +13,57 @@
     Infinite Personae
   </title>
 
-  <%= javascript_include_tag 'application' %>
-  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag :bootstrap %>
+  <%= javascript_include_tag :application %>
+  <%= stylesheet_link_tag :application %>
   <%= csrf_meta_tag %>
   <%= favicon_link_tag %>
 </head>
 <body>
-
-<div id="column">
-  <div id="header">
-    <%= image_tag("title.png", :alt => "Infinite Personae") %>
-    
-    <ul id="menu">
-      <%= li_selected_if(params[:controller] == "characters") do %>
-        <%= link_to "Characters", chronicle_characters_path(@selected_chronicle_id) %>
-      <% end %>
-      <%= li_selected_if(params[:controller] == "cliques") do %>
-        <%= link_to "Cliques", chronicle_cliques_path(@selected_chronicle_id) %>
-      <% end %>
-      <%= li_selected_if(params[:controller] == "ideologies") do %>
-        <%= link_to "Ideologies", ideologies_path %>
-      <% end %>
-      <%= li_selected_if(params[:controller] == "natures") do %>
-        <%= link_to "Natures", natures_path %>
-      <% end %>
-      <%= li_selected_if(params[:controller] == "chronicles") do %>
-        <%= link_to "Chronicles", chronicles_path %>
-      <% end %>
-      <% if user_signed_in? %>
-        <%= li_selected_if((params[:controller] == "admin" or params[:controller] == "devise/registrations")) do %>
-          <%= link_to "#{current_user.name}", '#' %>
-          <ul>
-            <li><%= link_to "Edit account", edit_user_registration_path %></li>
-            <%=raw ("<li>" + link_to("Admins", manage_admins_path) + "</li>") if current_user.admin? %>
-            <li><%= link_to "Log out", destroy_user_session_path %></li>
-          </ul>
-        <% end %>
-      <% else %>
-        <%= li_selected_if(params[:controller] == "devise/sessions") do %>
-          <%= link_to "Log in", new_user_session_path %>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
-  
-  <div id="content">
-    <div id="notice"><%= flash[:notice] %></div>
-    <div id="alert"><%= alert %></div>
-    <%= yield %>
-  </div>
-</div>
+	
+	<div id='navbar' class='navbar navbar-inverse'>
+		<div class='navbar-inner'>
+			<ul class='nav'>
+				<li><%= link_to "Infinite Personae", root_path, :class => :brand %></li>
+				<%= render 'layouts/chronicle_select' %>
+				<%= li_active_if(params[:controller] == 'characters') do %>
+					<%= link_to 'Characters', chronicle_characters_path(Chronicle.find(@selected_chronicle_id)) %>
+				<% end %>
+				<%= li_active_if(params[:controller] == 'cliques') do %>
+					<%= link_to 'Cliques', chronicle_cliques_path(Chronicle.find(@selected_chronicle_id)) %>
+				<% end %>
+				<%= li_active_if(params[:controller] == 'ideologies') do %>
+					<%= link_to 'Ideologies', ideologies_path %>
+				<% end %>
+				<li class='dropdown'>
+					<% if user_signed_in? %>
+						<a href='#' class='dropdown-toggle' data-toggle='dropdown'>
+							<%= current_user.name %>
+						<b class='carat'></b>
+						</a>
+						<ul class='dropdown-menu'>
+							<li><%= link_to "Edit account", edit_user_registration_path %></li>
+							<% if current_user.admin? %>
+								<li><%= link_to "Manage admins", manage_admins_path %></li>
+							<% end %>
+							<li><%= link_to "Chronicles", chronicles_path %></li>
+							<li><%= link_to "Log out", destroy_user_session_path %></li>
+						</ul>
+					<% else %>
+						<%= link_to "Log in", new_user_session_path %>
+					<% end %>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class='container'>
+		<div id="content" class='span10'>
+		    <div id="notice"><%= flash[:notice] %></div>
+		    <div id="alert"><%= alert %></div>
+		    <%= yield %>
+		</div>
+	</div>
 
 </body>
 </html>
