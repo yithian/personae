@@ -30,4 +30,4 @@
 
 <%= will_paginate @npcs, :id => 'npcs_paginate' %>
 
-<%= link_to 'New character', new_chronicle_character_path(:chronicle_id => @selected_chronicle_id), :id => "new_link" %><br />
+<%= link_to 'New character', new_chronicle_character_path(:chronicle_id => @selected_chronicle.id), :id => "new_link" %><br />

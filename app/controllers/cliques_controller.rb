@@ -14,7 +14,7 @@ class CliquesController < ApplicationController
     if user_signed_in?
       @cliques = Clique.known_to current_user
     else
-      @cliques = Clique.known_to User.new, @selected_chronicle_id
+      @cliques = Clique.known_to User.new, @selected_chronicle.id
     end
 
     respond_with @cliques
@@ -23,13 +23,13 @@ class CliquesController < ApplicationController
   # POST /cliques/change_chronicle
   def change_chronicle
     # this bit of weirdness is to ensure the chronicle actually exists
-    @selected_chronicle_id = Chronicle.find_by_id(params[:chronicle_id])
+    @selected_chronicle.id = Chronicle.find_by_id(params[:chronicle_id])
 
     if user_signed_in?
       current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
       current_user.save
     else
-      session[:selected_chronicle_id] = @selected_chronicle_id
+      session[:selected_chronicle_id] = @selected_chronicle.id
     end
   end
 
@@ -124,7 +124,7 @@ class CliquesController < ApplicationController
   def show_permission
     unless @clique.is_known_to_user?(current_user)
       flash[:notice] = "You don't have permission to do that"
-      redirect_to chronicle_cliques_path(Chronicle.find(@selected_chronicle_id))
+      redirect_to chronicle_cliques_path(Chronicle.find(@selected_chronicle.id))
     end
   end
 end

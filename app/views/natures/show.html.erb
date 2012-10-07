@@ -16,7 +16,7 @@
 </p>
 
 
-<%= link_to('New member', new_chronicle_character_path(:chronicle_id => @selected_chronicle_id, :nature_id => @nature.id)) if can? :create, Character %>
+<%= link_to('New member', new_chronicle_character_path(:chronicle_id => @selected_chronicle.id, :nature_id => @nature.id)) if can? :create, Character %>
 <% if can? :edit, @nature %>
   | <%= link_to('Edit', edit_nature_path(@nature)) %>
 <% end %>

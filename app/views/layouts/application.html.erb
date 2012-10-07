@@ -27,10 +27,10 @@
 				<li><%= link_to "Infinite Personae", root_path, :class => :brand %></li>
 				<%= render 'layouts/chronicle_select' %>
 				<%= li_active_if(params[:controller] == 'characters') do %>
-					<%= link_to 'Characters', chronicle_characters_path(Chronicle.find(@selected_chronicle_id)) %>
+					<%= link_to 'Characters', chronicle_characters_path(Chronicle.find(@selected_chronicle.id)) %>
 				<% end %>
 				<%= li_active_if(params[:controller] == 'cliques') do %>
-					<%= link_to 'Cliques', chronicle_cliques_path(Chronicle.find(@selected_chronicle_id)) %>
+					<%= link_to 'Cliques', chronicle_cliques_path(Chronicle.find(@selected_chronicle.id)) %>
 				<% end %>
 				<%= li_active_if(params[:controller] == 'ideologies') do %>
 					<%= link_to 'Ideologies', ideologies_path %>
