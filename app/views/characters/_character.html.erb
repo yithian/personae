@@ -2,6 +2,12 @@
   <td><%= link_to image_tag("edit.png"), edit_chronicle_character_path(character.chronicle, character) if can? :edit, character %></td>
   <td><%= link_to character.name, chronicle_character_path(character.chronicle, character) %></td>
   <td><%= character.concept %></td>
-  <td><%= link_to character.clique.name, chronicle_clique_path(character.chronicle, character.clique) if character.show_clique_to_user?(current_user) %></td>
+  <td>
+	  <%= unless character.clique == "Solitary"
+		  link_to character.clique.name, chronicle_clique_path(character.chronicle, character.clique) if character.show_clique_to_user?(current_user)
+	  else
+		  character.clique.name
+	  end %>
+  </td>
   <td><%= link_to image_tag("delete.png"), {:chronicle_id => character.chronicle, :id => character}, :confirm => 'Are you sure you want to delete this character?', :method => :delete if can? :destroy, character %></td>
 </tr>

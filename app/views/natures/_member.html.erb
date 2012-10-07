@@ -2,6 +2,12 @@
   <tr>
     <td><%= link_to member.name, {:id => member, :chronicle_id => member.chronicle} %></td>
     <td><%= member.concept %></td>
-    <td><%= link_to member.clique.name, {:id => member.clique, :chronicle_id => member.clique.chronicle_id} if member.show_clique_to_user?(current_user) %></td>
+    <td>
+		<%= unless member.clique.name == "Solitary"
+			link_to member.clique.name, {:id => member.clique, :chronicle_id => member.clique.chronicle_id} if member.show_clique_to_user?(current_user)
+		else
+			member.clique.name 
+		end %>
+	</td>
   </tr>
 <% end %>

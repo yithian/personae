@@ -34,7 +34,13 @@
       <td></td>
     <% end %>
     <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(current_user) %></b></span></td>
-    <td><span id="clique_name"><%= link_to @character.clique.name, chronicle_clique_path(@character.chronicle, @character.clique) if @character.show_clique_to_user?(current_user) %></span></td>
+    <td><span id="clique_name">
+		<%= unless @character.clique.name == "Solitary"
+			link_to @character.clique.name, chronicle_clique_path(@character.chronicle, @character.clique) if @character.show_clique_to_user?(current_user)
+		else
+			@character.clique.name
+		end %>
+	</span></td>
   </tr>
 </table>
 
