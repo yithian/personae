@@ -23,7 +23,7 @@ class CharactersController < ApplicationController
   # POST /characters/change_chronicle
   def change_chronicle
     # this bit of weirdness is to ensure the chronicle actually exists
-    @selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
+    @selected_chronicle = Chronicle.find_by_id(params[:new_chronicle_id])
     
     if user_signed_in?
       current_user.selected_chronicle = Chronicle.find_by_id(@selected_chronicle.id)

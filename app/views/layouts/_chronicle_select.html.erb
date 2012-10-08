@@ -1,11 +1,11 @@
 <li>
 	<%= case params[:controller]
 	when 'characters'
-		select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle.id), :remote => true, :action => change_chronicle_chronicle_characters_path, :class => "navbar-form span2"
+		select_tag :new_chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle.id), :remote => true, :action => change_chronicle_chronicle_characters_path, :class => "navbar-form span2"
 	when 'cliques'
-		select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle.id), :remote => true, :action => change_chronicle_chronicle_cliques_path, :class => "navbar-form span2"
+		select_tag :new_chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle.id), :remote => true, :action => change_chronicle_chronicle_cliques_path, :class => "navbar-form span2"
 	else
-		select_tag :chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle.id), :class => 'navbar-form span2', :disabled => true
+		select_tag :new_chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle.id), :class => 'navbar-form span2', :disabled => true
 	end	
 	 %>
 </li>
