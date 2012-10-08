@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>module CharactersHelper - Rails Application Documentation</title>
+<title>class RootController - Rails Application Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -20,7 +20,7 @@
 <script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
 
 
-<body id="top" class="module">
+<body id="top" class="class">
 <nav id="metadata">
   <nav id="home-section" class="section">
   <h3 class="section-header">
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/helpers/characters_helper.rb
+    <li>app/controllers/root_controller.rb
   </ul>
 </nav>
 
@@ -56,7 +56,13 @@
 
   <div id="class-metadata">
     
-    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
     
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
@@ -64,7 +70,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-dot_format">#dot_format</a>
+    <li><a href="#method-i-root">#root</a>
     
   </ul>
 </nav>
@@ -160,11 +166,12 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="module">module CharactersHelper</h1>
+  <h1 class="class">class RootController</h1>
 
   <div id="description" class="description">
     
-<p><a href="Character.html">Character</a> helper module</p>
+<p>exists only to redirect from the root of the application to the characters
+controller while providing the selected chronicle</p>
 
   </div><!-- description -->
 
@@ -186,34 +193,34 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-dot_format" class="method-detail ">
+      <div id="method-i-root" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">dot_format</span><span
-            class="method-args">(rating)</span>
+          <span class="method-name">root</span><span
+            class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          <p>breaks strings of •s into groups of 5 for readability</p>
+          <p>redirect to characters index</p>
           
 
           
-          <div class="method-source-code" id="dot_format-source">
-            <pre><span class="ruby-comment"># File app/helpers/characters_helper.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">dot_format</span>(<span class="ruby-identifier">rating</span>)
-  (<span class="ruby-string">&quot;•&quot;</span> * <span class="ruby-identifier">rating</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r•{5}/</span>, <span class="ruby-string">&quot;••••• &quot;</span>).<span class="ruby-identifier">strip</span>
+          <div class="method-source-code" id="root-source">
+            <pre><span class="ruby-comment"># File app/controllers/root_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">root</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">chronicle_characters_path</span>(<span class="ruby-ivar">@selected_chronicle</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- dot_format-source -->
+          </div><!-- root-source -->
           
         </div>
 
         
 
         
-      </div><!-- dot_format-method -->
+      </div><!-- root-method -->
 
     
     </section><!-- public-instance-method-details -->
