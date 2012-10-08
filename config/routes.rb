@@ -1,10 +1,7 @@
 Personae::Application.routes.draw do
-  post "services/obsidian_connect", :as => "obsidian_connect"
-  post "services/obsidian_disconnect", :as => "obsidian_disconnect"
-  
-  get "admin/manage", :as => "manage_admins"
+  get "root/root"
 
-  devise_for :users
+  root :to => 'root#root'
 
   resources :chronicles do
     resources :characters do
@@ -34,5 +31,10 @@ Personae::Application.routes.draw do
   resources :natures
   resources :ideologies
 
-  root :to => 'chronicles#index'
+  devise_for :users
+
+  post "services/obsidian_connect", :as => "obsidian_connect"
+  post "services/obsidian_disconnect", :as => "obsidian_disconnect"
+  
+  get "admin/manage", :as => "manage_admins"
 end

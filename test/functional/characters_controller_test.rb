@@ -54,7 +54,7 @@ class CharactersControllerTest < ActionController::TestCase
     end
 
     # change chronicle via dropdown
-    xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
+    xhr :get, :change_chronicle, :chronicle_id => chronicles(:two), :new_chronicle_id => chronicles(:one).id
 
     # ensure hidden characters don't show
     (Character.all - Character.known_to(User.new, chronicles(:one).id)).each do |char|
@@ -88,7 +88,7 @@ class CharactersControllerTest < ActionController::TestCase
     end
 
     # change chronicle via dropdown
-    xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
+    xhr :get, :change_chronicle, :chronicle_id => chronicles(:two), :new_chronicle_id => chronicles(:one).id
   end
   
   test "should get index as ST" do
@@ -116,7 +116,7 @@ class CharactersControllerTest < ActionController::TestCase
     end
 
     # change chronicle via dropdown
-    xhr :get, :change_chronicle, :chronicle_id => chronicles(:two).id
+    xhr :get, :change_chronicle, :chronicle_id => chronicles(:one), :new_chronicle_id => chronicles(:two).id
   end
  
   test "should get new" do
