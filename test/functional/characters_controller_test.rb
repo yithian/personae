@@ -238,7 +238,7 @@ class CharactersControllerTest < ActionController::TestCase
     assert_tag :tag => 'select', :attributes => {:id => 'character_clique_id'}, :child => {:tag => "option", :content => /#{cliques(:one).name}/}
     
     # ensure that changing chronicle updates clique select options
-    xhr :get, :update_chronicle, :chronicle_id => chronicles(:two).to_param
+    xhr :get, :update_chronicle, :chronicle_id => chronicles(:one), :new_chronicle_id => chronicles(:two).to_param
     
     assert response.body =~ /#{chronicles(:two).id}/, "did not include proper chronicle id"
     assert response.body =~ /MyOtherCliqueName/, "did not include proper clique name"

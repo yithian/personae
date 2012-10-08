@@ -36,7 +36,7 @@ class CliquesControllerTest < ActionController::TestCase
 
     assert_tag "td", :content => /MyThirdCliqueName/
 
-    xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
+    xhr :get, :change_chronicle, :chronicle_id => chronicles(:two), :new_chronicle_id => chronicles(:one).id
 
     # asserts that hidden cliques do not show
     hidden_cliques = Clique.all - Clique.known_to(User.new, chronicles(:one).id)
@@ -61,7 +61,7 @@ class CliquesControllerTest < ActionController::TestCase
 
     assert_tag "td", :content => /MyOtherCliqueName/
 
-    xhr :get, :change_chronicle, :chronicle_id => chronicles(:one).id
+    xhr :get, :change_chronicle, :chronicle_id => chronicles(:two), :new_chronicle_id => chronicles(:one).id
 
     # asserts that hidden cliques do not show
     hidden_cliques = Clique.all - Clique.known_to(User.new, chronicles(:one).id)
