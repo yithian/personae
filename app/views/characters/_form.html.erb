@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :chronicle_id %>
+
   <table class="four_cells">
     <tr>
       <td><b><%= f.label :name %></b></td>
@@ -31,16 +33,13 @@
       <td colspan='3'><%= f.text_field :concept, :tabindex => "1", :class => 'long' %></td>
     </tr>
     <tr>
-      <td><b><%= label_tag 'chronicle_id', "Chronicle" %></b></td>
-      <td>
-        <%= select_tag :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @character.chronicle.id), :tabindex => "1", :remote => true, :action => update_chronicle_chronicle_characters_path %>
-	<%= f.hidden_field :chronicle_id %>
-      </td>
       <td><b><%= label_tag 'splat_id', "Template" %></b></td>
       <td>
         <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :class => 'btn-small', :tabindex => "1", :remote => true, :action => update_splat_chronicle_characters_path %>
-	<%= f.hidden_field :splat_id %>
+        <%= f.hidden_field :splat_id %>
       </td>
+      <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
+      <td><%= f.select :clique_id, @clique_list, {}, {:tabindex => "1"} %></td>
     </tr>
     <tr>
       <td><b><%= f.label :virtue %></b></td>
@@ -54,8 +53,8 @@
       </td>
     </tr>
     <tr>
-      <td rowspan='3' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
-      <td rowspan='3' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]", :tabindex => "1" %></td>
+      <td rowspan='2' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
+      <td rowspan='2' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]", :tabindex => "1" %></td>
       <td id="subnature_label_cell" <%= "style='display: none'".html_safe if @character.splat.name != "Changeling" %>>
         <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>
@@ -72,10 +71,6 @@
       </td>
     </tr>
     <tr>
-      <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
-      <td><%= f.select :clique_id, @clique_list, {}, {:tabindex => "1"} %></td>
-    </tr>
-    <tr>
       <td><div id="primary_vice_label_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><b><%= f.label :primary_vice %></b></div></td>
       <td class="data"><div id="primary_vice_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><%= f.select :primary_vice, Character::VICES, {}, {:tabindex => "1"} %></div></td>
       <td><b><%= f.label :possessed, "Possessed" %></b></td>
@@ -83,6 +78,7 @@
       </tr>
     <tr>
       <td><%= f.check_box :read_name, :class => 'checkbox' %> <%= f.label :read_name, "Reveal name", :class => "checkbox inline" %></td>
+      <td><%= f.check_box :read_clique, :class => "checkbox" %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label", :class => "checkbox inline" %></td>
       <td>
       	<span id="read_nature_span" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
           <%= f.check_box :read_nature, :class => "checkbox" %> <%= f.label :read_nature, "Reveal " + @character.splat.nature_name, :id => "read_nature_label", :class => "checkbox inline" %>
@@ -93,7 +89,6 @@
           <%= f.check_box :read_ideology, :class => "checkbox" %> <%= f.label :read_ideology, "Reveal " + @character.splat.ideology_name, :id => "read_ideology_label", :class => "checkbox inline" %>
         </span>
       </td>
-      <td><%= f.check_box :read_clique, :class => "checkbox" %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label", :class => "checkbox inline" %></td>
     </tr>
   </table>
 
