@@ -206,7 +206,7 @@
         <td>Initiative:</td>
         <td id="initiative"><%= @character.initiative %></td>
         <% if can? :edit, @character %>
-          <%= form_for(@character) do |f| %>
+          <%= form_for([@character.chronicle, @character]) do |f| %>
             <td><%= f.label :current_infernal_will, "Current Infernal Will:" %></td>
             <td><%= f.text_field :current_infernal_will, :remote => true, :action => url_for(:action => :save_current, :id => @character.id), :method => "put" %></td>
           <% end %>
