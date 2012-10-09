@@ -11,20 +11,20 @@
     </div>
   <% end %>
 
-  <h4>Name</h4>
+  <h5>Name</h5>
   <%= f.text_field :name %>
   
   <% unless @campaigns.nil? %>
-    <h4>Obsidian Portal Link</h4>
+    <h5>Obsidian Portal Link</h5>
     <%= f.select :obsidian_campaign_id, @campaigns %>
   <% end %>
   
   <% if @users %>
-    <h4>Storyteller</h4>
+    <h5>Storyteller</h5>
     <%= f.select :owner_id, options_from_collection_for_select(@users, :id, :name, @chronicle.owner_id) %>
   <% end %>
   
-  <h4>Description</h4>
+  <h5>Description</h5>
   <%= f.text_area :description %>
   
   <%= f.submit "Save" %>

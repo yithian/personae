@@ -19,7 +19,7 @@ $('#max_fuel_label').html('Max <%= @splat.fuel_name %>');
 $('#current_fuel_label').html('Current <%= @splat.fuel_name %>');
 
 // update the h3 smudge color
-$('h4').attr('class', '<%= @splat.name.downcase %>');
+$('h5').attr('class', '<%= @splat.name.downcase %>');
 
 // show or hide only the appropriate fields
 <% if @splat.name == "Mortal" %>

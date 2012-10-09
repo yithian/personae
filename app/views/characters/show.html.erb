@@ -44,28 +44,28 @@
 
 <% if @character.show_description_to_user?(current_user) %>
   <div id="description">
-    <h4 class="<%= @character.splat.name.downcase %>">Description</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Description</h5>
     <%= simple_format(@character.description) %>
   </div>
 <% end %>
 
 <% if @character.show_background_to_user?(current_user) %>
   <div id="background">
-    <h4 class="<%= @character.splat.name.downcase %>">Background</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Background</h5>
     <%= simple_format(@character.background) %>
   </div>
 <% end %>
 
 <% if @character.show_deeds_to_user?(current_user) %>
   <div id="deeds">
-    <h4 class="<%= @character.splat.name.downcase %>">Deeds</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Deeds</h5>
     <%= simple_format(@character.deeds) %>
   </div>
 <% end %>
 
 <% if @character.show_crunch_to_user?(current_user) %>
   <div id="attributes">
-    <h4 class="<%= @character.splat.name.downcase %>">Attributes</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Attributes</h5>
     <table class="six_cells">
       <tr>
         <td>Intelligence:</td>
@@ -95,7 +95,7 @@
   </div>
 
   <div id="skills">
-    <h4 class="<%= @character.splat.name.downcase %>">Skills</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Skills</h5>
     <table class="six_cells">
       <tr>
         <td>Academics:</td>
@@ -169,7 +169,7 @@
   </div>
 
   <div id="advantages">    
-    <h4 class="<%= @character.splat.name.downcase %>">Advantages</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Advantages</h5>
     <table class="four_cells">
       <tr>
         <td>Health:</td>
@@ -258,18 +258,18 @@
   </div>
 
   <div id="merits">    
-    <h4 class="<%= @character.splat.name.downcase %>">Merits</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Merits</h5>
     <%= simple_format(@character.merits) %>
   </div>
 
   <div id="equipment">
-    <h4 class="<%= @character.splat.name.downcase %>">Equipment</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Equipment</h5>
     <%= simple_format(@character.equipment) %>
   </div>
 
   <div id="powers">
     <% if @character.is_mage? %>
-      <h4 class="<%= @character.splat.name.downcase %>">Arcana</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Arcana</h5>
       <table class="three_cells">
         <tr>
           <td>Death:</td>
@@ -319,7 +319,7 @@
     <% end %>
   
     <% if @character.is_werewolf? %>
-      <h4 class="<%= @character.splat.name.downcase %>">Forms</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Forms</h5>
         <table id="woof_forms" class="five_cells">
           <tr>
 	    <th><%= link_to "Hishu", shapeshift_chronicle_character_path(:form => "hishu"), :remote => true, :class => "selected" %></th>
@@ -357,7 +357,7 @@
             <td></td>
           </tr>
         </table>
-      <h4 class="<%= @character.splat.name.downcase %>">Renown</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Renown</h5>
       <table class="three_cells">
         <tr>
           <td>Purity:</td>
@@ -384,12 +384,12 @@
         <tr>
         </tr>
       </table>
-      <h4 class="<%= @character.splat.name.downcase %>">Totem</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Totem</h5>
       <%= simple_format(@character.clique.totem)%>
     <% end %>
 
     <% if @character.is_vampire? %>
-      <h4 class="<%= @character.splat.name.downcase %>">Disciplines</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Disciplines</h5>
       <table class="three_cells">
         <tr>
           <td>Animalism</td>
@@ -435,12 +435,12 @@
     <% end %>
 
     <% if @character.is_promethean? %>
-      <h4 class="<%= @character.splat.name.downcase %>">Transmutations</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Transmutations</h5>
       <%= simple_format(@character.transmutations) %>
     <% end %>
 
     <% if @character.is_changeling? %>
-      <h4 class="<%= @character.splat.name.downcase %>">Contracts</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Contracts</h5>
       <table class="three_cells">
                           <tr>
           <td>Dream</td>
@@ -526,12 +526,12 @@
     <% end %>
     
     <% if @character.is_hunter? %>
-      <h4 class="<%= @character.splat.name.downcase %>">Tactics</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Tactics</h5>
       <%= simple_format(@character.tactics) %>
     <% end %>
     
     <% if @character.is_geist? %>
-      <h4 class="<%= @character.splat.name.downcase %>">Manifestations</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Manifestations</h5>
       <table class="three_cells">
         <tr>
           <td>Boneyard</td>
@@ -567,12 +567,12 @@
         </tr>
       </table>
       
-      <h4 class="<%= @character.splat.name.downcase %>">Ceremonies</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Ceremonies</h5>
       <p><%= simple_format(@character.ceremonies) %></p>
     <% end %>
     
     <% if @character.is_possessed? %>
-      <h4 class="<%= @character.splat.name.downcase %>">Vestments</h4>
+      <h5 class="<%= @character.splat.name.downcase %>">Vestments</h5>
       <table class="three_cells">
         <tr>
           <td>Envy</td>
@@ -611,14 +611,14 @@
 
 <% if @character.show_experience_to_user?(current_user) %>
   <div id="experience">
-    <h4 class="<%= @character.splat.name.downcase %>">Experience</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Experience</h5>
     <%= simple_format(@character.experience) %>
   </div>
 <% end %>
 
 <% if @character.show_notes_to_user?(current_user) %>
   <div id="notes">
-    <h4 class="<%= @character.splat.name.downcase %>">Notes</h4>
+    <h5 class="<%= @character.splat.name.downcase %>">Notes</h5>
     <%= form_for([@character.chronicle, @character], :remote => true, :method => :put, :url => save_notes_chronicle_character_url) do |f| %>
       <%= f.text_area :notes %>
       <%= f.submit "Save notes", :id => "save_notes" if can? :edit, @character %>
