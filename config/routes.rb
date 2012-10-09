@@ -4,13 +4,16 @@ Personae::Application.routes.draw do
   root :to => 'root#root'
 
   resources :chronicles do
+    collection do
+      get 'change_selected_chronicle'
+    end
+    
     resources :characters do
       collection do
         get 'update_splat'
         get 'possess'
         get 'update_nature'
         get 'update_chronicle'
-        get 'change_chronicle'
       end
       member do
         put 'save_notes'
@@ -21,11 +24,7 @@ Personae::Application.routes.draw do
       resources :comments
     end
 
-    resources :cliques do
-      collection do
-        get 'change_chronicle'
-      end
-    end
+    resources :cliques
   end
 
   resources :natures

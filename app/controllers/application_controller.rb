@@ -53,9 +53,18 @@ class ApplicationController < ActionController::Base
   # since users who aren't logged in won't have a current_user
   # we need to stick a value in their session data to keep track
   # of which chronicle they're viewing.
+  # 
+  # this also preps a couple variables used everywhere
   def chronicle_setup
     @chronicles = Chronicle.all
+    @chronicles << Chronicle.new(:name => "New chronicle")
     
+    if params[:controller] == 'characters' and (params[:action] == 'new' or params[:action] == 'edit')
+      @action = update_chronicle_chronicle_characters_path
+    else
+      @action = change_selected_chronicle_chronicles_path
+    end
+
     unless current_user.nil?
       @selected_chronicle = current_user.selected_chronicle
     else

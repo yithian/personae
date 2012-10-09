@@ -1,20 +1,3 @@
 <li>
-  <%= action = nil
-  case params[:controller]
-	when 'characters'
-    # either update character sheets or update the current view
-    case params[:action]
-    when 'new', 'edit'
-      target = update_chronicle_chronicle_characters_path
-    else
-      target = change_chronicle_chronicle_characters_path
-    end
-	when 'cliques'
-		target = change_chronicle_chronicle_cliques_path
-	else
-    target = ''
-	end	
-
-  select_tag :new_chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle.id), :remote => true, :action => target, :class => "navbar-form span3"
-	 %>
+  <%= select_tag :new_chronicle_id, options_from_collection_for_select(@chronicles, 'id', 'name', @selected_chronicle.id), :remote => true, :action => @action, :class => "navbar-form span3" %>
 </li>

@@ -91,6 +91,26 @@ class ChroniclesController < ApplicationController
     end
   end
   
+  # POST /chronicles/change_selected_chronicle
+  def change_selected_chronicle
+    # if an empty string is passed in here, create a new chronicle
+    # otherwise, display the new @selected_chronicle
+    if params[:new_chronicle_id].empty?
+      @target = new_chronicle_path
+    else
+      @selected_chronicle = Chronicle.find_by_id(params[:new_chronicle_id])
+    
+      if user_signed_in?
+        current_user.selected_chronicle = @selected_chronicle
+        current_user.save
+      else
+        session[:selected_chronicle_id] = @selected_chronicle.id
+      end
+      
+      @target = chronicle_path(@selected_chronicle)
+    end
+  end
+  
   private
   # Sets up a chronicle variable from an id passed by url, or if none is
   # passed, a new (empty) chronicle.

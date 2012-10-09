@@ -20,19 +20,6 @@ class CliquesController < ApplicationController
     respond_with @cliques
   end
 
-  # POST /cliques/change_chronicle
-  def change_chronicle
-    # this bit of weirdness is to ensure the chronicle actually exists
-    @selected_chronicle = Chronicle.find_by_id(params[:new_chronicle_id])
-
-    if user_signed_in?
-      current_user.selected_chronicle = Chronicle.find_by_id(params[:chronicle_id])
-      current_user.save
-    else
-      session[:selected_chronicle_id] = @selected_chronicle.id
-    end
-  end
-
   # GET /cliques/1
   # GET /cliques/1.xml
   def show

@@ -19,19 +19,6 @@ class CharactersController < ApplicationController
     
     respond_with @selected_chronicle, @pcs, @npcs
   end
-  
-  # POST /characters/change_chronicle
-  def change_chronicle
-    # this bit of weirdness is to ensure the chronicle actually exists
-    @selected_chronicle = Chronicle.find_by_id(params[:new_chronicle_id])
-    
-    if user_signed_in?
-      current_user.selected_chronicle = Chronicle.find_by_id(@selected_chronicle.id)
-      current_user.save
-    else
-      session[:selected_chronicle_id] = @selected_chronicle.id
-    end
-  end
 
   # GET /characters/1
   # GET /characters/1.xml

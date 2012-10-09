@@ -37,6 +37,13 @@ class ChroniclesControllerTest < ActionController::TestCase
     get :index
     assert_response :success, @response
     assert_not_nil(assigns(:chronicles), "no chronicles assigned")
+    
+    # asserts the change_chronicle dropdown works
+    assert_select "select" do |elements|
+      elements.each do |element|
+        assert_select element, "option", {:minimum => 1}
+      end
+    end
   end
 
   test "should get new" do

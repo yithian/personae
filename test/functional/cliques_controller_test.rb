@@ -14,35 +14,18 @@ class CliquesControllerTest < ActionController::TestCase
   end
 
   def assert_show_view
-    assert_select "h4", :minimum => 2
+    assert_select "h5", :minimum => 2
 
     assert_template "member"
     
     get :show, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
-    assert_select "h4", :content => /Totem/
+    assert_select "h5", :content => /Totem/
   end
   
   test "should get index when logged out" do
     get :index, :chronicle_id => Chronicle.first
     assert_response :success
     assert_not_nil assigns(:cliques)
-    
-    # asserts the change_chronicle dropdown works
-    assert_select "select" do |elements|
-      elements.each do |element|
-        assert_select element, "option", {:minimum => 1}
-      end
-    end
-
-    assert_tag "td", :content => /MyThirdCliqueName/
-
-    xhr :get, :change_chronicle, :chronicle_id => chronicles(:two), :new_chronicle_id => chronicles(:one).id
-
-    # asserts that hidden cliques do not show
-    hidden_cliques = Clique.all - Clique.known_to(User.new, chronicles(:one).id)
-    hidden_cliques.each do |clique|
-      assert_no_tag "td", :content => /#{clique.name}/
-    end
   end
   
   test "should get index when logged in" do
@@ -51,23 +34,6 @@ class CliquesControllerTest < ActionController::TestCase
     get :index, :chronicle_id => Chronicle.find(users(:one).selected_chronicle_id)
     assert_response :success
     assert_not_nil assigns(:cliques)
-
-    # asserts the change_chronicle dropdown works
-    assert_select "select" do |elements|
-      elements.each do |element|
-        assert_select element, "option", {:minimum => 1}
-      end
-    end
-
-    assert_tag "td", :content => /MyOtherCliqueName/
-
-    xhr :get, :change_chronicle, :chronicle_id => chronicles(:two), :new_chronicle_id => chronicles(:one).id
-
-    # asserts that hidden cliques do not show
-    hidden_cliques = Clique.all - Clique.known_to(User.new, chronicles(:one).id)
-    hidden_cliques.each do |clique|
-      assert_no_tag "td", :content => /#{clique.name}/
-    end
   end
 
   test "should get new" do
