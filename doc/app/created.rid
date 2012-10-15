@@ -1,7 +1,7 @@
-Sun, 14 Oct 2012 22:11:34 -0400
+Sun, 14 Oct 2012 22:25:14 -0400
 doc/README_FOR_APP	Sun, 13 May 2012 20:02:23 -0400
 app/controllers/admin_controller.rb	Sun, 13 May 2012 20:02:23 -0400
-app/controllers/application_controller.rb	Sun, 14 Oct 2012 22:11:21 -0400
+app/controllers/application_controller.rb	Sun, 14 Oct 2012 22:24:40 -0400
 app/controllers/characters_controller.rb	Tue, 09 Oct 2012 16:52:39 -0400
 app/controllers/chronicles_controller.rb	Tue, 09 Oct 2012 17:36:39 -0400
 app/controllers/cliques_controller.rb	Tue, 09 Oct 2012 17:48:02 -0400

@@ -63,7 +63,9 @@ class ApplicationController < ActionController::Base
     end
 
     if user_signed_in?
-      @chronicles = current_user.characters.collect { |c| c.chronicle }.uniq
+      @chronicles = current_user.characters.collect { |c| c.chronicle }
+      @chronicles += current_user.chronicles
+      @chronicles.uniq!
       @chronicles << Chronicle.new(:name => "New chronicle")
 
       @selected_chronicle = current_user.selected_chronicle
