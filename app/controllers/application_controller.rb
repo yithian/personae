@@ -56,9 +56,6 @@ class ApplicationController < ActionController::Base
   # 
   # this also preps a couple variables used everywhere
   def chronicle_setup
-    @chronicles = Chronicle.all
-    @chronicles << Chronicle.new(:name => "New chronicle")
-    
     if params[:controller] == 'characters' and (params[:action] == 'new' or params[:action] == 'edit')
       @action = update_chronicle_chronicle_characters_path
     else
@@ -66,8 +63,13 @@ class ApplicationController < ActionController::Base
     end
 
     if user_signed_in?
+      @chronicles = current_user.characters.collect { |c| c.chronicle }.uniq
+      @chronicles << Chronicle.new(:name => "New chronicle")
+
       @selected_chronicle = current_user.selected_chronicle
     else
+      @chronicles = [Chronicle.new(:name => "New chronicle")]
+      
       @selected_chronicle = Chronicle.find_by_id(session[:selected_chronicle_id]) || Chronicle.first
     end
   end

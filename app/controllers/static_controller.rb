@@ -5,6 +5,6 @@ class StaticController < ApplicationController
   
   # GET index.html
   def index
-    @chronicles = Chronicle.all(:order => "id DESC").last(10)
+    @latest_chronicles = Chronicle.all(:order => "id DESC").last(10)
   end
 end

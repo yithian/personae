@@ -213,7 +213,7 @@ site’s layout</p>
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/static_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>(<span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;id DESC&quot;</span>).<span class="ruby-identifier">last</span>(<span class="ruby-value">10</span>)
+  <span class="ruby-ivar">@latest_chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>(<span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;id DESC&quot;</span>).<span class="ruby-identifier">last</span>(<span class="ruby-value">10</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           
