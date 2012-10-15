@@ -1,7 +1,7 @@
 Personae::Application.routes.draw do
-  get "root/root"
+  resources :static, :only => ['index']
 
-  root :to => 'root#root'
+  root :to => 'static#index'
 
   resources :chronicles do
     collection do

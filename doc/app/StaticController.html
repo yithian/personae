@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>class RootController - Rails Application Documentation</title>
+<title>class StaticController - Rails Application Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/controllers/root_controller.rb
+    <li>app/controllers/static_controller.rb
   </ul>
 </nav>
 
@@ -70,7 +70,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-root">#root</a>
+    <li><a href="#method-i-index">#index</a>
     
   </ul>
 </nav>
@@ -145,13 +145,15 @@
   
     <li><a href="./NaturesHelper.html">NaturesHelper</a>
   
-    <li><a href="./RootController.html">RootController</a>
-  
     <li><a href="./ServicesController.html">ServicesController</a>
   
     <li><a href="./ServicesHelper.html">ServicesHelper</a>
   
     <li><a href="./Splat.html">Splat</a>
+  
+    <li><a href="./StaticController.html">StaticController</a>
+  
+    <li><a href="./StaticHelper.html">StaticHelper</a>
   
     <li><a href="./Subnature.html">Subnature</a>
   
@@ -166,12 +168,12 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class RootController</h1>
+  <h1 class="class">class StaticController</h1>
 
   <div id="description" class="description">
     
-<p>exists only to redirect from the root of the application to the characters
-controller while providing the selected chronicle</p>
+<p>serve up static content through a controller so it can use the rest of the
+site’s layout</p>
 
   </div><!-- description -->
 
@@ -193,10 +195,10 @@ controller while providing the selected chronicle</p>
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-root" class="method-detail ">
+      <div id="method-i-index" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">root</span><span
+          <span class="method-name">index</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -204,23 +206,23 @@ controller while providing the selected chronicle</p>
 
         <div class="method-description">
           
-          <p>redirect to characters index</p>
+          <p>GET index.html</p>
           
 
           
-          <div class="method-source-code" id="root-source">
-            <pre><span class="ruby-comment"># File app/controllers/root_controller.rb, line 8</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">root</span>
-  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">chronicle_characters_path</span>(<span class="ruby-ivar">@selected_chronicle</span>)
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_controller.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>(<span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;id DESC&quot;</span>).<span class="ruby-identifier">last</span>(<span class="ruby-value">10</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- root-source -->
+          </div><!-- index-source -->
           
         </div>
 
         
 
         
-      </div><!-- root-method -->
+      </div><!-- index-method -->
 
     
     </section><!-- public-instance-method-details -->

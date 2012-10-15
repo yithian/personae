@@ -1,0 +1,32 @@
+<div class='span5'>
+	<h5>Welcome</h5>
+
+	<p>
+		to Infinite Personae, the best online game management site for the (new) World of Darkness game lines!
+	</p>
+	
+	<p>
+		Once you create a chronicle, you can use it for all your game's characters, both player-controlled and otherwise. Characters' 'sheets' are built for playability -- description and bio are at the top and the most frequently updated stats are saved without even updating the character. Characters have pretty granular permissions, allowing you to fine-tune what your chronicle's players can see.
+	</p>
+	
+	<p>
+		You can also create cliques for your chronicle. Again, these can be available to PCs or solely for NPCs. Wether or not these groups can be seen by players is determined by the characters in the group. Secret societies should stay secret, after all!
+	</p>
+	
+	<p>
+		If you have any questions or run into any problems, you can ask me a question on <a href='https://twitter.com/Yithian'>Twitter</a> or you can create an issue on <a href='https://github.com/yithian/personae/issues/new'>github</a>.
+	</p>
+</div>
+
+<div class='span1'></div>
+
+<div class='span3'>
+	<h5>Latest Games</h5>
+	
+	<table class='table'>
+		<%= render :partial => 'chronicle', :collection => @chronicles %>
+	</table>
+
+	<%= link_to "All chronicles", chronicles_path %><br />
+	<%= link_to "Create a chronicle", new_chronicle_path %>
+</div>
