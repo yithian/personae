@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
       @action = change_selected_chronicle_chronicles_path
     end
 
-    unless current_user.nil?
+    if user_signed_in?
       @selected_chronicle = current_user.selected_chronicle
     else
       @selected_chronicle = Chronicle.find_by_id(session[:selected_chronicle_id]) || Chronicle.first
