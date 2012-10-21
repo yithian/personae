@@ -4,7 +4,6 @@ class CliquesController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
   before_filter :find_clique, :only => [:new, :show, :edit, :update, :destroy]
-  before_filter :show_permission, :only => [:show]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
   
@@ -23,7 +22,7 @@ class CliquesController < ApplicationController
   # GET /cliques/1
   # GET /cliques/1.xml
   def show
-    respond_with @clique if @clique.is_known_to_user?(current_user)
+    respond_with @clique if can? :read, @clique
   end
 
   # GET /cliques/new
@@ -105,13 +104,5 @@ class CliquesController < ApplicationController
   # cliques between chronicles.
   def find_lists
     @chronicle_list = Chronicle.all.collect
-  end
-  
-  # Allows or denies access to a clique page based on Clique#is_known_to_user?
-  def show_permission
-    unless @clique.is_known_to_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to chronicle_cliques_path(Chronicle.find(@selected_chronicle.id))
-    end
   end
 end

@@ -127,8 +127,8 @@ class CliquesControllerTest < ActionController::TestCase
     
     # clique two has write set to false
     get :show, :id => cliques(:three).to_param, :chronicle_id => cliques(:three).chronicle
-    assert_redirected_to chronicle_cliques_path(Chronicle.find(users(:one).selected_chronicle_id))
-    assert_equal "You don't have permission to do that", flash[:notice], "showed unknown clique when logged in"
+    assert_redirected_to chronicle_cliques_path(cliques(:three).chronicle)
+    assert_equal "Access denied!", flash[:error], "showed unknown clique when logged in"
   end
 
   test "should get edit" do
@@ -282,13 +282,13 @@ class CliquesControllerTest < ActionController::TestCase
 
   test "shouldn't destroy other users' cliques" do
     # shouldn't destroy as non-owning user
-    sign_in(users(:two))
+    sign_in(users(:three))
     
     assert_no_difference('Clique.count', "destroyed as non-owning user") do
-      delete :destroy, :id => cliques(:one).to_param, :chronicle_id => cliques(:one).chronicle
+      delete :destroy, :id => cliques(:two).to_param, :chronicle_id => cliques(:two).chronicle
     end
 
-    assert_redirected_to chronicle_clique_path(cliques(:one).chronicle, cliques(:one))
+    assert_redirected_to chronicle_clique_path(cliques(:two).chronicle, cliques(:two))
     assert_equal("Access denied!", flash[:error])
   end
   

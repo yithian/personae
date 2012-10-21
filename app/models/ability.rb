@@ -9,8 +9,7 @@ class Ability
   # of now, the only two roles are admin and !admin, whose permissions
   # are defined inside.
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    #
+    # Define abilities for the passed in user here
     user ||= User.new # guest user (not logged in)
     
     if user.admin?
@@ -27,13 +26,31 @@ class Ability
         chronicle_ids.include?(character.chronicle_id)
       end
       can :shapeshift, Character
+      can :read, Character, :read_name => true
 
+      # defines who can see a clique's name
+      can :read, Clique, :name => "Solitary"
+      can :read, Clique do |clique|
+        known_clique = false
+        
+        clique.characters.each do |member|
+          known_clique = true if member.show_clique_to_user?(user)
+        end
+
+        known_clique
+      end
+      
       # can manage cliques created by yourself and any clique
       # in a chronicle you created
+      can :manage, Clique, :write => true
       can :manage, Clique, :owner_id => user.id
       can :manage, Clique do |clique|
-        chronicle_ids = user.chronicles.collect { |c| c.id }
-        chronicle_ids.include?(clique.chronicle_id)
+        if clique.chronicle.nil?
+          # new cliques don't have a chronicle set
+          true
+        else
+          clique.chronicle.owner == user
+        end
       end
 
       can :manage, Chronicle, :owner_id => user.id
@@ -41,7 +58,11 @@ class Ability
       can :manage, User, :id => user.id
       can :obsidian, :connect
       can :obsidian, :disconnect
-      can :read, :all
+
+      # default permissions
+      can :read, Chronicle
+      can :read, Nature
+      can :read, Ideology
     end
     
     # The first argument to `can` is the action you are giving the user permission to do.

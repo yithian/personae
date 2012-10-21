@@ -21,9 +21,19 @@ class ApplicationController < ActionController::Base
     when "Comment"
       target = chronicle_character_path(exception.subject.character.chronicle, exception.subject.character)
     when "Clique"
-      target = chronicle_clique_path(exception.subject.chronicle, exception.subject)
+      case params[:action]
+      when 'show'
+        target = chronicle_cliques_path(exception.subject.chronicle)
+      else
+        target = chronicle_clique_path(exception.subject.chronicle, exception.subject)
+      end
     when "Character"
-      target = chronicle_character_path(exception.subject.chronicle, exception.subject)
+      case params[:action]
+      when 'show'
+        target = chronicle_characters_path(exception.subject.chronicle)
+      else
+        target = chronicle_character_path(exception.subject.chronicle, exception.subject)
+      end
     else
       target = exception.subject
     end

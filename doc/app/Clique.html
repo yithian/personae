@@ -74,7 +74,7 @@
     
     <li><a href="#method-i-has_totem-3F">#has_totem?</a>
     
-    <li><a href="#method-i-is_known_to_user-3F">#is_known_to_user?</a>
+    <li><a href="#method-i-owned_by_user-3F">#owned_by_user?</a>
     
     <li><a href="#method-i-to_param">#to_param</a>
     
@@ -178,9 +178,6 @@
 
   <div id="description" class="description">
     
-<p>Cliques are close-knit social groups typically consisting of three to ten
-members. Characters may belong to only one clique.</p>
-
   </div><!-- description -->
 
   
@@ -218,7 +215,7 @@ new, temporary user as a base</p>
 
           
           <div class="method-source-code" id="known_to-source">
-            <pre><span class="ruby-comment"># File app/models/clique.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/models/clique.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">chronicle_id</span>=<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>)
   
@@ -259,7 +256,7 @@ clique’s totem field should be shown in the view.</p>
 
           
           <div class="method-source-code" id="has_totem-3F-source">
-            <pre><span class="ruby-comment"># File app/models/clique.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/models/clique.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_totem?</span>
   <span class="ruby-identifier">has_werewolf</span> = <span class="ruby-keyword">false</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">char</span><span class="ruby-operator">|</span>
@@ -278,10 +275,10 @@ clique’s totem field should be shown in the view.</p>
       </div><!-- has_totem-3F-method -->
 
     
-      <div id="method-i-is_known_to_user-3F" class="method-detail ">
+      <div id="method-i-owned_by_user-3F" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">is_known_to_user?</span><span
+          <span class="method-name">owned_by_user?</span><span
             class="method-args">(user)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -289,32 +286,26 @@ clique’s totem field should be shown in the view.</p>
 
         <div class="method-description">
           
-          <p>Returns true if the user can see any member of the clique who they also can
-see which clique they belong to.</p>
+          <p>Returns true if the character is owned by the logged in user or if the
+logged in user is the a <a
+href="User.html#method-i-super_user-3F">User#super_user?</a></p>
           
 
           
-          <div class="method-source-code" id="is_known_to_user-3F-source">
-            <pre><span class="ruby-comment"># File app/models/clique.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_known_to_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">known_clique</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-comment"># TODO: cliques with write=true shouldn't be editable by all users</span>
-  <span class="ruby-identifier">known_clique</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">write</span> <span class="ruby-keyword">or</span> (<span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">super_user?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">chronicle</span>)) <span class="ruby-keyword">or</span> (<span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">owner</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">&quot;Solitary&quot;</span>)
-
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">known_clique</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">show_clique_to_user?</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">known_clique</span>
+          <div class="method-source-code" id="owned_by_user-3F-source">
+            <pre><span class="ruby-comment"># File app/models/clique.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">owner</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">super_user?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">chronicle</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- is_known_to_user-3F-source -->
+          </div><!-- owned_by_user-3F-source -->
           
         </div>
 
         
 
         
-      </div><!-- is_known_to_user-3F-method -->
+      </div><!-- owned_by_user-3F-method -->
 
     
       <div id="method-i-to_param" class="method-detail ">
@@ -333,7 +324,7 @@ see which clique they belong to.</p>
 
           
           <div class="method-source-code" id="to_param-source">
-            <pre><span class="ruby-comment"># File app/models/clique.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/models/clique.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_param</span>
   <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(/[ '&quot;#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&amp;?\/:;=@]/, '')}&quot;</span>
 <span class="ruby-keyword">end</span></pre>

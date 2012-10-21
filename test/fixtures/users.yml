@@ -23,3 +23,11 @@ two:
   email: no-reply@asdf.com
   selected_chronicle: three
   admin: false
+
+three:
+  name: MyThirdName
+  encrypted_password: MyThirdHashedPassword
+  selected_character: 2
+  email: annoying@asdf.com
+  selected_chronicle: three
+  admin: false

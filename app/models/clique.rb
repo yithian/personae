@@ -1,5 +1,6 @@
 # Cliques are close-knit social groups typically consisting of three
 # to ten members. Characters may belong to only one clique.
+require 'ability.rb'
 
 class Clique < ActiveRecord::Base
   has_many :characters
@@ -20,20 +21,6 @@ class Clique < ActiveRecord::Base
     has_werewolf
   end
 
-  # Returns true if the user can see any member of the clique who they
-  # also can see which clique they belong to.
-  def is_known_to_user?(user)
-    known_clique = false
-    # TODO: cliques with write=true shouldn't be editable by all users
-    known_clique = true if self.write or (user and user.super_user?(self.chronicle)) or (user and self.owner == user) or self == Clique.find_by_name("Solitary")
-
-    self.characters.each do |member|
-      known_clique = true if member.show_clique_to_user?(user)
-    end
-
-    known_clique
-  end
-
   # Show the clique's name in the url
   def to_param
     "#{self.id}-#{self.name.gsub(/[ '"#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&?\/:;=@]/, '')}"
@@ -52,7 +39,6 @@ class Clique < ActiveRecord::Base
   
   # Returns true if the character is owned by the logged in user or if the logged in user is
   # the a User.super_user?
-  private
   def owned_by_user?(user)
     return false unless user
     self.owner == user or user.super_user?(self.chronicle)

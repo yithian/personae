@@ -274,7 +274,7 @@ class CharactersControllerTest < ActionController::TestCase
     get :show, :id => characters(:two).to_param, :chronicle_id => characters(:two).chronicle
 
     assert_redirected_to :controller => "characters", :action => "index"
-    assert_equal "You don't have permission to do that", flash[:notice]
+    assert_equal "Access denied!", flash[:error]
   end
 
   test "should get edit" do
