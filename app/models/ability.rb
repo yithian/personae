@@ -35,6 +35,7 @@ class Ability
         
         clique.characters.each do |member|
           known_clique = true if member.show_clique_to_user?(user)
+          break if known_clique
         end
 
         known_clique

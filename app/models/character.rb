@@ -38,7 +38,7 @@ class Character < ActiveRecord::Base
     end
   end
 
-  self.per_page = 20
+  self.per_page = 50
   
   belongs_to :clique
   belongs_to :ideology

@@ -4,7 +4,7 @@
   <td><%= character.concept %></td>
   <td>
 	  <%= unless character.clique == "Solitary"
-		  link_to character.clique.name, chronicle_clique_path(character.chronicle, character.clique) if character.show_clique_to_user?(current_user)
+		  link_to character.clique.name, chronicle_clique_path(character.chronicle, character.clique) if can? :read, character.clique
 	  else
 		  character.clique.name
 	  end %>
