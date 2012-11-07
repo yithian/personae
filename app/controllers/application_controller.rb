@@ -72,17 +72,23 @@ class ApplicationController < ActionController::Base
       @action = change_selected_chronicle_chronicles_path
     end
 
+    @chronicles = []
+
     if user_signed_in?
-      @chronicles = current_user.characters.collect { |c| c.chronicle }
-      @chronicles += current_user.chronicles
-      @chronicles.uniq!
-      @chronicles << Chronicle.new(:name => "New chronicle")
+      if current_user.admin?
+        @chronicles = Chronicle.all
+      else
+        @chronicles = current_user.characters.collect { |c| c.chronicle }
+        @chronicles += current_user.chronicles
+        @chronicles.uniq!
+      end
 
       @selected_chronicle = current_user.selected_chronicle
     else
-      @chronicles = [Chronicle.new(:name => "New chronicle")]
-      
       @selected_chronicle = Chronicle.find_by_id(session[:selected_chronicle_id]) || Chronicle.first
     end
+
+    @chronicles << Chronicle.new(:name => "--------")
+    @chronicles << Chronicle.new(:name => "New chronicle")
   end
 end
