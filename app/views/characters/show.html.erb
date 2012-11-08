@@ -16,14 +16,14 @@
 			link_to @character.clique.name, chronicle_clique_path(@character.chronicle, @character.clique) if can? :read_clique, @character
 		end %>
 	</span></td>
-    <td><span id="nature_label"><b><%= @character.splat.nature_name if @character.show_nature_to_user?(current_user) %></b></span></td>
-    <td><span id="nature_name"><%= link_to @character.nature.name, @character.nature if @character.show_nature_to_user?(current_user) %></span></td>
+    <td><span id="nature_label"><b><%= @character.splat.nature_name if can? :read_nature, @character %></b></span></td>
+    <td><span id="nature_name"><%= link_to @character.nature.name, @character.nature if can? :read_nature, @character %></span></td>
   </tr>
   <tr>
     <td><b>Virtue</b></td>
     <td ><span id="virtue"><%= @character.virtue %></span></td>
-    <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user) %></b></span></td>
-    <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and @character.show_nature_to_user?(current_user) %></span></td>
+    <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and can? :read_nature, @character %></b></span></td>
+    <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and can? :read_nature, @character %></span></td>
   </tr>
   <tr>
     <td><b>Vice</b></td>

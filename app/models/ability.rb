@@ -20,7 +20,7 @@ class Ability
     else
       # granular character permissions
       can :read, Character, :read_name => true
-      # always show character's clique to storyteller
+      can :read_nature, Character, :read_nature => true
       can :read_clique, Character, :read_clique => true
 
       can :shapeshift, Character
