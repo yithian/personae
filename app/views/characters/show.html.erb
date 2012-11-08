@@ -49,7 +49,7 @@
   </div>
 <% end %>
 
-<% if @character.show_background_to_user?(current_user) %>
+<% if can? :read_background, @character %>
   <div id="background">
     <h5 class="<%= @character.splat.name.downcase %>">Background</h5>
     <%= simple_format(@character.background) %>

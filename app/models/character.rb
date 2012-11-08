@@ -155,12 +155,6 @@ class Character < ActiveRecord::Base
   validates :shroud, :numericality => {:greater_than_or_equal_to => 0}
   validates :envy, :gluttony, :greed, :lust, :sloth, :pride, :wrath, :numericality => {:greater_than_or_equal_to => 0}
 
-  # Returns true if the given user has permission to read the character's background.
-  # Defaults to false.
-  def show_background_to_user?(user)
-    owned_by_user?(user) or self.read_background
-  end
-  
   # Returns true if the given user has permission to read the character's deeds.
   # Defaults to true.
   def show_deeds_to_user?(user)
