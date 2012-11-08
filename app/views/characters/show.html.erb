@@ -42,7 +42,7 @@
   </tr>
 </table>
 
-<% if @character.show_description_to_user?(current_user) %>
+<% if can? :read_description, @character %>
   <div id="description">
     <h5 class="<%= @character.splat.name.downcase %>">Description</h5>
     <%= simple_format(@character.description) %>
