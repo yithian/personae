@@ -1,4 +1,4 @@
-<% if member.show_name_to_user?(current_user) and member.show_ideology_to_user?(current_user) %>
+<% if can? :read, member and member.show_ideology_to_user?(current_user) %>
   <tr>
     <td><%= link_to member.name, {:id => member, :chronicle_id => member.chronicle} %></td>
     <td><%= member.concept %></td>

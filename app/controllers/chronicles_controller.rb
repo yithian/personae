@@ -20,8 +20,8 @@ class ChroniclesController < ApplicationController
     @characters = @chronicle.characters
     @cliques = @chronicle.cliques
 
-    @pcs = @chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
-    @npcs = @chronicle.npcs.reject { |c| not c.show_name_to_user?(current_user) }
+    @pcs = @chronicle.pcs.reject { |c| cannot? :read, c }
+    @npcs = @chronicle.npcs.reject { |c| cannot? :read, c }
     
     respond_with @chronicle
   end

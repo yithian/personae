@@ -155,13 +155,6 @@ class Character < ActiveRecord::Base
   validates :shroud, :numericality => {:greater_than_or_equal_to => 0}
   validates :envy, :gluttony, :greed, :lust, :sloth, :pride, :wrath, :numericality => {:greater_than_or_equal_to => 0}
 
-  # Returns true if the given user has permission to read the character's name.
-  # This is also the check used to determine if a character's entry shows up in
-  # index and clique pages, etc. Defaults to false.
-  def show_name_to_user?(user)
-    owned_by_user?(user) or self.read_name
-  end
-  
   # Returns true if the given user has permission to read the character's nature.
   # Defaults to false.
   def show_nature_to_user?(user)
@@ -452,7 +445,8 @@ h5. Notes
   # List characters known to the given user
   def self.known_to(user, selected_chronicle=user.selected_chronicle.id)
     characters = Chronicle.find_by_id(selected_chronicle).characters.collect do |c|
-      c if c.show_name_to_user?(user)
+      a = Ability.new(user)
+      c if a.can? :read, c
     end
     
     characters.delete_if { |c| c.nil? }

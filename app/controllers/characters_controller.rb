@@ -6,14 +6,13 @@ class CharactersController < ApplicationController
   load_and_authorize_resource
   before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update, :destroy], :if => :obsidian_enabled?
   before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :save_notes, :save_current, :destroy, :preview]
-  before_filter :show_permission, :only => [:show]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
   
   # GET /characters
   # GET /characters.xml
   def index
-    @pcs = @selected_chronicle.pcs.reject { |c| not c.show_name_to_user?(current_user) }
+    @pcs = @selected_chronicle.pcs.reject { |c| cannot? :read, c }
 
     find_npcs(@selected_chronicle, current_user, params[:page])
     
@@ -245,14 +244,6 @@ class CharactersController < ApplicationController
     else
       # update existing character
       result =  obsidian_portal.access_token.put("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)
-    end
-  end
-  
-  # Allows or denies access to a character page based on Character#show_name_to_user?
-  def show_permission
-    unless @character.show_name_to_user?(current_user)
-      flash[:notice] = "You don't have permission to do that"
-      redirect_to chronicle_characters_path(Chronicle.find(@selected_chronicle.id))
     end
   end
 end

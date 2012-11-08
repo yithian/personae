@@ -18,18 +18,18 @@ class Ability
       cannot :update, Clique, :name => "Solitary"
       cannot :destroy, Clique, :name => "Solitary"
     else
+      # granular character permissions
+      can :read, Character, :read_name => true
+      # always show character's clique to storyteller
+      can :read_clique, Character, :read_clique => true
+
+      can :shapeshift, Character
+
       # can manage characters created by yourself and any character
       # in a chronicle you created
       can :manage, Character, :owner_id => user.id
       can :manage, Character do |character|
-        chronicle_ids = user.chronicles.collect { |c| c.id }
-        chronicle_ids.include?(character.chronicle_id)
-      end
-      can :shapeshift, Character
-      can :read, Character, :read_name => true
-      # always show character's clique to storyteller
-      can :read_clique, Character do |character|
-        user.super_user?(character.chronicle) or character.read_clique
+        character.new_record? or user.super_user?(character.chronicle)
       end
 
       # defines who can see a clique's name
@@ -64,7 +64,7 @@ class Ability
       can :obsidian, :connect
       can :obsidian, :disconnect
 
-      # default permissions
+      # universal permissions
       can :read, Chronicle
       can :read, Nature
       can :read, Ideology
