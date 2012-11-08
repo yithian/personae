@@ -613,7 +613,7 @@
   </div>
 <% end %>
 
-<% if @character.show_experience_to_user?(current_user) %>
+<% if can? :read_experience, @character %>
   <div id="experience">
     <h5 class="<%= @character.splat.name.downcase %>">Experience</h5>
     <%= simple_format(@character.experience) %>
