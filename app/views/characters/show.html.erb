@@ -8,12 +8,12 @@
     <td colspan=3><%= @character.concept %></td>
   </tr>
   <tr>
-    <td><span id="clique_label"><b><%= @character.splat.clique_name if @character.show_clique_to_user?(current_user) %></b></span></td>
+    <td><span id="clique_label"><b><%= @character.splat.clique_name if can? :read_clique, @character %></b></span></td>
     <td><span id="clique_name">
-		<%= unless @character.clique.name == "Solitary"
-			link_to @character.clique.name, chronicle_clique_path(@character.chronicle, @character.clique) if @character.show_clique_to_user?(current_user)
-		else
+		<%= if @character.clique.name == "Solitary"
 			@character.clique.name
+		else
+			link_to @character.clique.name, chronicle_clique_path(@character.chronicle, @character.clique) if can? :read_clique, @character
 		end %>
 	</span></td>
     <td><span id="nature_label"><b><%= @character.splat.nature_name if @character.show_nature_to_user?(current_user) %></b></span></td>

@@ -168,12 +168,6 @@ class Character < ActiveRecord::Base
     owned_by_user?(user) or self.read_nature unless self.splat.name == "Mortal"
   end
   
-  # Returns true if the given user has permission to read the character's clique.
-  # Defaults to false.
-  def show_clique_to_user?(user)
-    owned_by_user?(user) or self.read_clique
-  end
-  
   # Returns true if the given user has permission to read the character's ideology.
   # Defaults to false.
   def show_ideology_to_user?(user)

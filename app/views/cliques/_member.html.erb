@@ -1,4 +1,4 @@
-<% if member.show_name_to_user?(current_user) and member.show_clique_to_user?(current_user) %>
+<% if member.show_name_to_user?(current_user) and can? :read_clique, member %>
   <tr>
     <td><%= link_to image_tag("edit.png"), edit_chronicle_character_path(member) if can? :edit, member %></td>
     <td><%= link_to member.name, chronicle_character_path(member.chronicle, member) %></td>

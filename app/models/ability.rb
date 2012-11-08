@@ -27,6 +27,10 @@ class Ability
       end
       can :shapeshift, Character
       can :read, Character, :read_name => true
+      # always show character's clique to storyteller
+      can :read_clique, Character do |character|
+        user.super_user?(character.chronicle) or character.read_clique
+      end
 
       # defines who can see a clique's name
       can :read, Clique, :name => "Solitary"
@@ -34,7 +38,7 @@ class Ability
         known_clique = false
         
         clique.characters.each do |member|
-          known_clique = true if member.show_clique_to_user?(user)
+          known_clique = true if can? :read_clique, member
           break if known_clique
         end
 

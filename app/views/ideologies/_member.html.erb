@@ -4,7 +4,7 @@
     <td><%= member.concept %></td>
     <td>
 		<%= unless member.clique.name == "Solitary"
-			link_to member.clique.name, {:id => member.clique, :chronicle_id => member.clique.chronicle} if member.show_clique_to_user?(current_user)
+			link_to member.clique.name, {:id => member.clique, :chronicle_id => member.clique.chronicle} if can? :read_clique, member
 		else
 			member.clique.name
 		end %>
