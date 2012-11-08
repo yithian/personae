@@ -63,7 +63,7 @@
   </div>
 <% end %>
 
-<% if @character.show_crunch_to_user?(current_user) %>
+<% if can? :read_crunch, @character %>
   <div id="attributes">
     <h5 class="<%= @character.splat.name.downcase %>">Attributes</h5>
     <table class="six_cells">

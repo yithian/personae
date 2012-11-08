@@ -26,6 +26,7 @@ class Ability
       can :read_description, Character, :read_description => true
       can :read_background, Character, :read_background => true
       can :read_deeds, Character, :read_deeds => true
+      can :read_crunch, Character, :read_crunch => true
 
       can :shapeshift, Character
 
