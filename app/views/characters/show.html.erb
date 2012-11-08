@@ -28,8 +28,8 @@
   <tr>
     <td><b>Vice</b></td>
     <td><span id="vice"><%= @character.vice.gsub(/\ /, " and ") %></span></td>
-    <td><span id="ideology_label"><b><%= @character.splat.ideology_name if @character.show_ideology_to_user?(current_user) %></b></span></td>
-    <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if @character.show_ideology_to_user?(current_user) %></span></td>
+    <td><span id="ideology_label"><b><%= @character.splat.ideology_name if can? :read_idology, @character %></b></span></td>
+    <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if can? :read_idology, @character %></span></td>
   </tr>
   <tr>
     <% if @character.is_possessed? %>

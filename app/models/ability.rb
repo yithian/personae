@@ -22,6 +22,7 @@ class Ability
       can :read, Character, :read_name => true
       can :read_nature, Character, :read_nature => true
       can :read_clique, Character, :read_clique => true
+      can :read_idology, Character, :read_ideology => true
 
       can :shapeshift, Character
 
