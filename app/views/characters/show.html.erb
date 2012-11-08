@@ -56,7 +56,7 @@
   </div>
 <% end %>
 
-<% if @character.show_deeds_to_user?(current_user) %>
+<% if can? :read_deeds, @character %>
   <div id="deeds">
     <h5 class="<%= @character.splat.name.downcase %>">Deeds</h5>
     <%= simple_format(@character.deeds) %>
