@@ -620,7 +620,7 @@
   </div>
 <% end %>
 
-<% if @character.show_notes_to_user?(current_user) %>
+<% if can? :read_notes, @character %>
   <div id="notes">
     <h5 class="<%= @character.splat.name.downcase %>">Notes</h5>
     <%= form_for([@character.chronicle, @character], :remote => true, :method => :put, :url => save_notes_chronicle_character_url) do |f| %>

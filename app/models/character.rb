@@ -155,12 +155,6 @@ class Character < ActiveRecord::Base
   validates :shroud, :numericality => {:greater_than_or_equal_to => 0}
   validates :envy, :gluttony, :greed, :lust, :sloth, :pride, :wrath, :numericality => {:greater_than_or_equal_to => 0}
 
-  # Returns true if the given user has permission to read the character's notes.
-  # Defaults to false.
-  def show_notes_to_user?(user)
-    owned_by_user?(user) or self.read_notes
-  end
-  
   # Returns true if the character is a mortal or a hunter (close enough).
   def is_mortal?
     self.splat.name == "Mortal" or self.splat.name == "Hunter"
