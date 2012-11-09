@@ -34,7 +34,7 @@
   </tbody>
 </table>
 
-<%= will_paginate @npcs %>
+<%= will_paginate @npcs, :renderer => BootstrapPagination::Rails %>
 
 <h5>Cliques</h5>
 <%= render :partial => 'cliques/list' %>

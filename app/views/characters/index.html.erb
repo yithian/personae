@@ -28,6 +28,6 @@
   </tbody>
 </table>
 
-<%= will_paginate @npcs, :id => 'npcs_paginate' %>
+<%= will_paginate @npcs, :renderer => BootstrapPagination::Rails %>
 
 <%= link_to 'New character', new_chronicle_character_path(:chronicle_id => @selected_chronicle.id), :id => "new_link" %><br />
