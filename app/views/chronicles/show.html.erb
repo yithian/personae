@@ -16,7 +16,7 @@
   </tbody>
 
   <tbody id="pcs_list">
-    <%= render :partial => 'characters/character', :collection => @chronicle.pcs %>
+    <%= render :partial => 'characters/character', :collection => @pcs %>
   </tbody>
 
   <tbody>
@@ -30,9 +30,11 @@
   </tbody>
 
   <tbody id="npcs_list">
-    <%= render :partial => 'characters/character', :collection => @chronicle.npcs %>
+    <%= render :partial => 'characters/character', :collection => @npcs %>
   </tbody>
 </table>
+
+<%= will_paginate @npcs %>
 
 <h5>Cliques</h5>
 <%= render :partial => 'cliques/list' %>

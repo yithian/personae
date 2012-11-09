@@ -13,7 +13,6 @@ class CharactersController < ApplicationController
   # GET /characters.xml
   def index
     @pcs = @selected_chronicle.pcs.reject { |c| cannot? :read, c }
-
     @npcs = @selected_chronicle.find_npcs(current_user, params[:page])
     
     respond_with @selected_chronicle, @pcs, @npcs

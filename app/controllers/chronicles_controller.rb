@@ -21,7 +21,7 @@ class ChroniclesController < ApplicationController
     @cliques = @chronicle.cliques
 
     @pcs = @chronicle.pcs.reject { |c| cannot? :read, c }
-    @npcs = @chronicle.npcs.reject { |c| cannot? :read, c }
+    @npcs = @chronicle.find_npcs(current_user, params[:page])
     
     respond_with @chronicle
   end
