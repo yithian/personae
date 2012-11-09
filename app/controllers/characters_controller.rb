@@ -14,7 +14,7 @@ class CharactersController < ApplicationController
   def index
     @pcs = @selected_chronicle.pcs.reject { |c| cannot? :read, c }
 
-    find_npcs(@selected_chronicle, current_user, params[:page])
+    @npcs = @selected_chronicle.find_npcs(current_user, params[:page])
     
     respond_with @selected_chronicle, @pcs, @npcs
   end
@@ -174,17 +174,6 @@ class CharactersController < ApplicationController
     end
   end
 
-  # gets a paginated list of NPCs based on chronicle and user
-  def find_npcs(chronicle, user, page)
-    if user and user.super_user?(chronicle)
-      @npcs = Character.where("chronicle_id = #{chronicle.id} and pc = false").page(page)
-    elsif user
-      @npcs = Character.where("chronicle_id = #{chronicle.id} and (read_name = true or owner_id = #{user.id}) and pc = false").page(page)
-    else
-      @npcs = Character.where("chronicle_id = #{chronicle.id} and read_name = true and pc = false").page(page)
-    end
-  end
-  
   # Sets values to what is passed by url. Used to add a new character
   # to an existing chronicle, clique, etc.
   def set_params
