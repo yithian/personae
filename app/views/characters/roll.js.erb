@@ -1,6 +1,6 @@
-$('#successes').html('<%= @result.successes %> success<%= 'es' if @result.successes >= 2 or @result.successes == 0 %>!');
+$('#successes').html('<%= @successes %> success<%= 'es' if @successes >= 2 or @successes == 0 %>!');
 
 $('#results').html('');
-<%= @result.ten_result.each do |r| %>
+<%= @dice_results.each do |r| %>
 	$('#results').append('Rolled a <%= r %>.<br />');
 <% end %>

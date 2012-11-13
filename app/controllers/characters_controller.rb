@@ -27,10 +27,24 @@ class CharactersController < ApplicationController
   # POST /characters/1/roll
   def roll
     dice_count = 0
+    reroll = 10
+    cancel = false
     
     params[:dice_count].split(/\s*\+\s*/).each { |d| dice_count += d.to_i }
     
-    @result = DiceRoller::DicePool.new(0, 0, 0, dice_count).roll_pool
+    case params[:reroll]
+    when '10', '9', '8'
+      reroll = params[:reroll].to_i
+    when 'rote'
+      reroll = 0
+    end
+    
+    cancel = true if params[:cancel]
+    
+    result = DiceRoller::DicePool.new(0, 0, 0, dice_count).roll_pool
+    
+    @successes = result.successes(8, reroll, cancel)
+    @dice_results = result.ten_result
     
     respond_to do |format|
       format.js
