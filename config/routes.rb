@@ -20,6 +20,7 @@ Personae::Application.routes.draw do
         put 'save_current'
         get 'shapeshift'
         get 'preview'
+        post 'roll'
       end
       resources :comments
     end

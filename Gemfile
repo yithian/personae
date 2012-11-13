@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'mage-hand', :git => "git://github.com/yithian/mage-hand.git", :branch => "change_oauth_case"
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'dice_roller'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.0"

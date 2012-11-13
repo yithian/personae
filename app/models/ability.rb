@@ -30,6 +30,7 @@ class Ability
       can :read_experience, Character, :read_experience => true
       can :read_notes, Character, :read_notes => true
       can :shapeshift, Character
+      can :roll, Character
 
       # can manage characters created by yourself and any character
       # in a chronicle you created

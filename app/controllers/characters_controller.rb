@@ -24,6 +24,16 @@ class CharactersController < ApplicationController
     respond_with @character
   end
   
+  # POST /characters/1/roll
+  def roll
+    dice_count = params[:dice_count]
+    @result = DiceRoller::DicePool.new(0, 0, 0, dice_count.to_i).roll_pool.successes
+
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   # GET /characters/preview
   def preview
     respond_to do |format|
