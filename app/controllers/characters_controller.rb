@@ -26,9 +26,12 @@ class CharactersController < ApplicationController
   
   # POST /characters/1/roll
   def roll
-    dice_count = params[:dice_count].to_i
-    @result = DiceRoller::DicePool.new(0, 0, 0, dice_count).roll_pool.successes
-
+    dice_count = 0
+    
+    params[:dice_count].split(/\s*\+\s*/).each { |d| dice_count += d.to_i }
+    
+    @result = DiceRoller::DicePool.new(0, 0, 0, dice_count).roll_pool
+    
     respond_to do |format|
       format.js
     end

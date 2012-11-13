@@ -1,0 +1,9 @@
+<div id='dice_roller' class='span2'>
+	<%= form_tag roll_chronicle_character_url, :remote => true do %>
+	  <%= text_field_tag :dice_count, '' %><br />
+	  <%= submit_tag "Roll dice" %>
+	<% end %>
+	
+	<div id="successes"></div>
+	<div id="results"></div>
+</div>
