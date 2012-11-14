@@ -234,7 +234,7 @@
       <% unless @character.is_mortal? %>
       <tr>
         <td><%= @character.splat.power_stat_name %>:</td>
-        <td><%= @character.power_stat %></td>
+        <td class='dots_number'><%= dot_format(@character.power_stat) %></td>
       </tr>
       <tr>
         <td>Max <%= @character.splat.fuel_name %>:</td>
