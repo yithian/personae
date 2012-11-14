@@ -11,6 +11,8 @@ class ChroniclesController < ApplicationController
   # GET /chronicles
   # GET /chronicles.xml
   def index
+    @chronicles = Chronicle.all
+    
     respond_with @chronicle
   end
 
