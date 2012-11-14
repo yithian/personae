@@ -41,10 +41,12 @@ class CharactersController < ApplicationController
     
     cancel = true if params[:cancel]
     
-    result = DiceRoller::DicePool.new(0, 0, 0, dice_count).roll_pool
+    if dice_count <= 20
+      result = DiceRoller::DicePool.new(0, 0, 0, dice_count).roll_pool
     
-    @successes = result.successes(8, reroll, cancel)
-    @dice_results = result.ten_result
+      @successes = result.successes(8, reroll, cancel)
+      @dice_results = result.ten_result
+    end
     
     respond_to do |format|
       format.js
