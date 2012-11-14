@@ -1,6 +1,9 @@
 $('#successes').html('<%= @successes %> success<%= 'es' if @successes >= 2 or @successes == 0 %>!');
 
 $('#results').html('');
-<%= @dice_results.each do |r| %>
+<% @dice_results.each do |r| %>
 	$('#results').append('Rolled a <%= r %>.<br />');
 <% end %>
+
+$('#successes').effect("highlight", {"color": "#97A2DE"}, 3000);
+$('#results').effect("highlight", {"color": "#97A2DE"}, 3000);
