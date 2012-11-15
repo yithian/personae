@@ -17,13 +17,13 @@ test:
   pool: 5
   timeout: 5000
   username: root
-  socket: /tmp/mysql.sock
+  socket: /var/lib/mysql/mysql.sock
 
 production:
   adapter: mysql2
   encoding: utf8
   database: <%=ENV['OPENSHIFT_APP_NAME']%>
   pool: 5
-  username: <%= ENV['OPENSHIFT_DB_USERNAME'] %>
-  password: <%= ENV['OPENSHIFT_DB_PASSWORD'] %>
-  socket: <%= ENV['OPENSHIFT_DB_SOCKET'] %>
+  username: <%= ENV['OPENSHIFT_MYSQL_DB_USERNAME'] %>
+  password: <%= ENV['OPENSHIFT_MYSQL_DB_PASSWORD'] %>
+  socket: <%= ENV['OPENSHIFT_MYSQL_DB_SOCKET'] %>
