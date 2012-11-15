@@ -26,11 +26,11 @@ class CharactersController < ApplicationController
   
   # POST /characters/1/roll
   def roll
-    dice_count = 0
+    @dice_count = 0
     reroll = 10
     cancel = false
     
-    params[:dice_count].split(/\s*\+\s*/).each { |d| dice_count += d.to_i }
+    params[:dice_count].split(/\s*\+\s*/).each { |d| @dice_count += d.to_i }
     
     case params[:reroll]
     when '10', '9', '8'
@@ -41,7 +41,7 @@ class CharactersController < ApplicationController
     
     cancel = true if params[:cancel]
     
-    result = DiceRoller::DicePool.new(0, 0, 0, dice_count).roll_pool
+    result = DiceRoller::DicePool.new(0, 0, 0, @dice_count).roll_pool
     
     @successes = result.successes(8, reroll, cancel)
     @dice_results = result.ten_result
