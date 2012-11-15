@@ -228,8 +228,8 @@
         <td id="armor"><%= @character.armor %></td>
       </tr>
       <tr>
-        <td><%= @character.splat.morality_name %>:</td>
-        <td><%= @character.morality %></td>
+        <td class='dots_label'><%= @character.splat.morality_name %>:</td>
+        <td class='dots_number'><%= dot_format(@character.morality) %></td>
       </tr>
       <% unless @character.is_mortal? %>
       <tr>
