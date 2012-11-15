@@ -1,10 +1,10 @@
 <% if can? :read, member and can? :read_ideology, member %>
   <tr>
-    <td><%= link_to member.name, {:id => member, :chronicle_id => member.chronicle} %></td>
+    <td><%= link_to member.name, chronicle_character_path(member.chronicle, member) %></td>
     <td><%= member.concept %></td>
     <td>
 		<%= unless member.clique.name == "Solitary"
-			link_to member.clique.name, {:id => member.clique, :chronicle_id => member.clique.chronicle_id} if can? :read_clique, member
+			link_to member.clique.name, chronicle_clique_path(member.clique.chronicle, member.clique) if can? :read_clique, member
 		else
 			member.clique.name 
 		end %>
