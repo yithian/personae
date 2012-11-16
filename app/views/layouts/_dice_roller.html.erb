@@ -1,6 +1,6 @@
 <div id='dice_roller' class='span2'>
 	<%= form_tag roll_chronicle_character_url, :remote => true do %>
-	  <%= text_field_tag :dice_count, '' %><br />
+	  <%= text_field_tag :dice_count, '', :autocomplete => :off %><br />
 	  <%= label_tag :reroll_10, "Reroll tens", :class => "checkbox inline" %> <%= radio_button_tag :reroll, "10", :checked => true %><br />
 	  <%= label_tag :reroll_9, "Reroll nines", :class => "checkbox inline" %> <%= radio_button_tag :reroll, "9" %><br />
 	  <%= label_tag :reroll_8, "Reroll eights", :class => "checkbox inline" %> <%= radio_button_tag :reroll, "8" %><br />
