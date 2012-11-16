@@ -29,6 +29,7 @@ class CharactersController < ApplicationController
     @dice_count = 0
     reroll = 10
     cancel = false
+    @error = false
     
     params[:dice_count].split(/\s*\+\s*/).each { |d| @dice_count += d.to_i }
     
@@ -43,8 +44,12 @@ class CharactersController < ApplicationController
     
     result = DiceRoller::DicePool.new(0, 0, 0, @dice_count).roll_pool
     
-    @successes = result.successes(8, reroll, cancel)
-    @dice_results = result.ten_result
+    if @dice_count <= 50
+      @successes = result.successes(8, reroll, cancel)
+      @dice_results = result.ten_result
+    else
+      @error = true
+    end
     
     respond_to do |format|
       format.js

@@ -1,8 +1,12 @@
-$('#successes').html('<p>Rolled <%= @dice_count %> dice for <%= @successes %> success<%= 'es' if @successes >= 2 or @successes == 0 %>!</p>');
+<% if @error %>
+	$('#successes').html('Please roll fewer dice.');
+<% else %>
+	$('#successes').html('<p>Rolled <%= @dice_count %> dice for <%= @successes %> success<%= 'es' if @successes >= 2 or @successes == 0 %>!</p>');
 
-$('#dice_results').html('');
-<% @dice_results.each do |r| %>
-	$('#dice_results').append('Rolled a <%= r %>.<br />');
+	$('#dice_results').html('');
+	<% @dice_results.each do |r| %>
+		$('#dice_results').append('Rolled a <%= r %>.<br />');
+	<% end %>
 <% end %>
 
 $('#results').effect("highlight", {"color": "#97A2DE"}, 3000);
