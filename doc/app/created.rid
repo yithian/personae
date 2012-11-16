@@ -1,4 +1,4 @@
-Thu, 15 Nov 2012 23:18:15 -0500
+Thu, 15 Nov 2012 23:38:57 -0500
 doc/README_FOR_APP	Sun, 13 May 2012 20:02:23 -0400
 app/controllers/admin_controller.rb	Sun, 13 May 2012 20:02:23 -0400
 app/controllers/application_controller.rb	Thu, 15 Nov 2012 23:02:27 -0500
@@ -6,7 +6,7 @@ app/controllers/characters_controller.rb	Thu, 15 Nov 2012 23:15:35 -0500
 app/controllers/chronicles_controller.rb	Thu, 15 Nov 2012 23:02:27 -0500
 app/controllers/cliques_controller.rb	Sun, 21 Oct 2012 12:18:59 -0400
 app/controllers/comments_controller.rb	Fri, 09 Nov 2012 17:25:20 -0500
-app/controllers/ideologies_controller.rb	Sun, 13 May 2012 20:02:23 -0400
+app/controllers/ideologies_controller.rb	Thu, 15 Nov 2012 23:37:56 -0500
 app/controllers/natures_controller.rb	Sun, 13 May 2012 20:02:23 -0400
 app/controllers/services_controller.rb	Sun, 13 May 2012 20:02:23 -0400
 app/controllers/static_controller.rb	Sun, 14 Oct 2012 22:05:43 -0400

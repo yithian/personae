@@ -1,11 +1,10 @@
 source 'http://rubygems.org/'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 gem 'rake'
 gem 'mysql2'
 gem 'devise'
 gem 'cancan'
-gem 'thor', '0.14.6'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'mage-hand', :git => "git://github.com/yithian/mage-hand.git", :branch => "change_oauth_case"

@@ -260,7 +260,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Mortal'</span>)
     <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">ideology_id</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Mortal'</span>)
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">ideology_id</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Mortal'</span>).<span class="ruby-identifier">id</span>
       <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-keyword">end</span>
 

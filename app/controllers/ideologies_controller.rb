@@ -54,7 +54,7 @@ class IdeologiesController < ApplicationController
   def destroy
     if @ideology != Ideology.find_by_name('Mortal')
       @ideology.characters.each do |m|
-        m.ideology_id = Ideology.find_by_name('Mortal')
+        m.ideology_id = Ideology.find_by_name('Mortal').id
         m.save
       end
 
