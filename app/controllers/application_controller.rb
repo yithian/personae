@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_filter :chronicle_setup
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   check_authorization :unless => :devise_controller?
-  helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
   rescue_from CanCan::AccessDenied do |exception|
@@ -46,18 +45,6 @@ class ApplicationController < ActionController::Base
   # and the user has linked his/her account
   def obsidian_enabled?
     not SERVICES['obsidianportal']['consumer_key'].empty? and user_signed_in? and not current_user.obsidian_user_id.nil?
-  end
-  
-  # allows access to helper methods. example:
-  # help.selected_chronicle_id(user, session)
-  def help
-    Helper.instance
-  end
-  
-  # exists only to allow access to helper methods
-  class Helper
-    include Singleton
-    include ApplicationHelper
   end
 
   # since users who aren't logged in won't have a current_user

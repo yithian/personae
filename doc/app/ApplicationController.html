@@ -72,8 +72,6 @@
     
     <li><a href="#method-i-chronicle_setup">#chronicle_setup</a>
     
-    <li><a href="#method-i-help">#help</a>
-    
     <li><a href="#method-i-obsidian_enabled-3F">#obsidian_enabled?</a>
     
   </ul>
@@ -103,15 +101,13 @@
   
     <li><a href="./Character/VirtueValidator.html">Character::VirtueValidator</a>
   
-    <li><a href="./ApplicationController.html">ApplicationController</a>
-  
-    <li><a href="./ApplicationController/Helper.html">ApplicationController::Helper</a>
-  
     <li><a href="./Ability.html">Ability</a>
   
     <li><a href="./AdminController.html">AdminController</a>
   
     <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
   
@@ -220,7 +216,7 @@ viewing.</p>
 
           
           <div class="method-source-code" id="chronicle_setup-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">chronicle_setup</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:controller</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'characters'</span> <span class="ruby-keyword">and</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'new'</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'edit'</span>)
     <span class="ruby-ivar">@action</span> = <span class="ruby-identifier">update_chronicle_chronicle_characters_path</span>
@@ -257,37 +253,6 @@ viewing.</p>
       </div><!-- chronicle_setup-method -->
 
     
-      <div id="method-i-help" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">help</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>allows access to helper methods. example: help.selected_chronicle_id(user,
-session)</p>
-          
-
-          
-          <div class="method-source-code" id="help-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 53</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
-  <span class="ruby-constant">Helper</span>.<span class="ruby-identifier">instance</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- help-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- help-method -->
-
-    
       <div id="method-i-obsidian_enabled-3F" class="method-detail ">
         
         <div class="method-heading">
@@ -305,7 +270,7 @@ user has linked his/her account</p>
 
           
           <div class="method-source-code" id="obsidian_enabled-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_enabled?</span>
   <span class="ruby-keyword">not</span> <span class="ruby-constant">SERVICES</span>[<span class="ruby-string">'obsidianportal'</span>][<span class="ruby-string">'consumer_key'</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user_signed_in?</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">obsidian_user_id</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
