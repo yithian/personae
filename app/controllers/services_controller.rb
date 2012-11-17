@@ -4,6 +4,7 @@ class ServicesController < ApplicationController
   include MageHand
   respond_to :html, :xml
   skip_authorization_check
+  
   before_filter :obsidian_portal_login_required, :only => [:obsidian_connect]
   before_filter :ensure_logged_in
 

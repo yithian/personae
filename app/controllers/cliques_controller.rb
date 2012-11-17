@@ -3,6 +3,7 @@
 class CliquesController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
+  
   before_filter :find_clique, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]

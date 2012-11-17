@@ -3,6 +3,7 @@
 class CommentsController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
+  
   before_filter :find_character, :only => [:new, :create, :destroy]
   before_filter :find_comment, :only => ["new", "destroy"]
 

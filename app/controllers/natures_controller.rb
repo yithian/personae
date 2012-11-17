@@ -3,6 +3,7 @@
 class NaturesController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
+  
   before_filter :find_nature, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :create, :edit, :update]
