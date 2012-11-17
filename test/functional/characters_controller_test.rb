@@ -483,4 +483,14 @@ class CharactersControllerTest < ActionController::TestCase
     assert_redirected_to chronicle_character_path(characters(:two).chronicle, characters(:two))
     assert_equal("Access denied!", flash[:error])
   end
+  
+  test "should roll dice" do
+    character = characters(:two)
+    
+    xhr :post, :roll, :chronicle_id => character.chronicle, :id => character, :dice_count => '3 + 2', :reroll => '10'
+    
+    assert response.body =~ /\$\('#successes'\).html/, 'did not display successes'
+    assert response.body =~ /\$\('#dice_results'\).html/, 'did not display results'
+    assert response.body =~ /\$\('#results'\).effect/, 'did not highlight results'
+  end
 end
