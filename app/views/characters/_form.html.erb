@@ -35,7 +35,7 @@
     <tr>
       <td><b><%= label_tag 'splat_id', "Template" %></b></td>
       <td>
-        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :class => 'btn-small', :tabindex => "1", :remote => true, :action => update_splat_chronicle_characters_path %>
+        <%= select_tag :splat_id, options_from_collection_for_select(@splat_list, 'id', 'name', @character.splat.id), :tabindex => "1", :remote => true, :action => update_splat_chronicle_characters_path %>
         <%= f.hidden_field :splat_id %>
       </td>
       <td><b><%= f.label :clique_id, @character.splat.clique_name, :id => "clique_label" %></b></td>
