@@ -1,8 +1,8 @@
-Sat, 17 Nov 2012 10:25:17 -0500
+Tue, 20 Nov 2012 21:17:43 -0500
 doc/README_FOR_APP	Sun, 13 May 2012 20:02:23 -0400
 app/controllers/admin_controller.rb	Sun, 13 May 2012 20:02:23 -0400
 app/controllers/application_controller.rb	Sat, 17 Nov 2012 10:03:54 -0500
-app/controllers/characters_controller.rb	Sat, 17 Nov 2012 10:24:59 -0500
+app/controllers/characters_controller.rb	Tue, 20 Nov 2012 21:13:09 -0500
 app/controllers/chronicles_controller.rb	Sat, 17 Nov 2012 10:12:03 -0500
 app/controllers/cliques_controller.rb	Sat, 17 Nov 2012 10:24:45 -0500
 app/controllers/comments_controller.rb	Sat, 17 Nov 2012 10:12:20 -0500

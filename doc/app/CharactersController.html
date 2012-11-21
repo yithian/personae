@@ -494,7 +494,7 @@
   <span class="ruby-identifier">cancel</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-ivar">@error</span> = <span class="ruby-keyword">false</span>
   
-  <span class="ruby-identifier">params</span>[<span class="ruby-value">:dice_count</span>].<span class="ruby-identifier">split</span>(<span class="ruby-regexp">%r\s*\+\s*/</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@dice_count</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_i</span> }
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:dice_count</span>].<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp">%r(\d+)\s*-\s*(\d+)/</span>, <span class="ruby-string">'\1 + -\2'</span>).<span class="ruby-identifier">split</span>(<span class="ruby-regexp">%r\s*\+\s*/</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@dice_count</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_i</span> }
   
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:reroll</span>]
   <span class="ruby-keyword">when</span> <span class="ruby-string">'10'</span>, <span class="ruby-string">'9'</span>, <span class="ruby-string">'8'</span>

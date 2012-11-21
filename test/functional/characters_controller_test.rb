@@ -487,8 +487,9 @@ class CharactersControllerTest < ActionController::TestCase
   test "should roll dice" do
     character = characters(:two)
     
-    xhr :post, :roll, :chronicle_id => character.chronicle, :id => character, :dice_count => '3 + 2', :reroll => '10'
+    xhr :post, :roll, :chronicle_id => character.chronicle, :id => character, :dice_count => '3 + 2 - 2 + -1', :reroll => '10'
     
+    assert_equal(2, assigns(:dice_count))
     assert response.body =~ /\$\('#successes'\).html/, 'did not display successes'
     assert response.body =~ /\$\('#dice_results'\).html/, 'did not display results'
     assert response.body =~ /\$\('#results'\).effect/, 'did not highlight results'

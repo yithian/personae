@@ -34,7 +34,7 @@ class CharactersController < ApplicationController
     cancel = false
     @error = false
     
-    params[:dice_count].split(/\s*\+\s*/).each { |d| @dice_count += d.to_i }
+    params[:dice_count].gsub( /(\d+)\s*-\s*(\d+)/, '\\1 + -\\2').split(/\s*\+\s*/).each { |d| @dice_count += d.to_i }
     
     case params[:reroll]
     when '10', '9', '8'
