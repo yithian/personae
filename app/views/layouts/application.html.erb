@@ -35,6 +35,9 @@
 				<%= li_active_if(params[:controller] == 'ideologies') do %>
 					<%= link_to 'Ideologies', ideologies_path %>
 				<% end %>
+				<%= li_active_if(params[:chronicle] == 'chronicles') do %>
+					<%= link_to "Chronicles", chronicles_path %>
+				<% end %>
 				<li class='dropdown'>
 					<% if user_signed_in? %>
 						<a href='#' class='dropdown-toggle' data-toggle='dropdown'>
@@ -46,7 +49,6 @@
 							<% if current_user.admin? %>
 								<li><%= link_to "Manage admins", manage_admins_path %></li>
 							<% end %>
-							<li><%= link_to "Chronicles", chronicles_path %></li>
 							<li><%= link_to "Log out", destroy_user_session_path %></li>
 						</ul>
 					<% else %>
