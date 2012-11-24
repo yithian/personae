@@ -12,7 +12,7 @@ class ChroniclesController < ApplicationController
   # GET /chronicles
   # GET /chronicles.xml
   def index
-    @chronicles = Chronicle.all
+    @chronicles = Chronicle.order('owner_id').all
     
     respond_with @chronicles
   end
