@@ -234,7 +234,7 @@
 
           
           <div class="method-source-code" id="change_selected_chronicle-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 96</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_selected_chronicle</span>
   <span class="ruby-comment"># if an empty string is passed in here, create a new chronicle</span>
   <span class="ruby-comment"># otherwise, display the new @selected_chronicle</span>
@@ -279,7 +279,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
   <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">owner</span> = <span class="ruby-identifier">current_user</span>
@@ -325,7 +325,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 86</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">destroy</span>
 
@@ -360,7 +360,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
     <span class="ruby-identifier">obsidian_campaigns</span>
@@ -398,7 +398,9 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
+  <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicles</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           
@@ -426,7 +428,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">obsidian_campaigns</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
   
@@ -458,7 +460,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@characters</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">characters</span>
   <span class="ruby-ivar">@cliques</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">cliques</span>
@@ -494,7 +496,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Chronicle successfully updated&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
 

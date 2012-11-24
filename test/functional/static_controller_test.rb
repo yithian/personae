@@ -6,6 +6,6 @@ class StaticControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:chronicles)
+    assert_not_nil assigns(:selected_chronicles)
   end
 end

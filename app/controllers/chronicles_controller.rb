@@ -12,7 +12,9 @@ class ChroniclesController < ApplicationController
   # GET /chronicles
   # GET /chronicles.xml
   def index
-    respond_with @chronicle
+    @chronicles = Chronicle.all
+    
+    respond_with @chronicles
   end
 
   # GET /chronicles/1
