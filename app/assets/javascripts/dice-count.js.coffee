@@ -2,18 +2,16 @@
 # into the text field for rolling dice
 
 dots_to_dice = (element) ->
-	count = 0;
-	
+	count = 0
+
 	if $(element).children().length > 0
 		count = $(':last-child', element).html().replace(/\s+/g, '').length
 	else
 		count = $(element).html().replace(/\s+/g, '').length
-	
-	if count == 0
-		count = -1
 
-		count = -3 if $(element).prev().hasClass('mental')
-	
+	if count == 0
+		count = if $(element).prev().hasClass('mental') then -3 else -1
+
 	count
 
 count_dice = ->
