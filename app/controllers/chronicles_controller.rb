@@ -21,7 +21,8 @@ class ChroniclesController < ApplicationController
   # GET /chronicles/1.xml
   def show
     @characters = @chronicle.characters
-    @cliques = @chronicle.cliques
+    @cliques = Clique.known_to current_user, @chronicle.id
+
 
     @pcs = @chronicle.pcs.reject { |c| cannot? :read, c }
     @npcs = @chronicle.find_npcs(current_user, params[:page])
