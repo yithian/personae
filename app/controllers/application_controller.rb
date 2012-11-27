@@ -70,8 +70,10 @@ class ApplicationController < ActionController::Base
         @selected_chronicles.uniq!
       end
 
+      @chronicle = Chronicle.find_by_id(params[:chronicle_id])
       @selected_chronicle = current_user.selected_chronicle
     else
+      @chronicle = Chronicle.find_by_id(params[:chronicle_id])
       @selected_chronicle = Chronicle.find_by_id(session[:selected_chronicle_id]) || Chronicle.first
     end
 

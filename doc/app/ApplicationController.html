@@ -235,8 +235,10 @@ viewing.</p>
       <span class="ruby-ivar">@selected_chronicles</span>.<span class="ruby-identifier">uniq!</span>
     <span class="ruby-keyword">end</span>
 
+    <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>])
     <span class="ruby-ivar">@selected_chronicle</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span>
   <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle_id</span>])
     <span class="ruby-ivar">@selected_chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:selected_chronicle_id</span>]) <span class="ruby-operator">||</span> <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">end</span>
 

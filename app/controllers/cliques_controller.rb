@@ -12,9 +12,9 @@ class CliquesController < ApplicationController
   # GET /cliques.xml
   def index
     if user_signed_in?
-      @cliques = Clique.known_to current_user
+      @cliques = Clique.known_to current_user, @chronicle.id
     else
-      @cliques = Clique.known_to User.new, @selected_chronicle.id
+      @cliques = Clique.known_to User.new, @chronicle.id
     end
 
     respond_with @cliques
@@ -23,7 +23,7 @@ class CliquesController < ApplicationController
   # GET /cliques/1
   # GET /cliques/1.xml
   def show
-    respond_with @clique if can? :read, @clique
+    respond_with @clique
   end
 
   # GET /cliques/new

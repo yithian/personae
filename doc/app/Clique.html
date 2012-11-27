@@ -215,11 +215,12 @@ new, temporary user as a base</p>
           <div class="method-source-code" id="known_to-source">
             <pre><span class="ruby-comment"># File app/models/clique.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">chronicle_id</span>=<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">Ability</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user</span>)
+  
   <span class="ruby-identifier">cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-value">0</span>)
-  
   <span class="ruby-identifier">cliques</span> = <span class="ruby-identifier">cliques</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_all_by_chronicle_id</span>(<span class="ruby-identifier">chronicle_id</span>)
-  
-  <span class="ruby-identifier">cliques</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> }
+
+  <span class="ruby-identifier">cliques</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cannot?</span> <span class="ruby-value">:read</span>, <span class="ruby-identifier">c</span> }
 <span class="ruby-keyword">end</span></pre>
           </div><!-- known_to-source -->
           
@@ -291,7 +292,7 @@ href="User.html#method-i-super_user-3F">User#super_user?</a></p>
 
           
           <div class="method-source-code" id="owned_by_user-3F-source">
-            <pre><span class="ruby-comment"># File app/models/clique.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/models/clique.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">owner</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">super_user?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">chronicle</span>)

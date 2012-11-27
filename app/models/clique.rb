@@ -30,11 +30,12 @@ class Clique < ActiveRecord::Base
   # if the user provided is nil, create a new, temporary user
   # as a base
   def self.known_to(user, chronicle_id=user.selected_chronicle.id)
+    a = Ability.new(user)
+    
     cliques = Clique.find_all_by_chronicle_id(0)
-    
     cliques = cliques + Clique.find_all_by_chronicle_id(chronicle_id)
-    
-    cliques.delete_if { |c| c == nil }
+
+    cliques.delete_if { |c| a.cannot? :read, c }
   end
   
   # Returns true if the character is owned by the logged in user or if the logged in user is
