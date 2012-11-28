@@ -59,14 +59,14 @@
 		</div>
 	</div>
 	
-	<%= render 'layouts/dice_roller' if params[:controller] == 'characters' and params[:action] == 'show' %>
-	
 	<div class='container'>
 		<div id="content" class='span10'>
 		    <div id="notice"><%= flash[:notice] %></div>
 		    <div id="alert"><%= alert %></div>
 		    <%= yield %>
 		</div>
+		
+		<%= render 'layouts/dice_roller' if params[:controller] == 'characters' and params[:action] == 'show' %>
 	</div>
 
 </body>
