@@ -37,3 +37,12 @@ $(document).ready ->
 		$(this).prev().toggleClass('counting')
 
 		count_dice()
+
+	# clear all selected attributes and clean out
+	# the value in the calculator
+	$('#clear_dice').click ->
+		$('td.dots_label').removeClass('counting')
+		$('td.dots_number').removeClass('counting')
+		$('td.dots_number').removeClass('count')
+
+		count_dice()

@@ -6,6 +6,7 @@
 	  <%= label_tag :reroll_8, "Reroll eights", :class => "checkbox inline" %> <%= radio_button_tag :reroll, "8" %><br />
 	  <%= label_tag :reroll_rote, "Rote", :class => "checkbox inline" %> <%= radio_button_tag :reroll, "rote" %><br />
 	  <%= label_tag :cancel, "Ones cancel", :class => "checkbox inline" %> <%= check_box_tag :cancel %><br />
+    <%= button_tag "Clear dice", :type => :button, :id => :clear_dice %>
 	  <%= submit_tag "Roll dice" %>
 	<% end %>
 	
