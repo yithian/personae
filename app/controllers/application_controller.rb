@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     case exception.subject.class.name
     when "Symbol" # The admin controller has no model, and thus appears as a symbol
       if user_signed_in?
+        puts 'you found me!'
         target = root_path
       else
         target = new_user_session_path

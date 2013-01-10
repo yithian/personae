@@ -10,7 +10,7 @@ class AdminControllerTest < ActionController::TestCase
     sign_in(users(:one))
     
     get :manage
-    assert_redirected_to new_user_session_path
+    assert_redirected_to root_path
     assert_equal "Access denied!", flash[:error]
   end
   
@@ -29,7 +29,7 @@ class AdminControllerTest < ActionController::TestCase
     sign_in(users(:one))
     
     put :manage
-    assert_redirected_to new_user_session_path
+    assert_redirected_to root_path
     assert_equal "Access denied!", flash[:error]
   end
   
@@ -50,7 +50,7 @@ class AdminControllerTest < ActionController::TestCase
     sign_in(users(:one))
     put :manage, :admin_ids => [users(:Storyteller).id, users(:one).id]
     
-    assert_redirected_to new_user_session_path
+    assert_redirected_to root_path
     assert User.find_by_id(users(:one).id).admin? == false, "user was set as admin"
   end
 
