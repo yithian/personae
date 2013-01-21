@@ -1,7 +1,7 @@
-Mon, 26 Nov 2012 21:41:32 -0500
+Sun, 20 Jan 2013 22:21:20 -0500
 doc/README_FOR_APP	Sun, 13 May 2012 20:02:23 -0400
 app/controllers/admin_controller.rb	Sun, 13 May 2012 20:02:23 -0400
-app/controllers/application_controller.rb	Mon, 26 Nov 2012 21:10:27 -0500
+app/controllers/application_controller.rb	Sun, 20 Jan 2013 12:20:38 -0500
 app/controllers/characters_controller.rb	Tue, 20 Nov 2012 21:13:09 -0500
 app/controllers/chronicles_controller.rb	Mon, 26 Nov 2012 21:40:20 -0500
 app/controllers/cliques_controller.rb	Mon, 26 Nov 2012 21:11:23 -0500
@@ -11,7 +11,7 @@ app/controllers/natures_controller.rb	Sat, 17 Nov 2012 10:24:45 -0500
 app/controllers/services_controller.rb	Fri, 23 Nov 2012 13:08:48 -0500
 app/controllers/static_controller.rb	Sun, 14 Oct 2012 22:05:43 -0400
 app/helpers/admin_helper.rb	Sun, 13 May 2012 20:02:23 -0400
-app/helpers/application_helper.rb	Sun, 07 Oct 2012 11:20:30 -0400
+app/helpers/application_helper.rb	Sun, 20 Jan 2013 21:17:50 -0500
 app/helpers/characters_helper.rb	Sun, 13 May 2012 20:02:23 -0400
 app/helpers/chronicles_helper.rb	Sun, 13 May 2012 20:02:23 -0400
 app/helpers/cliques_helper.rb	Sun, 13 May 2012 20:02:23 -0400
@@ -21,7 +21,7 @@ app/helpers/natures_helper.rb	Sun, 13 May 2012 20:02:23 -0400
 app/helpers/services_helper.rb	Sun, 13 May 2012 20:02:23 -0400
 app/helpers/static_helper.rb	Sun, 14 Oct 2012 19:05:37 -0400
 app/models/ability.rb	Tue, 13 Nov 2012 17:20:55 -0500
-app/models/character.rb	Fri, 09 Nov 2012 17:25:20 -0500
+app/models/character.rb	Sun, 20 Jan 2013 21:17:50 -0500
 app/models/chronicle.rb	Fri, 09 Nov 2012 17:25:20 -0500
 app/models/clique.rb	Mon, 26 Nov 2012 21:07:22 -0500
 app/models/comment.rb	Sun, 13 May 2012 20:02:23 -0400
