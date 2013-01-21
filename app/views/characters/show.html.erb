@@ -16,20 +16,26 @@
 			link_to @character.clique.name, chronicle_clique_path(@character.chronicle, @character.clique) if can? :read_clique, @character
 		end %>
 	</span></td>
-    <td><span id="nature_label"><b><%= @character.splat.nature_name if can? :read_nature, @character %></b></span></td>
-    <td><span id="nature_name"><%= link_to @character.nature.name, @character.nature if can? :read_nature, @character %></span></td>
+	<% unless @character.is_spirit? %>
+	    <td><span id="nature_label"><b><%= @character.splat.nature_name if can? :read_nature, @character %></b></span></td>
+	    <td><span id="nature_name"><%= link_to @character.nature.name, @character.nature if can? :read_nature, @character %></span></td>
+	<% end %>
   </tr>
   <tr>
     <td><b>Virtue</b></td>
     <td ><span id="virtue"><%= @character.virtue %></span></td>
-    <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and can? :read_nature, @character %></b></span></td>
-    <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and can? :read_nature, @character %></span></td>
+	<% unless @character.is_spirit? %>
+	    <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and can? :read_nature, @character %></b></span></td>
+	    <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and can? :read_nature, @character %></span></td>
+	<% end %>
   </tr>
   <tr>
     <td><b>Vice</b></td>
     <td><span id="vice"><%= @character.vice.gsub(/\ /, " and ") %></span></td>
-    <td><span id="ideology_label"><b><%= @character.splat.ideology_name if can? :read_idology, @character %></b></span></td>
-    <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if can? :read_idology, @character %></span></td>
+	<% unless @character.is_spirit? %>
+	    <td><span id="ideology_label"><b><%= @character.splat.ideology_name if can? :read_idology, @character %></b></span></td>
+	    <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if can? :read_idology, @character %></span></td>
+	<% end %>
   </tr>
   <tr>
     <% if @character.is_possessed? %>
@@ -66,107 +72,126 @@
 <% if can? :read_crunch, @character %>
   <div id="attributes">
     <h5 class="<%= @character.splat.name.downcase %>">Attributes</h5>
-    <table class="six_cells">
-      <tr>
-        <td class='dots_label'>Intelligence:</td>
-        <td class='dots_number'><%= dot_format(@character.intelligence) %></td>
-        <td class='dots_label'>Strength:</td>
-        <td id="strength" class='dots_number'><%= dot_format(@character.strength) %></td>
-        <td class='dots_label'>Presence:</td>
-        <td class='dots_number'><%= dot_format(@character.presence) %></td>
-      </tr>
-      <tr>
-        <td class='dots_label'>Wits:</td>
-        <td class='dots_number'><%= dot_format(@character.wits) %></td>
-        <td class='dots_label'>Dexterity:</td>
-        <td id="dexterity" class='dots_number'><%= dot_format(@character.dexterity) %></td>
-        <td class='dots_label'>Manipulation:</td>
-        <td id="manipulation" class='dots_number'><%= dot_format(@character.manipulation) %></td>
-      </tr>
-      <tr>
-        <td class='dots_label'>Resolve:</td>
-        <td class='dots_number'><%= dot_format(@character.resolve) %></td>
-        <td class='dots_label'>Stamina:</td>
-        <td id="stamina" class='dots_number'><%= dot_format(@character.stamina) %></td>
-        <td class='dots_label'>Composure:</td>
-        <td class='dots_number'><%= dot_format(@character.composure) %></td>
-      </tr>
-    </table>
+	<% if @character.is_spirit? %>
+      <table class="three_cells">
+        <tr>
+          <td class='dots_label'>Power:</td>
+		  <td class='dots_number'><%= dot_format(@character.power) %></td>
+        </tr>
+        <tr>
+          <td class='dots_label'>Finesse:</td>
+		  <td class='dots_number'><%= dot_format(@character.finesse) %></td>
+        </tr>
+        <tr>
+          <td class='dots_label'>Resistance:</td>
+		  <td class='dots_number'><%= dot_format(@character.resistance) %></td>
+        </tr>
+      <table>
+	<% else %>
+	    <table class="six_cells">
+	      <tr>
+	        <td class='dots_label'>Intelligence:</td>
+	        <td class='dots_number'><%= dot_format(@character.intelligence) %></td>
+	        <td class='dots_label'>Strength:</td>
+	        <td id="strength" class='dots_number'><%= dot_format(@character.strength) %></td>
+	        <td class='dots_label'>Presence:</td>
+	        <td class='dots_number'><%= dot_format(@character.presence) %></td>
+	      </tr>
+	      <tr>
+	        <td class='dots_label'>Wits:</td>
+	        <td class='dots_number'><%= dot_format(@character.wits) %></td>
+	        <td class='dots_label'>Dexterity:</td>
+	        <td id="dexterity" class='dots_number'><%= dot_format(@character.dexterity) %></td>
+	        <td class='dots_label'>Manipulation:</td>
+	        <td id="manipulation" class='dots_number'><%= dot_format(@character.manipulation) %></td>
+	      </tr>
+	      <tr>
+	        <td class='dots_label'>Resolve:</td>
+	        <td class='dots_number'><%= dot_format(@character.resolve) %></td>
+	        <td class='dots_label'>Stamina:</td>
+	        <td id="stamina" class='dots_number'><%= dot_format(@character.stamina) %></td>
+	        <td class='dots_label'>Composure:</td>
+	        <td class='dots_number'><%= dot_format(@character.composure) %></td>
+	      </tr>
+	    </table>
+	<% end %>
   </div>
 
-  <div id="skills">
-    <h5 class="<%= @character.splat.name.downcase %>">Skills</h5>
-    <table class="six_cells">
-      <tr>
-        <td class='dots_label mental'>Academics:</td>
-        <td class='dots_number'><%= dot_format(@character.academics) %></td>
-        <td class='dots_label'>Athletics:</td>
-        <td class='dots_number'><%= dot_format(@character.athletics) %></td>
-        <td class='dots_label'>Animal Ken:</td>
-        <td class='dots_number'><%= dot_format(@character.animal_ken) %></td>
-      </tr>
-      <tr>
-        <td class='dots_label mental'>Computer:</td>
-        <td class='dots_number'><%= dot_format(@character.computer) %></td>
-        <td class='dots_label'>Brawl:</td>
-        <td class='dots_number'><%= dot_format(@character.brawl) %></td>
-        <td class='dots_label'>Empathy:</td>
-        <td class='dots_number'><%= dot_format(@character.empathy) %></td>
-      </tr>
-      <tr>
-        <td class='dots_label mental'>Crafts:</td>
-        <td class='dots_number'><%= dot_format(@character.crafts) %></td>
-        <td class='dots_label'>Drive:</td>
-        <td class='dots_number'><%= dot_format(@character.drive) %></td>
-        <td class='dots_label'>Expression:</td>
-        <td class='dots_number'><%= dot_format(@character.expression) %></td>
-      </tr>
-      <tr>
-        <td class='dots_label mental'>Investigation:</td>
-        <td class='dots_number'><%= dot_format(@character.investigation) %></td>
-        <td class='dots_label'>Firearms:</td>
-        <td class='dots_number'><%= dot_format(@character.firearms) %></td>
-        <td class='dots_label'>Intimidation:</td>
-        <td class='dots_number'><%= dot_format(@character.intimidation) %></td>
-      </tr>
-      <tr>
-        <td class='dots_label mental'>Medicine:</td>
-        <td class='dots_number'><%= dot_format(@character.medicine) %></td>
-        <td class='dots_label'>Larceny:</td>
-        <td class='dots_number'><%= dot_format(@character.larceny) %></td>
-        <td class='dots_label'>Persuasion:</td>
-        <td class='dots_number'><%= dot_format(@character.persuasion) %></td>
-      </tr>
-      <tr>
-        <td class='dots_label mental'>Occult:</td>
-        <td class='dots_number'><%= dot_format(@character.occult) %></td>
-        <td class='dots_label'>Stealth:</td>
-        <td class='dots_number'><%= dot_format(@character.stealth) %></td>
-        <td class='dots_label'>Socialize:</td>
-        <td class='dots_number'><%= dot_format(@character.socialize) %></td>
-      </tr>
-      <tr>
-        <td class='dots_label mental'>Politics:</td>
-        <td class='dots_number'><%= dot_format(@character.politics) %></td>
-        <td class='dots_label'>Survival:</td>
-        <td class='dots_number'><%= dot_format(@character.survival) %></td>
-        <td class='dots_label'>Streetwise:</td>
-        <td class='dots_number'><%= dot_format(@character.streetwise) %></td>
-      </tr>
-      <tr>
-        <td class='dots_label mental'>Science:</td>
-        <td class='dots_number'><%= dot_format(@character.science) %></td>
-        <td class='dots_label'>Weaponry:</td>
-        <td class='dots_number'><%= dot_format(@character.weaponry) %></td>
-        <td class='dots_label'>Subterfuge:</td>
-        <td class='dots_number'><%= dot_format(@character.subterfuge) %></td>
-      </tr>
-      <tr>
-        <td>Skill Specialties:</td>
-        <td colspan=5><%= simple_format(@character.skill_specialties) %></td>
-      </tr>
-    </table>
-  </div>
+  <% unless @character.is_spirit? %>
+	  <div id="skills">
+	    <h5 class="<%= @character.splat.name.downcase %>">Skills</h5>
+	    <table class="six_cells">
+	      <tr>
+	        <td class='dots_label mental'>Academics:</td>
+	        <td class='dots_number'><%= dot_format(@character.academics) %></td>
+	        <td class='dots_label'>Athletics:</td>
+	        <td class='dots_number'><%= dot_format(@character.athletics) %></td>
+	        <td class='dots_label'>Animal Ken:</td>
+	        <td class='dots_number'><%= dot_format(@character.animal_ken) %></td>
+	      </tr>
+	      <tr>
+	        <td class='dots_label mental'>Computer:</td>
+	        <td class='dots_number'><%= dot_format(@character.computer) %></td>
+	        <td class='dots_label'>Brawl:</td>
+	        <td class='dots_number'><%= dot_format(@character.brawl) %></td>
+	        <td class='dots_label'>Empathy:</td>
+	        <td class='dots_number'><%= dot_format(@character.empathy) %></td>
+	      </tr>
+	      <tr>
+	        <td class='dots_label mental'>Crafts:</td>
+	        <td class='dots_number'><%= dot_format(@character.crafts) %></td>
+	        <td class='dots_label'>Drive:</td>
+	        <td class='dots_number'><%= dot_format(@character.drive) %></td>
+	        <td class='dots_label'>Expression:</td>
+	        <td class='dots_number'><%= dot_format(@character.expression) %></td>
+	      </tr>
+	      <tr>
+	        <td class='dots_label mental'>Investigation:</td>
+	        <td class='dots_number'><%= dot_format(@character.investigation) %></td>
+	        <td class='dots_label'>Firearms:</td>
+	        <td class='dots_number'><%= dot_format(@character.firearms) %></td>
+	        <td class='dots_label'>Intimidation:</td>
+	        <td class='dots_number'><%= dot_format(@character.intimidation) %></td>
+	      </tr>
+	      <tr>
+	        <td class='dots_label mental'>Medicine:</td>
+	        <td class='dots_number'><%= dot_format(@character.medicine) %></td>
+	        <td class='dots_label'>Larceny:</td>
+	        <td class='dots_number'><%= dot_format(@character.larceny) %></td>
+	        <td class='dots_label'>Persuasion:</td>
+	        <td class='dots_number'><%= dot_format(@character.persuasion) %></td>
+	      </tr>
+	      <tr>
+	        <td class='dots_label mental'>Occult:</td>
+	        <td class='dots_number'><%= dot_format(@character.occult) %></td>
+	        <td class='dots_label'>Stealth:</td>
+	        <td class='dots_number'><%= dot_format(@character.stealth) %></td>
+	        <td class='dots_label'>Socialize:</td>
+	        <td class='dots_number'><%= dot_format(@character.socialize) %></td>
+	      </tr>
+	      <tr>
+	        <td class='dots_label mental'>Politics:</td>
+	        <td class='dots_number'><%= dot_format(@character.politics) %></td>
+	        <td class='dots_label'>Survival:</td>
+	        <td class='dots_number'><%= dot_format(@character.survival) %></td>
+	        <td class='dots_label'>Streetwise:</td>
+	        <td class='dots_number'><%= dot_format(@character.streetwise) %></td>
+	      </tr>
+	      <tr>
+	        <td class='dots_label mental'>Science:</td>
+	        <td class='dots_number'><%= dot_format(@character.science) %></td>
+	        <td class='dots_label'>Weaponry:</td>
+	        <td class='dots_number'><%= dot_format(@character.weaponry) %></td>
+	        <td class='dots_label'>Subterfuge:</td>
+	        <td class='dots_number'><%= dot_format(@character.subterfuge) %></td>
+	      </tr>
+	      <tr>
+	        <td>Skill Specialties:</td>
+	        <td colspan=5><%= simple_format(@character.skill_specialties) %></td>
+	      </tr>
+	    </table>
+	  </div>
+  <% end %>
 
   <div id="advantages">    
     <h5 class="<%= @character.splat.name.downcase %>">Advantages</h5>
@@ -257,15 +282,17 @@
     </table>
   </div>
 
-  <div id="merits">    
-    <h5 class="<%= @character.splat.name.downcase %>">Merits</h5>
-    <%= simple_format(@character.merits) %>
-  </div>
+  <% unless @character.is_spirit? %>
+    <div id="merits"> 
+      <h5 class="<%= @character.splat.name.downcase %>">Merits</h5>
+      <%= simple_format(@character.merits) %>
+    </div>
 
-  <div id="equipment">
-    <h5 class="<%= @character.splat.name.downcase %>">Equipment</h5>
-    <%= simple_format(@character.equipment) %>
-  </div>
+    <div id="equipment">
+      <h5 class="<%= @character.splat.name.downcase %>">Equipment</h5>
+      <%= simple_format(@character.equipment) %>
+    </div>
+  <% end %>
 
   <div id="powers">
     <% if @character.is_mage? %>
@@ -610,6 +637,11 @@
         </tr>
       </table>
     <% end %>
+	
+	<% if @character.is_spirit? %>
+		<h5 class="<%= @character.splat.name.downcase %>">Numina</h5>
+		<p><%= simple_format(@character.numina) %></p>
+	<% end %>
   </div>
 <% end %>
 
