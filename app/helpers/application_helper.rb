@@ -7,4 +7,8 @@ module ApplicationHelper
     
     content_tag('li', attributes, &block)
   end
+  
+  def hidden_if(condition)
+    "style='display: none'".html_safe if condition
+  end
 end

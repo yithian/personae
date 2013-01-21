@@ -22,7 +22,7 @@ $('#current_fuel_label').html('Current <%= @splat.fuel_name %>');
 $('h5').attr('class', '<%= @splat.name.downcase %>');
 
 // show or hide only the appropriate fields
-<% if @splat.name == "Mortal" %>
+<% if @splat.name == "Mortal" or @splat.name == "Spirit" %>
   $('#nature_label_cell').hide();
   $('#nature_id_cell').hide();
   $('#ideology_label_cell').hide();
@@ -74,6 +74,44 @@ $('h5').attr('class', '<%= @splat.name.downcase %>');
   $('#subnature_id_cell').show();
 <% end %>
 
+// show shit that spirits don't have
+e = $('#power_row').children().first();
+$(e).hide(); // power
+$(e).next().hide(); // power
+$(e).next().next().show(); // intelligence
+$(e).next().next().next().show(); // intelligence
+$(e).next().next().next().next().show(); // strength
+$(e).next().next().next().next().next().show(); // strength
+$(e).next().next().next().next().next().next().show(); // presence
+$(e).next().next().next().next().next().next().next().show(); // presence
+
+e = $('#finesse_row').children().first();
+$(e).hide(); // finesse
+$(e).next().hide(); // finesse
+$(e).next().next().show(); // wits
+$(e).next().next().next().show(); // wits
+$(e).next().next().next().next().show(); // dexterity
+$(e).next().next().next().next().next().show(); // dexterity
+$(e).next().next().next().next().next().next().show(); // manipulation
+$(e).next().next().next().next().next().next().next().show(); // manipulation
+
+e = $('#resistance_row').children().first();
+$(e).hide(); // resistance
+$(e).next().hide(); // resistance
+$(e).next().next().show(); // resolve
+$(e).next().next().next().show(); // resolve
+$(e).next().next().next().next().show(); // stamina
+$(e).next().next().next().next().next().show(); // stamina
+$(e).next().next().next().next().next().next().show(); // composure
+$(e).next().next().next().next().next().next().next().show(); // composure
+
+$('#skills_header').show();
+$('#skills').show();
+$('#merits_header').show();
+$('merits').show();
+$('#equipment_header').show();
+$('#equipment').show();
+
 $('#mage_powers').hide();
 $('#woof_powers').hide();
 $('#vampire_powers').hide();
@@ -81,6 +119,7 @@ $('#promethean_powers').hide();
 $('#changeling_powers').hide();
 $('#hunter_powers').hide();
 $('#geist_powers').hide();
+$('#spirit_powers').hide();
 
 <% case @splat.name
   when "Mage" then %> $('#mage_powers').slideDown();
@@ -90,4 +129,15 @@ $('#geist_powers').hide();
   <% when "Changeling" then %> $('#changeling_powers').slideDown();
   <% when "Hunter" then %> $('#hunter_powers').slideDown();
   <% when "Geist" then %> $('#geist_powers').slideDown();
+  <% when "Spirit" then %>
+	  $('#attributes').children().children().children().each( function() {
+		  $(this).toggle();
+	  });
+	  $('#skills_header').hide();
+	  $('#skills').hide();
+	  $('#merits_header').hide();
+	  $('merits').hide();
+	  $('#equipment_header').hide();
+	  $('#equipment').hide();
+	  $('#spirit_powers').slideDown();
 <% end %>

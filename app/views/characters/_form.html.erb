@@ -109,36 +109,42 @@
 
 
   <h5 class='<%= @character.splat.name.downcase %>'>Attributes</h5>
-  <table class="six_cells">
-    <tr>
-      <td><%= f.label :intelligence %></td>
-      <td><%= f.text_field :intelligence, :tabindex => "6", :class => "number" %></td>
-      <td><%= f.label :strength %></td>
-      <td><%= f.text_field :strength, :tabindex => "7", :class => "parent_number" %></td>
-      <td><%= f.label :presence %></td>
-      <td><%= f.text_field :presence, :tabindex => "8", :class => "number" %></td>
+  <table class="six_cells" id="attributes">
+    <tr id="power_row">
+	  <td <%= hidden_if((not @character.is_spirit?)) %>><%= f.label :power %></td>
+	  <td <%= hidden_if((not @character.is_spirit?)) %>><%= f.text_field :power, :tabindex => "5.5", :class => "number" %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.label :intelligence %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.text_field :intelligence, :tabindex => "6", :class => "number" %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.label :strength %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.text_field :strength, :tabindex => "7", :class => "parent_number" %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.label :presence %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.text_field :presence, :tabindex => "8", :class => "number" %></td>
     </tr>
-    <tr>
-      <td><%= f.label :wits %></td>
-      <td><%= f.text_field :wits, :tabindex => "6", :class => "parent_number" %></td>
-      <td><%= f.label :dexterity %></td>
-      <td><%= f.text_field :dexterity, :tabindex => "7", :class => "parent_number" %></td>
-      <td><%= f.label :manipulation %></td>
-      <td><%= f.text_field :manipulation, :tabindex => "8", :class => "number" %></td>
+    <tr id="finesse_row">
+      <td <%= hidden_if((not @character.is_spirit?)) %>><%= f.label :finesse %></td>
+	  <td <%= hidden_if((not @character.is_spirit?)) %>><%= f.text_field :finesse, :tabindex => "5.5", :class => "number" %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.label :wits %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.text_field :wits, :tabindex => "6", :class => "parent_number" %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.label :dexterity %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.text_field :dexterity, :tabindex => "7", :class => "parent_number" %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.label :manipulation %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.text_field :manipulation, :tabindex => "8", :class => "number" %></td>
     </tr>
-    <tr>
-      <td><%= f.label :resolve %></td>
-      <td><%= f.text_field :resolve, :tabindex => "6", :class => "parent_number" %></td>
-      <td><%= f.label :stamina %></td>
-      <td><%= f.text_field :stamina, :tabindex => "7", :class => "parent_number" %></td>
-      <td><%= f.label :composure %></td>
-      <td><%= f.text_field :composure, :tabindex => "8", :class => "parent_number" %></td>
+    <tr id="resistance_row">
+      <td <%= hidden_if((not @character.is_spirit?)) %>><%= f.label :resistance %></td>
+	  <td <%= hidden_if((not @character.is_spirit?)) %>><%= f.text_field :resistance, :tabindex => "5.5", :class => "number" %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.label :resolve %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.text_field :resolve, :tabindex => "6", :class => "parent_number" %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.label :stamina %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.text_field :stamina, :tabindex => "7", :class => "parent_number" %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.label :composure %></td>
+      <td <%= hidden_if(@character.is_spirit?) %>><%= f.text_field :composure, :tabindex => "8", :class => "parent_number" %></td>
     </tr>
   </table>
 
 
-  <h5 class='<%= @character.splat.name.downcase %>'>Skills</h5>
-  <table class="six_cells">
+  <h5 id="skills_header" class='<%= @character.splat.name.downcase %>' <%= hidden_if(@character.is_spirit?) %>>Skills</h5>
+  <table id="skills" class="six_cells" <%= hidden_if(@character.is_spirit?) %>>
     <tr>
       <td><%= f.label :academics %></td>
       <td><%= f.text_field :academics, :tabindex => "9", :class => "number" %></td>
@@ -281,12 +287,12 @@
   </table>
   
   
-  <h5 class='<%= @character.splat.name.downcase %>'>Merits</h5>
-  <p><%= f.text_area :merits, :tabindex => "15" %></p>
+  <h5 id="merits_header" <%= hidden_if(@character.is_spirit?) %> class='<%= @character.splat.name.downcase %>'>Merits</h5>
+  <p id="merits" <%= hidden_if(@character.is_spirit?) %>><%= f.text_area :merits, :tabindex => "15" %></p>
   
   
-  <h5 class='<%= @character.splat.name.downcase %>'>Equipment</h5>
-  <p><%= f.text_area :equipment, :tabindex => "15" %></p>
+  <h5 id="equipment_header" <%= hidden_if(@character.is_spirit?) %> class='<%= @character.splat.name.downcase %>'>Equipment</h5>
+  <p id="equipment" <%= hidden_if(@character.is_spirit?) %>><%= f.text_area :equipment, :tabindex => "15" %></p>
   
   
   <div id="mage_powers" <%= "style='display: none'".html_safe unless @character.is_mage? %> >
@@ -583,6 +589,11 @@
         <td><%= f.text_field :wrath, :tabindex => "26", :class => "parent_number" %></td>
       </tr>
     </table>
+  </div>
+  
+  <div id="spirit_powers" <%= hidden_if((not @character.is_spirit?)) %>>
+  	<h5 class='<%= @character.splat.name.downcase %>'>Numina</h5>
+	<p><%= f.text_area :numina, :tabindex => '28' %></p>
   </div>
 
   <%= f.check_box :read_crunch, :class => "checkbox" %> <%= f.label :read_crunch, "Reveal crunch", :class => "checkbox inline", :title => "Crunch is defined as a character's attributes, skills, advantages, merits, equipment and any supernatural powers" %>
