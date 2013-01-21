@@ -197,7 +197,7 @@
     <h5 class="<%= @character.splat.name.downcase %>">Advantages</h5>
     <table class="four_cells">
       <tr>
-        <td>Health:</td>
+        <td><%= @character.is_spirit? ? "Corpus" : "Health" %>:</td>
         <td id="health"><%= dot_format(@character.health) %></td>
         <td>Willpower:</td>
         <td id="willpower"><%= dot_format(@character.willpower) %></td>
@@ -205,13 +205,13 @@
       <tr>
         <% if can? :edit, @character %>
         	<%= form_for([@character.chronicle, @character]) do |f| %>
-            <td><%= f.label :current_health, "Current Health:" %></td>
+            <td><%= f.label :current_health, @character.is_spirit? ? "Current Corpus" : "Current Health" %></td>
             <td><%= f.text_field :current_health, :remote => true, :action => url_for(:action => :save_current, :id => @character.id), :method => "put" %></td>
             <td><%= f.label :current_willpower, "Current Willpower:" %></td>
             <td><%= f.text_field :current_willpower, :remote => true, :action => url_for(:action => :save_current, :id => @character.id), :method => "put" %></td>
           <% end %>
         <% else %>
-          <td>Current Health:</td>
+          <td>Current <%= @character.is_spirit? ? "Corpus" : "Health" %>:</td>
           <td><%= @character.current_health %></td>
           <td>Current Willpower:</td>
           <td><%= @character.current_willpower %></td>
