@@ -639,6 +639,9 @@
     <% end %>
 	
 	<% if @character.is_spirit? %>
+		<h5 class="<%= @character.splat.name.downcase %>">Influences</h5>
+		<p><%= simple_format(@character.influences) %></p>
+
 		<h5 class="<%= @character.splat.name.downcase %>">Numina</h5>
 		<p><%= simple_format(@character.numina) %></p>
 	<% end %>

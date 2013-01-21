@@ -592,8 +592,11 @@
   </div>
   
   <div id="spirit_powers" <%= hidden_if((not @character.is_spirit?)) %>>
-  	<h5 class='<%= @character.splat.name.downcase %>'>Numina</h5>
-	<p><%= f.text_area :numina, :tabindex => '28' %></p>
+    <h5 class='<%= @character.splat.name.downcase %>'>Influences</h5>
+    <p><%= f.text_area :influences, :tabindex => '28' %></p>
+
+    <h5 class='<%= @character.splat.name.downcase %>'>Numina</h5>
+    <p><%= f.text_area :numina, :tabindex => '28' %></p>
   </div>
 
   <%= f.check_box :read_crunch, :class => "checkbox" %> <%= f.label :read_crunch, "Reveal crunch", :class => "checkbox inline", :title => "Crunch is defined as a character's attributes, skills, advantages, merits, equipment and any supernatural powers" %>
