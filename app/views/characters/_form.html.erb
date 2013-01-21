@@ -44,10 +44,10 @@
     <tr>
       <td><b><%= f.label :virtue %></b></td>
       <td><%= f.select :virtue, Character::VIRTUES, {}, {:tabindex => "1"} %></td>
-      <td id="nature_label_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
+      <td id="nature_label_cell" <%= hidden_if((@character.splat.name == "Spirit" or @character.splat.name == "Mortal")) %> >
         <b><%= label_tag 'nature_id', @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
-      <td class="data" id="nature_id_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
+      <td class="data" id="nature_id_cell" <%= hidden_if((@character.splat.name == "Spirit" or @character.splat.name == "Mortal")) %> >
         <%= select_tag :nature_id, options_from_collection_for_select(@nature_list, 'id', 'name', @character.nature.id), :tabindex => "1", :remote => true, :action => update_nature_chronicle_characters_path %>
 	<%= f.hidden_field :nature_id %>
       </td>
@@ -55,18 +55,18 @@
     <tr>
       <td rowspan='2' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
       <td rowspan='2' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]", :tabindex => "1" %></td>
-      <td id="subnature_label_cell" <%= "style='display: none'".html_safe if @character.splat.name != "Changeling" %>>
+      <td id="subnature_label_cell" <%= hidden_if((not @character.is_changeling?)) %>>
         <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>
-      <td class="data" id="subnature_id_cell" <%= "style='display: none'".html_safe if @character.splat.name != "Changeling" %>>
+      <td class="data" id="subnature_id_cell" <%= hidden_if((not @character.is_changeling?)) %>>
         <%= f.select :subnature_id, options_from_collection_for_select(@subnature_list, 'id', 'name', @character.subnature_id), {}, {:tabindex => "1"} %>
       </td>
     </tr>
     <tr>
-      <td id="ideology_label_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %>>
+      <td id="ideology_label_cell" <%= hidden_if((@character.splat.name == "Spirit" or @character.splat.name == "Mortal")) %>>
         <b><%= f.label :ideology_id, @character.splat.ideology_name, :id => "ideology_label" %></b>
       </td>
-      <td class="data" id="ideology_id_cell" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %>>
+      <td class="data" id="ideology_id_cell" <%= hidden_if((@character.splat.name == "Spirit" or @character.splat.name == "Mortal")) %>>
         <%= f.select :ideology_id, options_from_collection_for_select(@ideology_list, 'id', 'name', @character.ideology.id), {}, {:tabindex => "1"} %>
       </td>
     </tr>
@@ -80,12 +80,12 @@
       <td><%= f.check_box :read_name, :class => 'checkbox' %> <%= f.label :read_name, "Reveal name", :class => "checkbox inline" %></td>
       <td><%= f.check_box :read_clique, :class => "checkbox" %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label", :class => "checkbox inline" %></td>
       <td>
-      	<span id="read_nature_span" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
+      	<span id="read_nature_span" <%= hidden_if((@character.splat.name == "Spirit" or @character.splat.name == "Mortal")) %> >
           <%= f.check_box :read_nature, :class => "checkbox" %> <%= f.label :read_nature, "Reveal " + @character.splat.nature_name, :id => "read_nature_label", :class => "checkbox inline" %>
         </span>
       </td>
       <td>
-        <span id="read_ideology_span" <%= "style='display: none'".html_safe if @character.splat.name == "Mortal" %> >
+        <span id="read_ideology_span" <%= hidden_if((@character.splat.name == "Spirit" or @character.splat.name == "Mortal")) %> >
           <%= f.check_box :read_ideology, :class => "checkbox" %> <%= f.label :read_ideology, "Reveal " + @character.splat.ideology_name, :id => "read_ideology_label", :class => "checkbox inline" %>
         </span>
       </td>
