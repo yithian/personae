@@ -219,13 +219,13 @@
   <h5 class='<%= @character.splat.name.downcase %>'>Advantages</h5>
   <table class="four_cells">
     <tr>
-      <td><%= f.label :health %></td>
+      <td id="health_label"><%= f.label :health %></td>
       <td><%= f.text_field :health, :tabindex => "13", :class => "number" %></td>
       <td><%= f.label :willpower %></td>
       <td><%= f.text_field :willpower, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
-      <td><%= f.label :current_health %></td>
+      <td id="current_health_label"><%= f.label :current_health %></td>
       <td><%= f.text_field :current_health %></td>
       <td><%= f.label :current_willpower %></td>
       <td><%= f.text_field :current_willpower %></td>

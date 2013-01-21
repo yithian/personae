@@ -22,7 +22,7 @@ $('#current_fuel_label').html('Current <%= @splat.fuel_name %>');
 $('h5').attr('class', '<%= @splat.name.downcase %>');
 
 // show or hide only the appropriate fields
-<% if @splat.name == "Mortal" or @splat.name == "Spirit" %>
+<% if @splat.name == "Mortal" %>
   $('#nature_label_cell').hide();
   $('#nature_id_cell').hide();
   $('#ideology_label_cell').hide();
@@ -36,6 +36,22 @@ $('h5').attr('class', '<%= @splat.name.downcase %>');
   $('#max_fuel_cell').hide();
   $('#current_fuel_cell').hide();
   $('#read_powers_span').hide();
+<% elsif @splat.name == "Spirit" %>
+  $('#nature_label_cell').hide();
+  $('#nature_id_cell').hide();
+  $('#ideology_label_cell').hide();
+  $('#ideology_id_cell').hide();
+  $('#read_nature_span').hide();
+  $('#read_ideology_span').hide();
+  $('#power_stat_label_cell').show();
+  $('#power_stat_cell').show();
+  $('#max_fuel_label_cell').show();
+  $('#current_fuel_label_cell').show();
+  $('#max_fuel_cell').show();
+  $('#current_fuel_cell').show();
+  $('#read_powers_span').show();
+  $('#health_label').html('Corpus');
+  $('#current_health_label').html('Current Corpus');
 <% elsif @splat.name == "Hunter" %>
   $('#nature_label_cell').show();
   $('#nature_id_cell').show();
@@ -64,6 +80,8 @@ $('h5').attr('class', '<%= @splat.name.downcase %>');
   $('#max_fuel_cell').show();
   $('#current_fuel_cell').show();
   $('#read_powers_span').show();
+  $('#health_label').html('Health');
+  $('#current_health_label').html('Current Health');
 <% end %>
 
 <% if @splat.name != "Changeling" %>
@@ -108,7 +126,7 @@ $(e).next().next().next().next().next().next().next().show(); // composure
 $('#skills_header').show();
 $('#skills').show();
 $('#merits_header').show();
-$('merits').show();
+$('#merits').show();
 $('#equipment_header').show();
 $('#equipment').show();
 
@@ -136,7 +154,7 @@ $('#spirit_powers').hide();
 	  $('#skills_header').hide();
 	  $('#skills').hide();
 	  $('#merits_header').hide();
-	  $('merits').hide();
+	  $('#merits').hide();
 	  $('#equipment_header').hide();
 	  $('#equipment').hide();
 	  $('#spirit_powers').slideDown();
