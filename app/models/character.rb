@@ -199,6 +199,11 @@ class Character < ActiveRecord::Base
   def is_possessed?
     self.possessed
   end
+  
+  # Returns true if the character is a ghost or spirit or anything that uses that template
+  def is_spirit?
+    self.splat.name == "Spirit"
+  end
 
   def max_infernal_will
     if self.primary_vice == "Envy"
