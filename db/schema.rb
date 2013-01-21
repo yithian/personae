@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120183727) do
+ActiveRecord::Schema.define(:version => 20130121030944) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -164,9 +164,9 @@ ActiveRecord::Schema.define(:version => 20130120183727) do
     t.text     "vestments"
     t.string   "primary_vice"
     t.string   "current_infernal_will"
-    t.integer  "power",                 :default => 0
-    t.integer  "finesse",               :default => 0
-    t.integer  "resistance",            :default => 0
+    t.integer  "power",                 :default => 1
+    t.integer  "finesse",               :default => 1
+    t.integer  "resistance",            :default => 1
     t.string   "numina"
   end
 
