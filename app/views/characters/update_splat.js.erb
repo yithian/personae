@@ -129,6 +129,8 @@ $('#merits_header').show();
 $('#merits').show();
 $('#equipment_header').show();
 $('#equipment').show();
+$('#possessed_label').show();
+$('#character_possessed').show();
 
 $('#mage_powers').hide();
 $('#woof_powers').hide();
@@ -148,6 +150,8 @@ $('#spirit_powers').hide();
   <% when "Hunter" then %> $('#hunter_powers').slideDown();
   <% when "Geist" then %> $('#geist_powers').slideDown();
   <% when "Spirit" then %>
+	$('#possessed_label').hide();
+	$('#character_possessed').hide();
 	  $('#attributes').children().children().children().each( function() {
 		  $(this).toggle();
 	  });

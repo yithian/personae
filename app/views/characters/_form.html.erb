@@ -73,7 +73,7 @@
     <tr>
       <td><div id="primary_vice_label_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><b><%= f.label :primary_vice %></b></div></td>
       <td class="data"><div id="primary_vice_cell" <%= "style='display: none'".html_safe unless @character.is_possessed? %>><%= f.select :primary_vice, Character::VICES, {}, {:tabindex => "1"} %></div></td>
-      <td><b><%= f.label :possessed, "Possessed" %></b></td>
+      <td><b><%= f.label :possessed, "Possessed", :id => "possessed_label" %></b></td>
       <td ><%= f.check_box :possessed, :remote => true, :action => possess_chronicle_characters_path %> </td>
       </tr>
     <tr>
