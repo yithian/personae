@@ -1,6 +1,141 @@
+function spiritify() {
+  // hide shit that spirits don't need
+  e = $('#power_row').children().first();
+  $(e).show(); // power
+  $(e).next().show(); // power
+  $(e).next().next().hide(); // intelligence
+  $(e).next().next().next().hide(); // intelligence
+  $(e).next().next().next().next().hide(); // strength
+  $(e).next().next().next().next().next().hide(); // strength
+  $(e).next().next().next().next().next().next().hide(); // presence
+  $(e).next().next().next().next().next().next().next().hide(); // presence
+
+  e = $('#finesse_row').children().first();
+  $(e).show(); // finesse
+  $(e).next().show(); // finesse
+  $(e).next().next().hide(); // wits
+  $(e).next().next().next().hide(); // wits
+  $(e).next().next().next().next().hide(); // dexterity
+  $(e).next().next().next().next().next().hide(); // dexterity
+  $(e).next().next().next().next().next().next().hide(); // manipulation
+  $(e).next().next().next().next().next().next().next().hide(); // manipulation
+
+  e = $('#resistance_row').children().first();
+  $(e).show(); // resistance
+  $(e).next().show(); // resistance
+  $(e).next().next().hide(); // resolve
+  $(e).next().next().next().hide(); // resolve
+  $(e).next().next().next().next().hide(); // stamina
+  $(e).next().next().next().next().next().hide(); // stamina
+  $(e).next().next().next().next().next().next().hide(); // composure
+  $(e).next().next().next().next().next().next().next().hide(); // composure
+
+  $('#skills_header').hide();
+  $('#skills').hide();
+  $('#merits_header').hide();
+  $('#merits').hide();
+  $('#equipment_header').hide();
+  $('#equipment').hide();
+  $('#possessed_label').hide();
+  $('#character_possessed').hide();
+}
+
+function unspiritify() {
+  // show shit that spirits don't have
+  e = $('#power_row').children().first();
+  $(e).hide(); // power
+  $(e).next().hide(); // power
+  $(e).next().next().show(); // intelligence
+  $(e).next().next().next().show(); // intelligence
+  $(e).next().next().next().next().show(); // strength
+  $(e).next().next().next().next().next().show(); // strength
+  $(e).next().next().next().next().next().next().show(); // presence
+  $(e).next().next().next().next().next().next().next().show(); // presence
+
+  e = $('#finesse_row').children().first();
+  $(e).hide(); // finesse
+  $(e).next().hide(); // finesse
+  $(e).next().next().show(); // wits
+  $(e).next().next().next().show(); // wits
+  $(e).next().next().next().next().show(); // dexterity
+  $(e).next().next().next().next().next().show(); // dexterity
+  $(e).next().next().next().next().next().next().show(); // manipulation
+  $(e).next().next().next().next().next().next().next().show(); // manipulation
+
+  e = $('#resistance_row').children().first();
+  $(e).hide(); // resistance
+  $(e).next().hide(); // resistance
+  $(e).next().next().show(); // resolve
+  $(e).next().next().next().show(); // resolve
+  $(e).next().next().next().next().show(); // stamina
+  $(e).next().next().next().next().next().show(); // stamina
+  $(e).next().next().next().next().next().next().show(); // composure
+  $(e).next().next().next().next().next().next().next().show(); // composure
+
+  $('#skills_header').show();
+  $('#skills').show();
+  $('#merits_header').show();
+  $('#merits').show();
+  $('#equipment_header').show();
+  $('#equipment').show();
+  $('#possessed_label').show();
+  $('#character_possessed').show();
+}
+
+function hide_powers() {
+  $('#mage_powers').hide();
+  $('#woof_powers').hide();
+  $('#vampire_powers').hide();
+  $('#promethean_powers').hide();
+  $('#changeling_powers').hide();
+  $('#hunter_powers').hide();
+  $('#geist_powers').hide();
+  $('#spirit_powers').hide();
+}
+
+function x_and_y_splat(flag) {
+  if (flag) {
+    $('#nature_label_cell').show();
+    $('#nature_id_cell').show();
+    $('#ideology_label_cell').show();
+    $('#ideology_id_cell').show();
+    $('#read_nature_span').show();
+    $('#read_ideology_span').show();
+  } else {
+    $('#nature_label_cell').hide();
+    $('#nature_id_cell').hide();
+    $('#ideology_label_cell').hide();
+    $('#ideology_id_cell').hide();
+    $('#read_nature_span').hide();
+    $('#read_ideology_span').hide();
+  }
+}
+
+function power_stat(flag) {
+  if (flag) {
+    $('#power_stat_label_cell').show();
+    $('#power_stat_cell').show();
+    $('#max_fuel_label_cell').show();
+    $('#current_fuel_label_cell').show();
+    $('#max_fuel_cell').show();
+    $('#current_fuel_cell').show();
+  } else {
+    $('#power_stat_label_cell').hide();
+    $('#power_stat_cell').hide();
+    $('#max_fuel_label_cell').hide();
+    $('#current_fuel_label_cell').hide();
+    $('#max_fuel_cell').hide();
+    $('#current_fuel_cell').hide();
+  }
+}
+
 // update the hidden fields in the form
 $('#character_splat_id').val('<%= @splat.id.to_s %>');
 $('#character_nature_id').val('<%= @nature_list.first.id %>');
+
+// hide subnature
+$('#subnature_label_cell').hide();
+$('#subnature_id_cell').hide();
 
 // update the splat-specific terms
 $('#clique_label').html('<%= @splat.clique_name %>');
@@ -17,149 +152,73 @@ $('#morality_label').html('<%= @splat.morality_name %>');
 $('#power_stat_label').html('<%= @splat.power_stat_name %>');
 $('#max_fuel_label').html('Max <%= @splat.fuel_name %>');
 $('#current_fuel_label').html('Current <%= @splat.fuel_name %>');
-
-// update the h3 smudge color
-$('h5').attr('class', '<%= @splat.name.downcase %>');
-
-// show or hide only the appropriate fields
-<% if @splat.name == "Mortal" %>
-  $('#nature_label_cell').hide();
-  $('#nature_id_cell').hide();
-  $('#ideology_label_cell').hide();
-  $('#ideology_id_cell').hide();
-  $('#read_nature_span').hide();
-  $('#read_ideology_span').hide();
-  $('#power_stat_label_cell').hide();
-  $('#power_stat_cell').hide();
-  $('#max_fuel_label_cell').hide();
-  $('#current_fuel_label_cell').hide();
-  $('#max_fuel_cell').hide();
-  $('#current_fuel_cell').hide();
-  $('#read_powers_span').hide();
-<% elsif @splat.name == "Spirit" %>
-  $('#nature_label_cell').hide();
-  $('#nature_id_cell').hide();
-  $('#ideology_label_cell').hide();
-  $('#ideology_id_cell').hide();
-  $('#read_nature_span').hide();
-  $('#read_ideology_span').hide();
-  $('#power_stat_label_cell').show();
-  $('#power_stat_cell').show();
-  $('#max_fuel_label_cell').show();
-  $('#current_fuel_label_cell').show();
-  $('#max_fuel_cell').show();
-  $('#current_fuel_cell').show();
-  $('#read_powers_span').show();
+<% if @splat.name == "Spirit" %>
   $('#health_label').html('Corpus');
   $('#current_health_label').html('Current Corpus');
-<% elsif @splat.name == "Hunter" %>
-  $('#nature_label_cell').show();
-  $('#nature_id_cell').show();
-  $('#ideology_label_cell').show();
-  $('#ideology_id_cell').show();
-  $('#read_nature_span').show();
-  $('#read_ideology_span').show();
-  $('#power_stat_label_cell').hide();
-  $('#power_stat_cell').hide();
-  $('#max_fuel_label_cell').hide();
-  $('#current_fuel_label_cell').hide();
-  $('#max_fuel_cell').hide();
-  $('#current_fuel_cell').hide();
-  $('#read_powers_span').hide();
 <% else %>
-  $('#nature_label_cell').show();
-  $('#nature_id_cell').show();
-  $('#ideology_label_cell').show();
-  $('#ideology_id_cell').show();
-  $('#read_nature_span').show();
-  $('#read_ideology_span').show();
-  $('#power_stat_label_cell').show();
-  $('#power_stat_cell').show();
-  $('#max_fuel_label_cell').show();
-  $('#current_fuel_label_cell').show();
-  $('#max_fuel_cell').show();
-  $('#current_fuel_cell').show();
-  $('#read_powers_span').show();
   $('#health_label').html('Health');
   $('#current_health_label').html('Current Health');
 <% end %>
 
-<% if @splat.name != "Changeling" %>
-  $('#subnature_label_cell').hide();
-  $('#subnature_id_cell').hide();
-<% else %>
-  $('#subnature_label_cell').show();
-  $('#subnature_id_cell').show();
-<% end %>
+// update the h3 smudge color
+$('h5').attr('class', '<%= @splat.name.downcase %>');
 
-// show shit that spirits don't have
-e = $('#power_row').children().first();
-$(e).hide(); // power
-$(e).next().hide(); // power
-$(e).next().next().show(); // intelligence
-$(e).next().next().next().show(); // intelligence
-$(e).next().next().next().next().show(); // strength
-$(e).next().next().next().next().next().show(); // strength
-$(e).next().next().next().next().next().next().show(); // presence
-$(e).next().next().next().next().next().next().next().show(); // presence
-
-e = $('#finesse_row').children().first();
-$(e).hide(); // finesse
-$(e).next().hide(); // finesse
-$(e).next().next().show(); // wits
-$(e).next().next().next().show(); // wits
-$(e).next().next().next().next().show(); // dexterity
-$(e).next().next().next().next().next().show(); // dexterity
-$(e).next().next().next().next().next().next().show(); // manipulation
-$(e).next().next().next().next().next().next().next().show(); // manipulation
-
-e = $('#resistance_row').children().first();
-$(e).hide(); // resistance
-$(e).next().hide(); // resistance
-$(e).next().next().show(); // resolve
-$(e).next().next().next().show(); // resolve
-$(e).next().next().next().next().show(); // stamina
-$(e).next().next().next().next().next().show(); // stamina
-$(e).next().next().next().next().next().next().show(); // composure
-$(e).next().next().next().next().next().next().next().show(); // composure
-
-$('#skills_header').show();
-$('#skills').show();
-$('#merits_header').show();
-$('#merits').show();
-$('#equipment_header').show();
-$('#equipment').show();
-$('#possessed_label').show();
-$('#character_possessed').show();
-
-$('#mage_powers').hide();
-$('#woof_powers').hide();
-$('#vampire_powers').hide();
-$('#promethean_powers').hide();
-$('#changeling_powers').hide();
-$('#hunter_powers').hide();
-$('#geist_powers').hide();
-$('#spirit_powers').hide();
-
+// make splat-specific changes
 <% case @splat.name
-  when "Mage" then %> $('#mage_powers').slideDown();
-  <% when "Werewolf" then %> $('#woof_powers').slideDown();
-  <% when "Vampire" then %> $('#vampire_powers').slideDown();
-  <% when "Promethean" then %> $('#promethean_powers').slideDown();
-  <% when "Changeling" then %> $('#changeling_powers').slideDown();
-  <% when "Hunter" then %> $('#hunter_powers').slideDown();
-  <% when "Geist" then %> $('#geist_powers').slideDown();
+  when "Mortal" then %>
+    unspiritify();
+    hide_powers();
+    x_and_y_splat(false);
+    power_stat(false);
+    $('#read_powers_span').hide();
   <% when "Spirit" then %>
-	$('#possessed_label').hide();
-	$('#character_possessed').hide();
-	  $('#attributes').children().children().children().each( function() {
-		  $(this).toggle();
-	  });
-	  $('#skills_header').hide();
-	  $('#skills').hide();
-	  $('#merits_header').hide();
-	  $('#merits').hide();
-	  $('#equipment_header').hide();
-	  $('#equipment').hide();
+    spiritify();
+    hide_powers();
+    x_and_y_splat(false);
+    power_stat(true);
 	  $('#spirit_powers').slideDown();
+  <% when "Hunter" then %>
+    unspiritify();
+    hide_powers();
+    x_and_y_splat(true);
+    power_stat(false);
+    $('#hunter_powers').slideDown();
+  <% when "Mage" then %>
+    unspiritify();
+    hide_powers();
+    x_and_y_splat(true);
+    power_stat(true);
+    $('#mage_powers').slideDown();
+  <% when "Werewolf" then %>
+    unspiritify();
+    hide_powers();
+    x_and_y_splat(true);
+    power_stat(true);
+    $('#woof_powers').slideDown();
+  <% when "Vampire" then %>
+    unspiritify();
+    hide_powers();
+    x_and_y_splat(true);
+    power_stat(true);
+    $('#vampire_powers').slideDown();
+  <% when "Promethean" then %>
+    unspiritify();
+    hide_powers();
+    x_and_y_splat(true);
+    power_stat(true);
+    $('#promethean_powers').slideDown();
+  <% when "Changeling" then %>
+    unspiritify();
+    hide_powers();
+    x_and_y_splat(true);
+    power_stat(true);
+    $('#subnature_label_cell').show();
+    $('#subnature_id_cell').show();
+    $('#changeling_powers').slideDown();
+  <% when "Geist" then %>
+    unspiritify();
+    hide_powers();
+    x_and_y_splat(true);
+    power_stat(true);
+    $('#geist_powers').slideDown();
 <% end %>
