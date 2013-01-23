@@ -20,11 +20,6 @@
   <h5>Description</h5>
   <p><%= f.text_area :description %></p>
 
-  <% if @clique.has_totem? %>
-    <h5>Totem</h5>
-    <p><%= f.text_area :totem %></p>
-  <% end %>
-
   <h5>Chronicle</h5>
   <p><%= f.select :chronicle_id, options_from_collection_for_select(@chronicle_list, 'id', 'name', @clique.chronicle.id) %></p>
   <%= f.check_box :write, :class => "checkbox" %> <%= f.label :write, "Available for players", :class => "checkbox inline" %>

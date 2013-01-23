@@ -10,17 +10,6 @@ class Clique < ActiveRecord::Base
   validates :name, :presence => true, :unique_in_chronicle => true
   validates :owner_id, :presence => true
 
-  # Returns true if the clique has a werewolf member. Used to determine
-  # if the clique's totem field should be shown in the view.
-  def has_totem?
-    has_werewolf = false
-      self.characters.each do |char|
-        has_werewolf = true if char.is_werewolf?
-      end
-
-    has_werewolf
-  end
-
   # Show the clique's name in the url
   def to_param
     "#{self.id}-#{self.name.gsub(/[ '"#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&?\/:;=@]/, '')}"

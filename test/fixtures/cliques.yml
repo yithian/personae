@@ -6,7 +6,6 @@ Solitary:
   territory: none
   write: true
   owner: Storyteller
-  totem: NoTotemText
   chronicle: one
 
 one:
@@ -15,7 +14,6 @@ one:
   territory: MyTerritory
   write: true
   owner: one
-  totem: MyTotemText
   chronicle: one
 
 two:
@@ -24,7 +22,6 @@ two:
   territory: MyOtherTerritory
   write: false
   owner: two
-  totem: MyOtherTotemText
   chronicle: two
 
 three:
@@ -33,6 +30,5 @@ three:
   territory: MyThirdTerritory
   write: false
   owner: three
-  totem: MyOtherTotemText
   chronicle: three
 

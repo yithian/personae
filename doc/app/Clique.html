@@ -72,8 +72,6 @@
     
     <li><a href="#method-c-known_to">::known_to</a>
     
-    <li><a href="#method-i-has_totem-3F">#has_totem?</a>
-    
     <li><a href="#method-i-owned_by_user-3F">#owned_by_user?</a>
     
     <li><a href="#method-i-to_param">#to_param</a>
@@ -213,7 +211,7 @@ new, temporary user as a base</p>
 
           
           <div class="method-source-code" id="known_to-source">
-            <pre><span class="ruby-comment"># File app/models/clique.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/models/clique.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">chronicle_id</span>=<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">a</span> = <span class="ruby-constant">Ability</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user</span>)
   
@@ -238,42 +236,6 @@ new, temporary user as a base</p>
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-has_totem-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_totem?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Returns true if the clique has a werewolf member. Used to determine if the
-clique’s totem field should be shown in the view.</p>
-          
-
-          
-          <div class="method-source-code" id="has_totem-3F-source">
-            <pre><span class="ruby-comment"># File app/models/clique.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_totem?</span>
-  <span class="ruby-identifier">has_werewolf</span> = <span class="ruby-keyword">false</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">char</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">has_werewolf</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">char</span>.<span class="ruby-identifier">is_werewolf?</span>
-    <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">has_werewolf</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- has_totem-3F-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- has_totem-3F-method -->
-
-    
       <div id="method-i-owned_by_user-3F" class="method-detail ">
         
         <div class="method-heading">
@@ -292,7 +254,7 @@ href="User.html#method-i-super_user-3F">User#super_user?</a></p>
 
           
           <div class="method-source-code" id="owned_by_user-3F-source">
-            <pre><span class="ruby-comment"># File app/models/clique.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/models/clique.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">owned_by_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">owner</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">super_user?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">chronicle</span>)
@@ -323,7 +285,7 @@ href="User.html#method-i-super_user-3F">User#super_user?</a></p>
 
           
           <div class="method-source-code" id="to_param-source">
-            <pre><span class="ruby-comment"># File app/models/clique.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/models/clique.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_param</span>
   <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(/[ '&quot;#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&amp;?\/:;=@]/, '')}&quot;</span>
 <span class="ruby-keyword">end</span></pre>

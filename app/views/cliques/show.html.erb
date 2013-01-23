@@ -26,15 +26,6 @@
 </table>
 </p>
 
-<% if @clique.has_totem? %>
-  <p>
-    <h5>Totem</h5>
-    <p><%= simple_format(@clique.totem) %></p>
-  </p>
-<% end %>
-
-
-
 <%= link_to('New member', new_chronicle_character_path(:clique_id => @clique.id, :chronicle_id => @clique.chronicle_id)) %>
 <% if can? :edit, @clique %>
   | <%= link_to('Edit', edit_chronicle_clique_path(@clique)) %>

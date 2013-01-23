@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121204035) do
+ActiveRecord::Schema.define(:version => 20130123181223) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -191,7 +191,6 @@ ActiveRecord::Schema.define(:version => 20130121204035) do
     t.boolean  "write",        :default => false
     t.integer  "owner_id",     :default => 1,     :null => false
     t.integer  "chronicle_id", :default => 1
-    t.text     "totem"
   end
 
   add_index "cliques", ["chronicle_id"], :name => "index_cliques_on_chronicle_id"
