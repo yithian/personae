@@ -200,7 +200,7 @@
     
 <p>The basic building block of personae, the character class represents a
 World of Darkness character. Specifically, it holds all the information
-that would be represented on a player’s character sheet.</p>
+that would be represented on a player&#39;s character sheet.</p>
 
 <p>All required attributes have default values.</p>
 
@@ -646,8 +646,8 @@ that template</p>
 
         <div class="method-description">
           
-          <p>Returns what Obsidian Portal calls the character’s bio. In personae terms,
-that is the character’s description and background.</p>
+          <p>Returns what Obsidian Portal calls the character&#39;s bio. In personae
+terms, that is the character&#39;s description and background.</p>
           
 
           
@@ -696,8 +696,9 @@ h5. Deeds
 
         <div class="method-description">
           
-          <p>Returns what Obsidian Portal calls the character’s description, which is
-all of the mechanical bits. I know, it doesn’t make sense to me either.</p>
+          <p>Returns what Obsidian Portal calls the character&#39;s description, which
+is all of the mechanical bits. I know, it doesn&#39;t make sense to me
+either.</p>
           
 
           
@@ -717,25 +718,25 @@ all of the mechanical bits. I know, it doesn’t make sense to me either.</p>
     <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Attributes
 
-|_. Intelligence:|#{'•' * self.intelligence}|_. Strength:|#{'•' * self.strength}|_. Presence:|#{'•' * self.presence}|
-|_. Wits:|#{'•' * self.wits}|_. Dexterity:|#{'•' * self.dexterity}|_. Manipulation:|#{'•' * self.manipulation}|
-|_. Resolve:|#{'•' * self.resolve}|_. Stamina:|#{'•' * self.stamina}|_. Composure:|#{'•' * self.composure}|
+|_. Intelligence:|#{&#39;•&#39; * self.intelligence}|_. Strength:|#{&#39;•&#39; * self.strength}|_. Presence:|#{&#39;•&#39; * self.presence}|
+|_. Wits:|#{&#39;•&#39; * self.wits}|_. Dexterity:|#{&#39;•&#39; * self.dexterity}|_. Manipulation:|#{&#39;•&#39; * self.manipulation}|
+|_. Resolve:|#{&#39;•&#39; * self.resolve}|_. Stamina:|#{&#39;•&#39; * self.stamina}|_. Composure:|#{&#39;•&#39; * self.composure}|
 
 h5. Skills
 
-|_. Academics:|#{'•' * self.academics}|_. Athletics:|#{'•' * self.athletics}|_. Animal Ken:|#{'•' * self.animal_ken}|
-|_. Computer:|#{'•' * self.computer}|_. Brawl:|#{'•' * self.brawl}|_. Empathy:|#{'•' * self.empathy}|
-|_. Crafts:|#{'•' * self.crafts}|_. Drive:|#{'•' * self.drive}|_. Expression:|#{'•' * self.expression}|
-|_. Investigation:|#{'•' * self.investigation}|_. Firearms:|#{'•' * self.firearms}|_. Intimidation:|#{'•' * self.intimidation}|
-|_. Medicine:|#{'•' * self.medicine}|_. Larceny:|#{'•' * self.larceny}|_. Persuasion:|#{'•' * self.persuasion}|
-|_. Occult:|#{'•' * self.occult}|_. Stealth:|#{'•' * self.stealth}|_. Socialize:|#{'•' * self.socialize}|
-|_. Politics:|#{'•' * self.politics}|_. Survival:|#{'•' * self.survival}|_. Streetwise:|#{'•' * self.streetwise}|
-|_. Science:|#{'•' * self.science}|_. Weaponry:|#{'•' * self.weaponry}|_. Subterfuge:|#{'•' * self.subterfuge}|
+|_. Academics:|#{&#39;•&#39; * self.academics}|_. Athletics:|#{&#39;•&#39; * self.athletics}|_. Animal Ken:|#{&#39;•&#39; * self.animal_ken}|
+|_. Computer:|#{&#39;•&#39; * self.computer}|_. Brawl:|#{&#39;•&#39; * self.brawl}|_. Empathy:|#{&#39;•&#39; * self.empathy}|
+|_. Crafts:|#{&#39;•&#39; * self.crafts}|_. Drive:|#{&#39;•&#39; * self.drive}|_. Expression:|#{&#39;•&#39; * self.expression}|
+|_. Investigation:|#{&#39;•&#39; * self.investigation}|_. Firearms:|#{&#39;•&#39; * self.firearms}|_. Intimidation:|#{&#39;•&#39; * self.intimidation}|
+|_. Medicine:|#{&#39;•&#39; * self.medicine}|_. Larceny:|#{&#39;•&#39; * self.larceny}|_. Persuasion:|#{&#39;•&#39; * self.persuasion}|
+|_. Occult:|#{&#39;•&#39; * self.occult}|_. Stealth:|#{&#39;•&#39; * self.stealth}|_. Socialize:|#{&#39;•&#39; * self.socialize}|
+|_. Politics:|#{&#39;•&#39; * self.politics}|_. Survival:|#{&#39;•&#39; * self.survival}|_. Streetwise:|#{&#39;•&#39; * self.streetwise}|
+|_. Science:|#{&#39;•&#39; * self.science}|_. Weaponry:|#{&#39;•&#39; * self.weaponry}|_. Subterfuge:|#{&#39;•&#39; * self.subterfuge}|
 |_. Skill Specialties:|\\5. #{self.skill_specialties}|
 
 h5. Advantages
 
-|_. Health:|#{'•' * self.health}|_. Willpower:|#{'•' * self.willpower}|
+|_. Health:|#{&#39;•&#39; * self.health}|_. Willpower:|#{&#39;•&#39; * self.willpower}|
 |_. Size:|#{ self.size}|
 |_. Initiative:|#{self.initiative}|
 |_. Speed:|#{self.speed}|
@@ -759,39 +760,39 @@ h5. Equipment
       <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Disciplines
 
-|_. Animalism:|#{'•' * self.animalism}|_. Covenant Disciplines:|
-|_. Auspex:|#{'•' * self.auspex}|/9. #{self.covenant_disciplines}|
-|_. Celerity:|#{'•' * self.celerity}|
-|_. Dominate:|#{'•' * self.dominate}|
-|_. Majesty:|#{'•' * self.majesty}|
-|_. Nightmare:|#{'•' * self.nightmare}|
-|_. Obfuscate:|#{'•' * self.obfuscate}|
-|_. Protean:|#{'•' * self.protean}|
-|_. Resilience:|#{'•' * self.resilience}|
-|_. Vigor:|#{'•' * self.vigor}|}</span>
+|_. Animalism:|#{&#39;•&#39; * self.animalism}|_. Covenant Disciplines:|
+|_. Auspex:|#{&#39;•&#39; * self.auspex}|/9. #{self.covenant_disciplines}|
+|_. Celerity:|#{&#39;•&#39; * self.celerity}|
+|_. Dominate:|#{&#39;•&#39; * self.dominate}|
+|_. Majesty:|#{&#39;•&#39; * self.majesty}|
+|_. Nightmare:|#{&#39;•&#39; * self.nightmare}|
+|_. Obfuscate:|#{&#39;•&#39; * self.obfuscate}|
+|_. Protean:|#{&#39;•&#39; * self.protean}|
+|_. Resilience:|#{&#39;•&#39; * self.resilience}|
+|_. Vigor:|#{&#39;•&#39; * self.vigor}|}</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Werewolf&quot;</span>
       <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Renown
 
-|_. Purity:|#{'•' * self.purity}|_. Gifts:|
-|_. Glory:|#{'•' * self.glory}|/4. #{self.gifts}|
-|_. Honor:|#{'•' * self.honor}|
-|_. Wisdom:|#{'•' * self.wisdom}|
-|_. Cunning:|#{'•' * self.cunning}|}</span>
+|_. Purity:|#{&#39;•&#39; * self.purity}|_. Gifts:|
+|_. Glory:|#{&#39;•&#39; * self.glory}|/4. #{self.gifts}|
+|_. Honor:|#{&#39;•&#39; * self.honor}|
+|_. Wisdom:|#{&#39;•&#39; * self.wisdom}|
+|_. Cunning:|#{&#39;•&#39; * self.cunning}|}</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Mage&quot;</span>
       <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Arcana
 
-|_. Death:|#{'•' * self.death}|_. Common spells:|
-|_. Fate:|#{'•' * self.fate}|/9. #{self.common_spells}|
-|_. Forces:|#{'•' * self.forces}|
-|_. Life:|#{'•' * self.life}|
-|_. Matter:|#{'•' * self.matter}|
-|_. Mind:|#{'•' * self.mind}|
-|_. Prime:|#{'•' * self.prime}|
-|_. Space:|#{'•' * self.space}|
-|_. Spirit:|#{'•' * self.spirit}|
-|_. Time:|#{'•' * self.time}|}</span>
+|_. Death:|#{&#39;•&#39; * self.death}|_. Common spells:|
+|_. Fate:|#{&#39;•&#39; * self.fate}|/9. #{self.common_spells}|
+|_. Forces:|#{&#39;•&#39; * self.forces}|
+|_. Life:|#{&#39;•&#39; * self.life}|
+|_. Matter:|#{&#39;•&#39; * self.matter}|
+|_. Mind:|#{&#39;•&#39; * self.mind}|
+|_. Prime:|#{&#39;•&#39; * self.prime}|
+|_. Space:|#{&#39;•&#39; * self.space}|
+|_. Spirit:|#{&#39;•&#39; * self.spirit}|
+|_. Time:|#{&#39;•&#39; * self.time}|}</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Promethean&quot;</span>
       <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Transmutations
@@ -801,35 +802,35 @@ h5. Transmutations
       <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Contracts
 
-|_. Dream:|#{'•' * self.dream}|_. Goblin contracts:|
-|_. Hearth:|#{'•' * self.hearth}|/17. #{self.goblin_contracts}|
-|_. Mirror:|#{'•' * self.mirror}|
-|_. Smoke:|#{'•' * self.smoke}|
-|_. Artifice:|#{'•' * self.artifice}|
-|_. Darkness:|#{'•' * self.darkness}|
-|_. Elements:|#{'•' * self.elements}|
-|_. Fang and Tooth:|#{'•' * self.fang_and_tooth}|
-|_. Stone:|#{'•' * self.stone}|
-|_. Vainglory:|#{'•' * self.vainglory}|
-|_. Fleeting Spring:|#{'•' * self.fleeting_spring}|
-|_. Eternal Spring:|#{'•' * self.eternal_spring}|
-|_. Fleeting Summer:|#{'•' * self.fleeting_summer}|
-|_. Eternal Summer:|#{'•' * self.eternal_summer}|
-|_. Fleeting Autumn:|#{'•' * self.fleeting_autumn}|
-|_. Eternal Autumn:|#{'•' * self.eternal_autumn}|
-|_. Fleeting Winter:|#{'•' * self.fleeting_winter}|
-|_. Eternal Winter:|#{'•' * self.eternal_winter}|}</span>
+|_. Dream:|#{&#39;•&#39; * self.dream}|_. Goblin contracts:|
+|_. Hearth:|#{&#39;•&#39; * self.hearth}|/17. #{self.goblin_contracts}|
+|_. Mirror:|#{&#39;•&#39; * self.mirror}|
+|_. Smoke:|#{&#39;•&#39; * self.smoke}|
+|_. Artifice:|#{&#39;•&#39; * self.artifice}|
+|_. Darkness:|#{&#39;•&#39; * self.darkness}|
+|_. Elements:|#{&#39;•&#39; * self.elements}|
+|_. Fang and Tooth:|#{&#39;•&#39; * self.fang_and_tooth}|
+|_. Stone:|#{&#39;•&#39; * self.stone}|
+|_. Vainglory:|#{&#39;•&#39; * self.vainglory}|
+|_. Fleeting Spring:|#{&#39;•&#39; * self.fleeting_spring}|
+|_. Eternal Spring:|#{&#39;•&#39; * self.eternal_spring}|
+|_. Fleeting Summer:|#{&#39;•&#39; * self.fleeting_summer}|
+|_. Eternal Summer:|#{&#39;•&#39; * self.eternal_summer}|
+|_. Fleeting Autumn:|#{&#39;•&#39; * self.fleeting_autumn}|
+|_. Eternal Autumn:|#{&#39;•&#39; * self.eternal_autumn}|
+|_. Fleeting Winter:|#{&#39;•&#39; * self.fleeting_winter}|
+|_. Eternal Winter:|#{&#39;•&#39; * self.eternal_winter}|}</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Geist&quot;</span>
       <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
 h5. Manifestations
 
-|_. Boneyard:|#{'•' * self.boneyard}|_. Keys:|
-|_. Caul:|#{'•' * self.caul}|/6. #{self.keys}|
-|_. Curse:|#{'•' * self.curse}|
-|_. Oracle:|#{'•' * self.oracle}|
-|_. Marionette:|#{'•' * self.marionette}|
-|_. Rage:|#{'•' * self.rage}|
-|_. Shroud:|#{'•' * self.shroud}|}</span>
+|_. Boneyard:|#{&#39;•&#39; * self.boneyard}|_. Keys:|
+|_. Caul:|#{&#39;•&#39; * self.caul}|/6. #{self.keys}|
+|_. Curse:|#{&#39;•&#39; * self.curse}|
+|_. Oracle:|#{&#39;•&#39; * self.oracle}|
+|_. Marionette:|#{&#39;•&#39; * self.marionette}|
+|_. Rage:|#{&#39;•&#39; * self.rage}|
+|_. Shroud:|#{&#39;•&#39; * self.shroud}|}</span>
     <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_crunch</span>
 
     <span class="ruby-identifier">desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
@@ -868,14 +869,14 @@ h5. Notes
 
         <div class="method-description">
           
-          <p>Show the character’s name in the url</p>
+          <p>Show the character&#39;s name in the url</p>
           
 
           
           <div class="method-source-code" id="to_param-source">
             <pre><span class="ruby-comment"># File app/models/character.rb, line 412</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_param</span>
-  <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(/[ '&quot;#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&amp;?\/:;=@]/, '')}&quot;</span>
+  <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(/[ &#39;&quot;#%\{\}|\\^~\[\]`]/, &#39;-&#39;).gsub(/[.&amp;?\/:;=@]/, &#39;&#39;)}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- to_param-source -->
           
@@ -896,7 +897,7 @@ h5. Notes
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

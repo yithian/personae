@@ -225,7 +225,7 @@
   <span class="ruby-ivar">@clique</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:clique</span>])
   <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">owner</span> = <span class="ruby-identifier">current_user</span>
 
-  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Clique was successfully created.'</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Clique was successfully created.&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">save</span>
 
   <span class="ruby-identifier">respond_with</span>(<span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle</span>, <span class="ruby-ivar">@clique</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -257,19 +257,19 @@
           <div class="method-source-code" id="destroy-source">
             <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@clique</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Solitary'</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@clique</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">&#39;Solitary&#39;</span>)
     <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">clique_id</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Solitary'</span>).<span class="ruby-identifier">id</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">clique_id</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">&#39;Solitary&#39;</span>).<span class="ruby-identifier">id</span>
       <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-keyword">end</span>
     
     <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'You cannot destroy this clique.'</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;You cannot destroy this clique.&#39;</span>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">chronicle_cliques_url</span>(<span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle</span>), <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Clique was successfully deleted'</span>) }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">chronicle_cliques_url</span>(<span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle</span>), <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Clique was successfully deleted&#39;</span>) }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -428,13 +428,13 @@
             <pre><span class="ruby-comment"># File app/controllers/cliques_controller.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:clique</span>])
-    <span class="ruby-comment"># updates the clique's characters' chronicle as well</span>
+    <span class="ruby-comment"># updates the clique&#39;s characters&#39; chronicle as well</span>
     <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">character</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">character</span>.<span class="ruby-identifier">chronicle</span> = <span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle</span>
       <span class="ruby-identifier">character</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">super_user?</span>(<span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">super_user?</span>(<span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:clique</span>][<span class="ruby-value">:chronicle_id</span>] ))
     
-    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Clique was successfully updated.'</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Clique was successfully updated.&#39;</span>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">respond_with</span>(<span class="ruby-ivar">@clique</span>.<span class="ruby-identifier">chronicle</span>, <span class="ruby-ivar">@clique</span>)
@@ -458,7 +458,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

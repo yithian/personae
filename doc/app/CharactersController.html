@@ -257,7 +257,7 @@
   <span class="ruby-identifier">find_lists</span>
 
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">save</span>
-    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Character was successfully created.'</span> 
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Character was successfully created.&#39;</span> 
     
     <span class="ruby-identifier">obsidian_save</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
   <span class="ruby-keyword">end</span>
@@ -295,7 +295,7 @@
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">destroy</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">chronicle_characters_url</span>(<span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@selected_chronicle</span>.<span class="ruby-identifier">id</span>)), <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Character was successfully deleted.'</span>) }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">chronicle_characters_url</span>(<span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@selected_chronicle</span>.<span class="ruby-identifier">id</span>)), <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Character was successfully deleted.&#39;</span>) }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -494,12 +494,12 @@
   <span class="ruby-identifier">cancel</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-ivar">@error</span> = <span class="ruby-keyword">false</span>
   
-  <span class="ruby-identifier">params</span>[<span class="ruby-value">:dice_count</span>].<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp">%r(\d+)\s*-\s*(\d+)/</span>, <span class="ruby-string">'\1 + -\2'</span>).<span class="ruby-identifier">split</span>(<span class="ruby-regexp">%r\s*\+\s*/</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@dice_count</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_i</span> }
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:dice_count</span>].<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp">%r(\d+)\s*-\s*(\d+)/</span>, <span class="ruby-string">&#39;\1 + -\2&#39;</span>).<span class="ruby-identifier">split</span>(<span class="ruby-regexp">%r\s*\+\s*/</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@dice_count</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_i</span> }
   
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:reroll</span>]
-  <span class="ruby-keyword">when</span> <span class="ruby-string">'10'</span>, <span class="ruby-string">'9'</span>, <span class="ruby-string">'8'</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;10&#39;</span>, <span class="ruby-string">&#39;9&#39;</span>, <span class="ruby-string">&#39;8&#39;</span>
     <span class="ruby-identifier">reroll</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:reroll</span>].<span class="ruby-identifier">to_i</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">'rote'</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;rote&#39;</span>
     <span class="ruby-identifier">reroll</span> = <span class="ruby-value">0</span>
   <span class="ruby-keyword">end</span>
   
@@ -583,7 +583,7 @@
           
           <p>PUT /characters/1/save_notes</p>
 
-<p>this will animate saving the notes on a character’s page</p>
+<p>this will animate saving the notes on a character&#39;s page</p>
           
 
           
@@ -680,7 +680,7 @@
           
           <p>PUT /characters/1 PUT /characters/1.xml</p>
 
-<p>this will also sync a character’s sheet to obsidian portal, if an
+<p>this will also sync a character&#39;s sheet to obsidian portal, if an
 obsidian_character_id is specified</p>
           
 
@@ -691,7 +691,7 @@ obsidian_character_id is specified</p>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">vice</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character_vice</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character_vice</span>]
   
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>])
-    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Character was successfully updated.'</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Character was successfully updated.&#39;</span>
     
     <span class="ruby-identifier">obsidian_save</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>      
   <span class="ruby-keyword">end</span>
@@ -822,7 +822,7 @@ obsidian_character_id is specified</p>
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

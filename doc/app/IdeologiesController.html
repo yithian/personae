@@ -224,7 +224,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@ideology</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ideology</span>])
 
-  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Ideology was successfully created.'</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Ideology was successfully created.&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">save</span>
 
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
 <span class="ruby-keyword">end</span></pre>
@@ -256,19 +256,19 @@
           <div class="method-source-code" id="destroy-source">
             <pre><span class="ruby-comment"># File app/controllers/ideologies_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Mortal'</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">&#39;Mortal&#39;</span>)
     <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">ideology_id</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Mortal'</span>).<span class="ruby-identifier">id</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">ideology_id</span> = <span class="ruby-constant">Ideology</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">&#39;Mortal&#39;</span>).<span class="ruby-identifier">id</span>
       <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-keyword">end</span>
 
     <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Cannot delete this Ideology'</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Cannot delete this Ideology&#39;</span>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">ideologies_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Ideology successfully deleted.'</span>) }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">ideologies_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Ideology successfully deleted.&#39;</span>) }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -421,7 +421,7 @@
           <div class="method-source-code" id="update-source">
             <pre><span class="ruby-comment"># File app/controllers/ideologies_controller.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
-  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Ideology was successfully updated.'</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ideology</span>])
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Ideology was successfully updated.&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ideology</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ideology</span>])
 
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@ideology</span>
 <span class="ruby-keyword">end</span></pre>
@@ -444,7 +444,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 
