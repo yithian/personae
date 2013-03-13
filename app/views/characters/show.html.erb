@@ -37,7 +37,7 @@
 	    <td><span id="ideology_name"><%= link_to @character.ideology.name, @character.ideology if can? :read_idology, @character %></span></td>
 	<% end %>
   </tr>
-  <tr>
+  <tr id='primary_vice'>
     <% if @character.is_possessed? and can? :read_crunch, @character %>
       <td><b>Primary Vice</b></td>
       <td><%= @character.primary_vice %></td>
