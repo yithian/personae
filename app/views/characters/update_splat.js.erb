@@ -129,6 +129,20 @@ function power_stat(flag) {
   }
 }
 
+function fuel(flag) {
+  if (flag) {
+    $('#max_fuel_label_cell').show();
+    $('#current_fuel_label_cell').show();
+    $('#max_fuel_cell').show();
+    $('#current_fuel_cell').show();
+  } else {
+    $('#max_fuel_label_cell').hide();
+    $('#current_fuel_label_cell').hide();
+    $('#max_fuel_cell').hide();
+    $('#current_fuel_cell').hide();
+  }
+}
+
 // update the hidden fields in the form
 $('#character_splat_id').val('<%= @splat.id.to_s %>');
 $('#character_nature_id').val('<%= @nature_list.first.id %>');
@@ -221,4 +235,13 @@ $('h5').attr('class', '<%= @splat.name.downcase %>');
     x_and_y_splat(true);
     power_stat(true);
     $('#geist_powers').slideDown();
+  <% when "Mummy" then %>
+    unspiritify();
+    hide_powers();
+	x_and_y_splat(true);
+	power_stat(true);
+	fuel(false);
+	$('#subnature_label_cell').show();
+	$('#subnature_id_cell').show();
+	$('#mummy_powers').slideDown();
 <% end %>

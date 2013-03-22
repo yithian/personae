@@ -82,6 +82,8 @@
     
     <li><a href="#method-i-is_mortal-3F">#is_mortal?</a>
     
+    <li><a href="#method-i-is_mummy-3F">#is_mummy?</a>
+    
     <li><a href="#method-i-is_possessed-3F">#is_possessed?</a>
     
     <li><a href="#method-i-is_promethean-3F">#is_promethean?</a>
@@ -262,7 +264,7 @@ used to populate dropdown menus.</p>
 
           
           <div class="method-source-code" id="known_to-source">
-            <pre><span class="ruby-comment"># File app/models/character.rb, line 402</span>
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 407</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">known_to</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">selected_chronicle</span>=<span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">characters</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">selected_chronicle</span>).<span class="ruby-identifier">characters</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">a</span> = <span class="ruby-constant">Ability</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user</span>)
@@ -437,6 +439,36 @@ used to populate dropdown menus.</p>
       </div><!-- is_mortal-3F-method -->
 
     
+      <div id="method-i-is_mummy-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_mummy?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the character is a mummy.</p>
+          
+
+          
+          <div class="method-source-code" id="is_mummy-3F-source">
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 208</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_mummy?</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">splat</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Mummy&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_mummy-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_mummy-3F-method -->
+
+    
       <div id="method-i-is_possessed-3F" class="method-detail ">
         
         <div class="method-heading">
@@ -605,7 +637,7 @@ that template</p>
 
           
           <div class="method-source-code" id="max_infernal_will-source">
-            <pre><span class="ruby-comment"># File app/models/character.rb, line 207</span>
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 212</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">max_infernal_will</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">primary_vice</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Envy&quot;</span>
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">envy</span>
@@ -652,7 +684,7 @@ terms, that is the character&#39;s description and background.</p>
 
           
           <div class="method-source-code" id="obsidian_bio-source">
-            <pre><span class="ruby-comment"># File app/models/character.rb, line 230</span>
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 235</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_bio</span>
     <span class="ruby-identifier">bio</span> = <span class="ruby-string">&quot;&quot;</span>
     <span class="ruby-identifier">bio</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
@@ -703,7 +735,7 @@ either.</p>
 
           
           <div class="method-source-code" id="obsidian_description-source">
-            <pre><span class="ruby-comment"># File app/models/character.rb, line 256</span>
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 261</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">obsidian_description</span>
     <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_name</span>
 
@@ -874,7 +906,7 @@ h5. Notes
 
           
           <div class="method-source-code" id="to_param-source">
-            <pre><span class="ruby-comment"># File app/models/character.rb, line 412</span>
+            <pre><span class="ruby-comment"># File app/models/character.rb, line 417</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_param</span>
   <span class="ruby-node">&quot;#{self.id}-#{self.name.gsub(/[ &#39;&quot;#%\{\}|\\^~\[\]`]/, &#39;-&#39;).gsub(/[.&amp;?\/:;=@]/, &#39;&#39;)}&quot;</span>
 <span class="ruby-keyword">end</span></pre>

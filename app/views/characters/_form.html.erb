@@ -269,18 +269,18 @@
       </td>
     </tr>
     <tr>
-      <td id="max_fuel_label_cell" <%= hidden_if(@character.is_mortal?) %> >
+      <td id="max_fuel_label_cell" <%= hidden_if((@character.is_mortal? or @character.is_mummy?)) %> >
         <%= f.label :max_fuel, "Max #{@character.splat.fuel_name}", :id => "max_fuel_label" %>
       </td>
-      <td class="data" id="max_fuel_cell" <%= hidden_if(@character.is_mortal?) %> >
+      <td class="data" id="max_fuel_cell" <%= hidden_if((@character.is_mortal? or @character.is_mummy?)) %> >
         <%= f.text_field :max_fuel, :tabindex => "13", :class => "number" %>
       </td>
     </tr>
     <tr>
-      <td id="current_fuel_label_cell" <%= hidden_if(@character.is_mortal?) %> >
+      <td id="current_fuel_label_cell" <%= hidden_if((@character.is_mortal? or @character.is_mummy?)) %> >
         <%= f.label :current_fuel, "Current #{@character.splat.fuel_name}", :id => "current_fuel_label" %>
       </td>
-      <td class="data" id="current_fuel_cell" <%= hidden_if(@character.is_mortal?) %> >
+      <td class="data" id="current_fuel_cell" <%= hidden_if((@character.is_mortal? or @character.is_mummy?)) %> >
         <%= f.text_field :current_fuel, :tabindex => "13", :class => "number" %>
       </td>
     </tr>
@@ -597,6 +597,58 @@
 
     <h5 class='<%= @character.splat.name.downcase %>'>Numina</h5>
     <p><%= f.text_area :numina, :tabindex => '28' %></p>
+  </div>
+  
+  <div id="mummy_powers" <%= hidden_if((not @character.is_mummy?)) %>>
+	  <h5 class='<%= @character.splat.name.downcase %>'>Pillars</h5>
+	  <table class="four_cells">
+	  	<tr>
+	  		<td><%= f.label :ab %></td>
+			<td><%= f.text_field :ab, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  	<tr>
+			<td><%= f.label :current_ab %></td>
+			<td><%= f.text_field :current_ab, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  	<tr>
+	  		<td><%= f.label :ba %></td>
+			<td><%= f.text_field :ba, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  	<tr>
+			<td><%= f.label :current_ba %></td>
+			<td><%= f.text_field :current_ba, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  	<tr>
+	  		<td><%= f.label :ka %></td>
+			<td><%= f.text_field :ka, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  	<tr>
+			<td><%= f.label :current_ka %></td>
+			<td><%= f.text_field :current_ka, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  	<tr>
+	  		<td><%= f.label :ren %></td>
+			<td><%= f.text_field :ren, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  	<tr>
+			<td><%= f.label :current_ren %></td>
+			<td><%= f.text_field :current_ren, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  	<tr>
+	  		<td><%= f.label :sheut %></td>
+			<td><%= f.text_field :sheut, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  	<tr>
+			<td><%= f.label :current_sheut %></td>
+			<td><%= f.text_field :current_sheut, :tabindex => "29", :class => "number" %></td>
+	  	</tr>
+	  </table>
+	  
+	  <h5 class='<%= @character.splat.name.downcase %>'>Affinities</h5>
+	  <p><%= f.text_area :affinities, :tabindex => "29" %></p>
+	  
+	  <h5 class='<%= @character.splat.name.downcase %>'>Utterances</h5>
+	  <p><%= f.text_area :utterances, :tabindex => "29" %></p>
   </div>
 
   <%= f.check_box :read_crunch, :class => "checkbox" %> <%= f.label :read_crunch, "Reveal crunch", :class => "checkbox inline", :title => "Crunch is defined as a character's attributes, skills, advantages, merits, equipment and any supernatural powers" %>

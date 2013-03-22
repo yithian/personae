@@ -25,8 +25,8 @@
     <td><b>Virtue</b></td>
     <td ><span id="virtue"><%= @character.virtue %></span></td>
 	<% unless @character.is_spirit? %>
-	    <td><span id="subnature_label"><b><%= @character.splat.subnature_name if @character.splat.name == "Changeling" and can? :read_nature, @character %></b></span></td>
-	    <td><span id="subnature_name"><%= @character.subnature.name if @character.splat.name == "Changeling" and can? :read_nature, @character %></span></td>
+	    <td><span id="subnature_label"><b><%= @character.splat.subnature_name if (@character.is_changeling? or @character.is_mummy?) and can? :read_nature, @character %></b></span></td>
+	    <td><span id="subnature_name"><%= @character.subnature.name if (@character.is_changeling? or @character.is_mummy?) and can? :read_nature, @character %></span></td>
 	<% end %>
   </tr>
   <tr>
@@ -261,21 +261,23 @@
         <td class='dots_label'><%= @character.splat.power_stat_name %>:</td>
         <td class='dots_number'><%= dot_format(@character.power_stat) %></td>
       </tr>
-      <tr>
-        <td>Max <%= @character.splat.fuel_name %>:</td>
-        <td><%= @character.max_fuel %></td>
-      </tr>
-      <tr>
-        <% if can? :edit, @character %>
-          <%= form_for([@character.chronicle, @character]) do |f| %>
-            <td><%= f.label :current_fuel, "Current #{@character.splat.fuel_name}:" %></td>
-            <td><%= f.text_field :current_fuel, :class => "number", :remote => true, :action => url_for(:action => "save_current", :id => @character.id), :method => "put" %></td>
-          <% end %>
-        <% else %>
-          <td>Current <%= @character.splat.fuel_name %>:</td>
-          <td><%= @character.current_fuel %></td>
-        <% end %>
-      </tr>
+      <% unless @character.is_mummy? %>
+	    <tr>
+	      <td>Max <%= @character.splat.fuel_name %>:</td>
+	      <td><%= @character.max_fuel %></td>
+	    </tr>
+	    <tr>
+	      <% if can? :edit, @character %>
+	        <%= form_for([@character.chronicle, @character]) do |f| %>
+	          <td><%= f.label :current_fuel, "Current #{@character.splat.fuel_name}:" %></td>
+	          <td><%= f.text_field :current_fuel, :class => "number", :remote => true, :action => url_for(:action => "save_current", :id => @character.id), :method => "put" %></td>
+	        <% end %>
+          <% else %>
+            <td>Current <%= @character.splat.fuel_name %>:</td>
+            <td><%= @character.current_fuel %></td>
+		  <% end %>
+        </tr>
+      <% end %>
       <tr>
       </tr>
       <% end %>
@@ -642,6 +644,58 @@
 
 		<h5 class="<%= @character.splat.name.downcase %>">Numina</h5>
 		<p><%= simple_format(@character.numina) %></p>
+	<% end %>
+	
+	<% if @character.is_mummy? %>
+		<h5 class="<%= @character.splat.name.downcase %>">Pillars</h5>
+		<table class="four_cells">
+			<tr>
+				<td>Ab</td>
+				<td><%= dot_format(@character.ab) %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><%= @character.current_ab %></td>
+			</tr>
+			<tr>
+				<td>Ba</td>
+				<td><%= dot_format(@character.ba) %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><%= @character.current_ba %></td>
+			</tr>
+			<tr>
+				<td>Ka</td>
+				<td><%= dot_format(@character.ka) %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><%= @character.current_ka %></td>
+			</tr>
+			<tr>
+				<td>Ren</td>
+				<td><%= dot_format(@character.ren) %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><%= @character.current_ren %></td>
+			</tr>
+			<tr>
+				<td>Sheut</td>
+				<td><%= dot_format(@character.sheut) %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><%= @character.current_sheut %></td>
+			</tr>
+		</table>
+		
+		<h5 class="<%= @character.splat.name.downcase %>">Affinities</h5>
+		<p><%= simple_format(@character.affinities) %></p>
+		
+		<h5 class="<%= @character.splat.name.downcase %>">Utterances</h5>
+		<p><%= simple_format(@character.utterances) %></p>
 	<% end %>
   </div>
 <% end %>

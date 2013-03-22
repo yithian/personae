@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123181223) do
+ActiveRecord::Schema.define(:version => 20130218230609) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -169,6 +169,18 @@ ActiveRecord::Schema.define(:version => 20130123181223) do
     t.integer  "resistance",            :default => 1
     t.string   "numina"
     t.string   "influences"
+    t.integer  "ab",                    :default => 0,         :null => false
+    t.integer  "current_ab",            :default => 0,         :null => false
+    t.integer  "ba",                    :default => 0,         :null => false
+    t.integer  "current_ba",            :default => 0,         :null => false
+    t.integer  "ka",                    :default => 0,         :null => false
+    t.integer  "current_ka",            :default => 0,         :null => false
+    t.integer  "ren",                   :default => 0,         :null => false
+    t.integer  "current_ren",           :default => 0,         :null => false
+    t.integer  "sheut",                 :default => 0,         :null => false
+    t.integer  "current_sheut",         :default => 0,         :null => false
+    t.text     "affinities"
+    t.text     "utterances"
   end
 
   add_index "characters", ["chronicle_id"], :name => "index_characters_on_chronicle_id"

@@ -204,6 +204,11 @@ class Character < ActiveRecord::Base
   def is_spirit?
     self.splat.name == "Spirit"
   end
+  
+  # Returns true if the character is a mummy.
+  def is_mummy?
+    self.splat.name == "Mummy"
+  end
 
   def max_infernal_will
     if self.primary_vice == "Envy"
