@@ -73,9 +73,8 @@
     <tr>
       <td><div id="primary_vice_label_cell" <%= hidden_if((not @character.is_possessed?)) %>><b><%= f.label :primary_vice %></b></div></td>
       <td class="data"><div id="primary_vice_cell" <%= hidden_if((not @character.is_possessed?)) %>><%= f.select :primary_vice, Character::VICES, {}, {:tabindex => "1"} %></div></td>
-      <td><b><%= f.label :possessed, "Possessed", :id => "possessed_label" %></b></td>
-      <td ><%= f.check_box :possessed, :remote => true, :action => possess_chronicle_characters_path %> </td>
-      </tr>
+      <td colspan="2"><%= f.check_box :possessed, :remote => true, :action => possess_chronicle_characters_path, :class => "checkbox" %> <%= f.label :possessed, "Possessed", :id => "possessed_label", :class => "checkbox inline" %></td>
+    </tr>
     <tr>
       <td><%= f.check_box :read_name, :class => 'checkbox' %> <%= f.label :read_name, "Reveal name", :class => "checkbox inline" %></td>
       <td><%= f.check_box :read_clique, :class => "checkbox" %> <%= f.label :read_clique, "Reveal " + @character.splat.clique_name, :id => "read_clique_label", :class => "checkbox inline" %></td>
