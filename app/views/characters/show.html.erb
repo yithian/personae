@@ -51,7 +51,8 @@
 <% if can? :read_description, @character %>
   <div id="description">
     <h5 class="<%= @character.splat.name.downcase %>">Description</h5>
-    <%= simple_format(@character.description) %>
+    <%# simple_format(@character.description) %>
+    <%= simple_format(@character.markdown_description) %>
   </div>
 <% end %>
 
@@ -193,7 +194,7 @@
 	  </div>
   <% end %>
 
-  <div id="advantages">    
+  <div id="advantages">
     <h5 class="<%= @character.splat.name.downcase %>">Advantages</h5>
     <table class="four_cells">
       <tr>
@@ -285,7 +286,7 @@
   </div>
 
   <% unless @character.is_spirit? %>
-    <div id="merits"> 
+    <div id="merits">
       <h5 class="<%= @character.splat.name.downcase %>">Merits</h5>
       <%= simple_format(@character.merits) %>
     </div>
@@ -346,7 +347,7 @@
         </tr>
       </table>
     <% end %>
-  
+
     <% if @character.is_werewolf? %>
       <h5 class="<%= @character.splat.name.downcase %>">Forms</h5>
         <table id="woof_forms" class="five_cells">
@@ -555,12 +556,12 @@
         </tr>
       </table>
     <% end %>
-    
+
     <% if @character.is_hunter? %>
       <h5 class="<%= @character.splat.name.downcase %>">Tactics</h5>
       <%= simple_format(@character.tactics) %>
     <% end %>
-    
+
     <% if @character.is_geist? %>
       <h5 class="<%= @character.splat.name.downcase %>">Manifestations</h5>
       <table class="three_cells">
@@ -597,11 +598,11 @@
         <tr>
         </tr>
       </table>
-      
+
       <h5 class="<%= @character.splat.name.downcase %>">Ceremonies</h5>
       <p><%= simple_format(@character.ceremonies) %></p>
     <% end %>
-    
+
     <% if @character.is_possessed? %>
       <h5 class="<%= @character.splat.name.downcase %>">Vestments</h5>
       <table class="three_cells">
@@ -637,7 +638,7 @@
         </tr>
       </table>
     <% end %>
-	
+
 	<% if @character.is_spirit? %>
 		<h5 class="<%= @character.splat.name.downcase %>">Influences</h5>
 		<p><%= simple_format(@character.influences) %></p>
@@ -645,7 +646,7 @@
 		<h5 class="<%= @character.splat.name.downcase %>">Numina</h5>
 		<p><%= simple_format(@character.numina) %></p>
 	<% end %>
-	
+
 	<% if @character.is_mummy? %>
 		<h5 class="<%= @character.splat.name.downcase %>">Pillars</h5>
 		<table class="four_cells">
@@ -690,10 +691,10 @@
 				<td><%= @character.current_sheut %></td>
 			</tr>
 		</table>
-		
+
 		<h5 class="<%= @character.splat.name.downcase %>">Affinities</h5>
 		<p><%= simple_format(@character.affinities) %></p>
-		
+
 		<h5 class="<%= @character.splat.name.downcase %>">Utterances</h5>
 		<p><%= simple_format(@character.utterances) %></p>
 	<% end %>

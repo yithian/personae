@@ -3,9 +3,9 @@
 # The basic building block of personae, the character class represents a
 # World of Darkness character. Specifically, it holds all the information
 # that would be represented on a player's character sheet.
-# 
+#
 # All required attributes have default values.
-# 
+#
 # The Storyteller user is considered to be an owner of every character.
 
 class Character < ActiveRecord::Base
@@ -20,7 +20,7 @@ class Character < ActiveRecord::Base
       end
     end
   end
-  
+
   # Creates a validator for Character.vice . Valid vices are 'Envy', 'Gluttony', 'Greed', 'Lust'
   # 'Sloth', 'Pride', 'Wrath'
   class ViceValidator < ActiveModel::EachValidator
@@ -39,16 +39,16 @@ class Character < ActiveRecord::Base
   end
 
   self.per_page = 30
-  
+
   belongs_to :clique
   belongs_to :ideology
   belongs_to :nature
   belongs_to :subnature
-  belongs_to :splat 
+  belongs_to :splat
   belongs_to :owner, :class_name => "User"
   belongs_to :chronicle
   has_many :comments, :dependent => :destroy
-  
+
   # An Array of Strings of valid virtues in World of Darkness games. Primarily used to
   # populate dropdown menus.
   VIRTUES = [ 'Charity', 'Faith', 'Fortitude', 'Hope', 'Justice', 'Prudence', 'Temperance' ]
@@ -56,7 +56,7 @@ class Character < ActiveRecord::Base
   # An Array of Strings of valid vices in World of Darkness games. Primarily used to
   # populate dropdown menus.
   VICES = [ 'Envy', 'Gluttony', 'Greed', 'Lust', 'Sloth', 'Pride', 'Wrath' ]
-  
+
   validates :name, :presence => true, :unique_in_chronicle => true
   validates :virtue, :presence => true, :virtue => true
   validates :vice, :presence => true, :vice => true
@@ -159,12 +159,12 @@ class Character < ActiveRecord::Base
   def is_mortal?
     self.splat.name == "Mortal" or self.splat.name == "Hunter"
   end
-  
+
   # Returns true if the character is a mage.
   def is_mage?
     self.splat.name == "Mage"
   end
-  
+
   # Returns true if the character is a werewolf.
   def is_werewolf?
     self.splat.name == "Werewolf"
@@ -184,27 +184,27 @@ class Character < ActiveRecord::Base
   def is_changeling?
     self.splat.name == "Changeling"
   end
-  
+
   # Returns true if the character is a hunter (close enough).
   def is_hunter?
     self.splat.name == "Hunter"
   end
-  
+
   # Returns true if the character is a geist.
   def is_geist?
     self.splat.name == "Geist"
   end
-  
+
   # Returns true if the character is possessed. (This is mostly just for standardization)
   def is_possessed?
     self.possessed
   end
-  
+
   # Returns true if the character is a ghost or spirit or anything that uses that template
   def is_spirit?
     self.splat.name == "Spirit"
   end
-  
+
   # Returns true if the character is a mummy.
   def is_mummy?
     self.splat.name == "Mummy"
@@ -229,7 +229,7 @@ class Character < ActiveRecord::Base
       return 0
     end
   end
-  
+
   # Returns what Obsidian Portal calls the character's
   # bio. In personae terms, that is the character's
   # description and background.
@@ -240,7 +240,7 @@ h5. Description
 
 #{self.description}
     } if self.read_description
-    
+
     bio << %{
 h5. Background
 
@@ -252,7 +252,7 @@ h5. Deeds
 
 #{self.deeds}
     } if self.read_deeds
-    
+
     bio
   end
 
@@ -410,13 +410,25 @@ h5. Notes
       a = Ability.new(user)
       c if a.can? :read, c
     end
-    
+
     characters.delete_if { |c| c.nil? }
   end
 
   # Show the character's name in the url
   def to_param
     "#{self.id}-#{self.name.gsub(/[ '"#%\{\}|\\^~\[\]`]/, '-').gsub(/[.&?\/:;=@]/, '')}"
+  end
+  def markdown_description
+    renderer = Rollable.new(self, hard_wrap: true, filter_html: true)
+    Redcarpet::Markdown.new(renderer).render(self.description).html_safe
+  end
+
+  def get_stat(stat)
+    begin
+      return self.send(stat.downcase)
+    rescue NoMethodError
+      return 0
+    end
   end
 
   private
@@ -426,4 +438,6 @@ h5. Notes
     return false unless user
     user.super_user?(self.chronicle) or self.owner == user
   end
+
+
 end

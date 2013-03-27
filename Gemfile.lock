@@ -110,6 +110,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12.1)
       json (~> 1.4)
+    redcarpet (2.2.2)
     ruby-prof (0.12.1)
     sass (3.2.5)
     sass-rails (3.2.6)
@@ -158,6 +159,7 @@ DEPENDENCIES
   mysql2
   rails (= 3.2.12)
   rake
+  redcarpet
   ruby-prof
   sass-rails (~> 3.2.0)
   thin
