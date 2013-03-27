@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130218230609) do
+ActiveRecord::Schema.define(:version => 20130327005313) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(:version => 20130218230609) do
     t.integer  "power",                 :default => 1
     t.integer  "finesse",               :default => 1
     t.integer  "resistance",            :default => 1
-    t.string   "numina"
+    t.text     "numina"
     t.string   "influences"
     t.integer  "ab",                    :default => 0,         :null => false
     t.integer  "current_ab",            :default => 0,         :null => false
