@@ -24,6 +24,16 @@ count_dice = ->
 	$('#dice_count').val(dice)
 
 $(document).ready ->
+  $('span.rollable').click ->
+    $(this).toggleClass('counting')
+    $(this).next().each (index, element) =>
+      $($(element).val()).toggleClass('counting')
+      $($(element).val()).next.toggleClass('counting')
+      $($(element).val()).next.toggleClass('count')
+    $(this).next().toggleClass('counting')
+    $(this).next().toggleClass('count')
+
+    count_dice()
 	$('td.dots_label').click ->
 		$(this).toggleClass('counting')
 		$(this).next().toggleClass('counting')
@@ -46,3 +56,4 @@ $(document).ready ->
 		$('td.dots_number').removeClass('count')
 
 		count_dice()
+
