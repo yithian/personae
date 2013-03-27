@@ -77,30 +77,30 @@
       <table class="three_cells">
         <tr>
           <td class='dots_label'>Power:</td>
-		  <td class='dots_number'><%= dot_format(@character.power) %></td>
+		  <td id='power' class='dots_number'><%= dot_format(@character.power) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Finesse:</td>
-		  <td class='dots_number'><%= dot_format(@character.finesse) %></td>
+		  <td id='finesse' class='dots_number'><%= dot_format(@character.finesse) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Resistance:</td>
-		  <td class='dots_number'><%= dot_format(@character.resistance) %></td>
+		  <td id='resistance' class='dots_number'><%= dot_format(@character.resistance) %></td>
         </tr>
       <table>
 	<% else %>
 	    <table class="six_cells">
 	      <tr>
-	        <td id='intelligence' class='dots_label'>Intelligence:</td>
-	        <td class='dots_number'><%= dot_format(@character.intelligence) %></td>
+	        <td class='dots_label'>Intelligence:</td>
+	        <td id='intelligence' class='dots_number'><%= dot_format(@character.intelligence) %></td>
 	        <td class='dots_label'>Strength:</td>
 	        <td id="strength" class='dots_number'><%= dot_format(@character.strength) %></td>
 	        <td class='dots_label'>Presence:</td>
-	        <td class='dots_number'><%= dot_format(@character.presence) %></td>
+	        <td id='presence' class='dots_number'><%= dot_format(@character.presence) %></td>
 	      </tr>
 	      <tr>
 	        <td class='dots_label'>Wits:</td>
-	        <td class='dots_number'><%= dot_format(@character.wits) %></td>
+	        <td id='wits' class='dots_number'><%= dot_format(@character.wits) %></td>
 	        <td class='dots_label'>Dexterity:</td>
 	        <td id="dexterity" class='dots_number'><%= dot_format(@character.dexterity) %></td>
 	        <td class='dots_label'>Manipulation:</td>
@@ -108,11 +108,11 @@
 	      </tr>
 	      <tr>
 	        <td class='dots_label'>Resolve:</td>
-	        <td class='dots_number'><%= dot_format(@character.resolve) %></td>
+	        <td id='resolve' class='dots_number'><%= dot_format(@character.resolve) %></td>
 	        <td class='dots_label'>Stamina:</td>
 	        <td id="stamina" class='dots_number'><%= dot_format(@character.stamina) %></td>
 	        <td class='dots_label'>Composure:</td>
-	        <td class='dots_number'><%= dot_format(@character.composure) %></td>
+	        <td id='composure' class='dots_number'><%= dot_format(@character.composure) %></td>
 	      </tr>
 	    </table>
 	<% end %>
@@ -124,67 +124,67 @@
 	    <table class="six_cells">
 	      <tr>
 	        <td class='dots_label mental'>Academics:</td>
-	        <td class='dots_number'><%= dot_format(@character.academics) %></td>
+	        <td id='academics' class='dots_number'><%= dot_format(@character.academics) %></td>
 	        <td class='dots_label'>Athletics:</td>
-	        <td class='dots_number'><%= dot_format(@character.athletics) %></td>
+	        <td id='athletics' class='dots_number'><%= dot_format(@character.athletics) %></td>
 	        <td class='dots_label'>Animal Ken:</td>
-	        <td class='dots_number'><%= dot_format(@character.animal_ken) %></td>
+	        <td id='animal_ken' class='dots_number'><%= dot_format(@character.animal_ken) %></td>
 	      </tr>
 	      <tr>
 	        <td class='dots_label mental'>Computer:</td>
-	        <td class='dots_number'><%= dot_format(@character.computer) %></td>
+	        <td id='computer' class='dots_number'><%= dot_format(@character.computer) %></td>
 	        <td class='dots_label'>Brawl:</td>
-	        <td class='dots_number'><%= dot_format(@character.brawl) %></td>
+	        <td id='brawl' class='dots_number'><%= dot_format(@character.brawl) %></td>
 	        <td class='dots_label'>Empathy:</td>
-	        <td class='dots_number'><%= dot_format(@character.empathy) %></td>
+	        <td id='empathy' class='dots_number'><%= dot_format(@character.empathy) %></td>
 	      </tr>
 	      <tr>
 	        <td class='dots_label mental'>Crafts:</td>
-	        <td class='dots_number'><%= dot_format(@character.crafts) %></td>
+	        <td id='crafts' class='dots_number'><%= dot_format(@character.crafts) %></td>
 	        <td class='dots_label'>Drive:</td>
-	        <td class='dots_number'><%= dot_format(@character.drive) %></td>
+	        <td id='drive' class='dots_number'><%= dot_format(@character.drive) %></td>
 	        <td class='dots_label'>Expression:</td>
-	        <td class='dots_number'><%= dot_format(@character.expression) %></td>
+	        <td id='expression' class='dots_number'><%= dot_format(@character.expression) %></td>
 	      </tr>
 	      <tr>
 	        <td class='dots_label mental'>Investigation:</td>
-	        <td class='dots_number'><%= dot_format(@character.investigation) %></td>
+	        <td id='investigation' class='dots_number'><%= dot_format(@character.investigation) %></td>
 	        <td class='dots_label'>Firearms:</td>
-	        <td class='dots_number'><%= dot_format(@character.firearms) %></td>
+	        <td id='firearms' class='dots_number'><%= dot_format(@character.firearms) %></td>
 	        <td class='dots_label'>Intimidation:</td>
-	        <td class='dots_number'><%= dot_format(@character.intimidation) %></td>
+	        <td id='intimidation' class='dots_number'><%= dot_format(@character.intimidation) %></td>
 	      </tr>
 	      <tr>
 	        <td class='dots_label mental'>Medicine:</td>
-	        <td class='dots_number'><%= dot_format(@character.medicine) %></td>
+	        <td id='medicine' class='dots_number'><%= dot_format(@character.medicine) %></td>
 	        <td class='dots_label'>Larceny:</td>
-	        <td class='dots_number'><%= dot_format(@character.larceny) %></td>
+	        <td id='larceny' class='dots_number'><%= dot_format(@character.larceny) %></td>
 	        <td class='dots_label'>Persuasion:</td>
-	        <td class='dots_number'><%= dot_format(@character.persuasion) %></td>
+	        <td id='persuasion' class='dots_number'><%= dot_format(@character.persuasion) %></td>
 	      </tr>
 	      <tr>
 	        <td class='dots_label mental'>Occult:</td>
-	        <td class='dots_number'><%= dot_format(@character.occult) %></td>
+	        <td id='occult' class='dots_number'><%= dot_format(@character.occult) %></td>
 	        <td class='dots_label'>Stealth:</td>
-	        <td class='dots_number'><%= dot_format(@character.stealth) %></td>
+	        <td id='stealth' class='dots_number'><%= dot_format(@character.stealth) %></td>
 	        <td class='dots_label'>Socialize:</td>
-	        <td class='dots_number'><%= dot_format(@character.socialize) %></td>
+	        <td id='socialize' class='dots_number'><%= dot_format(@character.socialize) %></td>
 	      </tr>
 	      <tr>
 	        <td class='dots_label mental'>Politics:</td>
-	        <td class='dots_number'><%= dot_format(@character.politics) %></td>
+	        <td id='politics' class='dots_number'><%= dot_format(@character.politics) %></td>
 	        <td class='dots_label'>Survival:</td>
-	        <td class='dots_number'><%= dot_format(@character.survival) %></td>
+	        <td id='survival' class='dots_number'><%= dot_format(@character.survival) %></td>
 	        <td class='dots_label'>Streetwise:</td>
-	        <td class='dots_number'><%= dot_format(@character.streetwise) %></td>
+	        <td id='streetwise' class='dots_number'><%= dot_format(@character.streetwise) %></td>
 	      </tr>
 	      <tr>
 	        <td class='dots_label mental'>Science:</td>
-	        <td class='dots_number'><%= dot_format(@character.science) %></td>
+	        <td id='science' class='dots_number'><%= dot_format(@character.science) %></td>
 	        <td class='dots_label'>Weaponry:</td>
-	        <td class='dots_number'><%= dot_format(@character.weaponry) %></td>
+	        <td id='weaponry' class='dots_number'><%= dot_format(@character.weaponry) %></td>
 	        <td class='dots_label'>Subterfuge:</td>
-	        <td class='dots_number'><%= dot_format(@character.subterfuge) %></td>
+	        <td id='subterfuge' class='dots_number'><%= dot_format(@character.subterfuge) %></td>
 	      </tr>
 	      <tr>
 	        <td>Skill Specialties:</td>
@@ -255,12 +255,12 @@
       </tr>
       <tr>
         <td class='dots_label'><%= @character.splat.morality_name %>:</td>
-        <td class='dots_number'><%= dot_format(@character.morality) %></td>
+        <td id='morality' class='dots_number'><%= dot_format(@character.morality) %></td>
       </tr>
       <% unless @character.is_mortal? %>
       <tr>
         <td class='dots_label'><%= @character.splat.power_stat_name %>:</td>
-        <td class='dots_number'><%= dot_format(@character.power_stat) %></td>
+        <td id='power_stat' class='dots_number'><%= dot_format(@character.power_stat) %></td>
       </tr>
       <% unless @character.is_mummy? %>
 	    <tr>
@@ -303,45 +303,45 @@
       <table class="three_cells">
         <tr>
           <td class='dots_label'>Death:</td>
-          <td class='dots_number'><%= dot_format(@character.death) %></td>
+          <td id='death' class='dots_number'><%= dot_format(@character.death) %></td>
           <td>Common Spells</td>
         </tr>
         <tr>
           <td class='dots_label'>Fate:</td>
-          <td class='dots_number'><%= dot_format(@character.fate) %></td>
+          <td id='fate' class='dots_number'><%= dot_format(@character.fate) %></td>
           <td rowspan="10"><%= simple_format(@character.common_spells) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Forces:</td>
-          <td class='dots_number'><%= dot_format(@character.forces) %></td>
+          <td id='forces' class='dots_number'><%= dot_format(@character.forces) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Life:</td>
-          <td class='dots_number'><%= dot_format(@character.life) %></td>
+          <td id='life' class='dots_number'><%= dot_format(@character.life) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Matter:</td>
-          <td class='dots_number'><%= dot_format(@character.matter) %></td>
+          <td id='matter' class='dots_number'><%= dot_format(@character.matter) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Mind:</td>
-          <td class='dots_number'><%= dot_format(@character.mind) %></td>
+          <td id='mind' class='dots_number'><%= dot_format(@character.mind) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Prime:</td>
-          <td class='dots_number'><%= dot_format(@character.prime) %></td>
+          <td id='prime' class='dots_number'><%= dot_format(@character.prime) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Space:</td>
-          <td class='dots_number'><%= dot_format(@character.space) %></td>
+          <td id='space' class='dots_number'><%= dot_format(@character.space) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Spirit:</td>
-          <td class='dots_number'><%= dot_format(@character.spirit) %></td>
+          <td id='spirit' class='dots_number'><%= dot_format(@character.spirit) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Time:</td>
-          <td class='dots_number'><%= dot_format(@character.time) %></td>
+          <td id='time' class='dots_number'><%= dot_format(@character.time) %></td>
         </tr>
         <tr>
         </tr>
@@ -391,25 +391,25 @@
       <table class="three_cells">
         <tr>
           <td class='dots_label'>Purity:</td>
-          <td class='dots_number'><%= dot_format(@character.purity) %></td>
+          <td id='purity' class='dots_number'><%= dot_format(@character.purity) %></td>
           <td>Gifts</td>
         </tr>
         <tr>
           <td class='dots_label'>Glory:</td>
-          <td class='dots_number'><%= dot_format(@character.glory) %></td>
+          <td id='glory' class='dots_number'><%= dot_format(@character.glory) %></td>
           <td id="gifts" rowspan="5"><%= simple_format(@character.gifts) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Honor:</td>
-          <td class='dots_number'><%= dot_format(@character.honor) %></td>
+          <td id='honor' class='dots_number'><%= dot_format(@character.honor) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Wisdom:</td>
-          <td class='dots_number'><%= dot_format(@character.wisdom) %></td>
+          <td id='wisdom' class='dots_number'><%= dot_format(@character.wisdom) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Cunning:</td>
-          <td class='dots_number'><%= dot_format(@character.cunning) %></td>
+          <td id='cunning' class='dots_number'><%= dot_format(@character.cunning) %></td>
         </tr>
         <tr>
         </tr>
@@ -421,45 +421,45 @@
       <table class="three_cells">
         <tr>
           <td class='dots_label'>Animalism</td>
-          <td class='dots_number'><%= dot_format(@character.animalism) %></td>
+          <td id='animalism' class='dots_number'><%= dot_format(@character.animalism) %></td>
           <td>Covenant Disciplines</td>
         </tr>
         <tr>
           <td class='dots_label'>Auspex</td>
-          <td class='dots_number'><%= dot_format(@character.auspex) %></td>
+          <td id='auspex' class='dots_number'><%= dot_format(@character.auspex) %></td>
           <td rowspan="9"><%= simple_format(@character.covenant_disciplines) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Celerity</td>
-          <td class='dots_number'><%= dot_format(@character.celerity) %></td>
+          <td id='celerity' class='dots_number'><%= dot_format(@character.celerity) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Dominate</td>
-          <td class='dots_number'><%= dot_format(@character.dominate) %></td>
+          <td id='dominate' class='dots_number'><%= dot_format(@character.dominate) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Majesty</td>
-          <td class='dots_number'><%= dot_format(@character.majesty) %></td>
+          <td id='majesty' class='dots_number'><%= dot_format(@character.majesty) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Nightmare</td>
-          <td class='dots_number'><%= dot_format(@character.nightmare) %></td>
+          <td id='nightmare' class='dots_number'><%= dot_format(@character.nightmare) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Obfuscate</td>
-          <td class='dots_number'><%= dot_format(@character.obfuscate) %></td>
+          <td id='obfuscate' class='dots_number'><%= dot_format(@character.obfuscate) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Protean</td>
-          <td class='dots_number'><%= dot_format(@character.protean) %></td>
+          <td id='protean' class='dots_number'><%= dot_format(@character.protean) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Resilience</td>
-          <td class='dots_number'><%= dot_format(@character.resilience) %></td>
+          <td id='resilience' class='dots_number'><%= dot_format(@character.resilience) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Vigor</td>
-          <td class='dots_number'><%= dot_format(@character.vigor) %></td>
+          <td id='vigor' class='dots_number'><%= dot_format(@character.vigor) %></td>
         </tr>
         <tr>
         </tr>
@@ -476,81 +476,81 @@
       <table class="three_cells">
                           <tr>
           <td class='dots_label'>Dream</td>
-          <td class='dots_number'><%= dot_format(@character.dream) %></td>
+          <td id='dream' class='dots_number'><%= dot_format(@character.dream) %></td>
           <td>Goblin Contracts</td>
         </tr>
         <tr>
           <td class='dots_label'>Hearth</td>
-          <td class='dots_number'><%= dot_format(@character.hearth) %></td>
+          <td id='hearth' class='dots_number'><%= dot_format(@character.hearth) %></td>
           <td rowspan="19"><%= simple_format(@character.goblin_contracts) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Mirror</td>
-          <td class='dots_number'><%= dot_format(@character.mirror) %></td>
+          <td id='mirror' class='dots_number'><%= dot_format(@character.mirror) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Smoke</td>
-          <td class='dots_number'><%= dot_format(@character.smoke) %></td>
+          <td id='smoke' class='dots_number'><%= dot_format(@character.smoke) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Artifice</td>
-          <td class='dots_number'><%= dot_format(@character.artifice) %></td>
+          <td id='artifice' class='dots_number'><%= dot_format(@character.artifice) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Darkness</td>
-          <td class='dots_number'><%= dot_format(@character.darkness) %></td>
+          <td id='darkness' class='dots_number'><%= dot_format(@character.darkness) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Elements</td>
-          <td class='dots_number'><%= dot_format(@character.elements) %></td>
+          <td id='elements' class='dots_number'><%= dot_format(@character.elements) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Fang and Tooth</td>
-          <td class='dots_number'><%= dot_format(@character.fang_and_tooth) %></td>
+          <td id='fang_and_tooth' class='dots_number'><%= dot_format(@character.fang_and_tooth) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Stone</td>
-          <td class='dots_number'><%= dot_format(@character.stone) %></td>
+          <td id='stone' class='dots_number'><%= dot_format(@character.stone) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Vainglory</td>
-          <td class='dots_number'><%= dot_format(@character.vainglory) %></td>
+          <td id='vainglory' class='dots_number'><%= dot_format(@character.vainglory) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Fleeting Spring</td>
-          <td class='dots_number'><%= dot_format(@character.fleeting_spring) %></td>
+          <td id='fleeting_spring' class='dots_number'><%= dot_format(@character.fleeting_spring) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Eternal Spring</td>
-          <td class='dots_number'><%= dot_format(@character.eternal_spring) %></td>
+          <td id='eternal_spring' class='dots_number'><%= dot_format(@character.eternal_spring) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Fleeting Summer</td>
-          <td class='dots_number'><%= dot_format(@character.fleeting_summer) %></td>
+          <td id='fleeting_summer' class='dots_number'><%= dot_format(@character.fleeting_summer) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Eternal Summer</td>
-          <td class='dots_number'><%= dot_format(@character.eternal_summer) %></td>
+          <td id='eternal_summer' class='dots_number'><%= dot_format(@character.eternal_summer) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Eternal Summer</td>
-          <td class='dots_number'><%= dot_format(@character.eternal_summer) %></td>
+          <td id='eternal_summer' class='dots_number'><%= dot_format(@character.eternal_summer) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Fleeting Autumn</td>
-          <td class='dots_number'><%= dot_format(@character.fleeting_autumn) %></td>
+          <td id='fleeting_autumn' class='dots_number'><%= dot_format(@character.fleeting_autumn) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Eternal Autumn</td>
-          <td class='dots_number'><%= dot_format(@character.eternal_autumn) %></td>
+          <td id='eternal_autumn' class='dots_number'><%= dot_format(@character.eternal_autumn) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Fleeting Winter</td>
-          <td class='dots_number'><%= dot_format(@character.fleeting_winter) %></td>
+          <td id='fleeting_winter' class='dots_number'><%= dot_format(@character.fleeting_winter) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Eternal Winter</td>
-          <td class='dots_number'><%= dot_format(@character.eternal_winter) %></td>
+          <td id='eternal_winter' class='dots_number'><%= dot_format(@character.eternal_winter) %></td>
         </tr>
         <tr>
         </tr>
@@ -567,33 +567,33 @@
       <table class="three_cells">
         <tr>
           <td class='dots_label'>Boneyard</td>
-          <td class='dots_number'><%= dot_format(@character.boneyard) %></td>
+          <td id='boneyard' class='dots_number'><%= dot_format(@character.boneyard) %></td>
           <td>Keys</td>
         </tr>
         <tr>
           <td class='dots_label'>Caul</td>
-          <td class='dots_number'><%= dot_format(@character.caul) %></td>
+          <td id='caul' class='dots_number'><%= dot_format(@character.caul) %></td>
           <td rowspan="7"><%= simple_format(@character.keys) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Curse</td>
-          <td class='dots_number'><%= dot_format(@character.curse) %></td>
+          <td id='curse' class='dots_number'><%= dot_format(@character.curse) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Marionette</td>
-          <td class='dots_number'><%= dot_format(@character.marionette) %></td>
+          <td id='marionette' class='dots_number'><%= dot_format(@character.marionette) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Oracle</td>
-          <td class='dots_number'><%= dot_format(@character.oracle) %></td>
+          <td id='oracle' class='dots_number'><%= dot_format(@character.oracle) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Rage</td>
-          <td class='dots_number'><%= dot_format(@character.rage) %></td>
+          <td id='rage' class='dots_number'><%= dot_format(@character.rage) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Shroud</td>
-          <td class='dots_number'><%= dot_format(@character.shroud) %></td>
+          <td id='shroud' class='dots_number'><%= dot_format(@character.shroud) %></td>
         </tr>
         <tr>
         </tr>
@@ -608,33 +608,33 @@
       <table class="three_cells">
         <tr>
           <td class='dots_label'>Envy</td>
-          <td class='dots_number'><%= dot_format(@character.envy) %></td>
+          <td id='envy' class='dots_number'><%= dot_format(@character.envy) %></td>
           <td>Vestments</td>
         </tr>
         <tr>
           <td class='dots_label'>Gluttony</td>
-          <td class='dots_number'><%= dot_format(@character.gluttony) %></td>
+          <td id='gluttony' class='dots_number'><%= dot_format(@character.gluttony) %></td>
           <td rowspan="7"><%= simple_format(@character.vestments) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Greed</td>
-          <td class='dots_number'><%= dot_format(@character.greed) %></td>
+          <td id='greed' class='dots_number'><%= dot_format(@character.greed) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Lust</td>
-          <td class='dots_number'><%= dot_format(@character.lust) %></td>
+          <td id='lust' class='dots_number'><%= dot_format(@character.lust) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Pride</td>
-          <td class='dots_number'><%= dot_format(@character.pride) %></td>
+          <td id='pride' class='dots_number'><%= dot_format(@character.pride) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Sloth</td>
-          <td class='dots_number'><%= dot_format(@character.sloth) %></td>
+          <td id='sloth' class='dots_number'><%= dot_format(@character.sloth) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Wrath</td>
-          <td class='dots_number'><%= dot_format(@character.wrath) %></td>
+          <td id='wrath' class='dots_number'><%= dot_format(@character.wrath) %></td>
         </tr>
       </table>
     <% end %>

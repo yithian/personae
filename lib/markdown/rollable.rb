@@ -9,12 +9,14 @@ class Rollable < Redcarpet::Render::HTML
       stat2 = @character.get_stat($3)
       stat3 = @character.get_stat($4)
 
-      output = "<span class='rollable #{$1}'>#{$1}: #{stat1 if stat1} + #{stat2 if stat2} + #{stat3 if stat3}</span>"
-      output << "<ul class='rollable #{$1}' style='display:none'>"
+      output = "<div class='rollable'>"
+      output << "<span class='rollable #{$1}'>#{$1}: #{stat1 if stat1} + #{stat2 if stat2} + #{stat3 if stat3}</span>"
+      output << "<ul class='roll_stats #{$1}'>"
       output << "<li>#{$2}</li>" if $2
       output << "<li>#{$3}</li>" if $3
       output << "<li>#{$4}</li>" if $4
       output << "</ul>"
+      output << "</div>"
       output
     end
   end

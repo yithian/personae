@@ -24,36 +24,31 @@ count_dice = ->
 	$('#dice_count').val(dice)
 
 $(document).ready ->
-  $('span.rollable').click ->
+  $('td.dots_label').click ->
     $(this).toggleClass('counting')
-    $(this).next().each (index, element) =>
-      $($(element).val()).toggleClass('counting')
-      $($(element).val()).next.toggleClass('counting')
-      $($(element).val()).next.toggleClass('count')
     $(this).next().toggleClass('counting')
     $(this).next().toggleClass('count')
-
     count_dice()
-	$('td.dots_label').click ->
-		$(this).toggleClass('counting')
-		$(this).next().toggleClass('counting')
-		$(this).next().toggleClass('count')
 
-		count_dice()
+  $('td.dots_number').click ->
+    $(this).toggleClass('count')
+    $(this).toggleClass('counting')
+    $(this).prev().toggleClass('counting')
+    count_dice()
 
-	$('td.dots_number').click ->
-		$(this).toggleClass('count')
-		$(this).toggleClass('counting')
-		$(this).prev().toggleClass('counting')
+    # clear all selected attributes and clean out
+    # the value in the calculator
+  $('#clear_dice').click ->
+    $('td.dots_label').removeClass('counting')
+    $('td.dots_number').removeClass('counting')
+    $('td.dots_number').removeClass('count')
+    count_dice()
 
-		count_dice()
-
-	# clear all selected attributes and clean out
-	# the value in the calculator
-	$('#clear_dice').click ->
-		$('td.dots_label').removeClass('counting')
-		$('td.dots_number').removeClass('counting')
-		$('td.dots_number').removeClass('count')
-
-		count_dice()
+  $('span.rollable').click ->
+    $(this).toggleClass('counting')
+    $(this).next().contents().each (index, element) =>
+      $('body').find('#' + $(element).text().toLowerCase()).toggleClass('counting')
+      $('body').find('#' + $(element).text().toLowerCase()).prev().toggleClass('counting')
+      $('body').find('#' + $(element).text().toLowerCase()).toggleClass('count')
+    count_dice()
 
