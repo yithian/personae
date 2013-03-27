@@ -11,6 +11,8 @@ $header-background: darken($tab-highlight, 30%);
 $splash-color: #a40000;
 $content-color: #333333;
 $background-color: #090233;
+$rollable-button: #6782DE;
+$rollable-font: #ccc;
 
 @font-face {
 	font-family: optimus;
@@ -81,6 +83,21 @@ label {
 
 .counting {
 	background: lighten($header-color, 30%);
+}
+
+.rollable {
+  background: $rollable-button;
+  border: 2px solid $rollable-font;
+  border: {
+    radius: 3px;
+  }
+  padding: 0px 2px;
+  color: $rollable-font;
+  display: inline-block;
+  span.rollable {
+    border: none;
+  }
+
 }
 
 ul.roll_stats {
