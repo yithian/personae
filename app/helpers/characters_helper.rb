@@ -6,4 +6,11 @@ module CharactersHelper
   def dot_format(rating)
     ("•" * rating).gsub(/•{5}/, "••••• ").strip
   end
+
+  def simple_markdown_format(field)
+    renderer = Rollable.new(self, hard_wrap: true, filter_html: true)
+    marked_down = Redcarpet::Markdown.new(renderer).render(field).html_safe
+    simple_format(marked_down)
+  end
+
 end

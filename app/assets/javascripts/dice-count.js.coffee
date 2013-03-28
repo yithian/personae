@@ -14,9 +14,16 @@ dots_to_dice = (element) ->
 
 	count
 
+get_value = (element) ->
+  console.log($(element).text())
+  if $.isNumeric($(element).text())
+    $(element).text()
+  else
+    dots_to_dice(element)
+
 count_dice = ->
 	dice = ''
-	dice = dice + ' + ' + dots_to_dice(attribute) for attribute in $('.count')
+	dice = dice + ' + ' + get_value(attribute) for attribute in $('.count')
 
 	# remove the leading ' + '
 	dice = dice.substring(3)
@@ -45,10 +52,12 @@ $(document).ready ->
     count_dice()
 
   $('span.rollable').click ->
-    $(this).toggleClass('counting')
-    $(this).next().contents().each (index, element) =>
-      $('body').find('#' + $(element).text().toLowerCase()).toggleClass('counting')
-      $('body').find('#' + $(element).text().toLowerCase()).prev().toggleClass('counting')
-      $('body').find('#' + $(element).text().toLowerCase()).toggleClass('count')
+    $(this).next().contents().not('.no_count').each (index, element) =>
+      if $.isNumeric($(element).text())
+        $(element).toggleClass('count')
+      else
+        $('body').find('#' + $(element).text().toLowerCase()).toggleClass('counting')
+        $('body').find('#' + $(element).text().toLowerCase()).prev().toggleClass('counting')
+        $('body').find('#' + $(element).text().toLowerCase()).toggleClass('count')
     count_dice()
 

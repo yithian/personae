@@ -4,17 +4,22 @@ class Rollable < Redcarpet::Render::HTML
     super(args)
   end
   def normal_text(full_document)
-    full_document.gsub(/\[:([^:]*): (\w+)(?: \+ (\w+))(?: \+ (\w+))\]/) do
-      stat1 = @character.get_stat($2)
-      stat2 = @character.get_stat($3)
-      stat3 = @character.get_stat($4)
+    full_document.gsub(/\[\s*:([^:]*): (\w+(?: \+ \w+)+)\s*\]/) do
+      name = $1
+      stats = $2
+      stat_list = stats.split(' + ')
+      stat_list = stat_list.map{|x| [x, ' + ']}.flatten
+      stat_list.pop
+      puts stat_list
 
       output = "<div class='rollable'>"
-      output << "<span class='rollable #{$1}'>#{$1}: #{stat1 if stat1} + #{stat2 if stat2} + #{stat3 if stat3}</span>"
-      output << "<ul class='roll_stats #{$1}'>"
-      output << "<li>#{$2}</li>" if $2
-      output << "<li>#{$3}</li>" if $3
-      output << "<li>#{$4}</li>" if $4
+      output << "<span class='rollable'>#{name.capitalize}</span>"
+      output << "<ul class='roll_stats'>"
+      stat_list.each do |stat|
+        # I'm a hack, put me in a helper
+        stat = 'Morality' if %w(harmony wisdom humanity synergy clarity memory).include?(stat.downcase)
+        output << "<li#{'class="no_count"' if stat == ' + '}>#{stat}</li>"
+      end
       output << "</ul>"
       output << "</div>"
       output
