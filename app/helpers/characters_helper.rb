@@ -8,10 +8,11 @@ module CharactersHelper
   end
 
   def simple_markdown_format(field)
-    marked_down = field.gsub(/\[\s*:([^:]*): (\w+(?: \+ \w+)+)\s*(?:\*([^*]+)\*)?\]/) do
+    marked_down = field.gsub(/\[\s*:([^:]*): (\w+(?: (?:\+|-) \w+)+)\s*(?:\*([^*]+)\*)?\s*\]/) do
       name = $1
       stats = $2
       conditions = $3 || ""
+      stats = stats.gsub(' - ', ' + -')
       stat_list = stats.split(' + ')
       stat_list = stat_list.map{|x| [x, ' + ']}.flatten
       stat_list.pop
@@ -27,8 +28,13 @@ module CharactersHelper
         stat = 'Morality' if %w(harmony wisdom humanity synergy clarity memory).include?(stat.downcase)
         # TODO: Handle power stat conversion at some point
         #stat = "Power_Stat" if %w(gnosis wyrd psyche blood_potency
-        output << "<li class='no_count'>#{stat}</li>" if stat == ' + '
-        output << "<li>#{stat}</li>" unless stat == ' + '
+        cl = []
+        cl << 'no_count' if stat == ' + '
+        if stat.starts_with?('-')
+          cl << 'negative'
+          stat = stat[1..-1]
+        end
+        output << "<li #{"class='#{cl.join ' '}'" unless cl.blank? }>#{stat}</li>"
         puts stat
       end
       conditions.each do |c|
@@ -36,6 +42,7 @@ module CharactersHelper
       end
       output << "</ul>"
       output << "</div>"
+      puts output
       output
     end
     simple_format(marked_down)
