@@ -15,7 +15,6 @@ dots_to_dice = (element) ->
 	count
 
 get_value = (element) ->
-  console.log($(element).text())
   if $.isNumeric($(element).text())
     $(element).text()
   else
@@ -41,7 +40,7 @@ set_roll_type = ->
       $('#reroll_8').prop('checked', true)
     else if $(element).text() == 'rote'
       $('#reroll_rote').prop('checked', true)
-    else
+    else if $(element).text() == '10-again'
       $('#reroll_10').prop('checked', true)
 
     if $(element).text() == '1s-cancel'
@@ -69,9 +68,9 @@ $(document).ready ->
     $('td.dots_number').removeClass('count')
     count_dice()
 
-  $('span.rollable').click ->
-    $(this).next().contents().not('.no_count').each (index, element) =>
-      console.log $(element)
+  $('div.rollable').click ->
+    # This pulls up the li elements that aren't classed no_count
+    $(this).contents('ul').contents('li').not('.no_count').each (index, element) =>
       if $.isNumeric($(element).text())
         $(element).toggleClass('count')
       else if $(element).is('.roll_type')

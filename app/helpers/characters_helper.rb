@@ -12,17 +12,25 @@ module CharactersHelper
       name = $1
       stats = $2
       conditions = $3 || ""
+
+      # Processing the list of stats
+      # We add a ' + ' element in between the stats so it will
+      # look nice when we hover over the list
       stats = stats.gsub(' - ', ' + -')
       stat_list = stats.split(' + ')
       stat_list = stat_list.map{|x| [x, ' + ']}.flatten
       stat_list.pop
-      puts stat_list.inspect
 
+      # Processing the condtions list
+      # We add a ' , ' so it will be a list of conditions
       conditions = conditions.split(',').map(&:strip)
+      conditions = conditions.map{|x| [x, ' , ']}.flatten
+      conditions.pop
 
       output = "<div class='rollable'>"
       output << "<span class='rollable'>#{name.capitalize}</span>"
       output << "<ul class='roll_stats'>"
+      output << "<br/>"
       stat_list.each do |stat|
         # I'm a hack, put me in a helper
         stat = 'Morality' if %w(harmony wisdom humanity synergy clarity memory).include?(stat.downcase)
@@ -37,9 +45,12 @@ module CharactersHelper
         output << "<li #{"class='#{cl.join ' '}'" unless cl.blank? }>#{stat}</li>"
         puts stat
       end
+      output << "<br/>"
+      output << "<li class='no_count'> (</li>" unless conditions.empty?
       conditions.each do |c|
         output << "<li class='roll_type'>#{c}</li>"
       end
+      output << "<li class='no_count'>)</li>" unless conditions.empty?
       output << "</ul>"
       output << "</div>"
       puts output

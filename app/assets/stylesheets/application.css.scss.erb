@@ -11,8 +11,9 @@ $header-background: darken($tab-highlight, 30%);
 $splash-color: #a40000;
 $content-color: #333333;
 $background-color: #090233;
-$rollable-button: #6782DE;
-$rollable-font: #ccc;
+$rollable-font: #97a2de;
+$rollable-button: #1b1b1b;
+$rollable-border: #97a2d3;
 
 @font-face {
 	font-family: optimus;
@@ -87,7 +88,7 @@ label {
 
 .rollable {
   background: $rollable-button;
-  border: 2px solid $rollable-font;
+  border: 2px solid $rollable-border;
   border: {
     radius: 3px;
   }
@@ -103,6 +104,12 @@ label {
 
 }
 .rollable:hover {
+  box-shadow: 0 0 5px $rollable-font;
+  span.rollable {
+    text-shadow: 0 0 1px grey;
+    box-shadow: 0 0 0px white;
+    font-weight: bold;
+  }
   ul {
     display: inline;
     list-style: none;
@@ -110,7 +117,8 @@ label {
       display: inline;
     }
     li.roll_type {
-      display: none
+      //display: none
+
     }
   }
 }
