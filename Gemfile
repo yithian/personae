@@ -12,7 +12,6 @@ gem 'mage-hand', :git => "git://github.com/yithian/mage-hand.git", :branch => "c
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'dice_roller'
-gem 'redcarpet'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.0"

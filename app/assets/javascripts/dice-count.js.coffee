@@ -30,6 +30,24 @@ count_dice = ->
 
 	$('#dice_count').val(dice)
 
+set_roll_type = ->
+  if $('.roll_type.active').size() == 0
+    $('#reroll_10').prop('checked', true)
+    $('#cancel').prop('checked', false)
+  $('.roll_type.active').each (index, element) =>
+    if $(element).text() == '9-again'
+      $('#reroll_9').prop('checked', true)
+    else if $(element).text() == '8-again'
+      $('#reroll_8').prop('checked', true)
+    else if $(element).text() == 'rote'
+      $('#reroll_rote').prop('checked', true)
+    else
+      $('#reroll_10').prop('checked', true)
+
+    if $(element).text() == '1s-cancel'
+      $('#cancel').prop('checked', true)
+
+
 $(document).ready ->
   $('td.dots_label').click ->
     $(this).toggleClass('counting')
@@ -53,11 +71,15 @@ $(document).ready ->
 
   $('span.rollable').click ->
     $(this).next().contents().not('.no_count').each (index, element) =>
+      console.log $(element)
       if $.isNumeric($(element).text())
         $(element).toggleClass('count')
+      else if $(element).is('.roll_type')
+        $(element).toggleClass('active')
       else
         $('body').find('#' + $(element).text().toLowerCase()).toggleClass('counting')
         $('body').find('#' + $(element).text().toLowerCase()).prev().toggleClass('counting')
         $('body').find('#' + $(element).text().toLowerCase()).toggleClass('count')
     count_dice()
+    set_roll_type()
 
