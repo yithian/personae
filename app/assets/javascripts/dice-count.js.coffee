@@ -15,10 +15,16 @@ dots_to_dice = (element) ->
 	count
 
 get_value = (element) ->
-  if $.isNumeric($(element).text())
-    $(element).text()
+  if $(element).hasClass('negative')
+    prefix = '-'
   else
-    dots_to_dice(element)
+    prefix = ''
+
+  if $.isNumeric($(element).text())
+    num = $(element).text()
+  else
+    num = dots_to_dice(element)
+  prefix + num
 
 count_dice = ->
 	dice = ''

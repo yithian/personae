@@ -10,9 +10,7 @@ module CharactersHelper
   def simple_markdown_format(field)
     field = make_rollable(field)
     field = clickable_backgrounds(field)
-    field = simple_format(field)
-    puts field if field.include? 'esource'
-    field
+    simple_format(field)
   end
 
   def clickable_backgrounds(field)
@@ -24,14 +22,6 @@ module CharactersHelper
       output << "<li class='dots_label'>#{name.capitalize}: </li>"
       output << "<li id='#{name.downcase}' class='dots_number'>#{dot_format value.to_i}</li>"
       output << "</ul>"
-      #output << "<table class='custom_status'>"
-      #output << "<tbody>"
-      #output << "<tr>"
-      #output << "<td class='dots_label'>#{name.capitalize}: </td>"
-      #output << "<td id='#{name.downcase}' class='dots_number'>#{dot_format(value.to_i)}</td>"
-      #output << "</tr>"
-      #output << "<tbody>"
-      #output << "</table>"
       output << "</div>"
 
       puts output
@@ -46,6 +36,7 @@ module CharactersHelper
       conditions = $3 || ""
 
       # Processing the list of stats
+      # Convert all the -s into '+ -' so that we don't lose track of it
       # We add a ' + ' element in between the stats so it will
       # look nice when we hover over the list
       stats = stats.gsub(' - ', ' + -')
@@ -63,15 +54,27 @@ module CharactersHelper
       output << "<span class='rollable'>#{name.capitalize}</span>"
       output << "<ul class='roll_stats'>"
       output << "<br/>"
-      stat_list.each do |stat|
-        stat = generalize_stat_name(stat)
+      # Pulling the first stat off since and then we have pairs of
+      # + and stat as the elements.
+      # There should be no li class for this, since it won't be
+      # subtracted or not counting
+      output << "<li>#{stat_list.shift}</li>"
+      # Iterating over each consecutive pair and then exiting the
+      # first isn't a + or -
+      # This lets us know if we need to make the stat negative
+      stat_list.each_cons(2) do |first, second|
+        # skip if we didn't start with a + sign
+        # The whole loop is based on that assumption
+        next unless first == ' + '
         cl = []
-        cl << 'no_count' if stat == ' + '
-        if stat.starts_with?('-')
+        second = generalize_stat_name(second)
+        if second.starts_with?('-')
           cl << 'negative'
-          stat = stat[1..-1]
+          second = second[1..-1]
+          first = ' - '
         end
-        output << "<li #{"class='#{cl.join ' '}'" unless cl.blank? }>#{stat}</li>"
+        output << "<li class='no_count'>#{first}</li>"
+        output << "<li #{"class='#{cl.join ' '}'" unless cl.blank? }>#{second}</li>"
       end
       output << "<br/>"
       output << "<li class='no_count'> (</li>" unless conditions.empty?
