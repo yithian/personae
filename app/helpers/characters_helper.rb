@@ -9,7 +9,7 @@ module CharactersHelper
 
   def simple_markdown_format(field)
     #marked_down = field.gsub(/\[\s*:([^:]*): ([^*]+(?: (?:\+|-) [^*]+)+)\s*(?:\s+\*([^*]+)\*)?\s*\]/) do
-    marked_down = field.gsub(/\[\s*:([^:]*): ([^*^\[]+(?:(?:\+|-) [^*^\[]+)+)\s*(?:\s+\*([^*]+)\*)?\s*\]/) do
+    marked_down = field.gsub(/\[\s*:([^:]*): ([^*^\[]+(?:(?:(?:\+|-) [^*^\[]+)+)?)\s*(?:\s+\*([^*]+)\*)?\s*\]/) do
       name = $1
       stats = $2
       conditions = $3 || ""
@@ -36,7 +36,7 @@ module CharactersHelper
         # I'm a hack, put me in a helper
         stat = 'Morality' if %w(harmony wisdom humanity synergy clarity memory).include?(stat.downcase)
         # TODO: Handle power stat conversion at some point
-        #stat = "Power_Stat" if %w(gnosis wyrd psyche blood_potency
+        stat = "Power_Stat" if %w(gnosis wyrd psyche blood_potency primal_urge).include?(stat.downcase)
         cl = []
         cl << 'no_count' if stat == ' + '
         if stat.starts_with?('-')
