@@ -2,17 +2,17 @@
 # into the text field for rolling dice
 
 dots_to_dice = (element) ->
-	count = 0
+  count = 0
 
-	if $(element).children().length > 0
-		count = $(':last-child', element).html().replace(/\s+/g, '').length
-	else
-		count = $(element).html().replace(/\s+/g, '').length
+  if $(element).children().length > 0
+    count = $(':last-child', element).html().replace(/\s+/g, '').length
+  else
+    count = $(element).html().replace(/\s+/g, '').length
 
-	if count == 0
-		count = if $(element).prev().hasClass('mental') then -3 else -1
+  if count == 0
+    count = if $(element).prev().hasClass('mental') then -3 else -1
 
-	count
+  count
 
 get_value = (element) ->
   if $(element).hasClass('negative')
@@ -27,13 +27,13 @@ get_value = (element) ->
   prefix + num
 
 count_dice = ->
-	dice = ''
-	dice = dice + ' + ' + get_value(attribute) for attribute in $('.count')
+  dice = ''
+  dice = dice + ' + ' + get_value(attribute) for attribute in $('.count')
 
-	# remove the leading ' + '
-	dice = dice.substring(3)
+  # remove the leading ' + '
+  dice = dice.substring(3)
 
-	$('#dice_count').val(dice)
+  $('#dice_count').val(dice)
 
 set_roll_type = ->
   if $('.roll_type.active').size() == 0
@@ -58,12 +58,23 @@ $(document).ready ->
     $(this).toggleClass('counting')
     $(this).next().toggleClass('counting')
     $(this).next().toggleClass('count')
+    if $(this).next().next()
+      $(this).next().next().toggleClass('counting')
+    count_dice()
+
+  $('td.dots_description,li.dots_description').click ->
+    $(this).toggleClass('counting')
+    $(this).prev().toggleClass('counting')
+    $(this).prev().toggleClass('count')
+    $(this).prev().prev().toggleClass('counting')
     count_dice()
 
   $('td.dots_number,li.dots_number').click ->
     $(this).toggleClass('count')
     $(this).toggleClass('counting')
     $(this).prev().toggleClass('counting')
+    if $(this).next()
+      $(this).next().toggleClass('counting')
     count_dice()
 
     # clear all selected attributes and clean out

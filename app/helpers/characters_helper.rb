@@ -9,18 +9,20 @@ module CharactersHelper
 
   def simple_markdown_format(field)
     field = make_rollable(field)
-    field = clickable_backgrounds(field)
+    field = clickable_stats(field)
     simple_format(field)
   end
 
-  def clickable_backgrounds(field)
-    field.gsub(/\[\s*:([^:]*):\s*\*(\d+)\*\s*\]/) do
+  def clickable_stats(field)
+    field.gsub(/\[\s*:([^:]*): \*(\d+)\*\s*(\([^:]*\))?\s*\]/) do
       name = $1
       value = $2
+      conditions = $3
       output = "<div class='custom_stats'>"
       output << "<ul>"
       output << "<li class='dots_label'>#{name.capitalize}: </li>"
       output << "<li id='#{name.downcase}' class='dots_number'>#{dot_format value.to_i}</li>"
+      output << "<li class='dots_description'> #{conditions}</li>" if conditions
       output << "</ul>"
       output << "</div>"
 
