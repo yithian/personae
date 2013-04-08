@@ -8,7 +8,8 @@ module CharactersHelper
   end
 
   def simple_markdown_format(field)
-    marked_down = field.gsub(/\[\s*:([^:]*): ([^*]+(?: (?:\+|-) [^*]+)+)\s*(?:\s+\*([^*]+)\*)?\s*\]/) do
+    #marked_down = field.gsub(/\[\s*:([^:]*): ([^*]+(?: (?:\+|-) [^*]+)+)\s*(?:\s+\*([^*]+)\*)?\s*\]/) do
+    marked_down = field.gsub(/\[\s*:([^:]*): ([^*^\[]+(?:(?:\+|-) [^*^\[]+)+)\s*(?:\s+\*([^*]+)\*)?\s*\]/) do
       name = $1
       stats = $2
       conditions = $3 || ""
@@ -18,7 +19,7 @@ module CharactersHelper
       # look nice when we hover over the list
       stats = stats.gsub(' - ', ' + -')
       stat_list = stats.split(' + ')
-      stat_list = stat_list.map{|x| [x.gsub(" ", "_").downcase, ' + ']}.flatten
+      stat_list = stat_list.map{|x| [x.strip.gsub(" ", "_").downcase, ' + ']}.flatten
       stat_list.pop
 
       # Processing the condtions list
