@@ -49,5 +49,8 @@ module Personae
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #Allows us to add custom rollable stats
+    config.action_view.sanitized_allowed_attributes = 'id', 'class', 'style'
   end
 end

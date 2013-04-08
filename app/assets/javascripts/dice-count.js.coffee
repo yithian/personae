@@ -48,13 +48,13 @@ set_roll_type = ->
 
 
 $(document).ready ->
-  $('td.dots_label').click ->
+  $('td.dots_label,li.dots_label').click ->
     $(this).toggleClass('counting')
     $(this).next().toggleClass('counting')
     $(this).next().toggleClass('count')
     count_dice()
 
-  $('td.dots_number').click ->
+  $('td.dots_number,li.dots_number').click ->
     $(this).toggleClass('count')
     $(this).toggleClass('counting')
     $(this).prev().toggleClass('counting')
@@ -63,9 +63,9 @@ $(document).ready ->
     # clear all selected attributes and clean out
     # the value in the calculator
   $('#clear_dice').click ->
-    $('td.dots_label').removeClass('counting')
-    $('td.dots_number').removeClass('counting')
-    $('td.dots_number').removeClass('count')
+    $('td.dots_label,li.dots_label').removeClass('counting')
+    $('td.dots_number,li.dots_number').removeClass('counting')
+    $('td.dots_number,li.dots_number').removeClass('count')
     count_dice()
 
   $('div.rollable').click ->

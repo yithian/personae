@@ -58,14 +58,14 @@
 <% if can? :read_background, @character %>
   <div id="background">
     <h5 class="<%= @character.splat.name.downcase %>">Background</h5>
-    <%= simple_format(@character.background) %>
+    <%= simple_markdown_format(@character.background) %>
   </div>
 <% end %>
 
 <% if can? :read_deeds, @character %>
   <div id="deeds">
     <h5 class="<%= @character.splat.name.downcase %>">Deeds</h5>
-    <%= simple_format(@character.deeds) %>
+    <%= simple_markdown_format(@character.deeds) %>
   </div>
 <% end %>
 
@@ -187,7 +187,7 @@
 	      </tr>
 	      <tr>
 	        <td>Skill Specialties:</td>
-	        <td colspan=5><%= simple_format(@character.skill_specialties) %></td>
+	        <td colspan=5><%= simple_markdown_format(@character.skill_specialties) %></td>
 	      </tr>
 	    </table>
 	  </div>
@@ -246,7 +246,7 @@
       <tr>
         <td>Defense:</td>
         <td id="defense"><%= @character.defense %></td>
-        <td rowspan="10" colspan="2"><%= simple_format(@character.derangements) %></td>
+        <td rowspan="10" colspan="2"><%= simple_markdown_format(@character.derangements) %></td>
       </tr>
       <tr>
         <td>Armor:</td>
@@ -287,12 +287,12 @@
   <% unless @character.is_spirit? %>
     <div id="merits">
       <h5 class="<%= @character.splat.name.downcase %>">Merits</h5>
-      <%= simple_format(@character.merits) %>
+      <%= simple_markdown_format(@character.merits) %>
     </div>
 
     <div id="equipment">
       <h5 class="<%= @character.splat.name.downcase %>">Equipment</h5>
-      <%= simple_format(@character.equipment) %>
+      <%= simple_markdown_format(@character.equipment) %>
     </div>
   <% end %>
 
@@ -308,7 +308,7 @@
         <tr>
           <td class='dots_label'>Fate:</td>
           <td id='fate' class='dots_number'><%= dot_format(@character.fate) %></td>
-          <td rowspan="10"><%= simple_format(@character.common_spells) %></td>
+          <td rowspan="10"><%= simple_markdown_format(@character.common_spells) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Forces:</td>
@@ -396,7 +396,7 @@
         <tr>
           <td class='dots_label'>Glory:</td>
           <td id='glory' class='dots_number'><%= dot_format(@character.glory) %></td>
-          <td id="gifts" rowspan="5"><%= simple_format(@character.gifts) %></td>
+          <td id="gifts" rowspan="5"><%= simple_markdown_format(@character.gifts) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Honor:</td>
@@ -426,7 +426,7 @@
         <tr>
           <td class='dots_label'>Auspex</td>
           <td id='auspex' class='dots_number'><%= dot_format(@character.auspex) %></td>
-          <td rowspan="9"><%= simple_format(@character.covenant_disciplines) %></td>
+          <td rowspan="9"><%= simple_markdown_format(@character.covenant_disciplines) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Celerity</td>
@@ -467,7 +467,7 @@
 
     <% if @character.is_promethean? %>
       <h5 class="<%= @character.splat.name.downcase %>">Transmutations</h5>
-      <%= simple_format(@character.transmutations) %>
+      <%= simple_markdown_format(@character.transmutations) %>
     <% end %>
 
     <% if @character.is_changeling? %>
@@ -481,7 +481,7 @@
         <tr>
           <td class='dots_label'>Hearth</td>
           <td id='hearth' class='dots_number'><%= dot_format(@character.hearth) %></td>
-          <td rowspan="19"><%= simple_format(@character.goblin_contracts) %></td>
+          <td rowspan="19"><%= simple_markdown_format(@character.goblin_contracts) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Mirror</td>
@@ -558,7 +558,7 @@
 
     <% if @character.is_hunter? %>
       <h5 class="<%= @character.splat.name.downcase %>">Tactics</h5>
-      <%= simple_format(@character.tactics) %>
+      <%= simple_markdown_format(@character.tactics) %>
     <% end %>
 
     <% if @character.is_geist? %>
@@ -572,7 +572,7 @@
         <tr>
           <td class='dots_label'>Caul</td>
           <td id='caul' class='dots_number'><%= dot_format(@character.caul) %></td>
-          <td rowspan="7"><%= simple_format(@character.keys) %></td>
+          <td rowspan="7"><%= simple_markdown_format(@character.keys) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Curse</td>
@@ -599,7 +599,7 @@
       </table>
 
       <h5 class="<%= @character.splat.name.downcase %>">Ceremonies</h5>
-      <p><%= simple_format(@character.ceremonies) %></p>
+      <p><%= simple_markdown_format(@character.ceremonies) %></p>
     <% end %>
 
     <% if @character.is_possessed? %>
@@ -613,7 +613,7 @@
         <tr>
           <td class='dots_label'>Gluttony</td>
           <td id='gluttony' class='dots_number'><%= dot_format(@character.gluttony) %></td>
-          <td rowspan="7"><%= simple_format(@character.vestments) %></td>
+          <td rowspan="7"><%= simple_markdown_format(@character.vestments) %></td>
         </tr>
         <tr>
           <td class='dots_label'>Greed</td>
@@ -640,10 +640,10 @@
 
 	<% if @character.is_spirit? %>
 		<h5 class="<%= @character.splat.name.downcase %>">Influences</h5>
-		<p><%= simple_format(@character.influences) %></p>
+		<p><%= simple_markdown_format(@character.influences) %></p>
 
 		<h5 class="<%= @character.splat.name.downcase %>">Numina</h5>
-		<p><%= simple_format(@character.numina) %></p>
+		<p><%= simple_markdown_format(@character.numina) %></p>
 	<% end %>
 
 	<% if @character.is_mummy? %>
@@ -692,10 +692,10 @@
 		</table>
 
 		<h5 class="<%= @character.splat.name.downcase %>">Affinities</h5>
-		<p><%= simple_format(@character.affinities) %></p>
+		<p><%= simple_markdown_format(@character.affinities) %></p>
 
 		<h5 class="<%= @character.splat.name.downcase %>">Utterances</h5>
-		<p><%= simple_format(@character.utterances) %></p>
+		<p><%= simple_markdown_format(@character.utterances) %></p>
 	<% end %>
   </div>
 <% end %>
@@ -703,7 +703,7 @@
 <% if can? :read_experience, @character %>
   <div id="experience">
     <h5 class="<%= @character.splat.name.downcase %>">Experience</h5>
-    <%= simple_format(@character.experience) %>
+    <%= simple_markdown_format(@character.experience) %>
   </div>
 <% end %>
 
