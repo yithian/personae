@@ -26,7 +26,6 @@ module CharactersHelper
       output << "</ul>"
       output << "</div>"
 
-      puts output
       output
     end
   end
