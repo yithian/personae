@@ -9,6 +9,33 @@ class CharactersHelperTest < ActionView::TestCase
     assert_equal dot_format(11),  "••••• ••••• •"
   end
 
+  test "clickable_specialties should not change normal text" do
+    assert_equal clickable_specialties("foo"), "foo"
+    assert_equal clickable_specialties("745"), "745"
+    assert_equal clickable_specialties("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer placerat blandit nunc a fringilla. Aenean ante arcu, sollicitudin non ullamcorper quis, feugiat at odio. Etiam scelerisque nibh tristique tortor tempor fermentum. Nullam ac magna quis orci rhoncus luctus. In tristique orci nec nulla iaculis auctor. Duis in sapien eu nulla semper aliquam eu nec nibh. Maecenas posuere libero eget eros euismod a blandit sem molestie. Cras eget iaculis ipsum. Nam erat justo, placerat ut aliquet et, malesuada ac mauris. Donec tortor mauris, dictum id sollicitudin vel, sodales eget metus. Proin fringilla ipsum nec nibh lacinia sed aliquet velit fringilla"), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer placerat blandit nunc a fringilla. Aenean ante arcu, sollicitudin non ullamcorper quis, feugiat at odio. Etiam scelerisque nibh tristique tortor tempor fermentum. Nullam ac magna quis orci rhoncus luctus. In tristique orci nec nulla iaculis auctor. Duis in sapien eu nulla semper aliquam eu nec nibh. Maecenas posuere libero eget eros euismod a blandit sem molestie. Cras eget iaculis ipsum. Nam erat justo, placerat ut aliquet et, malesuada ac mauris. Donec tortor mauris, dictum id sollicitudin vel, sodales eget metus. Proin fringilla ipsum nec nibh lacinia sed aliquet velit fringilla"
+    assert_equal clickable_specialties("Subterfuge (White Lies)"), "Subterfuge (White Lies)"
+  end
+  test "clickable_specialties should change specialties" do
+    string = "[:subterfuge: (White Lies)]"
+    assert_not_equal clickable_specialties(string), string
+  end
+  test "clickable_specialties should return a custom_stats div class" do
+    string = "[:subterfuge: (White Lies)]"
+    assert_match(/div class='custom_stats'/, clickable_specialties(string))
+  end
+  test "clickable_specialties should return a dots_label li" do
+    string = "[:subterfuge: (White Lies)]"
+    assert_match(/li class='dots_label'/, clickable_specialties(string))
+  end
+  test "clickable_specialties should return an id'ed li" do
+    string = "[:subterfuge: (White Lies)]"
+    assert_match(/li id='.*'/, clickable_specialties(string))
+  end
+  test "clickable_specialties should return a dots_number li" do
+    string = "[:subterfuge: (White Lies)]"
+    assert_match(/li[^<^>]*class='[^']*dots_number'/, clickable_specialties(string))
+  end
+
   test "clickable_stats should not change normal text" do
     assert_equal clickable_stats("foo"), "foo"
     assert_equal clickable_stats("745"), "745"
@@ -106,7 +133,6 @@ class CharactersHelperTest < ActionView::TestCase
     string = "[:foo: Strength + Brawl]"
     assert_match(/ul class='roll_stats'/, make_rollable(string))
   end
-
 
   morality = {'mortal' => 'morality', 'mage' => 'wisdom', 'werewolf' => 'harmony', 'vampire' => 'humanity', 'promethean' => 'humanity', 'changeling' => 'clarity', 'hunter' => 'morality', 'geist' => 'synergy', 'spirit' => 'morality', 'mummy' => 'memory'}
   power_stat = {'mage' => 'gnosis', 'werewolf' => 'primal_urge', 'vampire' => 'blood_potency', 'promethean' => 'azoth', 'changeling' => 'wyrd', 'geist' => 'psyche', 'spirit' => 'rank', 'mummy' => 'sekhem'}
