@@ -59,7 +59,7 @@ module CharactersHelper
       # + and stat as the elements.
       # There should be no li class for this, since it won't be
       # subtracted or not counting
-      output << "<li>#{stat_list.shift}</li>"
+      output << "<li>#{stat_list.shift.capitalize}</li>"
       # Iterating over each consecutive pair and then exiting the
       # first isn't a + or -
       # This lets us know if we need to make the stat negative

@@ -83,9 +83,15 @@ $(document).ready ->
     $('td.dots_label,li.dots_label').removeClass('counting')
     $('td.dots_number,li.dots_number').removeClass('counting')
     $('td.dots_number,li.dots_number').removeClass('count')
+    $('li.count').removeClass('count')
+    $('.clicked,span.clicked').removeClass('clicked')
+    $('li.roll_type').removeClass('active')
     count_dice()
+    set_roll_type()
 
   $('div.rollable').click ->
+    $(this).toggleClass('clicked')
+    $(this).contents('span').toggleClass('clicked')
     # This pulls up the li elements that aren't classed no_count
     $(this).contents('ul').contents('li').not('.no_count').each (index, element) =>
       if $.isNumeric($(element).text())

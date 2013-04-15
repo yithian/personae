@@ -121,7 +121,12 @@ label {
   }
 
 }
-.rollable:hover {
+.rollable.clicked {
+  background: $rollable-border;
+  border: 2px solid $rollable-button;
+  color: $rollable-button;
+}
+.rollable:hover{
   box-shadow: 0 0 5px $rollable-font;
   span.rollable {
     text-shadow: 0 0 1px grey;
