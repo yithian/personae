@@ -11,6 +11,9 @@ $header-background: darken($tab-highlight, 30%);
 $splash-color: #a40000;
 $content-color: #333333;
 $background-color: #090233;
+$rollable-font: #97a2de;
+$rollable-button: #1b1b1b;
+$rollable-border: #97a2d3;
 
 @font-face {
 	font-family: optimus;
@@ -48,12 +51,12 @@ label {
 #navbar {
 	background-color: #1b1b1b;
 	margin-bottom: 0px;
-	
+
 	.brand {
 		font-family: optimus;
 		color: $tab-highlight;
 	}
-	
+
 	select { margin: 8px 6px 0px 6px; }
 }
 
@@ -67,11 +70,17 @@ label {
   color: $splash-color;
 }
 
+/* markdown tips */
+#markdown_tips {
+	position: fixed;
+	margin-top: 2em;
+  text-align: left;
+}
 /* dice rolling */
 #dice_roller {
 	position: fixed;
 	margin-top: 2em;
-	
+
 	input[type="text"] {width: 5em;}
 }
 
@@ -83,6 +92,60 @@ label {
 	background: lighten($header-color, 30%);
 }
 
+.custom_stats {
+  padding: 0px 0px;
+  ul {
+    margin: 0px 0px;
+    list-style: none;
+    display: inline;
+    li {
+      display: inline;
+    }
+  }
+}
+
+.rollable {
+  background: $rollable-button;
+  border: 2px solid $rollable-border;
+  border: {
+    radius: 3px;
+  }
+  padding: 0px 2px;
+  color: $rollable-font;
+  display: inline-block;
+  span.rollable {
+    border: none;
+  }
+  ul {
+    display:none
+  }
+
+}
+.rollable.clicked {
+  background: $rollable-border;
+  border: 2px solid $rollable-button;
+  color: $rollable-button;
+}
+.rollable:hover{
+  box-shadow: 0 0 5px $rollable-font;
+  span.rollable {
+    text-shadow: 0 0 1px grey;
+    box-shadow: 0 0 0px white;
+    font-weight: bold;
+  }
+  ul {
+    display: inline;
+    list-style: none;
+    li {
+      display: inline;
+    }
+    li.roll_type {
+      //display: none
+
+    }
+  }
+}
+
 /* page content */
 #content {
 	color: $content-color;
@@ -90,25 +153,25 @@ label {
 	border-top: none;
 	padding: 1em 4em;
 	text-align: justify;
-	
+
 	a {
 		text-decoration: none;
 		border-style: none;
 		color: $header-background;
-		
+
 		&:hover {
 			color: $splash-color;
 			text-decoration: underline;
 		}
 	}
-	
+
 	a.selected {
 		color: $splash-color;
 		text-decoration: none;
-		
+
 		&:hover { background: $header-color; }
 	}
-	
+
 	h5 {
 		color: $header-color;
 		background: url(<%= asset_path("mortal-smudge.png") %>) no-repeat -10px -6px;
@@ -128,54 +191,54 @@ label {
 		&.spirit { background: url(<%= asset_path("spirit-smudge.png") %>) no-repeat -10px -6px; }
 		&.mummy { background: url(<%= asset_path("mummy-smudge.png") %>) no-repeat -10px -6px; }
 	}
-	
+
 	label.sized {
 		width: 7em;
 		text-align: right;
 		margin-right: .5em;
 		float: left;
 	}
-	
+
 	table {
 	    width: 100%;
 	    text-align: left;
 		td.growdown { vertical-align: top; }
 	}
-	
+
 	table.three_cells {
 		td { width: 9em; }
 		td:nth-child(3) { width: 36em;}
 	}
-	
+
 	table.four_cells {
 		th, td { width: 14em; }
 	}
-	
+
 	table.five_cells {
 		th, td { width: 12em; }
 	}
-	
+
 	table.six_cells td { width: 9em; }
-	
+
 	table.list {
 		th {
 			text-align: center;
 			padding: 0px 4px;
 		}
-		
+
 		td {
 			padding: 0px 4px;
 			text-align: center;
 		}
 	}
-	
+
 	input[type="text"], input[type="password"] { width: 9em; }
-	
+
 	input.number { width: 2em; }
 	input.parent_number { width: 2em; }
 	input.spirit_number { width: 2em; }
 	input.long { width: 36em; }
-	
+
 	textarea 	{
 		width: 100%;
 		height: 5em;
