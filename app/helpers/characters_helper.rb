@@ -91,8 +91,8 @@ module CharactersHelper
 
   def generalize_stat_name(name)
     return 'Morality' if %w(harmony wisdom humanity synergy clarity memory).include?(name.downcase)
-    return 'Power_Stat' if %w(gnosis wyrd psyche blood_potency primal_urge).include?(name.downcase)
-    name
+    return 'Power_Stat' if %w(gnosis wyrd psyche blood_potency primal_urge azoth sekhem rank).include?(name.downcase)
+    name.capitalize
   end
 
 end
