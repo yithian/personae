@@ -8,13 +8,14 @@ module CharactersHelper
   end
 
   def simple_markdown_format(field)
+    field = clickable_specialties(field)
     field = make_rollable(field)
     field = clickable_stats(field)
     simple_format(field)
   end
 
   def clickable_stats(field)
-    field.gsub(/\[\s*:([^:]*): \*(\d+)\*\s*(\([^:]*\))?\s*\]/) do
+    field.gsub(/\[\s*:([^:]*): \*(\d+)\*\s*(\([^:]*\))?\s*\][\r\n]{0,2}/) do
       name = $1
       value = $2
       conditions = $3
@@ -23,6 +24,22 @@ module CharactersHelper
       output << "<li class='dots_label'>#{name.capitalize}: </li>"
       output << "<li id='#{name.downcase}' class='dots_number'>#{dot_format value.to_i}</li>"
       output << "<li class='dots_description'> #{conditions}</li>" if conditions
+      output << "</ul>"
+      output << "</div>"
+
+      output
+    end
+  end
+
+  def clickable_specialties(field)
+    field.gsub(/\[\s*:([^:]*):\s*\(([^)]*)\)\s*\][\r\n]{0,2}/) do
+      skill = $1
+      description = $2
+      spaceless_desc = description.gsub(" ", "_")
+      output = "<div class='custom_stats'>"
+      output << "<ul>"
+      output << "<li class='dots_label'>#{skill.capitalize} (#{description})</li>"
+      output << "<li id='#{skill.downcase}_#{spaceless_desc.downcase}' class='specialty_value dots_number'>#{dot_format 1}</li>"
       output << "</ul>"
       output << "</div>"
 
