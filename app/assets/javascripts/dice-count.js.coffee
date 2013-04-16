@@ -58,8 +58,7 @@ $(document).ready ->
     $(this).toggleClass('counting')
     $(this).next().toggleClass('counting')
     $(this).next().toggleClass('count')
-    if $(this).next().next()
-      $(this).next().next().toggleClass('counting')
+    $(this).next().next('.dots_description').toggleClass('counting')
     count_dice()
 
   $('td.dots_description,li.dots_description').click ->
@@ -73,8 +72,7 @@ $(document).ready ->
     $(this).toggleClass('count')
     $(this).toggleClass('counting')
     $(this).prev().toggleClass('counting')
-    if $(this).next()
-      $(this).next().toggleClass('counting')
+    $(this).next('.dots_description').toggleClass('counting')
     count_dice()
 
     # clear all selected attributes and clean out
@@ -102,6 +100,7 @@ $(document).ready ->
         $('body').find('#' + $(element).text().toLowerCase()).toggleClass('counting')
         $('body').find('#' + $(element).text().toLowerCase()).prev().toggleClass('counting')
         $('body').find('#' + $(element).text().toLowerCase()).toggleClass('count')
+        $('body').find('#' + $(element).text().toLowerCase()).next('.dots_description').toggleClass('counting')
     count_dice()
     set_roll_type()
 
