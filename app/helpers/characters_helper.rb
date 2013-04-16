@@ -21,7 +21,7 @@ module CharactersHelper
       conditions = $3
       output = "<div class='custom_stats'>"
       output << "<ul>"
-      output << "<li class='dots_label'>#{name.capitalize}: </li>"
+      output << "<li class='dots_label'>#{name.titleize}: </li>"
       output << "<li id='#{name.downcase}' class='dots_number'>#{dot_format value.to_i}</li>"
       output << "<li class='dots_description'> #{conditions}</li>" if conditions
       output << "</ul>"
@@ -38,7 +38,7 @@ module CharactersHelper
       spaceless_desc = description.gsub(" ", "_")
       output = "<div class='custom_stats'>"
       output << "<ul>"
-      output << "<li class='dots_label'>#{skill.capitalize} (#{description})</li>"
+      output << "<li class='dots_label'>#{skill.titleize} (#{description})</li>"
       output << "<li id='#{skill.downcase}_#{spaceless_desc.downcase}' class='specialty_value dots_number'>#{dot_format 1}</li>"
       output << "</ul>"
       output << "</div>"
