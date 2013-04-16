@@ -20,7 +20,7 @@
   <%= favicon_link_tag %>
 </head>
 <body>
-	
+
 	<div id='navbar' class='navbar navbar-inverse'>
 		<div class='navbar-inner'>
 			<ul class='nav'>
@@ -58,15 +58,16 @@
 			</ul>
 		</div>
 	</div>
-	
+
 	<div class='container'>
 		<div id="content" class='span10'>
 		    <div id="notice"><%= flash[:notice] %></div>
 		    <div id="alert"><%= alert %></div>
 		    <%= yield %>
 		</div>
-		
+
 		<%= render 'layouts/dice_roller' if params[:controller] == 'characters' and params[:action] == 'show' %>
+		<%= render 'layouts/markdown_helper' if params[:controller] == 'characters' and params[:action] == 'edit' %>
 	</div>
 
 </body>
