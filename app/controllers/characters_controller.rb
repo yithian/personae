@@ -178,6 +178,11 @@ class CharactersController < ApplicationController
     @character.current_willpower = params[:character][:current_willpower] if params[:character][:current_willpower]
     @character.current_fuel = params[:character][:current_fuel] if params[:character][:current_fuel]
     @character.current_infernal_will = params[:character][:current_infernal_will] if params[:character][:current_infernal_will]
+    @character.current_ab = params[:character][:current_ab] if params[:character][:current_ab]
+    @character.current_ba = params[:character][:current_ba] if params[:character][:current_ba]
+    @character.current_ka = params[:character][:current_ka] if params[:character][:current_ka]
+    @character.current_ren = params[:character][:current_ren] if params[:character][:current_ren]
+    @character.current_sheut = params[:character][:current_sheut] if params[:character][:current_sheut]
     
     if @character.save
       head :success

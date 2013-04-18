@@ -650,44 +650,79 @@
 		<h5 class="<%= @character.splat.name.downcase %>">Pillars</h5>
 		<table class="four_cells">
 			<tr>
-				<td>Ab</td>
-				<td><%= dot_format(@character.ab) %></td>
+				<td class="dots_label">Ab</td>
+				<td class="dots_number"><%= dot_format(@character.ab) %></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><%= @character.current_ab %></td>
+        <% if can? :edit, @character %>
+          <%= form_for([@character.chronicle, @character]) do |f| %>
+            <td><%= f.label :current_ab %></td>
+            <td><%= f.text_field :current_ab, :class => "number", :remote => true, :action => url_for(:action => "save_current", :id => @character.id), :method => "put" %></td>
+          <% end %>
+        <% else %>
+          <td>Current Ab:</td>
+          <td><%= @character.current_ab %></td>
+        <% end %>
 			</tr>
 			<tr>
-				<td>Ba</td>
-				<td><%= dot_format(@character.ba) %></td>
+				<td class="dots_label">Ba</td>
+				<td class="dots_number"><%= dot_format(@character.ba) %></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><%= @character.current_ba %></td>
+        <% if can? :edit, @character %>
+          <%= form_for([@character.chronicle, @character]) do |f| %>
+            <td><%= f.label :current_ba %></td>
+            <td><%= f.text_field :current_ba, :class => "number", :remote => true, :action => url_for(:action => "save_current", :id => @character.id), :method => "put" %></td>
+          <% end %>
+        <% else %>
+          <td>Current Ba:</td>
+          <td><%= @character.current_ba %></td>
+        <% end %>
 			</tr>
 			<tr>
-				<td>Ka</td>
-				<td><%= dot_format(@character.ka) %></td>
+				<td class="dots_label">Ka</td>
+				<td class="dots_number"><%= dot_format(@character.ka) %></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><%= @character.current_ka %></td>
+        <% if can? :edit, @character %>
+          <%= form_for([@character.chronicle, @character]) do |f| %>
+            <td><%= f.label :current_ka %></td>
+            <td><%= f.text_field :current_ka, :class => "number", :remote => true, :action => url_for(:action => "save_current", :id => @character.id), :method => "put" %></td>
+          <% end %>
+        <% else %>
+          <td>Current Ka:</td>
+          <td><%= @character.current_ka %></td>
+        <% end %>
 			</tr>
 			<tr>
-				<td>Ren</td>
-				<td><%= dot_format(@character.ren) %></td>
+				<td class="dots_label">Ren</td>
+				<td class="dots_number"><%= dot_format(@character.ren) %></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><%= @character.current_ren %></td>
+        <% if can? :edit, @character %>
+          <%= form_for([@character.chronicle, @character]) do |f| %>
+            <td><%= f.label :current_ren %></td>
+            <td><%= f.text_field :current_ren, :class => "number", :remote => true, :action => url_for(:action => "save_current", :id => @character.id), :method => "put" %></td>
+          <% end %>
+        <% else %>
+          <td>Current Ren:</td>
+          <td><%= @character.current_ren %></td>
+        <% end %>
 			</tr>
 			<tr>
-				<td>Sheut</td>
-				<td><%= dot_format(@character.sheut) %></td>
+				<td class="dots_label">Sheut</td>
+				<td class="dots_number"><%= dot_format(@character.sheut) %></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><%= @character.current_sheut %></td>
+        <% if can? :edit, @character %>
+          <%= form_for([@character.chronicle, @character]) do |f| %>
+            <td><%= f.label :current_sheut %></td>
+            <td><%= f.text_field :current_sheut, :class => "number", :remote => true, :action => url_for(:action => "save_current", :id => @character.id), :method => "put" %></td>
+          <% end %>
+        <% else %>
+          <td>Current Sheut</td>
+          <td><%= @character.current_sheut %></td>
+        <% end %>
 			</tr>
 		</table>
 

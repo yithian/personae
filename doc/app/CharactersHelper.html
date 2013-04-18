@@ -64,7 +64,17 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-clickable_specialties">#clickable_specialties</a>
+    
+    <li><a href="#method-i-clickable_stats">#clickable_stats</a>
+    
     <li><a href="#method-i-dot_format">#dot_format</a>
+    
+    <li><a href="#method-i-generalize_stat_name">#generalize_stat_name</a>
+    
+    <li><a href="#method-i-make_rollable">#make_rollable</a>
+    
+    <li><a href="#method-i-simple_markdown_format">#simple_markdown_format</a>
     
   </ul>
 </nav>
@@ -186,6 +196,91 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-clickable_specialties" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clickable_specialties</span><span
+            class="method-args">(field)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clickable_specialties-source">
+            <pre><span class="ruby-comment"># File app/helpers/characters_helper.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clickable_specialties</span>(<span class="ruby-identifier">field</span>)
+  <span class="ruby-identifier">field</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\[\s*:([^:]*):\s*\(([^)]*)\)\s*\][\r\n]{0,2}/</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">skill</span> = <span class="ruby-node">$1</span>
+    <span class="ruby-identifier">description</span> = <span class="ruby-node">$2</span>
+    <span class="ruby-identifier">spaceless_desc</span> = <span class="ruby-identifier">description</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&quot; &quot;</span>, <span class="ruby-string">&quot;_&quot;</span>)
+    <span class="ruby-identifier">output</span> = <span class="ruby-string">&quot;&lt;div class=&#39;custom_stats&#39;&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;ul&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;li class=&#39;dots_label&#39;&gt;#{skill.titleize} (#{description})&lt;/li&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;li id=&#39;#{skill.downcase}_#{spaceless_desc.downcase}&#39; class=&#39;specialty_value dots_number&#39;&gt;#{dot_format 1}&lt;/li&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;/ul&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;/div&gt;&quot;</span>
+
+    <span class="ruby-identifier">output</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clickable_specialties-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clickable_specialties-method -->
+
+    
+      <div id="method-i-clickable_stats" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clickable_stats</span><span
+            class="method-args">(field)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clickable_stats-source">
+            <pre><span class="ruby-comment"># File app/helpers/characters_helper.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clickable_stats</span>(<span class="ruby-identifier">field</span>)
+  <span class="ruby-identifier">field</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\[\s*:([^:]*): \*(\d+)\*\s*(\([^:]*\))?\s*\][\r\n]{0,2}/</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-node">$1</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-node">$2</span>
+    <span class="ruby-identifier">conditions</span> = <span class="ruby-node">$3</span>
+    <span class="ruby-identifier">output</span> = <span class="ruby-string">&quot;&lt;div class=&#39;custom_stats&#39;&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;ul&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;li class=&#39;dots_label&#39;&gt;#{name.titleize}: &lt;/li&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;li id=&#39;#{name.downcase}&#39; class=&#39;dots_number&#39;&gt;#{dot_format value.to_i}&lt;/li&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;li class=&#39;dots_description&#39;&gt; #{conditions}&lt;/li&gt;&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">conditions</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;/ul&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;/div&gt;&quot;</span>
+
+    <span class="ruby-identifier">output</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clickable_stats-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clickable_stats-method -->
+
+    
       <div id="method-i-dot_format" class="method-detail ">
         
         <div class="method-heading">
@@ -204,7 +299,7 @@
           <div class="method-source-code" id="dot_format-source">
             <pre><span class="ruby-comment"># File app/helpers/characters_helper.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dot_format</span>(<span class="ruby-identifier">rating</span>)
-  (<span class="ruby-string">&quot;•&quot;</span> * <span class="ruby-identifier">rating</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r•{5}/</span>, <span class="ruby-string">&quot;••••• &quot;</span>).<span class="ruby-identifier">strip</span>
+  (<span class="ruby-string">&quot;•&quot;</span> * <span class="ruby-identifier">rating</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/•{5}/</span>, <span class="ruby-string">&quot;••••• &quot;</span>).<span class="ruby-identifier">strip</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- dot_format-source -->
           
@@ -216,6 +311,156 @@
       </div><!-- dot_format-method -->
 
     
+      <div id="method-i-generalize_stat_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generalize_stat_name</span><span
+            class="method-args">(name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="generalize_stat_name-source">
+            <pre><span class="ruby-comment"># File app/helpers/characters_helper.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">generalize_stat_name</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;Morality&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-node">%w(harmony wisdom humanity synergy clarity memory)</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;Power_Stat&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-node">%w(gnosis wyrd psyche blood_potency primal_urge azoth sekhem rank)</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>)
+  <span class="ruby-identifier">name</span>.<span class="ruby-identifier">capitalize</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- generalize_stat_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- generalize_stat_name-method -->
+
+    
+      <div id="method-i-make_rollable" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_rollable</span><span
+            class="method-args">(field)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="make_rollable-source">
+            <pre><span class="ruby-comment"># File app/helpers/characters_helper.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">make_rollable</span>(<span class="ruby-identifier">field</span>)
+  <span class="ruby-identifier">field</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\[\s*:([^:]*): ([^*^\[]+(?:(?:(?:\+|-) [^*^\[]+)+)?)\s*(?:\s+\*([^*]+)\*)?\s*\]/</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-node">$1</span>
+    <span class="ruby-identifier">stats</span> = <span class="ruby-node">$2</span>
+    <span class="ruby-identifier">conditions</span> = <span class="ruby-node">$3</span> <span class="ruby-operator">||</span> <span class="ruby-string">&quot;&quot;</span>
+
+    <span class="ruby-comment"># Processing the list of stats</span>
+    <span class="ruby-comment"># Convert all the -s into &#39;+ -&#39; so that we don&#39;t lose track of it</span>
+    <span class="ruby-comment"># We add a &#39; + &#39; element in between the stats so it will</span>
+    <span class="ruby-comment"># look nice when we hover over the list</span>
+    <span class="ruby-identifier">stats</span> = <span class="ruby-identifier">stats</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39; - &#39;</span>, <span class="ruby-string">&#39; + -&#39;</span>)
+    <span class="ruby-identifier">stat_list</span> = <span class="ruby-identifier">stats</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39; + &#39;</span>)
+    <span class="ruby-identifier">stat_list</span> = <span class="ruby-identifier">stat_list</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">x</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&quot; &quot;</span>, <span class="ruby-string">&quot;_&quot;</span>).<span class="ruby-identifier">downcase</span>, <span class="ruby-string">&#39; + &#39;</span>]}.<span class="ruby-identifier">flatten</span>
+    <span class="ruby-identifier">stat_list</span>.<span class="ruby-identifier">pop</span>
+
+    <span class="ruby-comment"># Processing the condtions list</span>
+    <span class="ruby-comment"># We add a &#39; , &#39; so it will be a list of conditions</span>
+    <span class="ruby-identifier">conditions</span> = <span class="ruby-identifier">conditions</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:strip</span>)
+    <span class="ruby-identifier">conditions</span> = <span class="ruby-identifier">conditions</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">x</span>, <span class="ruby-string">&#39; , &#39;</span>]}.<span class="ruby-identifier">flatten</span>
+    <span class="ruby-identifier">conditions</span>.<span class="ruby-identifier">pop</span>
+
+    <span class="ruby-identifier">output</span> = <span class="ruby-string">&quot;&lt;div class=&#39;rollable&#39;&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;span class=&#39;rollable&#39;&gt;#{name.capitalize}&lt;/span&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;ul class=&#39;roll_stats&#39;&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;br/&gt;&quot;</span>
+    <span class="ruby-comment"># Pulling the first stat off since and then we have pairs of</span>
+    <span class="ruby-comment"># + and stat as the elements.</span>
+    <span class="ruby-comment"># There should be no li class for this, since it won&#39;t be</span>
+    <span class="ruby-comment"># subtracted or not counting</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;li&gt;#{stat_list.shift.capitalize}&lt;/li&gt;&quot;</span>
+    <span class="ruby-comment"># Iterating over each consecutive pair and then exiting the</span>
+    <span class="ruby-comment"># first isn&#39;t a + or -</span>
+    <span class="ruby-comment"># This lets us know if we need to make the stat negative</span>
+    <span class="ruby-identifier">stat_list</span>.<span class="ruby-identifier">each_cons</span>(<span class="ruby-value">2</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">first</span>, <span class="ruby-identifier">second</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment"># skip if we didn&#39;t start with a + sign</span>
+      <span class="ruby-comment"># The whole loop is based on that assumption</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39; + &#39;</span>
+      <span class="ruby-identifier">cl</span> = []
+      <span class="ruby-identifier">second</span> = <span class="ruby-identifier">generalize_stat_name</span>(<span class="ruby-identifier">second</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">second</span>.<span class="ruby-identifier">starts_with?</span>(<span class="ruby-string">&#39;-&#39;</span>)
+        <span class="ruby-identifier">cl</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;negative&#39;</span>
+        <span class="ruby-identifier">second</span> = <span class="ruby-identifier">second</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+        <span class="ruby-identifier">first</span> = <span class="ruby-string">&#39; - &#39;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;li class=&#39;no_count&#39;&gt;#{first}&lt;/li&gt;&quot;</span>
+      <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;li #{&quot;class=&#39;#{cl.join &#39; &#39;}&#39;&quot; unless cl.blank? }&gt;#{second}&lt;/li&gt;&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;br/&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;li class=&#39;no_count&#39;&gt; (&lt;/li&gt;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">conditions</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">conditions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;li class=&#39;roll_type&#39;&gt;#{c}&lt;/li&gt;&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;li class=&#39;no_count&#39;&gt;)&lt;/li&gt;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">conditions</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;/ul&gt;&quot;</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;/div&gt;&quot;</span>
+    <span class="ruby-identifier">output</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- make_rollable-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- make_rollable-method -->
+
+    
+      <div id="method-i-simple_markdown_format" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">simple_markdown_format</span><span
+            class="method-args">(field)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="simple_markdown_format-source">
+            <pre><span class="ruby-comment"># File app/helpers/characters_helper.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">simple_markdown_format</span>(<span class="ruby-identifier">field</span>)
+  <span class="ruby-identifier">field</span> = <span class="ruby-identifier">clickable_specialties</span>(<span class="ruby-identifier">field</span>)
+  <span class="ruby-identifier">field</span> = <span class="ruby-identifier">make_rollable</span>(<span class="ruby-identifier">field</span>)
+  <span class="ruby-identifier">field</span> = <span class="ruby-identifier">clickable_stats</span>(<span class="ruby-identifier">field</span>)
+  <span class="ruby-identifier">simple_format</span>(<span class="ruby-identifier">field</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- simple_markdown_format-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- simple_markdown_format-method -->
+
+    
     </section><!-- public-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
@@ -225,7 +470,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

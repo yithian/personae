@@ -290,7 +290,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 191</span>
+            <pre><span class="ruby-comment"># File app/controllers/characters_controller.rb, line 196</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">destroy</span>
 
@@ -494,7 +494,7 @@
   <span class="ruby-identifier">cancel</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-ivar">@error</span> = <span class="ruby-keyword">false</span>
   
-  <span class="ruby-identifier">params</span>[<span class="ruby-value">:dice_count</span>].<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp">%r(\d+)\s*-\s*(\d+)/</span>, <span class="ruby-string">&#39;\1 + -\2&#39;</span>).<span class="ruby-identifier">split</span>(<span class="ruby-regexp">%r\s*\+\s*/</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@dice_count</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_i</span> }
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:dice_count</span>].<span class="ruby-identifier">gsub</span>( <span class="ruby-regexp">/(\d+)\s*-\s*(\d+)/</span>, <span class="ruby-string">&#39;\1 + -\2&#39;</span>).<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/\s*\+\s*/</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@dice_count</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_i</span> }
   
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:reroll</span>]
   <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;10&#39;</span>, <span class="ruby-string">&#39;9&#39;</span>, <span class="ruby-string">&#39;8&#39;</span>
@@ -553,6 +553,11 @@
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_willpower</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_willpower</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_willpower</span>]
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_fuel</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_fuel</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_fuel</span>]
   <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_infernal_will</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_infernal_will</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_infernal_will</span>]
+  <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_ab</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_ab</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_ab</span>]
+  <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_ba</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_ba</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_ba</span>]
+  <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_ka</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_ka</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_ka</span>]
+  <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_ren</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_ren</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_ren</span>]
+  <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">current_sheut</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_sheut</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:character</span>][<span class="ruby-value">:current_sheut</span>]
   
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-identifier">head</span> <span class="ruby-value">:success</span>
@@ -822,7 +827,7 @@ obsidian_character_id is specified</p>
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 
