@@ -100,7 +100,7 @@ class Character < ActiveRecord::Base
   validates :speed, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
   validates :initiative, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
   validates :defense, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
-  validates :morality, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
+  validates :integrity, :presence => true, :numericality => {:greater_than_or_equal_to => 0}
   validates :power_stat, :numericality => {:greater_than_or_equal_to => 0}
   validates :max_fuel, :numericality => {:greater_than_or_equal_to => 0}
   validates :current_fuel, :numericality => {:greater_than_or_equal_to => 0}

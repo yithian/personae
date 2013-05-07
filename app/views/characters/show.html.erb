@@ -241,20 +241,20 @@
       <tr>
         <td>Speed:</td>
         <td id="speed"><%= @character.speed %></td>
-        <td>Derangements:</td>
+        <td>Conditions:</td>
       </tr>
       <tr>
         <td>Defense:</td>
         <td id="defense"><%= @character.defense %></td>
-        <td rowspan="10" colspan="2"><%= simple_markdown_format(@character.derangements) %></td>
+        <td rowspan="10" colspan="2"><%= simple_markdown_format(@character.conditions) %></td>
       </tr>
       <tr>
         <td>Armor:</td>
         <td id="armor"><%= @character.armor %></td>
       </tr>
       <tr>
-        <td class='dots_label'><%= @character.splat.morality_name %>:</td>
-        <td id='morality' class='dots_number'><%= dot_format(@character.morality) %></td>
+        <td class='dots_label'><%= @character.splat.integrity_name %>:</td>
+        <td id='integrity' class='dots_number'><%= dot_format(@character.integrity) %></td>
       </tr>
       <% unless @character.is_mortal? %>
       <tr>
@@ -735,10 +735,10 @@
   </div>
 <% end %>
 
-<% if can? :read_experience, @character %>
-  <div id="experience">
-    <h5 class="<%= @character.splat.name.downcase %>">Experience</h5>
-    <%= simple_markdown_format(@character.experience) %>
+<% if can? :read_experiences, @character %>
+  <div id="experiences">
+    <h5 class="<%= @character.splat.name.downcase %>">Experiences</h5>
+    <%= simple_markdown_format(@character.experiences) %>
   </div>
 <% end %>
 

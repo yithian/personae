@@ -5,15 +5,15 @@ u.save!
 
 Chronicle.create(:name => "Generic", :description => "This should be customized for your chronicle's needs")
 
-Splat.create(:name => "Mortal", :nature_name => "Nature", :subnature_name => "Subnature", :clique_name => "Clique", :ideology_name => "Ideology", :morality_name => "Morality", :power_stat_name => "Conviction", :fuel_name => "Fuel")
-Splat.create(:name => "Mage", :nature_name => "Path", :subnature_name => "Subnature", :clique_name => "Cabal", :ideology_name => "Order", :morality_name => "Wisdom", :power_stat_name => "Gnosis", :fuel_name => "Mana")
-Splat.create(:name => "Werewolf", :nature_name => "Auspice", :subnature_name => "Subnature", :clique_name => "Pack", :ideology_name => "Tribe", :morality_name => "Harmony", :power_stat_name => "Primal Urge", :fuel_name => "Essence")
-Splat.create(:name => "Vampire", :nature_name => "Clan", :subnature_name => "Subnature", :clique_name => "Coterie", :ideology_name => "Covenant", :morality_name => "Humanity", :power_stat_name => "Blood Potency", :fuel_name => "Vitae")
-Splat.create(:name => "Promethean", :nature_name => "Lineage", :subnature_name => "Subnature", :clique_name => "Throng", :ideology_name => "Refinement", :morality_name => "Humanity", :power_stat_name => "Azoth", :fuel_name => "Pyros")
-Splat.create(:name => "Changeling", :nature_name => "Seeming", :subnature_name => "Kith", :clique_name => "Motley", :ideology_name => "Court", :morality_name => "Clarity", :power_stat_name => "Wyrd", :fuel_name => "Glamour")
-Splat.create(:name => "Hunter", :nature_name => "Profession", :subnature_name => "Subnature", :clique_name => "Cell", :ideology_name => "Organization", :morality_name => "Morality", :power_stat_name => "Power Stat", :fuel_name => "Fuel")
-Splat.create(:name => "Geist", :nature_name => "Threshold", :subnature_name => "Subnature", :clique_name => "Krewe", :ideology_name => "Archetype", :morality_name => "Synergy", :power_stat_name => "Psyche", :fuel_name => "Plasm")
-Splat.create(:name => "Mummy", :nature_name => "Decree", :clique_name => "Meret", :ideology_name => "Guild", :power_stat_name => "Sekhem", :fuel_name => "Fuel", :morality_name => "Memory", :subnature_name => "Judge")
+Splat.create(:name => "Mortal", :nature_name => "Nature", :subnature_name => "Subnature", :clique_name => "Clique", :ideology_name => "Ideology", :integrity_name => "Integrity", :power_stat_name => "Conviction", :fuel_name => "Fuel")
+Splat.create(:name => "Mage", :nature_name => "Path", :subnature_name => "Subnature", :clique_name => "Cabal", :ideology_name => "Order", :integrity_name => "Wisdom", :power_stat_name => "Gnosis", :fuel_name => "Mana")
+Splat.create(:name => "Werewolf", :nature_name => "Auspice", :subnature_name => "Subnature", :clique_name => "Pack", :ideology_name => "Tribe", :integrity_name => "Harmony", :power_stat_name => "Primal Urge", :fuel_name => "Essence")
+Splat.create(:name => "Vampire", :nature_name => "Clan", :subnature_name => "Subnature", :clique_name => "Coterie", :ideology_name => "Covenant", :integrity_name => "Humanity", :power_stat_name => "Blood Potency", :fuel_name => "Vitae")
+Splat.create(:name => "Promethean", :nature_name => "Lineage", :subnature_name => "Subnature", :clique_name => "Throng", :ideology_name => "Refinement", :integrity_name => "Humanity", :power_stat_name => "Azoth", :fuel_name => "Pyros")
+Splat.create(:name => "Changeling", :nature_name => "Seeming", :subnature_name => "Kith", :clique_name => "Motley", :ideology_name => "Court", :integrity_name => "Clarity", :power_stat_name => "Wyrd", :fuel_name => "Glamour")
+Splat.create(:name => "Hunter", :nature_name => "Profession", :subnature_name => "Subnature", :clique_name => "Cell", :ideology_name => "Organization", :integrity_name => "Integrity", :power_stat_name => "Power Stat", :fuel_name => "Fuel")
+Splat.create(:name => "Geist", :nature_name => "Threshold", :subnature_name => "Subnature", :clique_name => "Krewe", :ideology_name => "Archetype", :integrity_name => "Synergy", :power_stat_name => "Psyche", :fuel_name => "Plasm")
+Splat.create(:name => "Mummy", :nature_name => "Decree", :clique_name => "Meret", :ideology_name => "Guild", :power_stat_name => "Sekhem", :fuel_name => "Fuel", :integrity_name => "Memory", :subnature_name => "Judge")
 
 
 Nature.create(:name => "Mortal", :splat_id => Splat.find_by_name("Mortal").id)

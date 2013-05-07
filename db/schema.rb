@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327005313) do
+ActiveRecord::Schema.define(:version => 20130507155517) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(:version => 20130327005313) do
     t.integer  "initiative",            :default => 2
     t.integer  "defense",               :default => 1
     t.integer  "armor",                 :default => 0
-    t.integer  "morality",              :default => 7
-    t.text     "derangements"
+    t.integer  "integrity",             :default => 7
+    t.text     "conditions"
     t.text     "merits"
     t.integer  "power_stat",            :default => 1
     t.integer  "death",                 :default => 0
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(:version => 20130327005313) do
     t.boolean  "read_background",       :default => false
     t.boolean  "read_crunch",           :default => false
     t.integer  "max_fuel",              :default => 7
-    t.text     "experience"
-    t.boolean  "read_experience",       :default => false
+    t.text     "experiences"
+    t.boolean  "read_experiences",      :default => false
     t.boolean  "read_clique",           :default => false
     t.boolean  "read_ideology",         :default => false
     t.boolean  "read_nature",           :default => false
@@ -181,6 +181,8 @@ ActiveRecord::Schema.define(:version => 20130327005313) do
     t.integer  "current_sheut",         :default => 0,         :null => false
     t.text     "affinities"
     t.text     "utterances"
+    t.text     "aspirations"
+    t.text     "breaking_points"
   end
 
   add_index "characters", ["chronicle_id"], :name => "index_characters_on_chronicle_id"
@@ -243,7 +245,7 @@ ActiveRecord::Schema.define(:version => 20130327005313) do
     t.string   "nature_name"
     t.string   "clique_name"
     t.string   "ideology_name"
-    t.string   "morality_name"
+    t.string   "integrity_name"
     t.string   "power_stat_name"
     t.string   "fuel_name"
     t.datetime "created_at"

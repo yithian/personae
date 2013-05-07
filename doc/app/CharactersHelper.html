@@ -259,7 +259,7 @@
           <div class="method-source-code" id="generalize_stat_name-source">
             <pre><span class="ruby-comment"># File app/helpers/characters_helper.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">generalize_stat_name</span>(<span class="ruby-identifier">name</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;Morality&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-node">%w(harmony wisdom humanity synergy clarity memory)</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;Integrity&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-node">%w(harmony wisdom humanity synergy clarity memory)</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;Power_Stat&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-node">%w(gnosis wyrd psyche blood_potency primal_urge azoth sekhem rank)</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>)
   <span class="ruby-identifier">name</span>.<span class="ruby-identifier">capitalize</span>
 <span class="ruby-keyword">end</span></pre>

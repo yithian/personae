@@ -6,7 +6,7 @@ one:
   subnature_name: MySubnatureName
   clique_name: MyCliqueName
   ideology_name: MyIdeologyName
-  morality_name: MyMoralityName
+  integrity_name: MyintegrityName
   power_stat_name: MyPowerStatName
   fuel_name: MyFuelName
 
@@ -16,7 +16,7 @@ two:
   subnature_name: MyOtherSubnatureName
   clique_name: MyOtherCliqueName
   ideology_name: MyOtherIdeologyName
-  morality_name: MyOtherMoralityName
+  integrity_name: MyOtherintegrityName
   power_stat_name: MyOtherPowerStatName
   fuel_name: MyOtherFuelName
 
@@ -26,7 +26,7 @@ three:
   subnature_name: MyThirdSubnatureName
   clique_name: MyThirdCliqueName
   ideology_name: MyThirdIdeologyName
-  morality_name: MyThirdMoralityName
+  integrity_name: MyThirdintegrityName
   power_stat_name: MyThirdPowerStatName
   fuel_name: MyThirdFuelName
     
@@ -36,7 +36,7 @@ Werewolf:
   subnature_name: MyWerewolfSubnatureName
   clique_name: MyWerewolfCliqueName
   ideology_name: MyWerewolfIdeologyName
-  morality_name: MyWerewolfMoralityName
+  integrity_name: MyWerewolfintegrityName
   power_stat_name: MyWerewolfPowerStatName
   fuel_name: MyWerewolfFuelName
     

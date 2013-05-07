@@ -49,8 +49,8 @@ one:
   initiative: 1
   defense: 1
   armor: 1
-  morality: 1
-  derangements: MyDerangementsText
+  integrity: 1
+  conditions: MyConditionsText
   merits: MyMeritsText
   power_stat: 1
   death: 1
@@ -74,8 +74,8 @@ one:
   current_fuel: 1
   current_health: 1
   current_willpower: 1
-  experience: MyExperienceText
-  read_experience: true
+  experiences: MyExperiencesText
+  read_experiences: true
   read_clique: true
   read_ideology: true
   read_nature: true
@@ -183,8 +183,8 @@ two:
   initiative: 2
   defense: 2
   armor: 2
-  morality: 2
-  derangements: MyOtherDerangementsText
+  integrity: 2
+  conditions: MyOtherConditionsText
   merits: MyOtherMeritsText
   power_stat: 2
   death: 2
@@ -208,8 +208,8 @@ two:
   current_fuel: 20
   current_health: 2
   current_willpower: 2
-  experience: MyOtherExperienceText
-  read_experience: false
+  experiences: MyOtherExperiencesText
+  read_experiences: false
   read_clique: false
   read_ideology: false
   read_nature: false
@@ -317,8 +317,8 @@ three:
   initiative: 3
   defense: 3
   armor: 3
-  morality: 3
-  derangements: MyThirdDerangementsText
+  integrity: 3
+  conditions: MyThirdConditionsText
   merits: MyThirdMeritsText
   power_stat: 3
   death: 3
@@ -342,8 +342,8 @@ three:
   current_fuel: 30
   current_health: 30
   current_willpower: 30
-  experience: MyThirdExperienceText
-  read_experience: false
+  experiences: MyThirdExperiencesText
+  read_experiences: false
   read_clique: false
   read_ideology: false
   read_nature: false

@@ -134,11 +134,11 @@ class CharactersHelperTest < ActionView::TestCase
     assert_match(/ul class='roll_stats'/, make_rollable(string))
   end
 
-  morality = {'mortal' => 'morality', 'mage' => 'wisdom', 'werewolf' => 'harmony', 'vampire' => 'humanity', 'promethean' => 'humanity', 'changeling' => 'clarity', 'hunter' => 'morality', 'geist' => 'synergy', 'spirit' => 'morality', 'mummy' => 'memory'}
+  integrity = {'mortal' => 'integrity', 'mage' => 'wisdom', 'werewolf' => 'harmony', 'vampire' => 'humanity', 'promethean' => 'humanity', 'changeling' => 'clarity', 'hunter' => 'integrity', 'geist' => 'synergy', 'spirit' => 'integrity', 'mummy' => 'memory'}
   power_stat = {'mage' => 'gnosis', 'werewolf' => 'primal_urge', 'vampire' => 'blood_potency', 'promethean' => 'azoth', 'changeling' => 'wyrd', 'geist' => 'psyche', 'spirit' => 'rank', 'mummy' => 'sekhem'}
   %w(mortal mage werewolf vampire promethean changeling hunter geist spirit mummy).each do |splat|
     test "generalize_stat_name should work for #{splat}" do
-      assert_equal 'Morality', generalize_stat_name(morality[splat])
+      assert_equal 'Integrity', generalize_stat_name(integrity[splat])
       assert_equal 'Power_Stat', generalize_stat_name(power_stat[splat]) if power_stat.has_key?(splat)
     end
   end

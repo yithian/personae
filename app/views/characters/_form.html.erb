@@ -240,20 +240,20 @@
     <tr>
       <td><%= f.label :speed %></td>
       <td><%= f.text_field :speed, :tabindex => "13", :class => "number" %></td>
-      <td colspan="2"><%= f.label :derangements %></td>
+      <td colspan="2"><%= f.label :conditions %></td>
     </tr>
     <tr>
       <td><%= f.label :defense %></td>
       <td><%= f.text_field :defense, :tabindex => "13", :class => "number" %></td>
-      <td rowspan="6" colspan="2" class="growdown"><%= f.text_area :derangements, :tabindex => "14" %></td>
+      <td rowspan="6" colspan="2" class="growdown"><%= f.text_area :conditions, :tabindex => "14" %></td>
     </tr>
     <tr>
       <td><%= f.label :armor %></td>
       <td><%= f.text_field :armor, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
-      <td><%= f.label :morality, @character.splat.morality_name, :id => "morality_label" %></td>
-      <td><%= f.text_field :morality, :tabindex => "13", :class => "number" %></td>
+      <td><%= f.label :integrity, @character.splat.integrity_name, :id => "integrity_label" %></td>
+      <td><%= f.text_field :integrity, :tabindex => "13", :class => "number" %></td>
     </tr>
     <tr>
       <td id="power_stat_label_cell" <%= hidden_if(@character.is_mortal?) %> >
@@ -649,9 +649,9 @@
   <%= f.check_box :read_crunch, :class => "checkbox" %> <%= f.label :read_crunch, "Reveal crunch", :class => "checkbox inline", :title => "Crunch is defined as a character's attributes, skills, advantages, merits, equipment and any supernatural powers" %>
 
 
-  <h5 class='<%= @character.splat.name.downcase %>'>Experience</h5>
-  <p><%= f.text_area :experience, :tabindex => "29" %></p>
-  <%= f.check_box :read_experience, :class => "checkbox" %> <%= f.label :read_experience, "Reveal experience", :class => "checkbox inline" %>
+  <h5 class='<%= @character.splat.name.downcase %>'>Experiences</h5>
+  <p><%= f.text_area :experiences, :tabindex => "29" %></p>
+  <%= f.check_box :read_experiences, :class => "checkbox" %> <%= f.label :read_experiences, "Reveal experiences", :class => "checkbox inline" %>
   
 
   <h5 class='<%= @character.splat.name.downcase %>'>Notes</h5>

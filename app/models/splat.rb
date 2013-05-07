@@ -16,7 +16,7 @@ class Splat < ActiveRecord::Base
   validates :nature_name, :presence => true
   validates :clique_name, :presence => true
   validates :ideology_name, :presence => true
-  validates :morality_name, :presence => true
+  validates :integrity_name, :presence => true
   validates :power_stat_name, :presence => true
   validates :fuel_name, :presence => true
 end
