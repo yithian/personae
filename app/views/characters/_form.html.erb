@@ -103,6 +103,11 @@
   <%= f.check_box :read_deeds, :class => "checkbox" %> <%= f.label :read_deeds, "Reveal known deeds", :class => "checkbox inline" %>
 
 
+  <h5 class='<%= @character.splat.name.downcase %>'>Aspirations</h5>
+  <p><%= f.text_area :aspirations, :tabindex => "5" %></p>
+  <%= f.check_box :read_aspirations, :class => "checkbox" %> <%= f.label :read_aspirations, "Reveal aspirations", :class => "checkbox inline" %>
+  
+
   <h5 class='<%= @character.splat.name.downcase %>'>Attributes</h5>
   <table class="six_cells" id="attributes">
       <tr id="power_row">

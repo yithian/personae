@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507155517) do
+ActiveRecord::Schema.define(:version => 20130507215348) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20130507155517) do
     t.text     "utterances"
     t.text     "aspirations"
     t.text     "breaking_points"
+    t.boolean  "read_aspirations",      :default => false
   end
 
   add_index "characters", ["chronicle_id"], :name => "index_characters_on_chronicle_id"

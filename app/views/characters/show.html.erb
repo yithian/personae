@@ -69,6 +69,13 @@
   </div>
 <% end %>
 
+<% if can? :read_aspirations, @character %>
+  <div id="aspirations">
+    <h5 class="<%= @character.splat.name.downcase %>">Aspirations</h5>
+	<%= simple_format(@character.aspirations) %>
+  </div>
+<% end %>
+
 <% if can? :read_crunch, @character %>
   <div id="attributes">
     <h5 class="<%= @character.splat.name.downcase %>">Attributes</h5>
