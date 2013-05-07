@@ -39,7 +39,7 @@
     </tr>
     <tr>
       <td><b><%= f.label :virtue %></b></td>
-      <td><%= f.select :virtue, Character::VIRTUES, {}, {:tabindex => "1"} %></td>
+      <td><%= f.text_field :virtue, :tabindex => "1" %></td>
       <td id="nature_label_cell" <%= hidden_if((@character.splat.name == "Spirit" or @character.splat.name == "Mortal")) %> >
         <b><%= label_tag 'nature_id', @character.splat.nature_name, :id => "nature_label" %></b>
       </td>
@@ -49,8 +49,8 @@
       </td>
     </tr>
     <tr>
-      <td rowspan='2' class='growdown'><b><%= label_tag 'character_vice', "Vice" %></b></td>
-      <td rowspan='2' class='growdown'><%= select_tag "character_vice[]", options_for_select(Character::VICES, @character.vice.split(" ")), :multiple => true, :size => 4, :id => "character[vice]", :tabindex => "1" %></td>
+      <td rowspan="2"><b><%= f.label :vice %></b></td>
+      <td rowspan="2"><%= f.text_field :vice, :tabindex => "1" %></td>
       <td id="subnature_label_cell" <%= hidden_if((not @character.is_changeling?)) %>>
         <b><%= label_tag 'character_subnature_id', @character.splat.subnature_name, :id => "subnature_label" %></b>
       </td>

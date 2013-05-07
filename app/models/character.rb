@@ -9,35 +9,6 @@
 # The Storyteller user is considered to be an owner of every character.
 
 class Character < ActiveRecord::Base
-  # Creates a validator for Character.virtue . Valid virtues are 'Charity', 'Faith', 'Fortitude'
-  # 'Hope', 'Justice', 'Prudence' and 'Temperance'
-
-  class VirtueValidator < ActiveModel::EachValidator
-    # Validates all records passed to it
-    def validate_each(record, attribute, value)
-      unless Character::VIRTUES.include?(value)
-        record.errors[attribute] << "#{value} is an invalid virtue"
-      end
-    end
-  end
-
-  # Creates a validator for Character.vice . Valid vices are 'Envy', 'Gluttony', 'Greed', 'Lust'
-  # 'Sloth', 'Pride', 'Wrath'
-  class ViceValidator < ActiveModel::EachValidator
-    # Validates all records passed to it
-    def validate_each(record, attribute, value)
-      vices = value.split(" ")
-
-      record.errors[attribute] << "Too many vices selected" unless vices.length < 3
-
-      vices.each do |vice|
-        unless Character::VICES.include? vice
-          record.errors[attribute] << "#{vice} is an invalid vice"
-        end
-      end
-    end
-  end
-
   self.per_page = 30
 
   belongs_to :clique
@@ -49,17 +20,13 @@ class Character < ActiveRecord::Base
   belongs_to :chronicle
   has_many :comments, :dependent => :destroy
 
-  # An Array of Strings of valid virtues in World of Darkness games. Primarily used to
-  # populate dropdown menus.
-  VIRTUES = [ 'Charity', 'Faith', 'Fortitude', 'Hope', 'Justice', 'Prudence', 'Temperance' ]
-
   # An Array of Strings of valid vices in World of Darkness games. Primarily used to
   # populate dropdown menus.
   VICES = [ 'Envy', 'Gluttony', 'Greed', 'Lust', 'Sloth', 'Pride', 'Wrath' ]
 
   validates :name, :presence => true, :unique_in_chronicle => true
-  validates :virtue, :presence => true, :virtue => true
-  validates :vice, :presence => true, :vice => true
+  validates :virtue, :presence => true
+  validates :vice, :presence => true
   validates :clique_id, :presence => true, :numericality => true
   validates :ideology_id, :numericality => true
   validates :splat_id, :numericality => true

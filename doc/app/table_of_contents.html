@@ -6,19 +6,16 @@
 
 <title>Table of Contents - Rails Application Documentation</title>
 
-<link href="./fonts.css" rel="stylesheet">
-<link href="./rdoc.css" rel="stylesheet">
-
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
-<script src="./js/navigation.js"></script>
-<script src="./js/search_index.js"></script>
-<script src="./js/search.js"></script>
-<script src="./js/searcher.js"></script>
 <script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" class="table-of-contents">
@@ -35,7 +32,7 @@
       <li><a href="README_rdoc.html#label-Welcome">Welcome</a>
       <li><a href="README_rdoc.html#label-Terms">Terms</a>
       <li><a href="README_rdoc.html#label-Setup">Setup</a>
-      <li><a href="README_rdoc.html#label-POSIX+%28Linux%2C+Mac%2C+Solaris%2C+etc%29+Apache+setup">POSIX (Linux, Mac, Solaris, etc) Apache setup</a>
+      <li><a href="README_rdoc.html#label-POSIX+-28Linux-2C+Mac-2C+Solaris-2C+etc-29+Apache+setup">POSIX (Linux, Mac, Solaris, etc) Apache setup</a>
       <li><a href="README_rdoc.html#label-Windows+Apache+setup">Windows Apache setup</a>
       <li><a href="README_rdoc.html#label-Accessing+your+site">Accessing your site</a>
       <li><a href="README_rdoc.html#label-Email+notifications">Email notifications</a>
@@ -60,16 +57,13 @@
     <a href="ApplicationController.html">ApplicationController</a>
   </li>
   <li class="module">
+    <a href="ApplicationController/CanCan.html">ApplicationController::CanCan</a>
+  </li>
+  <li class="module">
     <a href="ApplicationHelper.html">ApplicationHelper</a>
   </li>
   <li class="class">
     <a href="Character.html">Character</a>
-  </li>
-  <li class="class">
-    <a href="Character/ViceValidator.html">Character::ViceValidator</a>
-  </li>
-  <li class="class">
-    <a href="Character/VirtueValidator.html">Character::VirtueValidator</a>
   </li>
   <li class="class">
     <a href="CharactersController.html">CharactersController</a>
@@ -149,14 +143,14 @@
 <ul>
 
   <li class="method">
-    <a href="Clique.html#method-c-known_to">::known_to</a>
-    &mdash;
-    <span class="container">Clique</span>
-
-  <li class="method">
     <a href="Character.html#method-c-known_to">::known_to</a>
     &mdash;
     <span class="container">Character</span>
+
+  <li class="method">
+    <a href="Clique.html#method-c-known_to">::known_to</a>
+    &mdash;
+    <span class="container">Clique</span>
 
   <li class="method">
     <a href="Subnature.html#method-c-list_for_nature">::list_for_nature</a>
@@ -189,14 +183,19 @@
     <span class="container">CharactersHelper</span>
 
   <li class="method">
-    <a href="CliquesController.html#method-i-create">#create</a>
+    <a href="CharactersController.html#method-i-create">#create</a>
     &mdash;
-    <span class="container">CliquesController</span>
+    <span class="container">CharactersController</span>
 
   <li class="method">
     <a href="ChroniclesController.html#method-i-create">#create</a>
     &mdash;
     <span class="container">ChroniclesController</span>
+
+  <li class="method">
+    <a href="CliquesController.html#method-i-create">#create</a>
+    &mdash;
+    <span class="container">CliquesController</span>
 
   <li class="method">
     <a href="CommentsController.html#method-i-create">#create</a>
@@ -214,7 +213,7 @@
     <span class="container">NaturesController</span>
 
   <li class="method">
-    <a href="CharactersController.html#method-i-create">#create</a>
+    <a href="CharactersController.html#method-i-destroy">#destroy</a>
     &mdash;
     <span class="container">CharactersController</span>
 
@@ -222,21 +221,6 @@
     <a href="ChroniclesController.html#method-i-destroy">#destroy</a>
     &mdash;
     <span class="container">ChroniclesController</span>
-
-  <li class="method">
-    <a href="IdeologiesController.html#method-i-destroy">#destroy</a>
-    &mdash;
-    <span class="container">IdeologiesController</span>
-
-  <li class="method">
-    <a href="NaturesController.html#method-i-destroy">#destroy</a>
-    &mdash;
-    <span class="container">NaturesController</span>
-
-  <li class="method">
-    <a href="CharactersController.html#method-i-destroy">#destroy</a>
-    &mdash;
-    <span class="container">CharactersController</span>
 
   <li class="method">
     <a href="CliquesController.html#method-i-destroy">#destroy</a>
@@ -249,6 +233,16 @@
     <span class="container">CommentsController</span>
 
   <li class="method">
+    <a href="IdeologiesController.html#method-i-destroy">#destroy</a>
+    &mdash;
+    <span class="container">IdeologiesController</span>
+
+  <li class="method">
+    <a href="NaturesController.html#method-i-destroy">#destroy</a>
+    &mdash;
+    <span class="container">NaturesController</span>
+
+  <li class="method">
     <a href="CharactersHelper.html#method-i-dot_format">#dot_format</a>
     &mdash;
     <span class="container">CharactersHelper</span>
@@ -257,6 +251,11 @@
     <a href="CharactersController.html#method-i-edit">#edit</a>
     &mdash;
     <span class="container">CharactersController</span>
+
+  <li class="method">
+    <a href="ChroniclesController.html#method-i-edit">#edit</a>
+    &mdash;
+    <span class="container">ChroniclesController</span>
 
   <li class="method">
     <a href="CliquesController.html#method-i-edit">#edit</a>
@@ -272,11 +271,6 @@
     <a href="NaturesController.html#method-i-edit">#edit</a>
     &mdash;
     <span class="container">NaturesController</span>
-
-  <li class="method">
-    <a href="ChroniclesController.html#method-i-edit">#edit</a>
-    &mdash;
-    <span class="container">ChroniclesController</span>
 
   <li class="method">
     <a href="Chronicle.html#method-i-find_npcs">#find_npcs</a>
@@ -304,6 +298,11 @@
     <span class="container">CharactersController</span>
 
   <li class="method">
+    <a href="ChroniclesController.html#method-i-index">#index</a>
+    &mdash;
+    <span class="container">ChroniclesController</span>
+
+  <li class="method">
     <a href="CliquesController.html#method-i-index">#index</a>
     &mdash;
     <span class="container">CliquesController</span>
@@ -322,11 +321,6 @@
     <a href="StaticController.html#method-i-index">#index</a>
     &mdash;
     <span class="container">StaticController</span>
-
-  <li class="method">
-    <a href="ChroniclesController.html#method-i-index">#index</a>
-    &mdash;
-    <span class="container">ChroniclesController</span>
 
   <li class="method">
     <a href="Character.html#method-i-is_changeling-3F">#is_changeling?</a>
@@ -409,9 +403,9 @@
     <span class="container">Character</span>
 
   <li class="method">
-    <a href="CliquesController.html#method-i-new">#new</a>
+    <a href="CharactersController.html#method-i-new">#new</a>
     &mdash;
-    <span class="container">CliquesController</span>
+    <span class="container">CharactersController</span>
 
   <li class="method">
     <a href="ChroniclesController.html#method-i-new">#new</a>
@@ -419,24 +413,24 @@
     <span class="container">ChroniclesController</span>
 
   <li class="method">
+    <a href="CliquesController.html#method-i-new">#new</a>
+    &mdash;
+    <span class="container">CliquesController</span>
+
+  <li class="method">
     <a href="CommentsController.html#method-i-new">#new</a>
     &mdash;
     <span class="container">CommentsController</span>
 
   <li class="method">
-    <a href="NaturesController.html#method-i-new">#new</a>
-    &mdash;
-    <span class="container">NaturesController</span>
-
-  <li class="method">
-    <a href="CharactersController.html#method-i-new">#new</a>
-    &mdash;
-    <span class="container">CharactersController</span>
-
-  <li class="method">
     <a href="IdeologiesController.html#method-i-new">#new</a>
     &mdash;
     <span class="container">IdeologiesController</span>
+
+  <li class="method">
+    <a href="NaturesController.html#method-i-new">#new</a>
+    &mdash;
+    <span class="container">NaturesController</span>
 
   <li class="method">
     <a href="Clique.html#method-i-owned_by_user-3F">#owned_by_user?</a>
@@ -474,19 +468,14 @@
     <span class="container">CharactersController</span>
 
   <li class="method">
-    <a href="ChroniclesController.html#method-i-show">#show</a>
-    &mdash;
-    <span class="container">ChroniclesController</span>
-
-  <li class="method">
     <a href="CharactersController.html#method-i-show">#show</a>
     &mdash;
     <span class="container">CharactersController</span>
 
   <li class="method">
-    <a href="NaturesController.html#method-i-show">#show</a>
+    <a href="ChroniclesController.html#method-i-show">#show</a>
     &mdash;
-    <span class="container">NaturesController</span>
+    <span class="container">ChroniclesController</span>
 
   <li class="method">
     <a href="CliquesController.html#method-i-show">#show</a>
@@ -499,6 +488,11 @@
     <span class="container">IdeologiesController</span>
 
   <li class="method">
+    <a href="NaturesController.html#method-i-show">#show</a>
+    &mdash;
+    <span class="container">NaturesController</span>
+
+  <li class="method">
     <a href="CharactersHelper.html#method-i-simple_markdown_format">#simple_markdown_format</a>
     &mdash;
     <span class="container">CharactersHelper</span>
@@ -507,6 +501,11 @@
     <a href="User.html#method-i-super_user-3F">#super_user?</a>
     &mdash;
     <span class="container">User</span>
+
+  <li class="method">
+    <a href="Character.html#method-i-to_param">#to_param</a>
+    &mdash;
+    <span class="container">Character</span>
 
   <li class="method">
     <a href="Chronicle.html#method-i-to_param">#to_param</a>
@@ -524,9 +523,14 @@
     <span class="container">Ideology</span>
 
   <li class="method">
-    <a href="Character.html#method-i-to_param">#to_param</a>
+    <a href="CharactersController.html#method-i-update">#update</a>
     &mdash;
-    <span class="container">Character</span>
+    <span class="container">CharactersController</span>
+
+  <li class="method">
+    <a href="ChroniclesController.html#method-i-update">#update</a>
+    &mdash;
+    <span class="container">ChroniclesController</span>
 
   <li class="method">
     <a href="CliquesController.html#method-i-update">#update</a>
@@ -539,19 +543,9 @@
     <span class="container">IdeologiesController</span>
 
   <li class="method">
-    <a href="CharactersController.html#method-i-update">#update</a>
-    &mdash;
-    <span class="container">CharactersController</span>
-
-  <li class="method">
     <a href="NaturesController.html#method-i-update">#update</a>
     &mdash;
     <span class="container">NaturesController</span>
-
-  <li class="method">
-    <a href="ChroniclesController.html#method-i-update">#update</a>
-    &mdash;
-    <span class="container">ChroniclesController</span>
 
   <li class="method">
     <a href="CharactersController.html#method-i-update_chronicle">#update_chronicle</a>
@@ -569,26 +563,16 @@
     <span class="container">CharactersController</span>
 
   <li class="method">
-    <a href="Character/ViceValidator.html#method-i-validate_each">#validate_each</a>
-    &mdash;
-    <span class="container">Character::ViceValidator</span>
-
-  <li class="method">
     <a href="UniqueInChronicleValidator.html#method-i-validate_each">#validate_each</a>
     &mdash;
     <span class="container">UniqueInChronicleValidator</span>
-
-  <li class="method">
-    <a href="Character/VirtueValidator.html#method-i-validate_each">#validate_each</a>
-    &mdash;
-    <span class="container">Character::VirtueValidator</span>
 </ul>
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.0.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
