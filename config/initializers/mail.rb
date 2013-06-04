@@ -3,7 +3,7 @@ ActionMailer::Base.smtp_settings = {
   :port           => '587',
   :authentication => :plain,
   :user_name      => 'infinitepersonae@gmail.com',
-  :password       => ENV['OPENSHIFT_DB_PASSWORD'],
+  :password       => ENV['OPENSHIFT_MYSQL_DB_PASSWORD'],
   :domain         => 'gmail.com'
 }
 ActionMailer::Base.delivery_method = :smtp
