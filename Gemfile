@@ -1,6 +1,6 @@
 source 'http://rubygems.org/'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 gem 'rake'
 gem 'mysql2'
 gem 'thin'
@@ -13,11 +13,9 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'dice_roller'
 
-group :assets do
-  gem 'sass-rails', "  ~> 3.2.0"
-  gem 'coffee-rails', "~> 3.2.0"
-  gem 'uglifier'
-end
+gem 'sass-rails', "  ~> 4.0.0"
+gem 'coffee-rails', "~> 4.0.0"
+gem 'uglifier'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
