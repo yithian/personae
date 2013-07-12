@@ -10,24 +10,18 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
-  has_many :characters, :foreign_key => "owner_id", :dependent => :destroy
+  has_many :characters, foreign_key: "owner_id", :dependent => :destroy
   has_many :comments
-  has_many :cliques, :foreign_key => "owner_id"
-  has_many :chronicles, :foreign_key => "owner_id"
-  belongs_to :selected_chronicle, :class_name => "Chronicle"
+  has_many :cliques, foreign_key: "owner_id"
+  has_many :chronicles, foreign_key: "owner_id"
+  belongs_to :selected_chronicle, class_name: "Chronicle"
   
   validates :name, :presence => true, :uniqueness => true
   
   # Clean up after the deletion of a non-Storyteller user
   before_destroy do |user|
-    if user.name == "Storyteller"
-      raise "Can't delete the Storyteller user"
-    end
-
-    if User.count == 1
-      raise "Can't delete the last user"
+    if (user.name == "Storyteller") or (User.count == 1)
+      return false
     end
 
     user.cliques.each do |clique|

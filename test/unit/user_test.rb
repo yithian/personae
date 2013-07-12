@@ -47,17 +47,17 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "shouldn't destroy last user" do
-    assert_raise RuntimeError do
-      User.find(:all).each do |user|
-        user.destroy
-      end
+    User.all.each do |user|
+      user.destroy
     end
+    
+    assert_equal User.count, 1
   end
   
   test "shouldn't destroy storyteller user" do
     User.create(:name => "Storyteller", :password => "pword")
     
-    assert_raise RuntimeError do
+    assert_no_difference "User.count" do
       User.find_by_name("Storyteller").destroy
     end
   end

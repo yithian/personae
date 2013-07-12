@@ -4,12 +4,12 @@
 # database.
 
 class Chronicle < ActiveRecord::Base
-  belongs_to :owner, :class_name => "User"
+  belongs_to :owner, class_name: "User"
   has_many :characters
-  has_many :pcs, :class_name => "Character", :conditions => {:pc => true}
-  has_many :npcs, :class_name => "Character", :conditions => {:pc => false}
+  has_many :pcs, -> { where pc: 'true' }, class_name: "Character"
+  has_many :npcs, -> { where pc: 'false' }, class_name: "Character"
   has_many :cliques
-  has_many :selected_users, :class_name => "User", :foreign_key => "selected_chronicle_id"
+  has_many :selected_users, foreign_key: "selected_chronicle_id", class_name: "User"
   
   validates :name, :presence => true, :uniqueness => true
   
