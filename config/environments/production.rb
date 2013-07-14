@@ -77,4 +77,7 @@ Personae::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  # Url for mailer links
+  config.action_mailer.default_url_options = { :host => 'www.infinitepersonae.com' }
 end
