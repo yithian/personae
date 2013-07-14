@@ -1,7 +1,12 @@
 # Be sure to restart your server when you modify this file.
 
-# Your secret key for verifying the integrity of signed cookies.
+# Your secret key is used for verifying the integrity of signed cookies.
 # If you change this key, all old signed cookies will become invalid!
+
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Personae::Application.config.secret_token = '9ad1d26d019f86dc5d2cb0169e2b9cd05245c5af61a95abf58b02653599f7b7c86f422b3eb44672bbad6c4857e55e00e0ec9026076d363687077c7be7a41af5e'
+# You can use `rake secret` to generate a secure secret key.
+
+# Make sure your secret_key_base is kept private
+# if you're sharing your code publicly.
+Personae::Application.config.secret_key_base = '4743cc58ed7995fda12a971e49d1d85a01fa10df256736c636823da7c5aeb38e90f4e68f0fbe0cc0bc3fa05bb5fbcf07a6f54f46cea0c089b302b73842e12cc4'
