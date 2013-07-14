@@ -16,8 +16,8 @@ Personae::Application.routes.draw do
         get 'update_chronicle'
       end
       member do
-        put 'save_notes'
-        put 'save_current'
+        patch 'save_notes'
+        patch 'save_current'
         get 'shapeshift'
         get 'preview'
         post 'roll'
