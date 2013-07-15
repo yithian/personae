@@ -80,4 +80,11 @@ class ApplicationController < ActionController::Base
     @selected_chronicles << Chronicle.new(:name => "--------")
     @selected_chronicles << Chronicle.new(:name => "New chronicle")
   end
+  
+  # workaround for cancan until it's compatible with rails 4
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
 end
