@@ -35,17 +35,17 @@ class NaturesController < ApplicationController
   # POST /natures
   # POST /natures.xml
   def create
-    @nature = Nature.new(params[:nature])
+    @nature = Nature.new(nature_params)
 
     flash[:notice] = 'Nature was successfully created.' if @nature.save
 
     respond_with @nature
   end
 
-  # PUT /natures/1
-  # PUT /natures/1.xml
+  # PATCH /natures/1
+  # PATCH /natures/1.xml
   def update
-    flash[:notice] = 'Nature was successfully updated.' if @nature.update_attributes(params[:nature])
+    flash[:notice] = 'Nature was successfully updated.' if @nature.update_attributes(nature_params)
 
     respond_with @nature
   end
@@ -90,5 +90,10 @@ class NaturesController < ApplicationController
   # Creates a list of all splats. Used to create a new nature.
   def find_lists
     @splat_list = Splat.all.collect
+  end
+  
+  # 
+  def nature_params
+    params.require(:nature).permit(:name, :splat_id)
   end
 end

@@ -115,18 +115,18 @@ class NaturesControllerTest < ActionController::TestCase
   test "should update nature" do
     sign_in(users(:Storyteller))
 
-    put :update, :id => natures(:one).to_param, :nature => { }
+    patch :update, :id => natures(:one).to_param, :nature => { :splat_id => splats(:one) }
     assert_redirected_to nature_path(assigns(:nature))
   end
 
   test "shouldn't update nature as nobody" do
-    put :update, :id => natures(:one).to_param, :nature => { }
+    patch :update, :id => natures(:one).to_param, :nature => { :splat_id => splats(:one) }
     assert_login
   end
 
   test "shouldn't update nature as user" do
     sign_in(users(:one))
-    put :update, :id => natures(:one).to_param, :nature => { }
+    patch :update, :id => natures(:one).to_param, :nature => { :splat_id => splats(:one) }
     assert_equal("Access denied!", flash[:error], "updated nature as user")
     assert_redirected_to nature_path(natures(:one))
   end
