@@ -92,7 +92,7 @@ class NaturesController < ApplicationController
     @splat_list = Splat.all.collect
   end
   
-  # 
+  # generate strong parameters
   def nature_params
     params.require(:nature).permit(:name, :splat_id)
   end
