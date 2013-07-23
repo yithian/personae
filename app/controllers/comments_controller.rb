@@ -3,7 +3,7 @@
 class CommentsController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
-  
+
   before_filter :find_character, :only => [:new, :create, :destroy]
   before_filter :find_comment, :only => ["new", "destroy"]
 
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   # POST /characters/comments
   # POST /characters/comments
   def create
-    @comment = @character.comments.build(params[:comment])
+    @comment = @character.comments.build(comment_params)
 
     if @comment.save
       redirect_to chronicle_character_path(@character.chronicle, @character)
@@ -55,5 +55,10 @@ class CommentsController < ApplicationController
     else
       @comment = Comment.find(params[:id])
     end
+  end
+
+  # generate strong parameters
+  def comment_params
+    params.require(:comment).permit(:character_id, :user_id, :speaker, :body)
   end
 end
