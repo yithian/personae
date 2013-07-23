@@ -29,7 +29,7 @@ class IdeologiesControllerTest < ActionController::TestCase
 
   test "should get new" do
     sign_in(users(:Storyteller))
-    
+
     get :new, :splat_id => splats(:one).id
     assert_response :success
   end
@@ -115,18 +115,18 @@ class IdeologiesControllerTest < ActionController::TestCase
   test "should update ideology" do
     sign_in(users(:Storyteller))
 
-    put :update, :id => ideologies(:one).to_param, :ideology => { }
+    put :update, :id => ideologies(:one).to_param, :ideology => { :name => 'tested' }
     assert_redirected_to ideology_path(assigns(:ideology))
   end
 
   test "shouldn't update ideology as nobody" do
-    put :update, :id => ideologies(:one).to_param, :ideology => { }
+    put :update, :id => ideologies(:one).to_param, :ideology => { :name => 'tested' }
     assert_login
   end
 
   test "shouldn't update ideology as user" do
     sign_in(users(:one))
-    put :update, :id => ideologies(:one).to_param, :ideology => { }
+    put :update, :id => ideologies(:one).to_param, :ideology => { :name => 'tested' }
     assert_equal("Access denied!", flash[:error], "updated ideology as user")
     assert_redirected_to ideology_path(ideologies(:one))
   end

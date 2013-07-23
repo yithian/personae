@@ -3,11 +3,11 @@
 class IdeologiesController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
-  
+
   before_filter :find_ideology, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :create, :edit, :update]
-  
+
   # GET /ideologies
   # GET /ideologies.xml
   def index
@@ -69,7 +69,7 @@ class IdeologiesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
   # Sets up an ideology object based on an id passed by url or
   # creates a new (empty) object
@@ -80,15 +80,20 @@ class IdeologiesController < ApplicationController
       @ideology = Ideology.find_by_id(params[:id])
     end
   end
-  
+
   # Sets values based on ids passed by url. Used to add an ideology
   # to a splat.
   def set_params
     @ideology.splat_id = params['splat_id'] if params['splat_id']
   end
-  
+
   # Creates a list of all splats. Used to create a new ideology.
   def find_lists
     @splat_list = Splat.all.collect
+  end
+
+  # generate strong parameters
+  def ideology_params
+    params.require(:ideology).permit(:name, :splat_id)
   end
 end
