@@ -35,7 +35,7 @@ class IdeologiesController < ApplicationController
   # POST /ideologies
   # POST /ideologies.xml
   def create
-    @ideology = Ideology.new(params[:ideology])
+    @ideology = Ideology.new(ideology_params)
 
     flash[:notice] = 'Ideology was successfully created.' if @ideology.save
 
@@ -45,7 +45,7 @@ class IdeologiesController < ApplicationController
   # PUT /ideologies/1
   # PUT /ideologies/1.xml
   def update
-    flash[:notice] = 'Ideology was successfully updated.' if @ideology.update_attributes(params[:ideology])
+    flash[:notice] = 'Ideology was successfully updated.' if @ideology.update_attributes(ideology_params)
 
     respond_with @ideology
   end
