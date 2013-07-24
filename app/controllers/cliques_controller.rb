@@ -3,11 +3,11 @@
 class CliquesController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
-  
+
   before_filter :find_clique, :only => [:new, :show, :edit, :update, :destroy]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
-  
+
   # GET /cliques
   # GET /cliques.xml
   def index
@@ -40,7 +40,7 @@ class CliquesController < ApplicationController
   # POST /cliques
   # POST /cliques.xml
   def create
-    @clique = Clique.new(params[:clique])
+    @clique = Clique.new(clique_params)
     @clique.owner = current_user
 
     flash[:notice] = 'Clique was successfully created.' if @clique.save
@@ -51,13 +51,13 @@ class CliquesController < ApplicationController
   # PUT /cliques/1
   # PUT /cliques/1.xml
   def update
-    if @clique.update_attributes(params[:clique])
+    if @clique.update_attributes(clique_params)
       # updates the clique's characters' chronicle as well
       @clique.characters.each do |character|
         character.chronicle = @clique.chronicle
         character.save
       end if current_user.super_user?(@clique.chronicle) and current_user.super_user?(Chronicle.find_by_id(params[:clique][:chronicle_id] ))
-      
+
       flash[:notice] = 'Clique was successfully updated.'
     end
 
@@ -72,7 +72,7 @@ class CliquesController < ApplicationController
         m.clique_id = Clique.find_by_name('Solitary').id
         m.save
       end
-      
+
       @clique.destroy
     else
       flash[:notice] = 'You cannot destroy this clique.'
@@ -83,7 +83,7 @@ class CliquesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
   # Sets up a clique variable based on an id passed by url, or if none
   # was passed, creates a new (empty) clique.
@@ -105,5 +105,10 @@ class CliquesController < ApplicationController
   # cliques between chronicles.
   def find_lists
     @chronicle_list = Chronicle.all.collect
+  end
+
+  # generate strong parameters
+  def clique_params
+    params.require(:clique).permit(:name, :chronicle_id, :territory, :description, :write, :owner_id)
   end
 end

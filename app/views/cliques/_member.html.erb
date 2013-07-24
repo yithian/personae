@@ -1,9 +1,9 @@
 <% if can? :read, member and can? :read_clique, member %>
   <tr>
-    <td><%= link_to image_tag("edit.png"), edit_chronicle_character_path(member) if can? :edit, member %></td>
+    <td><%= link_to image_tag("edit.png"), edit_chronicle_character_path(member.chronicle, member) if can? :edit, member %></td>
     <td><%= link_to member.name, chronicle_character_path(member.chronicle, member) %></td>
     <td><%= member.concept %></td>
     <td><%= link_to member.ideology.name, {:id => member.ideology, :chronicle_id => member.chronicle} if can? :read_ideology, member %></td>
-    <td><%= link_to image_tag("delete.png"), {:id => member, :chronicle_id => member.chronicle}, :confirm => 'Are you sure you want to delete this character?', :method => :delete if can? :destroy, member %></td>
+    <td><%= link_to image_tag("delete.png"), {:id => member, :chronicle_id => member.chronicle}, :data => {:confirm => 'Are you sure you want to delete this character?'}, :method => :delete if can? :destroy, member %></td>
   </tr>
 <% end %>

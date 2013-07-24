@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   check_authorization :unless => :devise_controller?
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied!"
-    
+
     case exception.subject.class.name
     when "Symbol" # The admin controller has no model, and thus appears as a symbol
       if user_signed_in?
@@ -36,10 +36,10 @@ class ApplicationController < ActionController::Base
     else
       target = exception.subject
     end
-    
+
     redirect_to target
   end
-  
+
   protected
   # returns true if obsidian portal integration is running via MageHand
   # and the user has linked his/her account
@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
   # since users who aren't logged in won't have a current_user
   # we need to stick a value in their session data to keep track
   # of which chronicle they're viewing.
-  # 
+  #
   # this also preps a couple variables used everywhere
   def chronicle_setup
     if params[:controller] == 'characters' and (params[:action] == 'new' or params[:action] == 'edit')
@@ -70,17 +70,17 @@ class ApplicationController < ActionController::Base
         @selected_chronicles.uniq!
       end
 
-      @chronicle = Chronicle.where(:id => params[:chronicle_id])
+      @chronicle = Chronicle.where(:id => params[:chronicle_id]).first
       @selected_chronicle = current_user.selected_chronicle
     else
-      @chronicle = Chronicle.where(:id => params[:chronicle_id])
+      @chronicle = Chronicle.where(:id => params[:chronicle_id]).first
       @selected_chronicle = Chronicle.find_by_id(session[:selected_chronicle_id]) || Chronicle.all.first
     end
 
     @selected_chronicles << Chronicle.new(:name => "--------")
     @selected_chronicles << Chronicle.new(:name => "New chronicle")
   end
-  
+
   # workaround for cancan until it's compatible with rails 4
   before_filter do
     resource = controller_name.singularize.to_sym
