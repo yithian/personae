@@ -6,8 +6,8 @@
 class Chronicle < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
   has_many :characters
-  has_many :pcs, -> { where pc: 'true' }, class_name: "Character"
-  has_many :npcs, -> { where pc: 'false' }, class_name: "Character"
+  has_many :pcs, -> { where pc: true }, class_name: "Character"
+  has_many :npcs, -> { where pc: false }, class_name: "Character"
   has_many :cliques
   has_many :selected_users, foreign_key: "selected_chronicle_id", class_name: "User"
 
