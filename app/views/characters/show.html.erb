@@ -759,5 +759,5 @@
   | <%= link_to('Edit', edit_chronicle_character_path(@character.chronicle, @character)) %>
 <% end %>
 <% if can? :destroy, @character %>
-  | <%= link_to('Destroy', {:chronicle_id => @character.chronicle, :id => @character}, :confirm => "Are you sure you want to delete #{@character.name}?", :method => :delete) %>
+  | <%= link_to('Destroy', {:chronicle_id => @character.chronicle, :id => @character}, :data => {:confirm => "Are you sure you want to delete #{@character.name}?"}, :method => :delete) %>
 <% end %>

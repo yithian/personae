@@ -9,5 +9,5 @@
 		  character.clique.name
 	  end %>
   </td>
-  <td><%= link_to image_tag("delete.png"), {:chronicle_id => character.chronicle, :id => character}, :confirm => 'Are you sure you want to delete this character?', :method => :delete if can? :destroy, character %></td>
+  <td><%= link_to image_tag("delete.png"), {:chronicle_id => character.chronicle, :id => character}, :data => {:confirm => 'Are you sure you want to delete this character?'}, :method => :delete if can? :destroy, character %></td>
 </tr>
