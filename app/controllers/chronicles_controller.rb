@@ -4,16 +4,16 @@ class ChroniclesController < ApplicationController
   include MageHand
   respond_to :html, :xml
   load_and_authorize_resource
-  
+
   before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update], :if => :obsidian_enabled?
   before_filter :find_campaign, :only => [:new, :create, :show, :edit, :update], :if => :obsidian_enabled?
   before_filter :find_chronicle, :only => [:create, :show, :edit, :update, :destroy]
-  
+
   # GET /chronicles
   # GET /chronicles.xml
   def index
-    @chronicles = Chronicle.order('owner_id').all
-    
+    @chronicles = Chronicle.order('owner_id')
+
     respond_with @chronicles
   end
 
@@ -26,7 +26,7 @@ class ChroniclesController < ApplicationController
 
     @pcs = @chronicle.pcs.reject { |c| cannot? :read, c }
     @npcs = @chronicle.find_npcs(current_user, params[:page])
-    
+
     respond_with @chronicle
   end
 
@@ -34,7 +34,7 @@ class ChroniclesController < ApplicationController
   # GET /chronicles/new.xml
   def new
     obsidian_campaigns if obsidian_enabled?
-    
+
     respond_with @chronicle
   end
 
@@ -45,19 +45,19 @@ class ChroniclesController < ApplicationController
 
       @chronicle.description = @campaign.wiki_pages[0].body unless @campaign.nil?
     end
-    
+
     @users = ::User.all
   end
 
   # POST /chronicles
   # POST /chronicles.xml
   def create
-    @chronicle = Chronicle.new(params[:chronicle])
+    @chronicle = Chronicle.new(chronicle_params)
     @chronicle.owner = current_user
 
     if @chronicle.save
       flash[:notice] = "Chronicle successfully created"
-      
+
       user = current_user
       user.selected_chronicle = @chronicle
       user.save
@@ -74,7 +74,7 @@ class ChroniclesController < ApplicationController
   # PUT /chronicles/1
   # PUT /chronicles/1.xml
   def update
-    flash[:notice] = "Chronicle successfully updated" if @chronicle.update_attributes(params[:chronicle])
+    flash[:notice] = "Chronicle successfully updated" if @chronicle.update_attributes(chronicle_params)
 
     unless @campaign.nil?
       json_page = JSON.generate({:wiki_page => {:body => @chronicle.description }})
@@ -94,7 +94,7 @@ class ChroniclesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   # POST /chronicles/change_selected_chronicle
   def change_selected_chronicle
     # if an empty string is passed in here, create a new chronicle
@@ -103,18 +103,18 @@ class ChroniclesController < ApplicationController
       @target = new_chronicle_path
     else
       @selected_chronicle = Chronicle.find_by_id(params[:new_chronicle_id])
-    
+
       if user_signed_in?
         current_user.selected_chronicle = @selected_chronicle
         current_user.save
       else
         session[:selected_chronicle_id] = @selected_chronicle.id
       end
-      
+
       @target = chronicle_path(@selected_chronicle)
     end
   end
-  
+
   private
   # Sets up a chronicle variable from an id passed by url, or if none is
   # passed, a new (empty) chronicle.
@@ -125,13 +125,13 @@ class ChroniclesController < ApplicationController
       @chronicle = Chronicle.find_by_id(params[:id])
     end
   end
-  
+
   # sets up a campaign variable from the obsidian_campaign_id saved in
   # the chronicle
   def find_campaign
     @campaign = MageHand::Campaign.find(@chronicle.obsidian_campaign_id) unless @chronicle.obsidian_campaign_id == '0' or @chronicle.obsidian_campaign_id.nil?
   end
-  
+
   # sets up a variable to hold an array of obsidian portal campaign names
   # and ids
   def obsidian_campaigns
@@ -139,5 +139,10 @@ class ChroniclesController < ApplicationController
       [campaign.name, campaign.id]
     end
     @campaigns.insert(0, ['-', 0])
+  end
+
+  # generate strong parameters
+  def chronicle_params
+    params.require(:chronicle).permit(:name, :description, :owner_id, :obsidian_campaign_id)
   end
 end

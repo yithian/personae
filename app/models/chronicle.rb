@@ -10,26 +10,26 @@ class Chronicle < ActiveRecord::Base
   has_many :npcs, -> { where pc: 'false' }, class_name: "Character"
   has_many :cliques
   has_many :selected_users, foreign_key: "selected_chronicle_id", class_name: "User"
-  
+
   validates :name, :presence => true, :uniqueness => true
-  
+
   before_destroy do |c|
     if Chronicle.count == 1
       raise "Can't delete the last chronicle"
     end
-    
-    nc = Chronicle.find(:first).id
-    
+
+    nc = Chronicle.first.id
+
     c.characters.each do |character|
       character.chronicle_id = nc
       character.save
     end
-    
+
     c.cliques.each do |clique|
       clique.chronicle_id = nc
       clique.save
     end
-    
+
     c.selected_users.each do |user|
       user.selected_chronicle_id = nc
       user.save

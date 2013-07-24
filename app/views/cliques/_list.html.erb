@@ -12,13 +12,13 @@
       <td><%= link_to image_tag("edit.png"), edit_chronicle_clique_path(clique.chronicle, clique) if can? :edit, clique %></td>
       <td>
 		 	<%= unless clique.name == "Solitary"
-				link_to clique.name, chronicle_clique_path(clique.chronicle, clique) if clique.chronicle 
+				link_to clique.name, chronicle_clique_path(clique.chronicle, clique) if clique.chronicle
 			else
 				clique.name
 			end %>
 	</td>
       <td><%= clique.territory %></td>
-      <td><%= link_to image_tag("delete.png"), chronicle_clique_path(clique.chronicle, clique), :confirm => 'Are you sure you want to delete this clique?', :method => :delete if can? :destroy, clique %></td>
+      <td><%= link_to image_tag("delete.png"), chronicle_clique_path(clique.chronicle, clique), :data => {:confirm => 'Are you sure you want to delete this clique?'}, :method => :delete if can? :destroy, clique %></td>
     </tr>
 	<% end %>
   <% end %>
