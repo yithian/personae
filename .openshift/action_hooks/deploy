@@ -7,5 +7,4 @@
 # Run db:migrate
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
 bundle exec rake db:migrate RAILS_ENV="production"
-bundle exec "rake assets:precompile"
 popd > /dev/null
