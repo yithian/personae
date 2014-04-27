@@ -1,10 +1,10 @@
 source 'http://rubygems.org/'
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.1'
 gem 'rake'
 gem 'mysql2'
 gem 'thin'
-gem 'devise', '3.0.0.rc'
+gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
