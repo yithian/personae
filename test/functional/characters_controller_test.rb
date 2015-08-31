@@ -50,12 +50,7 @@ class CharactersControllerTest < ActionController::TestCase
 
     # ensure hidden characters don't show
     (Character.all - Character.known_to(User.new, chronicles(:two).id)).each do |char|
-      assert_no_tag "td", :content => /#{char.name}/
-    end
-
-    # ensure hidden characters don't show
-    (Character.all - Character.known_to(User.new, chronicles(:one).id)).each do |char|
-      assert_no_tag "td", :content => /#{char.name}/
+      assert_select "td", { count: 0, text: /#{char.name}/ }
     end
   end
 
@@ -81,7 +76,7 @@ class CharactersControllerTest < ActionController::TestCase
 
     # ensure hidden characters don't show
     (Character.all - Character.known_to(users(:one), chronicles(:two).id)).each do |char|
-      assert_no_tag "td", :content => /#{char.name}/
+      assert_select "td", { count: 0, text: /#{char.name}/ }
     end
   end
 
@@ -106,7 +101,7 @@ class CharactersControllerTest < ActionController::TestCase
 
     # ensure hidden characters don't show
     (Character.all - Character.known_to(users(:Storyteller), chronicles(:one).id)).each do |char|
-      assert_no_tag "td", :content => /#{char.name}/
+      assert_select "td", { count: 0, text: /#{char.name}/ }
     end
   end
 
@@ -222,10 +217,10 @@ class CharactersControllerTest < ActionController::TestCase
     # start with a valid base
     get :new, :splat_id => splats(:one).id, :chronicle_id => chronicles(:one).id, :ideology_id => ideologies(:one).id, :nature_id => natures(:one).id
 
-    assert_tag :tag => 'select', :attributes => {:id => 'nature_id'}, :child => {:tag => "option", :content => /#{natures(:two).name}/}
-    assert_tag :tag => 'select', :attributes => {:id => 'character_subnature_id'}, :child => {:tag => "option", :content => /#{subnatures(:one).name}/}
-    assert_tag :tag => 'select', :attributes => {:id => 'character_ideology_id'}, :child => {:tag => "option", :content => /#{ideologies(:one).name}/}
-    assert_tag :tag => 'select', :attributes => {:id => 'character_clique_id'}, :child => {:tag => "option", :content => /#{cliques(:one).name}/}
+    assert_select 'select', :attributes => {:id => 'nature_id'}, :child => {:tag => "option", :content => /#{natures(:two).name}/}
+    assert_select 'select', :attributes => {:id => 'character_subnature_id'}, :child => {:tag => "option", :content => /#{subnatures(:one).name}/}
+    assert_select 'select', :attributes => {:id => 'character_ideology_id'}, :child => {:tag => "option", :content => /#{ideologies(:one).name}/}
+    assert_select 'select', :attributes => {:id => 'character_clique_id'}, :child => {:tag => "option", :content => /#{cliques(:one).name}/}
 
     # ensure that changing chronicle updates clique select options
     xhr :get, :update_chronicle, :chronicle_id => chronicles(:one), :new_chronicle_id => chronicles(:two).to_param

@@ -5,7 +5,7 @@
 // the compiled file.
 //
 //= require jquery
-//= require jquery.ui.all
+//= require jquery-ui
 //= require jquery_ujs
 //= require jquery.autogrow-textarea
 //= require_tree .
