@@ -68,8 +68,6 @@ class Ability
       can :manage, Chronicle, :owner_id => user.id
       can :manage, Comment, :user_id => user.id
       can :manage, User, :id => user.id
-      can :obsidian, :connect
-      can :obsidian, :disconnect
 
       # universal permissions
       can :read, Chronicle

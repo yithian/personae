@@ -41,12 +41,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  # returns true if obsidian portal integration is running via MageHand
-  # and the user has linked his/her account
-  def obsidian_enabled?
-    not SERVICES['obsidianportal']['consumer_key'].empty? and user_signed_in? and not current_user.obsidian_user_id.nil?
-  end
-
   # since users who aren't logged in won't have a current_user
   # we need to stick a value in their session data to keep track
   # of which chronicle they're viewing.

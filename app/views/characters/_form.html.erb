@@ -23,10 +23,6 @@
     <tr>
       <td><b><%= f.label :owner_id, "Player" if @users %></b></td>
       <td><%= f.select :owner_id, options_from_collection_for_select(@users, :id, :name, @character.owner_id) if @users %></td>
-    <% if @obsidian_characters %>
-      <td><b><%= f.label :obsidian_character_id, "Obsidian Portal" %></b></td>
-      <td><%= f.select :obsidian_character_id, @obsidian_characters %></td>
-    <% end %>
     </tr>
     <tr>
       <td><b><%= f.label :concept %></b></td>

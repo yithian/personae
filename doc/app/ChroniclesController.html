@@ -2,203 +2,109 @@
 
 <html>
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta charset="utf-8">
 
 <title>class ChroniclesController - Rails Application Documentation</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
     <a href="./table_of_contents.html#classes">Classes</a>
     <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
-
-
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
-
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>app/controllers/chronicles_controller.rb
-  </ul>
-</nav>
-
-    
   </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
 
   <div id="class-metadata">
     
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
   
   <p class="link"><a href="ApplicationController.html">ApplicationController</a>
   
-</nav>
+</div>
 
-    <!-- Included Modules -->
-<nav id="includes-section" class="section">
-  <h3 class="section-header">Included Modules</h3>
-
-  <ul class="link-list">
-  
-  
-    <li><span class="include">MageHand</span>
-  
-  
-  </ul>
-</nav>
-
+    
+    
     <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
 
-  <ul class="link-list">
+  <ul class="link-list" role="directory">
     
-    <li><a href="#method-i-change_selected_chronicle">#change_selected_chronicle</a>
+    <li ><a href="#method-i-change_selected_chronicle">#change_selected_chronicle</a>
     
-    <li><a href="#method-i-create">#create</a>
+    <li ><a href="#method-i-create">#create</a>
     
-    <li><a href="#method-i-destroy">#destroy</a>
+    <li ><a href="#method-i-destroy">#destroy</a>
     
-    <li><a href="#method-i-edit">#edit</a>
+    <li ><a href="#method-i-edit">#edit</a>
     
-    <li><a href="#method-i-index">#index</a>
+    <li ><a href="#method-i-index">#index</a>
     
-    <li><a href="#method-i-new">#new</a>
+    <li ><a href="#method-i-new">#new</a>
     
-    <li><a href="#method-i-show">#show</a>
+    <li ><a href="#method-i-show">#show</a>
     
-    <li><a href="#method-i-update">#update</a>
+    <li ><a href="#method-i-update">#update</a>
     
   </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Character.html">Character</a>
-  
-    <li><a href="./Character/ViceValidator.html">Character::ViceValidator</a>
-  
-    <li><a href="./Character/VirtueValidator.html">Character::VirtueValidator</a>
-  
-    <li><a href="./Ability.html">Ability</a>
-  
-    <li><a href="./AdminController.html">AdminController</a>
-  
-    <li><a href="./AdminHelper.html">AdminHelper</a>
-  
-    <li><a href="./ApplicationController.html">ApplicationController</a>
-  
-    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
-  
-    <li><a href="./CharactersController.html">CharactersController</a>
-  
-    <li><a href="./CharactersHelper.html">CharactersHelper</a>
-  
-    <li><a href="./Chronicle.html">Chronicle</a>
-  
-    <li><a href="./ChroniclesController.html">ChroniclesController</a>
-  
-    <li><a href="./ChroniclesHelper.html">ChroniclesHelper</a>
-  
-    <li><a href="./Clique.html">Clique</a>
-  
-    <li><a href="./CliquesController.html">CliquesController</a>
-  
-    <li><a href="./CliquesHelper.html">CliquesHelper</a>
-  
-    <li><a href="./Comment.html">Comment</a>
-  
-    <li><a href="./CommentHelper.html">CommentHelper</a>
-  
-    <li><a href="./CommentsController.html">CommentsController</a>
-  
-    <li><a href="./IdeologiesController.html">IdeologiesController</a>
-  
-    <li><a href="./IdeologiesHelper.html">IdeologiesHelper</a>
-  
-    <li><a href="./Ideology.html">Ideology</a>
-  
-    <li><a href="./Nature.html">Nature</a>
-  
-    <li><a href="./NaturesController.html">NaturesController</a>
-  
-    <li><a href="./NaturesHelper.html">NaturesHelper</a>
-  
-    <li><a href="./ServicesController.html">ServicesController</a>
-  
-    <li><a href="./ServicesHelper.html">ServicesHelper</a>
-  
-    <li><a href="./Splat.html">Splat</a>
-  
-    <li><a href="./StaticController.html">StaticController</a>
-  
-    <li><a href="./StaticHelper.html">StaticHelper</a>
-  
-    <li><a href="./Subnature.html">Subnature</a>
-  
-    <li><a href="./UniqueInChronicleValidator.html">UniqueInChronicleValidator</a>
-  
-    <li><a href="./User.html">User</a>
-  
-  </ul>
-</nav>
+</div>
 
   </div>
 </nav>
 
-<div id="documentation">
-  <h1 class="class">class ChroniclesController</h1>
+<main role="main" aria-labelledby="class-ChroniclesController">
+  <h1 id="class-ChroniclesController" class="class">
+    class ChroniclesController
+  </h1>
 
-  <div id="description" class="description">
+  <section class="description">
     
 <p>Controller for chronicle actions: show/create/edit/etc</p>
 
-  </div><!-- description -->
+  </section>
 
   
   
@@ -212,10 +118,11 @@
 
     
 
-    <!-- Methods -->
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
 
     
       <div id="method-i-change_selected_chronicle" class="method-detail ">
@@ -223,7 +130,9 @@
         <div class="method-heading">
           <span class="method-name">change_selected_chronicle</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -231,10 +140,11 @@
           
           <p>POST /chronicles/change_selected_chronicle</p>
           
+          
 
           
           <div class="method-source-code" id="change_selected_chronicle-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 99</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_selected_chronicle</span>
   <span class="ruby-comment"># if an empty string is passed in here, create a new chronicle</span>
   <span class="ruby-comment"># otherwise, display the new @selected_chronicle</span>
@@ -242,25 +152,25 @@
     <span class="ruby-ivar">@target</span> = <span class="ruby-identifier">new_chronicle_path</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@selected_chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:new_chronicle_id</span>])
-  
+
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_signed_in?</span>
       <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">selected_chronicle</span> = <span class="ruby-ivar">@selected_chronicle</span>
       <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">session</span>[<span class="ruby-value">:selected_chronicle_id</span>] = <span class="ruby-ivar">@selected_chronicle</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-keyword">end</span>
-    
+
     <span class="ruby-ivar">@target</span> = <span class="ruby-identifier">chronicle_path</span>(<span class="ruby-ivar">@selected_chronicle</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- change_selected_chronicle-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- change_selected_chronicle-method -->
+      </div>
 
     
       <div id="method-i-create" class="method-detail ">
@@ -268,7 +178,9 @@
         <div class="method-heading">
           <span class="method-name">create</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -276,37 +188,33 @@
           
           <p>POST /chronicles POST /chronicles.xml</p>
           
+          
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
+  <span class="ruby-ivar">@chronicle</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">chronicle_params</span>)
   <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">owner</span> = <span class="ruby-identifier">current_user</span>
 
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Chronicle successfully created&quot;</span>
-    
+
     <span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
     <span class="ruby-identifier">user</span>.<span class="ruby-identifier">selected_chronicle</span> = <span class="ruby-ivar">@chronicle</span>
     <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@campaign</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">json_page</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>({<span class="ruby-value">:wiki_page</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:body</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">description</span> }})
-    <span class="ruby-identifier">obsidian_portal</span>.<span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}.json&quot;</span>, <span class="ruby-identifier">json_page</span>)
-  <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
-
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- create-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- create-method -->
+      </div>
 
     
       <div id="method-i-destroy" class="method-detail ">
@@ -314,7 +222,9 @@
         <div class="method-heading">
           <span class="method-name">destroy</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -322,10 +232,11 @@
           
           <p>DELETE /chronicles/1 DELETE /chronicles/1.xml</p>
           
+          
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 89</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">destroy</span>
 
@@ -334,14 +245,14 @@
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- destroy-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- destroy-method -->
+      </div>
 
     
       <div id="method-i-edit" class="method-detail ">
@@ -349,7 +260,9 @@
         <div class="method-heading">
           <span class="method-name">edit</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -357,27 +270,22 @@
           
           <p>GET /chronicles/1/edit</p>
           
+          
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
-    <span class="ruby-identifier">obsidian_campaigns</span>
-
-    <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">description</span> = <span class="ruby-ivar">@campaign</span>.<span class="ruby-identifier">wiki_pages</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">body</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@campaign</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-keyword">end</span>
-  
   <span class="ruby-ivar">@users</span> = <span class="ruby-operator">::</span><span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- edit-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- edit-method -->
+      </div>
 
     
       <div id="method-i-index" class="method-detail ">
@@ -385,7 +293,9 @@
         <div class="method-heading">
           <span class="method-name">index</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -393,23 +303,24 @@
           
           <p>GET /chronicles GET /chronicles.xml</p>
           
+          
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;owner_id&#39;</span>).<span class="ruby-identifier">all</span>
-  
+  <span class="ruby-ivar">@chronicles</span> = <span class="ruby-constant">Chronicle</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;owner_id&#39;</span>)
+
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicles</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- index-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- index-method -->
+      </div>
 
     
       <div id="method-i-new" class="method-detail ">
@@ -417,7 +328,9 @@
         <div class="method-heading">
           <span class="method-name">new</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -425,23 +338,22 @@
           
           <p>GET /chronicles/new GET /chronicles/new.xml</p>
           
+          
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-identifier">obsidian_campaigns</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
-  
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- new-method -->
+      </div>
 
     
       <div id="method-i-show" class="method-detail ">
@@ -449,7 +361,9 @@
         <div class="method-heading">
           <span class="method-name">show</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -457,10 +371,11 @@
           
           <p>GET /chronicles/1 GET /chronicles/1.xml</p>
           
+          
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 22</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@characters</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">characters</span>
   <span class="ruby-ivar">@cliques</span> = <span class="ruby-constant">Clique</span>.<span class="ruby-identifier">known_to</span> <span class="ruby-identifier">current_user</span>, <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">id</span>
@@ -468,17 +383,17 @@
 
   <span class="ruby-ivar">@pcs</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">pcs</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">cannot?</span> <span class="ruby-value">:read</span>, <span class="ruby-identifier">c</span> }
   <span class="ruby-ivar">@npcs</span> = <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">find_npcs</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
-  
+
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- show-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- show-method -->
+      </div>
 
     
       <div id="method-i-update" class="method-detail ">
@@ -486,7 +401,9 @@
         <div class="method-heading">
           <span class="method-name">update</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -494,40 +411,35 @@
           
           <p>PUT /chronicles/1 PUT /chronicles/1.xml</p>
           
+          
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 76</span>
+            <pre><span class="ruby-comment"># File app/controllers/chronicles_controller.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
-  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Chronicle successfully updated&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:chronicle</span>])
-
-  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@campaign</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">json_page</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>({<span class="ruby-value">:wiki_page</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:body</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">description</span> }})
-    <span class="ruby-identifier">obsidian_portal</span>.<span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}.json&quot;</span>, <span class="ruby-identifier">json_page</span>)
-  <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obsidian_enabled?</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Chronicle successfully updated&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@chronicle</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">chronicle_params</span>)
 
   <span class="ruby-identifier">respond_with</span> <span class="ruby-ivar">@chronicle</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- update-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- update-method -->
+      </div>
 
     
-    </section><!-- public-instance-method-details -->
+    </section>
   
-  </section><!-- 5Buntitled-5D -->
+  </section>
+</main>
 
-</div><!-- documentation -->
 
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

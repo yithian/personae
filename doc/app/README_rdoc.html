@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>README - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-License">License</a>
+    <li><a href="#label-Welcome">Welcome</a>
+    <li><a href="#label-Terms">Terms</a>
+    <li><a href="#label-Setup">Setup</a>
+    <li><a href="#label-POSIX+%28Linux%2C+Mac%2C+Solaris%2C+etc%29+Apache+setup">POSIX (Linux, Mac, Solaris, etc) Apache setup</a>
+    <li><a href="#label-Windows+Apache+setup">Windows Apache setup</a>
+    <li><a href="#label-Accessing+your+site">Accessing your site</a>
+    <li><a href="#label-Email+notifications">Email notifications</a>
+    <li><a href="#label-A+word+of+caution">A word of caution</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.rdoc">
+
+<h2 id="label-License">License<span><a href="#label-License">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Personae is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.</p>
+
+<p>Personae is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.</p>
+
+<p>You should have received a copy of the GNU General Public License along
+with Personae. If not, see &lt;<a
+href="http://www.gnu.org/licenses">www.gnu.org/licenses</a>/&gt;.</p>
+
+<h2 id="label-Welcome">Welcome<span><a href="#label-Welcome">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Persona is a Ruby on Rails web application designed to hold character
+sheets for the New World of Darkness role playing games by White Wolf. This
+program is designed to contain entire chronicles worth of characters and
+really shines when used for non-player-character sheets as well as the
+players&#39; characters.</p>
+
+<h2 id="label-Terms">Terms<span><a href="#label-Terms">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Since this software has been designed to work with all the game lines in
+the New World of Darkness, some generic terminology has been used to
+describe similar elements across game lines.</p>
+
+<p><a href="Splat.html">Splat</a> =&gt; Mage, Vampire, Werewolf, etc <a
+href="Nature.html">Nature</a> =&gt; Moros (Mage), Gangrel (Vampire),
+Cahalith (Werewolf), etc <a href="Subnature.html">Subnature</a> =&gt;
+Changelings&#39; Kith (and nothing else) <a href="Clique.html">Clique</a>
+=&gt; Cabal (Mage), Cotorie (Vampire), Pack (Werewolf), etc <a
+href="Ideology.html">Ideology</a> =&gt; Silver Ladder (Mage), Lancae
+Sanctum (Vampire), Storm Lords (Werewolf), etc</p>
+
+<h2 id="label-Setup">Setup<span><a href="#label-Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Personae uses an administrator-style account named Storyteller. This
+account can see all the Characters, Cliques and Ideologies in your game,
+regardless of their display settings. Be careful! The default password for
+this account is worldofdarkness – please change this once your database is
+set up! Once this account is active it can mark any others as admins as
+well. These accounts will have the same permissions as Storyteller.</p>
+
+<p>To run Personae, you must have the following software installed: Ruby, 
+Ruby on Rails, and mysql. It is highly suggested to use Apache httpd and
+mod_rails as well.</p>
+
+<p>If you don&#39;t have this software installed, you can download it from <a
+href="http://ruby-lang.org">ruby-lang.org</a> and <a
+href="http://www.mysql.com">www.mysql.com</a> . Once you have Ruby and
+mysql installed, use Ruby Gems to install bundler: *nix:</p>
+
+<pre>gem install bundler</pre>
+
+<p>Windows: Start -&gt; Programs -&gt; Ruby -&gt; Ruby Gems -&gt; RubyGems
+Package Manager.</p>
+
+<pre>gem install bundler</pre>
+
+<p>With bundler installed, install the rest of the required gems by changing
+into Personae&#39;s install directory (from a shell or cmd prompt) and run</p>
+
+<pre>bundle install.</pre>
+
+<p>This will install the proper versions of all the gems you&#39;ll need.</p>
+
+<p>Once you have Personae downloaded and placed where you want it, open a
+command prompt (Terminal on Mac, xterm on Linux, cmd on Windows). Run the
+following to configure your database:</p>
+
+<pre>cd &lt;personae location&gt;; RAILS_ENV=production rake db:setup</pre>
+
+<p>If you prefer, you can use the built-in web server with Ruby on Rails. This
+is not recommended, though. A better solution is to download Apache httpd
+and mod_rails from <a href="http://httpd.apache.org">httpd.apache.org</a>
+and <a href="http://mod_rails.com">mod_rails.com</a> on a POSIX-compliant
+operating system (that is, just about anything but Windows). On a Windows
+environment, Apache httpd and mongrel is your best bet.</p>
+
+<p>Windows: Start -&gt; Programs -&gt; Ruby -&gt; Ruby Gems -&gt; RubyGems
+Package Manager.</p>
+
+<pre>gem install mongrel</pre>
+
+<h2 id="label-POSIX+%28Linux%2C+Mac%2C+Solaris%2C+etc%29+Apache+setup">POSIX (Linux, Mac, Solaris, etc) Apache setup<span><a href="#label-POSIX+%28Linux%2C+Mac%2C+Solaris%2C+etc%29+Apache+setup">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>If you&#39;re using Mac, httpd is already installed for you. Otherwise, use
+your distribution&#39;s package manager to install httpd.</p>
+
+<p>Open a terminal and install mod_rails:</p>
+
+<pre>gem install passenger</pre>
+
+<p>Run the mod_rails installer:</p>
+
+<pre>passenger-install-apache2-module</pre>
+
+<p>The mod_rails installer should provide you with several lines to copy/paste
+into your Apache httpd.conf file. Do so.</p>
+
+<p>Now, when you start Apache httpd, it will automatically begin serving up
+Personae.</p>
+
+<h2 id="label-Windows+Apache+setup">Windows Apache setup<span><a href="#label-Windows+Apache+setup">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>As above, download Apache httpd from <a
+href="http://httpd.apache.org">httpd.apache.org</a> and run the installer.
+Use the RubyGem package manager to install mongrel:</p>
+
+<pre>gem install mongrel</pre>
+
+<p>With mongrel installed, add the following lines to Apache&#39;s httpd.conf
+file: LoadModule proxy_module modules/mod_proxy.so LoadModule
+proxy_http_module modules/mod_proxy_http.so</p>
+
+<pre>&lt;VirtualHost localhost:80&gt;
+  ServerName www.myapp.comm
+  DocumentRoot &quot;C:/web/myapp/public&quot;
+  ProxyPass / http://www.myapp.com:3000/
+  ProxyPassReverse / http://www.myapp.com:3000/
+  ProxyPreserveHost On
+&lt;/VirtualHost&gt;</pre>
+
+<p>Use the Apache tools to start httpd.</p>
+
+<p>Open a command prompt (Start -&gt; Run -&gt; cmd) and type:</p>
+
+<pre>cd &lt;personae install path&gt;; mongrel_rails start -d</pre>
+
+<h2 id="label-Accessing+your+site">Accessing your site<span><a href="#label-Accessing+your+site">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Without further modification to httpd.conf, Personae will be running on
+port 80 of the computer it is installed on. You will need to allow access
+through whatever firewall you might be running to this port and will likely
+need to enable port forwarding on your router. <a
+href="http://portforward.com">portforward.com</a> can help you with this.</p>
+
+<p>It is unlikely that your computer will have a fully-qualified domain name
+(eg. google.com, white-wolf.com, etc). You can either register a domain
+name or use a service such as no-ip (<a
+href="http://no-ip.org">no-ip.org</a>) to give you one.</p>
+
+<h2 id="label-Email+notifications">Email notifications<span><a href="#label-Email+notifications">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Personae uses the devise gem for user authentication and one of its
+features is email notifications for various events. To send these messages
+requires a mail server of some type. You may use a hosted proxy such as
+Sendgrid  (<a href="http://sendgrid.com">sendgrid.com</a>) to relay
+messages through or you may use a local mail server instead. My personal
+favorite is postifx (<a href="http://www.postifx.org">www.postifx.org</a>).</p>
+
+<p>To use a mail proxy, you must 1: edit personae/config/initializers/mail.rb
+to point to your relay of choice and 2: set environment variables to
+contain your username and password. In bash (in a *nix environment), this
+would be done like `export SENDGRID_USERNAME=“your_username”` before
+starting Personae.</p>
+
+<p>If you would rather use a local mailserver, you may simply remove mail.rb.
+Don&#39;t worry! I promise it won&#39;t break anything!</p>
+
+<h2 id="label-A+word+of+caution">A word of caution<span><a href="#label-A+word+of+caution">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Running a web server presents a potential security vulnerability, which can
+be mitigated by frequently updating Apache and Ruby on Rails. If you&#39;re
+not OK with that, then your best bet is to not use Personae.</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

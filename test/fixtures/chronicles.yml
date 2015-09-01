@@ -4,16 +4,13 @@ one:
   name: MyName
   description: MyDescriptionText
   owner: Storyteller
-  obsidian_campaign_id: 1
 
 two:
   name: MyOtherName
   description: MyOtherDescriptionText
   owner: two
-  obsidian_campaign_id: 2
 
 three:
   name: MyThirdName
   description: MyThirdDescriptionText
   owner: two
-  obsidian_campaign_id: 3

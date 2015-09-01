@@ -1,23 +1,8 @@
 require 'test_helper'
 
 class ChroniclesControllerTest < ActionController::TestCase
-  require 'fakeweb'
   include Devise::TestHelpers
 
-  def setup
-    FakeWeb.allow_net_connect = false
-    FakeWeb.register_uri(:post, 'https://www.obsidianportal.com/oauth/request_token', :body => 'oauth_token=fake&oauth_token_secret=fake')
-    FakeWeb.register_uri(:post, 'https://www.obsidianportal.com/oauth/access_token', :body => 'oauth_token=fake&oauth_token_secret=fake')
-    FakeWeb.register_uri(:get, 'https://www.obsidianportal.com/oauth/authorize', :response => File.join(Rails.root.to_s, 'test', 'fixtures', 'authorize'))
-    FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/users/me.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_user'))
-    FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/campaigns/1.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_campaign'))
-    FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/campaigns/1/wikis.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_wiki'))
-    FakeWeb.register_uri(:put, 'http://api.obsidianportal.com/v1/campaigns/1/wikis/1.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_wiki'))
-
-    @request.session[:access_token_key] = "zbSBqRLcixlAVpdZ9DRQ"
-    @request.session[:access_token_secret] = "XrkwQiAHQUl4U6Xzwx0mjXE90DtM4cXmz2jYDK2V"
-  end
-  
   def assert_login
     assert_redirected_to new_user_session_path
     assert_equal "You need to sign in or sign up before continuing.", flash[:alert]

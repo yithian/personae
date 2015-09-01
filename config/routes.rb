@@ -33,8 +33,5 @@ Personae::Application.routes.draw do
 
   devise_for :users
 
-  post "services/obsidian_connect", :as => "obsidian_connect"
-  post "services/obsidian_disconnect", :as => "obsidian_disconnect"
-  
   get "admin/manage", :as => "manage_admins"
 end

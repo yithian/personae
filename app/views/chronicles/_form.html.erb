@@ -14,11 +14,6 @@
   <h5>Name</h5>
   <%= f.text_field :name %>
   
-  <% unless @campaigns.nil? %>
-    <h5>Obsidian Portal Link</h5>
-    <%= f.select :obsidian_campaign_id, @campaigns %>
-  <% end %>
-  
   <% if @users %>
     <h5>Storyteller</h5>
     <%= f.select :owner_id, options_from_collection_for_select(@users, :id, :name, @chronicle.owner_id) %>

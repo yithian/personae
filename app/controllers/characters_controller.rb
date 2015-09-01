@@ -1,11 +1,9 @@
 # Controller for character actions: show/create/edit/etc
 
 class CharactersController < ApplicationController
-  include MageHand
   respond_to :html, :xml
   load_and_authorize_resource
 
-  before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update, :destroy], :if => :obsidian_enabled?
   before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :save_notes, :save_current, :destroy, :preview]
   before_filter :set_params, :only => [:new]
   before_filter :find_lists, :only => [:new, :edit, :update]
@@ -69,14 +67,11 @@ class CharactersController < ApplicationController
   # GET /characters/new
   # GET /characters/new.xml
   def new
-    obsidian_characters if obsidian_enabled?
-
     respond_with @character
   end
 
   # GET /characters/1/edit
   def edit
-    obsidian_characters if obsidian_enabled?
     @users = ::User.all
   end
 
@@ -137,8 +132,6 @@ class CharactersController < ApplicationController
 
     if @character.save
       flash[:notice] = 'Character was successfully created.'
-
-      obsidian_save if obsidian_enabled?
     end
 
     respond_with(@character.chronicle, @character)
@@ -146,16 +139,11 @@ class CharactersController < ApplicationController
 
   # PUT /characters/1
   # PUT /characters/1.xml
-  #
-  # this will also sync a character's sheet to obsidian portal,
-  # if an obsidian_character_id is specified
   def update
     @character.vice = params[:character_vice].join(" ") if params[:character_vice]
 
     if @character.update_attributes(character_params)
       flash[:notice] = 'Character was successfully updated.'
-
-      obsidian_save if obsidian_enabled?
     end
 
     respond_with(@character.chronicle, @character)
@@ -248,35 +236,8 @@ class CharactersController < ApplicationController
     @chronicle_list = Chronicle.all.collect
   end
 
-  # sets up a variable of obsidian portal character names and ids
-  # for use in a select tag
-  def obsidian_characters
-    unless @character.chronicle.obsidian_campaign_id == '0' or @character.chronicle.obsidian_campaign_id.nil?
-      @obsidian_characters = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json").body).collect { |c| [c["name"], c["id"]] }
-      @obsidian_characters.insert(0, ["-", 0])
-      @obsidian_characters << ["Create new", -1]
-    end
-  end
-
-  # saves a character to obsidian portal if appropriate
-  def obsidian_save
-    json_character = JSON.generate({:character => {:name => @character.name, :bio => @character.obsidian_bio, :description => @character.obsidian_description, :is_game_master_only => (not @character.read_name), :is_player_character => @character.pc, :tagline => @character.concept}})
-
-    case @character.obsidian_character_id
-    when "0"
-      # do not sync
-      return
-    when "-1"
-      # create a new character
-      result =   obsidian_portal.access_token.post("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters.json", json_character)
-    else
-      # update existing character
-      result =  obsidian_portal.access_token.put("/v1/campaigns/#{@character.chronicle.obsidian_campaign_id}/characters/#{@character.obsidian_character_id}.json", json_character)
-    end
-  end
-
   # generate strong parameters
   def character_params
-    params.require(:character).permit(:name, :virtue, :vice, :clique_id, :ideology_id, :description, :background, :intelligence, :strength, :presence, :wits, :dexterity, :manipulation, :resolve, :stamina, :composure, :academics, :athletics, :animal_ken, :computer, :brawl, :empathy, :crafts, :drive, :expression, :investigation, :firearms, :intimidation, :medicine, :larceny, :persuasion, :occult, :stealth, :socialize, :politics, :survival, :streetwise, :science, :weaponry, :subterfuge, :skill_specialties, :health, :willpower, :speed, :initiative, :defense, :armor, :morality, :derangements, :merits, :power_stat, :death, :fate, :forces, :life, :matter, :mind, :prime, :space, :spirit, :time, :equipment, :common_spells, :owner_id, :read_name, :read_description, :read_background, :read_crunch, :max_fuel, :experience, :read_experience, :read_clique, :read_ideology, :read_nature, :splat_id, :purity, :glory, :honor, :wisdom, :cunning, :gifts, :nature_id, :animalism, :auspex, :celerity, :dominate, :majesty, :nightmare, :protean, :obfuscate, :vigor, :covenant_disciplines, :size, :transmutations, :dream, :hearth, :mirror, :smoke, :artifice, :darkness, :elements, :fang_and_tooth, :stone, :vainglory, :fleeting_spring, :eternal_spring, :fleeting_summer, :eternal_summer, :fleeting_autumn, :eternal_autumn, :fleeting_winter, :eternal_winter, :goblin_contracts, :pledges, :boneyard, :caul, :curse, :marionette, :oracle, :rage, :shroud, :keys, :ceremonies, :deeds, :read_deeds, :current_health, :current_willpower, :notes, :read_notes, :chronicle_id, :subnature_id, :resilience, :current_fuel, :obsidian_character_id, :concept, :tactics, :pc, :possessed, :envy, :gluttony, :greed, :lust, :pride, :sloth, :wrath, :vestments, :primary_vice, :current_infernal_will, :power, :finesse, :resistance, :numina, :influences, :ab, :current_ab, :ba, :current_ba, :ka, :current_ka, :ren, :current_ren, :sheut, :current_sheut, :affinities, :utterances)
+    params.require(:character).permit(:name, :virtue, :vice, :clique_id, :ideology_id, :description, :background, :intelligence, :strength, :presence, :wits, :dexterity, :manipulation, :resolve, :stamina, :composure, :academics, :athletics, :animal_ken, :computer, :brawl, :empathy, :crafts, :drive, :expression, :investigation, :firearms, :intimidation, :medicine, :larceny, :persuasion, :occult, :stealth, :socialize, :politics, :survival, :streetwise, :science, :weaponry, :subterfuge, :skill_specialties, :health, :willpower, :speed, :initiative, :defense, :armor, :morality, :derangements, :merits, :power_stat, :death, :fate, :forces, :life, :matter, :mind, :prime, :space, :spirit, :time, :equipment, :common_spells, :owner_id, :read_name, :read_description, :read_background, :read_crunch, :max_fuel, :experience, :read_experience, :read_clique, :read_ideology, :read_nature, :splat_id, :purity, :glory, :honor, :wisdom, :cunning, :gifts, :nature_id, :animalism, :auspex, :celerity, :dominate, :majesty, :nightmare, :protean, :obfuscate, :vigor, :covenant_disciplines, :size, :transmutations, :dream, :hearth, :mirror, :smoke, :artifice, :darkness, :elements, :fang_and_tooth, :stone, :vainglory, :fleeting_spring, :eternal_spring, :fleeting_summer, :eternal_summer, :fleeting_autumn, :eternal_autumn, :fleeting_winter, :eternal_winter, :goblin_contracts, :pledges, :boneyard, :caul, :curse, :marionette, :oracle, :rage, :shroud, :keys, :ceremonies, :deeds, :read_deeds, :current_health, :current_willpower, :notes, :read_notes, :chronicle_id, :subnature_id, :resilience, :current_fuel, :concept, :tactics, :pc, :possessed, :envy, :gluttony, :greed, :lust, :pride, :sloth, :wrath, :vestments, :primary_vice, :current_infernal_will, :power, :finesse, :resistance, :numina, :influences, :ab, :current_ab, :ba, :current_ba, :ka, :current_ka, :ren, :current_ren, :sheut, :current_sheut, :affinities, :utterances)
   end
 end

@@ -1,12 +1,9 @@
 # Controller for chronicle actions: show/create/edit/etc
 
 class ChroniclesController < ApplicationController
-  include MageHand
   respond_to :html, :xml
   load_and_authorize_resource
 
-  before_filter :obsidian_portal_login_required, :only => [:new, :create, :edit, :update], :if => :obsidian_enabled?
-  before_filter :find_campaign, :only => [:new, :create, :show, :edit, :update], :if => :obsidian_enabled?
   before_filter :find_chronicle, :only => [:create, :show, :edit, :update, :destroy]
 
   # GET /chronicles
@@ -33,19 +30,11 @@ class ChroniclesController < ApplicationController
   # GET /chronicles/new
   # GET /chronicles/new.xml
   def new
-    obsidian_campaigns if obsidian_enabled?
-
     respond_with @chronicle
   end
 
   # GET /chronicles/1/edit
   def edit
-    if obsidian_enabled?
-      obsidian_campaigns
-
-      @chronicle.description = @campaign.wiki_pages[0].body unless @campaign.nil?
-    end
-
     @users = ::User.all
   end
 
@@ -63,11 +52,6 @@ class ChroniclesController < ApplicationController
       user.save
     end
 
-    unless @campaign.nil?
-      json_page = JSON.generate({:wiki_page => {:body => @chronicle.description }})
-      obsidian_portal.access_token.put("/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}.json", json_page)
-    end if obsidian_enabled?
-
     respond_with @chronicle
   end
 
@@ -75,11 +59,6 @@ class ChroniclesController < ApplicationController
   # PUT /chronicles/1.xml
   def update
     flash[:notice] = "Chronicle successfully updated" if @chronicle.update_attributes(chronicle_params)
-
-    unless @campaign.nil?
-      json_page = JSON.generate({:wiki_page => {:body => @chronicle.description }})
-      obsidian_portal.access_token.put("/v1/campaigns/#{@campaign.id}/wikis/#{@campaign.wiki_pages[0].id}.json", json_page)
-    end if obsidian_enabled?
 
     respond_with @chronicle
   end
@@ -126,23 +105,8 @@ class ChroniclesController < ApplicationController
     end
   end
 
-  # sets up a campaign variable from the obsidian_campaign_id saved in
-  # the chronicle
-  def find_campaign
-    @campaign = MageHand::Campaign.find(@chronicle.obsidian_campaign_id) unless @chronicle.obsidian_campaign_id == '0' or @chronicle.obsidian_campaign_id.nil?
-  end
-
-  # sets up a variable to hold an array of obsidian portal campaign names
-  # and ids
-  def obsidian_campaigns
-    @campaigns = obsidian_portal.current_user.campaigns.collect do |campaign|
-      [campaign.name, campaign.id]
-    end
-    @campaigns.insert(0, ['-', 0])
-  end
-
   # generate strong parameters
   def chronicle_params
-    params.require(:chronicle).permit(:name, :description, :owner_id, :obsidian_campaign_id)
+    params.require(:chronicle).permit(:name, :description, :owner_id)
   end
 end

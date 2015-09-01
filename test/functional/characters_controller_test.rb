@@ -1,24 +1,7 @@
 require 'test_helper'
 
 class CharactersControllerTest < ActionController::TestCase
-  require 'fakeweb'
   include Devise::TestHelpers
-
-  def setup
-    FakeWeb.allow_net_connect = false
-    FakeWeb.register_uri(:post, 'https://www.obsidianportal.com/oauth/request_token', :body => 'oauth_token=fake&oauth_token_secret=fake')
-    FakeWeb.register_uri(:post, 'https://www.obsidianportal.com/oauth/access_token', :body => 'oauth_token=fake&oauth_token_secret=fake')
-    FakeWeb.register_uri(:get, 'https://www.obsidianportal.com/oauth/authorize', :response => File.join(Rails.root.to_s, 'test', 'fixtures', 'authorize'))
-    FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/users/me.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_user'))
-    FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/campaigns/1/characters.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
-    FakeWeb.register_uri(:get, 'http://api.obsidianportal.com/v1/campaigns/2/characters.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
-    FakeWeb.register_uri(:post, 'http://api.obsidianportal.com/v1/campaigns/1/characters.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
-    FakeWeb.register_uri(:put, 'http://api.obsidianportal.com/v1/campaigns/1/characters/1.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
-    FakeWeb.register_uri(:put, 'http://api.obsidianportal.com/v1/campaigns/2/characters/2.json', :body => File.join(Rails.root.to_s, 'test', 'fixtures', 'op_character'))
-
-    @request.session[:access_token_key] = "zbSBqRLcixlAVpdZ9DRQ"
-    @request.session[:access_token_secret] = "XrkwQiAHQUl4U6Xzwx0mjXE90DtM4cXmz2jYDK2V"
-  end
 
   def assert_login
     assert_redirected_to new_user_session_path
@@ -122,7 +105,7 @@ class CharactersControllerTest < ActionController::TestCase
     sign_in(users(:one))
 
     assert_difference('Character.count') do
-      post :create, :character => { :name => "unique", :concept => "just a guy", :splat_id => splats(:one).id, :chronicle_id => chronicles(:one).id, :nature_id => natures(:one).id, :subnature_id => subnatures(:one).id, :ideology_id => ideologies(:one).id, :clique_id => cliques(:one).id, :obsidian_character_id => -1 }, :chronicle_id => chronicles(:one)
+      post :create, :character => { :name => "unique", :concept => "just a guy", :splat_id => splats(:one).id, :chronicle_id => chronicles(:one).id, :nature_id => natures(:one).id, :subnature_id => subnatures(:one).id, :ideology_id => ideologies(:one).id, :clique_id => cliques(:one).id }, :chronicle_id => chronicles(:one)
     end
 
     assert_redirected_to chronicle_character_path(assigns(:character).chronicle, assigns(:character))

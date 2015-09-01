@@ -21,12 +21,6 @@
   <p><%= f.submit "Update" %></p>
 <% end %>
 
-<% if current_user.obsidian_user_id.nil? %>
-  <%= button_to 'Connect to Obsidian Portal', obsidian_connect_path %>
-<% else %>
-  Connected to Obsidian Portal as <%= current_user.obsidian_user_name %>. <%= button_to 'Disconnect?', obsidian_disconnect_path %>
-<% end if SERVICES['obsidianportal']['consumer_key'] %>
-
 <h5>Cancel my account</h5>
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
