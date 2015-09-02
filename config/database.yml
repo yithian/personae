@@ -26,4 +26,4 @@ production:
   pool: 5
   username: <%= ENV['OPENSHIFT_MYSQL_DB_USERNAME'] %>
   password: <%= ENV['OPENSHIFT_MYSQL_DB_PASSWORD'] %>
-  socket: <%= ENV['OPENSHIFT_MYSQL_DB_SOCKET'] %>
+  host: <%= ENV['OPENSHIFT_MYSQL_DB_HOST'] %>
