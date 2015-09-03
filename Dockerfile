@@ -1,9 +1,13 @@
 FROM phusion/passenger-ruby22
 MAINTAINER Alex Chvatal m.chvatal@gmail.com
 ENV HOME /home/app
-WORKDIR $HOME
-COPY . $HOME
+WORKDIR $HOME/webapp
+COPY . $HOME/webapp
 RUN bundle install
 RUN rake assets:precompile
-RUN rm -f /etc/service/nginx/down
+RUN chown -R app .
+RUN rm /etc/service/nginx/down
+RUN rm /etc/nginx/sites-enabled/default
+ADD nginx/personae.conf /etc/nginx/sites-enabled/personae.conf
+ADD nginx/env.conf /etc/nginx/main.d/env.conf
 CMD ["/sbin/my_init"]
