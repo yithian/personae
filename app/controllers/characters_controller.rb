@@ -4,11 +4,11 @@ class CharactersController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
 
-  before_filter :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :save_notes, :save_current, :destroy, :preview]
-  before_filter :set_params, :only => [:new]
-  before_filter :find_lists, :only => [:new, :edit, :update]
+  before_action :find_character, :only => [:new, :show, :shapeshift, :edit, :update, :save_notes, :save_current, :destroy, :preview]
+  before_action :set_params, :only => [:new]
+  before_action :find_lists, :only => [:new, :edit, :update]
 
-  skip_before_filter :chronicle_setup, :only => [:roll, :preview, :shapeshift, :possess, :update_splat, :update_nature, :update_chronicle]
+  skip_before_action :chronicle_setup, :only => [:roll, :preview, :shapeshift, :possess, :update_splat, :update_nature, :update_chronicle]
 
   # GET /characters
   # GET /characters.xml
