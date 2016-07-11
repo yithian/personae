@@ -1,7 +1,6 @@
 source 'http://rubygems.org/'
 
 gem 'rails', '5.0.0'
-gem 'rails-controller-testing'
 gem 'rake'
 gem 'mysql2'
 gem 'thin'
@@ -33,4 +32,5 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'ruby-prof'
+  gem 'rails-controller-testing'
 end
