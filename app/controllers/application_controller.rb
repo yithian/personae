@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :chronicle_setup
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   check_authorization :unless => :devise_controller?
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  protect_from_forgery prepend: true
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied!"
