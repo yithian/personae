@@ -17,7 +17,7 @@ $rollable-border: #97a2d3;
 
 @font-face {
 	font-family: optimus;
-	src: url(<%= asset_digest_path('OptimusPrinceps.ttf') %>);
+	src: url(<%= compute_asset_path('OptimusPrinceps.ttf') %>);
 }
 
 body {
@@ -177,22 +177,22 @@ label {
 
 	h5 {
 		color: $header-color;
-		background: url(<%= asset_digest_path("mortal-smudge.png") %>) no-repeat -10px -6px;
+		background: url(<%= compute_asset_path("mortal-smudge.png") %>) no-repeat -10px -6px;
 		overflow: visible;
 		padding: 0.2em 1.5em;
 		font-family: optimus;
 		position: relative;
 		left: -4em;
 
-		&.mage { background: url(<%= asset_digest_path("mage-smudge.png") %>) no-repeat -10px -6px; }
-		&.vampire { background: url(<%= asset_digest_path("vampire-smudge.png") %>) no-repeat -10px -6px; }
-		&.werewolf { background: url(<%= asset_digest_path("werewolf-smudge.png") %>) no-repeat -10px -6px; }
-		&.promethean { background: url(<%= asset_digest_path("promethean-smudge.png") %>) no-repeat -10px -6px; }
-		&.changeling { background: url(<%= asset_digest_path("changeling-smudge.png") %>) no-repeat -10px -6px; }
-		&.hunter { background: url(<%= asset_digest_path("hunter-smudge.png") %>) no-repeat -10px -6px; }
-		&.geist { background: url(<%= asset_digest_path("geist-smudge.png") %>) no-repeat -10px -6px; }
-		&.spirit { background: url(<%= asset_digest_path("spirit-smudge.png") %>) no-repeat -10px -6px; }
-		&.mummy { background: url(<%= asset_digest_path("mummy-smudge.png") %>) no-repeat -10px -6px; }
+		&.mage { background: url(<%= compute_asset_path("mage-smudge.png") %>) no-repeat -10px -6px; }
+		&.vampire { background: url(<%= compute_asset_path("vampire-smudge.png") %>) no-repeat -10px -6px; }
+		&.werewolf { background: url(<%= compute_asset_path("werewolf-smudge.png") %>) no-repeat -10px -6px; }
+		&.promethean { background: url(<%= compute_asset_path("promethean-smudge.png") %>) no-repeat -10px -6px; }
+		&.changeling { background: url(<%= compute_asset_path("changeling-smudge.png") %>) no-repeat -10px -6px; }
+		&.hunter { background: url(<%= compute_asset_path("hunter-smudge.png") %>) no-repeat -10px -6px; }
+		&.geist { background: url(<%= compute_asset_path("geist-smudge.png") %>) no-repeat -10px -6px; }
+		&.spirit { background: url(<%= compute_asset_path("spirit-smudge.png") %>) no-repeat -10px -6px; }
+		&.mummy { background: url(<%= compute_asset_path("mummy-smudge.png") %>) no-repeat -10px -6px; }
 	}
 
 	label.sized {

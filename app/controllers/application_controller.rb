@@ -2,8 +2,8 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  before_filter :chronicle_setup
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  before_action :chronicle_setup
+  before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   check_authorization :unless => :devise_controller?
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
@@ -57,12 +57,15 @@ class ApplicationController < ActionController::Base
 
     if user_signed_in?
       if current_user.admin?
-        @selected_chronicles = Chronicle.all
+        @selected_chronicles += Chronicle.all.to_ary
       else
-        @selected_chronicles = current_user.characters.collect { |c| c.chronicle }
+        @selected_chronicles += current_user.characters.collect { |c| c.chronicle }.to_ary
         @selected_chronicles += current_user.chronicles
         @selected_chronicles.uniq!
       end
+
+      @selected_chronicles << Chronicle.new(:name => "--------")
+      @selected_chronicles << Chronicle.new(:name => "New chronicle")
 
       @chronicle = Chronicle.where(:id => params[:chronicle_id]).first
       @selected_chronicle = current_user.selected_chronicle
@@ -71,14 +74,5 @@ class ApplicationController < ActionController::Base
       @selected_chronicle = Chronicle.find_by_id(session[:selected_chronicle_id]) || Chronicle.all.first
     end
 
-    @selected_chronicles << Chronicle.new(:name => "--------")
-    @selected_chronicles << Chronicle.new(:name => "New chronicle")
-  end
-
-  # workaround for cancan until it's compatible with rails 4
-  before_filter do
-    resource = controller_name.singularize.to_sym
-    method = "#{resource}_params"
-    params[resource] &&= send(method) if respond_to?(method, true)
   end
 end
