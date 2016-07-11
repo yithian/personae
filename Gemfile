@@ -1,6 +1,7 @@
 source 'http://rubygems.org/'
 
-gem 'rails', '4.2.4'
+gem 'rails', '5.0.0'
+gem 'rails-controller-testing'
 gem 'rake'
 gem 'mysql2'
 gem 'thin'
@@ -12,8 +13,8 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'dice_roller'
 
-gem 'sass-rails', "  ~> 4.0.0"
-gem 'coffee-rails', "~> 4.0.0"
+gem 'sass-rails', "~> 5.0.0"
+gem 'coffee-rails', "~> 4.2.0"
 gem 'uglifier'
 
 # Bundle gems for the local environment. Make sure to
