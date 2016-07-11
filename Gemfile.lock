@@ -42,7 +42,7 @@ GEM
     arel (7.0.0)
     bcrypt (3.1.11)
     builder (3.2.2)
-    cancan (1.6.10)
+    cancancan (1.15.0)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -163,7 +163,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cancan
+  cancancan
   coffee-rails (~> 4.2.0)
   devise
   dice_roller
@@ -184,4 +184,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.10.6
+   1.12.5
