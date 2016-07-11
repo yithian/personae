@@ -4,7 +4,7 @@ class ChroniclesController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
 
-  before_filter :find_chronicle, :only => [:create, :show, :edit, :update, :destroy]
+  before_action :find_chronicle, :only => [:create, :show, :edit, :update, :destroy]
 
   # GET /chronicles
   # GET /chronicles.xml
