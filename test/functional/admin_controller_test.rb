@@ -3,7 +3,7 @@ require 'test_helper'
 class AdminControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
 
-  test "shouldn't get manage" do
+  test 'shouldn\'t get manage' do
     get :manage
     assert_redirected_to new_user_session_path
 
@@ -11,10 +11,10 @@ class AdminControllerTest < ActionController::TestCase
 
     get :manage
     assert_redirected_to root_path
-    assert_equal "Access denied!", flash[:error]
+    assert_equal 'Access denied!', flash[:error]
   end
 
-  test "should get manage" do
+  test 'should get manage' do
     sign_in(users(:Storyteller))
 
     get :manage
@@ -22,7 +22,7 @@ class AdminControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
-  test "shouldn't put manage" do
+  test 'shouldn\'t put manage' do
     put :manage
     assert_redirected_to new_user_session_path
 
@@ -30,10 +30,10 @@ class AdminControllerTest < ActionController::TestCase
 
     put :manage
     assert_redirected_to root_path
-    assert_equal "Access denied!", flash[:error]
+    assert_equal 'Access denied!', flash[:error]
   end
 
-  test "should put manage" do
+  test 'should put manage' do
     sign_in(users(:Storyteller))
 
     put :manage
@@ -41,34 +41,34 @@ class AdminControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
-  test "shouldn't set admins" do
-    put :manage, params: {:admin_ids => [users(:Storyteller).id, users(:one).id]}
+  test 'shouldn\'t set admins' do
+    put :manage, params: {admin_ids: [users(:Storyteller).id, users(:one).id]}
 
     assert_redirected_to new_user_session_path
     assert users(:one).admin == false
 
     sign_in(users(:one))
-    put :manage, params: {:admin_ids => [users(:Storyteller).id, users(:one).id]}
+    put :manage, params: {admin_ids: [users(:Storyteller).id, users(:one).id]}
 
     assert_redirected_to root_path
-    assert User.find_by_id(users(:one).id).admin? == false, "user was set as admin"
+    assert User.find_by_id(users(:one).id).admin? == false, 'user was set as admin'
   end
 
-  test "should set admins" do
+  test 'should set admins' do
     sign_in(users(:Storyteller))
 
-    post :manage, params: {:admin_ids => [users(:Storyteller).id, users(:one).id]}
+    post :manage, params: {admin_ids: [users(:Storyteller).id, users(:one).id]}
 
     assert_response :success
-    assert User.find_by_id(users(:one).id).admin? == true, "user was not set as admin"
+    assert User.find_by_id(users(:one).id).admin? == true, 'user was not set as admin'
   end
 
-  test "shouldn't unset Storyteller" do
+  test 'shouldn\'t unset Storyteller' do
     sign_in(users(:Storyteller))
 
-    post :manage, params: {:admin_ids => [users(:one).id]}
+    post :manage, params: {admin_ids: [users(:one).id]}
 
     assert_response :success
-    assert User.find_by_id(users(:Storyteller).id).admin? == true, "Storyteller was unset as admin"
+    assert User.find_by_id(users(:Storyteller).id).admin? == true, 'Storyteller was unset as admin'
   end
 end
