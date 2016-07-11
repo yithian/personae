@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
         clique.save
       end
 
-      false
+      throw :abort
     else
       true
     end
