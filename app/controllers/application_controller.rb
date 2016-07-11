@@ -64,9 +64,6 @@ class ApplicationController < ActionController::Base
         @selected_chronicles.uniq!
       end
 
-      @selected_chronicles << Chronicle.new(:name => "--------")
-      @selected_chronicles << Chronicle.new(:name => "New chronicle")
-
       @chronicle = Chronicle.where(:id => params[:chronicle_id]).first
       @selected_chronicle = current_user.selected_chronicle
     else
@@ -74,5 +71,7 @@ class ApplicationController < ActionController::Base
       @selected_chronicle = Chronicle.find_by_id(session[:selected_chronicle_id]) || Chronicle.all.first
     end
 
+    @selected_chronicles << Chronicle.new(:name => "--------")
+    @selected_chronicles << Chronicle.new(:name => "New chronicle")
   end
 end
