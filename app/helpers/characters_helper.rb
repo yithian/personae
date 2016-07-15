@@ -48,7 +48,7 @@ module CharactersHelper
   end
 
   def make_rollable(field)
-    field.gsub(/\[\s*:([^:]*): ([^*^\[]+(?:(?:(?:\+|-) [^*^\[]+)+)?)\s*(?:\s+\*([^*]+)\*)?\s*\]/) do
+    field.gsub(/\[\s*:([^:]*): ([^*^\[]+(?:(?:(?:\+|-) [^*^\[]))?)\s*(?:\s+\*([^*]+)\*)?\s*\]/) do
       name = $1
       stats = $2
       conditions = $3 || ""
