@@ -1,4 +1,4 @@
-FROM phusion/passenger-ruby22
+FROM phusion/passenger-ruby23
 MAINTAINER Alex Chvatal <yith@yuggoth.space>
 ENV HOME /home/app
 WORKDIR $HOME/webapp
