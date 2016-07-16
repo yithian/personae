@@ -1,5 +1,5 @@
 FROM phusion/passenger-ruby22
-MAINTAINER Alex Chvatal m.chvatal@gmail.com
+MAINTAINER Alex Chvatal <yith@yuggoth.space>
 ENV HOME /home/app
 WORKDIR $HOME/webapp
 RUN rm /etc/service/nginx/down /etc/nginx/sites-enabled/default
