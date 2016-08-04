@@ -6,6 +6,7 @@ RUN rm /etc/service/nginx/down /etc/nginx/sites-enabled/default
 ADD nginx/personae.conf /etc/nginx/sites-enabled/personae.conf
 ADD nginx/env.conf /etc/nginx/main.d/env.conf
 COPY . $HOME/webapp
+COPY config/database.yml.example config/database.yml
 RUN bundle install
 RUN rake assets:precompile
 RUN chown -R app .
