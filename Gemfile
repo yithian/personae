@@ -3,7 +3,6 @@ source 'http://rubygems.org/'
 gem 'rails', '5.1.2'
 gem 'rake'
 gem 'mysql2'
-gem 'thin'
 gem 'devise'
 gem 'cancancan'
 gem 'jquery-rails'
@@ -11,6 +10,7 @@ gem 'jquery-ui-rails'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'dice_roller'
+gem 'puma'
 
 gem 'sass-rails', "~> 5.0.0"
 gem 'coffee-rails', "~> 4.2.0"
