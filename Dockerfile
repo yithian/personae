@@ -25,5 +25,7 @@ RUN bundle exec rake assets:precompile
 RUN chown -R ${APPUSER}:${APPUSER} ${APPDIR}
 
 USER ${APPUSER}
-EXPOSE 3000
+EXPOSE 9292
 CMD ["./script/personae.sh"]
+HEALTHCHECK --interval=10s --timeout=3s --start-period=5s \
+    CMD curl -f http://localhost:9292/ || exit 1
