@@ -1,6 +1,10 @@
 FROM arm64v8/ruby:2.4.1
 LABEL maintainer='Alex Chvatal <yith@yuggoth.space>'
 
+RUN apt-get update -qq && \
+    apt-get install -y -qq nodejs && \
+    apt-get clean
+
 ENV RAILS_ENV=production \
     APPDIR=/opt/personae \
     APPUSER=personae
