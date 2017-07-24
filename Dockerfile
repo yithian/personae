@@ -1,11 +1,13 @@
-FROM ruby:2.4.1
+FROM fedora:latest
 LABEL maintainer='Alex Chvatal <yith@yuggoth.space>'
 
 ENV RAILS_ENV=production \
     APPDIR=/opt/personae \
     APPUSER=personae
 
-RUN useradd -md ${APPDIR} ${APPUSER}
+RUN dnf -yq install ruby rubygem-bundler nodejs && \
+    dnf -q clean all && \
+    useradd -md ${APPDIR} ${APPUSER}
 
 # install the bundle on a a lower layer
 WORKDIR /tmp
@@ -17,10 +19,7 @@ WORKDIR ${APPDIR}
 COPY . ./
 COPY config/database.yml.example config/database.yml
 
-RUN apt-get update -qq && \
-    apt-get install -y -qq nodejs && \
-    bundle exec rake assets:precompile && \
-    apt-get clean -qq && \
+RUN bundle exec rake assets:precompile && \
     chown -R ${APPUSER}:${APPUSER} ${APPDIR}
 
 USER ${APPUSER}
