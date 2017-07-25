@@ -3,19 +3,21 @@ LABEL maintainer='Alex Chvatal <yith@yuggoth.space>'
 
 ENV RAILS_ENV=production \
     APPDIR=/opt/personae \
-    APPUSER=personae
+    APPUSER=personae \
+    BUILD_DEPS='ruby-devel redhat-rpm-config gcc patch libffi-devel'
 
-RUN dnf -yq install ruby rubygem-bundler nodejs && \
-    dnf -q clean all && \
-    useradd -md ${APPDIR} ${APPUSER}
-
-# install the bundle on a a lower layer
-WORKDIR /tmp
+RUN useradd -md ${APPDIR} ${APPUSER}
+WORKDIR ${APPDIR}
 COPY Gemfile .
 COPY Gemfile.lock .
-RUN bundle install --without development test
 
-WORKDIR ${APPDIR}
+RUN dnf -yq install ruby nodejs mariadb-devel ${BUILD_DEPS} && \
+    gem install --silent bundler rake && \
+    su ${APPUSER} -c "bundle install --without development test --deployment" && \
+    dnf -yq erase ${BUILD_DEPS} && \
+    dnf -q clean all && \
+    rm -rf /var/cache/dnf/*
+
 COPY . ./
 COPY config/database.yml.example config/database.yml
 

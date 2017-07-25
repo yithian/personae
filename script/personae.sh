@@ -1,3 +1,3 @@
 #!/bin/bash
-rails server Puma &
+bundle exec rails server Puma &
 tail -f log/${RAILS_ENV}.log

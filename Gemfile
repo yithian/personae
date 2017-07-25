@@ -11,6 +11,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'dice_roller'
 gem 'puma'
+gem 'json'
 
 gem 'sass-rails', "~> 5.0.0"
 gem 'coffee-rails', "~> 4.2.0"
