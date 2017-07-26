@@ -13,7 +13,7 @@ COPY Gemfile.lock .
 
 RUN dnf -yq install ruby nodejs mariadb-devel ${BUILD_DEPS} && \
     gem install --silent bundler rake && \
-    su ${APPUSER} -c "bundle install --without development test --deployment" && \
+    su ${APPUSER} -c "bundle install --without development test --deployment --quiet" && \
     dnf -yq erase ${BUILD_DEPS} && \
     dnf -q clean all && \
     rm -rf /var/cache/dnf/*
