@@ -1,3 +1,5 @@
+PERSONAE IS NO LONGER MAINTAINED, USE AT YOUR OWN RISK
+
 == License
 Personae is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
